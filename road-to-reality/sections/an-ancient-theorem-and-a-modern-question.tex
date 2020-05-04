@@ -1,0 +1,97 @@
+\documentclass[../road-to-reality]{subfiles}
+
+\begin{document}
+\printanswers
+
+\section{An ancient theorem and a modern question}
+
+\begin{questions}
+	
+\question Show that if Euclid's form of the parallel postulate holds, then Playfair's conclusion of uniqueness of parallels must follow.
+
+\begin{solution}
+	Suppose this were not the case, i.e. with Euclid's parallel postulate holding, and given a point $p$ not on a line $A$, we can find more than one line passing through $p$ that is parallel to $A$.
+
+	Consider, without loss of generality, two such lines, $B$ and $C$. In order for such a situation to occur, Euclid’s fifth postulate stipulates that the two lines meet the transversal spanning $A$ to $p$ such that the angles on one side of the transversal add up to two right angles. The angle between the transversal and $A$ remains fixed, imposing the requirement that $\angle{A}+\angle{B}=\pi$ and $\angle{A}+\angle{C}=\pi$. By the uniqueness of right angles---Euclid’s fourth postulate---these two expressions can be equated, yielding $\angle{B}=\angle{C}$. This implies our two lines, assumed to be unique, are actually the same. Thus, by contradiction, Euclid’s parallel postulate implies Playfair’s.
+\end{solution}
+
+\question Can you see a simple reason why?
+
+\begin{solution}
+	The left side of $\pi - (\alpha+\beta+\gamma)=C\Delta$ is dimensionless, so $C\Delta$ must be as well. Since $\Delta$ is a quantity of area, it has units $[\mathrm{length}]^2$, and so $C$ must have units $[\mathrm{length}]^{-2}$.
+
+	The given formula for distance appears dimensionless. To give it the correct units we must multiply it by some constant. $C$ is a purely geometrical quantity, and so $C^{-1/2}$, having units of $[\mathrm{length}]$, is a natural choice. This explains why the given formula looks dimensionless: we have previously normalized $C$ to $1$.
+\end{solution}
+
+\question See if you can prove that, according to this formula, if $A$, $B$, and $C$ are three successive points on a hyperbolic straight line, then the hyperbolic distances $AB$, etc. satisfy $AB + BC = AC$. You may assume the general property of logarithms, $\log(ab)=\log(a)+\log(b)$ as described in $\S\S5.2, 3$.
+
+\begin{solution}
+	Given three points on a hyperbolic straight line, $A$, $B$, and $C$, we have$$\ln\frac{QA\cdot{PB}}{QB\cdot{PA}} + \ln\frac{QB\cdot{PC}}{QC\cdot{PB}} = \ln\frac{QA\cdot{PB}}{QB\cdot{PA}}\cdot\frac{QB\cdot{PC}}{QC\cdot{PB}} = \ln\frac{QA\cdot{PC}}{QC\cdot{PA}}$$or $AB+BC=AC$.
+\end{solution}
+
+\question Show this. (\textit{Hint}: You can use Beltrami’s geometry, as illustrated in Fig. 2.17, if you wish.)
+
+\begin{solution}
+	Imagine cutting the sphere of Beltrami's geometry with a plane coinciding with a conformal point $P$ and its projective representation $P'$. Label other points of interest as follows.
+
+	\begin{center}
+		\begin{tikzpicture}
+			[
+			  scale=3,
+			  >=stealth,
+			  point/.style = {draw, circle,  fill = black, inner sep = 1pt},
+			  dot/.style   = {draw, circle,  fill = black, inner sep = .2pt},
+			]
+		  
+			\def\rad{1}
+			\node (O) at (0,0) [point, label = {above right:$O$}]{};
+			\draw (O) circle (\rad);
+		  
+			\node (N) at +(90:\rad) [point, label = above:$N$] {};
+			\node (S) at +(-90:\rad) [point, label = below:$S$] {};
+			\node (Q) at +(30:\rad) [point, label = {above right:$Q$}] {};
+			\node (right_edge) at +(0:\rad) {};
+			\node (left_edge) at +(180:\rad) {};
+			\node (P) at (intersection of O--right_edge and Q--S) [point, label = {above left:$P$}] {};
+			\node (P_prime) at ($(O)!(Q)!(right_edge)$) [point, label = {below left:$P'$}] {};
+			\node (bottom) at ($(S)!0.5!-90:(N)$) {};
+			\node (extended) at ($(S)!(P_prime)!(bottom)$) {};
+
+			\draw[dashed] (N) -- (S) -- (Q) -- (N) -- cycle;
+			\draw[dashed] (left_edge) -- (right_edge);
+			\draw[dashed] (Q) -- (P_prime);
+			\draw[dashed] (S) -- (extended) -- (P_prime);
+
+			\MarkRightAngle{S}{O}{P}
+			\MarkRightAngle{S}{Q}{N}
+		\MarkRightAngle{P}{P_prime}{Q}
+	\MarkRightAngle{S}{extended}{P_prime}
+\end{tikzpicture}
+\end{center}
+
+	We are interested in the ratio $\frac{OP'}{OP}$, which is equivalent to $\frac{SQ}{SP}$. From the above figure, we see that $\frac{SP}{R} = \frac{2R}{SQ}$, or $SQ = \frac{2R^2}{SP}$, which implies $\frac{OP'}{OP} = \frac{2R^2}{SP^2}$. By the Pythagorean theorem, $SP^2 = r_c^2+R^2$, and so our scaling factor is given by $\frac{2R^2}{r_c^2+R^2}$.
+\end{solution}
+
+\question Assuming these two stated properties of stereographic projection, the conformal representation of hyperbolic geometry being as stated in $\S2.4$, show that Beltrami's hemispheric representation is conformal, with hyperbolic `straight lines` as vertical semicircles.
+
+\begin{solution}
+	Since we are projecting a conformal representation of hyperbolic geometry in a stereographic way, all angles remain the same, and circles---straight lines in hyperbolic geometry---do so as well.
+	
+	To show that the projected circles are semicircles, notice that hyperbolic straight lines intersect the boundary of the disc at right angles. Therefore, by the conformal property of stereographic projection, the circles on the hemisphere must meet the hemisphere's boundary at right angles. This is only possible when such circles are semicircles.
+\end{solution}
+
+\question Can you see how to prove these two properties? (\textit{Hint}: Show, in the case of circles, that the cone of projection is intersected by two planes of exactly opposite tilt.)
+
+\question See if you can do something similar, but with hyperbolic regular pentagons and squares.
+
+\question Try to prove this spherical triangle formula, basically using only symmetry arguments and the fact that the total area of the sphere is $4\pi{R^2}$. \textit{Hint}: Start with finding the area of a segment of a sphere bounded by two great circle arcs connecting a pair of antipodal points on the sphere; then cut and paste and use symmetry arguments. Keep Fig 2.20 in mind.
+
+\begin{solution}
+	Consider the surface area bounded by two great circles connecting a pair of antipodal points. If the two circles make an angle $\alpha$ with each other, this area is given by $\alpha/2\pi \cdot 4\pi{R^2}$, or $\alpha/2 \cdot R^2$. If we only care about one hemisphere we can halve this formula: $\alpha{R^2}$.
+
+	Look at Fig. 2.20. We can attempt to find the area of this triangle by summing the areas of hemispherical-spanning triangles with the given angles. But if we add $\alpha{R^2} + \beta{R^2} + \gamma{R^2}$, we are over-counting our triangle twice---not to mention the area extending beyond our triangle that is included in the sum. Rearrange our slices so that $\alpha{R^2}$ is taken to be the area extending inward, while both $\beta{R^2}$ and $\gamma{R^2}$ no longer include our triangle. From this, we see that the surface area we must subtract is given by $\pi{R^2}$, giving us an area of $\Delta = R^2(\alpha + \beta + \gamma - \pi)$.
+\end{solution}
+
+\end{questions}
+
+\end{document}

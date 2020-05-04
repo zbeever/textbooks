@@ -1,0 +1,195 @@
+\documentclass[../the-road-to-reality.tex]{subfiles}
+
+\begin{document}
+
+\section{Spacetime}
+
+\begin{questions}
+
+	\question Why?
+
+	\begin{solution}
+		Because a bundle connection captures the idea of constancy, and Galilean relativity does not permit the notion of a constant point in space.
+	\end{solution}
+
+	\question Explain the reason for this.
+
+	\begin{solution}
+		Particles cannot jump discontinuously around the universe; their motion must be smooth and continuous. This motion translates to an unbroken line permeating each of the fibres of our space: a bundle cross-section.	
+	\end{solution}
+
+	\question Explain these three ways more thoroughly, showing why they all give the same structure.
+
+	\begin{solution}
+		An affine structure naturally encodes the `flatness' of Newtonian spacetime, though we could explicitly represent this via the $\infty^6$ family of lines permeating $\mathbb{E}^3$, where the dimension of such a family comes from the fact that, to specify three lines at each point, we need the coordinates of the point itself and three points through which our lines will run. Finally, the connection suggested---that without curvature or torsion---is simply the partial derivative operator. This encodes the notion of flatness, analogous to $\mathbb{R}^n$.
+	\end{solution}
+
+	\question Try to write down an expression for this curvature, in terms of the connection $\nabla$. What normalization condition on the tangent vectors is needed (if any)?
+
+	\question Find an explicit transformation of $\mathbf{x}$, as a function of $t$, that does this, for a given Newtonian gravitational field $\mathbf{F}(t)$ that is spatially constant at any one time, but temporally varying both in magnitude and direction.
+
+	\begin{solution}
+		In such a field, every object undergoes uniform acceleration $\mathbf{F}(t)/m$, where $m$ is the object's mass. We can integrate this twice with respect to $t$ to find the offset in position each object experiences,
+		\[
+			\mathbf{x}_F = \frac{1}{m}\int_{-\infty}^{\tau}\int_{-\infty}^{\tau'}\mathbf{F}(\tau')\mathrm{d}\tau'
+		.\] 
+		Since this quantity is the same for every object, we may transform every $\mathbf{x} \to \mathbf{x} + \mathbf{x}_F$. Then we have 
+		\[
+			\mathbf{F}(t) = m\ddot{\mathbf{x}} \to m\ddot{\mathbf{x}} + m\ddot{\mathbf{x}}_F
+		.\] 
+		The new righthand side of this becomes
+		\[
+			m\mathbf{a} + \mathbf{F}(t)
+		,\] 
+		which, when combined with the lefthand side, gives
+		\[
+			m\mathbf{a} = 0
+		.\] 
+	\end{solution}
+
+	\question Derive these various properties, making clear by use of the $O(\,\,)$ notation, at what order these statements are intended to hold.
+
+	\begin{solution}
+		Consider a cross-section of a sphere of identical particles that divides it into two halves. (Such a cross-section would be a circle with the same radius $r$ as our sphere.) Label the origin of this cross-section $O$. Let us imagine that the sphere of particles is attracted to a point $A$ far below it at a distance $R$, and, furthermore, let us call an arbitrary point on the boundary of our cross-section $P$.	
+
+		The force felt at the origin of the cross-section, in component terms (with the $x$-direction describing horizontal movement and the $y$-direction vertical movement), is given by
+		\[
+			\mathbf{F}_O = \Big(0,\, -\frac{GMm}{R^2}\Big)
+		,\] 
+		while the force felt at point $P$ is given by
+		\[
+			\mathbf{F}_P = \Big({-\frac{GMm}{D^2}\sin\theta},\, -\frac{GMm}{D^2}\cos\theta\Big)
+		,\] 
+		where $\theta$ is the small angle $\angle{OAP}$ and $D$ is the length of the line segment $\overline{AP}$. Using these forces we can find the evolution of the positions of our cross-section, which, by symmetry, is the same over the entire boundary of the sphere.
+
+		Since $\theta$ is hard to work with, let us express $\sin\theta$ and $\cos\theta$ in terms of $D$ and $\phi$ (where $\phi$ is the angle $\angle{AOP}$ at the center of our cross-section). We have
+		\begin{gather*}
+			\cos\theta = \frac{R - r\cos\phi}{D} \\
+			\sin\theta = \frac{r\sin\phi}{D}
+		\end{gather*}
+		Finally, let us expand out each constituent term in a Taylor series in $\varepsilon = \frac{r}{R}$, which satisfies $\varepsilon \ll 1$ by assumption. We have
+		\begin{align*}
+			\frac{1}{D^2} &= \frac{1}{(r\sin\phi)^2 + (R-r\cos\phi)^2} \\
+				      &= \frac{1}{R^2 - 2Rr\cos\phi + r^2} \\
+				      &= \frac{1}{R^2(1 - 2\varepsilon\cos\phi + \varepsilon^2)} \\
+				      &\approx \frac{1}{R^2} + \Big(\frac{2\cos\phi}{R^2}\Big)\varepsilon + \mathcal{O}(\varepsilon^2) \\
+		\end{align*}
+		as well as
+		\begin{align*}
+			\cos\theta &= \frac{R - r\cos\phi}{\sqrt{R^2 - 2Rr\cos\phi + r^2}} \\	
+				   &= \frac{1 - \varepsilon\cos\phi}{\sqrt{1 - 2\varepsilon\cos\phi + \varepsilon^2}} \\
+				   &\approx 1 + \mathcal{O}(\varepsilon^2)
+		\end{align*}
+		and
+		\begin{align*}
+			\sin\theta &= \frac{r\sin\phi}{\sqrt{R^2 - 2Rr\cos\phi + r^2}} \\
+				   &= \frac{\varepsilon\sin\phi}{\sqrt{1 - 2\varepsilon\cos\phi + \varepsilon^2}} \\
+				   &\approx (\sin\phi)\varepsilon + \mathcal{O}(\varepsilon^2) \\
+		\end{align*}
+		The force on the particles around the boundary of our sphere, by first approximation, is then
+		\[
+			\mathbf{F}_P = \Big({-\frac{GMm\sin\phi}{R^2}}\varepsilon + \mathcal{O}(\varepsilon^2),\,-\frac{GMm}{R^2} - \frac{2GMm\cos\phi}{R^2}\varepsilon + \mathcal{O}(\varepsilon^2) \Big) 
+		.\] 
+		We can then expand each particle's position in a Taylor series in time, giving
+		\[
+			\mathbf{x}(t) = \mathbf{x}(0) + \dot{\mathbf{x}}(0)t + \frac{\ddot{\mathbf{x}}(0)}{2}t^2 + \mathcal{O}(t^3)
+		,\] 
+		where $t$ here is assumed to be small. The position of a particle on the boundary of our cross-section at time $t$ (when such a particle starts at rest) is then
+		\[
+			\mathbf{x}_P(t) = \Big(r\sin\phi - \frac{GM\sin\phi}{2R^2}\varepsilon{t}^2 + \mathcal{O}(\varepsilon^2,t^3),\, r\cos\phi - \big(\frac{GM}{2R^2} + \frac{GM\cos\phi}{R^2}\varepsilon\big)t^2 + \mathcal{O}(\varepsilon^2,t^3)\Big)
+		,\] 
+		while the analogous position for center of the sphere is
+		\[
+			\mathbf{x}_O(t) = \Big(0, -\frac{GM}{2R^2}t^2 + \mathcal{O}(t^3)\Big)
+		.\] 
+		The difference $\mathbf{x}_P - \mathbf{x}_O$ tells us how the shape of the boundary of our cross-section varies with time, and is given by
+		\begin{align*}
+			\mathbf{x}_P(t) - \mathbf{x}_O(t) &= \Big(r\sin\phi - \frac{GM\sin\phi}{2R^2}\varepsilon{t}^2 + \mathcal{O}(\varepsilon^2,t^3),\, r\cos\phi - \frac{GM\cos\phi}{R^2}\varepsilon{t^2} + \mathcal{O}(\varepsilon^2,t^3)\Big) \\
+							  &= \Big(\sin\phi\big(r - \frac{GMr}{2R^3}{t}^2\big) + \mathcal{O}(\varepsilon^2,t^3),\, \cos\phi\big(r - \frac{GMr}{R^3}{t^2}\big) + \mathcal{O}(\varepsilon^2,t^3)\Big)
+		\end{align*}
+		where we have made the replacement $\varepsilon \to r/R$. This is the parametric equation of an ellipse. We can make this even clearer by defining
+		\[
+			a = r - \frac{GMr}{2R^3}t^2 \qquad b = r - \frac{GMr}{R^3}t^2
+		,\] 
+		as then we have
+		\[
+			\Big(\frac{x(t)}{a}\Big)^2 + \Big(\frac{y(t)}{b}\Big)^2 = 1	
+		,\] 
+		which is the familiar implicit equation of an ellipse.
+		The volume of the full three-dimensional ellipsoid is given by $\frac{4}{3}\pi{a^2b}$, where $a$ is the horizontal semi-axis ($\|\mathbf{x}(t)\|$ at $\phi = \pi/2$) and $b$ is the vertical semi-axis ($\|\mathbf{x}(t)\|$ at $\phi = 0$), which, to first order, is
+		\begin{align*}
+			\frac{4}{3}\pi{a^2b} &= \frac{4}{3}\pi\Big(r - \frac{GM}{2R^2}\varepsilon{t^2}\Big)^2\Big(r - \frac{GM}{R^2}\varepsilon{t^2}\Big) + \mathcal{O}(\varepsilon^2, t^3) \\	
+					     &= \frac{4}{3}\pi{r^3} + \mathcal{O}(\varepsilon^2, t^3),
+		\end{align*}
+		that is, the volume of our ellipsoid is the same as the volume of our sphere.	
+	\end{solution}
+
+	\question Show that this tidal distortion is proportional to $mr^{-3}$ where $m$ is the mass of the gravitating body (regarded as a point) and $r$ is its distance. The Sun and Moon display discs, at the Earth, of closely equal angular size, yet the Moon's tidal distortion on the Earth's oceans is about five times that due to the Sun. What does this tell us about their relative densities?
+
+	\begin{solution}
+		The proportionality of the tidal distortion to $mr^{-3}$ was shown above, with the force explicitly proportional to
+		\[
+			\mathbf{F} \propto \frac{GMm}{R^3}r
+		.\] 
+		In the case of the sun and moon, this is really
+		\[
+			\mathbf{F}_{\earth\sun} \propto \frac{GM_{\sun}m_{\earth}}{R_{\earth\sun}^3}r_{\earth} \qquad \mathbf{F}_{\earth\leftmoon} \propto \frac{GM_{\leftmoon}m_{\earth}}{R_{\earth\leftmoon}^3}r_{\earth}
+		.\] 
+		We are given that the ratio of these forces is approximately $5:1$, and so, writing each mass in terms of density, we find
+		\[
+			\frac{\rho_{\leftmoon}V_{\leftmoon}R_{\earth\sun}^3}{\rho_{\sun}V_{\sun}R_{\earth\leftmoon}^3} \approx 5
+		.\] 
+		Since the volume of both bodies is proportional to their radii cubed, we can rewrite this further as
+		\[
+			\frac{\rho_{\leftmoon}r_{\leftmoon}^3R_{\earth\sun}^3}{\rho_{\sun}r_{\sun}^3R_{\earth\leftmoon}^3} \approx 5
+		.\] 
+		Now, we can imagine drawing a line from our viewpoint, through the center of the moon, and extending through the center of the sun. The right triangles formed by connecting (through the center of each body) this line to the one extending from our viewpoint and touching both bodies tangentially are similar, and we may equate ratios to find
+		\[
+			\frac{r_{\leftmoon}}{R_{\leftmoon}} = \frac{r_{\sun}}{R_{\sun}}
+		.\] 
+		Putting this information in place of the previous ratio gives
+		\[
+			\frac{\rho_{\leftmoon}}{\rho_{\sun}} \approx 5
+		.\] 
+	\end{solution}
+
+	\question Establish this result, assuming that all the mass is concentrated at the center of the sphere.
+
+	\begin{solution}
+		The rate of change of volume of a sphere is given by
+		\[
+			\frac{\mathrm{d}V}{\mathrm{d}t} = 4\pi{r^2}\frac{\mathrm{d}r}{\mathrm{d}t}
+		.\] 
+		In the case where the surrounding shell of particles starts at rest, the velocity ($\mathrm{d}r/\mathrm{d}t$) of any particle particle an instant later in time is
+		\[
+			\frac{\mathrm{d}r(t)}{\mathrm{d}t}\Big|_{t=\varepsilon} \approx \frac{GM}{r^2}\varepsilon + \mathcal{O}(\varepsilon^2)
+		.\] 
+		Putting these together gives, to first order,
+		\[
+			\frac{\mathrm{d}V}{\mathrm{d}t}\Big|_{t=\varepsilon} = 4\pi{GM}\varepsilon
+		.\] 
+		Since the rate that Penrose mentions is the initial acceleration of volume reduction, we may divide both sides by time (in this case $\varepsilon$) to arrive at
+		\[
+			4\pi{GM}
+		.\] 
+	\end{solution}
+
+	\question Show that this result is still true quite generally, no matter how large or what shape the surrounding shell of stationary particles is, and whatever the distribution of mass.
+
+	\question Explain why.
+
+	\begin{solution}
+		In the case of a $4$-manifold with a Lorentzian signature, such an expression can be expanded to read
+		\[
+		-v_0v^0 + v_1v^1 + v_2v^2 + v_3v^3 = 0
+		.\] 
+		Labeling $v_iv^i$ as $v_i^2$, this becomes
+		\[
+		v_1^2 + v_2^2 + v_3^2 = v_0^2
+		,\] 
+		which is the implicit equation of $S^2$---our expanding light `cone.' Anticipating future sections, if we make the identification of $v_0=ct$ (with $v_1$, $v_2$, and $v_3$ taking units of distance; we are dealing with a position vector), then such an equation describes the sphere of photons a time $t$ after their emission from a point source.
+	\end{solution}
+
+\end{questions}
+
+\end{document}

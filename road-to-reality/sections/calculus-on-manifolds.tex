@@ -1,0 +1,498 @@
+\documentclass[../the-road-to-reality.tex]{subfiles}
+
+\begin{document}
+
+\section{Calculus on manifolds}
+
+\begin{questions}
+
+	\question Let $[a,b;c,d]$ stand for the statement `$abcd$ form a parallelogram' (where $a$, $b$, $d$, and $c$ are taken cyclicly, as in $\S5.1$). Take as axioms (i) for any $a$, $b$, and $c$, there exists $d$ such that $[a,b;c,d]$; (ii) if $[a,b;c,d]$, then $[b,a;d,c]$ and $[a,c;b,d]$; (iii) if $[a,b;c,d]$ and $[a,b;e,f]$, then $[c,d;e,f]$. Show that, when any chosen point is singled out and labeled as the origin, this algebraic structure reduces to that of a `vector space', but without the `scalar multiplication' operation, as given in $\S{11}.1$---that is to say, we get the rules of an additive Abelian group; see Exercise [13.2].
+
+	\begin{solution}
+		Given two points $a$ and $b$---and a point $o$, thought of as the origin---the first axiom of the given operation allows us to find $c$ such that $oabc$ forms a parallelogram: this is analagous to vector addition, where $c$ is the element corresponding to $a + b$.
+
+		Commutativity of such an operation follows from the uniqueness guaranteed by the first axiom: the $c$ found for $o$, $a$, and $b$ is the same found for $o$, $b$, and $a$.
+
+		Associativity is slightly more involved. Consider the expression
+		\[
+			(a + b) + c = a + (b + c)
+		.\] 
+		The parenthesized term on the lefthand side is $d$, where $d$ is the unique point closing $o$, $a$, and $b$, $[o, a; b, d]$. Similarly, the parenthesized term on the right side is $e$, where $[o, b; c, e]$. The entirety of the lefthand side then evaluates to $f_1$, where $[o, d; c f_1]$. Likewise, the righthand side evaluates to $f_2$, where $[o, a; e, f_2]$. We must now show that $f_1 = f_2$.
+		By the second axiom, we may combine these final expression with their intermediate ones, such that taken together they imply
+		\[
+			[a, b; c, f_1]\qquad[a, b; c, f_2]
+		.\] 
+		By the uniqueness of the fourth point, $f_1=f_2$.
+
+		The identity is given by the origin point. To show that this leaves group elements unchanged, we must show that $e$, given by $[o, a; o, d]$, is equivalent to $a$. To show this, we may combine two such expressions to obtain $[o, d; o, d]$ by the third axiom. Because the fourth point is unique, $d$ \textit{must} be $a$.
+
+		Finally, to show the existence of the inverse, we know that there is a unique $b$ such that $[a, o; o, b]$ which implies $[o, a; b, o]$, i.e. $a + b = o$. 
+	\end{solution}
+
+	\question Can you see how to generalize this to the non-Abelian case?
+
+	\question See if you can confirm this assertion in the case of a spherical triangle (triangle on $S^2$ made up of great-circle arcs) where you may assume the Hariot's 1603 formula for the area of a spherical triangle given in $\S2.6$.
+
+	\begin{solution}
+		Imagine a vector traversing such a triangle. To see how much it has rotated by the time it returns to its original position, we must add up the rotations made by our vector at each corner of the triangle. Taking these angles to be measured counter-clockwise from the great circles making up our path, we see that each angle contributes a rotation of $-(\pi - \theta_i)$, where the negative sign is a consequence of our vector rotating opposite to our path's rotation. Adding these together gives
+		\[
+			-3\pi + \theta_1 + \theta_2 + \theta_3 = -3\pi + (V + \pi) = -2\pi + V
+		,\] 
+		where we have used Hariot's formula in the last two equalities. Since a rotation of $2\pi$ leaves our vector unchanged, the true change in angle is given by $V$.
+	\end{solution}
+
+	\question Explain why unique. \textit{Hint}: Consider the action of $\nabla$ on $\mathbf{\alpha}\cdot\mathbf{\xi}$, etc.
+
+	\begin{solution}
+		Because, once we understand the effect of our connection on one-forms and vectors, we may extend it to arbitrary tensors through the product law. Consider fully contracting our tensor $\mathbf{T}$ with the necessary number of vectors and one-forms to produce a scalar. Then we have
+		\[
+			\nabla_i(T^{a\dots{b}}_{c\dots{d}}\xi^c\cdots\xi^d\alpha_a\cdots\alpha_b) = \nabla_i(T^{a\cdots{b}}_{c\cdots{d}})\xi^c\cdots\xi^d\alpha_a\cdots\alpha_b + T^{a\dots{b}}_{c\dots{d}}\nabla_i(\xi^c\cdots\xi^d\alpha_a\cdots\alpha_b)
+		.\] 
+		The term on the left is simply the exterior derivative of a scalar---that is, the gradient of a scalar---while the second term on the contains a covariant derivative of objects whose behaviors are known. To find the action of the connection on $\mathbf{T}$, we simply need to isolate it,
+		\[
+		 \nabla_i(T^{a\cdots{b}}_{c\cdots{d}})\xi^c\cdots\xi^d\alpha_a\cdots\alpha_b = \nabla_i(T^{a\dots{b}}_{c\dots{d}}\xi^c\cdots\xi^d\alpha_a\cdots\alpha_b) - T^{a\dots{b}}_{c\dots{d}}\nabla_i(\xi^c\cdots\xi^d\alpha_a\cdots\alpha_b)
+		.\] 
+	\end{solution}
+
+	\question See if you can show this, finding the expression explicitly. \textit{Hints}:  First look at the action of the difference between two connections on a vector field $\mathbf{\xi}$, giving the answer in the index form $\zeta^c\Gamma^a_{bc}$; second show that this difference of connections acting on a covector $\mathbf{\alpha}$ has the index form $-\alpha_c\Gamma^c_{ba}$; third, using the definition of a $\begin{bmatrix} p \\ q \end{bmatrix}$-valent tensor $\mathbf{T}$ as a multilinear function of $q$ vectors on $p$ covectors (cf. $\S_{12}.8$), find the general index expression for the difference between the connections acting on $\mathbf{T}$.
+
+	\begin{solution}
+		Following the hints given by Penrose, let us look at the effect of two connections, $\nabla$ and $\hat{\nabla}$. Focusing on one at a time, we see
+		\begin{align*}
+			[\nabla\xi]^a_b &= [\nabla\xi^c\partial_c]^a_b \\
+					&= [(\nabla\xi^c)\partial_c]^a_b + [\xi^c\nabla\partial_c]^a_b \\
+					&= [\mathrm{d}\xi^c\cdot\partial_c]^a_b + \xi^c[\nabla\partial_c]^a_b \\
+					&= [\partial_d\xi^c\mathrm{d}x^d\cdot\partial_c]^a_b + \xi^c[\nabla\partial_c]^a_b \\
+					&= \partial_b\xi^a + \xi^c\gamma^a_{bc}
+		,\end{align*}
+		where we have identified $[\nabla\partial_c]^a_b = \gamma^a_{bc}$. Some comments are in order. In the third line, $\nabla$ reduces to the exterior derivative because the components of $\xi$, given by $\xi^c$, are simply real numbers (see $\S{12.3}$), and $\S{14.3}$ says that all connections must correspond to the exterior derivative when acting on a scalar. In the last line, we have changed $[\partial_d\xi^c\mathrm{d}x^d\cdot\partial_c]^a_b$ to $\partial_b\xi^a$ because $a$ and $b$ are indexing the components of a geometric quantity: the basis elements of this quantity are $\mathrm{d}x^d\cdot\partial_c$, and its components are $\partial_d\xi^c$.
+
+		The difference between two connections is
+		\[
+			[(\nabla -\hat{\nabla})\xi]^a_b = \xi^c(\gamma^a_{bc} - \hat{\gamma}^a_{bc}) = \xi^c\Gamma^a_{bc}
+		.\] 
+
+		In the case of covectors, we may use $\nabla_b(\alpha_a\xi^a) = (\nabla_b\alpha_a)\xi^a + \alpha_a\nabla_b\xi^a$. Explicitly, we have
+		\begin{align*}
+			(\nabla_b\alpha_a)\xi^a &= \partial_b(\alpha_a\xi^a) - \alpha_a(\partial_b\xi^a + \xi^c\gamma^a_{bc}) \\
+						&= (\partial_b{\alpha_a})\xi^a + \alpha_a\partial_b\xi^a - \alpha_a\partial_b\xi^a - \alpha_a\xi^c\gamma^a_{bc} \\
+						&= (\partial_b{\alpha_a})\xi^a - \alpha_a\xi^c\gamma^a_{bc}
+		.\end{align*}
+		Since $\xi^a$ is arbitrary, this implies $[\nabla\alpha]_{ab} = \partial_b\alpha_a - \alpha_c\gamma^c_{ba}$. From this, we see that the difference between two connections when acting on a covector is
+		\[
+			[(\nabla -\hat{\nabla})\alpha]_{ab} = -\alpha_c(\gamma^c_{ba} - \hat{\gamma}^c_{ba}) = -\alpha_c\Gamma^c_{ba}
+		.\] 
+		Using the extension of the connection to arbitrary tensors identified in the previous exercise, we find
+		\[
+			[(\nabla -\hat{\nabla})\mathbf{T}]^{a\dots{b}}_{ec\dots{d}} = \partial_eT^{a\dots{b}}_{c\dots{d}} + T^{f\dots{b}}_{c\dots{d}}\Gamma^a_{ef} + \cdots +  T^{a\dots{f}}_{c\dots{d}}\Gamma^c_{ef} - T^{a\dots{b}}_{f\dots{d}}\Gamma^f_{ec} - \cdots - T^{a\dots{b}}_{c\dots{f}}\Gamma^f_{ed}
+		,\] 
+		where $e$ is the abstract index corresponding to the connection.
+	\end{solution}
+
+	\question As an application of this, take the two connections to be $\nabla$ and the coordinate connection. Find a coordinate expression for the action of $\nabla$ on any tensor, showing how to obtain the components $\Gamma^a_{bc}$ explicitly from $\Gamma^a_{b1}=\nabla_b\delta^a_1,\dots,\Gamma^a_{bn}=\nabla_b\delta^a_n$, i.e. in terms of the action of $\nabla$ on each of the coordinate vectors $\delta^a_1, \dots, \delta^a_n$. (Here $a$ is a vector index, which may be thought of as an `abstract index' in accordance with $\S12.8$, so that `$\delta^a_1$' etc. indeed denote vectors and not simply sets of components, but $n$ just denotes the dimension of the space. Note that the coordinate connection annihilates each of these coordinate vectors.)
+
+	\begin{solution}
+		From the previous problem, it can be immediately seen that substituting the coordinate connection in place of $\hat{\nabla}$ sets $\gamma^a_{bc} = \Gamma^a_{bc}$, and therefore $\Gamma^a_{bc} = [\nabla \partial_c]^a_b$.
+	\end{solution}
+
+	\question Explain why the right-hand side must have this general form; find the components $\tau^a_{bc}$ in terms of $\Gamma^a_{bc}$. See Exercise [14.6].
+
+	\begin{solution}
+		Because $\Phi$ is a scalar, the covariant derivative reduces to $\nabla_a\Phi = \partial_a\Phi$. This, however, is a one-form, and so \textit{its} covariant derivative is given by
+		\[
+			\nabla_a\nabla_b\Phi = \nabla_a(\partial_b\Phi) = \partial_{ab}\Phi - \partial_c\Phi\Gamma^c_{ab}
+		.\] 
+		Swapping the indices and subtracting, we see
+		\begin{align*}
+			(\nabla_a\nabla_b - \nabla_b\nabla_a)\Phi &=  \partial^2_{ab}\Phi - \partial_c\Phi\Gamma^c_{ab} - \partial^2_{ba}\Phi + \partial_c\Phi\Gamma^c_{ba} \\
+								  &= (\Gamma^c_{ba} - \Gamma^c_{ab})\partial_c\Phi \\
+								  &= (\Gamma^c_{ba} - \Gamma^c_{ab})\nabla_c\Phi \\
+								  &= {\tau_{ab}}^c\nabla_c\Phi
+		.\end{align*}
+		In a way, torsion is a measure of the noncommutativity of the $a$ and $b$ indices of our Christoffel symbol.
+	\end{solution}
+
+	\question Show what extra term is needed to make this expression consistent, when torsion is present.
+
+	\begin{solution}
+		From the rules derived above, we may write
+		\[
+		\nabla_a(\nabla_b\xi^c) = \frac{\partial(\nabla_b\xi^c)}{\partial{x^a}} + \nabla_b\xi^d\Gamma^c_{ad} - \nabla_d\xi^c\Gamma^d_{ab}
+		.\] 
+		If $a$ and $b$ are symmetric, i.e. the torsion of the connection is zero, the last term will vanish upon permuting the two indices and subtracting. Therefore, the term \textit{added} by torsion is
+		\[
+		{\tau_{ab}}^d\nabla_d\xi^c
+		,\] 
+		giving a general expression
+		\[
+			(\nabla_a\nabla_b - \nabla_b\nabla_a)\xi^d = {R_{abc}}^d\xi^c + {\tau_{ab}}^c\nabla_c\xi^d
+		.\] 
+	\end{solution}
+
+	\question What is the corresponding expression for $\nabla_a\nabla_b - \nabla_b\nabla_a$ acting on a covector? Derive the expression for a general tensor of valence $\begin{bmatrix} p \\ q \end{bmatrix}$.
+
+	\begin{solution}
+		Since we know the action of $\nabla_a\nabla_b - \nabla_b\nabla_a$ on a scalar and a vector, application of the product rule will yield its action on a covector. This product rule is given by
+		\begin{align*}
+			(\nabla_a\nabla_b - \nabla_b\nabla_a)(\mathbf{T}\cdot\mathbf{Q}) &= (\nabla_a\nabla_b)(\mathbf{T}\cdot\mathbf{Q}) - (\nabla_b\nabla_a)(\mathbf{T}\cdot\mathbf{Q}) \\
+											 &= \nabla_a[(\nabla_b\mathbf{T})\cdot\mathbf{Q} + \mathbf{T}\cdot\nabla_b\mathbf{Q}] - \nabla_b[(\nabla_a\mathbf{T})\cdot\mathbf{Q} + \mathbf{T}\cdot\nabla_a\mathbf{Q}] \\
+											 &= \nabla_a[(\nabla_b\mathbf{T})\cdot\mathbf{Q}] + \nabla_a[\mathbf{T}\cdot\nabla_b\mathbf{Q}] - \nabla_b[(\nabla_a\mathbf{T})\cdot\mathbf{Q}] - \nabla_b[\mathbf{T}\cdot\nabla_a\mathbf{Q}] \\
+											 &= (\nabla_a\nabla_b\mathbf{T})\cdot\mathbf{Q} + \nabla_b\mathbf{T}\cdot\nabla_a\mathbf{Q} + \nabla_a\mathbf{T}\cdot\nabla_b\mathbf{Q} + \mathbf{T}\cdot\nabla_a\nabla_b\mathbf{Q} \\
+											 &\quad-(\nabla_b\nabla_a\mathbf{T})\cdot\mathbf{Q} - \nabla_a\mathbf{T}\cdot\nabla_b\mathbf{Q} - \nabla_b\mathbf{T}\cdot\nabla_a\mathbf{Q} - \mathbf{T}\cdot\nabla_b\nabla_a\mathbf{Q} \\
+											 &= [(\nabla_a\nabla_b - \nabla_b\nabla_a)\mathbf{T}]\cdot\mathbf{Q} + \mathbf{T}\cdot[(\nabla_a\nabla_b - \nabla_b\nabla_a)\mathbf{Q}]
+		.\end{align*}
+		For a covector, then, we have
+		\begin{align*}
+			[(\nabla_a\nabla_b - \nabla_b\nabla_a)\alpha_d]\xi^d &= (\nabla_a\nabla_b - \nabla_b\nabla_a)(\alpha_d\xi^d) - \alpha_d(\nabla_a\nabla_b - \nabla_b\nabla_a)\xi^d \\
+									     &= {\tau_{ab}}^c\nabla_c(\alpha_d\xi^d) - \alpha_d({R_{abc}}^d\xi^c + {\tau_{ab}}^c\nabla_c\xi^d) \\
+									     &= {\tau_{ab}}^c(\nabla_c(\alpha_d\xi^d)-\alpha_d\nabla_c\xi^d) - \alpha_d{R_{abc}}^d\xi^c \\
+									     &= {\tau_{ab}}^c(\nabla_c\alpha_d)\xi^d - \alpha_d{R_{abc}}^d\xi^c
+		.\end{align*}
+  As $\xi$ is arbitrary and we are looking at the
+  torsion-free case, the action of this operator on a covector becomes $(\nabla_a\nabla_b -
+  \nabla_b\nabla_a)\alpha_d = -\alpha_c{R_{abd}}^c.$ Applying the product rule
+  to an arbitrary tensor gives (in the torsion-free case) an action of
+  \[
+    (\nabla_a\nabla_b - \nabla_b\nabla_a)T^{c\dots{d}}_{e\dots{f}} =
+    {R_{abg}}^cT^{g\dots{d}}_{e\dots{f}} + \cdots +
+    {R_{abg}}^dT^{c\dots{g}}_{e\dots{f}} - {R_{abe}}^gT^{c\dots{d}}_{g\dots{f}}
+    - \cdots - {R_{abf}}^gT^{c\dots{d}}_{e\dots{g}}
+  \]
+	\end{solution}
+
+\question First, explain the `i.e'; then derive this from the equation defining ${R_{abc}}^d$, above, by expanding out $\nabla_{[a}\nabla_{b}(\xi^d\nabla_{d]}\Phi)$. (Diagrams can help.)
+
+\question Derive this from the equation defining ${R_{abc}}^d$, above, by expanding out $\nabla_{[a}\nabla_b\nabla_{d]}\xi^e$ in two ways. (Diagrams can again help.)
+
+\question Demonstrate the equivalence of all these conditions.
+
+  \begin{solution}
+    We have earlier identified $\nabla_{\mathbf{t}}$ with $t^a\nabla_a$, which
+    shows the equivalence of the second and third conditions. As for the first:
+    notice that $u$ is a scalar, and so $\nabla_a{u} = \partial_au$, but
+    $t^a\partial_au = (t^a\partial_a)u = \mathbf{t}(u)$, and so this expresses
+    the same restriction as conditions two and three.
+  \end{solution}
+
+\question Show that if $u$ and $v$ are two affine parameters on $\gamma$, with
+  respect to two different choices of $\mathbf{t}$, then $v = Au + B$, where $A$
+  and $B$ are constant along $\gamma$.
+
+  \begin{solution}
+    If both $u$ and $v$ describe affine parameters, they both obey
+    \[
+      t^a\nabla_av = 1 \qquad \hat{t}^a\nabla_au = 1
+    \]
+    where $t^a$ and $\hat{t}^a$ are related by some scaling factor. If we call
+    this scaling factor $A$, and recognize that constants are in the null space
+    of the derivative operator, we find
+    \[
+      \partial_av = A\partial_a(u + C),
+    \]
+    or $v = Au + AC = Au + B$.
+  \end{solution}
+
+\question Find this term.
+
+\question Show it.
+
+\begin{solution}
+  For the first property, we have
+  \begin{align*}
+    \omega(\Phi + \Psi) &= \xi(\eta(\Phi + \Psi)) - \eta(\xi(\Phi + \Psi)) \\
+                        &= \xi(\eta(\Phi) + \eta(\Psi)) - \eta(\xi(\Phi) + \xi(\Psi)) \\
+                        &= \xi(\eta(\Phi)) + \xi(\eta(\Psi)) - \eta(\xi(\Phi)) - \eta(\xi(\Psi)) \\
+    &= \omega(\Phi) + \omega(\Psi).
+  \end{align*}
+  For the second, we see
+  \begin{align*}
+    \omega(\Phi\Psi) &= \xi(\eta(\Phi\Psi)) - \eta(\xi(\Phi\Psi)) \\
+                     &= \xi(\Psi\eta(\Phi) + \Phi\eta(\Psi)) - \eta(\Psi\xi(\Phi) - \Phi\xi(\Psi)) \\
+                     &= \xi(\Psi\eta(\Phi)) + \xi(\Phi\eta(\Psi)) - \eta(\Psi\xi(\Phi)) - \eta(\Phi\xi(\Psi)) \\
+                     &= \eta(\Phi)\xi(\Psi) + \Psi\xi(\eta(\Phi)) + \eta(\Psi)\xi(\Phi) + \Phi\xi(\eta(\Psi)) - \xi(\Phi)\eta(\Psi) - \Psi\eta(\xi(\Phi)) - \xi(\Psi)\eta(\Phi) - \Phi\eta(\xi(\Psi)) \\
+                     &= \Psi\cdot(\xi(\eta(\Phi)) - \eta(\xi(\Phi))) + \Phi\cdot(\xi(\eta(\Psi)) - \eta(\xi(\Psi))) \\
+    &= \Psi\omega(\Phi) + \Phi\omega(\Psi).
+  \end{align*}
+  Finally, the third property can be seen through
+  \begin{align*}
+    \omega(k) &= \xi(\eta(k)) - \eta(\xi(k)) \\
+              &= \xi(0) - \eta(0) \\
+    &= 0.
+  \end{align*}
+\end{solution}
+
+\question Do it.
+
+  \begin{solution}
+    This was shown in a previous exercise.
+  \end{solution}
+
+\question Try to explain why there is torsion but no curvature.
+
+\question Explain (at a formal level) why $e^{a\mathrm{d}/\mathrm{d}y}f(y) = f(y
+  + a)$ when $a$ is a constant.
+
+\begin{solution}
+  As we saw in the previous chapter, the exponentiation of operators can be
+  understood in terms of the Taylor series of the exponential function. That is,
+  \[
+    e^{a\mathrm{d}/\mathrm{d}y} = 1 + a\frac{\mathrm{d}}{\mathrm{d}y} +
+    \frac{a^2}{2}\frac{\mathrm{d}^2}{\mathrm{d}y^2} +
+    \frac{a^3}{6}\frac{\mathrm{d}^3}{\mathrm{d}y^3} + \cdots.
+  \]
+  The Taylor series of a function $f(y)$ about a point $y_0$ is given by
+  \[
+    f(y) = f(y_0) + f'(y_0)(y-y_0) + \frac{1}{2}f''(y_0)(y-y_0)^2 +
+    \frac{1}{6}f'''(y_0)(y-y_0)^3 + \cdots
+  \]
+  If we expand the function $f(y+a)$ around $y$, then, we find
+  \[
+    f(y+a) = f(y) + af'(y) + \frac{a^2}{2}f''(y) + \frac{a^3}{6}f'''(y) + \cdots
+  \]
+  Returning to our exponentiated operator and applying it to a function $f(y)$,
+  we see
+  \begin{align*}
+    e^{a\mathrm{d}/\mathrm{d}y}f(y) &= \Big(1 + a\frac{\mathrm{d}}{\mathrm{d}y} +
+    \frac{a^2}{2}\frac{\mathrm{d}^2}{\mathrm{d}y^2} +
+                                      \frac{a^3}{6}\frac{\mathrm{d}^3}{\mathrm{d}y^3} + \cdots\Big)f(y) \\
+                                    &= f(y) + af'(y) + \frac{a^2}{2}f''(y) + \frac{a^3}{6}f'''(y) + \cdots \\
+    &= f(y + a)
+  \end{align*}
+\end{solution}
+
+\question Derive this formula for $\underset{\xi}{\pounds}\eta$.
+  \begin{solution}
+    The Lie derivative of one vector field with respect to another is the
+    commutator of them. Applying the Lie derivative to a scalar shows us
+    \begin{align*}
+      (\underset{\xi}{\pounds}\eta)\Phi &= [\xi, \eta](\Phi) \\
+                                        &= \xi(\eta(\Phi)) - \eta(\xi(\Phi)) \\
+                                        &= \xi^a\nabla_a(\eta^b\nabla_b\Phi) - \eta^b\nabla_b(\xi^a\nabla_a\Phi) \\
+                                        &= \xi^a(\nabla_a\eta^b)(\nabla_b\Phi) + \xi^a\eta^b(\nabla_a\nabla_b\Phi) - \eta^b(\nabla_b\xi^a)(\nabla_a\Phi) - \eta^b\xi^a(\nabla_b\nabla_a\Phi) \\
+                                        &= \xi^a\nabla_a\eta^b\nabla_b\Phi - \eta^b\nabla_b\xi^a\nabla_a\Phi + \xi^a\eta^b(\nabla_a\nabla_b - \nabla_b\nabla_a)\Phi \\
+                                        &= \nabla_\xi\eta^b\partial_b\Phi - \nabla_\eta\xi^a\partial_a\Phi + \xi^a\eta^b(\nabla_a\nabla_b - \nabla_b\nabla_a)\Phi \\
+      &= \nabla_\xi\eta\Phi - \nabla_\eta\xi\Phi + \xi^a\eta^b(\nabla_a\nabla_b - \nabla_b\nabla_a)\Phi.
+    \end{align*}
+    Because $\Phi$ is arbitrary, we may remove it from both sides. Additionally,
+    as we are considering a torsion-free connection, we may remove the last term
+    in the last line. Thus,
+    \[
+      \underset{\xi}{\pounds}\eta = \nabla_\xi\eta - \nabla_\eta\xi.
+    \]
+  \end{solution}
+
+\question How does torsion modify the formula of Exercise [14.18]?
+
+  \begin{solution}
+    As we saw above, torsion modifies the Lie derivative by adding a term
+    \[
+      \xi^a\eta^b(\nabla_a\nabla_b - \nabla_b\nabla_a) = \xi^a\eta^b{\tau_{ab}}^c\nabla_c.
+    \]
+  \end{solution}
+
+\question Establish uniqueness, verifying above covector formula, and give
+    explcitily the Lie derviative of a general tensor.
+
+    \begin{solution}
+      The uniquness of the Lie derivative follows from its associated product
+      law. To confirm the covector formula, we may use the product law of a
+      scalar to obtain
+      \begin{align*}
+        (\underset{\xi}{\pounds}\alpha)_a\eta^a &= \underset{\xi}{\pounds}(\alpha_a\eta^a) - \alpha_a(\underset{\xi}{\pounds}\eta^a) \\
+                                                &= \xi(\alpha_a\eta^a) - \alpha_a(\xi^b\nabla_b\eta^a - \eta^b\nabla_b\xi^a) \\
+                                                &= \xi^b\partial_b(\alpha_a\eta^a) - \alpha_a\xi^b\nabla_b\eta^a + \alpha_a\eta^b\nabla_b\xi^a \\
+                                                &= \xi^b\nabla_b(\alpha_a\eta^a) - \alpha_a\xi^b\nabla_b\eta^a + \alpha_a\eta^b\nabla_b\xi^a \\
+                                                &= \xi^b\eta^a\nabla_b\alpha_a + \xi^b\alpha_a\nabla_b\eta^a - \alpha_a\xi^b\nabla_b\eta^a + \alpha_a\eta^b\nabla_b\xi^a \\
+        &= \xi^b\eta^a\nabla_b\alpha_a + \alpha_a\eta^b\nabla_b\xi^a.
+      \end{align*}
+      As $\eta$ was arbitrary, we may remove it from both sides of this equation
+      (reindexing as appropriate) to find
+      \[
+        (\underset{\xi}{\pounds}\alpha)_a = \xi^b\nabla_b\alpha_a + \alpha_b\nabla_a\xi^b.
+      \]
+      In the mathematician's (non-indicial) notation, this becomes
+      \[
+        \underset{\xi}{\pounds}\alpha = \nabla_\xi\alpha - \alpha\cdot\nabla\xi.
+      \]
+      The rule for taking the Lie derivative of a general tensor can be easily
+      generalized from this case and the one given by [14.19]---simply treat the
+      upper and lower abstract indices appropriately. We have, then
+      \[
+        (\underset{\xi}{\pounds}\mathbf{T})^{a\dots{b}}_{c\dots{d}} =
+        \xi^e\nabla_eT^{a\dots{b}}_{c\dots{d}} -
+        T^{e\dots{b}}_{c\dots{d}}\nabla_e\xi^a - \cdots - 
+        T^{a\dots{e}}_{c\dots{d}}\nabla_e\xi^b +
+        T^{a\dots{b}}_{e\dots{d}}\nabla_c\xi^e + \cdots + T^{a\dots{b}}_{c\dots{e}}\nabla_d\xi^e.
+      \]
+    \end{solution}
+
+\question Show how to find this second connection, taking the `$\Gamma$' for the
+  difference between the connections to be antisymmetric in its lower two
+  indices. (See Exercise [14.5].)
+
+\question Establish this and show how the presence of a torsion tensor $\tau$
+  modifies the expression.
+
+\question Show this.
+
+  \begin{solution}
+    If we take the exterior derivative of such an expression, we obtain
+    \begin{align*}
+      [\mathrm{d}(\mathrm{d}\alpha)]_{abc\dots{d}} &= \nabla_{[a}\nabla_{[b}\alpha_{c\dots{d}]]} \\
+      &= \nabla_{[a}\nabla_{b}\alpha_{c\dots{d}]}.
+    \end{align*}
+    This is completely antisymmetric, yet retains an intrinsic symmetry in its
+    first two indices. The only entity which satisfies both symmetry and
+    antisymmetry is $0$, so $\mathrm{d}^2\alpha = 0$.
+  \end{solution}
+
+\question Demonstrate equivalence (if torsion vanishes) to the previous
+  phyisicist's expression.
+
+\question Derive the explicit component expression
+  $\Gamma^a_{bc}=\frac{1}{2}g^{ad}(\partial{g_{bd}}/\partial{x^c} +
+  \partial{g_{cd}}/\partial{x^b} - \partial{g_{cb}}/\partial{x^d})$ for the
+    connection quantities $\Gamma^a_{bc}$ (Christoffel symbols). (See Exercise
+    [14.6]).
+
+    \begin{solution}
+      Metric compatibility, in coordinates, can be expressed as
+      \[
+        \nabla_cg_{ab} = \partial_cg_{ab} - g_{db}\Gamma^d_{ac} -
+        g_{ad}\Gamma^d_{bc} = 0,
+      \]
+      or $\partial_cg_{ab} = g_{db}\Gamma^d_{ac} + g_{ad}\Gamma^d_{bc}$. If we
+      permute these indices and add the resulting expressions, we find (noting
+      that we are considering the torsion-free case)
+      \[
+        \partial_cg_{ab} + \partial_ag_{bc} + \partial_bg_{ca} =
+        g_{db}\Gamma^d_{ac} + g_{ad}\Gamma^d_{bc} + g_{dc}\Gamma^d_{ba} +
+        g_{bd}\Gamma^d_{ca} + g_{da}\Gamma^d_{cb} + g_{cd}\Gamma^d_{ab}
+      \]
+      Notice that if we instead subtract one of these terms, we are left with
+      one Christoffel symbol on the right-hand side,
+      \[
+        \partial_cg_{ab} + \partial_ag_{bc} - \partial_bg_{ca} = 2g_{bd}\Gamma^d_{ac}.
+      \]
+      If we multiply both sides by the inverse metric (reindexing as
+      appropriate) and divide by two, we find
+      \[
+        \Gamma^a_{bc} = \frac{1}{2}g^{ad}(\partial_cg_{bd} + \partial_bg_{dc} - \partial_dg_{bc}).
+      \]
+    \end{solution}
+
+\question Derive the classical expression ${R_{abc}}^d =
+  \partial\Gamma^d_{cb}/\partial{x}^a - \partial\Gamma^d_{ca}/\partial{x}^b +
+  \Gamma^u_{cb}\Gamma^d_{ua} - \Gamma^u_{ca}\Gamma^d_{ub}$ for the curvature
+  tensor in terms of Christoffel symbols. \textit{Hint}: Use the definition in
+  $\S14.4$ of the curvature tensor, where $\xi^d$ is each of the coordinate
+  vectors $\delta_1^a,\dots,\delta_n^a$, in turn. (As in Exercise [14.6], the
+  quantities $\delta_1^a,\delta_2^a$, etc. are to be though of as actual
+  individual vectors, where the upper index $a$ may be viewed as an abstract
+  index, in accordance with $\S12.8$).
+
+  \begin{solution}
+    In Exercise 14.8, we expanded the expression for curvature to find
+    \[
+      \nabla_a(\nabla_b\xi^c) = \frac{\partial(\nabla_b\xi^c)}{\partial{x^a}} + \nabla_b\xi^d\Gamma^c_{ad},
+    \]
+    where the last term has been removed due to our current focus on the
+    torsion-free case. If we expand out $\nabla_b\xi^c$, we find
+    \begin{align*}
+      \nabla_a(\nabla_b\xi^c) &= \partial_a\partial_b\xi^c + \partial_a(\xi^f\Gamma^c_{fb}) + (\partial_b\xi^d + \xi^f\Gamma^d_{fb})\Gamma^c_{ad} \\
+      &= \partial_a\partial_b\xi^c + (\partial_a\xi^f)\Gamma^c_{fb} + \xi^f\partial_a\Gamma^c_{fb} + (\partial_b\xi^d)\Gamma^c_{ad} + \xi^f\Gamma^d_{fb}\Gamma^c_{ad} \\
+    \end{align*}
+    Swapping $a$ and $b$ and subtracting yields
+    \[
+      (\nabla_a\nabla_b - \nabla_b\nabla_a)\xi^d = \xi^c\partial_a\Gamma^d_{cb}
+      - \xi^c\partial_b\Gamma^d_{ca} + \xi^c\Gamma^f_{cb}\Gamma^d_{af} -
+      \xi^c\Gamma^f_{ca}\Gamma^d_{bf} = {R_{abc}}^d\xi^c
+    \]
+    Recognizing that $\xi$ is arbitrary, we arrive at
+    \[
+      {R_{abc}}^d = \partial_a\Gamma^d_{cb} - \partial_b\Gamma^d_{ca} +
+      \Gamma^f_{cb}\Gamma^d_{fa} - \Gamma^f_{ca}\Gamma^d_{fb}.
+    \]
+  \end{solution}
+
+\question Supply details for this entire argument.
+
+\question Establish these relations, first deriving the antisymmetry in $cd$
+  from $\nabla_{[a}\nabla_{b]}g_{cd} = 0$ and then using the two antisymmetries
+  and Bianchi symmetry to obtain the interchange symmetry.
+
+  \begin{solution}
+    By compatibility with the metric $\nabla_{[a}\nabla_{b]}g_{cd} = 0$. We
+    discovered the action of $\nabla_{[a}\nabla_{b]}$ on a general tensor in
+    Exercise 14.9, and so we know
+    \[
+      (\nabla_a\nabla_b - \nabla_b\nabla_a)g_{cd} = -g_{ed}{R_{abc}}^e - g_{ce}{R_{abd}}^e
+    \]
+    If we equate this to zero and use our metric to lower indices, we find
+    \[
+      R_{abcd} = -R_{abdc}.
+    \]
+  \end{solution}
+
+\question Verify that the symmetries allow only $20$ independent components when
+  $n = 4$.
+
+\question Derive this equation.
+
+  \begin{solution}
+    Using the indicial form of the Lie derivative of a general tensor, we see
+    that, if $\kappa$ is a Killing vector field,
+    \[
+      (\underset{\kappa}{\pounds}\mathbf{g})_{ab} = \kappa^c\nabla_cg_{ab} +
+      g_{cb}\nabla_a\kappa^c + g_{ac}\nabla_b\kappa^c = 0.
+    \]
+    By metric compatibility, the first term vanishes, while we can use the
+    metric to lower the indices on the last two terms (which is valid by metric
+    compatibility), giving us
+    \[
+      \nabla_a\kappa_b + \nabla_b\kappa_a = \nabla_{(a}\kappa_{b)}=0.
+    \]
+  \end{solution}
+
+\question Verify this `geometrically obvious' fact by direct calculation---and
+  why is it `obvious'?
+
+  \begin{solution}
+    If $\kappa$ and $\xi$ are Killing vector fields, then, by direct calculation,
+    \begin{align*}
+      (\underset{[\kappa,\xi]}{\pounds}\mathbf{g})_{ab} &= [\kappa,\xi]^c\nabla_cg_{ab} + g_{cb}\nabla_a[\kappa,\xi]^c + g_{ac}\nabla_b[\kappa,\xi]^c \\
+                                                        &= g_{cb}\nabla_a(\kappa\xi)^c - g_{cb}\nabla_a(\xi\kappa)^c + g_{ac}\nabla_b(\kappa\xi)^c - g_{ac}\nabla_b(\xi\kappa)^c \\
+                                                        &= g_{cb}\nabla(\kappa\xi)^c + g_{ac}\nabla_b(\kappa\xi)^c - (g_{cb}\nabla_a(\xi\kappa)^c + g_{ac}\nabla_b(\xi\kappa)^c) \\
+      &= 0.
+    \end{align*}
+    That is, $[\kappa,\xi]$ is also a Killing vector field. This is
+    geometrically obvious because, if a metric is unchanged when dragged along
+    two independent vector fields, then dragging it along one before dragging it
+    along the other should leave it unchanged. 
+  \end{solution}
+
+\question Explain why this can be written $\nabla_aS_{bc} + \nabla_bS_{ca} +
+  \nabla_cS_{ab} = 0$, using any torsion-free connection $\nabla$.
+
+  \begin{solution}
+    Expressing the exterior derviative in terms of the covariant derivative,
+    this condition becomes
+    \begin{align*}
+      \mathrm{d}\mathbf{S} &= \nabla_{[a}S_{bc]} \\
+                           &= \frac{1}{6}(\nabla_aS_{bc} - \nabla_aS_{cb} + \nabla_cS_{ab} - \nabla_bS_{ac} + \nabla_bS_{ca} - \nabla_cS_{ba}) \\
+      &= \frac{1}{3}(\nabla_aS_{bc} + \nabla_bS_{ca} + \nabla_cS_{ab}),
+    \end{align*}
+    i.e. $\nabla_aS_{bc} + \nabla_bS_{ca} + \nabla_cS_{ab} = 0$.
+  \end{solution}
+
+\question Demonstrate these relations, first establishing that $S^{a[b}\nabla_aS^{cd]}=0$.
+
+\question Explain why.
+
+\question Explain why, in each case. \textit{Hint}: Construct a coordinate
+  system with $\xi = \partial/\partial{x}^1$; then take repeated Lie derivaties
+  to construct a frame, etc.
+  
+\end{questions}
+	
+\end{document}

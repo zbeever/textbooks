@@ -1,0 +1,27 @@
+\documentclass{exam}
+
+\usepackage{scrextend}
+\usepackage{tikz, tkz-euclide}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{commath}
+\usepackage{sectsty}
+\usepackage{array}
+\usepackage{etoolbox}
+\usepackage{siunitx}
+\usepackage{physics}
+\usepackage{color}
+\usepackage{subfiles}
+\usepackage{wasysym}
+
+\renewcommand{\solutiontitle}{}
+\AtBeginEnvironment{solution}{}
+\renewcommand{\thequestion}{\thesection.\arabic{question}}
+
+\begin{document}
+\printanswers
+
+\subfile{sections/lagrangians}
+\subfile{sections/simple-harmonic-oscillators}
+
+\end{document}

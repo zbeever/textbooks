@@ -1,0 +1,61 @@
+\documentclass[../the-road-to-reality.tex]{subfiles}
+
+\begin{document}
+
+\section{Riemann surfaces and complex mappings}
+
+\begin{questions}
+	
+\question Explain why.
+
+\begin{solution}
+	A finite number of sheets forming a Riemann surface is the result of a finite number of values assigned to an input of a multifunction. In the case of $z\to{z^{m/n}}$, consider the substitution $z = re^{i\theta}$. With this, we see that $$z^{\frac{m}{n}} = re^{i\frac{m}{n}\theta} = re^{i(\frac{m}{n}\theta + 2\pi} = re^{i\frac{m}{n}(\theta+2\pi{n})}$$ That is, our multifunction returns to a previous value whenever the input encircles the origin $n$ times.
+\end{solution}
+
+\question Now try $(1 - z^4)^{1/2}$.
+
+\begin{solution}
+	The four branch points of $(1 - z^4)^{1/2}$ are the four roots of unity of $z^4$, namely $1$, $i$, $-1$, and $-i$. As a reminder, these points are when our multifunction's values overlap. Being a square root function, there are two values associated with each input, with each the negative of the other. The points of overlap (branch points) are when $(1-z^4)^{1/2} = -(1-z^4)^{1/2}$, i.e. when our function evaluates to $0$. Geometrically, our multifunction has two sheets in its Riemann surface, each adjoined to the other at the branch points.
+
+	We may stop here, noting the similarity with Fig. 8.2 in the text, but we may also be more explicit. Consider making two branch cuts in our function: from $1$ to $i$ and from $-1$ to $-i$. Our codomain is the extended complex plane, or Riemann sphere, with two cuts in it. Topologically, a sphere with two cuts is nothing but a cylinder. We can adjoin this to our second sheet to form a torus, just as we had down with $(1 - z^3)^{1/2}$.
+\end{solution}
+
+\question Can you see how this comes about? (\textit{Hint}: Think of the Riemann sphere of the variable $w(=\log{z})$; see $\S$8.3.
+
+\begin{solution}
+	This can be seen by constructing an injective mapping from the infinite sheets of the $z$-plane to the $w$-plane, and then from the $w$-plane to the Riemann sphere. The first of these mappings can be understood as a kind of change of coordinates from radial to polar. Consider $\log{z}=\log{r} + i\theta$. Fixing $r$ and changing the angle traces out the a vertical line segment in the $w$-plane, with each winding number being separated from any other by $2\pi$. On the other hand, fixing $\theta$ and changing $r$ traces out a horizontal line the $w$-plane. In this way, every point in the infinite ramp of the $z$-plane maps to exactly one point in the $w$-plane. From here, simply stereographically project the $w$-plane to obtain the Riemann sphere.
+\end{solution}
+
+\question Show this.
+
+\begin{solution}
+	Consider an arbitrary circle in the complex plane, described by $z - a = re^{i\theta}$, or, equivalently, $(z - a)(\bar{z} - \bar{a}) = |r|^2$. We are considered with how this set changes under the mapping $w = z^{-1}$, or, equivalently, $w^{-1} = z$. Substituting in the second of these gives
+	
+	\begin{align*}
+		\Big(\frac{1}{w} - a\Big)\Big(\frac{1}{\bar{w}} - \bar{a}\Big) &= |r|^2 \\
+		(1 - wa)(1 - \bar{w}\bar{a}) &= |r|^2w\bar{w} \\
+		w\bar{w}|a|^2 - wa - \bar{w}\bar{a} + 1 &= |r|^2w\bar{w} \\
+		\frac{1}{|r|^2 - |a|^2} &= w\bar{w} + \frac{a}{|r|^2 - |a|^2}w + \frac{\bar{a}}{|r|^2 - |a|^2}\bar{w} \\
+		\alpha &= w\bar{w} + \alpha{a}w + \alpha\bar{a}\bar{w} \\
+		\alpha &= (w + \alpha\bar{a})(\bar{w} + \alpha{a}) - \alpha|a|^2 \\
+		|\gamma|^2 &= (w + b)(\bar{w} + \bar{b})
+	\end{align*}
+	
+	where $\alpha = (|r|^2 - |a|^2)^{-1}$, $b = \alpha\bar{a}$, and $\gamma = \alpha(1 + |a|^2)$. This represents another set of points in the complex plain describing a circle, so $w = z^{-1}$ sends circles to circles. In the case of $|r|^2 = |a|^2$, circles in the $z$-plane get mapped to lines (circles of infinite radius) in the $w$-plane.
+\end{solution}
+
+\question Verify that the sequence of transformations $z \to Az + B$, $z \to z^{-1}$, $z \to Cz + D$ indeed leads to a bilinear map.
+
+\begin{solution}
+	Carrying out each transformation in turn gives a final result of $z \to \frac{C}{Az + B} + D$, which can be rearranged to give $\frac{(DA)z + (B + C)}{Az + B}$. This is a bilinear map.
+\end{solution}
+
+\question Check that these two stereographic projections are related by $w = z^{-1}$.
+
+\question Show this.
+
+\question Show that these replacements give holomorphically equivalent spaces. Find all the special values of $p$ where these equivalences lead to additional discrete symmetries of the Riemann surface.
+
+\end{questions}
+	
+\end{document}

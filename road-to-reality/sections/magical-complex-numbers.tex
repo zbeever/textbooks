@@ -1,0 +1,82 @@
+\documentclass[../the-road-to-reality.tex]{subfiles}
+
+\begin{document}
+
+\section{Magical complex numbers}
+
+\begin{questions}
+
+\question Do this. (Alternatively, can you check it by multiplying both sides by $(c - id)$?)
+
+\begin{solution}
+	Multiplying the left side by $c + id$ gives $a + ib$. Doing the same to the right reveals
+	
+	\begin{align*}
+		\frac{(ac + bd + i(bc - ad))(c + id)}{c^2 + d^2} = \frac{ac^2 + ad^2 + ibc^2 + ibd^2}{c^2 + d^2} = a + ib.
+	\end{align*}
+\end{solution}
+
+\question Check this, the relevant rules being $w + z = z + w$, $w + (u + z) = (w + u) + z$, $wz = zw$, $w(uz) = (wu)z$, $w(u + z) = wu + wz$, $w + 0 = w$, $w1 = w$.
+
+\begin{solution}
+	The complex field being isomorphic to the $2$D plane, checking algebraic compatibility reduces to verifying the given rules independently on both axes. But each axis consists of a copy of $\mathbb{R}$, which we know satisfies these rules.
+\end{solution}
+
+\question Check this.
+
+\begin{solution}
+	In the case that this number is positive, we have
+
+	\begin{align*}
+		&\Big(\sqrt{\frac{1}{2}\big(a + \sqrt{a^2 + b^2}\big)} + i\sqrt{\frac{1}{2}\big(-a + \sqrt{a^2 + b^2})}\Big)^2\\
+		= &\frac{1}{2}\big(a + \sqrt{a^2 + b^2}\big) - \frac{1}{2}\big(-a + \sqrt{a^2 + b^2}\big) + i\sqrt{\big(a + \sqrt{a^2 + b^2}\big)\big(-a + \sqrt{a^2 + b^2}\big)}\\
+		= &a + i\sqrt{-a^2 + a^2 + b^2}\\
+		= &a + ib.
+	\end{align*}
+
+	The negative case is trivial, as the $-1$ factor squares to $1$.
+\end{solution}
+
+\question Can you see how to check this expression, in a formal algebraic way?
+
+\begin{solution}
+	One way of finding such a solution is to label the sum as
+	
+	\begin{align*}
+		S = 1 + x^2 + x^4 + x^6 + x^8 + \cdots
+	\end{align*}
+
+	It is easy to see that $S - x^2S = 1$, and this can be solved to find $S = (1 - x^2)^{-1}$.
+\end{solution}
+
+\question Can you see an elementary reason for this simple relationship between the two series?
+
+\begin{solution}
+	Returning to
+
+	\[
+	1 + x^2 + x^4 + x^6 + x^8 + \cdots = (1 - x^2)^{-1},
+	,\]
+	
+	we see we can make the substitution $x \to ix$ to find
+
+	\[
+	1 - x^2 + x^4 - x^6 + x^8 + \cdots = (1 + x^2)^{-1}
+	.\] 
+\end{solution}
+
+\question Show this. (\textit{Hint}: Show that no remainder survives if this polynomial is 'divided' by $z - b$ whenever $z = b$ solves the given equation.)
+
+\begin{solution}
+	We are given that there will always exist a solution, say $z = b$, to any equation of the form
+	
+	\[
+	a_0 + a_1z + a_2z^2 + \cdots + a_nz^n = 0
+	.\] 
+		
+	when $a_n \neq 0$. If we divide the left side by $z - b$, labeling the original sum $S$, the divisible polynomial $P$, and the remainder $R$, we see $S(z-b)^{-1} = P + R(z-b)^{-1}$, or $S = (z-b)P + R$. Because this quantity must equal $0$ when $z = b$, $R = 0$ and we can write $S = (z-b)P$.\footnote{If $R$ went to $0$ when $z = b$, we could complete the aforementioned process with $R$ taking the place of $S$ until we found an $R$ that did \textit{not} go to $0$. This would be the actual $R$, with the many $P$s subsumed into the original.} This can be repeated, with $P$ taking the place of $S$, until we are left with a first-degree polynomial, at which point our process is complete.
+\end{solution}
+
+\end{questions}
+	
+\end{document}

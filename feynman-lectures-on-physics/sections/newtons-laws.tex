@@ -1,0 +1,397 @@
+\documentclass[../feynman-lectures-on-physics.tex]{subfiles}
+
+\begin{document}
+
+\section{Newton's Laws}
+
+\begin{questions}
+
+\question Two blocks of mass $m_1=\SI{1}{\kilo\gram}$, $m_2=\SI{2}{\kilo\gram}$
+on a horizontal surface, connected by a string, are being pulled by another
+string which is attached to a mass $m_3=\SI{2}{\kilo\gram}$ hanging ove ra
+pulley, as shown in Fig. 5-1. Neglect friction and the masses of the pulley and
+the strings.
+\begin{parts}
+  \part Sketch free-body diagrams for all masses, showing the forces acting.
+  \part Find the acceleration $a$ of the masses.
+  \part Find the tensions $T_1$ and $T_2$ in the strings.
+\end{parts}
+
+\begin{solution}
+\begin{parts}
+\part The hanging mass has two forces acting upon it: gravity in the downward
+direction and $T_2$ in the upward one. The mass $m_2$ has four forces: gravity
+acting downward, the normal force acting upward, $T_2$ acting to the left, and
+$T_1$ acting to the right. Finally, mass $m_3$ has three forces: gravity acting
+downward, the normal force acting upward, and $T_1$ acting to the left.
+\part We can find the acceleration by noting that it is the same throughout the
+system. From $m_3$, we see $m_3a = m_3g - T_2$, from $m_2$, we see $m_2a = T_2 -
+T_1$, and from $m_1$ we see $m_1a = T_1$. Putting everything in terms of the
+masses of our system gives
+\[
+m_3a = m_3g - (m_2a + T_1) = m_3g - m_2a - m_1a.
+\]
+Solving for $a$ yields
+\[
+a = g\frac{m_3}{m_1 + m_2 + m_3} = \frac{2}{5}g.
+\]
+\part Substituting in our above answer for $a$ gives us
+\begin{align*}
+  T_1 &= \frac{m_1m_3}{m_1 + m_2 + m_3} = \frac{2}{5}\,\si{\newton} \\
+  T_2 &= \frac{m_2m_3 + m_1m_3}{m_1 + m_2 + m_3} = \frac{6}{5}\,\si{\newton}
+\end{align*}
+\end{parts}
+\end{solution}
+
+\question A mass $m$ (kg) hangs on a cord suspended from an elevator which is
+descending with an acceleration $0.1g$. What is the tension $T$ in the cord in newtons?
+
+\begin{solution}
+  We are given the acceleration, and we know that
+  \[
+    ma = mg - T.
+  \]
+  Solving for $T$ yields $T = \frac{9}{10}mg = 8.82m\,\si{\newton}$.
+\end{solution}
+
+\question Two objects of mass $m=\SI{1}{\kilo\gram}$ each, connected by a taut
+string of length $L=\SI{2}{\meter}$, move in a circular orbit with constant
+speed $V=\SI{5}{\meter\per\second}$ about their common center $C$ in a zero-$g$
+environment, as shwon in Fig. 5-2. What is the tension $T$ in the string in
+newtons?
+
+\begin{solution}
+The acceleration felt by the masses is in the inward radial direction and it is
+given by
+\[
+a = \frac{v^2}{r}.
+\]
+The only force that can provide such a centripetal acceleration is the tension
+in the string, and so we must have
+\[
+m\frac{v^2}{r} = T,
+\]
+or $T = \SI{25}{\newton}$. 
+\end{solution}
+
+\question Referring to Fig. 5-3: What horizontal force $F$ must be constantly
+applied to $M$ so that $M_1$ and $M_2$ do not move relative to $M$? Neglect
+friction.
+
+\begin{solution}
+  When the force is applied, it will accelerate the system as whole, and so
+  \[
+    F = (M+M_1+M_2)a.
+  \]
+  Meanwhile, both $M_1$ and $M_2$ can undergo acceleration in addition to that
+  from the force. Specifically,
+  \begin{align*}
+    M_1(a+a_{M_2}) &= T \\
+    M_2a_{M_2} &= M_2g - T \\
+    M_2a &= F_N.
+  \end{align*}
+  The condition that our subsystem does not move relative to $M$ is $a_{M_2}$
+  (the additional acceleration) is zero, or $M_2g = T$. Putting this into the
+  first of the above three equations, substituting in $a$, and solving for $F$
+  yields
+  \[
+    F = g\frac{M_2}{M_1}(M+M_1+M_2).
+  \]
+\end{solution}
+
+\question Reffering to Fig. 5-4: What horizontal force $F$ must be constantly
+applied to $M = \SI{21}{\kilo\gram}$ so that $m_1=\SI{5}{\kilo\gram}$ does not
+move relative to $m_2=\SI{4}{\kilo\gram}$? Neglect friction.
+
+\begin{solution}
+  In order for $m_1$ and $m_2$ to not move relative to each other, the system as
+  a whole must undergo uniform acceleration. From this fact, we can write
+  \begin{align*}
+    F &= (M + m_1 + m_2)a \\
+    T &= m_1a \\
+    T_x &= m_2a \\
+    T_y - m_2g &= 0.
+  \end{align*}
+  We may use the last two equations to eliminate $T$ from the second one,
+  finding
+  \[
+    \sqrt{m_2^2a^2 + m_2^2g^2} = m_1a,
+  \]
+  or
+  \[
+    a = \frac{m_2g}{\sqrt{m_1^2-m_2^2}}.
+  \]
+  Feeding this into our first equations gives us a force of
+  \[
+    F = (M+m_1+m_2)\frac{m_2g}{\sqrt{m_1^2-m_2^2}} = \SI{392}{\newton}.
+  \]
+\end{solution}
+
+\question In the system shown in Fig. 5-5, $M_1$ slides without friction on the
+inclined plane. $\theta=30^\circ$, $M_1=\SI{400}{\gram}$, $M_2=\SI{200}{\gram}$.
+Find the acceleration $\mathbf{a}$ of $M_2$ and the tension $T$ in the cords.
+
+\begin{solution}
+  Drawing a force diagram for the entire system, we find that
+  \begin{gather*}
+    M_1a_1 = T_2 - M_1g\sin\theta \\
+    T_1 = 2T_2 \\
+    M_2a_2 = M_2g - T_2
+  \end{gather*}
+  where positive $a_1$ and $a_2$ corresponds to the situation where the
+  hanging mass is falling. Here, $T_1$ corresponds to the rightmost cord and
+  $T_2$ to the leftmost.
+
+  These relations leave us with three unknowns, $T_1$, $a_1$, and $a_2$. To
+  eliminate one more, observe that when $M_2$ falls a distance $\Delta{x}$, the
+  pulley attached to $M_1$ rises by the same amount: this shortens the cord
+  wrapped around the pulley, causing the mass $M_1$ to rise by an additional
+  $\Delta{x}$. That is,
+  \[
+    2\Delta{x}_{M_2} = \Delta{x}_{M_1}.
+  \]
+  Differentiating both sides twice gives us the same relationship between their
+  respective accelerations, or $2a_{M_2}=a_{M_1}$.
+
+  Solving for $a_2$ yields
+  \[
+    a_2 = \frac{1}{1+4\frac{M_1}{M_2}}\Big(g - 2\frac{M_1}{M_2}g\sin\theta\Big),
+  \]
+  which comes out to be $-g/9$, or an acceleration of $g/9$ upward. Substituting
+  this value into the equation relating $M_2$'s acceleration to its force yields
+  a tension of
+  \[
+    T_2 = M_2(g - a_2) = \frac{10}{9}M_2g = \SI{2.18}{\newton}.
+  \]
+\end{solution}
+
+\question A simple crane is made of two parts, ``A'' with mass $M_A$, length
+$D$, height $H$, and distance $D/2$ between wheels of radius $r$; and part
+``B,'' a uniform rod or boom of length $L$ and mass $M_B$. The crane is shown
+assembled in Fig. 5-6, with the pivot point $P$ at midpoint of top of $A$. The
+center of gravity of $A$ is midway between the wheels.
+\begin{parts}
+\part With the rod or boom $B$ set at angle $\theta$ with teh horizontal, what
+is the maximum mass $M_{\text{max}}$ that the crane can lift without tipping
+over?
+\part If there is a mass $M' = (4/5)M_{\text{max}}$ at the end of the rope, what
+is the minimum time $t$ necessary to raise this load $M'$ a distance
+$(L\sin\theta)$ from the ground? (The angle $\theta$ remains fixed, and the mass
+of the rope may be neglected.)
+\end{parts}
+
+\begin{solution}
+\begin{parts}
+\part The crane will tip over if its center of mass is in front of its wheels.
+That is,
+\[
+  \frac{M_A\cdot\frac{D}{2} + M_B\cdot(\frac{D}{2} + \frac{L}{2}\cos\theta) +
+  M'\cdot(\frac{D}{2} + L\cos\theta)}{M_A+M_B+M'} \leq \frac{3}{4}D.
+\]
+Solving for $M'$ and taking the edge case where the center of mass is exactly on
+the front wheel gives a maximum mass of
+\[
+  M_{\text{max}} = \frac{(M_A+M_B)D - 2M_BL\cos\theta}{4L\cos\theta - D}.
+\]
+\part The maximum force our crane can exert when lifting an object must be equal
+to the force generated by the maximum weight (due to action and reaction),
+\[
+T_{\text{max}} = M_{\text{max}}g.
+\]
+The largest acceleration $M'$ can undergo, then, is
+\[
+M'a = \frac{4}{5}M_{\text{max}}a = T_{\text{max}} - \frac{4}{5}M_{\text{max}}g = \frac{1}{5}M_{\text{max}}g,
+\]
+or $a = g/4$. Assuming $M'$ starts from rest, the total time it takes to raise
+$M'$ to $L\sin\theta$ is given by solving $\Delta{x} = \frac{1}{2}at^2$ for $t$
+and substituting in our value for $a$, i.e.
+\[
+t = \sqrt{\frac{2L\sin\theta}{a}} = \sqrt{\frac{8L\sin\theta}{g}}.
+\]
+\end{parts}
+\end{solution}
+
+\question An early arrangement for measuring the acceleration of gravity, called
+Atwood's Machine, is shown in Fig. 5-7. The pulley $P$ and cord $C$ have
+negligible mass and friction. The system is balanced with equal masses $M$ on
+each side as shown (solid line), and then a small rider $m$ is added to one
+side. The combined masses accelerate through a certain distance $h$, the rider
+is caught on a ring and the two equal masses then move on with constant speed,
+$v$. Find the value of $g$ that corresponds to the measured valeus of $m$, $M$,
+$h$, and $v$.
+
+\begin{solution}
+  We can find the acceleration of the system by drawing force diagrams for each
+  weight, coming up with the relations
+  \begin{gather*}
+    Ma = T - Mg \\
+    (M+m)a = (M+m)g - T.
+  \end{gather*}
+  Solving for $g$ gives us
+  \[
+    g = \frac{m+2M}{m}a.
+  \]
+  Now, as the system starts from rest, the final velocity can be related to the
+  acceleration by $v = a\Delta{t}$, and the total distance (up to striking the
+  ring) can be related to the
+  acceleration by $\frac{1}{2}a\Delta{t}^2 = h$. Removing $\Delta{t}$ from the
+  second equations reveals
+  \[
+    a = \frac{v^2}{2h},
+  \]
+  and so
+  \[
+    g = \frac{m+2M}{2mh}v^2
+  \]
+
+
+
+\end{solution}
+
+\question An elevator of mass $M_2$ has hanging from its ceiling a mass $M_1$,
+as shown in Fig. 5-8. The elevator is being accelerated upward by a constant
+force $F$. ($F$ is greater than $(M_1+M_2)/g$.) The mass $M_1$ is initially a
+distance $s$ above the elevator floor.
+\begin{parts}
+  \part Find the acceleration $a_0$ of the elevator.
+  \part What is the tension $T$ in the string connecting the mass $M_1$ to the
+  elevator?
+  \part If the string suddenly breaks, what is the acceleration $a$ of the
+  elevator immediately after, and wha tis the acceleration $a'$ of mass $M_1$?
+  \part How much time $t$ does it take for $M_1$ to hit the bottom of the elevator?
+\end{parts}
+
+\begin{solution}
+ \begin{parts}
+   \part The elevator total acceleration can be found by solving
+   \[
+     (M_1+M_2)a_0 = F - (M_1+M_2)g,
+   \]
+   giving a value of
+   \[
+     a_0 = \frac{F - (M_1+M_2)g}{M_1+M_2)}.
+   \]
+   \part Because $M_1$ is undergoing the same acceleration as the elevator, we
+   have
+   \[
+     M_1a_0 = T - M_1g,
+   \]
+   or
+   \[
+     T = \frac{M_1}{M_1 + M_2}F.
+   \]
+   \part If the string breaks, the elevator will continue upward with an
+   acceleration of
+   \[
+     a = \frac{F}{M_2} - g,
+   \]
+   while $M_1$ will only feel the force of gravity, giving an acceleration of
+   \[
+     a' = g.
+   \]
+   \part The distance the elevator will have moved upward in a time $t$ is given
+   by
+   \[
+     \frac{1}{2}\Big(\frac{F}{M_2}-g\Big)t^2 = \Delta{s}_2,
+   \]
+   while the distance the hanging mass will have moved (relative to the
+   elevator) is given by
+   \[
+     \frac{1}{2}gt^2 = \Delta{s}_1.
+   \]
+   The two will meet when $\Delta{s}_1 + \Delta{s}_2 = s$, so
+   \begin{align*}
+     s &= \Delta{s}_1 + \Delta{s}_2 \\
+       &= \frac{1}{2}gt^2 + \frac{1}{2}\Big(\frac{F}{M_2}-g\Big)t^2 \\
+     &= \frac{1}{2}\frac{F}{M_2}t^2.
+   \end{align*}
+   Solving for $t$ gives a value of
+   \[
+     t = \sqrt{\frac{2M_2s}{F}}.
+   \]
+ \end{parts}
+\end{solution}
+
+\question Given the system shown in FIg. 5-9, consider all surfaces
+frictionless. If $m=\SI{150}{\gram}$ is released when it is $d = \SI{1}{\meter}$
+above the base of $M=\SI{1650}{\gram}$, how long after release, $\Delta{t}$,
+will $m$ strike the base of $M$?
+
+\question None of the identical gondolas on teh Martian canal Rimini is quite
+able to support the load of both Paolo and Francesca, two affectionate marsupials
+who refuse to go in separate boats. The enterprising gondolier, Giuseppe,
+collects their fare by rigging them up from the mast as shown in Fig. 5-10,
+using the massless ropes and massless, frictionless pulleys characteristic of
+Martian construction. Giuseppe ferries them across before they hit either the
+mast or the deck. Assuming Paulo's mass is $\SI{90}{\kilo\gram}$ and Francesca's
+is $\SI{60}{\kilo\gram}$, how much load $W$ does Giuseppe save?
+
+\textit{Hint}: Remember that the tension in a massless cord htat passes over a
+massless, frictionless pulley is the same on both sides of the pulley.
+
+\question A painter working from a ``bosun's'' chair is hung down the side of a
+tall building, as shown in Fig. 5-11. Wishing to move in a hurry, the
+$\SI{180}{lb}$ painter pulls down on the fall rope so hard that he presses
+against the chair with a force of only $\SI{100}{lb}$. The chair itself weighs
+$\SI{30.0}{lb}$.
+\begin{parts}
+  \part What is the acceleration $\mathbf{a}$ of the painter and the chair?
+  \part What is the total force $F$ supported by the pulley?
+\end{parts}
+
+\question A space traveler about to leave for the moon has a spring balance and
+a $\SI{1.0}{\kilo\gram}$ mass $A$, which when hung on teh balance on the Earth
+gives the reading of $\SI{9.8}{\newton}$. Arriving at the moon at a place where
+the acceleration of gravity is not known exactly but has a value of about one
+sixth the acceleration of gravity at the Earth's surface, he picks up a stone
+$B$ which gives a reading of $\SI{9.8}{\newton}$ when weighed on teh spring
+balance. He then hangs $A$ and $B$ ove ra pulley as shown in Fig. 5-12 and
+observes that $B$ falls with an acceleration of
+$\SI{1.2}{\meter\per\second\squared}$. What is the mass $m_B$ of stone $B$?
+
+\question A mass usspended from a spring hangs motionless, and is then given an
+upward blow such that it moves initially at unit speed. If the mass and spring
+constant are such that the equation of motion is $\ddot{x} = -x$, find the
+maximum height $x_{\text{max}}$ attained by numerical integration of the
+equation of motion.
+
+\question A particle of mass $m$ moves along a straight line. Its motion is
+resisted by a force proportional to its velocity, $F=-kv$. It starts with speed
+$v=v_0$ at $x=0$ and $t=0$.
+\begin{parts}
+  \part Find $x$ as a function of $t$ by numerical integration.
+  \part Find the time $t_{1/2}$ required to lose half its speed, and the maximum
+  distance $x_{\text{max}}$ attained.
+\end{parts}
+Notes:
+\begin{parts}
+\part Adjust he scales of $x$ and $t$ so that the equation of motion has simple
+numerical coefficients.
+\part Invent a scheme to attain good accuracy with a relatively coarse interval
+for $\Delta{t}$.
+\part Use dimensional analysis to deduce how $t_{1/2}$ and $x_{\text{max}}$
+shoudl depend upon $v_0$, $k$, and $m$, and solve for the actual motion only for
+a single convenient value of $v_0$, say $v_0=1.00$ (in the modified $x$ and $t$
+units).
+\end{parts}
+
+\question A certain charged particle moves in an electric and magnetic field
+according to the equations,
+\begin{align*}
+  \frac{\mathrm{d}v_x}{\mathrm{d}t} &= -2v_y, \\
+  \frac{\mathrm{d}v_y}{\mathrm{d}t} &= 1 + 2v_x.
+\end{align*}
+At $t=0$ the particle starts at $x=0$, $y=0$ with velocity $v_x=1.00$, $v_y=0$.
+Determine th enature of the motion by numerical integration.
+
+\question A shell is fired with a muzzle velocity $v = \SI{1000}{ft\per\second}$
+at an angle of $45^\circ$ with teh horizontal. Its motion is resisted by a force
+proporitonal to the cube of its velocity ($F = -kv^3$). The coefficient $k$ is
+such that the resisting force is equal to twie the weight of the shell when $v =
+\SI{1000}{ft\per\second}$. Find the approximate maximum height attained
+$h_{\text{max}}$, and the horizontal range $R$ by numerical integration, and
+compare these with the values expected in the absence of resistance.
+
+\end{questions}
+
+\end{document}

@@ -1,0 +1,877 @@
+\documentclass[../the-road-to-reality.tex]{subfiles}
+
+\begin{document}
+	
+\section{Symmetry groups}
+
+\begin{questions}
+
+\question Show that if we just assume $1a = a$ and $a^{-1}a=1$ for all $a$, together with associativity $a(bc) = (ab)c$, then $a1 = a$ and $aa^{-1} = 1$ can be \textit{deduced}. (\textit{Hint}: Of course $a$ is not the only element asserted to have an inverse.) Show why, on the other hand $a1 = a$, $a^{-1}a = 1$, and $a(bc)=(ab)c$ are insufficient.
+
+\begin{solution}
+        To prove $aa^{-1}=1$, consider
+
+        \begin{align*}
+                a^{-1}aa^{-1}a &= 1 \cdot 1 \\
+                a^{-1}(aa^{-1}a) &= 1
+        \end{align*}
+
+        where the second line implies $aa^{-1}a = a$, or, by associativity, $(aa^{-1})a = a$. By our first assumption, this implies $aa^{-1} = 1$, as $1a = a$. Using this we may now write $aa^{-1}a = a(a^{-1}a) = a1 = a$.
+
+        If we were to begin with $a1 = a$ instead of $1a = a$, we would not have been able to identify $aa^{-1}$ with $1$.
+\end{solution}
+
+\question Explain why any vector space is an Abelian group$-$called an \textit{additive} Abelian group$-$where the group 'multiplication' operation is the 'addition' operation of the vector space.
+
+\begin{solution}
+        Clearly, vector spaces obey associativity under addition. The identity element is the zero vector, and the inverse of each vector is its negative. That vector spaces are Abelian follows from the commutative property of addition.
+\end{solution}
+
+\question Verify these relations (bearing in mind that $Ci$ stands for 'the operation $i\times$, followed by the operation $C$, etc.) (\textit{Hint}: You can check the relations by just confirming their effects on $1$ and $i$. Why?)
+
+\begin{solution}
+        As Penrose points out, we can confirm these relations by checking their effects on $1$ and $i$, as these form a complete basis for all complex numbers. We have
+
+        \begin{align*}
+                Ci1 &= Ci = -i \\
+                (-i)C1 &= (-i)1 = -i \\
+                Cii &= C(-1) = -1 \\
+                (-i)Ci &= (-i)(-i) = -1
+        \end{align*}
+
+        for the first operation. For the second operation, we see
+
+        \begin{align*}
+                C(-1)1 &= C(-1) = -1 \\
+                (-1)C1 &= (-1)1 = -1 \\
+                C(-1)i &= C(-i) = i \\
+                (-1)Ci &= (-1)(-i) = i
+        \end{align*}
+
+        Likewise, the third operation yields
+
+        \begin{align*}
+                C(-i)1 &= C(-i) = i \\
+                iC1 &= i1 = i \\
+                C(-i)i &= C1 = 1 \\
+                iCi &= i(-i) = 1
+        \end{align*}
+
+        and the fourth operation gives
+
+        \begin{align*}
+                CC1 &= C1 = 1 \\
+                11 &= 1 \\
+                CCi &= C(-i) = i \\
+                1i &= i
+        \end{align*}
+\end{solution}
+
+\question Show this.
+
+\begin{solution}
+        The second equation is exactly the fourth multiplication rule, while the third equation is exactly the first (because $Ci = i^3C = i^2iC = (-1)iC = (-i)C$). To extract the second rule, multiply the third equation by $i$ and substitute in the original equation,
+
+	\[
+        Ci^2 = C(-1) = i^3Ci = i^3i^3C = i^4i^2C = 1(-1)C = (-1)C
+	.\] 
+
+        For the third, simply multiple the third equation by $i$ twice from the right,
+
+	\[
+        Ci^3 = C(-i) = i^3Ci^2 = i^6Ci = i^9C = iC
+	.\] 
+\end{solution}
+
+\question Verify that all these in this paragraph are subgroups (and bear in mind Note 13.4).
+
+\begin{solution}
+        Let us consider each set in turn. For $\{1, i, -1, -i\}$, we see the inclusion of the identity, $1$, and the inclusion of all inverses: $(1)(1) = 1$, $i(-i) = 1$, $(-1)(-1) = 1$, and $(-i)(i) = 1$. Finally, this set is closed under the group operation,
+            
+        \[
+        \begin{tabular}{>{$}l<{$}|*{4}{>{$}l<{$}}}
+                ~  & 1  & i  & -1 & -i \\
+                \hline\vrule height 12pt width 0pt
+                1  & 1  & i  & -1 & -i \\
+                i  & i  & -1 & -i & 1  \\
+                -1 & -1 & -i & 1  & i  \\
+                -i & -i & 1  & i  & -1 \\
+        \end{tabular} 
+        \]
+
+        For the second, notice that it, too contains the identity. As for inverses, we have $(1)(1) = 1$, $(-1)(-1) = 1$, $CC = 1$, and $(-C)(-C) = 1$. This, too, is closed under the group operation,
+
+        \[
+        \begin{tabular}{>{$}l<{$}|*{4}{>{$}l<{$}}}
+                ~  & 1  & -1 & C & -C \\
+                \hline\vrule height 12pt width 0pt
+                1  & 1  & -1 & C  & -C \\
+                -1 & -1 & 1  & -C & C  \\
+                C  & C  & -C & 1  & -1 \\
+                -C & -C & C  & -1 & 1  \\
+        \end{tabular} 
+        \]
+
+        Finally, $\{1, -1\}$ clearly contains the identity, both elements' inverses (themselves), and is closed under multiplication.
+\end{solution}
+
+\question Check these assertions, and find two more non-normal subgroups, showing that there are no further ones.
+
+\begin{solution}
+        Maintaining the placement of the arrow in Fig 13.3 (a) can be done through either complex conjugation (as it lies on the real line) or the identity transformation. Keeping the arrow in Fig 13.3 (b) fixed amounts to applying either the identity transformation, or performing a $\pi/2$ rotation counter-clockwise, i.e. a multiplication by $i$, prior to taking the arrow's complex conjugate.
+
+        The two other non-normal subgroups are $\{1, iC\}$ and $\{1, -C\}$. There are no other possible subgroups containing just two members, and the other subgroups have already been found to be normal.
+\end{solution}
+
+\question Show this. (\textit{Hint}: which \textit{sets} of rotations can be rotation-invariant?)
+
+\question Verify this and show that the axioms fail if $S$ is not normal.
+
+\begin{solution}
+        Because $\mathcal{S}$ is a normal subgroup, $h$ commutes with $\mathcal{S}$, allowing us to combine $g$ with $h$ before commuting it with $\mathcal{S}$ once again to arrive at the right-hand side. Furthermore, since $gh \in \mathcal{G}$, $(gh)\mathcal{S} = \mathcal{S}(gh)$, showing that our new group is closed under this operation.
+
+        The identity, in the case of a factor group, is the normal subgroup $\mathcal{S}$. To see this, consider the first axiom. Since $\mathcal{S}$ is closed under the group operation, any element in $\mathcal{S}$ times itself results in the same group. With this in mind, the axiom that fails for non-normal subgroups is the second one, as now
+
+	\[
+        (\mathcal{S}a)(\mathcal{S}a^{-1}) \neq \mathcal{S}(aa^{-1})\mathcal{S} = \mathcal{S}
+	.\] 
+\end{solution}
+
+\question Explain why the number of elements in $\mathcal{G}/\mathcal{S}$, for any finite subgroup $\mathcal{S}$ of $\mathcal{G}$, is the order of $\mathcal{G}$ divided by the order of $\mathcal{S}$.
+
+\begin{solution}
+        In order for the factor group to 'contain' all the elements of our original (in a set theoretic sense), we must have a minimum of $n/m$ elements, where $m$ is the order of $\mathcal{S}$ and $n$ is the order of $\mathcal{G}$. This is because, for each $g$ that produces a new $\mathcal{S}g$, we get $m$ more elements. However, we can also see that there can be no more than this number of elements in our factor group, as then there would be some two elements that are not distinct. Ergo, the order of our factor group is $n/m$.
+\end{solution}
+
+\question Verify that $\mathcal{G} \times \mathcal{H}$ is a group, for any two groups $\mathcal{G}$ and $\mathcal{H}$, and that we can identify the factor group $(\mathcal{G}\times\mathcal{H})/\mathcal{G}$ with $\mathcal{H}$.
+
+\begin{solution}
+        As the two groups are, in some sense, independent of one another, their pairing satisfies the group axioms by virtue of their own legality. The difference being that, now, our identity is given by $(e_g, e_h)$ and the inverse of any pair, $(g_1, h_1)$, takes the form $(g_1^{-1}, h_1^{-1})$.
+
+        If we take $(\mathcal{G}\times\mathcal{H})/\mathcal{G}$ to represent a group whose elements are given by $(\mathcal{G}g_1, \mathcal{G}h_1)$, then we can identify this with $\mathcal{H}$. This is because $\mathcal{G}g_1 = \mathcal{G}$ for all $g_1$, while $\mathcal{G}h_1$ preserves the identifying nature of $h_1$ for all $h_1$.
+\end{solution}
+
+\question Show how this equation, giving the points of unit distance from $O$, follows from the Pythagorean theorem of $\S2.1$.
+
+\begin{solution}
+        The distance to a point on $S^2$ is given by the Pythagorean theorem as
+
+\[
+	c^2 + z^2 = 1
+	\] 
+
+        where $c$ is a line segment from the origin to a point in the unit circle and $z$ is the height of the sphere's surface at that point. We can ascertain $c$ from the Pythagorean theorem as well, as
+
+	\[
+        c^2 = x^2 + y^2
+	.\] 
+
+        Substituting this into the first relation yields
+
+	\[
+        x^2 + y^2 + z^2 = 1
+	.\] 
+\end{solution}
+
+\question Can you explain why? Just do this in the $2$-dimensional case, for simplicity.
+
+\begin{solution}
+        A linear transformation takes the basis vectors of one space into those of another. Once the transformation is applied, we can decompose the new space's basis into our old basis, allowing us to write each new coordinate in terms of a linear combination of the old ones.
+\end{solution}
+
+\question Show this explicitly in the $3$-dimensional case.
+
+\begin{solution}
+        In the $3$-dimensional case, we have
+
+        \begin{align*}
+                x^a \to {T^a}_bx^b &= {T^a}_1x^1 + {T^a}_2x^2 + {T^a}_3x^3
+        \end{align*}
+
+        where $a$ runs over all three dimensions. Here, the linear transformation $T^a_b$ is identified with the set of coefficients needed to express the new coordinates in terms of the old ones.
+\end{solution}
+
+\question Write this all out in full, explaining how this expresses $x^a\to{T^a}_bx^b$.
+
+\begin{solution}
+        This is essentially a more explicit version of the previous exercise. We have
+
+        \begin{align*}
+                x^1 \to {T^1}_ax^a &= {T^1}_1x^1 + {T^1}_2x^2 + {T^1}_3x^3 \\
+                x^2 \to {T^2}_ax^a &= {T^2}_1x^1 + {T^2}_2x^2 + {T^2}_3x^3 \\
+                x^3 \to {T^3}_ax^a &= {T^3}_1x^1 + {T^3}_2x^2 + {T^3}_3x^3
+        \end{align*}
+
+        The expression given in the book expresses vector-matrix multiplication, where each row of $\mathbf{x}$ is used to multiply the corresponding column of $\mathbf{T}$.
+\end{solution}
+
+\question What is this relation between $\mathbf{R}$, $\mathbf{S}$, and $\mathbf{T}$, written out explicitly in terms of the elements of a $3\times{3}$ square arrays of components. You may recognize this, the normal law for 'multiplication of matrices', if this is familiar to you.
+
+\begin{solution}
+        The component of $\mathbf{R}$ in its $i$th row and $j$th column can be explicitly calculated by summing the element-wise multiplication of the $i$th row of $\mathbf{S}$ with the $j$th row of $\mathbf{T}$.
+\end{solution}
+
+\question Verify.
+
+\begin{solution}
+        In the case of either ${T^a}_b\delta^b_c$ or $\delta^a_b{T^b}_c$, we sum over all possible indices of $b$. Since the resulting quantities are $0$ except for the term with $b=c$ in the first expression and $b=a$ in the second, we are left with ${T^a}_c$.
+\end{solution}
+
+\question Why? Show that this would happen, in particular, if the array of components has an entire column of $0$s or two identical columns. Why does this also hold if there are two identical rows? \textit{Hint}: For this last part, consider the determinant condition below.
+
+\begin{solution}
+        Geometrically, we can see why such a condition would correspond to a mapping of a space to another one of smaller dimension: if a vector is orthogonal to the space which we are mapping to, then its projection to that space, $\mathbf{T}$, yields $0$.
+
+        If an array $\mathbf{T}$'s $i$th column is filled with zeros, a vector $\mathbf{v}$ having null entries with the exception of its $i$th row will give $\mathbf{Tv} = 0$. If an array $\mathbf{R}$ has two identical columns, $i$ and $j$, then a vector $\mathbf{w}$ having null entries everywhere except its $i$th and $j$th rows, which have values opposite to one another, gives $\mathbf{Rw} = 0$.
+\end{solution}
+
+\question Show why, not using explicit expressions.
+
+\begin{solution}
+        If a transformation is non-singular, the only vector mapped to $0$ will be the trivial case. This, in combination with the linearity of the transformation, ensures that every vector will be mapped to just one other, allowing us to invert the process.
+\end{solution}
+
+\question Prove directly, using the diagrammatic relations given in Fib. 12.18, that this definition gives $\mathbf{T}\mathbf{T}^{-1} = \mathbf{I} = \mathbf{T}^{-1}\mathbf{T}$.
+
+\question Explain this, and give the full algebraic rules for rectangular matrices.
+
+\begin{solution}
+        In matrix multiplication, the elements of the $i$th column of the right matrix are used to weight a sum of the columns of the left matrix, resulting in a new column corresponding to the $i$th such entity in the new matrix. Therefore, the number of rows of the right matrix must match the number of columns in the left one. Explicitly, if the left matrix is given by $\mathbf{A}$ and has dimensions $a\times{b}$ and the right matrix  is given by $\mathbf{B}$ and has dimensions $c\times{d}$, then for $\mathbf{AB}$ to be well-defined we require $b = c$.
+
+        The standard associative and commutative laws hold for addition as long as $\mathbf{A}$ and $\mathbf{B}$ have the same dimensions,
+
+        \begin{align*}
+                \mathbf{A} + \mathbf{B} &= \mathbf{B} + \mathbf{A} \\
+                \mathbf{A} + (\mathbf{B} + \mathbf{C}) &= (\mathbf{A} + \mathbf{B}) + \mathbf{C} \\
+        \end{align*}
+
+        For multiplication, $\mathbf{A}(\mathbf{B}\mathbf{C}) = (\mathbf{A}\mathbf{B})\mathbf{C}$ provided, given the respective dimensions of $a \times b$, $c \times d$, and $e \times f$, $b = c$ and $d = e$.
+
+        The distributive law holds as well, with the obvious generalizations of the above properties.
+\end{solution}
+
+\question Derive these from the expression of Fig. 13.8a.
+
+\begin{solution}
+        The diagrams instruct us to compute the product of the complete anti-symmetrization of the matrix, then divide by $n!$. Working with explicit indices (where we are not using the Einstein summation convention), we have
+
+        \begin{align*}
+                \frac{1}{2!}{T^{[1}}_{[1}{T^{2]}}_{2]} &= \frac{1}{2}({T^1}_{[1}{T^2}_{2]} - {T^2}_{[1}{T^1}_{2]}) \\
+                &= \frac{1}{2}({T^1}_{1}{T^2}_{2} - {T^1}_{2}{T^2}_{1} - {T^2}_{1}{T^1}_{2} + {T^2}_{2}{T^1}_{1}) \\
+                &= \frac{1}{2}(2{T^1}_{1}{T^2}_{2} - 2{T^1}_{2}{T^2}_{1}) \\
+                &= {T^1}_{1}{T^2}_{2} - {T^1}_{2}{T^2}_{1} \\
+                &= ad - bc
+        \end{align*}
+
+        The case for the $3\times{3}$ matrix can be computed similarly. Because of the calculation's tediousness, it has been omitted here.
+\end{solution}
+
+\question Show why these hold.
+
+\begin{solution}
+        If this answer is to use Penrose's graphical notation, we see the first expression's validity by writing out the two anti-symmetric tensors and joining them along their anti-symmetrization line: this is clearly a product of Kronecker deltas with one of the indices anti-symmetrized. The factor of $n!$ is included for the case that all upper indices are contracted with their respective lower indices.
+
+        The second expression can be written as the product of a Kronecker delta with two contracted anti-symmetric tensors of rank $(n-1)$, yielding a factor of $(n-1)!$.
+\end{solution}
+
+\question Show this.
+
+\begin{solution}
+        Let us use abstract index notation, denoting $\mathbf{A} = {A^i}_j$ and $\mathbf{B} = {B^i}_j$. The trace of $\mathbf{C} = \mathbf{A} + \mathbf{B}$ is ${C^a}_a = {A^a}_a + {B^a}_a$, which is the sum of the traces of $\mathbf{A}$ and $\mathbf{B}$.
+\end{solution}
+
+\question Show this.
+
+\begin{solution}
+        Appealing to the given expression for the determinant, we see
+
+        \begin{align*}
+                \det(\mathbf{I} + \epsilon\mathbf{A}) &= \frac{1}{n!}\epsilon^{ab\dots{d}}(\delta^e_a + \varepsilon{A^e}_a)(\delta^f_b + \varepsilon{A^f}_b)\cdots(\delta^h_d + \varepsilon{A^h}_d)\epsilon_{ef\dots{h}}
+        \end{align*}
+
+        The product of all the delta functions will give us a term of $\varepsilon^{ab\dots{d}}\varepsilon_{ab\dots{d}}/n! = n!/n! = 1$. All other products (of which there will be $n$) will be composed of one $A$ and $(n-1)$ delta functions, as all higher order of epsilon are taken to be $0$. That is,
+
+        \begin{align*}
+                \det(\mathbf{I} + \epsilon\mathbf{A}) &= 1 + \frac{\varepsilon}{n!}\epsilon^{ab\dots{d}}({A^e}_a\delta^f_b\cdots\delta^h_d)\epsilon_{ef\dots{h}} + \frac{\varepsilon}{n!}\epsilon^{ab\dots{d}}(\delta^e_a{A^f}_b\cdots\delta^h_d)\epsilon_{ef\dots{h}} + \cdots \\
+                &= 1 + \frac{\varepsilon}{n!}\epsilon^{ab\dots{d}}\epsilon_{eb\dots{d}}{A^e}_a + \frac{\varepsilon}{n!}\epsilon^{ab\dots{d}}\epsilon_{af\dots{d}}{A^f}_b + \cdots \\
+                &= 1 + \frac{\varepsilon}{n!}(n-1)!\delta^a_e{A^e}_a + \frac{\varepsilon}{n!}(n-1)!\delta^b_f{A^f}_b + \cdots \\
+                &= 1 + \frac{\varepsilon}{n}{A^a}_a + \frac{\varepsilon}{n}{A^b}_b + \cdots \\
+                &= 1 + \varepsilon{A^a}_a \\
+                &= 1 + \varepsilon\mathrm{trace}(\mathbf{A})
+        \end{align*}
+\end{solution}
+
+\question Establish the expression for this. \textit{Hint}: Use the `canonical form' for a matrix in terms of its eigenvalues$-$as described in $\S{13.5}$$-$assuming first that these eigenvalues are unequal (and see Exercise [13.27]). Then use a general argument to show that the equality of some eigenvalues cannot invalidate identities of this kind.
+
+\begin{solution}
+        Simpler than the hint Penrose gives, consider
+
+        \begin{align*}
+                \det({e^{\mathbf{A}}}) &= \det\Big(\lim_{n\to\infty}\Big(\mathbf{I} + \frac{\mathbf{A}}{n}\Big)^n\Big) \\
+                &= \lim_{n\to\infty}\det\Big(\Big(\mathbf{I} + \frac{\mathbf{A}}{n}\Big)^n\Big) \\
+                &= \lim_{n\to\infty}\Big(\det\Big(\mathbf{I} + \frac{\mathbf{A}}{n}\Big)\Big)^n \\
+                &= \lim_{n\to\infty}\Big(1 + \frac{\mathrm{trace}(\mathbf{A})}{n}\Big)^n \\
+                &= e^{\mathrm{trace}(\mathbf{A})}
+        \end{align*}
+
+        where the third equality hold because the determinant of a product is the product of the constituent determinants, and the fourth equality holds from our previous result. This is not a proof, as we have neglected to address the swapping of the determinant with the limit in the first equality, but it does, as the exercise requests, establish the expression.
+\end{solution}
+
+\question See if you can express the coefficients of this polynomial in diagrammatic form. Work them out for $n=2$ and $n=3$.
+
+\question Show that $\det{\mathbf{T}} = \lambda_1\lambda_2\dots\lambda_n$, $\mathrm{trace}\,\mathbf{T}=\lambda_1+\lambda_2+\dots+\lambda_n$.
+
+\begin{solution}
+        We know that
+
+        \begin{align*}
+                \det(\mathbf{T} - \lambda\mathbf{I}) = (\lambda_1-\lambda)(\lambda_2-\lambda)\dots(\lambda_n-\lambda)
+        \end{align*}
+
+        Setting $\lambda = 0$ reduces this to $\det\mathbf{T} = \lambda_1\lambda_2\dots\lambda_n$. For the second equality, let us consider the effect of $e^\mathbf{T}\mathbf{v}$, where $\mathbf{T}v=\lambda\mathbf{v}$. We have
+
+        \begin{align*}
+                e^\mathbf{T}\mathbf{v} &= (\mathbf{I} + \mathbf{T} + \frac{\mathbf{T}}{2}+\cdots)\mathbf{v} \\
+                &= (1 + \lambda + \frac{\lambda}{2}+\cdots)\mathbf{v} \\
+                &= e^\lambda\mathbf{v}
+        \end{align*}
+
+        This shows that, if $\lambda$ is an eigenvalue of $\mathbf{T}$, $e^\lambda$ is an eigenvalue of $e^\mathbf{T}$. Combining this with our previous result and the answer to $13.25$ gives
+
+        \begin{align*}
+                \det{e^\mathbf{T}} &= e^{\lambda_1}e^{\lambda_2}\cdots{e^{\lambda_n}} \\
+                &= e^{\lambda_1 + \lambda_2 + \cdots + \lambda_n} \\
+                &= e^{\mathrm{trace}\,\mathbf{T}}
+        \end{align*}
+
+        Taking the logarithm of the second and third lines gives
+
+        \begin{align*}
+                \lambda_1 + \lambda_2 + \cdots + \lambda_n = \mathrm{trace}\,\mathbf{T}
+        \end{align*}
+\end{solution}
+
+\question Show this.
+
+\question Explain this notation.
+
+\begin{solution}
+        The array given by 
+
+        \begin{align*}
+                (\delta^1_j, \delta^2_j, \delta^3_j, \dots, \delta^n_j)
+        \end{align*}
+
+        will have zeros in every spot except the $j$th, at which point it will have $1$. This is exactly the set of components corresponding to the $j$th basis vector.
+\end{solution}
+
+\question Why? What are the components of $\mathbf{e}_i$ in the $\mathbf{f}$ basis?
+
+\begin{solution}
+        Applying $\mathbf{T}$ to an arbitrary basis vector $\mathbf{e}$ (using the form given in the previous exercise) yields
+
+        \begin{align*}
+                \mathbf{f}_j &= \mathbf{Te}_j \\
+                &= {T^i}_j(\delta^1_i, \delta^2_i, \delta^3_i, \dots, \delta^n_i) \\
+                &= ({T^i}_j\delta^1_i, {T^i}_j\delta^2_i, {T^i}_j\delta^3_i, \dots, {T^i}_j\delta^n_i) \\
+                &= ({T^1}_j, {T^2}_j, {T^3}_j, \dots, {T^n}_j)
+        \end{align*}
+
+        By applying the inverse of $\mathbf{T}$ to our original transformation, we see $\mathbf{e}j = \mathbf{T}^{-1}\mathbf{f}_j$, and so
+
+        \begin{align*}
+                \mathbf{e}_j = \big({(T^{-1})^1}_j, {(T^{-1})^2}_j, {(T^{-1})^3}_j, \dots, {(T^{-1})^n}_j\big)
+        \end{align*}
+\end{solution}
+
+\question See if you can prove this. \textit{Hint}: For each eigenvalue of multiplicity $r$, choose $r$ linearly independent eigenvectors. Show that a linear relation between vectors of this entire collection leads to a contradiction when this relation is pre-multiplied by $\mathbf{T}$, successively.
+
+\question Show this. \textit{Hint}: Label each column of the representing matrix by a separate element of the finite group $\mathcal{G}$, and also label each row by the corresponding group element. Place a $1$ in any position in the matrix for which a certain relation holds (find it!) between the element of $\mathcal{G}$ representing the row, that labelling the column, and the element of $\mathcal{G}$ that this particular matrix is representing. Place a $0$ whenever this relation does not hold.
+
+\begin{solution}
+        Consider an $n\times{n}$ matrix, taken to represent a group element. If we do as Penrose suggests, we can think of each matrix as encoding the multiplications rules for each element. To be explicit, consider an element $g_i$. The matrix representing this will have a $1$ where the column labeled $g_i$ intersects $e$. The other columns will describe how $g_i$ acts on $g_j$, where exactly one $1$ in each column will give the mapping between that column's label and the row's label.
+\end{solution}
+
+\question Why is this expression just the \textit{identity} group element when $a$ and $b$ commute.
+
+\begin{solution}
+        Because, in that case, we have
+
+        \begin{align*}
+				aba^{-1}b^{-1} &= abb^{-1}a^{-1} \\
+                &= aea^{-1} \\
+                &= aa^{-1} \\
+                &= e
+        \end{align*}
+
+        where $e$ denotes the group identity element.
+\end{solution}
+
+\question Spell out this 'order $\epsilon^2$' calculation.
+
+\begin{solution}
+        Expanding out the last two terms in their power series, we see
+
+        \begin{align*}
+                (\mathbf{I} + \varepsilon\mathbf{A})^{-1}(\mathbf{I} + \varepsilon\mathbf{B})^{-1} &= (\mathbf{I} - \varepsilon\mathbf{A} + \varepsilon^2\mathbf{A}^2 + \mathcal{O}(\varepsilon^3))(\mathbf{I} - \varepsilon\mathbf{B} + \varepsilon^2\mathbf{B}^2 + \mathcal{O}(\varepsilon^3)) \\
+                &= \mathbf{I} - \varepsilon\mathbf{A} - \varepsilon\mathbf{B} + \varepsilon^2\mathbf{A}^2 + \varepsilon^2\mathbf{B}^2 + \varepsilon^2\mathbf{AB} +  \mathcal{O}(\varepsilon^3) \\
+                &= \mathbf{I} - \varepsilon(\mathbf{A} + \mathbf{B}) + \varepsilon^2(\mathbf{A}^2 + \mathbf{AB} + \mathbf{B}^2) + \mathcal{O}(\varepsilon^3) 
+        \end{align*}
+
+        Now consider the first two terms,
+
+        \begin{align*}
+                (\mathbf{I} + \varepsilon\mathbf{A})(\mathbf{I} + \varepsilon\mathbf{B}) &= \mathbf{I} + \varepsilon(\mathbf{A} + \mathbf{B}) + \varepsilon^2\mathbf{AB} 
+        \end{align*}
+
+        If we then multiply these two together, we find
+
+        \begin{align*}
+                &\mathbf{I} - \varepsilon(\mathbf{A} + \mathbf{B}) + \varepsilon^2(\mathbf{A} + \mathbf{AB} + \mathbf{B}^2) +\varepsilon(\mathbf{A} + \mathbf{B}) - \varepsilon^2(\mathbf{A} + \mathbf{B})^2 + \varepsilon^2\mathbf{AB} \\
+                =\,&\mathbf{I} + \varepsilon^2(\mathbf{A}^2 + \mathbf{AB} + \mathbf{B}^2 - \mathbf{A}^2 - \mathbf{AB} - \mathbf{BA} - \mathbf{B}^2 + \mathbf{AB}) \\
+                =\,&\mathbf{I} + \varepsilon^2(\mathbf{AB} - \mathbf{BA})
+        \end{align*}
+\end{solution}
+
+\question Show all this.
+
+\begin{solution}
+        For distributivity, we easily find
+
+        \begin{align*}
+                [\mathbf{A} + \mathbf{B}, \mathbf{C}] &= (\mathbf{A} + \mathbf{B})\mathbf{C} - \mathbf{C}(\mathbf{A} + \mathbf{B}) \\
+                &= \mathbf{AC} + \mathbf{BC} - \mathbf{CA} - \mathbf{CB} \\
+                &= (\mathbf{AC} - \mathbf{CA}) + (\mathbf{BC} - \mathbf{CB}) \\
+                &= [\mathbf{A}, \mathbf{C}] + [\mathbf{B}, \mathbf{C}]
+        \end{align*}
+
+        and
+
+        \begin{align*}
+                [\lambda\mathbf{A}, \mathbf{B}] &= \lambda\mathbf{AB} - \mathbf{B}\lambda\mathbf{A} \\
+                &= \lambda\mathbf{AB} - \lambda\mathbf{BA} \\
+                &= \lambda(\mathbf{AB} - \mathbf{BA}) \\
+                &= \lambda[\mathbf{A}, \mathbf{B}]
+        \end{align*}
+
+        The antisymmetric nature of the commutator is similarly proved,
+
+        \begin{align*}
+                [\mathbf{A}, \mathbf{B}] &= \mathbf{AB} - \mathbf{BA} \\
+                &= -(\mathbf{BA} - \mathbf{AB}) \\
+                &= -[\mathbf{B}, \mathbf{A}]
+        \end{align*}
+
+        This property can then be used to prove distributivity in the second argument, as
+
+        \begin{align*}
+                [\mathbf{A}, \mathbf{C} + \mathbf{D}] &= -[\mathbf{C} + \mathbf{D}, \mathbf{A}] \\
+                &= -[\mathbf{C},\mathbf{A}] - [\mathbf{D}, \mathbf{A}] \\
+                &= [\mathbf{A}, \mathbf{C}] + [\mathbf{A}, \mathbf{D}]
+        \end{align*}
+
+        and
+
+        \begin{align*}
+                [\mathbf{A}, \lambda\mathbf{B}] &= -[\lambda\mathbf{B}, \mathbf{A}] \\
+                &= -\lambda[\mathbf{B}, \mathbf{A}] \\
+                &= \lambda[\mathbf{A}, \mathbf{B}]
+        \end{align*}
+
+        The Jacobi identity is slightly more tedious,
+
+        \begin{align*}
+                &[\mathbf{A},[\mathbf{B},\mathbf{C}]] + [\mathbf{B},[\mathbf{C},\mathbf{A}]] + [\mathbf{C},[\mathbf{A},\mathbf{B}]] \\
+                =\,&[\mathbf{A},\mathbf{BC}] - [\mathbf{A},\mathbf{CB}] + [\mathbf{B},\mathbf{CA}] - [\mathbf{B},\mathbf{AC}] + [\mathbf{C},\mathbf{AB}] - [\mathbf{C},\mathbf{BA}] \\
+                =\,&\mathbf{ABC} - \mathbf{BCA} - \mathbf{ACB} + \mathbf{CBA} + \mathbf{BCA} - \mathbf{CAB} \\
+                   &\quad- \mathbf{BAC} + \mathbf{ACB} + \mathbf{CAB} - \mathbf{ABC} - \mathbf{CBA} + \mathbf{BAC} \\
+                =\,&0
+        \end{align*}
+\end{solution}
+
+\question Show this.
+
+\begin{solution}
+        To show antisymmetry, observe
+
+	\[
+        [\mathbf{E}_\alpha, \mathbf{E}_\beta] = {\gamma_{\alpha\beta}}^\chi\mathbf{E}_\chi = -[\mathbf{E}_\beta, \mathbf{E}_\alpha] = -{\gamma_{\beta\alpha}}^\chi\mathbf{E}_\chi
+	.\] 
+
+        which implies ${\gamma_{\alpha\beta}}^\chi = -{\gamma_{\beta\alpha}^\chi}$. To show the constraints imposed by the Jacobi identity, consider
+
+        \begin{align*}
+                &[\mathbf{E}_\alpha,[\mathbf{E}_\beta,\mathbf{E}_\lambda]] + [\mathbf{E}_\beta,[\mathbf{E}_\lambda,\mathbf{E}_\alpha]] + [\mathbf{E}_\lambda,[\mathbf{E}_\alpha,\mathbf{E}_\beta]] \\
+                =\,&[\mathbf{E}_\alpha,{\gamma_{\beta\lambda}}^\chi\mathbf{E}_\chi] + [\mathbf{E}_\beta,{\gamma_{\lambda\alpha}}^\chi\mathbf{E}_\chi] + [\mathbf{E}_\lambda,{\gamma_{\alpha\beta}}^\chi\mathbf{E}_\chi] \\
+                =\,&{\gamma_{\beta\lambda}}^\chi[\mathbf{E}_\alpha,\mathbf{E}_\chi] + {\gamma_{\lambda\alpha}}^\chi[\mathbf{E}_\beta,\mathbf{E}_\chi] + {\gamma_{\alpha\beta}}^\chi[\mathbf{E}_\lambda,\mathbf{E}_\chi] \\
+                =\,&({\gamma_{\beta\lambda}}^\chi{\gamma_{\alpha\chi}}^\xi + {\gamma_{\lambda\alpha}}^\chi{\gamma_{\beta\chi}}^\xi + {\gamma_{\alpha\beta}}^\chi{\gamma_{\lambda\chi}}^\xi)\mathbf{E}_\xi \\
+                =\,&0
+        \end{align*}
+
+        Swapping the indices on the inner commutators of the first line yields a similar expression,
+
+        $$(-{\gamma_{\lambda\beta}}^\chi{\gamma_{\alpha\chi}}^\xi - {\gamma_{\alpha\lambda}}^\chi{\gamma_{\beta\chi}}^\xi - {\gamma_{\beta\alpha}}^\chi{\gamma_{\lambda\chi}}^\xi)\mathbf{E}_\xi = 0$$ 
+
+        adding these together gives
+
+	\[
+        {\gamma_{[\alpha\beta}}^\chi{\gamma_{\lambda]\chi}}^\xi = 0
+	.\] 
+\end{solution}
+
+\question Why?
+
+\begin{solution}
+        The inverse of a matrix can be defined as the unique matrix that, when multiplied by the initial matrix (from either the left or right), gives the identity. In the case of a product of two matrices, we arrive at the identity via
+
+	\[
+		(\mathbf{A}\mathbf{B})(\mathbf{B}^{-1}\mathbf{A}^{-1}) = \mathbf{A}\mathbf{B}\mathbf{B}^{-1}\mathbf{A}^{-1} = \mathbf{A}\mathbf{I}\mathbf{A}^{-1}=\mathbf{A}\mathbf{A}^{-1}=\mathbf{I}.
+	.\] 
+
+        By the uniqueness of the inverse, $(\mathbf{AB})^{-1} = \mathbf{B}^{-1}\mathbf{A}^{-1}$.
+\end{solution}
+
+\question Why this number?
+
+\begin{solution}
+        Because our tensor is a multilinear function acting on $p + q$ spaces of dimension $n$, giving an overall dimensionality of $n^{p+q}$.
+\end{solution}
+
+\question Show this.
+
+\begin{solution}
+       Our tensor, acting as a multilinear map, acts on a collection of objects like so
+
+	\[
+       Q^{f\dots{h}}_{a\dots{c}}x^a\cdots{x}^cx_f\cdots{x}_h
+	.\] 
+
+       Upon transforming our vector spaces and their duals as $x^a \to {T^a}_bx^b$ and $x_a \to {S^b}_ax_b$, this becomes
+
+	\[
+       \hat{Q}^{f\dots{h}}_{a\dots{c}}{T^a}_{a'}x^{a'}\cdots{T^c}_{c'}x^{c'}{S^{f'}}_fx_{f'}\cdots{S^{h'}}_hx_{h'} = \hat{Q}^{f\dots{h}}_{a\dots{c}}{T^a}_{a'}\cdots{T^c}_{c'}{S^{f'}}_f\cdots{S^{h'}}_h{x^{a'}}\cdots{x^{c'}}x_{f'}\cdots{x_{h'}}
+	.\] 
+
+       where we have denoted the transformed $Q^{f\dots{h}}_{a\dots{c}}$ by $\hat{Q}^{f\dots{h}}_{a\dots{c}}$. Because everything has been contracted in our initial expression, this is a \textit{geometric} quantity, i.e. it does not depend on coordinates. To satisfy this condition, our tensor $Q$ must transform as the inverse as our vector spaces did,
+
+       \[
+        Q^{f\dots{h}}_{a\dots{c}} \to {S^{a'}}_a\cdots{S^{c'}}_c{T^f}_{f'}\cdots{T^h}_{h'}Q^{f'\dots{h'}}_{a'\dots{c'}}
+       .\] 
+\end{solution}
+
+\question Show this.
+
+\begin{solution}
+        A tensor with two indices can be thought of (in component form) as a matrix. A symmetric matrix will be absolutely specified by its diagonal and all components to one side of it. The number of components to be found above the diagonal is given by $(n^2 - n)/2$, or $n(n-1)/2$. This is because we are subtracting the number of diagonal components $n$ from the total $n^2$ and dividing by two (so we're only counting one half of the matrix). The diagonal itself, as mentioned, gives $n$ elements, and so a symmetric two-component tensor has
+
+	\[
+        \frac{n(n-1)}{2} + n = \frac{n(n+1)}{2}
+	.\] 
+
+        components, corresponding to the same number of basis elements. Meanwhile, an antisymmetric matrix is specified by all the components to one side of the diagonal. (The diagonal itself contains only zeros, as these are the only number equal to their opposite.) Therefore, an antisymmetric two-component tensor has
+
+	\[
+        \frac{n(n-1)}{2}
+	.\] 
+
+        basis elements.
+\end{solution}
+
+\question Explain this.
+
+\begin{solution}
+        Upon transforming a tensor, we are left with an object containing the same number of free indices as before. We can denote this new tensor by $\hat{Q}$, to which we can apply our usual symmetrization and anti-symmetrization schemes. 
+\end{solution}
+
+\question Show that the representation of $\begin{matrix} 1 \\ 1 \end{matrix}$valent tensors is also reducible. \textit{Hint}: Split any such tensor into a 'trace-free' part and a 'trace' part.
+
+\begin{solution}
+        To split a tensor in such a way, we can remove its trace by
+
+	\[
+        {Q^a}_b - \frac{1}{n}\delta^a_b{Q^c}_c
+	.\] 
+
+        This has this particular form because ${Q^c}_c$ is simply a number, and so we must multiply it by the identity to combine it with ${Q^a}_b$. The factor of $1/n$ is there for normalization purposes, as $\delta^a_a = n$, and so without it we would have ${Q^a}_a - \delta^a_a{Q^c_c} = (1-n){Q^c}_c$.
+
+        We can simply add the trace back to obtain our original tensor, now split into two parts,
+
+	\[
+        {Q^a}_b = ({Q^a}_b - \frac{1}{n}\delta^a_b{Q^c}_c) + \frac{1}{n}\delta^a_b{Q^c}_c
+	.\] 
+\end{solution}
+
+\question Confirm this.
+
+\begin{solution}
+        If every representative matrix has this form, then the components within the block matrix $\mathbf{A}$ only ever multiply other components in this block. The same is true for $\mathbf{B}$. To see this explicitly, observe
+
+	\begin{gather*}
+		\begin{pmatrix}
+			\mathbf{A}_1 & \mathbf{C}_1 \\
+			\mathbf{O} & \mathbf{B}_1
+		\end{pmatrix}
+		\begin{pmatrix}
+			\mathbf{A}_2 & \mathbf{C}_2 \\
+			\mathbf{O} & \mathbf{B}_2
+		\end{pmatrix}
+		= 
+		\begin{pmatrix}
+		\mathbf{A}_1\mathbf{A}_2 & \mathbf{A}_1\mathbf{C}_2 + \mathbf{C}_1\mathbf{B}_2 \\
+		\mathbf{O} & \mathbf{B}_1\mathbf{B}_2
+		\end{pmatrix}.
+	\end{gather*}
+
+        This implies that our group may be represented by either block matrix.
+\end{solution}
+
+\question Why does $\kappa_{\alpha\beta} = \kappa_{\beta\alpha}$?
+
+\begin{solution}
+        This is due to two facts: that the indicial forms of tensors commute with each other and dummy variables can be freely renamed. Explicitly, we have
+
+	\[
+        \kappa_{\alpha\beta} = {\gamma_{\alpha\zeta}}^\xi{\gamma_{\beta\xi}}^\zeta = {\gamma_{\beta\xi}}^\zeta{\gamma_{\alpha\zeta}}^\xi = {\gamma_{\beta\zeta}}^\xi{\gamma_{\alpha\xi}}^\zeta = \kappa_{\beta\alpha}
+	.\] 
+\end{solution}
+
+\question Use Note 13.18 to establish this.
+
+\begin{solution}
+	Treating our tensor $Q$ as a multilinear function, we have
+
+	\begin{align*}
+		{Q}(\hat{\mathbf{e}}^a, \dots, \hat{\mathbf{e}}^c, \hat{\mathbf{e}}_p, \dots, \hat{\mathbf{e}}_r) &={Q}({t^a}_d{\mathbf{e}}^d, \dots, {t^c}_f{\mathbf{e}}^f, {s^j}_p{\mathbf{e}}_j, \dots, {s^l}_r{\mathbf{e}}_l) \\
+		&={t^a}_d\dots{t^c}_f{s^j}_p\dots{s^l}_r{Q}({\mathbf{e}}^d, \dots, {\mathbf{e}}^f, {\mathbf{e}}_j, \dots, {\mathbf{e}}_l).
+	\end{align*}
+\end{solution}
+
+\question Why?
+
+\begin{solution}
+	Because $\delta^a_b$ is the identity transformation.
+\end{solution}
+
+\question Why equivalent?
+
+\begin{solution}
+	Because, by virtue of $g_{ab}$ and $g^{ab}$ being inverses of each other, the assumption that $g_{ab}$ is symmetric allows us to show
+
+	\begin{align*}
+		g^{cd} &= g^{ac}g^{bd}g_{ab} \\
+		       &= g^{ac}g^{bd}g_{ba} \\
+		       &= g^{bd}g^{ac}g_{ba} \\
+		       &= g^{ad}g^{bc}g_{ab} \\
+		       &= g^{dc}
+	\end{align*}
+
+	where we have swapped the labels of $a$ and $d$ in the fourth line.
+\end{solution}
+
+\question Can you confirm this characterization?
+
+\begin{solution}
+	The key part of such an alternative characterization is that the given quantity must be greater than $0$ for \textit{every} vector we feed into it. Consider inserting the canonical basis of our space into this expression. This then yields
+
+	\[
+		A_{ab}x^ax^b = \mathbf{e}_a \cdot \mathbf{e}_b = \delta^a_b
+	.\]
+
+	This is the identity matrix, having a signature of all $1$s.
+\end{solution}
+
+\question Explain why.
+
+\question Explain this. What is $\mathbf{T}^{-1}$ in the pseudo-orthogonal cases (defined in the next paragraph)?
+
+\begin{solution}
+	Replacing the metric with the Kronecker delta gives
+
+	\[
+		\delta_{ab}{T^a}_c{T^b}_d = \delta_{cd}
+	.\] 
+
+	Contracted indices are unaffected by an exchange in their position (upper or lower), and so we can rewrite this as
+
+	\[
+		\delta_a^b{T^a}_c{T_b}^d = {T^a}_c{T_a}^d = {T_a}^d{T^a}_c = \delta_c^d
+	.\] 
+
+	This is the standard formula for matrix multiplication, with the first instance of $T$ being the transpose of the second. That is,
+
+	\[
+		\mathbf{T}^{T}\mathbf{T} = \mathbf{I}	
+	.\]
+
+	But this is exactly the relationship characterizing a matrix and its inverse, and so we have $\mathbf{T}^{-1} = \mathbf{T}^T$.
+
+	To see the form of $\mathbf{T}^{-1}$ in the pseudo-orthogonal case, it is easiest to work with matrix notation. Now, as opposed to the identity matrix, we will replace the metric in our initial relation with a diagonal matrix expressing the signature of the group, $\mathbf{I}_{p,q}$. Then we have
+
+	\[
+		\mathbf{T}^T\mathbf{I}_{p,q}\mathbf{T} = \mathbf{I}_{p,q}	
+	.\]
+
+	From this, it is easy to see that $\mathbf{T}_{-1} = \mathbf{I}_{p,q}\mathbf{T}^T\mathbf{I}_{p,q}$.
+\end{solution}
+
+\question Explain why this is equivalent to preserving the volume form $\varepsilon_{a\dots{c}}$, i.e. $\varepsilon_{a\dots{c}}T^a_p\dots{T^c}_r = \varepsilon_{p\dots{r}}$? Moreover, why is the preservation of its sign sufficient?
+
+\begin{solution}
+	Returning to the expression for the determinant in terms of the volume form, we see that $\mathrm{det}\mathbf{T}=1$ is equivalent to
+	\[
+	\frac{1}{n!}\epsilon^{ab\dots{d}}{T^e}_a{T^f}_b\cdots{T^h}_d\epsilon_{ef\dots{h}} = 1.
+	\] 
+	Contracting the leftmost volume form with a (lower index) copy of itself yields
+	\[
+	\frac{1}{n!}\epsilon^{ab\dots{d}}\epsilon_{ab\dots{d}}{T^e}_a{T^f}_b\cdots{T^h}_d\epsilon_{ef\dots{h}} = {T^e}_a{T^f}_b\cdots{T^h}_d\epsilon_{ef\dots{h}} = \epsilon_{ab\dots{d}}
+	\] 
+	which shows such a restriction is equivalent to preserving the volume form. The preservation of the determinant's sign is significant because the determinant (and volume form) represents \textit{oriented} volumes: a lack of change in a transformation's determinant ensures that no overall reflection has been made.
+\end{solution}
+
+\question Why?
+
+\question Verify these relations, explaining the notational consistency of $h^{ab'}$.
+
+\begin{solution}
+	Given 
+
+	\[
+		\overline{v}_a = \overline{v}^{a'}h_{a'b}, \quad v_{a'} = h_{a'b}v^b
+	,\] 
+
+	We may multiply both sides by $h^{bc'}$ to obtain
+
+	\begin{align*}
+		\overline{v}_ah^{bc'} &= \overline{v}^{a'}h_{a'b}h^{bc'} \\
+				      &= \overline{v}^{a'}\delta_{a'}^{c'} \\
+				      &= \overline{v}^{c'} \\
+		v_{a'}h^{a'c} &= h_{a'b}v^bh^{a'c} \\
+			      &= \delta^c_bv^b \\
+			      &= v^c 
+	\end{align*}
+
+	I am unsure what Penrose is referring to when he speaks of notational consistency.
+\end{solution}
+
+\question Show this.
+
+\begin{solution}
+	If we can reduce $h$ to a series of $1$s along its diagonal, we are effectively reducing it to the identity. Taking any vector $\mathbf{v}$ to be expressed with respect to such a basis, we have
+
+	\[
+	\|{v}\| = \sqrt{\langle{v, v}\rangle} = \sqrt{\overline{v}\cdot{v}} 
+	.\] 
+
+	Since any number times its complex conjugate returns a real, positive value, the square root of a sum of such numbers also will.
+\end{solution}
+
+\question Show that these transformations are precisely those which preserve the Hermitian correspondence between vectors $\mathbf{v}$ and covectors $\mathbf{v}^*$, and that they are those which preserve $h_{ab'}$.
+
+\begin{solution}
+	Treating our Hermitian form as a multilinear map, the preservation of such a form by a unitary transformation follows from its linearity in the second argument and its antilinearity in the first,
+	\[
+	\mathbf{h}(\mathbf{Tx},\mathbf{Ty}) = (\mathbf{T}^*\mathbf{T})\mathbf{h}(\mathbf{x},\mathbf{y}) = \mathbf{h}(\mathbf{x},\mathbf{y}).
+	\] 
+	Since the Hermitian form defines the correspondence between vectors and covectors, its in variance under unitary transformations extends to an in variance in the aforementioned correspondence.	
+\end{solution}
+
+\question Prove this.
+
+\begin{solution}
+	A singular matrix is one which has a determinant of $0$, or equivalently, at least one eigenvalue of $0$. The eigenvalues of an anti symmetric matrix can be found by examining $\overline{\mathbf{x}}^T\mathbf{S}\mathbf{x}$, where $\mathbf{x}$ is a supposed age vector. Then we have
+	\[
+		\overline{\mathbf{x}}^T\mathbf{Sx} = \overline{\mathbf{x}}^T\lambda\mathbf{x} = \lambda\overline{\mathbf{x}}^T\mathbf{x} = \lambda\|\mathbf{x}\|^2.
+	\] 
+	Taking the conjugate transpose of the leftmost side gives  
+	\[
+		(\overline{\mathbf{x}}^T\mathbf{Sx})^* = \overline{\mathbf{x}}^T\mathbf{S}^T\mathbf{x} = -\overline{\mathbf{x}}^T\mathbf{Sx} = -\lambda\|\mathbf{x}\|^2
+	\] 
+	where we are taking the matrix $\mathbf{S}$ to be real. Since these two expressions are the complex conjugates of each other, we see that $\overline{\lambda} = -\lambda$. This is possible only if $\lambda$ is zero or purely imaginary.
+
+	The determinant of a real matrix, such as $\mathbf{S}$, is a real quantity. Said another way,  the product of its eigenvalues must be real. The only way for this quantity to be nonzero is for our matrix $\mathbf{S}$ to contain an even number of purely imaginary eigenvalues. The product of an odd number of such eigenvalues would be imaginary and contradict the realness of the determinant, showing that such odd-dimensional matrices must have at least one eigenvalue of $0$.
+\end{solution}
+
+\question Find explicit descriptions of $\mathrm{Sp}(1)$ and $\mathrm{Sp}(1, 1)$ using this prescription. Can you see why the groups $\mathrm{Sp}(n, 0)$ are compact?
+
+\question Show why these two different descriptions for the case $p = q = \frac{1}{2}n$ are equivalent.
+
+\question Why are they the same?
+
+\begin{solution}
+	They both describe rotation around a unit circle. The connection between the real, $\mathrm{SO}(2)$ representation and the complex, $\mathrm{U}(1)$ representation is Euler's formula,
+	\[
+	e^{i\theta} = \cos\theta + i\sin\theta.
+	\] 
+\end{solution}
+
+\question Explain where the equation $\mathbf{X}^T\mathbf{S} + \mathbf{SX} = 0$ comes from and why $\mathbf{SX} = (\mathbf{SX})^T$. Why does trace $\mathbf{X}$ vanish? Give the Lie algebra explicitly. Why is it of this dimension?
+
+\begin{solution}
+	The Lie algebra is made up of the generators of the representation of our group. That is, the matrices $\mathbf{X}$ such that $\mathbf{I} + \varepsilon\mathbf{X}$ satisfies the group conditions. In the case of the symplectic group, this condition is $\mathbf{T}^T\mathbf{ST}=\mathbf{S}$.		
+
+	Replacing $\mathbf{T}$ with $\mathbf{I} + \varepsilon\mathbf{X}$ and ignoring higher orders of epsilon, this relationship can be rewritten as
+	\[
+	(\mathbf{I} + \varepsilon\mathbf{X})^T\mathbf{S}(\mathbf{I} + \varepsilon\mathbf{X}) = (\mathbf{I} + \varepsilon\mathbf{X}^T)\mathbf{S}(\mathbf{I} + \varepsilon\mathbf{X}) = \mathbf{S} + \varepsilon(\mathbf{X}^T\mathbf{S} + \mathbf{S}\mathbf{X}) = \mathbf{S},
+	\] 
+	which is equivalent to $\mathbf{X}^T\mathbf{S} + \mathbf{SX} = 0$. Being as $\mathbf{S}$ is antisymmetric, we can replace $\mathbf{S}$ in the leftmost term with $-\mathbf{S}^T$ to get another equivalent condition,
+	\[
+		-\mathbf{X}^T\mathbf{S}^T + \mathbf{SX} = -(\mathbf{SX})^T + \mathbf{SX} = 0,
+	\] 
+	or $\mathbf{SX} = (\mathbf{SX})^T$. $\mathbf{X}$ satisfies these conditions when it is a symmetric matrix premultiplied by $\mathbf{S}^{-1}$.
+
+	The trace of $\mathbf{X}$ vanishes because $\mathbf{S}^{-1}$ is an antisymmetric matrix. This can be seen by considering $\mathbf{S}^{-1}\mathbf{S} = \mathbf{I}$. Taking the transpose of both sides leaves the rightmost one unaltered, while changing the left to
+	\[
+		(\mathbf{S}^{-1}\mathbf{S})^T = \mathbf{S}^T(\mathbf{S}^{-1})^T = -\mathbf{S}(\mathbf{S}^{-1})^T
+	.\] 
+	In order for this to equal the identity, we must have $(\mathbf{S}^{-1})^T = -\mathbf{S}^{-1}$. Now, the trace of a matrix product is unaffected by the transpose operation and the order of the product, so 
+	\[
+		\mathrm{trace}\,\mathbf{X} = \mathrm{trace}\,\mathbf{S}^{-1}\mathbf{A} = \mathrm{trace}\,\mathbf{A}^T(\mathbf{S}^{-1})^T = -\mathrm{trace}\,\mathbf{A}\mathbf{S}^{-1}
+	\] 
+	which is only possible if the trace of $\mathbf{X}$ is zero.
+	
+	To find the Lie algebra, we must express the generators in terms of a basis and compute the structure constants, ${\gamma_{\alpha\beta}}^\chi$. I am at a loss as to how to neatly do this in a completely general way, so we will focus on the simplest case: $n=2$.
+
+	Let us put the antisymmetric form (and therefore its inverse) into a block diagonal one,
+	\[
+		\mathbf{S}^{-1} = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} 
+	.\] 
+	For a basis of our symmetric matrix $\mathbf{A}$, we will choose
+	\[
+		\mathbf{F}_1 = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}, \qquad \mathbf{F}_2 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix},  \qquad \mathbf{F}_3 = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} 
+	.\]
+	Premultiplying each of these by the inverse of our symmetric form gives us our basis,
+	\[
+		\mathbf{E}_1 = \mathbf{S}^{-1}\mathbf{F}_1 = \begin{pmatrix} 0 & 0 \\ -1 & 0 \end{pmatrix}, \qquad \mathbf{E}_2 = \mathbf{S}^{-1}\mathbf{F}_2 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}, \qquad \mathbf{E}_3 = \mathbf{S}^{-1}\mathbf{F}_3 = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} 
+	.\] 
+	By simple matrix multiplication, we find
+	\begin{align*}
+		[\mathbf{E}_1,\mathbf{E}_2] &= -[\mathbf{E}_2,\mathbf{E}_1] = 2\mathbf{E}_1, \\
+		[\mathbf{E}_2,\mathbf{E}_3] &= -[\mathbf{E}_3,\mathbf{E}_2] = 2\mathbf{E}_3, \\
+		[\mathbf{E}_3,\mathbf{E}_1] &= -[\mathbf{E}_1,\mathbf{E}_3] = -\mathbf{E}_2.
+	\end{align*}
+	This implies the structure constants of
+	\begin{gather*}
+		{\gamma_{12}}^1 = {\gamma_{23}}^3 = -{\gamma_{21}}^1 = -{\gamma_{32}}^3 = 2 \\
+		{\gamma_{13}}^2 = -{\gamma_{31}}^2 = 1
+	\end{gather*}
+
+	Going through this process also allowed us to see the dimensionality of the group: it is the number of basis elements, which is the number of degrees of freedom in a symmetric matrix. This is given by $\frac{1}{2}(n^2 - n) + n$, or $\frac{1}{2}n(n+1)$.
+\end{solution}
+
+\question Describe these Lie algebras and obtain these dimensions.
+
+\question Why, and what does this mean geometrically?
+
+\begin{solution}
+	The infinitesimal elements of the orthogonal group are the matrices $\mathbf{T} = \mathbf{I} + \varepsilon\mathbf{X}$ that satisfy
+	\[
+	\mathbf{T}^T\mathbf{g}\mathbf{T} = \mathbf{g}.
+	\] 
+	Taking the determinant of this expression reveals $(\det\mathbf{T})^2 = 1$. Since the determinant of $\mathbf{I} + \varepsilon\mathbf{X}$ cannot be $-1$ on account of it being infinitesimally close to $\mathbf{I}$, the previous relation implies $\det\mathbf{T} = 1$.
+
+	Geometrically, this means the elements of the orthogonal group do not deform volumes.
+\end{solution}
+
+\end{questions}
+
+\end{document}

@@ -1,0 +1,135 @@
+\documentclass[../the-road-to-reality.tex]{subfiles}
+
+\begin{document}
+	
+\section{Real-number calculus}
+
+\begin{questions}
+
+\question Show this (ignored $x = 0$).
+
+\begin{solution}
+	Given a positive value for $x$, we have $\theta(x) = \frac{x + x}{2x} = 1$, while negating the input gives us $\theta(-x) = \frac{x - x}{-2x} = 0$; the formula given captures the step function.
+\end{solution}
+
+\question Have a go at proving this if you have the background.
+
+\begin{solution}
+	This is not a rigorous proof, but one can see that the derivative of the non-trivial part of $h(x)$ consists of sums of terms of the form $\frac{C}{x^n}e^{-1/x}$. By itself, $\lim_{x\to0}e^{-1/x}=0$. When multiplied by a term of the form $x^{-n}$, the power series for this expression becomes
+
+	\[
+	\sum_{m=0}^{\infty}\frac{1}{m!}\Big(-\frac{1}{x^n}\Big)^m
+	.\] 
+
+	That is, the power series is started at a higher power term and multiplied by some constant. But this does not change the limiting behavior of the expression, and so all terms of this form still tend to $0$ as $x$ goes to $0$. This means that all derivatives of the non-trivial part of $h(x)$ maintain continuity with the trivial part, and thus $h(x)$ is $C^{\infty}$. (We are assuming the smoothness of $h^{(n)}(x)$ holds away from the origin in the above.)
+\end{solution}
+
+\question Show this, using rules given towards the end of \S6.5.
+
+\begin{solution}
+	Consider expanding $f$ in a power series,
+	
+	\[
+		f(x) = a_0 + a_1x + a_2x^2 + a_3x^3 + a_4x^4 + \cdots
+	.\] 	
+
+	By setting $x = 0$, we see $a_0 = f(0)$. Differentiating both sides gives
+	
+	\[
+		f'(x) = a_1 + 2a_2x + 3a_3x^2 + 4a_4x^3 + \cdots
+	.\] 	
+
+	and so $a_1 = f'(0)$. Continuing this pattern, we see $a_n = \frac{f^{(n)}(0)}{n!}$
+\end{solution}
+
+\question Consider the 'one function' $e^{-1/x^2}$. Show that it is $C^\infty$, but not analytic at the origin.
+
+\question Using the power series of $e^x$ given in 5.3, show that $\mathrm{d}e^x = e^x\mathrm{d}x$.
+
+\begin{solution}
+	Differentiating
+	
+	\[
+	e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots
+	\] 	
+
+	gives us
+	
+	\[
+	\mathrm{d}e^x = \mathrm{d}x + x\mathrm{d}x + \frac{x^2}{2!}\mathrm{d}x + \frac{x^3}{3!}\mathrm{d}x = e^x\mathrm{d}x
+	.\] 
+\end{solution}
+
+\question Establish this.
+
+\begin{solution}
+	We may apply the Leibniz rule to $x^n$ by splitting it into the product of $x$ with $x^{n-1}$,
+	
+	\[
+	\frac{\mathrm{d}(xx^{n-1})}{\mathrm{d}x} = x^{n-1} + x\frac{\mathrm{d}x^{n-1}}{\mathrm{d}x}
+	.\] 
+	
+	By repeating this process (splitting $x^{n-1}$ into $xx^{n-2}$ and so forth), we find
+	
+	\[
+		\frac{\mathrm{d}x^n}{\mathrm{d}x} = x^{n-1} + x\Big(x^{n-2} + x\Big(x^{n-3} + x\Big(x + \cdots\Big)\Big)\Big) = nx^{n-1}
+	.\] 
+\end{solution}
+
+\question Derive this.
+
+\begin{solution}
+	Applying the chain rule in succession with the Leibniz rule yields 
+	
+	\[
+	\mathrm{d}\big(f(x)[g(x)]^{-1}\big) = \mathrm{d}f(x)[g(x)]^{-1} + f(x)\cdot{-[g(x)]^{-2}}\mathrm{d}g(x) = \frac{\mathrm{d}f(x)g(x) - f(x)\mathrm{d}g(x)}{g(x)^2}
+	.\] 
+\end{solution}
+
+\question Work out $\mathrm{d}y/\mathrm{d}x$ for $y = (1 - x^2)^4$, $y = (1 + x) / (1 - x)$.
+
+\begin{solution}
+	For the first, we find $\mathrm{d}y/\mathrm{d}x = 4(1 - x^2)^3\cdot{-2x} = -8x(1 - x^2)^3$. For the second, we have $\mathrm{d}y/\mathrm{d}x = (1-x)^{-1} + (1+x)\cdot{(1-x)^{-2}} = \frac{2}{(1-x)^{2}}$.
+\end{solution}
+
+\question With $a$ constant, work out $\mathrm{d}(\log_ax)$, $\mathrm{d}(\log_xa)$, $\mathrm{d}(x^x)$.
+
+\begin{solution}
+	We can work out the first two derivatives by changing the base of our logarithm. For the first, we have
+	
+	\[
+		\mathrm{d}(\log_ax) = \mathrm{d}\Big(\frac{\ln{x}}{\ln{a}}\Big)=\frac{\mathrm{d}x}{x\ln{a}}
+	.\] 	
+
+	The second is found similarly,
+	
+\[
+	\mathrm{d}(\log_xa) = \mathrm{d}\Big(\frac{\ln{a}}{\ln{x}}\Big) = {-\frac{\ln{a}}{x(\ln{x})^2}}\mathrm{d}x = {-\frac{\log_xa}{x\ln{x}}}\mathrm{d}x
+.\] 	
+
+	The third can be derived as
+
+	\[
+	\mathrm{d}(x^x) = \mathrm{d}(e^{x\ln{x}}) = e^{x\ln{x}}(1 + \ln{x})\mathrm{d}x
+	.\] 
+\end{solution}
+
+\question For the first, see Exercise [6.5]; derive the second from $\mathrm{d}(e^{\log{x}})$; the third and fourth from $\mathrm{d}e^{ix}$, assuming that the complex quantities work like real ones; and derive the rest from the earlier ones, using $\mathrm{d}(\sin(\sin^{-1}x))$, etc., and noting that $\cos^2x + \sin^2x = 1$.
+
+\begin{solution}
+	The calculation of the first of these is detailed in exercise 6.5. For the second, notice that $\mathrm{d}(x) = \mathrm{d}(e^{\ln{x}}) = \mathrm{d}x$, so by the chain rule $x\mathrm{d}\ln{x} = \mathrm{d}x$, i.e. $\mathrm{d}\ln{x} = \frac{\mathrm{d}x}{x}$. 
+
+	The third and fourth can be derived simultaneously by noting that $$\mathrm{d}e^{ix} = \mathrm{d}(\cos{x} + i\sin{x}) = i(\cos{x} + i\sin{x})\mathrm{d}x = (-\sin{x} + i\cos{x})\mathrm{d}x$$. Matching the real and imaginary parts, we see $\mathrm{d}\cos{x} = -\sin{x}\mathrm{d}x$ and $\mathrm{d}\sin{x} = \cos{x}\mathrm{d}x$.
+
+	The fifth is found via $$\mathrm{d}\tan{x} = \mathrm{d}\Big(\frac{\sin{x}}{\cos{x}}\Big) = 1 + \frac{\sin^2{x}}{\cos^2{x}} = 1 + \tan^2{x} = \sec^2{x}$$.
+
+	The remaining three can be worked out by noting that $f(f^{-1}(x)) = x$, and so $\mathrm{d}(f(f^{-1}(x))) = f'(f^{-1}(x))(f^{-1})'(x)\mathrm{d}x = \mathrm{d}x$, implying $\mathrm{d}f^{-1}(x) = \frac{\mathrm{d}x}{f'(f^{-1}(x))}$. In the case of the sixth rule, $f(x) = \sin{x}$ and so $f'(x) = \cos{x}$. What does $\cos{\sin^{-1}{x}}$ equal? Remembering that $\sin$ can be interpreted as 'opposite' over 'hypotenuse', we see we can think of $x$ as being the opposite side of the angle in question, setting the hypotenuse equal to $1$. The adjacent side is then given by $\sqrt{1 - x^2}$, and since the $\cos$ of this angle is 'adjacent' over 'hypotenuse', this is the value in the denominator of our expression for $\mathrm{d}\sin^{-1}{x}$. That is, $\mathrm{d}\sin^{-1}{x} = \frac{\mathrm{d}x}{\sqrt{1 - x^2}}$.
+
+	The process to find the seventh rule is very similar, except now we must find $-\sin\cos^{-1}{x}$. This is the opposite of the value found above, and so $\mathrm{d}\cos^{-1}{x} = -\frac{\mathrm{d}x}{\sqrt{1 - x^2}}$.
+
+	For the final rule, we need to find $\sec^2\tan^{-1}{x}$. Labelling the opposite side $x$ and the adjacent one $1$, we see $\sec{\tan^{-1}{x}} = \sqrt{1 + x^2}$, and so the square of this value is $1 + x^2$. Plugging this into the denominator of our found relation gives $\mathrm{d}\tan^{-1}{x} = \frac{\mathrm{d}x}{1 + x^2}$.
+\end{solution}
+
+\end{questions}
+
+\end{document}

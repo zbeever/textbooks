@@ -1,0 +1,171 @@
+\documentclass[../the-road-to-reality.tex]{subfiles}
+
+\begin{document}
+
+\section{Fourier decomposition and hyperfunctions}
+
+\begin{questions}
+	
+\question Show this.
+
+\begin{solution}
+	We can replace the trigonometric functions in our expansion of $f(\chi)$ with complex exponentials by substituting the identities $\cos\omega\chi = (e^{i\omega\chi} + e^{-i\omega\chi})/2$ and $\sin\omega\chi = (ie^{-i\omega\chi} - ie^{i\omega\chi})/2$. This gives us
+	
+	\begin{align*}
+		f(\chi) &= c + \frac{a_1}{2}e^{i\omega\chi} + \frac{a_1}{2}e^{-i\omega\chi} + i\frac{b_1}{2}e^{-i\omega\chi} - i\frac{b_1}{2}e^{i\omega\chi} + \cdots \\
+		&= \cdots + \Big(\frac{a_1}{2} + i\frac{b_1}{2}\Big)e^{-i\omega\chi} + c + \Big(\frac{a_1}{2} - i\frac{b_1}{2}\Big)e^{i\omega\chi} + \cdots
+	\end{align*}
+	
+	Matching this with $$f(\chi) = \cdots + \alpha_{-1}e^{-i\omega\chi} + \alpha_0 + \alpha_1e^{i\omega\chi} + \cdots$$gives us $\alpha_{-n} = \frac{a_n}{2} + i\frac{b_n}{2}$, $\alpha_0 = c$, and $\alpha_n = \frac{a_n}{2} - i\frac{b_n}{2}$. We can solve for $a_n$ by adding the first and third equation together, yielding $\alpha_n + \alpha_{-n} = a_n$. Subtracting the first from the third gives us $\alpha_n - \alpha_{-n} = -ib_n$, which, upon multiplying by $i$, becomes $i\alpha_n - i\alpha_{-n} = b_n$. 
+\end{solution}
+
+\question Show that when $F$ is analytic on the unit circle the coefficients $\alpha_n$, and hence the $a_n$, $b_n$, and $c$, can be obtained by use of the formula $\alpha_n=(2\pi{i})^{-1}\oint{z^{-n-1}}F(z)\mathrm{d}z$.
+
+\begin{solution}
+	A simple substitution of the Laurent series of $F(z)$ gives
+	\begin{align*}
+		\alpha_n &= \frac{1}{2\pi{i}}\oint\frac{\sum_{k=-\infty}^{\infty}\alpha_kz^k}{z^{n+1}}\mathrm{d}z \\
+		&= \frac{1}{2\pi{i}}\oint\frac{\alpha_n}{z}\mathrm{d}z \\
+		&= \alpha_n
+	\end{align*}
+	where the second step is justified by the fact that $z^n=0$ for $n \neq {-1}$ (see Exercise 7.1, this is the step that requires analyticity), and the third step is an application of the residue theorem.
+\end{solution}
+
+\question Can you see why?
+
+\begin{solution}
+	The positive-frequency part of $F(z)$ converges inside the unit circle (with the boundary being determined on a case-by-case basis using the Fourier series' coefficients), while the negative-frequency part of $F(z)$ converges outside the unit circle (with the same stipulation holding). But the inside of the unit circle extends holomorphically to the southern hemisphere of the Riemann sphere, while the outside maps to the northern hemisphere. Therefore, this split is determined by the map from $F(z)$ to the Riemann sphere.
+\end{solution}
+
+\question Which are these mappings, explicitly?
+
+\question Show that this gives the same $t$ as above.
+
+\begin{solution}
+	The given mapping takes the unit circle in $\mathbb{C}$ to $\mathbb{R}$. Substituting $z = e^{i\theta}$ in this expression shows us that
+	\begin{align*}
+		t &= \frac{e^{i\theta} - 1}{ie^{i\theta} + i} \\
+		&= \frac{e^{i\theta/2}}{e^{i\theta/2}}\frac{e^{i\theta/2} - e^{-i\theta/2}}{ie^{i\theta/2} + ie^{-i\theta/2}} \\
+		&= \frac{i\sin\frac{\theta}{2}}{i\cos\frac{\theta}{2}} \\
+		&= \tan\frac{\theta}{2}
+	\end{align*}
+\end{solution}
+
+\question Show (in outline) how to obtain the expression for $g(p)$ in terms of $f(\chi)$ using a limiting form of the contour integral expresion $\alpha_n = (2\pi{i})^{-1}\oint{z^{-n-1}}F(z)\mathrm{d}z$ of Exercise [9.2].
+
+\begin{solution}
+	Keeping with the notation used in the chapter, we replace $n$ with $r$, and note that $\omega = \frac{2\pi}{l}$, $l = 2\pi{N}$, $z = e^{i\omega\chi}$, and $p = \frac{r}{N}$. Working directly with the given expression, we see
+	\begin{align*}
+		\lim_{N\to\infty}\alpha_r &= \lim_{N\to\infty}\frac{1}{2\pi{i}}\oint\frac{F(z)}{z^{r+1}}\mathrm{d}z \\
+		&= \lim_{N\to\infty}\frac{1}{2\pi{i}}\int_{-\pi{N}}^{\pi{N}}\frac{f(\chi)}{e^{i\omega\chi(r+1)}}e^{i\omega\chi}i\omega\mathrm{d}\chi \\
+		&= \lim_{N\to\infty}\frac{1}{2\pi{N}}\int_{-\infty}^{\infty}\frac{f(\chi)}{e^{i\chi{r}/N}}\mathrm{d}\chi \\
+		&= \lim_{N\to\infty}\frac{1}{l}\int_{-\infty}^{\infty}f(\chi)e^{-i\chi{p}}\mathrm{d}\chi \\
+	\end{align*}
+	I am unsure of how to handle the denominator in the limit. Clearly, the infinite integral offsets the vanishing coefficient, but the exact nature of the cancellation is unknown to me.
+\end{solution}
+
+\question Derive this expression.
+
+\begin{solution}
+	If $\chi$ is to traverse arc length $l$ in a clockwise manner, the circle in the complex plane representing such a mapping will be given by $\frac{l}{2\pi}e^{-i\frac{2\pi}{l}\chi}$. That is, we are scaling the radius by $r$ using the relationship $2\pi{r} = l$, and scaling the frequency in such a way that moving $\chi$ from $0$ to $l$ traverses the entire circle. To obtain the needed expression, this must be offset along the negative imaginary axis by the circle's radius and $\chi$ must be advanced by $\frac{\pi}{2}$ (so that it begins at the origin). That is,
+
+	\[
+	z=\frac{l}{2\pi}e^{-i(\omega\chi - \frac{\pi}{2})} - \frac{il}{2\pi} = \frac{il}{2\pi}(e^{-i\omega\chi} - 1)
+	.\] 
+\end{solution}
+
+\question Show this.
+
+\begin{solution}
+	We can obtain the necessary expression by substituting Euler's identity,
+	\begin{align*}
+		s(\chi) &= \sum_{k=0}^{\infty}\frac{1}{2k+1}\sin((2k+1)\chi) \\
+		&= \sum_{k=0}^{\infty}\frac{1}{2k+1}\frac{e^{i(2k+1)\chi} - e^{-i(2k+1)\chi}}{2i} \\
+	\end{align*}
+	That is, $2is(\chi) = \cdots - \frac{1}{5}z^{-5} - \frac{1}{3}z^{-3} - z^{-1} + z + \frac{1}{3}z^3 + \frac{1}{5}z^5 + \cdots$, where $z = e^{i\chi}$.
+\end{solution}
+
+\question Do this, by taking advantage of a power series expansion for $\log{z}$ taken about $z=1$, given towards the end of $\S$7.4
+
+\begin{solution}
+	By looking at the Taylor series expansion of $\log{z}$ about $p = 1$, $$\log{z} = \sum_{k=1}^{\infty}\frac{(-1)^{k-1}}{k}(z-1)^k$$we find
+
+	\begin{align*}
+		\log(1+z) &= \sum_{k=1}^{\infty}\frac{(-1)^{k-1}}{k}z^k \\
+		\log(1-z) &= \sum_{k=1}^{\infty}\frac{-1}{k}z^k \\
+		\log(1+z^{-1}) &= \sum_{k=1}^{\infty}\frac{(-1)^{k-1}}{k}z^{-k} \\
+		\log(1-z^{-1}) &= \sum_{k=1}^{\infty}\frac{-1}{k}z^{-k} \\
+	\end{align*}
+
+	Subtracting the second from the first gives$$\sum_{k=0}^{\infty}\frac{2z^{2k+1}}{2k+1}$$while subtracting the fourth from the third gives$$\sum_{k=0}^{\infty}\frac{2z^{-2k-1}}{2k+1}$$. This gives us the expressions
+
+	\begin{align*}
+		\frac{1}{2}\log(1+z) - \frac{1}{2}\log(1-z) = \frac{1}{2}\log\Big(\frac{1+z}{1-z}\Big) &= \sum_{k=0}^{\infty}\frac{z^{2k+1}}{2k+1} \\
+		-\frac{1}{2}\log(1+z^{-1}) + \frac{1}{2}\log(1-z^{-1}) = -\frac{1}{2}\log\Big(\frac{1+z^{-1}}{1-z^{-1}}\Big) &= \sum_{k=0}^{\infty}-\frac{z^{-2k-1}}{2k+1}
+	\end{align*}
+\end{solution}
+
+\question Show this (assuming that $|s(\chi)| < 3\pi/2$).
+
+\begin{solution}
+	\begin{align*}
+		S^{-} + S^{+} &= \frac{1}{2}\log\Big(\frac{1+z}{1-z}\Big) - \frac{1}{2}\log\Big(\frac{1+z^{-1}}{1-z^{-1}}\Big) \\
+		&= \frac{1}{2}\Big[\log\Big(\frac{1+e^{i\chi}}{1-e^{i\chi}}\Big) - \log\Big(\frac{1+e^{-i\chi}}{1-e^{-i\chi}}\Big)\Big] \\
+		&= \frac{1}{2}\Big[\log\Big(\frac{e^{i\chi/2}}{e^{i\chi/2}}\frac{e^{-i\chi/2} + e^{i\chi/2}}{e^{-i\chi/2} - e^{i\chi/2}}\Big) - \log\Big(\frac{e^{-i\chi/2}}{e^{-i\chi/2}}\frac{e^{i\chi/2} + e^{-i\chi/2}}{e^{-\chi/2} - e^{-i\chi/2}}\Big)\Big] \\
+		&= \frac{1}{2}\Big[\log\Big(\frac{2\cos\chi}{-2i\sin\chi}\Big) - \log\Big(\frac{2\cos\chi}{2i\sin\chi}\Big)\Big] \\
+		&= \frac{1}{2}\log\Big(\frac{2\cos\chi}{-2i\sin\chi}\frac{2i\sin\chi}{2\cos\chi}\Big) \\
+		&= \frac{1}{2}\log(-1) \\
+		&= \frac{1}{2}\log(e^{\pm{i}\pi}) \\
+		&= \log(e^{\pm{i}\pi/2}) \\
+		&= \pm\frac{i\pi}{2} 
+	\end{align*}
+	So $2is(\chi) = \pm\frac{i\pi}{2}$, or $s(\chi) = \pm\frac{\pi}{4}$.
+\end{solution}
+
+\question Show this.
+
+\begin{solution}
+	Consider two paths from the starting points of our logarithms to the real axis, parameterized by $|r_{-}|e^{i\theta_{-}}$ and $|r_{+}|e^{i\theta_{+}}$. Here, $\theta_{-}$ starts at $\pi/2$ and $\theta_{+}$ starts at $-\pi/2$. As these two approach the real axis, their angles approach $0$ and their radii become equal, i.e. $|r_{-}| = |r_{+}| = |r|$. Substituting this in for $t$, we see
+	
+	\[
+	S^{-} + S^{+} = -\frac{1}{2}\log|r| + \frac{1}{2}\log{i} + \frac{1}{2}\log|r| + \frac{1}{2}\log{i} = \log{i} = \frac{i\pi}{2}
+	.\] 
+
+	If we instead approach the negative real axis from these starting points, $\theta_{-}$ approach $\pi$ while $\theta_{+}$ approaches $-\pi$. As in the previous case, we have $|r_{-}| = |r_{+}| = |r|$. Putting this in our expression yields
+
+	\[
+	S^{-} + S^{+} = -\frac{1}{2}\log|r| - \frac{i\pi}{2} + \frac{1}{2}\log{i} + \frac{1}{2}\log|r| - \frac{i\pi}{2} + \frac{1}{2}\log{i} = -i\pi + \log{i} = -\frac{i\pi}{2}
+	.\] 
+\end{solution}
+
+\question Why does 'holomorphic functions on $\mathbb{R} - \bar\gamma$, reduced modulo holomorphic functions on $\mathbb{R}$' become the definition of a hyperfunction that we had previously, when $\mathbb{R} - \bar\gamma$ splits into $R^{-}$ and $R^{+}$.
+
+\question There is a small subtlety here. Sort it out. \textit{Hint}: Think carefully about the domains of definition.
+
+\question Check the standard property of the delta function that $\int{q(x)}\delta(x)\mathrm{d}x = q(0)$, in the case when $q(x)$ is analytic.
+
+\begin{solution}
+	Since $q(x)$ is analytic, we may multiply it by the $\delta$ function to obtain
+	
+	\[
+	\Big(\!\!\big|\frac{q(z)}{2\pi{i}z}, \frac{q(z)}{2\pi{i}z}\big|\!\!\Big)
+	.\] 	
+
+	This, being a hyperfunction, can be integrated as
+	
+	\[
+	\int{q(x)}\delta(x)\mathrm{d}x = \int_{L^+}\frac{q(z)}{2\pi{i}z}\mathrm{d}z - \int_{L^-}\frac{q(z)}{2\pi{i}z}\mathrm{d}z
+	.\] 	
+
+	where $L^{+}$ is a contour just below the real line from $-\infty$ to $\infty$ and $L^{-}$ is the same, but above the real line. Given that these integrals converge at $\pm\infty$, we may write them as a single integral and invoke the residue theorem to find
+
+	\[
+	\int_{C}\frac{q(z)}{2\pi{i}z}\mathrm{d}z = q(0)
+	.\]  
+
+	This shows that our $\delta$ function behaves as expected.
+\end{solution}
+
+\end{questions}
+	
+\end{document}

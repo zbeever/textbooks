@@ -1,0 +1,416 @@
+\documentclass[../feynman-lectures-on-physics.tex]{subfiles}
+
+\begin{document}
+\printanswers
+
+\section{Conservation of Momentum}
+
+\begin{questions}
+
+	\question When two bodies move along a line, there is a special system of
+	coordinates in which the momentum of one body is equal and opposite to that of
+	the other. That is, the total momentum of the two bodies is zero. This frame
+	of reference is called the center-of-mass system (abbreviated CM). If the
+	bodies have masses $m_1$ and $m_2$ and are moving at speeds $v_!$ and $v_2$,
+	show that the CM system is moving at speed
+	\[
+		v_{\text{CM}} = \frac{m_1v_1 + m_2v_2}{m_1+m_2}.
+	\]
+
+	\begin{solution}
+		Given this definition, we may find the speed of such a coordinate system
+		by requiring
+		\[
+			m_1(v_1-v_{\text{CM}}) + m_2(v_2-v_{\text{CM}}) = 0.
+		\]
+		Solving for $v_{\text{CM}}$ gives us the speed
+		\[
+			v_{\text{CM}} = \frac{m_1v_1 + m_2v_2}{m_1+m_2}.
+		\]
+	\end{solution}
+
+	\question Generalize Ex. 6.1 for any number of masses moving along a line, i.e.,
+	show that the speed of the coordinate system, in which the total momentum is
+	zero, is given by
+	\[
+		v_{\text{CM}} = \frac{\sum m_iv_i}{\sum m_i}.
+	\]
+
+	\begin{solution}
+		Our requirement now becomes
+		\[
+			\sum m_i(v_i - v_{\text{CM}}) = 0.
+		\]
+		This sum can be split into two and $v_{\text{CM}}$ can be brought outside
+		(being constant), to find
+		\[
+			\sum m_iv_i - v_{\text{CM}}\sum m_i = 0.
+		\]
+		Solving for $v_{\text{CM}}$ gives us the speed
+		\[
+			v_{\text{CM}} = \frac{\sum m_iv_i}{\sum m_i}.
+		\]
+	\end{solution}
+
+	\question If $T$ is the total kinetic energy of the two masses in Ex. 6.1, and
+	$T_{\text{CM}}$ is their total kinetic energy in the CM system, show that
+	\[
+		T = T_{\text{CM}} + \Big(\frac{m_1+m_2}{2}\Big)v^2_{\text{CM}}.
+	\]
+
+	\begin{solution}
+		If $v_1'$ and $v_2'$ are the velocities of the two masses in the center of
+		mass coordinate system, then
+		\[
+			T_{\text{CM}} = \frac{1}{2}m_1v_1'^2 + \frac{1}{2}m_2v_2'^2.
+		\]
+		Their velocities in the `stationary' coordinate system are simply given by
+		$v_1 = v_1' + v_{\text{CM}}$ and $v_2 = v_2' + v_{\text{CM}}$, giving a
+		Their velocities in the `stationary' coordinate system are simply given by
+		$v_1 = v_1' + v_{\text{CM}}$ and $v_2 = v_2' + v_{\text{CM}}$, giving a total
+		kinetic energy of
+		\begin{align*}
+			T &= \frac{1}{2}m_1(v_1'+v_{\text{CM}})^2 + \frac{1}{2}m_2(v_2'+v_{\text{CM}})^2 \\
+			  &= \frac{1}{2}m_1v_1'^2 + \frac{1}{2}m_2v_2'^2 + m_1v_1'v_{\text{CM}} + m_2v_2'v_{\text{CM}} + \frac{1}{2}m_1v_{\text{CM}}^2 + \frac{1}{2}m_2v_{\text{CM}}^2 \\
+			  &= T_{\text{CM}} + v_{\text{CM}}(m_1v_1' + m_2v_2') + \Big(\frac{m_1+m_2}{2}\Big)v_{\text{CM}}^2 \\
+			  &= T_{\text{CM}} + \Big(\frac{m_1+m_2}{2}\Big)v_{\text{CM}}^2,
+		\end{align*}
+		where the vanishing of the second term in the second to last line occurs by
+		virtue of $m_1v_1' = -m_2v_2'$ (we are in the center of mass coordinates).
+	\end{solution}
+
+	\question Generalize the result of Ex. 6.3 to any number of masses. Show that
+	\[
+		T = T_{\text{CM}} + \frac{\sum m_i}{2}v_{\text{CM}}^2.
+	\]
+
+	\begin{solution}
+		Using similar notation to above, the kinetic energy in the center of mass
+		system is given by
+		\[
+			T_{\text{CM}} = \sum\frac{1}{2}m_iv_i'^2
+		\]
+		while the kinetic energy of the system in the `stationary' frame is given by
+		\begin{align*}
+			T &= \sum\frac{1}{2}m_i(v_i' + v_{\text{CM}})^2 \\
+			  &= \sum\frac{1}{2}m_iv_i'^2 + \sum m_iv_i'v_{\text{CM}} + \sum\frac{1}{2}m_iv_{\text{CM}}^2 \\
+			  &= T_{\text{CM}} + v_{\text{CM}}\sum m_iv_i + \frac{\sum m_i}{2}v_{\text{CM}}^2 \\
+			  &= T_{\text{CM}} + \frac{\sum m_i}{2}v_{\text{CM}}^2.
+		\end{align*}
+	\end{solution}
+
+	\question Two gliders with masses $m_1$ and $m_2$ are free to move on a
+	horizontal air track. $m_2$ is stationary and $m_1$ collides with it perfectly
+	elastically. They rebound with equal and opposite velocities. What is the
+	ratio $m_2/m_1$ of their masses?
+
+	\begin{solution}
+		Because this collision is perfectly elastic, both momentum \textit{and
+		energy} are conserved. That is,
+		\begin{gather*}
+			m_1v_{1_i} + m_2v_{2_i} = m_1v_{1_f} + m_2v_{2_f}, \\
+			\frac{1}{2}m_1v_{1_i}^2 + \frac{1}{2}m_2v_{2_i}^2 =
+			\frac{1}{2}m_1v_{1_f}^2 + \frac{1}{2}m_2v_{2_f}^2.
+		\end{gather*}
+		We are given that $v_{2_i} = 0$ and $v_{2_f} = -v_{1_f}$, and so the above
+		requirements simplify to
+		\begin{gather*}
+			m_1v_{1_i} = (m_1-m_2)v_{1_f}, \\
+			\frac{1}{2}m_1v_{1_i}^2 = \frac{1}{2}(m_1+m_2)v_{1_f}^2.
+		\end{gather*}
+		Removing the factor of $\frac{1}{2}$ from the second relation, squaring
+		the first, and dividing them both gives
+		\[
+			m_1 = \frac{(m_1-m_2)^2}{m_1+m_2} = \frac{m_1^2 - 2m_1m_2 + m_2^2}{m_1+m_2}.
+		\]
+		By multiplying both sides by $m_1 + m_2$, canceling like terms, and
+		dividing by $m_2$, we get
+		\[
+			\frac{m_2}{m_1} = 3.
+		\]
+	\end{solution}
+
+	\question A neutron having a kinetic energy $E$ collides head-on with a
+	stationary nucleus of $C^{12}$ and rebounds perfectly elastically in the
+	direction from which it came. What is its final kinetic energy $E'$?
+
+	\begin{solution}
+		This is most easily handled if we derive the relationship between our
+		particles' initial and final velocities in a perfectly elastic collision. We
+		have the two requirements
+		\begin{gather*}
+			m_1v_{1_i} + m_2v_{2_i} = m_1v_{1_f} + m_2v_{2_f} \\
+			\frac{1}{2}m_1v_{1_i}^2 + \frac{1}{2}m_2v_{2_i}^2 =
+			\frac{1}{2}m_1v_{1_f}^2 + \frac{1}{2}m_2v_{2_f}^2.
+		\end{gather*}
+		Removing the common factor of $1/2$ from the second line and collecting
+		velocities by particle, we find
+		\begin{gather*}
+			m_1(v_{1_i} - v_{1_f}) = m_2(v_{2_f} - v_{2_i}) \\
+			m_1(v_{1_i}^2 - v_{1_f}^2) = m_2(v_{2_f}^2 - v_{2_i}^2).
+		\end{gather*}
+		Dividing the second equation by the first gives a particularly simple
+		result,
+		\[
+			v_{1_i} + v_{1_f} = v_{2_i} + v_{2_f},
+		\]
+		or $v_{1_i} - v_{2_i} = -v_{1_f} + v_{2_f}$. This, combined with the
+		equation for conservation of momentum, allows us to solve for the final
+		velocities in terms of the initial ones by inverting the system
+		\[
+			\begin{bmatrix}
+				1 & -1 \\
+				m_1 & m_2
+			\end{bmatrix}
+			\begin{bmatrix}
+				v_{1_f} \\
+				v_{2_f}
+			\end{bmatrix}
+			=
+			\begin{bmatrix}
+				-v_{1_i} + v_{2_i} \\
+				m_1v_{1_i} + m_2v_{2_i}
+			\end{bmatrix}.
+		\]
+		This yields
+		\begin{gather*}
+			v_{1_f} = \frac{m_1-m_2}{m_1+m_2}v_{1_i} + \frac{2m_2}{m_2+m_1}v_{2_i} \\
+			v_{2_f} = \frac{2m_1}{m_1+m_2}v_{1_i} + \frac{m_2-m_1}{m_1+m_2}v_{2_i}.
+		\end{gather*}
+		For the given problem, we know that $v_{c_i}=\SI{0}{\meter\per\second}$, and
+		so
+		\[
+			v_{n_f} = \frac{m_n-m_c}{m_n+m_c}v_{n_i}.
+		\]
+		If we square both sides and multiply them by $m_n/2$, we find
+		\[
+			E' = \Big(\frac{m_n-m_c}{m_n+m_c}\Big)^2E
+		\].
+		Working in units of amu, where $m_n=\SI{1}{amu}$ and $m_c=\SI{12}{amu}$
+		gives
+		\[
+			E' = 0.716E.
+		\]
+	\end{solution}
+
+	\question A projectile of mass $m = \SI{10}{\kilo\gram}$ is shot vertically
+	upward from the earth with an initial velocity
+	$v_p=\SI{500}{\meter\per\second}$.
+	\begin{parts}
+		\part Calculate the recoil velocity of the earth $v_E$.
+		\part Calculate the ratio of the kinetic energy of the earth $T_E$ to that
+		of the projectile $T_p$ at the moment of their separation.
+		\part Sketch qualitatively the velocity and kinetic energy of the
+		projectile and of the earth versus time.
+	\end{parts}
+	Neglect air resistance and the orbital motion of the earth.
+
+	\begin{solution}
+		\begin{parts}
+			\part By conservation of momentum
+			\[
+				m_pv_p + m_Ev_E = 0,
+			\]
+			or
+			\[
+				v_E = -\frac{m_p}{m_E}v_p.
+			\]
+			Using $m_E = \SI{5.98e24}{\kilo\gram}$ gives a rebound velocity of
+			\[
+				v_E = \SI{-8.36e-22}{\meter\per\second}.
+			\]
+			\part The ratio of $T_E$ to $T_p$ is
+			\[
+				\frac{T_E}{T_p} = \frac{\frac{p_E^2}{2m_E}}{\frac{p_p^2}{2m_p}} =
+				\frac{m_p}{m_e} = \SI{1.67e-24}{},
+			\]
+			where the factors of momentum have gone away by virtue of $p_E = -p_p$, and
+			so $p_E^2 = p_p^2$.
+			\part Both bodies undergo projectile motion, though the earth moves
+			\textit{much} less than the projectile.
+		\end{parts}
+	\end{solution}
+
+	\question A particle of mass $m=\SI{1.0}{\kilo\gram}$, traveling at a speed
+	$V=\SI{10}{\meter\per\second}$, strikes a particle at rest of mass
+	$M=\SI{4.0}{\kilo\gram}$ and rebounds in the direction from which it came,
+	with a speed $V_F$. If an amount of heat $h=\SI{20}{\joule}$ is produced in
+	the collision, what is $V_F$? (Define all introduced quantities and state
+	clearly from what physical laws your initial equations are derived.)
+
+	\begin{solution}
+		By conservation of momentum,
+		\[
+			mV = mV_F + Mu.
+		\]
+		By conservation of energy,
+		\[
+			\frac{1}{2}mV^2 = \frac{1}{2}mV_F^2 + \frac{1}{2}Mu^2 + 20,
+		\]
+		where the last term is the energy converted into heat. We know all variables
+		except $V_F$ and $u$, so let us eliminate $u$ from the second equation
+		(removing the factor of $1/2$ as well),
+		\begin{align*}
+			mV^2 &= mV_F^2 + M\Big(\frac{mV-mV_F}{M}\Big)^2 + 40 \\
+			     &= mV_F^2 + \frac{m^2}{M}V^2 - 2\frac{m^2}{M}VV_F + \frac{m^2}{M}V_F^2 + 40.
+		\end{align*}
+		This can be arranged as a quadratic equation in $V_F$ like so
+		\[
+			\Big(m + \frac{m^2}{M}\Big)V_F^2 + \Big(-2\frac{m^2}{M}V\Big)V_F + \Big(\frac{m^2}{M}V^2 + 40
+			- mV^2\Big) = 0,
+		\]
+		which has the solutions
+		\[
+			V_F = \frac{2\frac{m^2}{M}V \pm \sqrt{4\frac{m^4}{M^2}V^2 -
+			4\Big(m+\frac{m^2}{M}\Big)\Big(\frac{m^2}{M}V^2 + 40 - mV^2\Big)}}{2\Big(m+\frac{m^2}{M}\Big)}.
+		\]
+		Substituting in all the necessary values and recognizing that $V_F$ should
+		have the opposite sign as $V$ gives $V_F = \SI{-3.66}{\meter\per\second}$.
+	\end{solution}
+
+	\question A machine gun mounted on the north end of a $\SI{10000}{\kilo\gram}$, $\SI{5}{\meter}$ long platform, free to move on a horizontal air-bearing, fires bullets into a thick target mounted on the south end of the platform. The gun fires $10$ bullets of mass $\SI{100}{\gram}$ each every second at a muzzle velocity of $\SI{500}{\meter\per\second}$. Does the platform move? If so, in what direction and at what speed $v$?
+
+	\begin{solution}
+		Every time the gun fires a bullet, the platform begins moving in the opposite direction by conservation of momentum. When the bullet hits the target, this momentum is reabsorbed and the platform stops---but it has \textit{still moved a distance}. If we can find the distance it moves over one second we can find its velocity.
+
+		The momentum of each bullet is
+	\[
+		p_b = \SI{0.1}{\kilo\gram}\times\SI{500}{\meter\per\second}=\SI{50}{\kilo\gram\meter\per\second}.
+	.\] 	
+		This is equal in magnitude to the platform's momentum immediately after the bullet is fired, and so the platforms velocity is given by 	
+		\[
+			v_p = \frac{p_b}{\SI{10000}{\kilo\gram}} = \SI{5e-3}{\meter\per\second}
+		.\] 
+		The time between the firing of a bullet and its impact is its distance divided by its velocity, or $\SI{1e-2}{\second}$. So, for a given bullet, the platform moves a total of $\SI{5e-5}{\meter}$. This occurs $10$ times per second for a final velocity of $\SI{5e-4}{\meter\per\second}$ to the north.
+	\end{solution}
+
+	\question A mass $m_1$ connected by a cable over a pulley to a container of water, which initially has a mass $m_2(t=0)=m_0$, as shown in Fig. 6-1. The system is then released and $m2$ (with help of an internal pump) ejects water in the downward direction at a constant rate $dm/dt = r_0$ with a velocity $v_0$ relative to the container. Find the acceleration $\mathbf{a}$ of $m_1$, as a function of time. Neglect the masses of cable and pulley.
+
+	\begin{solution}
+		The dynamics of the first mass are governed by 
+		\[
+		m_1a = m_1g - T
+		,\] 
+		where a positive acceleration is counted as downward. The second mass, in contrast, is varying in time as $m_2(t) = m_0 - r_0t$. The water ejected out the bottom of the container exerts an upward force equal to its change in momentum over time, which is
+		\[
+			\frac{dp_2}{dt} = \frac{dm_2}{dt}v_0 - m_2\frac{dv_0}{dt} = r_0v_0
+		\]
+		and so we have, for the second mass, 
+		\[
+			(m_0 - r_0t)a = T + r_0v_0 - (m_0 - r_0t)g
+		.\] 
+		Removing $T$ from the first equation and solving for $a$ gives an acceleration of
+		\[
+			a = \frac{(m_1 - m_0)g + r_0(gt + v_0)}{m_1 + m_0 - r_0t}
+		.\] 
+		This, of course, is valid only for the time during which the container ejects water, or $0 \leq t < \frac{m_0}{r}$.
+	\end{solution}
+
+	\question A toboggan slides down an essentially frictionless, snow covered slope, scooping up snow along the path. if the slope is $30^\circ$ and the toboggan picks up $\SI{0.50}{\kilo\gram}$ of snow per meter of travel, calculate its acceleration $a$ at an instant when its speed is $\SI{4.0}{\meter\per\second}$ and its mass (including content) is $\SI{9.0}{\kilo\gram}$.
+
+	\begin{solution}
+		There is only one force acting on our toboggan: gravity. Its magnitude in the downward direction of the slope is $mg\sin\theta$, where $\theta$ is the slope's angle. This must be equal to the toboggan's rate of change of momentum, or
+		\[
+			\frac{dp}{dt} = \frac{dm}{dt}v + ma = mg\sin\theta
+		.\] 
+		Solving for $a$ gives us a changing acceleration of
+		\[
+			a = g\sin\theta - \frac{dm}{dt}\frac{v}{m}
+		.\] 
+		This makes sense: if our toboggan is gaining mass, it should accelerate more slowly down the hill. To work with the information we have (which is the change of mass per \textit{distance}, not time) we can use $dm/dt = dm/dx\cdot{dx}/dt$, or
+		\[
+			a = g\sin\theta - \frac{dm}{dx}\\frac{v^2}{m}
+		.\]
+		Putting in the values given in the problem statement gives us an acceleration of $\SI{4.01}{\meter\per\second\squared}$ at the instant the sled's speed is $\SI{4.0}{\meter\per\second}$.
+	\end{solution}
+
+	\question The end of a chain, of mass per unit length $\mu$, at rest on a table top at $t = 0$, is lifted vertically at a constant speed $v$, as shown in Fig. 6-2. Evaluate the upward lifting force $F$ as a function of time.
+
+	\begin{solution}
+		We can imagine our chain as a vertical rod that can `grow' upon lifting it. (Really, this is just the part of the chain that has left the table.) This `growth' rate is given by
+		\[
+			\frac{dm}{dt} = \mu{v}
+		.\] 
+		There are only two forces acting on the chain: that which is lifting it, and gravity. The gravitational force is due to the part of the chain in the air, or $F_g = \mu{v}tg$. Newton's second law then says
+		\[
+			\frac{dp}{dt} = \frac{dm}{dt}v + m\frac{dv}{dt} = F - \mu{v}tg
+		.\] 
+		Recognizing that the velocity is constant allows us to solve for the upward force,
+		\[
+			F = \mu{v}(v + gt)
+		.\]
+	\end{solution}
+
+	\question The speed of a rifle bullet may be measured by means of a ballistic pendulum: The bullet, of known mass $m$ and unknown speed $V$, embeds itself in a stationary wooden block of mass $M$, suspended by a pendulum of length $L$, as shown in Fig. 6-3. This sets the block to swinging. The amplitude $x$ of swing may be measured and, using conservation of energy, the velocity of the block immediately after impact may be found. Derive an expression for the speed of the bullet in terms of $m$, $M$, $L$, and $x$.
+
+	\begin{solution}
+		By conservation of momentum, the block and bullet obey
+		\[
+			mV = (M+m)v
+		,\] 
+		where $v$ is the speed of the pendulum (with the embedded bullet) after the impact. By conservation of energy, the pendulum's kinetic energy at this point must equal its potential energy at the height of its swing. We can find the height by focusing on the angle the pendulum makes with the vertical, having the relation
+		\[
+			\cos\theta = \frac{L-h}{L}
+		,\] 
+		or $h = L(1 - \cos\theta)$. This comes from noticing the right triangle hidden in the accompanying figure, with a hypotenuse of $L$, a long side of $L - h$, and a short side of $x$. To put this angle in terms of $x$, we will invoke the small angle approximation of $\cos\theta$, so $\cos\theta \approx 1 - \frac{\theta^2}{2}$. Then, using $L\theta \approx {x}$, we can simplify this to $\cos\theta \approx 1 - \frac{x^2}{2L^2}$. Using all this, and relating the kinetic and potential energy, gives
+		\[
+			\frac{1}{2}\frac{m^2}{M+m}V^2 = (M+m)gL\frac{x^2}{2L^2}
+		.\] 
+		We may solve this for $V$ to find
+		\[
+			V = \Big(\frac{M+m}{m}\Big)x\sqrt{\frac{g}{L}}	
+		.\] 
+	\end{solution}
+
+	\question Two gliders $A$ and $A'$ are connected rigidly together and have a combined mass $M$ and are separated by a distance $2L$. Another glider $B$ of mass $m$, length $L$, is constrained to move between $A$ and $A'$, as shown in Fig. 6-4. All gliders move on a very long linear air track without friction. All collisions between $(A,A')$ and $B$ are perfectly elastic. Originally the whole system is at rest and glider $B$ is in contact with glider $A$. A cap between $A$ and $B$ then is exploded, giving a total kinetic energy $T$ to the system.
+	\begin{parts}
+		\part Show the \textit{qualitative} features of $B$'s motion, i.e., position $x$ on the track, velocity $v$ with respect to the track, by sketching $x$ and $v$ as functions of time. Use the \textit{same} time scale for both sketches.
+		\part Calculate the period $\tau_0$ in terms of $T$, $L$, $m$, and $M$.
+	\end{parts}
+	\textit{Hint}: The relative velocity of $B$ with respect to $(A,A')$ is
+	\[
+		\mathbf{v}_{\text{rel}} = \mathbf{v}_B - \mathbf{v}_{(A,A')}
+	.\] 
+
+	\question Two equally massive gliders, moving on a level air track at equal and opposite, velocities, $\mathbf{v}$ and $-\mathbf{v}$, collide almost elastically, and rebound with slightly smaller speeds. They lose a fraction $f \ll 1$ of their kinetic energy in the collision. If these same gliders collide with one of them initially at rest, with what speed will the second glider move after the collision? (This small residual speed $\Delta{v}$ may easily be measured in terms of the final speed $v$ of the originally stationary glider, and thus the elasticity of the spring bumpers may be determined.)
+	\textit{Note}: If $x \ll 1$, $\sqrt{1 + x} \approx 1 - \frac{x}{2}$.
+
+	\question A rocket of initial mass $m = M_0$ ejects its burnt fuel at a constant rate $dm/dt = -r_0$ and at a velocity $V_0$ (relative to the rocket).
+	\begin{parts}
+		\part Calculate the initial acceleration $a$ of the rocket (neglect gravity).
+		\part If $V_0=\SI{2.0}{\kilo\meter\per\second}$, at what rate $r_0$ must fuel be ejected to develop $\SI{10e5}{kg-wt}$ of thrust?
+		\part Write a differential equation which connects the speed $v$ of the rocket with its residual mass $m=M$, and solve the equation, if you can.
+	\end{parts}
+
+	\begin{solution}
+		\begin{parts}
+			\part Since we are neglecting gravity, there are no external forces acting on the rocket, and 
+			\[
+			\frac{dp}{dt} = \frac{dm}{dt}v + m\frac{dv}{dt} = 0
+			,\] 
+			or $a = -\frac{dm}{dt}\frac{v}{m}$. Putting in the initial values for our rocket, we find
+			\[
+				a = r_0\frac{V_0}{M_0}
+			.\] 
+			\part Multiplying the previously derived equation by $M_0$ and dividing the left side by $9.8$ (to convert from kg-wt to N), we find
+			\[
+				r_0 = \frac{\SI{10e5}{kg-wt}}{\SI{2000}{\meter\per\second}\SI{9.8}{kg-wt\per\newton}} = \SI{490}{\kilo\gram\per\second}
+			.\] 
+			\part Looking at the initial equation from part (a), we have
+			\[
+				\frac{dv}{dt} = -\frac{V_0}{m}\frac{dm}{dt}
+			.\] 
+			Integrating both sides with respect to $t$ gives
+			\[
+				v = -V_0\int_{M_0}^M\frac{dm}{m} = V_0\ln\frac{M_0}{M}
+			.\] 
+		\end{parts}	
+	\end{solution}
+
+	\question An earth satellite of mass $\SI{10}{\kilo\gram}$ and average cross-sectional area $\SI{0.50}{\meter\squared}$ is moving in a circular orbit at $\SI{200}{\kilo\meter}$ altitude where the molecular mean free paths are many meters and the air density is about $\SI{1.6e-10}{\kilo\gram\per\meter\cubed}$. Under the crude assumption that the molecular impacts with the satellite are effectively inelastic (but that the molecules do not literally stick tot he satellite but drop away from it at low relative velocity),
+	\begin{parts}
+	\part Calculate the retarding force $F_R$ that the satellite would experience due to air friction.
+	\part How should such a frictional force vary with the satellite's velocity $v$? Would the satellite's speed decrease as a result of the net force on it? (Check the speed of a circular satellite orbit vs. height.)
+	\end{parts}
+\end{questions}
+\end{document}

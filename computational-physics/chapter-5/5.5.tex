@@ -1,0 +1,45 @@
+\documentclass{exam}
+
+\usepackage{scrextend}
+\usepackage{tikz, tkz-euclide}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{commath}
+\usepackage{sectsty}
+\usepackage{array}
+\usepackage{etoolbox}
+\usepackage{color}
+\usepackage{subfiles}
+\usepackage{wasysym}
+
+\renewcommand{\solutiontitle}{}
+\AtBeginEnvironment{solution}{}
+\renewcommand{\thequestion}{\thesection.\arabic{question}}
+
+\begin{document}
+	\printanswers
+	\begin{questions}
+		\question Following the same line of argument that led to Eq. (5.28), show that the error on the integral evaluated using Simpson's rule is given, to leading order $n$, by Eq. (5.29).
+		
+		\begin{solution}
+			Let us define two step sizes, $h_1 = (b-a)/N$ and $h_2 = (b-a)/2N = h_1/2$. Integrating using Simpson's rule gives us an approximation error of order $h^4$, so we may write
+			\[
+				I = I_1 + ch_1^4
+			\]
+			where $I$ is the true value of the integral, $I_1$ is the numerical value obtained using Simpson's rule, and $ch_1^4$ is the error ($c$ is an unknown constant).
+			
+			We may do the same with the smaller step size, writing $I = I_2 + ch_2^4$. Equating these two gives us
+			\[
+				I_1 + ch_1^4 = I_2 + ch_2^4.
+			\]
+			Using $h_1 = 2h_2$, we may rearrange this to find
+			\[
+				I_2 - I_1 = 15ch_2^4.
+			\]
+			Identifying the error on our second evaluation as $\epsilon_2 = ch_2^4$, we see
+			\[
+				\epsilon_2 = \frac{1}{15}(I_2-I_1).
+			\]
+		\end{solution}
+	\end{questions}
+\end{document}

@@ -1,0 +1,513 @@
+\documentclass[../road-to-reality.tex]{subfiles}
+
+\begin{document}
+
+\section{The classical fields of Maxwell and Einstein}
+
+\begin{questions}
+
+\question Check both these statement.
+
+  \begin{solution}
+    The raised version of the Levi-Civita symbol is
+    \[
+      \varepsilon^{0123} = g^{0a}g^{1b}g^{2c}g^{3d}\varepsilon_{abcd}
+    \]
+    which, given that $g^{ab}=\mathrm{diag}(1,-1,-1,-1)$, reduces to $\varepsilon^{0123}=-\varepsilon_{0123}$. Given that $\varepsilon_{0123}=1$, then, we have $\varepsilon^{0123}=-1$.
+
+    Since $\epsilon$ is defined by the normalization $\epsilon\cdot\varepsilon = n!$, the choice of $\epsilon^{abcd}=-\varepsilon^{abcd}$ makes sense, as then we have $\epsilon\cdot\varepsilon = \varepsilon^{abcd}\varepsilon_{abcd}=n!$.
+  \end{solution}
+
+\question Write these out fully, in terms of the electric and magnetic field components, showing how these equations provide a time-evoluton of the electric and magnetic fields, in terms of the operator $\partial/\partial{t}$
+
+  \begin{solution}
+    The exterior derivative of $\mathbf{F}$ is given by
+    \begin{align*}
+      \mathrm{d}\mathbf{F} &= \frac{\partial}{\partial{x^{[a}}}F_{bc]} \\
+                           &= \frac{1}{6}\Big(\frac{\partial{F_{bc}}}{\partial{x^a}} - \frac{\partial{F_{cb}}}{\partial{x^a}} + \frac{\partial{F_{ca}}}{\partial{x^b}} - \frac{\partial{F_{ac}}}{\partial{x^b}} + \frac{\partial{F_{ab}}}{\partial{x^c}} - \frac{\partial{F_{ba}}}{\partial{x^c}}\Big).
+    \end{align*}
+    When we choose $a = 0$, $b = 1$ and $c = 2$, this becomes
+    \[
+      \frac{1}{3}\Big(-\frac{\partial{B_3}}{\partial{t}} -
+      \frac{\partial{E_2}}{\partial{x}} + \frac{\partial{E_1}}{\partial{y}}\Big)
+      = 0,
+    \]
+    or
+    \[
+      \frac{\partial{B_3}}{\partial{t}} = \frac{\partial{E_1}}{\partial{y}} - \frac{\partial{E_2}}{\partial{x}}.
+    \]
+    Likewise, $a=0$, $b=1$, and $c=3$ gives
+    \[
+      \frac{\partial{B_2}}{\partial{t}} =
+      \frac{\partial{E_3}}{\partial{x}} - \frac{\partial{E_1}}{\partial{z}},
+    \]
+    and $a=0$, $b=2$, and $c=3$ results in
+    \[
+      \frac{\partial{B_1}}{\partial{t}} = \frac{\partial{E_2}}{\partial{z}}
+      - \frac{\partial{E_3}}{\partial{y}}.
+    \]
+    Finally, $a=1$, $b=2$ and $c=3$ gives
+    \[
+      \frac{\partial{B_1}}{\partial{x}} + \frac{\partial{B_2}}{\partial{y}} +
+      \frac{\partial{B_3}}{\partial{z}} = 0.
+    \]
+    We can interpret the first three of these to be expressing Faraday's law,
+    which states that a changing magnetic field is equal to the negative curl of the
+    electric field. The final equation encodes the lack of magnetic monopoles
+    (the divergence of the magnetic field is zero).
+
+    The exterior derivative of ${}^*\mathbf{F}$ is given by a similar
+    expression,
+    \[
+      \mathrm{d}^*\mathbf{F} = \frac{1}{6}\Big(\frac{\partial{^*F_{bc}}}{\partial{x^a}} -
+      \frac{\partial{^*F_{cb}}}{\partial{x^a}} + \frac{\partial{^*F_{ca}}}{\partial{x^b}}
+      - \frac{\partial{^*F_{ac}}}{\partial{x^b}} +
+      \frac{\partial{^*F_{ab}}}{\partial{x^c}} -
+      \frac{\partial{^*F_{ba}}}{\partial{x^c}}\Big) = \frac{4}{3}\pi^*J_{abc}.
+    \]
+    Choosing $a=0$, $b=1$, and $c=2$ yields
+    \[
+      \frac{1}{3}\Big(-\frac{\partial{E_3}}{\partial{t}} + \frac{\partial{B_2}}{\partial{x}} - \frac{\partial{B_1}}{\partial{y}}\Big) = \frac{4}{3}\pi{j_3},
+    \]
+    or
+    \[
+      \frac{\partial{E_3}}{\partial{t}} = \frac{\partial{B_2}}{\partial{x}} -
+      \frac{\partial{B_1}}{\partial{y}} - 4\pi{j_3}.
+    \]
+    Moving on, choosing $a=0$, $b=1$, and $c=3$ gives us
+    \[
+      \frac{\partial{E_2}}{\partial{t}} = \frac{\partial{B_1}}{\partial{z}} -
+      \frac{\partial{B_3}}{\partial{x}} -4\pi{j_2},
+    \]
+    while $a=0$, $b=2$, and $c=3$ yields
+    \[
+      \frac{\partial{E_1}}{\partial{t}} = \frac{\partial{B_3}}{\partial{y}} -
+      \frac{\partial{B_2}}{\partial{z}} - 4\pi{j_1}.
+    \]
+    Lastly, $a=1$, $b=2$, and $c=3$ results in
+    \[
+      \frac{\partial{E_1}}{\partial{x}} + \frac{\partial{E_2}}{\partial{y}} +
+      \frac{\partial{E_3}}{\partial{z}} = 4\pi\rho.
+    \]
+    We may interpret the first three of \textit{these} equations as Ampere's law
+    expressing the change in the electric field as the curl of the magnetic field
+    minus the current density. The final equation is Gauss's law, relating the
+    divergence of the electric field to the enclosed charge density.
+  \end{solution}
+
+\question Show the equivalence to the previous pair of equations.
+
+  \begin{solution}
+    To show the equivalence of the two sets of equations, we may make the
+    replacement $\partial_a\to\nabla_a$, as this is the generalization of the
+    above equations to the curvilinear case. The first equations equivalence is
+    immediately apparent, as it becomes
+    \[
+      \mathrm{d}\mathbf{F} = \nabla_{[a}F_{bc]} = 0.
+    \]
+    For the second equation, we may make use of the index expression of the
+    Hodge dual to obtain
+    \begin{align*}
+      \mathrm{d}^*\mathbf{F} &= \nabla_{[a}^*F_{bc]} \\
+                             &= \frac{1}{2}\nabla_{[a}\varepsilon_{bc]de}F^{de} \\
+                             &= \frac{1}{6}\Big(\nabla_a\varepsilon_{bcde}F^{de} + \nabla_{b}\varepsilon_{cade}F^{de} + \nabla_{c}\varepsilon_{abde}F^{de}\Big).
+    \end{align*}
+    Meanwhile, the righthand side is given by
+    \begin{align*}
+      \frac{4}{3}\pi^*\mathbf{J} &= \frac{4}{3}\pi^*J_{abc} \\
+                                 &= \frac{4}{3}\pi\varepsilon_{abcd}J^d.
+    \end{align*}
+    The combined expression has four possible values, set by the antisymmetry of $a$, $b$, and
+    $c$. When $a=0$, $b=1$, and $c=2$, we get
+    \[
+      \frac{1}{6}\Big(\nabla_0(F^{03} - F^{30}) + \nabla_1(F^{13} - F^{31}) + \nabla_2(F^{23} -
+      F^{32})\Big) = \frac{4}{3}\pi{J^3},
+    \]
+    or, by the antisymmetry of $F^{ab}$,
+    \[
+      \nabla_{a}F^{a3} = 4\pi{J^3}.
+    \]
+    Doing this for the remaining three valid permutations gives
+    \begin{align*}
+      \nabla_aF^{a2} &= 4\pi{J^2} \\
+      \nabla_aF^{a1} &= 4\pi{J^1} \\
+      \nabla_aF^{a0} &= 4\pi{J^0}
+    \end{align*}
+    which is succinctly encapsulated by $\nabla_aF^{ab}=4\pi{J^b}$.
+  \end{solution}
+
+\question Show that the two versions of this vanishing divergence are equivalent.
+
+  \begin{solution}
+    Following the same steps as above, we may expand the expression for the
+    Hodge dual of the charge-current vector as
+    \begin{align*}
+      \mathrm{d}^*\mathbf{J} &= \nabla_{[a}{}^*J_{bcd]} \\
+                             &= \frac{1}{4}\Big(\nabla_{a}\varepsilon_{bcde}J^e +
+                               \nabla_{b}\varepsilon_{dcae}J^e + \nabla_{c}\varepsilon_{bdae}J^e + \nabla_d\varepsilon_{bace}J^e\Big).
+    \end{align*}
+    Because both $\{a,b,c,d\}$ and $\{b,c,d,e\}$ are completely antisymmetric,
+    a moment's thought reveals that the coordinate shared by $\nabla$ will
+    also by shared by $\mathbf{J}$, and therefore this expression becomes
+    \[
+      \frac{1}{4}\nabla_aJ^a = 0
+    \]
+    which, of course, is equivalent to $\nabla_aJ^a = 0$.
+  \end{solution}
+
+\question Show this, first demonstrating that dualizing twice yields minus the original quantity. Does this sign relate to the Lorentzian signature of spacetime? Explain.
+
+  \begin{solution}
+    The relationship between the raised and lowered volume element is, as given
+    by Penrose, $\varepsilon^{abcd}=-\varepsilon_{abcd}$. Utilizing this, and from the
+    definition of the Hodge dual, it is easy to see that dualizing twice (which
+    introduces both the raised and lowered volume element) returns the negative
+    of the original quantity. Explicitly, we have 
+    \begin{align*}
+      {}^*({}^*\mathbf{F}) &= {}^*\Big(\frac{1}{2}\varepsilon_{abcd}F^{cd}\Big) \\
+                           &= -\frac{1}{4}\varepsilon^{efab}\varepsilon_{abcd}F^{cd} \\
+                           &= -\frac{1}{2}(\delta^e_c\delta^f_d - \delta^e_d\delta^f_c)F^{cd} \\
+                           &= -\frac{1}{2}(F^{ef} - F^{fe}) \\
+                           &= -F^{ef} \\
+                           &= -\mathbf{F},
+    \end{align*}
+    where the fourth to last line uses the expression for the partial
+    contraction of two volume elements given in Fig. 12.18.
+
+    Knowing that dualizing a quantity twice returns negative the original, we see
+    \begin{align*}
+      {}^*({}^+\mathbf{F}) &= \frac{1}{2}({}^*\mathbf{F} + i\mathbf{F}) \\
+                           &= i\frac{1}{2}(\mathbf{F} - i^*\mathbf{F}) \\
+                           &= i^+\mathbf{F}
+    \end{align*}
+    and
+    \begin{align*}
+      {}^*({}^-\mathbf{F}) &= \frac{1}{2}({}^*\mathbf{F} - i\mathbf{F}) \\
+                           &= -i\frac{1}{2}(\mathbf{F} + i^*\mathbf{F}) \\
+                           &= -i^-\mathbf{F}.
+    \end{align*}
+    This sign does indeed relate to the Lorentzian signature of our metric, as
+    the sign reversal of the antisymmetric symbol upon index juggling occurs
+    for this reason.
+  \end{solution}
+
+\question Can you spell this out? What happens to the components of $\mathbf{F}$ and ${}^*\mathbf{F}$ in a general curvilinear coordinate system? Why are the Maxwell equations unaffected if expressed correctly?
+
+\question Although correct, this argument has been given somewhat glibly.
+  Spell out hte details more fully, in teh case when $\mathcal{R}$ is a
+  spacetime `cylinder' consisting of some bounded spatial region that is
+  constant in time, for a fixed finite interval of the time coordinate $t$.
+  Explain the different notions of `flux of charge' involved, contrasting this
+  for spacelike `base' and `top' of the cylinder with that for the timelike
+  `sides'.
+
+\question Spell out why this is just the electric flux.
+
+  \begin{solution}
+    The spacelike components of ${}^*\mathbf{F}$ are those of the electric
+    field, so any integral for fixed time of this quantity will necessarily
+    refer to the electric field. Hence, Gauss's law applied to this quantity
+    relates the flux of the electric field to the charge enclosed by the
+    spatial cross-section of spacetime under consideration.
+  \end{solution}
+
+\question Why can we add such a quantity?
+
+  \begin{solution}
+    Because $\mathrm{d}^2=0$, or, explicitly,
+    \begin{align*}
+      \mathrm{d}(\mathbf{A} + \mathrm{d}\Theta) &= \mathrm{d}\mathbf{A} + \mathrm{d}^2\Theta \\
+                                                &= \mathrm{d}\mathbf{A}.
+    \end{align*}
+    $\Theta$ must be a scalar to have a well-defined quantity: $\mathbf{A}$ is a
+    one-form, and, if $\Theta$ is a scalar, $\mathrm{d}\Theta$ is also a one-form. 
+  \end{solution}
+
+\question Show this. \textit{Hint}: Have a look at $\S15.8$.
+
+  \begin{solution}
+    This is easily seen by referring to the coordinate expression of the
+    curvature tensor given a connection,
+    \[
+      (\nabla_a\nabla_b-\nabla_b\nabla_a)\xi^d = {R_{abc}}^d\xi^c.
+    \]
+    We will modify the above in accordance with $\S15.8$, where the last
+    two indices refer to the directions in the fibre. Since our fibre is
+    $U(1)$, these coordinates refer to just one direction, and so we will omit them.
+    Given a connection of $\nabla_a=\partial/\partial{x}^a - ieA_a$, the above
+    expression then becomes
+    \begin{align*}
+      (\nabla_a\nabla_b-\nabla_b\nabla_a)\psi &= \Big(\frac{\partial}{\partial{x}^a} - ieA_a\Big)\Big(\frac{\partial\psi}{\partial{x}^b} - ieA_b\psi\Big) - \Big(\frac{\partial}{\partial{x}^b} - ieA_b\Big)\Big(\frac{\partial\psi}{\partial{x}^a} - ieA_a\psi\Big) \\
+                                              &= \frac{\partial^2\psi}{\partial{x}^a\partial{x}^b} - ie\frac{\partial{A_b}}{\partial{x}^a}\psi - ieA_b\frac{\partial{\psi}}{\partial{x}^a} - ieA_a\frac{\partial\psi}{\partial{x}^b} - e^2A_aA_b\psi \\
+                                              &\quad - \frac{\partial^2\psi}{\partial{x}^b\partial{x}^a} + ie\frac{\partial{A_a}}{\partial{x}^b}\psi + ieA_a\frac{\partial{\psi}}{\partial{x}^b} + ieA_b\frac{\partial\psi}{\partial{x}^a} + e^2A_bA_a\psi \\
+                                              &= -ie\Big(\frac{\partial{A_b}}{\partial{x}^a} - \frac{\partial{A_a}}{\partial{x}^b}\Big)\psi \\
+                                              &= -ieF_{ab}\psi
+    \end{align*}
+    where the last line is the indicial expression for
+    $\mathbf{F}=2\mathrm{d}\mathbf{A}$.
+  \end{solution}
+
+\question Explain this.
+
+  \begin{solution}
+    Because $\mathrm{d}\mathbf{A}$ vanishes within $\mathcal{R}$, expanding
+    or otherwise distorting the contour of integration does not change the
+    resulting value. If it did, the region the loop would be
+    entering would have some nonzero value. This is somewhat analagous to
+    contour integration around poles in the complex plane, wherein the analyticity of the
+    function outside the singularity would give zero if that pole were removed---it is the global nature of 
+    the function that introduces a non-zero value.
+  \end{solution}
+
+\question How do the individual components ${T^a}_b$ relate to $T_{ab}$, in a
+  local Minkowskian frame, where the components $g_{ab}$ have the diagonal form
+  $(1,-1,-1,-1)$?
+
+  \begin{solution}
+    Upon raising the $a$ index, ${T^a}_b = g^{ac}T_{cb}$, we see that the only
+    surviving terms in the summation are those where $c = a$. When $a=0$, these
+    terms are exactly $T_{ab}$, while $a\neq{0}$ resuts in $-T_{ab}$.
+    Altogether, we have
+    \begin{align*}
+      {T^0}_b &= T_{0b}, \\
+      {T^1}_b &= -T_{1b}, \\
+      {T^2}_b &= -T_{2b}, \\
+      {T^3}_b &= -T_{3b}.
+    \end{align*}
+  \end{solution}
+
+\question Show that this satisfies the conservation equation $\nabla^aT_{ab}=0$
+  if $\mathbf{J}=0$. Obtain the $00$ component of this tensor, and recover
+  Maxwell's original expression $(E^2+B^2)/{8\pi}$ for the energy density of an
+  electromagnetic field in terms of $(E_1,E_2,E_3)$ and $(B_1,B_2,B_3)$.
+
+  \begin{solution}
+    When $\mathbf{J}=0$, ${}^*\mathbf{J}=0$, and we have tight symmetry between both of Maxwell's
+    equation in the language of differential forms, namely
+    \begin{align*}
+      \mathrm{d}\mathbf{F} &= 0, \\
+      \mathrm{d}{}^*\mathbf{F} &= 0.
+    \end{align*}
+    By this symmetry we can express the indicial versions of these equations in two ways,
+    \begin{align*}
+      \nabla_aF^{ab} &= 0, \\
+      \nabla_{[a}F_{bc]} &= 0, \\
+      \nabla_a{}^*F^{ab} &= 0, \\
+      \nabla_{[a}{}^*F_{bc]} &= 0.
+    \end{align*}
+    Using these identities, and contracting the claimed energy-momentum tensor with the raised covariant
+    derivative, gives
+    \begin{align*}
+      \nabla^a\Big(\frac{1}{8\pi}\big(F_{ac}{F^c}_b + {}^*F_{ac}{}^*{F^c}_b\big)\Big) &= \frac{1}{8\pi}({F^c}_b\nabla^aF_{ac} + F_{ac}\nabla^a{F^c}_b + {}^*{F^c}_b\nabla^a{}^*F_{ac} + {}^*F_{ac}\nabla^a{}^*{F^c}_b) \\
+                                                                                      &= \frac{1}{8\pi}(F_{cb}\nabla_aF^{ac} + F^{ac}\nabla_aF_{cb} + {}^*F_{cb}\nabla_a{}^*F^{ac} + {}^*F^{ac}\nabla_a{}^*F_{cb}) \\
+                                                                                      &= \frac{1}{8\pi}(F^{ac}\nabla_aF_{cb} + {}^*F^{ac}\nabla_a{}^*F_{cb})
+    \end{align*}
+    where the third line has used the fact that both $\nabla_aF^{ab}$ and
+    $\nabla_a{}^*F^{ab}$ are zero. The remaining terms are also zero. To see
+    this, notice that both are antisymmetry in $ac$ as well as $cb$, thereby
+    being antisymmetric in $abc$. But the antisymmetric parts of
+    $\nabla_aF_{bc}$ and $\nabla_a{}^*F_{bc}$ vanish, and so $T_{ab}$ satisfies
+    the conservation equation $\nabla^aT_{ab}=0$.
+  \end{solution}
+
+\question Why? Why does this procedure specialize to the above
+  $\nabla_a{T^a}_0=0$, etc.? Can you find an analogue of the continuous-field
+  conservation law $\nabla^a(T_{ab}\kappa^b)=0$, for a discrete system of
+  particles where $4$-momentum is conserved in collisons? \textit{Hint}: Find
+  a quantity, given the Killing vector $\kappa^a$, that is constant for each
+  particle between collisions.
+
+  \begin{solution}
+    Applying the covariant derivative to $L_a$ yields
+    \begin{align*}
+      \nabla^aL_a &= \nabla^a(T_{ab}\kappa^b) \\
+                  &= \kappa^b\nabla^aT_{ab} + T_{ab}\nabla^a\kappa^b.
+    \end{align*}
+    When the energy-momentum tensor satisifes the conservation law
+    $\nabla^aT_{ab}=0$, the first term vanishes. Meanwhile, the second term
+    vanishes because, by virtue of $\nabla^a\kappa^a$ being contracted with a
+    symmetric tensor, it is totally symmetric, and the symmetric part of
+    $\nabla^a\kappa^a$ is zero (see the indicial definition of a Killing vector).
+
+    I am unsure how to answer the second part of this question.
+  \end{solution}
+
+\question Why is $R_{ab}$ symmetric?
+
+  \begin{solution}
+    This is simply because
+    \begin{align*}
+      R_{ab} &= {R_{acb}}^c \\
+             &= R_{acbd}g^{dc} \\
+             &= R_{bdac}g^{dc} \\
+             &= {R_{bda}}^d \\
+             &= R_{ba}.
+    \end{align*}
+  \end{solution}
+
+\question See if you can prove this using the Ricci identity and the
+  properties of Lie derivative.
+
+\question Show fully why we can `lop off' all the $t^a$s, explaining the role
+  of the symmetry of the tensors.
+
+  \begin{solution}
+    Clearly, $t^at^b$ is symmetric, and thus both $R_{ab}t^at^b$ and
+    $T_{ab}t^at^b$ effectively symmetrize both the Ricci tensor and the energy
+    momentum tensor, effectively stating
+    \[
+      R_{(ab)} = T_{(ab)}.
+    \]
+    Since $R_{ab}$ and $T_{ab}$ are manifestly symmetric, $R_{(ab)}=R_{ab}$ and
+    $T_{(ab)}=T_{ab}$, allowing us to continue holding equality between both
+    sides of the expression when $t^at^b$ is removed.
+  \end{solution}
+
+\question Show this, using the diagrammatic notation, if you like.
+
+  \begin{solution}
+    Expanding the Ricci identity, we find
+    \begin{align*}
+      \nabla_{[a}{R_{bc]d}}^e &= \frac{1}{6}(\nabla_a{R_{bcd}}^e - \nabla_a{R_{cbd}}^e + \nabla_b{R_{cad}}^e - \nabla_b{R_{acd}}^e + \nabla_c{R_{abd}}^e - \nabla_c{R_{bad}}^e), \\
+&= \frac{1}{3}(\nabla_a{R_{bcd}}^e - \nabla_b{R_{acd}}^e + \nabla_c{R_{abd}}^e),
+    \end{align*}
+    where the last line uses the antisymmetry of the first two indices of the
+    Riemann tensor. If we contract $e$ with $c$, we obtain
+    \begin{align*}
+      \nabla_{[a}{R_{bc]d}}^c &= \frac{1}{3}(\nabla_aR_{bd} - \nabla_bR_{ad} + \nabla_c{R_{abd}}^c), \\
+      &= \frac{1}{3}(\nabla_aR_{bd} - \nabla_bR_{ad} + \nabla^cR_{bacd}),
+    \end{align*}
+    where, now, the antisymmetry of both the first and last pairs of indices is
+    utilized in the last line. Finally, raising $a$ and contracting it with $d$
+    gives
+    \begin{align*}
+      g^{ad}\nabla_{[a}{R_{bc]d}}^c &= \frac{1}{3}(\nabla^dR_{bd} - \nabla_bR + \nabla^cR_{bc}), \\
+                                    &= \frac{1}{3}(2\nabla^aR_{ab} - \nabla_bR), \\
+      &= \frac{1}{6}\nabla^a(R_{ab} - \frac{1}{2}Rg_{ab}).
+    \end{align*}
+    Since this equals zero, we may multiply through by $6$ to arrive at
+    \[
+      \nabla^a(R_{ab} - \frac{1}{2}Rg_{ab}) = 0.
+    \]
+  \end{solution}
+
+\question Why?
+
+  \begin{solution}
+    We can contract the suggested field equation to obtain
+    \[
+      R = -4\pi{G}T,
+    \]
+    where $T = T_a^a$. This can be multipled by $\frac{1}{2}g_{ab}$ and
+    subtracted from the original, uncontracted equation to get
+    \[
+      R_{ab} - \frac{1}{2}Rg_{ab} = -4\pi{G}T_{ab} + 2{\pi}GTg_{ab}.
+    \]
+    From here, we may take the covariant derivative of both sides (remembering
+    that $\nabla^aT_{ab}=0$):
+    \begin{align*}
+      \nabla^a(R_{ab}-\frac{1}{2}Rg_{ab}) &= -4\pi{G}\nabla^aT_{ab} + 2\pi{G}\nabla^aTg_{ab}, \\
+      0 &= 2\pi{G}\nabla_bT,
+    \end{align*}
+    which implies that $T_a^a$ must be constant---but this is clearly not the
+    case in the real world.
+  \end{solution}
+
+\question Explain the coefficient $-8\pi{G}$, as compared with $-4\pi{G}$.
+
+\begin{solution}
+  Following a similar process to that in the next exercise (which was completed
+  first), we find (by considering the diagonal terms of both sides of the field
+  equation) that
+  \begin{align*}
+    \frac{1}{2}(R_{00} + R_{11} + R_{22} + R_{33}) &= -8\pi{G}T_{00}, \\
+\frac{1}{2}(R_{00} + R_{11} - R_{22} - R_{33}) &= -8\pi{G}T_{11}, \\
+\frac{1}{2}(R_{00} - R_{11} + R_{22} - R_{33}) &= -8\pi{G}T_{22}, \\
+\frac{1}{2}(R_{00} - R_{11} - R_{22} + R_{33}) &= -8\pi{G}T_{33}. \\
+  \end{align*}
+  Adding all of these together yields
+  \[
+    \frac{1}{2}R_{00} = -8\pi{G}(T_{00} + T_{11} + T_{22} + T_{33}).
+  \]
+  Since the energy density ($T_{00}$) is expected to be much larger than the
+  pressure ($T_{11}, T_{22}, T_{33}$) in the Newtonian limit, this reduces to
+  \[
+    R_{00} = -4\pi{G}T_{00},
+  \]
+  which is exactly the necessary relationship needed to reproduce the Newtonian
+  volume-acceleration effects, as, in an observer's frame, (where $t^0 = 1$ and
+  all other components are zero), we have
+  \begin{align*}
+    R_{ab}t^{a}t^{b}\delta{V} &= -4\pi{G}T_{ab}t^at^b\delta{V}, \\
+    R_{00} &= -4\pi{G}T_{00}.
+    \end{align*}
+\end{solution}
+
+\question Why?
+
+  \begin{solution}
+    Clearly, in a vaccuum, the metric is simply the Minkowski metric. Therefore,
+    for all $a\neq{b}$, the field equation collapses to $R_{ab}=0$. All that's
+    left is to show that, given a vaccuum, every diagonal component of $R_{ab}$
+    is also zero.
+
+    Recognizing that $R=R_a^a=R_{00}-R_{11}-R_{22}-R_{33}$, we may rewrite the
+    vaccuum field equation as
+    \[
+      R_{ab} - \frac{1}{2}(R_{00}-R_{11}-R_{22}-R_{33})g_{ab} = 0.
+    \]
+    When $a=b=0$, this simplifies to
+    \[
+      R_{00} + R_{11} + R_{22} + R_{33} = 0.
+    \]
+    When $a=b=1$, this becomes
+    \[
+      R_{00} + R_{11} - R_{22} - R_{33} = 0.
+    \]
+    Likewise, for the remaining cases, we have
+    \begin{align*}
+      R_{00} - R_{11} + R_{22} - R_{33} &= 0, \\
+      R_{00} - R_{11} - R_{22} + R_{33} &= 0.
+    \end{align*}
+    By adding together the permutations of the bottom three equations, we obtain
+    \[
+      R_{00} = R_{11} = R_{22} = R_{33},
+    \]
+    and thus the first equation is only satisifed when all four components are
+    equal to zero. Hence we can write
+    \[
+      R_{ab}=0
+    \]
+    in a vaccuum.
+  \end{solution}
+
+\question Why?
+
+  \begin{solution}
+    By contracting both sides of the field equation, we obtain
+    \[
+      R - 2R = -8\pi{G}T,
+    \]
+    or $R = 8\pi{G}T$ (where we have used the fact that ${g_a}^b = 4$ in a
+    four-dimensional spacetime). Substituting this back into the field equation
+    gives
+    \[
+      R_{ab} - 4\pi{G}Tg_{ab} = -8\pi{G}T_{ab},
+    \]
+    which may be rearranged to read
+    \[
+      R_{ab} = -8\pi{G}(T_{ab} - \frac{1}{2}Tg_{ab}).
+    \]
+    From here, we may simply add the cosmological constant (being as it is just
+    that: a constant) to the right side,
+\[
+  R_{ab} = -8\pi{G}(T_{ab} - \frac{1}{2}Tg_{ab}) + \Lambda{g}_{ab}.
+\]
+  \end{solution}
+
+\question Show that all the `traces' of $\mathbf{C}$ vanish (e.g.
+  ${C_{abc}}^a=0$, etc.). Do this calculation in diagrammatic form, if you
+  wish.
+\end{questions}
+
+\end{document}

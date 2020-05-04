@@ -1,0 +1,166 @@
+\documentclass[../principles-of-quantum-mechanics.tex]{subfiles}
+
+\begin{document}
+	\printanswers
+	
+	\section{Review of Classical Mechanics}
+	
+	\begin{questions}
+		
+		\question Consider the following system, called a \textit{harmonic oscillator}. The block has a mass $m$ and lies on a frictionless surface. The spring has a force constant $k$. Write the Lagrangian and get the equation of motion.
+		
+		\begin{solution}
+			From the diagram, we can immediately write
+			\[
+				\mathcal{L} = T - V = \frac{1}{2}m\dot{x}^2 - \frac{1}{2}kx^2.
+			\]
+			This gives us a conjugate momentum and generalized force of
+			\[
+				\frac{\partial\mathcal{L}}{\partial{\dot{x}}} = m\dot{x} \qquad \frac{\partial\mathcal{L}}{\partial{x}} = -kx
+			\]
+			which can be combined to give the equation of motion,
+			\[
+				\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial\mathcal{L}}{\partial{\dot{x}}} = m\ddot{x} = -kx = \frac{\partial\mathcal{L}}{\partial{x}}
+			\]
+		\end{solution}
+	
+		\question Do the same for the coupled-mass problem discussed at the end of Section 1.8. Compare the equations of motion with Eqs. (1.8.24) and (1.8.25).
+		
+		\begin{solution}
+			Returning to Figure 1.5, we can write
+			\begin{align*}
+				T &= \frac{1}{2}m\dot{x}_1^2 + \frac{1}{2}m\dot{x}_2^2 \\
+				&= \frac{1}{2}m(\dot{x}_1^2 + \dot{x}_2^2) \\
+				V &= \frac{1}{2}kx_1^2 + \frac{1}{2}kx_2^2 + \frac{1}{2}k(x_2-x_1)^2 \\
+				&= k(x_1^2 - x_1x_2 + x_2^2) \\
+			\end{align*}
+			and hence
+			\[
+				\mathcal{L} = T - V = \frac{1}{2}m(\dot{x}_1^2 + \dot{x}_2^2) - k(x_1^2-x_1x_2+x_2^2)
+			\]
+			Feeding the above into the Euler-Lagrange equations gives us
+			\begin{align*}
+				\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial\mathcal{L}}{\partial\dot{x}_1} &= \frac{\mathrm{d}}{\mathrm{d}t}\Big(m\dot{x}_1\Big) = m\ddot{x}_1 = -2kx_1 + kx_2 = \frac{\partial\mathcal{L}}{\partial{x}_1} \\
+				\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial\mathcal{L}}{\partial\dot{x}_2} &= \frac{\mathrm{d}}{\mathrm{d}t}\Big(m\dot{x}_2\Big) = m\ddot{x}_2 = x_1 - 2kx_2 = \frac{\partial\mathcal{L}}{\partial{x}_2}
+			\end{align*}
+			which is exactly Eqs. (1.8.24) and (1.8.25).
+		\end{solution}
+	
+		\question A particle of mass $m$ moves in three dimensions under a potential $V(r, \theta, \phi) = V(r)$. Write its $\mathcal{L}$ and find the equations of motion.
+		
+		\begin{solution}
+			Using a similar geometric argument to Shankar, we see that the distance covered by a particle in time $\Delta{t}$ is
+			\[
+				\mathrm{d}S = [(\mathrm{d}r)^2 + (r\sin(\theta)\mathrm{d}\phi)^2 + (r\mathrm{d}\theta)^2]
+			\]
+			where $\phi$ is the azimuthal angle and $\theta$ is the inclination. This gives us a squared velocity of
+			\[
+				v^2 = \dot{r}^2 + r^2\sin^2(\theta)\dot{\phi}^2 + r^2\dot{\theta}^2
+			\]
+			and thus a Lagrangian of
+			\[
+				\mathcal{L} = T - V = \frac{1}{2}m(\dot{r}^2 + r^2\sin^2(\theta)\dot{\phi}^2 + r^2\dot{\theta}^2) - V(r)
+			\]
+			The equations of motion for this particle are given by
+			\begin{align*}
+			\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial\mathcal{L}}{\partial\dot{r}} &= \frac{\mathrm{d}}{\mathrm{d}t}\Big(m\dot{r}\Big) = m\ddot{r} = mr\sin^2(\theta)\dot{\phi}^2 + mr\dot{\theta}^2 - \frac{\partial{V(r)}}{\partial{r}} = \frac{\partial\mathcal{L}}{\partial{r}} \\
+			\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial\mathcal{L}}{\partial\dot{\phi}} &= \frac{\mathrm{d}}{\mathrm{d}t}\Big(mr^2\sin^2(\theta)\dot{\phi}\Big) = 2mr\dot{r}\sin^2(\theta)\dot{\phi} + 2mr^2\sin(\theta)\cos(\theta)\dot{\theta}\dot{\phi} + mr^2\sin^2(\theta)\ddot{\phi} = 0 = \frac{\partial\mathcal{L}}{\partial{\phi}} \\
+			\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial\mathcal{L}}{\partial\dot{\theta}} &= \frac{\mathrm{d}}{\mathrm{d}t}\Big(mr^2\dot{\theta}\Big) = 2mr\dot{r}\dot{\theta} + mr^2\ddot{\theta} = mr^2\sin(\theta)\cos(\theta)\dot{\phi}^2 =  \frac{\partial\mathcal{L}}{\partial{\theta}}
+			\end{align*}
+			Simplifying, these become
+			\begin{align*}
+				m\ddot{r} &= mr(\dot{\phi}^2\sin^2\theta + \dot{\theta}^2) - \frac{\partial{V}(r)}{\partial{r}} \\
+				m\ddot{\phi} &= -2m\dot{\phi}\Big(\frac{\dot{r}}{r} - \dot{\theta}\cot\theta\Big) \\
+				m\ddot{\theta} &= m\Big(\dot{\phi}^2\sin\theta\cos\theta  - 2\frac{\dot{r}}{r}\dot{\theta}\Big)
+			\end{align*}
+		\end{solution}
+	
+		\question Derive Eq. (2.3.6) from (2.3.5) by changing variables.
+		
+		\begin{solution}
+			This is a straightforward exercise of algebra,
+			\begin{align*}
+			\mathcal{L} &= \frac{1}{2}m_1|\dot{\mathbf{r}}_1|^2 + \frac{1}{2}|\dot{\mathbf{r}}_2|^2 - V(\mathbf{r}_1 - \mathbf{r}_2) \\
+			&= \frac{1}{2}m_1\Big|\dot{\mathbf{r}}_{\mathrm{CM}} + \frac{m_2\dot{\mathbf{r}}}{m_1+m_2}\Big|^2 + \frac{1}{2}m_2\Big|\dot{\mathbf{r}}_{\mathrm{CM}} - \frac{m_1\dot{\mathbf{r}}}{m_1+m_2}\Big|^2 - V(\mathbf{r}) \\
+			&= \frac{1}{2}m_1\Big(|\dot{\mathbf{r}}_{\mathrm{CM}}|^2 + \frac{2m_2\dot{\mathbf{r}}\cdot\dot{\mathbf{r}}_{\mathrm{CM}}}{m_1+m_2} + \frac{m_2^2|\dot{\mathbf{r}}|^2}{(m_1+m_2)^2}\Big) +  \frac{1}{2}m_2\Big(|\dot{\mathbf{r}}_{\mathrm{CM}}|^2 - \frac{2m_1\dot{\mathbf{r}}\cdot\dot{\mathbf{r}}_{\mathrm{CM}}}{m_1+m_2} + \frac{m_1^2|\dot{\mathbf{r}}|^2}{(m_1+m_2)^2}\Big) - V(\mathbf{r}) \\
+			&= \frac{1}{2}(m_1+m_2)|\dot{\mathbf{r}}_{\mathrm{CM}}|^2 + \frac{m_1m_2\dot{\mathbf{r}}\cdot\dot{\mathbf{r}}_{\mathrm{CM}}}{m_1+m_2} - \frac{m_1m_2\dot{\mathbf{r}}\cdot\dot{\mathbf{r}}_{\mathrm{CM}}}{m_1+m_2} + \frac{1}{2}\frac{m_1m_2^2 + m_1^2m_2}{(m_1+m_2)^2}|\dot{\mathbf{r}}|^2 - V(r) \\
+			&= \frac{1}{2}(m_1+m_2)|\dot{\mathbf{r}}_{\mathrm{CM}}|^2 + \frac{1}{2}\frac{m_1m_2(m_1 + m_2)}{(m_1+m_2)^2}|\dot{\mathbf{r}}|^2 - V(r) \\
+			&= \frac{1}{2}(m_1+m_2)|\dot{\mathbf{r}}_{\mathrm{CM}}|^2 + \frac{1}{2}\frac{m_1m_2}{m_1+m_2}|\dot{\mathbf{r}}|^2 - V(r)
+			\end{align*}
+		\end{solution}
+	
+		\question Show that if $T = \sum_i\sum_j{T_{ij}}(q)\dot{q}^i\dot{q}^j$, where $\dot{q}$'s are generalized velocities, $\sum_ip_i\dot{q}^i=2T$.
+		
+		\begin{solution}
+			Assuming the Lagrangian built from $T$ contains a potential term independent of velocity, the conjugate momentum to $q$ is
+			\begin{align*}
+				p_i &= \frac{\partial{L}}{\partial{\dot{q}^i}} \\
+				&= \frac{\partial}{\partial{\dot{q}^i}}\Big(\sum_j\sum_kT_{kj}(q)\dot{q}^j\dot{q}^k\Big) \\
+				&= \sum_j\sum_kT_{kj}(q)\frac{\partial{\dot{q}^j}}{\partial{\dot{q}^i}}\dot{q}^k + \sum_j\sum_kT_{kj}(q)\dot{q}^j\frac{\partial{\dot{q}^k}}{\partial{\dot{q}^i}} \\
+				&= \sum_j\sum_kT_{kj}(q)\delta^j_i\dot{q}^k + \sum_j\sum_kT_{kj}(q)\dot{q}^j\delta^k_i \\
+				&= \sum_kT_{ki}(q)\dot{q}^k + \sum_jT_{ij}(q)\dot{q}^j \\
+				&= 2\sum_jT_{ij}(q)\dot{q}^j
+			\end{align*}
+			where we have assumed that $T_{ij}$ is symmetric in the last equality. From the above, we see
+			\[
+				\sum_ip_i\dot{q}^i = 2\sum_i\sum_jT_{ij}(q)\dot{q}^i\dot{q}^j = 2T.
+			\]
+		\end{solution}
+	
+		\question Using the conservation of energy, show that the trajectories in phase space for the oscillator are ellipses of the form $(x/a)^2 + (p/b)^2 = 1$, where $a^2 = 2E/k$ and $b^2 = 2mE$.
+		
+		\begin{solution}
+			The Hamiltonian (and thus the energy) for the classical harmonic oscillator is given by
+			\[
+				\mathcal{H} = \frac{p^2}{2m} + \frac{k}{2}x^2 \equiv E.
+			\]
+			Since energy is conserved, $\partial\mathcal{H}/\partial{t} = 0$ and we can divide by $E$ (a constant) to get
+			\[
+				\Big(\frac{p}{\sqrt{2mE}}\Big)^2 + \Big(\frac{x}{\sqrt{2E/k}}\Big)^2 = 1,
+			\]
+			or, defining $a^2 = 2E/k$ and $b^2 = 2mE$,
+			\[
+				\Big(\frac{x}{a}\Big)^2 + \Big(\frac{p}{b}\Big)^2 = 1.
+			\]
+		\end{solution}
+		
+		\question Solve Exercise 2.1.2 using the Hamiltonian formalism.
+		
+		\begin{solution}
+			In this simple case, we can make the replacement $\dot{x}_i^2 \to p_i^2/m^2$ and flip the sign of $V$ in the found $\mathcal{L}$ to arrive at
+			\[
+				\mathcal{H} = T + V = \frac{p_1^2 + p_2^2}{2m} + k(x_1^2 - x_1x_2 + x_2^2)
+			\]
+			To obtain the dynamical equations for the system, we compute
+			\begin{align*}
+				\frac{\partial\mathcal{H}}{\partial p_i} = \frac{p_i}{m} = \dot{x}_i \quad \text{and} \quad -\frac{\partial\mathcal{H}}{\partial x_i} = kx_j - 2kx_i = \dot{p}_i
+			\end{align*}
+			where $j \neq i$. Taking the time derivative of $\partial\mathcal{H}/\partial p_i$ allows us to substitute the resulting equations into $-\partial\mathcal{H}/\partial{x}_i$ to obtain
+			\[
+				\ddot{x}_i = \frac{k}{m}(x_j - 2x_i)
+			\]
+			which is exactly what we found in Exercise 2.1.2.
+		\end{solution}
+		
+		\question Show that $\mathcal{H}$ corresponding to $\mathcal{L}$ in Eq. (2.3.6) is $\mathcal{H}=|\mathbf{p}_{\text{CM}}|^2/2M + |\mathbf{p}|^2/2\mu + V(\mathbf{r})$, where $M$ is the total mass, $\mu$ is the reduced mass, $\mathbf{p}_{\text{CM}}$ and $\mathbf{p}$ are the momenta conjugate to $\mathbf{r}_{\text{CM}}$ and $\mathbf{r}$, respectively.
+		
+		\begin{solution}
+			Starting from the Lagrangian,
+			\begin{align*}
+				\mathcal{L} &= \frac{1}{2}(m_1+m_2)|\dot{\mathbf{r}}_{\mathrm{CM}}|^2 + \frac{1}{2}\frac{m_1m_2}{m_1+m_2}|\dot{\mathbf{r}}|^2 - V(r), \\
+				&= \frac{M}{2}|\dot{\mathbf{r}}_{\mathrm{CM}}|^2 + \frac{\mu}{2}|\dot{\mathbf{r}}|^2 - V(r),
+			\end{align*}
+			we can find the conjugate momenta to $\mathbf{r}$ and $\mathbf{r}_{\mathrm{CM}}$ via
+			\begin{align*}
+				\mathbf{p}_{\mathrm{CM}} &= \frac{\partial\mathcal{L}}{\partial\dot{\mathbf{r}}_{\mathrm{CM}}} = M\dot{\mathbf{r}}_{\mathrm{CM}}, \\
+				\mathbf{p} &= \frac{\partial\mathcal{L}}{\partial\dot{\mathbf{r}}} = \mu\dot{\mathbf{r}}.
+			\end{align*}
+			Performing the necessary Legendre transform reveals
+			\begin{align*}
+				\mathcal{H} &= \mathbf{p}\cdot\dot{\mathbf{r}} + \mathbf{p}_{\mathrm{CM}}\cdot\dot{\mathbf{r}}_{\mathrm{CM}} - \mathcal{L} \\
+				&= \frac{|\mathbf{p}|^2}{\mu} + \frac{|\mathbf{p}_{\mathrm{CM}}|^2}{M} - \Big(\frac{M}{2}\frac{|\mathbf{p}_{\mathrm{CM}}|^2}{M^2} + \frac{\mu}{2}\frac{|\mathbf{p}|^2}{\mu^2} - V(r)\Big) \\
+				&= \frac{|\mathbf{p}|^2}{2\mu} + \frac{|\mathbf{p}_{\mathrm{CM}}|^2}{2M} + V(r)
+			\end{align*}
+		\end{solution}
+	\end{questions}
+\end{document}

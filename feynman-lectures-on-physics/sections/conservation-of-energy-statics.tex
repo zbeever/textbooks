@@ -1,0 +1,532 @@
+\documentclass[../feynman-lectures-on-physics.tex]{subfiles}
+
+\begin{document}
+
+\section{Conservation of Energy, Statics}
+
+\begin{questions}
+
+\question Use the principle of virtual work to establish the formula for an unequal-arm balance, as shown in Fig. 2-1, $W_1l_1=W_2l_2$. (Neglect the weight of the cross-beam.)
+
+\begin{solution}
+	By tilting the balance by an angle $\Delta\theta$, we lift $W_2$ up through the amount $l_2\sin\Delta\theta$, while lowering $W_1$ by $l_1\sin\Delta\theta$. Since the system is in static equilibrium, this should result in not net change in energy. That is,
+	\[
+	W_2l_2\sin\Delta\theta - W_1l_1\sin\Delta\theta = 0
+	.\] 
+	Or, dividing through by $\sin\Delta\theta$,
+	\[
+	W_1l_1 = W_2l_2
+	.\] 
+\end{solution}
+
+\question Extend the formula obtained in Ex. 2.1 to include a number of weights hung at various distances from the pivot point,
+\[
+\sum_iW_il_i = 0
+.\] 
+(Distances on one side of the fulcrum are considered positive and on the other side, negative.)
+
+\begin{solution}
+	If we count lengths to the left side of the fulcrum as negative, then, when moving the balance by an amount $\Delta\theta$, we find
+	\[
+	\sum_iW_il_i\sin\Delta\theta = 0
+	.\] 
+	Once again, dividing through by $\sin\Delta\theta$, we see
+	\[
+	\sum_iW_il_i = 0
+	.\] 
+\end{solution}
+
+\question A body is acted upon by $n$ forces and is in static equilibrium. Use the principle of virtual work to prove that:
+\begin{parts}
+	\part If $n=1$, the magnitude of the force must be zero. (A trivial case.)
+	\part If $n=2$, the forces must be equal in magnitude, opposite in direction, and collinear.
+	\part If $n=3$, the forces must be coplanar and their lines of action must pass through a single point.
+	\part For any $n$, the sum of the products of the magnitude of a force $F_i$ times the cosine of the angle $\Delta_i$ between the force and any fixed line, is zero:
+	\[
+	\sum_{i=1}^nF_i\cos\Delta_i = 0\mathrm{.}
+	.\] 
+\end{parts}
+
+\begin{solution}
+	\begin{parts}
+		\part We can employ the principle of virtual work by imagining moving the body by an amount $\mathrm{d}\mathbf{s}$. In the first case, we must have
+		\[
+		\mathbf{F}\cdot\mathrm{d}\mathbf{s} = 0
+		.\] 
+		which is only possible if $\mathbf{F} = \mathbf{0}$.
+		
+		\part In the second, we have
+		\[
+		\mathbf{F}_1\cdot\mathrm{d}\mathbf{s} + \mathbf{F}_2\cdot\mathrm{d}\mathbf{s} = (\mathbf{F}_1 + \mathbf{F}_2)\cdot\mathrm{d}\mathbf{s} = 0
+		.\] 
+		which is only possible if $\mathbf{F}_1 = -\mathbf{F}_2$.
+		
+		\part Continuing the pattern, we see
+		\[
+		(\mathbf{F}_1 + \mathbf{F}_2 + \mathbf{F}_3)\cdot\mathrm{d}\mathbf{s} = 0
+		.\] 
+		implies the forces are coplanar (any one can be written in terms of the other two) and pass through a single point (as otherwise there would be no cancellation).
+		
+		\part In the final case, we find
+		\[
+		\Big(\sum_i\mathbf{F}_i\Big)\cdot\mathrm{d}\mathbf{s} = s\sum_iF_i\cos\Delta_i = 0
+		.\] 
+		which, as $s$ is arbitrary, shows that the sum of the products of the magnitude of each force, times the cosine of the angle that force makes with a fixed line, is $0$.
+	\end{parts}
+\end{solution}
+
+\question Problems involving static equilibrium in the absence of friction may be reduced, using the \textit{Principle of Virtual Work}, to problems of mere geometry: Where does one point move when another moves a given small distance? In many cases this question is easily answered if the following properties of a triangle are used (referring to Fig. 2-2):
+\begin{parts}
+\part If the sides $d_1$ and $d_2$ remain fixed in length, but the angle $\alpha$ changes by a small amount $\Delta\alpha$, the opposite side $L$ changes by an amount
+\[
+\Delta{L} = \frac{d_1d_2}{L}\sin\alpha\Delta\alpha
+.\] 
+\part If the three sides $a$, $b$, $c$ of a right triangle change in length by small amounts $\Delta{a}$, $\Delta{b}$, and $\Delta{c}$, then
+\[
+a\Delta{a} + b\Delta{b} = c\Delta{c}\qquad(\mathrm{where}\,c\,\mathrm{is}\,\mathrm{the}\,\mathrm{hypotenuse})
+.\] 
+\end{parts}
+
+\begin{solution}
+	\begin{parts}
+		\part In the first case, we can express the length $L$ in terms of $d_1$, $d_2$, and $\alpha$ by
+		\[
+			L^2 = (d_1\sin\alpha)^2 + (d_2 - d_1\cos\alpha)^2
+		.\] 
+		Taking the differential of each side (considering only $L$ and $\alpha$ as mutable), yields
+		\begin{align}
+			2L\Delta{L} &= 2(d_1\sin\alpha)(d_1\cos\alpha)\Delta\alpha + 2(d_2 - d_1\cos\alpha)(d_1\sin\alpha)\Delta\alpha \\
+				    &= 2d_1^2\sin\alpha\cos\alpha\Delta\alpha + 2d_2d_1\sin\alpha\Delta\alpha - 2d_1^2\sin\alpha\cos\alpha\Delta\alpha \\
+				    &= 2d_2d_1\sin\alpha\Delta\alpha
+		\end{align}
+		Dividing by $2L$ gives the final result,
+		\[
+		\Delta{L} = \frac{d_1d_2}{L}\sin\alpha\Delta\alpha
+		.\] 
+		\part The second relation can be found by taking the differential of the Pythagorean theorem, $a^2 + b^2 = c^2$,
+		\[
+		2a\Delta{a} + 2b\Delta{b} = 2c\Delta{c}
+		\] 
+		and dividing by $2$,
+		\[
+		a\Delta{a} + b\Delta{b} = c\Delta{c}
+		.\] 
+	\end{parts}
+\end{solution}
+
+\question A uniform plank $\SI{1.5}{\meter}$ long and weighing $\SI{3.00}{\kilo\gram}$ is pivoted at one end. The plank is held in equilibrium in a horizontal position by a weight and pulley arrangement, as shown in Fig. 2-3. Find the weight $W$ needed to balance the plank. Neglect friction.
+
+\begin{solution}
+	We can find the weight by using torque. Setting our axis of rotation at the plank's pivot point (and considering a counterclockwise torque as positive), we find
+	\[
+	(\SI{0.75}{\meter})(\SI{3.00}{\kilo\gram}) - (\SI{1.50}{\meter})W\sin{45^\circ} = 0
+	.\] 
+	Replacing $\sin{45^\circ}$ with $1/\sqrt{2}$, we see
+	\begin{align}
+		W &= \frac{(\SI{0.75}{\meter})(\SI{3.00}{\kilo\gram})\sqrt{2}}{(\SI{1.50}{\meter})} \\
+		  &= \frac{3\sqrt{2}}{2}\,\si{\kilo\gram}
+	\end{align}
+\end{solution}
+
+\question A ball of radius $\SI{3.0}{\centi\meter}$ and weight $\SI{1.00}{\kilo\gram}$ rests on a plane tilted at an angle $\alpha$ with the horizontal and also touches a vertical wall, as shown in Fig. 2-4. Both surfaces have negligible friction. Find the force with which the ball presses on the wall $F_W$ and on the plane $F_P$.
+
+\begin{solution}
+	The force that the wall and inclined plane must counteract is gravity, which always points downward. The force exerted by the wall acts parallel to the ground, while the force exerted by the plane is perpendicular to it. So we have
+	\[
+	\mathbf{F}_{W} + \mathbf{F}_P + \mathbf{F}_g = 0.
+	\] 
+	Or, split into the $x$ and $y$ directions,
+	\begin{align}
+		F_{W} - \sin\alpha{F_P} &= 0 \\
+		\cos\alpha{F_P} + F_g &= 0.
+	\end{align}
+	Solving this yields
+	\begin{align}
+		F_W &= F_g\tan\alpha \\
+		F_P &= \frac{F_g}{\cos\alpha}.
+	\end{align}
+\end{solution}
+
+\question The jointed parallelogram frame $AA'BB'$ is pivoted (in a vertical plane) on the pivots $P$ and $P'$, as shown in Fig. 2-5. There is negligible friction in the pins at $A$, $A'$, $B$, $B'$, $P$, and $P'$. The members $AA'CD$ and $B'BGH$ are rigid and identical in size. $AP=A'P'=\frac{1}{2}PB=\frac{1}{2}P'B'$. Because of the counterweight $w_c$, the frame is in balance without the loads $W_1$ and $W_2$. If a $\SI{0.50}{\kilo\gram}$ weight $W_1$ is hung from $D$, what weight $W_2$, hung from $H$, is needed to produce equilibrium?
+
+\begin{solution}
+	Since the frame is in static equilibrium before we hang $W_1$ and $W_2$, we may neglect the extra information and consider only their effects on each other: if they balance, then the system will balance. If we move $W_1$ down by an amount $\Delta{y}$, we move weight $W_2$ up by an amount $2\Delta{y}$ on account the $PB$ being twice the length of $AP$. So
+	\[
+	2W_2\Delta{y} - W_1\Delta{y} = 0.
+	\] 
+	Substituting in $\SI{0.50}{\kilo\gram}$ for $W_1$ and solving for $W_2$ yields
+	\[
+	W_2 = \frac{W_1}{2} = \SI{0.25}{\kilo\gram}.
+	\] 
+\end{solution}
+
+\question The system shown is in static equilibrium. Use the principle of virtual work to find the weights $A$ and $B$. Neglect the weight of the strings and the friction in the pulleys.
+
+\begin{solution}
+	We must make two independent displacements to generate the two equations necessary to solve for $A$ and $B$.  If we move $A$ to the left by an amount $\Delta{x}$, then the $\SI{1}{\kilo\gram}$ weight will move down and $B$ will rise. By how much?
+
+	We can use the second relationship we derived in 2.4, $x\Delta{x} + y\Delta{y} = l\Delta{l}$, or, since $y$ is held fixed, $\Delta{l} = x\Delta{x}/l$. For the leftmost weight, $l_1 = x/\cos{30^\circ}$, while for $B$ we have $l_B = x/\cos{45^\circ}$. Using the principle of virtual work, we see
+
+	\begin{align}
+		0 &= B\Delta{l_B} - (\SI{1}{\kilo\gram})\Delta{l_1} \\
+		  &= B\frac{x\Delta{x}}{l_B} - (\SI{1}{\kilo\gram})\frac{x\Delta{x}}{l_1} \\
+		  &= B\Delta{x}\cos{45^\circ} - (\SI{1}{\kilo\gram})\Delta{x}\cos{30^\circ}
+	\end{align}
+
+	Solving for $B$ yields
+	\[
+	B = (\SI{1}{\kilo\gram})\frac{\cos{30^\circ}}{\cos{45^\circ}} = \sqrt{\frac{3}{2}}\,\si{\kilo\gram}.
+	\] 
+	If we now displace $A$ downward by $\Delta{y}$, we move both the $\SI{1}{\kilo\gram}$ weight and $B$ upward. Now, our relationships are $\Delta{l} = y\Delta{y}/l$, $l_1 = y/\sin{30^\circ}$, and $l_B = y/\sin{45^\circ}$. Writing out our new equation gives
+	\begin{align}
+		0 &= (\SI{1}{\kilo\gram})\Delta{l_1} - A\Delta{y} + B\Delta{l_B} \\
+		  &= (\SI{1}{\kilo\gram})\frac{y\Delta{y}}{l_1} - A\Delta{y} + B\frac{y\Delta{y}}{l_B} \\
+		  &= (\SI{1}{\kilo\gram})\Delta{y}\sin{30^\circ} - A\Delta{y} + B\Delta{y}\sin{45^\circ}
+	\end{align}
+	Solving for $A$ and substituting in our found value for $B$ gives
+	\[
+	A = \frac{1}{2}(1 + \sqrt{3})\,\si{\kilo\gram}.
+	\] 
+\end{solution}
+
+\question A weight $W=\SI{50}{lb}$ is suspended from the midpoint of a wire $ACB$ as shown in Fig. 2-7. $AC=CB=\SI{5}{ft}$. $AB=5\sqrt{2}\,\si{ft}$. Find the tension $T_1$ and $T_2$ in the wire.
+
+\begin{solution}
+	By symmetry, $T_1 = T_2$. To counteract the force of the weight, we must have 
+	\[
+	T1\sin\alpha + T_2\sin\alpha = 2T_1\sin\alpha = 2T_2\sin\alpha = W.
+	\] 
+	By simple trigonometry, $\alpha = \arccos\frac{5\sqrt{2}/2}{5} = 45^\circ$, and so
+	\[
+	T_1 = T_2 = 25\sqrt{2}\,\si{lb}
+	.\] 
+\end{solution}
+
+\question The truss shown in Fig. 2-8 is made of light aluminum struts pivoted at each end. At $C$ is a roller which rolls on a smooth plate. When a workman heats up member $AB$ with a welding torch, it is observed to increase in length by an amount $x$, and the load $W$ is thereby moved vertically an amount $y$.
+\begin{parts}
+\part Is the motion of $W$ upward or downward?
+\part What is the force $F$ in the member $AB$ (including the sense, i.e., tension or compression)?
+\end{parts}
+
+\begin{solution}
+	\begin{parts}
+		\part By conservation of energy, $Fx + Wy = 0$, since the force exerted by the bar is internal to the system. Thus, $W$ moves downward. 
+
+		\part Solving the previous equation for $F$ gives
+		\[
+			F = -W\frac{y}{x}
+		\] 
+		which is a positive quantity when $y$ is negative.
+	\end{parts}
+\end{solution}
+
+\question What horizontal force $F$ (applied at the axle) is required to push a wheel of weight $W$ and radius $R$ over a block of height $h$, as shown in Fig. 2-9?
+
+\begin{solution}
+	By the principle of virtual work, the distance the wheel moves horizontally times our applied force must equal its change in potential energy, or $F\Delta{d} = W\Delta{h}$.
+
+	Drawing a right triangle from the axle to the corner of the block, we can identify the sought after displacement as shortening the horizontal side while lengthening the vertical one, or $\Delta{d} = -\Delta{x}$ and $\Delta{h} = \Delta{y}$. Once again using the relationship we derived between the sides of a right triangle, we can write $x\Delta{x} + y\Delta{y} = r\Delta{r}$. The radius of the wheel cannot change, and so we find $\Delta{x}/\Delta{y} = -y/x = -\Delta{d}/\Delta{h}$
+
+	We can find the at-rest horizontal side length, $x$, by simple trigonometry
+	\[
+	R^2 = (R-h)^2 + d^2
+	.\] 
+	When solved, this gives $x = \sqrt{h(2R-h)}$. Meanwhile, the vertical side length of this triangle is simply $R - h$. Substituting these into our expression relating work to the change in potential energy yields
+	\begin{align}
+		F &= W\frac{\Delta{h}}{\Delta{d}} \\
+		  &= W\frac{x}{y} \\
+		  &= W\frac{\sqrt{h(2R-h)}}{R - h}
+	\end{align}
+\end{solution}
+
+\question A horizontal turntable of diameter $D$ is mounted on bearings with negligible friction. Two horizontal forces in the plane of the turntable of equal magnitude $F$, parallel to each other but pointing in opposite directions, act on the rim of the turntable on opposite ends of the diameter, as shown in Fig. 2-10.
+\begin{parts}
+	\part What force $F_B$ acts on the bearing?
+	\part What is the torque ($=$ moment of this force couple) $\tau_O$ about a vertical axis through the center $O$?
+	\part What would be the moment $\tau_P$ about a vertical axis through an arbitrary point $P$ in the same plane?
+	\part Is the following statement correct or false? Explain. ``Any two forces acting on a body can be combined into a single resultant force that would have the same effect.'' In framing your answer, consider the case where the two forces are opposite in direction but not quite equal in magnitude. 
+\end{parts}
+
+\begin{solution}
+	\begin{parts}
+		\part By symmetry, there is no net force $F_B$ on the bearing.
+
+		\part The torque about it, choosing a counterclockwise rotation as positive torque, is
+		\[
+			F\frac{D}{2} + F\frac{D}{2} = FD
+		.\] 
+		\part By writing the torque about an arbitrary axis in vector notation, we find
+		\[
+			\mathbf{F} \times (\mathbf{x} + \frac{\mathbf{D}}{2}) - \mathbf{F}\times(\mathbf{x} + \frac{\mathbf{D}}{2}) = \mathbf{F}\times\mathbf{D} = FD
+		.\] 
+		where there is no $\sin\theta$ in the last term by virtue of $\theta$ being $90^\circ$ with respect to the force and $\mathbf{D}$.
+
+		\part As long as the body is rigid we may treat it as a point particle, in which case the force vectors are acting at a single point and may be combined into a resultant force.
+	\end{parts}
+\end{solution}
+
+\question A flat steel plate floating on mercury is acted upon by three forces at three corners of a square of side $\SI{0.100}{\meter}$, as shown in Fig. 2-11. Find a \textit{single} fourth force $\mathbf{F}$ which will hold the plate in equilibrium. Give the magnitude, direction, and point of application of $\mathbf{F}$ along the line $AB$.
+
+\begin{solution}
+	By setting all forces equal to $0$, we obtain two equations
+	\begin{align}
+		50 - 50\sin{45^\circ} + y &= 0 \\
+		50 - 50\cos{45^\circ} + x &= 0.
+	\end{align}
+	Solving this gives components $F_x = F_y = 50(1/\sqrt{2} - 1)\,\si{\newton}$ (orienting the vector $45^\circ$ from the horizontal axis in the same manner as the vector at $O$) and a magnitude of $F=\sqrt{F_x^2 + F_y^2} = 50(\sqrt{2} - 1)\,\si{\newton}$. To find the point of application along $AB$, we write out the torque about the bottom left corner,
+	\[
+	\Big(\frac{50}{\sqrt{2}}\Big)\,\si{\newton}\cdot\sqrt{2(0.1)^2}\,\si{\meter} + xF_y = 0.
+	\] 
+	Or, solving for $x$,
+	\[
+	x = -\frac{5}{F_y} = \frac{5}{50(1 - 1/\sqrt{2})} \approx \SI{0.34}{\meter}.
+	\] 
+\end{solution}
+
+\question In the absence of friction, at what speed $v$ will the weights $W_1$ and $W_2$ in Fig. 2-12 be moving when they have traveled a distance $D$, starting from rest? ($W_1 > W_2$)
+
+\begin{solution}
+	By the conservation of energy, we can write
+	\[
+	\mathrm{P.E.} + \mathrm{K.E.} = -W_1D\sin\theta + W_2D\sin\theta + \frac{1}{2}\frac{W_1}{g}v^2 + \frac{1}{2}\frac{W_2}{g}v^2 = 0
+	.\] 
+	Solving for $v$ gives
+	\[
+	v = \sqrt{2Dg\frac{W_1 - W_2}{W_1 + W_2}\sin\theta}
+	.\] 
+\end{solution}
+
+\question In Fig. 2-13, the weights are equal, and there is negligible friction. If the system is released from rest, at what speed $v$ will the weights be moving when they have traveled a distance $D$?
+
+\begin{solution}
+	Once again,
+	\[
+	\mathrm{P.E.} + \mathrm{K.E.} = WD\sin\theta - WD\sin\phi + \frac{1}{2}\frac{W}{g}v^2 + \frac{1}{2}\frac{W}{g}v^2 = 0.
+	\] 
+	Solving for $v$ gives
+	\[
+	v = \sqrt{2Dg(\sin\phi - \sin\theta)}.
+	\] 
+	This makes sense. The larger $\phi$ is, the bigger the component of the gravitational pull along the ramp is.
+\end{solution}
+
+\question A mass $M_1$ slides on a $45^\circ$ inclined plane of height $H$ as shown in Fig. 2-14. It is connected by a flexible cord of negligible mass over a small pulley (neglect its mass) to an equal mass $M_2$ hanging vertically as shown. The length of the cord is such that the masses can be held at rest both at height $H/2$. The dimensions of the masses and the pulley are negligible compared to $H$. At time $t=0$ the two masses a released.
+\begin{parts}
+	\part For $t>0$ calculate the vertical acceleration $a$ of $M_2$.
+	\part Which mass will move downward?
+	\part At what time $t_1$ will the mass identified in part b) strike the ground?
+	\part If the mass identified in part b) stops when it hits the ground, but the other mass keeps moving, will it strike the pulley?	
+\end{parts}
+
+\begin{solution}
+	Mass $M_2$ will move downward, and so the acceleration of both blocks will be the same. Denoting $M_1 = M_2 = m$ and the tension in the cord $T$, we can write
+	\begin{align}
+		T - m\frac{g}{\sqrt{2}} &= ma \\
+		mg - T &= ma
+	\end{align}
+	where the top equation is for $M_1$ and the bottom is for $M_2$. Removing $T$, we find $a = g(1 - 1/\sqrt{2})/2$. Integrating this twice gives us the distance both weights have moved, $d = at^2/2$. Solving for $t$ and noting that $M_2$ hits the ground when $d = H/2$, we find $t = \sqrt{H/a}$.
+
+	The kinetic energy $M_1$ has at the instant $M_2$ hits the ground will be entirely converted to potential energy when $M_1$ comes to a stop, i.e. $mv^2/2 = mg\Delta{h}$. 
+
+	When $M_2$ strikes the ground, $M_1$ is at a height $H/2 + \sin{45^\circ}H/2$, or $H(1 + 1/\sqrt{2})/2 \approx 0.85H$. Solving for $\Delta{h}$ in the previous equation gives
+
+	\[
+	\Delta{h} = \frac{1}{2}\frac{v^2}{g} = \frac{1}{2}\frac{(at)^2}{g} = \frac{1}{2}\frac{aH}{g} = H\frac{1}{4}(1 - \frac{1}{\sqrt{2}}) \approx 0.07H
+	.\] 
+
+	Adding these together gives a final height of $\approx 0.92H$, which is less than $H$, ergo $M_1$ does not strike the pulley.
+\end{solution}
+
+\question A derrick is made of a uniform boom of length $L$ and weight $w$, pivoted at its lower end, as shown in Fig. 2-15. It is supported at an angle $\theta$ with the vertical by a horizontal cable attached at a point a distance $x$ from the pivot, and a weight $W$ is slung from its upper end. Find the tension $T$ in the horizontal cable.
+
+\begin{solution}
+	Using the principle of virtual work, we recognize that $T\Delta{x}_T + W\Delta{y_W} + w\Delta{y_w} = 0$. How can we relate these displacements?
+
+	Consider increasing the angle of the derrick by an amount $\Delta\theta$. Using the first relationship we derived in $2.4$, we see $\Delta{x'} = (y'l'/x')\sin\theta\Delta\theta$, where here $x'$, $y'$, and $l'$ refer to the horizontal side, vertical side, and hypotenuse of any right triangle drawn along the derrick and the wall. For the cable, we find
+	\[
+	\Delta{x_T} = \frac{x\cos\theta{x}}{x\sin\theta}\sin\theta\Delta\theta = x\cos\theta\Delta\theta.
+	\] 
+	For $w$ and $W$, we must use the second relationship we derived in 2.4, $y'\Delta{y'} + x'\Delta{x}' = l'\Delta{l'}$. Here, $l$ is immutable and so $y'/x' = -\Delta{x}'/\Delta{y'}$. Using this, we find
+	\begin{align}
+		\Delta{x_W} = \frac{y_WL}{x_W}\sin\theta\Delta\theta &= -\frac{\Delta{x_W}L}{\Delta{y_W}}\sin\theta\Delta\theta \\
+		\Delta{x_w} = \frac{y_w(L/2)}{x_w}\sin\theta\Delta\theta &= -\frac{\Delta{x_w}{(L/2)}}{\Delta{y_w}}\sin\theta\Delta\theta
+	\end{align}
+	Solving for $\Delta{y_W}$ and $\Delta{y_w}$ gives
+	\begin{align}
+		\Delta{y_W} &= -L\sin\theta\Delta\theta \\
+		\Delta{y_w} &= -\frac{L}{2}\sin\theta\Delta\theta
+	\end{align}
+	Putting these quantities into our original relationship and solving for $T$ gives
+	\[
+	T = -\frac{1}{\Delta{x_T}}(W\Delta{y_W} + w\Delta{y_w}) = \frac{L}{x}(W + \frac{W}{2})\tan\theta.
+	\] 
+	This makes physical sense: a smaller angle requires less force, as does a cable attachment point closer to the end of the derrick.
+\end{solution}
+
+\question A uniform ladder $\SI{10}{ft}$ long with rollers at the top end leans against a smooth vertical wall, as shown in Fig. 2-16. The ladder weighs $\SI{30}{lb}$. A weight $W = \SI{60}{lb}$ is hung from a rung $\SI{2.5}{ft}$ from the top end. Find
+\begin{parts}
+	\part the force $F_R$ with which the rollers push on the wall.
+	\part the horizontal and vertical forces $F_h$ and $F_v$ with which the ladder pushes on the ground.
+\end{parts}
+
+\begin{parts}
+	\part We can find $F_R$ by setting the total torque equal to $0$, taking the ladder's contact point with the floor as the axis of rotation. We have
+	\[
+	5wg\sin\arctan{\frac{6}{8}} + 7.5Wg\sin\arctan{\frac{6}{8}} + 10F_R\sin\arctan{-\frac{8}{6}} = 0.
+	\] 
+	Solving this gives $F_R = \SI{441}{\newton}$. If we wish to express this in pounds, we may divide by $g = \SI{9.8}{\meter\per\second\squared}$ to get $F_R = \SI{45}{lb}$.
+
+	\part By drawing a force diagram, it is clear that $\mathbf{F}_h = -\mathbf{F}_R$, so $F_h = F_R$. Meanwhile, $F_v$ must cancel both the hanging weight and the weight of the ladder,
+	\[
+	F_v - wg - Wg = 0.
+	\] 
+	From this, we see $F_v = \SI{882}{\newton}$, or $F_v = \SI{90}{lb}$.
+\end{parts}
+
+\question A plank of weight $W$ and length $\sqrt{3}R$ lies in a smooth circular trough of radius $R$, as shown in Fig. 2-17. At one end of the plank is a weight $W/2$. Calculate the angle $\theta$ at which the plank lies when it is in equilibrium.
+
+\begin{solution}
+	The plank forms a chord across the circular trough. From this, we know that the segment connecting its center of mass to the center of our trough lies perpendicular to the plank. This allows us to form two right triangles with their hypotenuses connecting the center of our trough to the ends of our plank. This allows us to solve for the perpendicular distance $D$ from our trough's midpoint to our plank's center of mass,
+	\[
+	D^2 + \Big(\frac{\sqrt{3}}{2}R\Big)^2 = R^2
+	\] 
+	or $D = R/2$. Using this, we can form two more right triangles to obtain the vertical distance between the horizontal line crossing our trough's center and our plank's center of mass, $H_1 = R\cos\theta/2$. We can form a similar triangle between the center of mass of our plank and the lower end of it, with its hypotenuse given by $\sqrt{3}R/2$. This triangle has a height of $H_a = \sqrt{3}R\sin\theta/2$, giving our plank's lower end point a distance of $H_2 = H_1 + H_a = R(\cos\theta + \sqrt{3}\sin\theta)/2$ from the horizontal line intersecting our trough's center.
+
+	Now that we have the distances of these two points, we can use the principle of virtual work to obtain the angle our system rests at. Considering the horizontal line passing through the trough's center as $y = 0$, we have a potential energy of
+	\[
+	V = -WH_1 - \frac{W}{2}H_2 = -\frac{WR}{4}(3\cos\theta + \sqrt{3}\sin\theta).
+	\] 
+	Under a small change in angle, this varies as
+	\[
+	\Delta{V} = -\frac{WR}{4}(-3\sin\theta + \sqrt{3}\cos\theta)\Delta\theta.
+	\] 
+	Setting this to zero gives
+	\[
+	\tan\theta = \frac{1}{\sqrt{3}}
+	\] 
+	which has the solution $\theta = 30^\circ$.
+\end{solution}
+
+\question A uniform bar of length $l$ and weight $W$ is supported at its ends by two inclined planes as shown in Fig. 2-18. From the principle of virtual work find the angle $\alpha$ at which the bar is in equilibrium. (Neglect friction.)
+
+\begin{solution}
+	Consider describing the coordinates of the endpoints of our bar using unit vectors pointed along the planes, $\mathbf{i}'$ along the one oriented at $30^\circ$ to the horizontal and $\mathbf{j}'$ along the one oriented $120^\circ$ to the horizontal. By simple trigonometry, the left and right endpoints are given by
+	\begin{align}
+		\mathbf{l} &= l\cos\alpha\mathbf{j}' \\
+		\mathbf{r} &= l\sin\alpha\mathbf{i}'
+	\end{align}
+	The location of the rod's center of mass is the midway point of both of these, $(\mathbf{l} + \mathbf{r})/2$. We can express this quantity in terms of our standard coordinates by noting that
+	\begin{align}
+		\mathbf{i}' &= \cos{30^\circ}\mathbf{i} + \sin{30^\circ}\mathbf{j} = \frac{\sqrt{3}}{2}\mathbf{i} + \frac{1}{2}\mathbf{j} \\
+		\mathbf{j}' &= -\cos{120^\circ}\mathbf{i} + \sin{120^\circ}\mathbf{j} = -\frac{1}{2}\mathbf{i} + \frac{\sqrt{3}}{2}\mathbf{j}
+	\end{align}
+	Substituting these into our expression for the location of the bar's center of mass gives
+	\[
+	\frac{\mathbf{l} + \mathbf{r}}{2} = l(\frac{\sqrt{3}}{2}\sin\alpha - \frac{1}{2}\cos\alpha)\mathbf{i} + l(\frac{\sqrt{3}}{2}\cos\alpha + \frac{1}{2}\sin\alpha)\mathbf{j}.
+	\] 
+	By the principle of virtual work, our potential energy will be at an extremum when our system is in equilibrium. For the current system, this corresponds to when the height is at a minimum. Taking the derivative of the coefficient of $\mathbf{j}$ in the above expression and setting it equal to $0$ gives
+	\[
+	-\sqrt{3}\sin\alpha + \cos\alpha = 0
+	\] 
+	or $\tan\alpha = 1/\sqrt{3}$. This is the equation we arrived at in our last problem, having an answer of $\alpha = 30^\circ$. This is interesting, as it seems the angle is independent of the length of the rod.
+\end{solution}
+
+\question A small solid sphere of radius $\SI{4.5}{\centi\meter}$ and weight $W$, is to be suspended by a string from the ends of a smooth hemispherical bowl of radius $\SI{49}{\centi\meter}$, as sown in Fig. 2-19. It is found that if the string is any shorter than $\SI{40}{\centi\meter}$, it breaks. Use the principle of virtual work to find the breaking strength $F$ of the string.
+
+\question An ornament for a courtyard at a World's Fair is to be made up of four identical, frictionless metal spheres, each weighing $2\sqrt{6}$ ton-wt. The spheres are to be arranged as shown in Fig. 2-20, with three resting on a horizontal surface and touching each other; the fourth is to rest freely on the other three. The bottom three are kept from separating by spot welds at the points of contact with each other. Allowing for a factor of safety of $3$, how much tension $T$ must the spot welds withstand?
+
+\question A rigid wire frame is formed in a right triangle, and set in a vertical plane as shown in Fig. 2-21. Two beads of masses $m_1 = \SI{100}{\gram}$, $m_2=\SI{300}{\gram}$ slide without friction on the wires, and are connected by a cord. When the system is in static equilibrium, what is the tension $T$ in the cord, and what angle $\alpha$ does it make with the first wire?
+
+\question Find the tension $T$ needed to hold the cart shown in Fig. 2-22 in equilibrium, if there is no friction.
+\begin{parts}
+	\part Using the principle of virtual work.
+	\part Using force components.
+\end{parts}
+
+\question A bobbin of mass $M=\SI{3}{\kilo\gram}$ consists of a central cylinder of radius $r=\SI{5}{\centi\meter}$ and tow end plates of radius $R=\SI{6}{\centi\meter}$. It is placed on a slotted incline on which it will roll but not slip, and a mass $m=\SI{4.5}{\kilo\gram}$ is suspended from a cord wound around the bobbin, as shown in Fig. 2-23. It is observed that the system is in static equilibrium. What is the angle of tilt $\theta$ of the incline?
+
+\question A loop of flexible chain, of total weight $W$, rests on a smooth right circular cone of base radius $r$ and height $h$, as shown in Fig. 2-24. The chain rests in a horizontal circle on the cone, whose axis is vertical. Find the tension $T$ in the chain. Neglect friction.
+
+\begin{solution}
+	By the principle of virtual work, $T\Delta{l} + W\Delta{h} = 0$. Given that the chain rests at a location along the cone with a certain radius $r'$, a small change in length can be related to a change in radius by $\Delta{l} = 2\pi\Delta{r'}$. Similarly, by noting that the slope of the cylinder is $-h/r$, a small change in height can be related to a change in radius by $\Delta{h} = -\Delta{r'}\cdot{h}/r$. Putting this together, we see
+	\[
+	2\pi{T}\Delta{r'} = W\Delta{r'}\frac{h}{r}
+	\] 
+	or $T = (Wh)/(2\pi{r})$.
+\end{solution}
+
+\question A cart on an inclined plane is balanced by the weight $w$ as shown in Fig. 2-25. All parts have negligible friction. Find the weight $W$ of the cart.
+
+\question A bridge truss is constructed as shown in Fig. 2-26. All joints may be considered frictionless pivots and all members rigid, weightless, and of equal length. Find the reaction forces $F_1$ and $F_2$ and the force $F_{DF}$ in the member $DF$.
+
+\question In the truss shown in Fig. 2-27, all diagonal struts are of length $5$ units and all horizontal ones are of length $6$ units. All joints are freely hinged, and the weight of the truss is negligible.
+\begin{parts}
+\part Which of the members could be replaced with flexible cables, for the load position shown?
+\part Find the forces in struts $BD$ and $DE$.
+\end{parts}
+
+\question In the system shown in Fig. 2-28, a pendulum bob of weight $w$ is initially held in a vertical position by a thread $A$. When this thread is burned, releasing the pendulum, it swings to the left and barely reaches the ceiling at its maximum swing. Find the weight $W$. (Neglect friction, the radius of the pulley, and the finite sizes of the weights.)
+
+\begin{solution}
+	Let us measure potential energy from the ceiling. Then, as there is only gravity acting on the system after $w$ is released, we have
+	\[
+		-3w - h_0W = 0w - (h_0 + 4)W
+	\] 
+	where $h_0$ denotes the initial distance $W$ is hung from the ceiling, and the value of $4$ can be arrived at by examining the figure: when the weight barely reaches the ceiling, the cable of length $3$ will occupy most of the ceiling of length $4$. The length $5$ cable will take up the additional unit of length and have its remaining $4$ units draped over the pulley. Kinetic energy does not enter this conservation of energy equation due to the weights having no velocity at the points of consideration.
+
+	Returning to the above equation and solving for $W$ yields $W = 3w/4$.
+\end{solution}
+
+\question Two equal masses $m$ are attached to a third mass $2m$ by equal lengths of fine thread and the thread is passed over two small pulleys with negligible friction situated $\SI{100}{\centi\meter}$ apart, as shown in Fig. 2-29. The mass $2m$ is initially held level with the pulleys midway between them, and is then released from rest. When it has descended a distance of $\SI{50}{\centi\meter}$ it strikes a table top. What is it's speed $v$ when it reaches the table top?
+
+\begin{solution}
+	We can solve this using conservation of energy, specifically $\Delta{T} = -\Delta{V}$. By the time the central mass has descended $\SI{50}{\centi\meter}$, the two smaller masses have each ascended $(50\sqrt{2} - 50)\,\si{\centi\meter}$. This can be seen by drawing a right triangle between one of the pulleys and the spot on the table where the central mass strikes: because the horizontal and vertical legs of the right triangle are $\SI{50}{\centi\meter}$, the hypotenuse is $50\sqrt{2}\,\si{\centi\meter}$. The change in height, then, is given by the change in the hypotenuse length. Putting this all together, we see
+	\[
+	\Delta{V} = mg(50\sqrt{2}-50) - 2mg\cdot{50} + mg(50\sqrt{2}-50) = 100(\sqrt{2}-2)mg.
+	\] 
+	The kinetic energy is slightly trickier, as the smaller masses do not have the same velocity as the larger mass. Noting that the horizontal component of the previously studied right triangle does not change, we can related the two velocities by taking the time derivative of the Pythagorean theorem,
+	\begin{align}
+		\frac{\mathrm{d}}{\mathrm{d}t}(x^2 + y^2) &= \frac{\mathrm{d}}{\mathrm{d}t}(l^2) \\
+		2x\frac{\mathrm{d}x}{\mathrm{d}t} + 2y\frac{\mathrm{d}y}{\mathrm{d}t} &= 2l\frac{\mathrm{d}l}{\mathrm{d}t} \\
+		y\frac{\mathrm{d}y}{\mathrm{d}t} &= l\frac{\mathrm{d}l}{\mathrm{d}t}
+	\end{align}
+	So, denoting $\mathrm{d}y/\mathrm{d}t$ by $v_{2m}$, we see that the velocities of our small masses are related to the velocity of the large mass by $v_{m} = yv_{2m}/l$. At the moment of impact, $y = \SI{50}{\centi\meter}$ and $l = 50\sqrt{2}\,\si{\centi\meter}$, and so $v_m = v_{2m}/\sqrt{2}$. Putting this all together gives
+	\[
+	\Delta{T} = \frac{1}{2}mv_m^2 + \frac{1}{2}(2m)v_{2m}^2 + \frac{1}{2}mv_m^2 = \frac{3}{2}mv_{2m}^2.
+	\] 
+	Finally, combining our kinetic and potential energies yields
+	\[
+	\Delta{T} = \frac{3}{2}mv_{2m}^2 = 100(2-\sqrt{2})mg = -\Delta{V}.
+	\] 
+	or
+	\[
+	v_{2m} = \sqrt{\frac{200}{3}(2-\sqrt{2})g}.
+	\] 
+	Putting in the explicit value of $g=\SI{980}{\centi\meter\per\second\squared}$ gives $v_{2m} = \SI{196}{\centi\meter\per\second}$.
+\end{solution}
+
+\question A tank of cross-sectional area $A$ contains a liquid having density $\rho$. The liquid squirts freely from a small hole of area $a$ distance $H$ below the free surface of the liquid, as shown in Fig. 2-30. If the liquid has no internal friction (viscosity), with what speed $v$ does it emerge?
+
+\begin{solution}
+	By conservation of energy,
+	\[
+	\frac{m}{V}gH = \frac{1}{2}\frac{m}{V}v^2
+	\] 
+	where $v$ is the velocity of the water at the hole, $m/V = m/(AH) = \rho$ is the density of the water, and $H$ is the change in height from the top of the liquid to the hole. Solving for $v$ gives $v=\sqrt{2gH}$.
+\end{solution}
+
+\question Smooth, identical logs are piled in a stake truck. The truck is forced off the highway and comes to a rest on an even keel lengthwise but with the bed at an angle $\theta$ with the horizontal, as shown in Fig. 2-31. As the truck is unloaded, the removal of the log shown dotted leaves the remaining three in a condition where they are just ready to slide, that is, if $\theta$ were any smaller, the logs would fall down. Find $\theta$.
+
+\question A spool of weight $w$ and radii $r$ and $R$ is wound with cord, and suspended from a fixed support by two cords wound on the smaller radius; a weight $W$ is then suspended from two cords wound on the larger radius, as shown in Fig. 2-32. $W$ is chosen so that the spool is just balanced. Find $W$.
+
+\question A suspension bridge is to span a deep gorge $\SI{54}{\meter}$ wide. The roadway will consist of a steel truss supported by six pairs of vertical cables spaced $\SI{9.0}{\meter}$ apart, as shown in Fig. 2-33. Each cable is to carry an equal share of the $\SI{4.80e4}{\kilo\gram}$ weight. The two pairs of cables nearest the center are to be $\SI{2.00}{\meter}$ long. Find the proper lengths of the remaining vertical cables $A$ and $B$ and the maximum tension $T_{max}$ in the two longitudinal cables, if the latter are to be at a $45^\circ$ angle with the horizontal at their ends.
+
+\question The insulating support structure of a Tandem Van de Graaff may be represented, as shown in Fig. 2-34: two blocks of about uniform density, length $L$, height $h$ and weight $W$, supported from vertical bulkheads by pivot joints ($A$ and $B$) and forced apart by a screw jack (F) at the center. Since the material of the blocks cannot support tension, the jack must be adjusted to give zero force on the upper pivot.
+\begin{parts}
+	\part What force $F$ is required?
+	\part What is the total force (magnitude and direction) $\mathbf{F}_A$ on one of the lower pivots $A$?
+\end{parts}
+
+\end{questions}
+
+\end{document}

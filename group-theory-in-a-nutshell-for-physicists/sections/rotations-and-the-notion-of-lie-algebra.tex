@@ -1,0 +1,335 @@
+\documentclass[../group-theory-in-a-nutshell-for-physicists.tex]{subfiles}
+
+\begin{document}
+\printanswers
+
+\section{Rotations and the Notion of Lie Algebra}
+
+\begin{questions}
+\printanswers
+
+\question Suppose you are given two vectors $\overrightarrow{p}$ and
+$\overrightarrow{q}$ in ordinary $3$-dimensional space. Consider
+this array of three numbers:
+\[
+\begin{pmatrix}
+p^{2}q^{3} \\
+p^{3}q^{1} \\
+p^{1}q^{2}
+\end{pmatrix}
+\]
+Prove that it is not a vector, even though it looks like a vector.
+(Check how it transforms under rotation!) In contrast,
+\[
+\begin{pmatrix}
+p^{2}q^{3} - p^{3}q^{2} \\
+p^{3}q^{1} - p^{1}q^{3} \\
+p^{1}q^{2} - p^{2}q^{1}
+\end{pmatrix}
+\]
+does transform like a vector. It is in fact the vector cross product
+$\overrightarrow{p} \otimes \overrightarrow{q}$.
+
+\begin{solution}
+	To prove that this is not a vector, we merely need to find one rotation for which it does not transform like a vector. We will take the test rotation to be about the $x$-axis,
+	\[
+		R_x(\theta_x) = \begin{pmatrix}
+		1 & 0 & 0 \\
+		0 & \cos\theta_x & \sin\theta_x \\
+		0 & -\sin\theta_x & \cos\theta_x
+		\end{pmatrix}.
+	\]
+	Under this transformation, the vectors $\overrightarrow{p}$ and $\overrightarrow{q}$ transform as
+	\begin{align*}
+		\overrightarrow{p} = \begin{pmatrix}p^1 \\ p^2 \\ p^3\end{pmatrix} &\to \begin{pmatrix}
+			p^1 \\
+			p^2\cos\theta_x + p^3\sin\theta_x \\
+			-p^2\sin\theta_x + p^3\cos\theta_x
+		\end{pmatrix} \\
+		\overrightarrow{q} = \begin{pmatrix}q^1 \\ q^2 \\ q^3\end{pmatrix} &\to \begin{pmatrix}
+			q^1 \\
+			q^2\cos\theta_x + q^3\sin\theta_x \\
+			-q^2\sin\theta_x + q^3\cos\theta_x
+		\end{pmatrix}
+	\end{align*}
+	and so the given array of numbers transform as
+	\begin{align*}
+		\begin{pmatrix}
+			p^{2}q^{3} \\
+			p^{3}q^{1} \\
+			p^{1}q^{2}
+		\end{pmatrix} &\to \begin{pmatrix}
+		(p^2\cos\theta_x + p^3\sin\theta_x)(-q^2\sin\theta_x + q^3\cos\theta_x) \\
+		(-p^2\sin\theta_x + p^3\cos\theta_x)q^{1} \\
+		p^{1}(q^2\cos\theta_x + q^3\sin\theta_x)
+	\end{pmatrix} \\
+	&= \begin{pmatrix}
+		p^2q^3\cos^2\theta_x + (p^3q^3 - p^2q^2)\cos\theta_x\sin\theta_x - p^3q^2\sin^2\theta_x \\
+		-p^2q^{1}\sin\theta_x + p^3q^{1}\cos\theta_x \\
+		p^{1}q^2\cos\theta_x + p^{1}q^3\sin\theta_x
+	\end{pmatrix}
+	\end{align*}
+	This is clearly not the transformation law characterizing vectors, and so the given array is not a vector.
+	
+	By contrast, if we compute the transformation of a similar array, 
+	\begin{align*}
+		\begin{pmatrix}
+			p^{3}q^{2} \\
+			p^{1}q^{3} \\
+			p^{2}q^{1}
+		\end{pmatrix} &\to \begin{pmatrix}
+			(-p^2\sin\theta_x + p^3\cos\theta_x)(q^2\cos\theta_x + q^3\sin\theta_x) \\
+			p^{1}(-q^2\sin\theta_x + q^3\cos\theta_x) \\
+			(p^2\cos\theta_x + p^3\sin\theta_x)q^{1}
+		\end{pmatrix} \\
+	&= \begin{pmatrix}
+		p^3q^2\cos^2\theta_x + (p^3q^3 - p^2q^2)\cos\theta_x\sin\theta_x - p^2q^3\sin^2\theta_x \\
+		-p^{1}q^2\sin\theta_x + p^1q^3\cos\theta_x \\
+		p^2q^1\cos\theta_x + p^3q^1\sin\theta_x
+	\end{pmatrix}
+	\end{align*}
+	we can subtract this from the first array to find that their combination does transform as a vector,
+	\begin{align*}
+		\begin{pmatrix}
+			p^{2}q^{3} - p^{3}q^{2} \\
+			p^{3}q^{1} - p^{1}q^{3} \\
+			p^{1}q^{2} - p^{2}q^{1}
+		\end{pmatrix} &\to \begin{pmatrix}
+			p^2q^3 - p^3q^2 \\
+			(p^3q^1 - p^1q^3)\cos\theta_x + (p^3q^1 - p^1q^3)\sin\theta_x \\
+			-(p^1q^2 - p^2q^1)\sin\theta_x + (p^1q^2 - p^2q^1)\cos\theta_x
+	\end{pmatrix}
+	\end{align*}
+\end{solution}
+
+\question Verify that $R \simeq I + A$, with $A$ given by
+$A = \theta_{x}\mathcal{J}_{x} + \theta_{y}\mathcal{J}_{y} + \theta_{z}\mathcal{J}_{z}$,
+satisfies the condition $\det R = 1$.
+
+\begin{solution}
+	We assume that $A$ is infinitesimal, as this is not true otherwise. Let us make this explicit by redefining $R = I + \epsilon{A}$ and denote the eigenvalues of $A$ by $\lambda_i$. Then the eigenvalues of $R$ are given by $1 + \epsilon\lambda_i$ and the determinant is
+	\begin{align*}
+		\det(R) = \det(I + A) &= (1 + \epsilon\lambda_1)(1 + \epsilon\lambda_2)(1 + \epsilon\lambda_3) \\
+		&= 1 + \epsilon(\lambda_1 + \lambda_2 + \lambda_3) + \mathcal{O}(\epsilon^2) \\
+		&= 1 + \epsilon\mathrm{Tr}(A) + \mathcal{O}(\epsilon^2)
+	\end{align*}
+	Since $A$ is traceless (being the sum of the traceless generating matrices), this becomes
+	\[
+		\det(R) = 1.
+	\]
+\end{solution}
+
+\question Using (14), show that a rotation around the $x$-axis through angle
+$\theta_{x}$ is given by
+\[
+R_{x}(\theta_{x}) = \begin{pmatrix}
+1 & 0 & 0 \\
+0 & \cos\theta_{x} & \sin\theta_{x} \\
+0 & - \sin\theta_{x} & \cos\theta_{x} \\
+\end{pmatrix}
+\]
+Write down $R_{y}(\theta_{y})$. Show explicitly that
+$R_{x}(\theta_{x})R_{y}(\theta_{y}) \neq R_{y}(\theta_{y})R_{x}(\theta_{x})$.
+
+\begin{solution}
+	To go from the Lie algebra of $SO(3)$ to the Lie group element $R_x(\theta_x)$, group theory tells us to exponentiate the associated element of the former by $\theta_x$. Before doing so, it will be useful to calculate
+	\[
+		\mathcal{J}_x^2 = \begin{pmatrix}0 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & -1 & 0\end{pmatrix}^2 =  \begin{pmatrix}0 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & -1\end{pmatrix} \equiv -I_x.
+	\]
+	Note that $\mathcal{J}_xI_x = I_x\mathcal{J}_x = \mathcal{J}_x$. Exponentiating $J_x$ through an angle $\theta_x$ yields
+	\begin{align*}
+		R_x(\theta_x) &= \exp(\theta_x\mathcal{J}_x) \\
+		&= 1 + \theta_x\mathcal{J}_x + \frac{1}{2!}(\theta_x\mathcal{J}_x)^2 + \frac{1}{3!}(\theta_x\mathcal{J}_x)^3 + \frac{1}{4!}(\theta_x\mathcal{J}_x)^4 + \frac{1}{5!}(\theta_x\mathcal{J}_x)^5 + \cdots \\
+		&= 1 + \theta_x\mathcal{J}_x - \frac{1}{2!}\theta_x^2I_x - \frac{1}{3!}\theta_x^3\mathcal{J}_x + \frac{1}{4!}\theta_x^4I_x + \frac{1}{5!}\theta_x^5\mathcal{J}_x + \cdots \\
+		&= (I - I_x) + \Big(1 - \frac{1}{2!}\theta_x^2 + \frac{1}{4!}\theta_x^4 - \cdots\Big)I_x + \Big(\theta_x - \frac{1}{3!}\theta_x^3 + \frac{1}{5!}\theta_x^5 - \cdots\Big)\mathcal{J}_x \\
+		&= (I - I_x) + \cos\theta_xI_x + \sin\theta_x\mathcal{J}_x \\
+	\end{align*}
+	or, in component form, 
+	\[
+		R_x(\theta_x) = \begin{pmatrix}
+		1 & 0 & 0 \\
+		0 & \cos\theta_{x} & \sin\theta_{x} \\
+		0 & - \sin\theta_{x} & \cos\theta_{x} \\
+		\end{pmatrix}
+	\]
+	Following the same procedure for the $y$-axis gives
+	\[
+		R_y(\theta_y) = \begin{pmatrix}
+		\cos\theta_y & 0 & -\sin\theta_y \\
+		0 & 1 & 0 \\
+		\sin\theta_y & 0 & \cos\theta_y
+		\end{pmatrix}
+	\]
+	To check their commutation, we compute
+	\begin{align*}
+		R_x(\theta_x)R_y(\theta_y) &= \begin{pmatrix}
+		1 & 0 & 0 \\
+		0 & \cos\theta_{x} & \sin\theta_{x} \\
+		0 & - \sin\theta_{x} & \cos\theta_{x} \\
+		\end{pmatrix}\begin{pmatrix}
+		\cos\theta_y & 0 & -\sin\theta_y \\
+		0 & 1 & 0 \\
+		\sin\theta_y & 0 & \cos\theta_y
+		\end{pmatrix} \\
+		&= \begin{pmatrix}
+		\cos\theta_y & 0 & -\sin\theta_y \\
+		\sin\theta_x\sin\theta_y & \cos\theta_x & \sin\theta_x\cos\theta_y\\
+		\cos\theta_x\sin\theta_y & -\sin\theta_x & \cos\theta_x\cos\theta_y
+		\end{pmatrix} \\
+		R_y(\theta_y)R_x(\theta_x) &= \begin{pmatrix}
+			\cos\theta_y & 0 & -\sin\theta_y \\
+			0 & 1 & 0 \\
+			\sin\theta_y & 0 & \cos\theta_y
+		\end{pmatrix}\begin{pmatrix}
+		1 & 0 & 0 \\
+		0 & \cos\theta_{x} & \sin\theta_{x} \\
+		0 & - \sin\theta_{x} & \cos\theta_{x}
+		\end{pmatrix} \\
+		&= \begin{pmatrix}
+			\cos\theta_y & \sin\theta_y\sin\theta_x & -\sin\theta_y\cos\theta_x \\
+			0 & \cos\theta_x & \sin\theta_x \\
+			\sin\theta_y & -\cos\theta_y\sin\theta_x & \cos\theta_y\cos\theta_x
+		\end{pmatrix}
+	\end{align*}
+	Clearly, $R_x(\theta_x)R_y(\theta_y) \neq R_y(\theta_y)R_x(\theta_x)$.
+\end{solution}
+
+\question Use the hermiticity of $J$ to show that $c_{ijk}$ in (18) are real
+numbers.
+
+\begin{solution}
+	Since each $J_i$ is hermitian, we have
+	\begin{align*}
+		[J_i, J_j]^\dagger &= (J_iJ_j - J_jJ_i)^\dagger \\
+		&= J_j^\dagger J_i^\dagger - J_i^\dagger J_j^\dagger \\
+		&= J_jJ_i - J_iJ_j \\
+		&= [J_j, J_i] \\
+		&= -[J_i, J_j] \\
+		&= -ic_{ijk}J_k
+	\end{align*}
+	Simultaneously, (18) implies
+	\begin{align*}
+		[J_i, J_j]^\dagger &= (ic_{ijk}J_k)^\dagger \\
+		&= -ic_{ijk}^\dagger J_k^\dagger \\
+		&= -ic_{ijk}^\dagger J_k
+	\end{align*}
+	Subtracting one from the other gives
+	\[
+		0 = -i(c_{ijk} - c^\dagger_{ijk})J_k.
+	\]
+	Since $J_k$ is not zero, this implies
+	\[
+		c_{ijk} = c^\dagger_{ijk},
+	\]
+	i.e. $c_{ijk} \in \mathbb{R}$.
+\end{solution}
+
+\question Calculate $[J_{(mn)},J_{(pq)}]$ by brute force using
+(24).
+
+\question Of the six $4$-by-$4$ matrices $J_{12}$, $J_{23}$, \(J_{31}\),
+$J_{14}$, $J_{24}$, $J_{34}$ that generate $SO(4)$, what is the
+maximum number that can be simultaneously diagonalized?
+
+\begin{solution}
+	From eq. 25, we see that
+	\[
+		[J_{(mn)}, J_{(pq)}] = 0
+	\]
+	if and only if $mn$ has no indices in common with $pq$. So we could choose to simultaneously diagonalize either $J_{(12)}$ and $J_{(34)}$, $J_{(13)}$ and $J_{(24)}$, or $J_{(14)}$ and $J_{(23)}$. After diagonalizing such a set we can go no further, as all other matrices in this representation of $SO(4)$ do not commute with one of the diagonalized matrices. So the maximum number of simultaneously diagonalizable matrices is $2$.
+\end{solution}
+
+\question Verify (31).
+
+\begin{solution}
+	We first compute $e^{i\phi J_3}$ and $e^{-i\phi J_3}$, noting that
+	\[
+		J_3^2 = J_{12}^2 = (-i)^2\begin{pmatrix}0 & 1 & 0 & 0 \\ -1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0\end{pmatrix}^2 = \begin{pmatrix}1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0\end{pmatrix} \equiv I_{12}
+	\]
+	and so
+	\begin{align*}
+	e^{i\phi J_3} &= I + i\phi J_3 + \frac{1}{2!}(i\phi J_3)^2 + \frac{1}{3!}(i\phi J_3)^3 + \frac{1}{4!}(i\phi J_3)^4 + \frac{1}{5!}(i\phi J_3)^5 + \cdots \\
+		&= I + i\phi J_3 - \frac{1}{2!}\phi^2I_{12} - \frac{1}{3!}i\phi^3J_3 + \frac{1}{4!}\phi^4I_{12} + \frac{1}{5!}i\phi^5J_3 - \cdots \\
+		&= (I - I_{12}) + \Big(1 - \frac{1}{2!}\phi^2 + \frac{1}{4!}\phi^4 - \cdots\Big)I_{12} + i\Big(\phi - \frac{1}{3!}\phi^3 + \frac{1}{5!}\phi^5 - \cdots\Big)J_3 \\
+		&= (I - I_{12}) + \cos\phi I_{12} + i\sin\phi J_3
+	\end{align*}
+	We can find $e^{-i\phi J_3}$ by exchanging $\phi \to -\phi$,
+	\[
+		e^{-i\phi J_3} = (I - I_{12}) + \cos\phi I_{12} - i\sin\phi J_3.
+	\]
+	In component form, these become
+	\[
+		e^{i\phi J_3} = \begin{pmatrix}
+		\cos\phi & \sin\phi & 0 & 0 \\
+		-\sin\phi & \cos\phi & 0 & 0 \\
+		0 & 0 & 1 & 0 \\
+		0 & 0 & 0 & 1
+		\end{pmatrix} \quad \text{and} \quad e^{-i\phi J_3} = \begin{pmatrix}
+		\cos\phi & -\sin\phi & 0 & 0 \\
+		\sin\phi & \cos\phi & 0 & 0 \\
+		0 & 0 & 1 & 0 \\
+		0 & 0 & 0 & 1
+		\end{pmatrix}
+	\]
+	Altogether, this gives
+	\begin{align*}
+		e^{-i\phi J_3}K_1e^{i\phi J_3} &= \begin{pmatrix}
+		\cos\phi & -\sin\phi & 0 & 0 \\
+		\sin\phi & \cos\phi & 0 & 0 \\
+		0 & 0 & 1 & 0 \\
+		0 & 0 & 0 & 1
+		\end{pmatrix}
+		\begin{pmatrix}
+		0 & 0 & 0 & -i \\
+		0 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 0 \\
+		i & 0 & 0 & 0
+		\end{pmatrix}
+		\begin{pmatrix}
+		\cos\phi & \sin\phi & 0 & 0 \\
+		-\sin\phi & \cos\phi & 0 & 0 \\
+		0 & 0 & 1 & 0 \\
+		0 & 0 & 0 & 1
+		\end{pmatrix} \\
+		&= \begin{pmatrix}
+		\cos\phi & -\sin\phi & 0 & 0 \\
+		\sin\phi & \cos\phi & 0 & 0 \\
+		0 & 0 & 1 & 0 \\
+		0 & 0 & 0 & 1
+		\end{pmatrix}
+		\begin{pmatrix}
+		0 & 0 & 0 & -i \\
+		0 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 0 \\
+		i\cos\phi & i\sin\phi & 0 & 0
+		\end{pmatrix} \\
+		&= \begin{pmatrix}
+		0 & 0 & 0 & -i\cos\phi \\
+		0 & 0 & 0 & -i\sin\phi \\
+		0 & 0 & 0 & 0 \\
+		i\cos\phi & i\sin\phi & 0 & 0 
+		\end{pmatrix} \\
+		&= -i\begin{pmatrix}
+		0 & 0 & 0 & \cos\phi \\
+		0 & 0 & 0 & \sin\phi \\
+		0 & 0 & 0 & 0 \\
+		-\cos\phi & -\sin\phi & 0 & 0 
+		\end{pmatrix} \\
+		&= \cos\phi \times -i\begin{pmatrix}
+		0 & 0 & 0 & 1 \\
+		0 & 0 & 0 & 0 \\
+		0 & 0 & 0 & 0 \\
+		-1 & 0 & 0 & 0 
+		\end{pmatrix} + \sin\phi \times -i\begin{pmatrix}
+			0 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 1 \\
+			0 & 0 & 0 & 0 \\
+			0 & -1 & 0 & 0
+		\end{pmatrix} \\
+		&= \cos\phi K_1 + \sin\phi K_2
+	\end{align*}
+\end{solution}
+
+\end{questions}
+
+\end{document}

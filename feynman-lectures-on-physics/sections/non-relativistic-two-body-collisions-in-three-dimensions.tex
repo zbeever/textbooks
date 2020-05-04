@@ -1,0 +1,379 @@
+\documentclass[../feynman-lectures-on-physics.tex]{subfiles}
+
+\begin{document}
+
+\section{Non-Relativistic Two-Body Collisions in Three Dimensions}
+
+\begin{questions}
+
+\question Analogous to the above discussion, derive the results for a
+  three-dimensional non-relativisti collision ($m_1 + m_2 = m_3 + m_4$) for
+  the case $m_1,m_2\neq{m_3},m_4$, e.g., show that in the collision of two
+  bodies with initial momenta $\mathbf{p}_1$ and $\mathbf{p}_2$, the final
+  momenta are given byalign
+  \begin{align*}
+    \mathbf{p}_3 &= \mathbf{P}_3 + m_3\mathbf{v}_{CM} \\
+    \mathbf{p}_4 &= \mathbf{P}_4 + m_4\mathbf{v}_{CM},
+  \end{align*}
+  where $\mathbf{p}_i = m_i\mathbf{v}_i$ is the momentum of mass $m_i$ in
+  laboratory system, and $\mathbf{P}_i=\mathbf{p}_i-m_i\mathbf{v}_{CM}$ is the
+  momentum of mass $m_i$ in the CM system, and
+  \begin{align*}
+    |\mathbf{P}_1| &= |\mathbf{P_2}| = \sqrt{2m_rT_{CM}}, \\
+    |\mathbf{P}_3| &= |\mathbf{P_4}| = \sqrt{2m'_rT'_{CM}}.
+  \end{align*}
+
+  \begin{solution}
+    From simple geometry (see Figure 8-2), we know that $\mathbf{u}_i =
+    \mathbf{v}_i-\mathbf{v}_{CM}$, or $\mathbf{v}_i =
+    \mathbf{u}_i+\mathbf{v}_{CM}$. Since $\mathbf{p}_i=m_i\mathbf{v}_i$, we find
+    \begin{align*}
+      \mathbf{p}_3 &= \mathbf{P}_3 + m_3\mathbf{v}_{CM},\\
+      \mathbf{p}_4 &= \mathbf{P}_4 + m_4\mathbf{v}_{CM},
+    \end{align*}
+    where $\mathbf{P}_i=m_i\mathbf{u}_i$. To find the magnitude of
+    $\mathbf{P}_i$, we may follow the steps of the preceeding discussion to find
+    \[
+      T_{CM} = \frac{|\mathbf{P}_{1,2}|^2}{2m_r} \qquad T_{CM}' = \frac{|\mathbf{P}_{3,4}|^2}{2m_r'}
+    \]
+    which may be easily inverted to obtain
+    \begin{align*}
+      |\mathbf{P}_1| &= |\mathbf{P_2}| = \sqrt{2m_rT_{CM}}, \\
+      |\mathbf{P}_3| &= |\mathbf{P_4}| = \sqrt{2m'_rT'_{CM}}.
+    \end{align*}
+  \end{solution}
+
+\question A moving particle collides perfectly elastically with an equally
+  massive particle initially at rest. Show that the two particles move at
+  right angles to one another after the collision.
+
+  \begin{solution}
+    When all masses are the same, conservation of momentum reduces to
+    \[
+      \mathbf{v}_1 = \mathbf{v}_2 + \mathbf{v}_3.
+    \]
+    Since energy is proportional to the square of the speed, we are encouraged
+    to take the squared magntiude of this expression,
+    \[
+      |\mathbf{v}_1|^2 = |\mathbf{v}_2|^2 + 2\mathbf{v}_2\cdot\mathbf{v}_3 + |\mathbf{v}_3|^2.
+    \]
+    This is an elastic collision, and so
+    \[
+      \frac{1}{2}m|\mathbf{v}_1|^2 = \frac{1}{2}m|\mathbf{v}_2|^2 + \frac{1}{2}m|\mathbf{v_3}|^2,
+    \]
+    or $|\mathbf{v}_1|^2 = |\mathbf{v}_2|^2 + |\mathbf{v}_3|^2$. Taken together
+    with the second equation, this implies $\mathbf{v}_2\cdot\mathbf{v}_3=0$,
+    which shows that the particles depart at a right angle to each other.
+  \end{solution}
+
+\question A moving particle of mass $M$ collides perfectly elastically with a
+  stationary particle of mass $m<M$. Find the maximum possible angle
+  $\theta_{\text{max}}$ through which the incident particle can be deflected.
+
+  \begin{solution}
+    To the larger particle, assign incoming and outgoing velocities of
+    $\mathbf{v}_0$ and $\mathbf{v}_1$, respectively. The smaller particle is
+    stationary prior to the collision and has a velocity $\mathbf{u}$
+    afterwards.
+
+    By conservation of momentum and energy,
+    \begin{align*}
+      M\mathbf{v}_0 &= M\mathbf{v}_1 + m\mathbf{u} \\
+      \frac{1}{2}M|\mathbf{v}_0|^2 &= \frac{1}{2}M|\mathbf{v}_1|^2 + \frac{1}{2}m|\mathbf{u}|^2.
+    \end{align*}
+    The angle at which the incident particle is deflected is given by the angle
+    between $\mathbf{v}_0$ and $\mathbf{v}_1$, so we will eliminate $\mathbf{u}$
+    from the second equation. This results in
+    \begin{align*}
+      M|\mathbf{v}_0|^2 &= M|\mathbf{v}_1|^2 + m\frac{M^2}{m^2}(\mathbf{v}_0-\mathbf{v}_1)\cdot(\mathbf{v}_0-\mathbf{v}_1) \\
+                        &= M|\mathbf{v}_1|^2 + \frac{M^2}{m}|\mathbf{v}_0|^2 - 2\frac{M^2}{m}\mathbf{v}_0\cdot\mathbf{v}_1 + \frac{M^2}{m}|\mathbf{v}_1|^2 \\
+                        &= M|\mathbf{v}_1|^2 + \frac{M^2}{m}|\mathbf{v}_0|^2 - 2\frac{M^2}{m}|\mathbf{v}_0||\mathbf{v}_1|\cos\theta + \frac{M^2}{m}|\mathbf{v}_1|^2,
+    \end{align*}
+    where $\theta$ is the angle of deflection. Isolating the cosine term yields
+    \[
+      \cos\theta =
+      \frac{1}{2}\Big(\frac{M + m}{M}\Big)\frac{|\mathbf{v}_1|}{|\mathbf{v}_0|} +
+      \frac{1}{2}\Big(\frac{M - m}{M}\Big)\frac{|\mathbf{v}_0|}{|\mathbf{v}_1|}.
+    \]
+    Defining the ratio $r = |\mathbf{v}_1|/|\mathbf{v}_0|$, our angle is given
+    by
+    \[
+      \theta = \cos^{-1}\Big(\frac{1}{2}\Big[\frac{M+m}{M}\Big]r + \frac{1}{2}\Big[\frac{M-m}{M}\Big]\frac{1}{r}\Big).
+    \]
+    We may find the extremal point of this function by setting the derivative
+    with respect to $r$ equal to $0$, which yields
+    \[
+      \frac{\mathrm{d}\theta}{\mathrm{d}r} =
+      -\frac{1}{\sqrt{1-\cos^2\theta}}\Big(\frac{1}{2}\Big[\frac{M+m}{M}\Big] -
+      \frac{1}{2}\Big[\frac{M-m}{M}\Big]\frac{1}{r^2}\Big) = 0.
+    \]
+    This is only zero when the term in parentheses vanishes, and so we
+    must have
+    \[
+      \frac{M+m}{M} = \frac{M-m}{M}\frac{1}{r^2},
+    \]
+    or
+    \[
+      r = \sqrt{\frac{M-m}{M+m}}.
+    \]
+    Substituting this back into the expression for our angle simplifies the
+    expression to
+    \[
+      \theta = \cos^{-1}\Big(\frac{\sqrt{M^2-m^2}}{M}\Big),
+    \]
+    which, by simple geometric considerations, is equivalent to
+    \[
+      \theta = \sin^{-1}\Big(\frac{m}{M}\Big).
+    \]
+  \end{solution}
+
+\question A particle of mass $m_1$ and velocity $\mathbf{v}_1$ collides
+  perfectly elastically with another particle of mass $m_2=3m_1$ which is at
+  rest ($\mathbf{v}_2=0$). After the collision, $m_2$ moves at angle
+  $\theta_2=45^\circ$ with respect to the original direction of $m_1$, as
+  shown in Fig. 8-5. Find $\theta_1$, the final angle of motion of $m_1$,
+  and $v_1'$, $v_2'$, the final velocities.
+
+  \begin{solution}
+    Conservation of energy and momentum give us a total of $3$ equations (split
+    component-wise along the parallel and perpendicular direction to the
+    incident particle's trajectory),
+    \begin{align*}
+      \frac{1}{2}m_1|\mathbf{v}_1|^2 = \frac{1}{2}m_1|\mathbf{v}_1'|^2 + \frac{1}{2}m_2|\mathbf{v}_2'|^2 &= \frac{1}{2}m_1|\mathbf{v}_1'|^2 + \frac{3}{2}m_1|\mathbf{v}_2'|^2, \\
+      m_1|\mathbf{v}_1| = m_1|\mathbf{v}_1'|\cos\theta + m_2|\mathbf{v}_2'|\cos({-45^\circ}) &= m_1|\mathbf{v}_1'|\cos\theta + \frac{3}{\sqrt{2}}m_1|\mathbf{v}_2'|, \\
+      0 = m_1|\mathbf{v}_1'|\sin\theta + m_2|\mathbf{v}_2'|\sin({-45^\circ}) &= m_1|\mathbf{v}_1'|\sin\theta - \frac{3}{\sqrt{2}}m_1|\mathbf{v}_2'|.
+    \end{align*}
+    Using the last equation, we may solve for $|\mathbf{v}_2'|$ in terms of $|mathbf{v}_1'$ and $\theta$,
+    obtaining,
+    \[
+      |\mathbf{v}_2'| = |\mathbf{v}_1'|\frac{\sqrt{2}}{3}\sin\theta,
+    \]
+    which, when substituted into the second equation (and cancelling like terms),
+    yields
+    \[
+      |\mathbf{v}_1| = |\mathbf{v}_1'|(\cos\theta + \sin\theta).
+    \]
+    This and the previous relationship can then be placed into the first equation to find
+    \[
+      |\mathbf{v}_1'|^2(\cos\theta+\sin\theta)^2 = |\mathbf{v}_1'|^2(1 + \frac{2}{3}\sin^2\theta),
+    \]
+    which we may use to solve for $\theta$ as follows:
+    \begin{align*}
+      \cos^2\theta + 2\cos\theta\sin\theta + \sin^2\theta &= 1 + \frac{2}{3}\sin^2\theta \\
+      1 + 2\cos\theta\sin\theta &= 1 + \frac{2}{3}\sin^2\theta \\
+      2\cos\theta\sin\theta &= \frac{2}{3}\sin^2\theta \\
+      \cos\theta &= \frac{1}{3}\sin\theta \\
+      3 &= \tan\theta,
+    \end{align*}
+    or $\theta = \arctan3$. With this we can solve for $|\mathbf{v}_1'|$,
+    \[
+      |\mathbf{v}_1'| = \frac{|\mathbf{v}_1|}{\cos\arctan3+ \sin\arctan3} = \frac{\sqrt{10}}{4}|\mathbf{v}_1|,
+    \]
+    and $|\mathbf{v}_2'|$,
+    \[
+      |\mathbf{v}_2'| =
+      |\mathbf{v}_1'|\frac{\sqrt{10}}{4}\frac{\sqrt{2}}{3}\sin\arctan{3} = \frac{\sqrt{2}}{4}|\mathbf{v}_1|
+    \]
+  \end{solution}
+
+\question Two particles of equal mass $m$ are shot at on eanother from
+  perpendicular directions with equal speeds. After they collide, it is found
+  that one particle was deflected $60^\circ$ from its initial direction,
+  towards the initial direction of the other particle, as shwon in Fig. 8-6.
+  Determine the angle $\alpha$ by which the second particle gets deflected
+  towards the initial direction of the first if the collision is elastic.
+
+  \begin{solution}
+    By conservation of energy and momentum, we have
+    \begin{align*}
+      m\mathbf{v}_1 + m\mathbf{v}_2 &= m\mathbf{u}_1 + m\mathbf{u}_2, \\
+      \frac{1}{2}m|\mathbf{v}_1|^2 + \frac{1}{2}m|\mathbf{v}_2|^2 &= \frac{1}{2}m|\mathbf{u}_1|^2 + \frac{1}{2}m|\mathbf{u}_2|^2.
+    \end{align*}
+    Removing common terms (such as the mass) and recognizing that
+    $|\mathbf{v}_1| = |\mathbf{v}_2|$, these simplify to
+    \begin{align*}
+      \mathbf{v}_1 + \mathbf{v}_2 &= \mathbf{u}_1 + \mathbf{u}_2, \\
+      2|\mathbf{v}_1|^2 &= |\mathbf{u}_1|^2 + |\mathbf{u}_2|^2.
+    \end{align*}
+    Dotting the first equation with itself, we find the relation
+    \[
+      |\mathbf{v}_1|^2 + 2\mathbf{v}_1\cdot\mathbf{v}_2 + |\mathbf{v}_2|^2 = |\mathbf{u}_1|^2 + 2\mathbf{u}_1\cdot\mathbf{u}_2 + |\mathbf{u}_2|^2,
+    \]
+    which, noting that $\mathbf{v}_1$ and $\mathbf{v}_2$ are orthogonal,
+    collapses to
+    \[
+      2|\mathbf{v}_1|^2 = |\mathbf{u}_1|^2 + 2\mathbf{u}_1\cdot\mathbf{u}_2 + |\mathbf{u}_2|^2.
+    \]
+    In order for this to be true and for conservation of energy to hold,
+    $\mathbf{u}_1\cdot\mathbf{u}_2$ must be zero, or the final velocities are at
+    a right angle to one another. In the case, the angle $\alpha = 120^\circ$.
+  \end{solution}
+
+\question Two particles of equal mass are travelling on courses at right
+  angles to each other with speeds of $v_1 = \SI{8}{\meter\per\second}$ and
+  $v_2 = \SI{6}{\meter\per\second}$, respectively. They collide elastically.
+  After the collision, $m_1$ is observed to be traveling in a path that
+  makes an angle $\theta = \arctan(1/2)$ with respect to the direction of
+  its path before the collision, as shown in Fig. 8-7.
+  \begin{parts}
+  \part What is the vector velocity $\mathbf{v}_{CM}$ of the center of
+    mass? Give Cartesian components.
+  \part What are the magnitudes $u_1$, $u_2$ of the final velocities in
+    the CM system?
+  \part What is the final velocity $\mathbf{v}_1'$ of particle $1$ in
+    the lab system?
+  \end{parts}
+
+  \begin{solution}
+    \begin{parts}
+    \part In cartesian coordinates, $\mathbf{v}_1 = 8\hat{\mathbf{i}}$ while
+      $\mathbf{v}_2 = -6\hat{\mathbf{j}}$. The center of mass velocity is
+      simply
+      \[
+        \mathbf{v}_{CM} = \frac{8m\hat{\mathbf{i}} - 6m\hat{\mathbf{j}}}{m + m} =
+        4\hat{\mathbf{i}} - 3\hat{\mathbf{j}}.
+      \]
+    \part In an elastic collision, $|\mathbf{u}_1| = |\mathbf{u}_3|$ and
+      $|\mathbf{u}_2| = |\mathbf{u}_4|$. Since the initial velocities in the
+      CM system are given by
+      \begin{align*}
+        \mathbf{u}_1 &= 8\hat{\mathbf{i}} - (4\hat{\mathbf{i}} - 3\hat{\mathbf{j}}) = 4\hat{\mathbf{i}} + 3\hat{\mathbf{j}}, \\
+        \mathbf{u}_2 &= -6\hat{\mathbf{j}} - (4\hat{\mathbf{i}} - 3\hat{\mathbf{j}}) = -4\hat{\mathbf{i}} - 3\hat{\mathbf{j}}.
+      \end{align*}
+      Both of these have a magnitude of $\SI{5}{\meter\per\second}$, and
+      thus
+      \[
+        u_1 = |\mathbf{u}_3| = u_2 = |\mathbf{u}_4| = \SI{5}{\meter\per\second}.
+      \]
+    \part We know that $\mathbf{v}_1' = \mathbf{u}_3 + \mathbf{v}_{CM}$. We
+      also know the angle $\mathbf{v}_1'$ makes with the coordinate axes,
+      suggesting we dot this equation, in turn, with both unit vectors.
+      Doing so reveals
+      \begin{align*}
+        \mathbf{v}_1'\cdot\hat{\mathbf{i}} = |\mathbf{v}_1'|\cos\arctan\frac{1}{2} = \frac{2}{\sqrt{5}}|\mathbf{v}_1'| &= \mathbf{u}_3\cdot\hat{\mathbf{i}} + \mathbf{v}_{CM}\cdot\hat{\mathbf{i}} \\
+                                                                                                                       &= |\mathbf{u}_1'|\cos\theta + 4 \\
+                                                                                                                       &= 5\cos\theta + 4 \\
+        \mathbf{v}_1'\cdot\hat{\mathbf{j}} = |\mathbf{v}_1'|\cos(-(\frac{\pi}{2}-\arctan\frac{1}{2})) = |\mathbf{v}_1'|\sin\arctan\frac{1}{2} = \frac{1}{\sqrt{5}}|\mathbf{v}_1'| &= \mathbf{u}_1'\cdot\hat{\mathbf{j}} + \mathbf{v}_{CM}\cdot\hat{\mathbf{j}} \\
+                                                                                                                       &= |\mathbf{u}_1'|\cos(-(\frac{\pi}{2} - \theta)) - 3 \\
+                                                                                                                       &= 5\sin\theta - 3,
+      \end{align*}
+      where $\theta$ is the angle $\mathbf{u}_1'$ makes with the $x$-axis.
+      Dividing the second equation by the first gives
+      \[
+        \frac{1}{2} = \frac{5\sin\theta - 3}{5\cos\theta + 4},
+      \]
+      which may be rearranged to obtain
+      \[
+        \cos\theta = 2(\sin\theta - 1).
+      \]
+      This equation is satisfied when $\theta = \pi/2$, in which case we
+      have $\mathbf{u}_1'=5\hat{\mathbf{j}}$. Adding this to the center of
+      mass velocity yields
+      \[
+        \mathbf{v}_1' = 4\hat{\mathbf{i}} + 2\hat{\mathbf{j}}.
+      \]
+    \end{parts}
+  \end{solution}
+
+\question A proton moving along the $x$-axis with a speed of
+  $v_0=\SI{1.00e7}{\meter\per\second}$ collides elastically with a
+  stationary proton. After the collision, one proton moves in the
+  $xy$-plane at an angle of $30^\circ$ with the $x$-axis. Find the
+  velocities $\mathbf{v}_1'$ and $\mathbf{v}_2'$ (speed and direction!) of
+  both protons after the collision.
+
+  \begin{solution}
+    We know, from problem 8.2, that a collision between two particles of equal
+    mass---with one at rest---results in ending velocities orthogonal to each
+    other. Therefore, if $\angle\mathbf{v}_1'=30^\circ$, we must have
+    $\angle\mathbf{v}_2' = -60^\circ$ (the other possible choice would not
+    conserve momentum). Then, from conservation of momentum, we know
+    \begin{align*}
+      v_1 &= \frac{\sqrt{3}}{2}v_1' + \frac{1}{2}v_2' \\
+      0 &= \frac{1}{2}v_1' - \frac{\sqrt{3}}{2}v_2' \\
+      v_1^2 &= v_1'^2 + v_2'^2
+    \end{align*}
+    where the first two equations are the component representations of
+    $\mathbf{v}_1 = \mathbf{v}_1' + \mathbf{v}_2'$. From the above, we
+    immediately see that $v_1'=\sqrt{3}v_2'$, and thus $v_1 = 2v_2'$. So $v_1' =
+    \frac{\sqrt{3}}{2}v_1$, making an angle of $30^\circ$ with the $x$-axis.
+    Meanwhile, $v_2' = \frac{1}{2}v_1$, making an angle of $-60^\circ$ with the $x$-axis.
+  \end{solution}
+
+\question A proton moving along the $x$-axis with a speed of
+  $v_0=\SI{1.00e7}{\meter\per\second}$ collides elastically with a
+  stationary beryllum (Be) nucleus. After the collision the Be nucleus
+  is observed to move in the $xy$-plane at an angle $30^\circ$ with the
+  $x$-axis. Find:
+  \begin{parts}
+  \part The speed $v_2$ of the Be nucleus in the lab system,
+  \part The final velocity $\mathbf{v}_1'$ of the proton in the lab
+    system,
+  \part The final velocity $\mathbf{u}_1'$ of the proton in the CM system.
+  \end{parts}
+  \textit{Note}: Assume the relative masses of the Be nucleus and
+  proton to be $9 : 1$.
+
+\question A circular air puck of mass $\SI{100}{\gram}$ and radius
+  $\SI{2.00}{\centi\meter}$ is initially moving at a speed of
+  $\SI{150}{\centi\meter\per\second}$ on a horizontal table, when it collides
+  elastically with a stationary air puck of mass $\SI{200}{\gram}$ and radius
+  $\SI{3.00}{\centi\meter}$. At the instant of collision, the line joining the
+  centers of the two pucks makes an angle of $60^\circ$ with the original line
+  of motion of the $\SI{100}{\gram}$ puck. If there is no friction, either
+  with the table or between the pucks, find the velocities $\mathbf{v}_1$ and
+  $\mathbf{v}_2$ of each puck after the collision.
+
+\question An object of mass $m_1$, moving with a linear speed $v$ in a
+  laboratory system, collides with an object of mass $m_2$ which is at rest
+  in the laboratory. After the collision it is observed tha ta fraction
+  $|\Delta{T}/T|_{CM} = 1 - \alpha^2$ of the kinetic energy in the CM system
+  was lost in the collision. What was the fraction
+  $|\Delta{T}/T|_{\text{lab}}$ of energy lost in the \textit{laboratory}
+  system?
+
+\question
+  \begin{parts}
+  \part A particle of mass $m$ collides perfectly elastically with a
+    stationary particle of mass $M>m$. THe incident particle is deflected
+    through a $90^\circ$ angle. At what angle $\theta$ with the roiginal
+    direction of $m$ does the more massive particle recoil?
+  \part If in the collision a fraction $(1-\alpha^2)$ of the CM energy
+    is lost, what is the recoil angle of the originally stationary particle?
+  \end{parts}
+
+\question A proton with kinetic energy $1$ MeV collie selastically with a
+  stationary nucleus and is deflected through $90^\circ$. If the proton's
+  energy is now $0.80$ MeV, what was the mass $M$ of the target nucleus in
+  units of the proton mass $m_P$?
+
+\question A puck of mass $\SI{1}{\kilo\gram}$ moving at a speed of
+  $v_1=\SI{6}{\meter\per\second}$ due N collides with a stationary puck
+  of mass $\SI{2}{\kilo\gram}$. After the collision the
+  $\SI{1}{\kilo\gram}$ puck is moving at $45^\circ$ NE of its original
+  direction at a speed of $v_1'=2\sqrt{2}\,\si{\meter\per\second}$.
+  \begin{parts}
+  \part What is the velocity $\mathbf{v}_2'$ of the
+    $\SI{2}{\kilo\gram}$ puck after impact?
+  \part What fraction $\alpha$ of the kinetic energy was lost in the
+    CM system?
+  \part Through what angle $\theta$ was the $\SI{1}{\kilo\gram}$
+    deflected in the CM system?
+  \end{parts}
+
+\question A ``particle'' of mass $m_1=\SI{2}{\kilo\gram}$, which is
+  moving with a velocity $\mathbf{v}_1 = (3\hat{\mathbf{i}} +
+  2\hat{\mathbf{j}} - \hat{\mathbf{k}})\,\si{\meter\per\second}$
+  collides inelastically wiht a second particle of mass
+  $m_2=\SI{3}{\kilo\gram}$, moving with a velocity
+  $\mathbf{v}_2=(-2\hat{\mathbf{i}} + 2\hat{\mathbf{j}} +
+  4\hat{\mathbf{k}})\,\si{\meter\per\second}$.
+  \begin{parts}
+  \part Find the velocity $\mathbf{v}$ of the composite particle.
+  \part Find the total kinetic energy $T_{CM}$ of the above particles
+    in the CM system, \textit{before} impact.
+  \end{parts}
+
+\end{questions}
+
+\end{document}

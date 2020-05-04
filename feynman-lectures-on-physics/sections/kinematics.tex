@@ -1,0 +1,556 @@
+\documentclass[../feynman-lectures-on-physics.tex]{subfiles}
+
+\begin{document}
+
+\section{Kinematics}
+
+\begin{questions}
+	
+	\question \begin{parts}
+		\part A body travels in a straight line with a constant acceleration. At $t = 0$, it is located at $x = x_0$ and has a velocity $v_x = v_{x_0}$. Show that its position and velocity at time $t$ are
+		\begin{align*}
+			x(t) &= x_0 + v_{x0}t + \frac{1}{2}at^2,\\
+			v_{x}(t) &= v_{x0} + at.
+		\end{align*}
+		\part Eliminate $t$ from the preceding equations, and thus show that, at any time, 
+		\[
+		v_x^2 = v_{x0}^2 + 2a(x-x_0)
+		\] 
+	\end{parts}
+
+	\begin{solution}
+		\begin{parts}
+			\part We can integrate acceleration to find the velocity,
+			\[
+				v_x(t) = \int{a\mathrm{d}t} = at + v_{x0}
+			,\] 
+			and integrate this again to find the position
+			\[
+				x(t) = \int{at + v_x(0)}\mathrm{d}t = \frac{1}{2}at^2+v_{x0}t+x_{0}
+			.\]
+			\part From the velocity, we see that time can be rewritten as
+			\[
+				t = \frac{v_x(t) - v_{x0}}{a}
+			.\] 
+			Substituting this into the position yields
+			\begin{align*}
+				x(t) &= \frac{1}{2}a\Big(\frac{v_x(t) - v_{x_0}}{a}\Big)^2 + v_{x0}\Big(\frac{v_x(t) - v_{x0}}{a}\Big) + x_0 \\
+				     &= \frac{1}{2}\frac{v_x(t)^2}{a} - \frac{v_{x0}v_x(t)}{a} + \frac{1}{2}\frac{v_{x0}^2}{a} + \frac{v_{x0}v_x(t)}{a} - \frac{v_{x0}^2}{a} + x_0 \\
+				     &= \frac{1}{2}\frac{v_x(t)^2}{a} - \frac{1}{2}\frac{v_{x0}^2}{a} + x_0
+			.\end{align*}
+			Suppressing the argument of our functions and solving for $v_x$ yields
+			\[
+				v_x^2 = v_{x0}^2 + 2a(x - x_0)
+			.\] 
+		\end{parts}
+	\end{solution}
+
+	\question Generalize the preceding problem to the case of three dimensional motion with constant acceleration components $a_x$, $a_y$, $a_z$, along the three coordinate axis Show that
+	\begin{parts}
+		\part
+		\begin{align*}
+			x(t) &= x_0 + v_{x0}t + \frac{1}{2}a_xt^2 \\
+			y(t) &=  y_0 + v_{y0}t + \frac{1}{2}a_yt^2 \\
+			z(t) &= z_0 + v_{z0}t + \frac{1}{2}a_zt^2 \\
+			v_x(t) &= v_{x0} + a_xt \\
+			v_y(t) &= v_{y0} + a_yt \\
+			v_z(t) &= v_{z0} + a_zt \\
+		.\end{align*}	
+		\part
+		\[
+			v^2 = v_x^2 + v_y^2 + v_z^2 = v_0^2 + 2a[a_x(x - x_0) + a_y(y - y_0) + a_z(z - z_0)],
+		\]
+		where
+		\[
+			v_0^2 = v_{x0}^2 + v_{y0}^2 + v_{z0}^2
+		.\] 
+	\end{parts}
+
+	\begin{solution}
+		\begin{parts}
+			\part As each coordinate axis is orthogonal to the other two, our descriptions of the velocity and position of a particle undergoing uniform acceleration in the $x$ direction hold analogously for the $y$ and $z$ directions.	
+			\part Because of the above, and the fact that $v^2 = v_x^2 + v_y^2 + v_z^2$, we may simply add together the three versions of the derived formula relating the square of the velocity in one direction with the position, acceleration, and initial velocity in that direction,
+			\[
+				v_x^2 + v_y^2 + v_z^2 = v_{x0}^2 + v_{y0}^2 + v_{z0}^2 + 2a[a_x(x - x_0) + a_y(y - y_0) + a_z(z - z_0)]
+			.\] 
+		\end{parts}
+	\end{solution}
+
+	\question An angle may be measured by the length of arc of a circle that the angle subtends, with the vertex of the angle subtends, with the vertex of the angle at the center of the circle. If $s$ is the arc length and $R$ is the radius of the circle, as shown in Fig. 4-1, then the subtended angle $\theta$, in radians, is
+	\[
+	\theta = \frac{s}{R}
+	.\] 
+	\begin{parts}
+		\part Show that, if $\theta \ll 1$ radian, $\sin\theta \approx \theta$, and $\cos\theta \approx 1$.
+		\part With the above result, and the formulas for the sine and cosine of the sum of two angles, find the derivatives of $\sin{x}$ and $\cos{x}$, using the fundamental formula
+		\[
+			\frac{\mathrm{d}y}{\mathrm{d}x} = \lim_{\Delta{x}\to{0}}\frac{y(x + \Delta{x}) - y(x)}{\Delta{x}}
+		.\] 
+	\end{parts}
+
+	\begin{solution}
+		\begin{parts}
+			\part When $\theta$ is small, the arclength spanned can be seen as the side to a right triangle, where both its hypotenuse and adjacent sidelengths are given by $R$. In this case, we see
+			\[
+				\cos\theta \approx \frac{R}{R} = 1, \qquad \sin\theta \approx \frac{s}{R} = \theta\frac{R}{R} = \theta
+			.\] 
+			\part For $\sin{x}$, we have
+			\begin{align*}
+				\lim_{\Delta{x}\to{0}}\frac{\sin(x+\Delta{x}) - \sin{x}}{\Delta{x}} &= \lim_{\Delta{x}\to{0}}\frac{\sin{x}\cos{\Delta{x}} + \cos{x}\sin\Delta{x} - \sin{x}}{\Delta{x}}  \\
+												    &= \lim_{\Delta{x}\to{0}}\frac{\sin{x} + \Delta{x}\cos{x} - \sin{x}}{\Delta{x}}\\
+												    &= \cos{x} \\
+			.\end{align*}
+			While the derivative of $\cos{x}$ is
+			\begin{align*}
+				\lim_{\Delta{x}\to{0}}\frac{\cos(x + \Delta{x}) - \cos{x}}{\Delta{x}} &= \lim_{\Delta{x}\to{0}}\frac{\cos{x}\cos{\Delta{x}} - \sin{x}\sin{\Delta{x}} - \cos{x}}{\Delta{x}} \\
+												      &= \lim_{\Delta{x}\to{0}}\frac{\cos{x} - \sin{x}\Delta{x} - \cos{x}}{\Delta{x}} \\
+												      &= -\sin{x} \\
+			.\end{align*}
+		\end{parts}	
+	\end{solution}
+
+	\question An object is moving counterclockwise in a circle of radius $R$ at constant speed $V$, as shown in Fig. 4-2. The center of the circle is at the origin of rectangular coordinates $(x, y)$, and at time $t=0$ the particle is at $(R,0)$. Show that
+	\begin{parts}
+		\part
+		\begin{align*}
+			x &= R\cos\omega{t}, \\
+			y &= R\sin\omega{t}, \\
+			v_x &= -V\sin\omega{t}, \\
+			v_y &= V\cos\omega{t}, \\
+			a_x &= -\frac{V^2}{R}\cos\omega{t}, \\
+			a_y &= -\frac{V^2}{R}\sin\omega{t}, \\
+			a &= \frac{V^2}{R},
+		\end{align*}
+		\part 
+		\begin{align*}
+			\ddot{x} + \omega^2x &= 0 \\
+			\ddot{y} + \omega^2{y} &= 0
+		.\end{align*}
+	\end{parts}
+
+  \begin{solution}
+    \begin{parts}
+    \part A point traveling around a circle may be decomposed into $x$ and $y$
+      coordinates by means of trigonometry: draw a right triangle from the
+      origin of the circle to the point. The hypotenuse of this triangle is of
+      length $R$, while its vertical side is our point's $y$ coordinates and its
+      horizontal side is our point's $x$ coordinate. These are related to $R$ by
+      \[
+        \frac{x}{R} = \cos\theta\qquad\text{and}\qquad\frac{y}{R} = \sin\theta,
+      \]
+      where $\theta$ is the angle our particle makes with the $x$-axis. If this
+      angle is changing at $\omega$ radians per second, the coordinates of our
+      point are
+
+      \[
+        x = R\cos\omega{t}\qquad y = R\sin\omega{t}.
+      \]
+      
+      Now, recognizing that the arclength is given by $s = r\theta$, we have $V
+      = R\omega$, or $\omega = V/R$. Differentiating our coordinates, then, gives
+      \[
+        v_x = -V\sin\omega{t} \qquad v_y = V\cos\omega{t}
+      \]
+      Performing another round of differentiation yields
+      \[
+        a_x = -\frac{V^2}{R}\cos\omega{t} \qquad a_y = -\frac{V^2}{R}\sin\omega{t}
+      \]
+
+     The total acceleration is given by the hypotenuse of the triangle whose
+     legs are formed by $a_x$ and $a_y$, and so
+    \[
+    a = \sqrt{a_x^2 + a_y^2} = \sqrt{\frac{V^4}{R^2}\cos^2\omega{t} + \frac{V^4}{R^2}\sin^2\omega{t}} =
+    \sqrt{\frac{V^4}{R^2}} = \frac{V^2}{R}
+    \]
+
+    \part For this part, notice that multiplying our $x$ and $y$ coordinates by
+      $\omega^2 = V^2/R^2$ gives
+      \[
+      \omega^2x = \frac{V^2}{R}\cos\omega{t} \qquad \omega^2y = \frac{V^2}{R}\sin\omega{t}
+      \]
+      This is precisely the opposite of our coordinate accelerations, and so we obtain
+      \begin{align*}
+      \ddot{x} + \omega^2x &= 0 \\
+      \ddot{y} + \omega^2y &= 0
+      \end{align*}
+
+    \end{parts}
+  \end{solution}
+
+	\question A Skyhook balloon with a scientific payload rises at a rate of $1000$ feet per minute. At an altitude of $30000$ feet the balloon bursts and the payload free-falls. (Such disasters \textit{do} occur!)
+	\begin{parts}
+		\part For what length of time $t$ was the payload off the ground?
+		\part What was the payload's speed $v$ at impact?
+	\end{parts}
+	Neglect air-drag.
+
+  \begin{solution}
+    \begin{parts}
+      \part Clearly, at $1000$ feet per minute, the balloon ascended for $30$
+        minutes before bursting at $30000$ feet. At that point, its position
+        thereafter is given by
+        \[
+        x(t) = 30000 + \frac{100}{6}t - 16t^2
+        \]
+
+        where $t$ is measured in seconds. We can find the time at which the balloon hits
+        the ground by solving for $t$. This is a standard quadratic equation with a
+        non-negative root of $t = 43.825$ seconds. Adding this to our rise time 
+        gives an air time of $30$ minutes and $43.825$ seconds.
+      \part Differentiating our position coordinate gives
+        \[
+        v(t) = \frac{100}{6} - 32t.
+        \]
+        At $t = 43.825$ seconds, this comes out to be $-1385$ feet per second. The speed
+        at which the balloon hits the ground is the absolute value of this, so $\SI{1385}{feet\per\second}$.
+    \end{parts}
+  \end{solution}
+
+	\question Consider a train that can accelerate with an acceleration of $\SI{20}{\centi\meter\per\second\squared}$ and slow down with a deceleration of $\SI{100}{\centi\meter\per\second\squared}$ Find the minimum time $t$ for the train to travel between two stations $\SI{2}{\kilo\meter}$ apart.
+    
+  \begin{solution}
+    The fastest route between two points will clearly be the one in which the
+    train is always accelerated. We can then setup two conditions---corresponding
+    to the times during which each acceleration is effective---and solve for the
+    total time. The first is that the train must
+    begin and end its journey at rest, i.e.
+      \[
+      v_{\text{end}} = a_1t_1 + a_2t_2 = \SI{0}{\centi\meter\per\second}.
+      \]
+    The second is that the total distance covered must be $\SI{2}{\kilo\meter}$,
+    or, equivalently, $\SI{2e5}{\centi\meter}$. The distance covered by the first
+    part of the trip is given by $\frac{1}{2}a_1t_1^2$, while the distance covered
+    by the latter half is given by $(a_1t_1)t_2 + \frac{1}{2}a_2t_2^2$, and so this
+    condition simplifies to
+    \[
+    s_{\text{end}}=\frac{1}{2}a_1t_1^2 + a_1t_1t_2 + \frac{1}{2}a_2t_2^2 = \SI{2e5}{\centi\meter}
+    \]
+    Solving for $t_1$ in the first equation gives the requirement that $t_1 =
+    -\frac{a_2}{a_1}t_2$. Using this to eliminate $t_1$ from the second equation
+    yields
+    \[
+    \frac{1}{2}a_1\Big(-\frac{a_2}{a_1}t_2\Big) -
+    a_1\frac{a_2}{a_1}t_2^2+\frac{1}{2}a_2t_2^2 =
+    t_2^2\Big(\frac{1}{2}\frac{a_2^2}{a_1} - a_2 + \frac{1}{2}a_2\Big) = \SI{2e5}{\centi\meter}
+    \]
+
+    Isolating $t_2$ and substituting in $a_1 = \SI{20}{\centi\meter\per\second}$ and
+    $a_2 = -\SI{100}{\centi\meter\per\second}$ gives $t_2 \approx
+    \SI{25.82}{\second}$. Combining this with our first requirement, tells us that
+    $t_1 = 5t_2 \approx \SI{129.1}{\second}$. Addding these together gives a total
+    time of approximately $\SI{155}{\second}$.
+  \end{solution}
+
+	\question If you throw a small ball vertically upward in real air with drag, does it take longer to go up or come down?
+    
+  \begin{solution}
+    When throwing the ball up, drag complements the force of gravity in pulling
+    the ball down. Conversely, drag \textit{opposes} the force of gravity when
+    the ball is falling. This opposition guarantees a slower acceleration from
+    rest at the apex of the trajectory, ensuring its fall time is longer than
+    its rise time.
+  \end{solution}
+
+	\question Consider a point on the surface of the earth at the equator:
+	\begin{parts}
+		\part What is its speed $v$ relative to the center of the earth?
+		\part What is its angular frequency $\omega$?
+		\part What is the ratio of its radial acceleration $a$ due to angular motion and its gravitational acceleration $g$?
+	\end{parts}
+  
+  \begin{solution}
+    \begin{parts}
+      \part The period of Earth's rotation is $24$ hours, or $86400$ seconds, giving it
+      an angular velocity of $2\pi/T = \SI{7.27e-5}{\radian\per\second}$. The
+      speed of a point on the equator is given by $v = r\omega$, which, in the
+      case of $r = \SI{6.38e6}{\meter}$, is approximately $\SI{464}{\meter\per\second}$.
+      \part As stated above, the angular frequency of this point is $\SI{7.27e-5}{\radian\per\second}$.
+      \part The radial acceleration of this point is given by $a = v^2/r =
+        \SI{0.0337}{\meter\per\second\squared}$. Dividing this by the accepted gravitationl accleration at the
+        earth's surface, $\SI{9.8}{\meter\per\second\squared}$ gives a value of $0.00344$.
+    \end{parts}
+  \end{solution}
+
+	\question A Corporal rocket fired vertically was observed to have a constant upward acceleration of $2g$ during the burning of the rocket motor, which lasted for $50$ seconds. Neglecting air resistance and variation of $g$ with altitude,
+	\begin{parts}
+		\part Draw a $v$-$t$ diagram for entire flight of rocket.
+		\part Calculate the maximum height attained $H_{\mathrm{max}}$.
+		\part Calculate the total elapsed time $T$ from the firing of the rocket to its return to Earth.
+	\end{parts}
+  
+  \begin{solution}
+    \begin{parts}
+      \part The $v$-$t$ diagram for the flight of the rocket consists of a
+        straight line of slope $2g$ until $t=50$, at which point a line of slope
+        $-g$ continues onward.
+      \part The maximum height attained can be found by writing out the rocket's
+        position function after its upward acceleration has stopped,
+        \[
+        x(t) = \frac{1}{2}(2g)(50)^2 + (2g)(50)t - \frac{1}{2}gt^2.
+        \]
+        We can find the maximum of this function by differentiating with respect to
+        time and setting the result to zero, giving $t = \SI{100}{\second}$. Plugging
+        this back into our position function gives a maximum height of
+        $\SI{73500}{\meter}$, or approximately $46$ miles.
+      \part We can find the total elapsed time by solving for the positive zero
+        of our above position function. This is given by
+        \[
+        t = 100 + 50\sqrt{6},
+        \]
+        or approximately $222.5$ seconds. Adding this to our thrust time of $50$ seconds
+        gives a total air time of $275.5$ seconds.
+    \end{parts}
+  \end{solution}
+
+	\question In a lecture demonstration a small steel ball bounces on a steel plate. On each bounce the downward speed of the ball arriving at the plate is reduced by a factor $e$ in the rebound, i.e. $v_{\mathrm{upward}} = ev_{\mathrm{downward}}$.
+	If the ball was initially dropped from a height of $\SI{50}{\centi\meter}$ above the plate at time $t=0$, and if $30$ seconds later the silencing of a microphone sound indicated all bouncing had ceased, what was the value of $e$?
+
+  \begin{solution}
+   On initially dropping the ball, its velocity starts at $0$ and it is acted
+   upon solely by the gravitational force, allowing us to write its position at
+   $h(t)=\frac{1}{2}gt_1^2$ (where we are counting the downward direction as
+   positive). This can be solved for $t_1$ to find $t_1=\sqrt{\frac{2h}{g}}$.
+
+   Upon rebounding with velocity $ev_1$, the ball's ascension time can be solved for
+   by finding the point at which its velocity attains a minimum, $ev_1 -
+   gt_2=0$, or $t_2 = \frac{ev_1}{g}$. To find $v_1$, we may invoke conservation
+   of energy on the initial drop: $\frac{1}{2}mv_1^2 = mg\Delta{x}$. This gives
+   us an impact velocity of $v_1=\sqrt{2gh}$, which, when substituting in our
+   previous equation, gives us a rise time of the second bound of $t_2 =
+   e\sqrt{\frac{2h}{g}}$. As the trajectory of each bounce is symmetric about
+   its midpoint, $t_2$ is the ball's subsequent fall time as well.
+
+   The total time must add up to $\SI{30}{\second}$, at which point the ball
+   will have undergone and infinite number of ever smaller rebounds.
+   It is easy to see that each rebound decreases the air time by an additional
+   factor of $e$, and so we have
+   \[
+     t_1 + 2t_2 + 2t_3 + \cdots = \sqrt{\frac{2h}{g}} +
+     \sum_{n=1}^{\infty}2e^n\sqrt{\frac{2h}{g}} = \SI{30}{\second}
+   \]
+   The geometric series in the rightmost term can be easily solved to find
+   \[
+     \sqrt{\frac{2h}{g}} + 2\sqrt{\frac{2h}{g}}\frac{1}{1-e} = 30
+   \]
+   Isolating $e$ gives
+   \[
+     e = 1 - \frac{2\sqrt{\frac{2h}{g}}}{30 - \sqrt{\frac{2h}{g}}}
+   \]
+   Plugging in $g = \SI{9.8}{\meter\per\second\squared}$ and $h =
+   \SI{0.5}{\meter}$ gives $e \approx 0.978$.
+  \end{solution}
+
+	\question A projectile is fired over level terrain at an initial speed $v_0$, at an angle $\theta$ with the horizontal. (Neglect air resistance.)
+	\begin{parts}
+		\part Find the maximum height attained $H_{\mathrm{max}}$ and the range $R$.
+		\part At what angle should the above projectile be fired in order to attain the maximum range?
+	\end{parts}
+
+  \begin{solution}
+    \begin{parts}
+      \part In the vertical direction, the projectile's initial velocity is
+        $v_o\sin\theta$ and it experiences a constant deceleration due to
+        gravity. Its position and velocity functions are given by
+        \[
+          y(t) = v_0\sin\theta{t} - \frac{1}{2}gt^2 \qquad v_y(t) =
+          v_0\sin\theta - gt.
+        \]
+        In the horizontal direction, the projectile experiences no force,
+        starting at a velocity of $v_o\cos\theta$. Its relevant functions are
+        \[
+          x(t) = v_0\cos\theta{t} \qquad v_x(t) = v_0\cos\theta.
+        \]
+        The point at which our projectile attains maximum height is the point at
+        which its vertical velocity is zero. This occurs at a time $t =
+        \frac{v_0\sin\theta}{g}$. Plugging this into $y(t)$ gives us our
+        maximum height,
+        \[
+          H_{\text{max}}(\theta) = \frac{1}{2}\frac{v_0^2\sin^2\theta}{g}.
+        \]
+        The range of our projectile can be determined from $x(t)$ by finding the
+        time at which the projectile hits the ground. By symmetry, this occurs
+        at $t = 2\frac{v_0\sin\theta}{g}$, giving it a range of
+        \[
+          R(\theta) = \frac{v_0^2\sin2\theta}{g}.
+        \]
+      \part $R(\theta)$ clearly attains a maximum when the argument of the
+        $\sin$ function is $\pi/2$, so $\theta = \pi/4$.
+    \end{parts}
+  \end{solution}
+
+	\question A champion archer hits a bullseye in a target mounted on a wall a distance $L$ away and situated at a height $h$ above his bow. Deduce the relation between the speed $V$ at which the arrow left his bow, the arrow's initial angle $\theta$ with the horizontal, the height, and the distance to the target, whose solution the archer evidently knew.
+	\textit{Note}: The archer did not neglect air resistance, but you may have to.
+
+  \begin{solution}
+    The arrow's horizontal distance will be given by its horizontal velocity
+    times time, or $L = V\cos\theta{t}$, giving a total flight time of $t = \frac{L}{V}\sec\theta$.
+
+    Meanwhile, the arrow's vertical distance will be given by $h =
+    V\sin\theta{t} - \frac{1}{2}gt^2$. Putting in the value of $t$ we solved for
+    above gives the relation
+    \[
+      L\tan\theta - \frac{1}{2}g\frac{L^2}{V^2}\sec^2\theta = h
+    \]
+  \end{solution}
+
+	\question A boy throws a ball upward at an angle of $70^\circ$ with the horizontal, and it passes neatly through an open window, $32$ feet above his shoulder, moving horizontally.
+	\begin{parts}
+		\part What speed $v$ did the ball have as it left his hand?
+		\part What was the radius of curvature of its path, $R$, as it passed over the windowsill?
+	\end{parts}
+	Can you find the radius of curvature of its path at any given time?
+
+  \begin{solution}
+    \begin{parts}
+      \part We may use our results from Exercise 4.11 to solve for $v$ when the
+        angle is $70^\circ$ and the maximum height is $32$ feet. This gives a
+        speed of
+        \[
+          v = \frac{\sqrt{2gh}}{\sin\theta} = \SI{48.3}{ft\per\second},
+        \]
+        where we have used the value $g = \SI{32.17}{ft\per\second\squared}$.
+      \part The radius of curvature of the ball at a point is the radius of a circle (on
+        the inside of the ball's trajectory) whose tangent and curvature exactly
+        match the ball's trajectory. Put another way, it is the radius of a
+        circle that---if we were to look at the ball for only a split
+        second---we would imagine the ball moving along if it were undergoing
+        circular motion. That is, the radius of curvature is such that it obeys,
+        at a given point
+        \[
+          a_N = \frac{v_T^2}{R},
+        \]
+        where $a_N$ is the acceleration normal to the trajectory and $v_T$ is
+        the tangential velocity of the ball along its path. At the ball's apex,
+        this is quite easy, as $a_N=g$ and $v_T = v_x$, so
+        \[
+         R = \frac{v_x^2}{g} =
+         \frac{(\SI{48.3}{ft\per\second}\cos70^\circ)^2}{\SI{32.17}{ft\per\second\squared}}
+         \approx \SI{8.5}{ft}.
+        \]
+      \end{parts}
+  \end{solution}
+
+	\question A small pebble is lodged in the tread of a tire of radius $R$. If this tire is rolling at speed $V$ without slipping on a horizontal road, and the pebble touches the road at time $t=0$, where coordinates $x$ (horizontal) and $y$ (vertical) are zero, find equations for the $x$ and $y$ components of
+	\begin{parts}
+		\part the position of the pebble,
+		\part its velocity $\mathbf{v}$,
+		\part and its acceleration, $\mathbf{a}$
+	\end{parts}
+	as functions of the time.
+
+  \begin{solution}
+    \begin{parts}
+      \part Consider a point going around a circle of radius $R$ starting at $(1, 0)$.
+      This can be described by the familiar pair of equations
+      \[
+        x(t) = R\cos\theta \qquad y(t) = R\sin\theta.
+      \]
+      To change this to a clockwise rotation, we may simply replace each argument
+      by its negative. We must then rotate the coordinates by $\pi/2$, which can be
+      achieved by subtracting this amount from each argument. Together, these two
+      operations send $\cos(-\theta - \pi/2)$ to $-\sin\theta$ and
+      $\sin(-\theta-\pi/2)$ to $-\cos\theta$.
+
+      We must now offset this system by an amount $R$ in the $y$-direction, and
+      note that it moves with a constant velocity $V$ in the $x$-direction (adding
+      a term $Vt$ to $x(t)$). Finally, using $\theta = \omega{t}$, we find the position functions of
+      \[
+  x(t) = -R\sin\omega{t} + vt \qquad y(t) = R(1 - \cos\omega{t})
+      \]
+      This is the equation of a cycloid.
+      \part The velocity of the pebble is given by the time derivative of its
+        position,
+        \[
+          v_x(t) = -V\cos\omega{t} + V \qquad v_y(t) = V\sin\omega{t}
+        \]
+        where we have used the fact that $wR = V$ in the above.
+      \part The acceleration of the pebble is given by the time derivative of
+        its velocity,
+        \[
+          a_x(t) = \frac{V^2}{R}\sin\omega{t} \qquad a_y(t) = \frac{V^2}{R}\cos\omega{t}.
+        \]
+    \end{parts}
+  \end{solution}
+
+	\question The driver of a car is following a truck when he suddenly notices that a stone is caught between two of the rear tires of the truck. Being a safe driver (and a physicist too), he immediately increases his distance to the truck to $22.5$ meter, so as not to be hit by the stone in case it comes loose. At what speed $v$ was the truck traveling? (Assume the stone does not bounce after hitting the ground.)
+
+    \begin{solution}
+      The key is to realize that the car and truck are traveling at the same
+      speed, and so only the stone's rotational velocity enters into the
+      situation. If the rock is launched at the point
+      guaranteed to maximize its range, it will travel---by Exercise 4.11---a
+      distance $R = v^2/g$, where $v$ is the velocity of the truck. Putting in
+      the driver's change of distance and solving for $v$ gives $v = \SI{14.85}{\meter\per\second}$.
+    \end{solution}
+
+	\question A circus performer was devising a new act. He wanted to combine the Human Cannon Ball with a trapeze stunt. He had a cannon out of which he came with a muzzle velocity $V$. He wanted to get high enough so that he could grab the trapeze ($r = \SI{2}{\meter}$) and then continue on up to the platform located at $h = \SI{20}{\meter}$ above the floor, as shown in Fig. 4-3. (The trapeze should not go slack, i.e., his vertical velocity must be zero at both $r$ and $h$).
+    \begin{parts}
+		\part At what angle $\theta$ must the cannon be set?
+		\part How far down the tent from the platform, $x$, should he put the cannon?
+	\part What value of $V$ must he choose?
+	\end{parts}
+
+  \begin{solution}
+  \begin{parts}
+      \part At the point at which the performer grab's the trapeze, he should have enough horizontal velocity to
+      carry him up the remaining $\SI{2}{\meter}$, i.e.
+      \[
+        \frac{1}{2}mv_x^2 = 2mg,
+      \]
+      or $v_x = V\cos\theta = 2\sqrt{g}$. To ensure he has no vertical velocity at
+      this point, $\SI{18}{\meter}$ must be the maximum height he achieves from
+      launching out of the cannon. Using the results of Exercise 4.11, this fixes
+      the relationship
+      \[
+        18 = \frac{1}{2}\frac{V^2\sin^2\theta}{g}.
+      \]
+      Substituting $2\sqrt{g}/\cos\theta$ for $V$ in the second equation allows us
+      to solve for $\theta$, giving a value of $\theta=\arctan(3)$.
+      \part The performer's maximum height from the cannon launch occurs at half the
+      range (if he were not to be stopped in the horizontal direction), so
+      \[
+        x = \frac{V^2\sin2\theta}{2g} = \frac{V^2\sin\theta\cos\theta}{g} =
+        \frac{4g}{\cos^2\theta}\frac{\sin\theta\cos\theta}{g} = 4\tan\theta = 12
+      \]
+      where we have substitued in $2\sqrt{g}/\cos\theta$ for $V$ and used
+      $\tan\arctan{3} = 3$.
+      \part The velocity of the cannon is given by $V = 2\sqrt{g}/\cos\theta = \SI{19.8}{\meter\per\second}$.
+  \end{parts}
+  \end{solution}
+
+	\question A mortar emplacement is set $\SI{27000}{ft}$ horizontally from the edge of a cliff that drops $\SI{350}{ft}$ down from the level of the mortar, as shown in Fig. 4-4 It is desired to shell objects concealed on the ground behind the cliff. What is the smallest horizontal distance $d$ from the cliff face that shells can reach if fired at a muzzle speed of $\SI{1000}{ft\per\second}$?
+    
+    \begin{solution}
+      The range of our mortar \textit{on level ground} is given by
+      \[
+        R = 27000 = \frac{v^2\sin2\theta}{g} = \frac{10^6\sin2\theta}{g}.
+      \]
+      Solving for the angle of launch gives us $\theta \approx 30.15^\circ$, but
+      this is \textit{not} the optimal angle to achieve a minimum shelling
+      distance. The range as a function of $\theta$ is symmetric about
+      $45^\circ$---and a larger angle will give us a steeper drop after the
+      cliff's edge. Therefore, $\theta \approx 59.85^\circ$,
+      which can be used to find the horizontal position as a function of time,
+      $x(t) \approx 502.26t$. The smallest distance the mortar can shell
+      from the cliff face is given by the this equation when $t$ represents the
+      change in time from the projectile's passing the cliff edge to hitting the
+      ground. That is, the sought after $t$ satisifes
+      \[
+        -v\sin\theta{t} - \frac{1}{2}gt^2 = -350,
+      \]
+      where the first term is negative because, at the point at which the
+      projectile passes the cliff's edge, its vertical velocity is the negative
+      of its starting vertical velocity. Solving for $t$ gives approximately
+      $0.4$ seconds, yielding a minimum horizontal shelling distance of $201$ feet.
+    \end{solution}
+
+	\question A Caltech freshman, inexperienced with suburban traffic officers, has just received a ticket for speeding. Thereafter, when he comes upon one of the ``Speedometer Test'' sections on a level stretch of highway, he decides to check his speedometer reading. As he passes the ``0'' start of the marked section, he presses on his accelerator and for the entire period of the test he holds his car at constant acceleration He notices that he passes the $010$ mile post $\SI{16}{s}$ after starting the test, and $\SI{8.0}{s}$ later he passes the $0.20$ mile post.
+	\begin{parts}
+		\part What speed $v$ should his speedometer have read at the $0.20$ mile post?
+		\part What was his acceleration $a$?
+	\end{parts}
+
+	\question On the long horizontal test track at Edwards AFB, both rocket and jet motors can be tested. On a certain day, a rocket motor, started from rest, accelerated constantly until its fuel was exhausted, after which it ran at constant speed. It was observed that this exhaustion of rocket fuel took place as the rocket passed the midpoint of the measured test distance Then a jet motor was started from rest down the track, with a constant acceleration for the entire distance It was observed that both rocket and jet motors covered the test distance in exactly the same time. What was the ratio of the acceleration $a_J$ of the jet motor to that of the rocket motor, $a_R$?
+\end{questions}
+
+\end{document}

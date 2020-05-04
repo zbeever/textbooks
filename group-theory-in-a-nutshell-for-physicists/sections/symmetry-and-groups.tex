@@ -1,0 +1,106 @@
+\documentclass[../group-theory-in-a-nutshell-for-physicists.tex]{subfiles}
+
+\begin{document}
+\printanswers
+
+\section{Symmetry and Groups}
+
+\begin{questions}
+
+\question The center of a group $G$ (denoted by $Z$) is defined to be the set
+of elements $\{ z_{1},z_{2},\cdots\}$ that commute with all elements
+of $G$, that is $z_{i}g = gz_{i}$ for all $g$. Show that $Z$ is
+an abelian subgroup of $G$.
+
+\begin{solution}
+We must show that $Z$ contains the identity, is closed under
+multiplication, and contains the inverses of all its elements.
+
+Because the left inverse and right inverse are the same, we have
+$Ig = gI$, and so, by the definition of $Z$, $I \in Z$.
+
+Assume that a product of two elements in $Z$ produces an element not
+in $Z$. That is,
+
+\[
+	z_{i}z_{j} = g_{l} \notin Z.
+\]
+
+This would imply $g_{l}g_{k} \neq g_{k}g_{l}$, or
+$z_{i}z_{j}g_k \neq g_kz_{i}z_{j}$. But, by definition of the elements of
+$Z$, $z_{i}z_{j}g_{k} = z_{i}g_kz_{j} = g_kz_{i}z_{j}$, which
+contradicts the previous result. We see $Z$ is closed.
+
+Now, assume there exists an out-of-set inverse $z_{i}^{- 1}$ of an
+element $z_{i}$. Then $z_{i}^{- 1}g_{j} \neq g_{j}z_{i}^{- 1}$.
+Right multiplying by $z_{i}$ gives us
+\[
+z_{i}^{- 1}g_{j}z_{i} \neq g_{j}z_{i}^{- 1}z_{i} = g_{j}I = g_{j},
+\]
+
+or $z_{i}^{- 1}g_{j}z_{i} \neq g_{j}$. But, by virtue of the nature of
+$Z$,
+\[
+z_{i}^{- 1}g_{j}z_{i} = z_{i}^{- 1}z_{i}g_{j} = Ig_{j} = g_{j},
+\]
+and so our above result becomes $g_{j} \neq g_{j}$. By contradiction, $Z$ must be
+abelian subgroup of $G$.
+\end{solution}
+
+\question Let $f(g)$ be a function of the elements in a finite group $G$, and
+consider the sum $\sum_{g \in G}f(g)$. Prove the identity
+$\sum_{g \in G}f(g) = \sum_{g \in G}f(gg^{\prime}) = \sum_{g \in G}f(g^{\prime}g)$
+for $g^{\prime}$ an arbitrary element of $G$. We will need this
+identity again and again in chapters II.1 and II.2.
+
+\begin{solution}
+This identity holds if both $gg^{\prime}$ and $g^{\prime}g$ cycle
+through all elements of $G$ as $g$ goes through all available
+values. Imagine creating a multiplication table for our group. Cycling
+through $g$, we see the products $gg^{\prime}$ and $g^{\prime}g$
+move one-by-one through a row or column. As each row and column contains
+every element of $G$, the products $gg^{\prime}$ and $g^{\prime}g$
+touch upon every element in the group. That
+\[
+\sum_{g \in G}f(g) = \sum_{g \in G}f(gg^{\prime}) = \sum_{g \in G}f(g^{\prime}g)
+\]
+follows.
+\end{solution}
+
+\question Show that \(Z_{2} \otimes Z_{4} \neq Z_{8}\).
+
+\begin{solution}
+From the discussion preceding this problem set, we know that the
+possibility of $Z_{2} \otimes Z_{4}$ being isomorphic to $Z_{8}$
+would require $2$ and $4$ to be coprime (which they clearly aren't).
+Geometrically, we can think of \(Z_{8}\) of lying on a circle, while
+\(Z_{2} \otimes Z_{4}\) lies on a torus. These shapes are not
+homeomorphic, and so it is not a surprise that our groups aren't
+isomorphic.
+
+To give an explicit example of their difference, consider the elements
+that square to the identity. In $Z_{8}$, we have $( - 1)^{2} = 1$
+and $(1)^{2} = 1$, whereas $Z_{2} \otimes Z_{4}$ gives us
+\[
+(1,1)^{2} = (1,{- 1}^{})^{2} = ({- 1}^{},1)^{2} = ({- 1}^{},{- 1}^{})^{2}.
+\]
+\end{solution}
+
+\question Find all groups of order $6$.
+
+\begin{solution}
+By Lagrange's theorem, all subgroups of a group of order \(6\) must be
+$Z_{2}$, $Z_{3}$, or $Z_{6}$. Clearly, if we take $Z_{6}$ to be
+a subgroup, then that subgroup \emph{is} the group. What if we take
+$Z_{2}$ to be a subgroup? Forming the direct product of this with
+$Z_{3}$ is the only possible construction that gives us $6$
+elements: $Z_{3} \otimes Z_{3}$ is of order $9$ and
+$Z_{2} \otimes Z_{2} \otimes Z_{2}$ is of order $8$.
+
+To restate our findings more concisely: there are two groups of order
+$6$, $Z_{6}$ and $Z_{2} \otimes Z_{3}$.
+\end{solution}
+
+\end{questions}
+
+\end{document}

@@ -1,0 +1,33 @@
+\documentclass[../the-road-to-reality.tex]{subfiles}
+
+\begin{document}
+
+\section{Kinds of number in the physical world}
+
+\begin{questions}
+	
+\question Experiment with your pocket calculator (assuming you have '$\sqrt{}$' and '$ x^{-1} $' keys) to obtain these expansions to the accuracy available. Take $\pi = 3.141592653589793 \dots$ (\textit{Hint}: Keep taking note of the integer part of each number, subtracting it off, and then forming the reciprocal of the remainder.)
+
+\begin{solution}
+	Continued fractions can be written through the use of a simple recursive formula: subtract off the integer part of the number, take the reciprocal of the remainder, repeat. The numbers 'taken off' are the number in the continued fraction representation. In the case of $\pi$, these are $3$, $(0.14159265)^{-1} = 7.06251348 \to 7$, $(0.06251348)^{-1} = 15.9965499 \to 15$, etc.
+\end{solution}
+
+\question Assuming this eventual periodicity of these two continued-fraction expressions, show that the numbers they represent must e the quantities on the left. (\textit{Hint}: Find a quadratic equation that must be satisfied by this quantity, and refer to Note 3.6.)
+
+\begin{solution}
+	For any periodic continued fraction, we may represent it in terms of itself. Consider $$1 + \frac{1}{2 + \frac{1}{2 + \frac{1}{2 + \cdots}}}.$$Labeling this $x$, we may rewrite it as $$x = 1 + \frac{1}{2 + (x - 1)} = 1 + \frac{1}{1 + x}.$$This can be rearranged to $x + x^2 = 1 + x + 1$, or $x^2 = 2$. This has the solutions $x = \pm\sqrt{2}$. As our continued fraction is manifestly positive, we take the solution to be positive.
+
+	$7 - \sqrt{3}$ is more challenging to confirm. Focusing on the periodic portion of the continued fraction, which we label $x$, we see $$x = \frac{1}{1 + \frac{1}{2 + x}},$$or $x^2 + 2x - 2 = 0$, which has the solutions $x = -1 \pm \sqrt{3}$. Again, we take the positive quantity to be the answer. When placed into the entire continued fraction, which we call $y$, this yields $$y = 5 + \frac{1}{2 + \sqrt{3}},$$or $(2 + \sqrt{3})y - (11 + 5\sqrt{3}) = 0$. Solving for $y$ gives us $$y = \frac{11+5\sqrt{3}}{2 + \sqrt{3}} = (11 + 5\sqrt{3})(2 - \sqrt{3}) = 22 - 11\sqrt{3} + 10\sqrt{3} - 15 = 7 - \sqrt{3},$$ confirming the expression.
+\end{solution}
+
+\question Can you see why this works?
+
+\begin{solution}
+	In more compact notation, the claim given is that $(Ma > Nb) \wedge (Nd > Mc) \implies \frac{a}{b} > \frac{c}{d}$. We can put the conditions into fractional terms, with $Ma > Nb \to \frac{a}{b} > \frac{N}{M}$ and $Nd > Mc \to \frac{c}{d} < \frac{N}{M}$. By transitivity, these can be combined to become $\frac{a}{b} > \frac{c}{d}$. This can always be done because the rational numbers are dense, i.e. we can always find an $M$ and an $N$ such that the inequality signs we use are strict.
+\end{solution}
+
+\question Can you see how to formulate these?
+
+\end{questions}
+
+\end{document}

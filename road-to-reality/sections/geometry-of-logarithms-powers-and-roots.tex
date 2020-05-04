@@ -1,0 +1,142 @@
+\documentclass[../the-road-to-reality.tex]{subfiles}
+
+\begin{document}
+	
+\section{Geometry of logarithms, powers, and roots}
+
+\begin{questions}
+
+\question Examine the various possibilities.
+
+\begin{solution}
+	In the case of addition, $w = 0$ or $w = cz$ creates a degenerate parallelogram. In the case of multiplication, $z = 0$ causes the original triangle to be dissimilar from the new one.
+\end{solution}
+
+\question Do this.
+
+\begin{solution}
+	If we consider $w$ and $z$ as vectors within $\mathbb{R}^2$ (which we may do given the isomorphic nature of $\mathbb{C}$ with $\mathbb{R}^2$), we may check the parallelogram rule by noting that $\vec{w} + \vec{z} - \vec{z} = \vec{w} - \vec{0}$, and hence the top and bottom are parallel and have the same length. Similarly, $\vec{w + z} - \vec{w} = \vec{z} - \vec{0}$, and so the sides are parallel and have the same length; $\vec{0}$, $\vec{w}$, $\vec{z}$, and $\vec{w + z}$ form a parallelogram.
+
+	To show that the triangles in Fig. 5.1b are similar, we need only show that both triangles have the same ratios between all their sides. An important fact used in doing so is that $|wz| = |w||z|$. We have
+	
+	\begin{gather*}
+		\frac{|wz|}{|z|}=\frac{|w||z|}{|z|}=|w| \\
+		\frac{|wz - z|}{|z|}=\frac{|z(w-1)|}{|z|}=\frac{|z||w-1|}{|z|}=|w-1| \\
+		\frac{|wz-z|}{|wz|} = \frac{|z(w-1)|}{|w||z|} = \frac{|z||w-1|}{|w||z|}=\frac{|w-1|}{|w|}
+	\end{gather*}
+	
+	which shows that both triangles are similar.
+\end{solution}
+
+\question Try to show this without detailed calculation, and without trigonometry. (\textit{Hint}: This is a consequence of the 'distributive law' $w(z_1 + z_2) = wz_1 + wz_2$, which shows that the 'linear' structure of the complex plane is preserved, and $w(iz) = i(wz)$, which shows that rotation through a right angle is preserved; i.e. right angles are preserved.)
+
+\begin{solution}
+	Consider multiplication of $w$ by $z = a + ib$, $wz = w(a + ib)$. By the distributive and commutative laws, this becomes $wz = wa + i(wb)$. That is, $w$ is stretched by a factor $a$ and added to a rotation of itself, having been stretched by a factor $b$; complex multiplication consists of dilations and rotations. That the origin remains fixed is clear from the fact that $0z = 0a + i(0b) = 0$.
+\end{solution}
+
+\question Spell this out.
+
+\begin{solution}
+	When multiplying two complex numbers $a$ and $b$, the resulting complex number $c$ has a radial length that is the product of the radial lengths of $a$ and $b$. Furthermore, the angle that $c$ makes with respect to the real line is the sum of the angles that $a$ and $b$ make with respect to that same line.
+\end{solution}
+
+\question Check this directly from the series. (\textit{Hint}: The 'binomial theorem' for integer exponents asserts that the coefficient of $a^pb^q$ in $(a + b)^n$ is $n!/p!q!$.)
+
+\begin{solution}
+	By multiplying out the first few terms of each power series and collecting like-powers, we find
+
+	\begin{align*}
+		e^ae^b &= \Big(\sum_{n=0}^{\infty}\frac{a^n}{n!}\Big)\Big(\sum_{m=0}^{\infty}\frac{b^m}{m!}\Big) \\
+		&= \Big(1 + a + \frac{a^2}{2} + \frac{a^3}{6} + \cdots\Big)\Big(1 + b + \frac{b^2}{2} + \frac{b^3}{6} + \cdots\big) \\
+		&= 1 + (a + b) + \frac{1}{2}(a^2 + 2ab + b^2) + \frac{1}{6}(a^3 + 3a^2b + 3ab^2 + b^3) + \cdots \\
+		&= \sum_{l=0}^{\infty}\frac{(a + b)^l}{l!} 
+	\end{align*}
+
+	where the last line results from the parenthesized expressions in the previous line being the expansions of $(a + b)^l$ for various values of $l$.
+\end{solution}
+
+\question Show from this that $z + \pi{i}$ is a logarithm of $-w$.
+
+\begin{solution}
+	Identifying $e^{\pi{i}} = {-1}$, we may multiply both sides of $e^z=w$ to find $e^{z + {\pi}i}={-w}$, showing that $z + {\pi}i$ is a logarithm of $-w$.
+\end{solution}
+
+\question Check this.
+
+\begin{solution}
+	Expanding the given expression gives$$\cos(a + b) + i\sin(a + b) = (\cos{a} + i\sin{a})(\cos{b}+i\sin{b}) = \cos{a}\cos{b} - \sin{a}\sin{b} + i(\sin{a}\cos{b} + \cos{a}\sin{b})$$Equating real and imaginary parts gives
+
+	\begin{align*}
+		\cos(a + b) &= \cos{a}\cos{b} - \sin{a}\sin{b} \\
+		\sin(a + b) &= \sin{a}\cos{b} + \cos{a}\sin{b}
+	\end{align*}
+\end{solution}
+
+\question Do it.
+
+\begin{solution}
+	Cubing $e^{i\theta}$ gives
+
+	\begin{align*}
+		(\cos\theta+i\sin\theta)^3 &= (\cos^2\theta+2i\cos\theta\sin\theta-\sin^2\theta)(\cos\theta+i\sin\theta) \\
+		&= \cos^3\theta+3i\sin\theta\cos^2\theta-3\cos\theta\sin^2\theta-i\sin^3\theta
+	\end{align*}
+
+	Once again equating real and imaginary parts, we find
+
+	\begin{align*}
+		\cos3\theta &= \cos^3\theta - 3\cos\theta\sin^2\theta \\
+		\sin3\theta &= 3\sin\theta\cos^2\theta-\sin^3\theta
+	\end{align*}
+\end{solution}
+
+\question Show this. How many ways? Also find all special cases.
+
+\question Resolve this 'paradox': $e = e^{1 + 2\pi{i}}$, so $e=(e^{1 + 2\pi{i}})^{1 + 2\pi{i}}=e^{1 + 4\pi{i}-4\pi^2}=e^{1-4\pi^2}$.
+
+\question Show this.
+
+\begin{solution}
+	Consider adding $2\pi{i}/\log{b}$ to $\log_bw$, then raising $b$ to the result. Using the change of base formula $\log_be = \log{e}/\log{b} = 1/\log{b}$, the result becomes
+	
+	\[
+	b^{\log_bw+2\pi{i}\log_be}=b^{\log_bw}(b^{\log_be})^{2\pi{i}}=we^{2\pi{i}}=w
+	.\]
+	
+	Since this returns $w$ when used to exponentiate $b$, it is a valid associated logarithm.
+\end{solution}
+
+\question Why is this an allowable specification?
+
+\begin{solution}
+	We can take $\log{i} = \frac{1}{2}\pi{i}$ for the simple reason that $e^{\frac{1}{2}\pi{i}} = i$.
+\end{solution}
+
+\question Show why this works.
+
+\begin{solution}
+	I believe Penrose meant that these other answers are arrived at by multiplying $e^{\frac{1}{2}\pi{i}}$ by $e^{2\pi{n}}$. This leaves the left hand side, given by $i$, untouched (as $e^{2\pi{n}} = 1$ for integer values of $n$). Raising this to a power of the form $4n + 1$ leaves it untouched for the reason that $i^{4n + 1} = i^{4n}i = 1^ni = i$.
+\end{solution}
+
+\question Spell this out.
+
+\begin{solution}
+	The solutions to $z^n = w$ are given by $w^{1/n}$. Because $n$ takes different depending on our chosen logarithm (i.e. $n = \log_zw$), cycling through these values gives us all possible answers.
+\end{solution}
+
+\question Show this.
+
+\begin{solution}
+	Taking the logarithm of both sides of the equation gives
+
+	\begin{align*}
+		\log(w^a)^b &= \log{w^{ab}} \\
+		b\log{w^a} &= ab\log{w}
+	\end{align*}
+
+	Being as we have fixed $\log{w}$, $\log{w^a}$ must equal $a\log{w}$ for the equation to hold.
+\end{solution}
+
+\end{questions}
+
+\end{document}

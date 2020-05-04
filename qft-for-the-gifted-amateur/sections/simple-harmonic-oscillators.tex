@@ -1,0 +1,190 @@
+\documentclass[../qft-for-the-gifted-amateur.tex]{subfiles}
+
+\begin{document}
+
+\section{Simple Harmonic Oscillators}
+
+\begin{questions}
+	\printanswers
+
+	\question For the one-dimensional harmonic oscillator, show that with creation and annihilation operators defined as in eqns 2.9 and 2.10, $[\hat{a},\hat{a}] = 0$, $[\hat{a}^\dagger, \hat{a}^\dagger] = 0$, $[\hat{a},\hat{a}^\dagger]=1$, and $\hat{H}=\hbar\omega(\hat{a}^\dagger\hat{a} + \frac{1}{2})$.
+	
+	\begin{solution}
+		Both $[\hat{a},\hat{a}]=0$ and $[\hat{a}^\dagger, \hat{a}^\dagger]=0$
+		follow from the fact that any operator commutes with itself. For
+		$[\hat{a}, \hat{a}^\dagger]$, we have
+		\begin{align*}
+		[\hat{a}, \hat{a}^\dagger] &= \frac{m\omega}{2\hbar}\Big[\hat{x} + \frac{i}{m\omega}\hat{p}, \hat{x} - \frac{i}{m\omega}\hat{p}\Big] \\
+		&= \frac{m\omega}{2\hbar}\Big({- \frac{2i}{m\omega}}\Big)[\hat{x},\hat{p}] \\
+		&= \frac{m\omega}{2\hbar}(\frac{2\hbar}{m\omega}) \\
+		&= 1
+		\end{align*}
+		To answer the last part of this question, we can solve for
+		$\hat{x}$ and $\hat{p}$ in terms of $\hat{a}$ and
+		${\hat{a}}^{\dagger}$, then substitute these into our Hamiltonian.
+		We have
+		\[
+			\hat{x} = \sqrt{\frac{\hbar}{2m\omega}}(\hat{a} + {\hat{a}}^{\dagger}) \qquad \hat{p} = -i\sqrt{\frac{\hbar m\omega}{2}}(\hat{a} - {\hat{a}}^{\dagger})
+		\]
+		so our Hamiltonian becomes
+		\begin{align*}
+		\hat{H} &= \frac{{\hat{p}}^{2}}{2m} + \frac{1}{2}m\omega^{2}{\hat{x}}^{2} \\
+		&= - \Big(\frac{\hbar\omega}{4}\Big)(\hat{a} - {\hat{a}}^{\dagger})^{2} + \Big(\frac{\hbar\omega}{4}\Big)(\hat{a} + {\hat{a}}^{\dagger})^{2} \\
+		&= \Big(\frac{\hbar\omega}{2}\Big)(\hat{a}{\hat{a}}^{\dagger} + {\hat{a}}^{\dagger}\hat{a}) \\
+		&= \hbar\omega\Big({\hat{a}}^{\dagger}\hat{a} + \frac{1}{2}\Big)
+		\end{align*}
+		
+		In the last step we made use of
+		$[\hat{a},{\hat{a}}^{\dagger}] = 1$, and so
+		$\hat{a}{\hat{a}}^{\dagger} = 1 + {\hat{a}}^{\dagger}\hat{a}$.
+	\end{solution}
+	
+	\question For the Hamiltonian
+	\[
+		\hat{H}=\frac{\hat{p}^2}{2m}+\frac{1}{2}m\omega^2\hat{x}^2 + \lambda\hat{x}^4,
+	\]
+	where $\lambda$ is small, show by writing the Hamiltonian in terms of creation and annihilation operators and using perturbation theory, that the energy eigenvalues of all the levels are given by 
+	\[
+		E_n = \Big(n+\frac{1}{2}\Big)\hbar\omega + \frac{3\lambda}{4}\Big(\frac{\hbar}{m\omega}\Big)^2(2n^2+2n+1).
+	\]
+	
+	\begin{solution}
+		Let's consider our base Hamiltonian to be the one coinciding with our
+		simple harmonic oscillator,
+		\[{\hat{H}}_{0} = \frac{{\hat{p}}^{2}}{2m} + \frac{1}{2}m\omega^{2}{\hat{x}}^{2} = \hbar\omega(\hat{n} + \frac{1}{2}).
+		\]
+		Our perturbation, then, is
+		$\hat{H_{1}} = {\hat{x}}^{4} = (\frac{\hbar}{2m\omega})^{2}(\hat{a} + {\hat{a}}^{\dagger})^{4}$.
+		We can express our total Hamiltonian as $\hat{H} = {\hat{H}}_{0} + \lambda{\hat{H}}_{1}$.
+		
+		If $\lambda$ is sufficiently small, our perturbed Hamiltonian's energy
+		eigenstate should be expressible as a Taylor series in $\lambda$
+		centered around our initial one. This includes both the eigenvalue
+		\emph{and} the eigenvector, as, being Hermitian, a different eigenvalue
+		of our Hamiltonian necessitates a different eigenvector. Putting this
+		all together gives
+		\[
+		({\hat{H}}_{0} + \lambda{\hat{H}}_{1})(|n^{0}\rangle + \lambda|n^{1}\rangle + \cdots) = (E_{0} + \lambda E_{1} + \cdots)(|n^{0}\rangle + \lambda|n^{1}\rangle + \cdots).
+		\]
+		Multiplying out and collecting factors of $\lambda$ yields
+		\[
+		{\hat{H}}_{0}|n^{0}\rangle + \lambda({\hat{H}}_{0}|n^{1}\rangle + \hat{H_{1}}|n^{0}\rangle) + \mathcal{O}(\lambda^{2}) = E_{0}|n^{0}\rangle + \lambda(E_{0}|n^{1}\rangle + E_{1}|n^{0}\rangle) + \mathcal{O}(\lambda^{2}).
+		\]
+		If $\lambda = 0$, we are left with our unperturbed Hamiltonian, and so
+		$E_{0} = \hbar\omega(n + \frac{1}{2})$. To find $E_{1}$, we can
+		focus on the first order part of our equation, as the coefficients of
+		each power of $\lambda$ on either side must be equal. That is,
+		\[
+		{\hat{H}}_{0}|n^{1}\rangle + \hat{H_{1}}|n^{0}\rangle = E_{0}|n^{1}\rangle + E_{1}|n^{0}\rangle.
+		\]
+		Now, we may assume that our initial eigenvector is normalized,
+		$\langle n^{1}|n^{1}\rangle = 1$. Imposing a normalization constraint
+		on our first order approximation gives
+		\[
+		(\langle n^{0}| + \lambda\langle n^{1}|)(|n^{0}\rangle + \lambda|n^{1}\rangle) = 1 + \lambda(\langle n^{0}|n^{1}\rangle + \langle n^{1}|n^{0}\rangle) + \mathcal{O}(\lambda^{2}) = 1.
+		\]
+		In other words,
+		$\langle n^{0}|n^{1}\rangle = -\langle n^{1}|n^{0}\rangle = 0$. So we
+		may operate on the left by $\langle n^{0}|$ to isolate our desired
+		term.
+		\[
+		\langle n^{0}|{\hat{H}}_{1}|n^{0}\rangle = E_{1}.
+		\]
+		It's easiest to carry out this computation by expanding the right-most
+		term of ${\hat{H}}_{1}$ as
+		$(\hat{a}\hat{a} + \hat{a}{\hat{a}}^{\dagger} + {\hat{a}}^{\dagger}\hat{a} + {\hat{a}}^{\dagger}{\hat{a}}^{\dagger})^{2}$. Let's compute
+		$(\hat{a}\hat{a} + \hat{a}{\hat{a}}^{\dagger} + {\hat{a}}^{\dagger}\hat{a} + {\hat{a}}^{\dagger}{\hat{a}}^{\dagger})|n^{0}\rangle$.
+		\[
+		(\hat{a}\hat{a} + \hat{a}{\hat{a}}^{\dagger} + {\hat{a}}^{\dagger}\hat{a} + {\hat{a}}^{\dagger}{\hat{a}}^{\dagger})|n^{0}\rangle = (\sqrt{n(n - 1)}|n^{0} - 2\rangle + (2n + 1)|n^{0}\rangle + \sqrt{(n + 1)(n + 2)}|n^{0} + 2\rangle
+		\]
+		We may operate on this again with $(\hat{a}\hat{a} + \hat{a}{\hat{a}}^{\dagger} + {\hat{a}}^{\dagger}\hat{a} + {\hat{a}}^{\dagger}{\hat{a}}^{\dagger})$, but first notice that any term of the form $|n^{0} + k\rangle$ for nonzero $k \in \mathbb{Z}$ will be annihilated upon operating on the left with $\langle n^{0}|$, as all eigenvectors of the Hamiltonian are orthogonal. So the only contributing factors will be the first term, raised by ${\hat{a}}^{\dagger}{\hat{a}}^{\dagger}$, the second term, operated on by $\hat{a}{\hat{a}}^{\dagger} + {\hat{a}}^{\dagger}\hat{a}$, and the third term, lowered by $\hat{a}\hat{a}$. Carrying this all out yields
+		\[
+		(n(n - 1) + (2n + 1)^{2} + (n + 1)(n + 2))|n^{0}\rangle,
+		\]
+		which, after operating by $\langle n^{0}|$ on the left and
+		simplifying, gives $3(2n^{2} + 2n + 1)$. So
+		\[
+		\langle n^{0}|{\hat{H}}_{1}|n^{0}\rangle = \frac{3}{4}\Big(\frac{\hbar}{m\omega}\Big)^{2}(2n^{2} + 2n + 1) = E_{1}.
+		\]
+		Putting this all together, we see that our Hamiltonian has eigenvalues
+		of
+		\[
+		E_{n} = \Big(n + \frac{1}{2}\Big)\hbar\omega + \frac{3\lambda}{4}\Big(\frac{\hbar}{m\omega}\Big)^{2}(2n^{2} + 2n + 1).
+		\]
+	\end{solution}
+	
+	\question Use eqns 2.46 and 2.62 to show that
+	\[
+		\hat{x}_j = \frac{1}{\sqrt{N}}\Big(\frac{\hbar}{m}\Big)^{1/2}\sum_k\frac{1}{(2\omega_k)^{1/2}}[\hat{a}_ke^{ikja} + \hat{a}_k^\dagger{e^{-ikja}}].
+	\]
+	
+	\begin{solution}
+		Substituting 2.62 into 2.46 gives us
+		\[
+			{\hat{x}}_{j} = \frac{1}{\sqrt{N}}\sum_{k}\sqrt{\frac{\hbar}{2m\omega_{k}}}({\hat{a}}_{k} + {\hat{a}}_{- k}^{\dagger})e^{ikja}.
+		\]
+		By taking $\frac{\hbar}{m}$ outside the summation, distributing
+		$e^{ikja}$, and reindexing the second sum, we arrive at
+		
+		\[
+		{\hat{x}}_{j} = \frac{1}{\sqrt{N}}\Big(\frac{\hbar}{m}\Big)^{\frac{1}{2}}\sum_{k}\frac{1}{(2\omega_{k})^{\frac{1}{2}}}[{\hat{a}}_{k}e^{ikja} + {\hat{a}}_{k}^{\dagger}e^{- ijka}].
+		\]
+	\end{solution}
+	
+	\question Using $\hat{a}|0\rangle=0$ and eqns 2.9 and 2.10 together with $\langle{x}|\hat{p}|\psi\rangle=-i\hbar\frac{\mathrm{d}}{\mathrm{d}x}\langle{x}|\psi\rangle$, show that
+	\[
+		0 = \Big(x + \frac{\hbar}{m\omega}\frac{\mathrm{d}}{\mathrm{d}x}\Big)\langle{x}|0\rangle,
+	\]
+	and hence
+	\[
+		\langle{x}|0\rangle = \Big(\frac{m\omega}{\pi\hbar}\Big)^{1/4}e^{-m\omega{x}^2/2\hbar}.
+	\]
+	
+	\begin{solution}
+		As $\hat{a}$ annihilates the lowest eigenstate, we have
+		\[
+			\hat{a}|0\rangle = \sqrt{\frac{m\omega}{2\hbar}}\Big(\hat{x} + \frac{i}{m\omega}\hat{p}\Big)|0\rangle = 0,
+		\]
+		and so
+		\[
+			\Big(\hat{x} + \frac{i}{m\omega}\hat{p}\Big)|0\rangle = 0.
+		\]
+		Operating on the left by $\langle x|$ gives
+		\begin{align*}
+		\langle x|\Big(\hat{x} + \frac{i}{m\omega}\hat{p}\Big)|0\rangle &= x\langle x|0\rangle + \frac{i}{m\omega}\langle x|\hat{p}|0\rangle \\
+		&= x\langle x|0\rangle + \frac{i}{m\omega} \cdot ( - i\hbar)\frac{\mathrm{d}}{\mathrm{d}x}\langle x|0\rangle \\
+		&= \Big(x + \frac{\hbar}{m\omega}\frac{\mathrm{d}}{\mathrm{d}x}\Big)\langle x|0\rangle \\
+		&= 0
+		\end{align*}
+		This is a linear, separable differential equation. Let's rewrite it in
+		an easier-to-tackle form.
+		\[
+			\frac{1}{\langle x|0\rangle}\frac{\mathrm{d}\langle x|0\rangle}{\mathrm{d}x} = - x\frac{m\omega}{\hbar}.
+		\]
+		Integrating both sides with respect to $x$ gives us
+		\begin{align*}
+		\int\frac{1}{\langle x|0\rangle}\frac{\mathrm{d}\langle x|0\rangle}{\mathrm{d}x}\mathrm{d}x &= \int - x\frac{m\omega}{\hbar}\mathrm{d}x \\
+		\ln|\langle x|0\rangle| &= - x^{2}\frac{m\omega}{2\hbar} + C \\
+		\langle x|0\rangle &= Ce^{- m\omega x^{2}/2\hbar}
+		\end{align*}
+		We can find $C$ by normalizing our state,
+		\[
+			\int_{- \infty}^{\infty}C^{2}e^{- m\omega x^{2}/\hbar}\mathrm{d}x = 1.
+		\]
+		This is a Gaussian integral. It has the solution
+		\[
+			\int_{- \infty}^{\infty}e^{- m\omega x^{2}/\hbar}\text{dx} = \Big(\frac{\pi\hbar}{m\omega}\Big)^{\frac{1}{2}}.
+		\]
+		Substituting this into our normalization constraint yields
+		\[
+			C = \Big(\frac{m\omega}{\pi\hbar}\Big)^{\frac{1}{4}}.
+		\]
+		This gives us a final solution of
+		\[
+			\langle x|0\rangle = \Big(\frac{m\omega}{\pi\hbar}\Big)^{\frac{1}{4}}e^{- m\omega x^{2}/2\hbar}.
+		\]
+	\end{solution}
+	
+\end{questions}
+
+\end{document}

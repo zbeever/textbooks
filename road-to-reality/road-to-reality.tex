@@ -1,0 +1,56 @@
+\documentclass{exam}
+
+\usepackage{scrextend}
+\usepackage{tikz, tkz-euclide}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{commath}
+\usepackage{sectsty}
+\usepackage{array}
+\usepackage{etoolbox}
+\usepackage{color}
+\usepackage{subfiles}
+\usepackage{wasysym}
+
+\renewcommand{\solutiontitle}{}
+\AtBeginEnvironment{solution}{}
+\renewcommand{\thequestion}{\thesection.\arabic{question}}
+
+\usetkzobj{all}
+\usetikzlibrary{intersections, calc}
+
+\newcommand{\MarkRightAngle}[4][.07cm]
+{
+	\coordinate (tempa) at ($(#3)!#1!(#2)$);
+	\coordinate (tempb) at ($(#3)!#1!(#4)$);
+	\coordinate (tempc) at ($(tempa)!0.5!(tempb)$);
+	\draw (tempa) -- ($(#3)!2!(tempc)$) -- (tempb);
+}
+
+\begin{document}
+\printanswers
+
+\subfile{sections/the-roots-of-science}
+\subfile{sections/an-ancient-theorem-and-a-modern-question}
+\subfile{sections/kinds-of-number-in-the-physical-world}
+\subfile{sections/magical-complex-numbers}
+\subfile{sections/geometry-of-logarithms-powers-and-roots}
+\subfile{sections/real-number-calculus}
+\subfile{sections/complex-number-calculus}
+\subfile{sections/riemann-surfaces-and-complex-mappings}
+\subfile{sections/fourier-decomposition-and-hyperfunctions}
+\subfile{sections/surfaces}
+\subfile{sections/hypercomplex-numbers}
+\subfile{sections/manifolds-of-n-dimensions}
+\subfile{sections/symmetry-groups}
+\subfile{sections/calculus-on-manifolds}
+\subfile{sections/fibre-bundles-and-gauge-connections}
+\subfile{sections/the-ladder-of-infinity}
+\subfile{sections/spacetime}
+\subfile{sections/minkowskian-geometry}
+\subfile{sections/the-classical-fields-of-maxwell-and-einstein}
+\subfile{sections/lagrangians-and-hamiltonians}
+\subfile{sections/the-quantum-particle}
+\subfile{sections/quantum-algebra-geometry-and-spin}
+
+\end{document}

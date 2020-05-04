@@ -1,0 +1,233 @@
+\documentclass[../qft-for-the-gifted-amateur.tex]{subfiles}
+
+\begin{document}
+
+\section{Lagrangians}
+
+\begin{questions}
+	\printanswers
+
+	\question Use Fermat's principle of least time to derive Snell's law.
+	
+	\begin{solution}
+		Consider the path of a photon as it changes medium. It is emitted at $(x_{1}, y_{1})$ and arrives at $(x_2, y_2)$ by way of point $(x_0, y_0)$ at the material boundary. The total distance covered is
+		\[
+			\Delta{d} = \sqrt{(x_{0} - x_{1})^2 + (y_{0} - y_{1})^2} + \sqrt{(x_{2} - x_{0})^2 + (y_{2} - y_{0})^2}.
+		\]
+		We can find the time by dividing each term by the velocity of light in the respective material, $v_i = c/n_i$,
+		\[
+			\Delta{t} = \frac{n_1}{c}\sqrt{(x_{0} - x_{1})^2 + (y_{0} - y_{1})^2} + \frac{n_2}{c}\sqrt{(x_{2} - x_{0})^2 + (y_{2} - y_{0})^2}.
+		\]
+		Let us orient our coordinate system so that the boundary between the two media is parallel to the $y$-axis and centered at $(x_0, y_0)$, i.e. identifying the single degree of freedom as $y_0$. Fermat's principle suggests we should minimize the above expression, and so, upon taking its derivative with respect to $y_0$ and setting it equal to $0$, we find
+		\[
+			\frac{\mathrm{d}\Delta{t}}{\mathrm{d}y_0} = \frac{n_1}{c}\frac{y_0 - y_1}{\sqrt{(x_{0} - x_{1})^2 + (y_{0} - y_{1})^2}} - \frac{n_2}{c}\frac{y_2-y_0}{\sqrt{(x_{2} - x_{0})^2 + (y_{2} - y_{0})^2}} = 0.
+		\]
+		or, equivalently,
+		\[
+			n_1\frac{y_0 - y_1}{\sqrt{(x_{0} - x_{1})^2 + (y_{0} - y_{1})^2}} = n_2\frac{y_2-y_0}{\sqrt{(x_{2} - x_{0})^2 + (y_{2} - y_{0})^2}}.
+		\]
+		If we denote each angle between the normal of the boundary and its closest light path endpoint (i.e. $(x_1, y_1)$ or $(x_2, y_2)$) by $\theta_i$, this becomes
+		\[
+			n_1\sin\theta_1 = n_2\sin\theta_2,
+		\]
+		which is precisely Snell's law.
+	\end{solution}
+	
+	\question Consider the functionals
+	\begin{align*}
+		H[f] &= \int G(x,y)f(y)\mathrm{d}y, \\
+		I[f] &= \int_{-1}^{1}f(x)\mathrm{d}x, \\
+		J[f] &= \int \Big(\frac{\partial{f}}{\partial{y}}\Big)^2\mathrm{d}y,
+	\end{align*}
+	of the function $f$. Find the functional derivatives
+	\[
+		\frac{\delta{H}[f]}{\delta{f}(z)}, \, \frac{\delta^2{I}[f^3]}{\delta{f}(x_0)\delta{f}(x_1)}, \, \frac{\delta{J}[f]}{\delta{f(x)}}.
+	\]
+	
+	\begin{solution}
+		A direct application of the (physicist's) definition of the functional derivative yields
+		\begin{align*}
+			\frac{\delta{H}[f]}{\delta{f(z)}} &= \lim_{\epsilon\to{0}}\frac{1}{\epsilon}\Big(\int G(x, y)\big(f(y) + \epsilon\delta(z - y)\big)\mathrm{d}y - \int G(x, y)f(y)\mathrm{d}y\Big), \\
+			&= \lim_{\epsilon\to{0}}\frac{1}{\epsilon}\int G(x, y)\epsilon\delta(z - y)\mathrm{d}y, \\
+			&= \int G(x, y)\delta(y - z) \mathrm{d}y, \\
+			&= G(x, z).
+		\end{align*}
+		The second case is slightly more complicated. The first functional derivative gives
+		\begin{align*}
+			\frac{\delta{I}[f^3]}{\delta{f(x_1)}} &= \lim_{\epsilon\to0}\frac{1}{\epsilon}\Big(\int_{-1}^1\big(f(x)+\epsilon\delta(x_1-x)\big)^3\mathrm{d}x - \int_{-1}^1 f^3(x)\mathrm{d}x \Big), \\
+			&= \lim_{\epsilon\to0}\frac{1}{\epsilon}\Big(\int_{-1}^1 f^3(x) + 3f^2(x)\epsilon\delta(x_1-x) + \mathcal{O}(\epsilon^2)\mathrm{d}x - \int_{-1}^1 f^3(x)\mathrm{d}x\Big), \\
+			&= \lim_{\epsilon\to0}\frac{1}{\epsilon}\int_{-1}^1 3f^2(x)\epsilon\delta(x_1-x)\mathrm{d}x, \\
+			&= \int_{-1}^1 3f^2(x)\delta(x_1-x)\mathrm{d}x, \\
+			&= 3f^2(x_1)\quad\text{for }{-1}\leq{x_1}\leq{1}.
+		\end{align*}
+		The second application of the functional derivative gives,
+		\begin{align*}
+			\frac{\delta^2{I}[f^3]}{\delta{f(x_0)}\delta{f(x_1)}} &= \lim_{\epsilon\to0}\frac{1}{\epsilon}\Big(3\big(f(x_1) + \epsilon\delta(x_0 - x_1)\big)^2 - 3f^2(x_1)\Big), \\
+			&= \lim_{\epsilon\to0}\frac{1}{\epsilon}\Big(3f^2(x_1) + 6f(x_1)\epsilon\delta(x_0-x_1) + \mathcal{O}(\epsilon^2) - 3f^2(x_1)\Big), \\
+			&= \lim_{\epsilon\to0}\frac{1}{\epsilon}\big(6f(x_1)\epsilon\delta(x_0-x_1)\big), \\
+			&= 6f(x_1)\delta(x_0-x_1).
+		\end{align*}
+		For the third case, we have
+		\begin{align*}
+			\frac{\delta{J}[f]}{\delta{f(x)}} &= \lim_{\epsilon\to0}\frac{1}{\epsilon}\Big(\int\Big(\frac{\partial{f}}{\partial{y}} + \epsilon\frac{\partial\delta(x-y)}{\partial{y}}\Big)^2\mathrm{d}y - \int\Big(\frac{\partial{f}}{\partial{y}}\Big)^2\mathrm{d}y\Big), \\
+			&= \lim_{\epsilon\to0}\frac{1}{\epsilon}\Big(\int\Big(\frac{\partial{f}}{\partial{y}}\Big)^2 + 2\frac{\partial{f}}{\partial{y}}\epsilon\frac{\partial\delta(x-y)}{\partial{y}} + \mathcal{O}(\epsilon^2)\mathrm{d}y - \int\Big(\frac{\partial{f}}{\partial{y}}\Big)^2\mathrm{d}y\Big), \\
+			&= \lim_{\epsilon\to0}\frac{1}{\epsilon}\int2\frac{\partial{f}}{\partial{y}}\epsilon\frac{\partial\delta(x-y)}{\partial{y}}\mathrm{d}y, \\
+			&= -\int2\frac{\partial^2f}{\partial{y}^2}\delta(x - y)\mathrm{d}y, \\
+			&= -2\frac{\partial^2f}{\partial{x}^2},
+		\end{align*}
+		where we have assumed the boundary terms vanish upon integration by parts.
+	\end{solution}
+	
+	\question Consider the functional $G[f] = \int g(y, f)\mathrm{d}y$. Show that
+	\[
+		\frac{\delta{G}[f]}{\delta{f}(x)} = \frac{\partial{g}(x,f)}{\partial{f}}.
+	\]
+	Now consider the functional $H[f] = \int g(y, f, f') \mathrm{d}y$ and show that
+	\[
+		\frac{\delta{H}[f]}{\delta{f}(x)} = \frac{\partial{g}}{\partial{f}} - \frac{\mathrm{d}}{\mathrm{d}x}\frac{\partial{g}}{\partial{f'}},
+	\]
+	where $f' = \partial{f}/\partial{y}$. For the functional $J[f] = \int g(y, f, f', f'')\mathrm{d}y$ show that
+	\[
+		\frac{\delta{J}[f]}{\delta{f}(x)} = \frac{\partial{g}}{\partial{f}} - \frac{\mathrm{d}}{\mathrm{d}x}\frac{\partial{g}}{\partial{f'}} + \frac{\mathrm{d}^2}{\mathrm{d}x^2}\frac{\partial{g}}{\partial{f''}},
+	\]
+	where $f'' = \partial^2f/\partial{y}^2$.
+	
+	\begin{solution}
+		Functionally differentiating $G$ gives
+		\begin{align*}
+			\frac{\delta{G}[f]}{\delta{f}(x)} &= \lim_{\epsilon\to0}\frac{1}{\epsilon}\Big(\int g\big(y, f(y) + \epsilon\delta(x - y)\big)\mathrm{d}y - \int g(y, f)\mathrm{d}y\Big), \\
+			&= \lim_{\epsilon\to0}\frac{1}{\epsilon}\Big(\int g(y, f) + \frac{\partial{g(y, f)}}{\partial{f}}\epsilon\delta(x - y) + \mathcal{O}(\epsilon^2)\mathrm{d}y - \int g(y, f)\mathrm{d}y\Big), \\
+			&= \lim_{\epsilon\to0}\frac{1}{\epsilon}\int\frac{\partial{g}(y, f)}{\partial{f}}\epsilon\delta(x - y)\mathrm{d}y, \\
+			&= \int\frac{\partial{g}(y, f)}{\partial{f}}\delta(x - y)\mathrm{d}y, \\
+			&= \frac{\partial{g}(x, f)}{\partial{f}},
+		\end{align*}
+		where we have expanded $g$ in a Taylor series about $f$ in the second step.
+		
+		For $H$, the integrand's Taylor expansion takes the form
+		\[
+			g(y, f(y) + \epsilon\delta(x - y), f'(y) + \epsilon\delta'(x - y)) = g(y, f) + \frac{\partial{g}}{\partial{f}}\epsilon\delta(x - y) + \frac{\partial{g}}{\partial{f'}}\epsilon\delta'(x - y) + \mathcal{O}(\epsilon^2).
+		\]
+		Using this in the functional derivative of $H$ gives
+		\begin{align*}
+			\frac{\delta{H}[f]}{\delta{f(x)}} &= \lim_{\epsilon\to0}\frac{1}{\epsilon}\int\frac{\partial{g}}{\partial{f}}\epsilon\delta(x - y) + \frac{\partial{g}}{\partial{f'}}\epsilon\delta'(x - y)\mathrm{d}y, \\
+			&= \int \Big(\frac{\partial{g}}{\partial{f}} - \frac{\mathrm{d}}{\mathrm{d}x}\frac{\partial{g}}{\partial{f'}}\Big)\delta(x - y)\mathrm{d}y, \\
+			&= \frac{\partial{g}}{\partial{f}} - \frac{\mathrm{d}}{\mathrm{d}x}\frac{\partial{g}}{\partial{f}'}.
+		\end{align*}
+		To compute the functional derivative of $J$, we simply need to recognize that the Taylor expansion of $g$ now has the additional term
+		\[
+			\epsilon\frac{\partial{g}}{\partial{f''}}\epsilon\delta''(x - y).
+		\]
+		If we integrate this by parts twice, we see it adds the term
+		\[
+			\frac{\mathrm{d}^2}{\mathrm{d}x^2}\frac{\partial{g}}{\partial{f''}},
+		\]
+		to the final expression. That is, our functional derivative becomes
+		\[
+			\frac{\delta{J}[f]}{\delta{f}(x)} = \frac{\partial{g}}{\partial{f}} - \frac{\mathrm{d}}{\mathrm{d}x}\frac{\partial{g}}{\partial{f'}} + \frac{\mathrm{d}^2}{\mathrm{d}x^2}\frac{\partial{g}}{\partial{f''}}.
+		\]
+	\end{solution}
+	
+	\question Show that
+	\[
+		\frac{\delta{\phi(x)}}{\delta{\phi(y)}} = \delta(x - y),
+	\]
+	and
+	\[
+		\frac{\delta\dot{\phi}(t)}{\delta\phi(t_0)} = \frac{\mathrm{d}}{\mathrm{d}t}\delta(t - t_0).
+	\]
+	
+	\begin{solution}
+		If we write
+		\[
+			\phi(x) = \int\phi(z)\delta(x - z)\mathrm{d}z,
+		\]
+		we can take the functional derivative of this to find
+		\begin{align*}
+			\frac{\partial\phi(x)}{\partial\phi(y)} &= \lim_{\epsilon\to0}\frac{1}{\epsilon}\Big(\int\big(\phi(z) + \epsilon\delta(y - z)\big)\delta(x - z)\mathrm{d}z - \int\phi(z)\delta(x - z)\mathrm{d}z\Big), \\
+			&= \lim_{\epsilon\to0}\frac{1}{\epsilon}\int \epsilon\delta(y - z)\delta(x - z)\mathrm{d}z, \\
+			&= \int\delta(y - z)\delta(x - z)\mathrm{d}z, \\
+			&= \delta(x - y).
+		\end{align*}
+		Following a similar strategy, we write
+		\[
+			\dot\phi(t) = \int \frac{\mathrm{d}\phi(t')}{\mathrm{d}t'}\delta(t - t')\mathrm{d}t',
+		\]
+		in which case we have
+		\begin{align*}
+			\frac{\delta\dot{\phi}(t)}{\delta\phi(t_0)} &= \lim_{\epsilon\to0}\frac{1}{\epsilon}\Big(\int \frac{\mathrm{d}}{\mathrm{d}t'}\big(\phi(t') + \epsilon\delta(t_0 - t')\big)\delta(t - t')\mathrm{d}t' - \int \frac{\mathrm{d}\phi(t')}{\mathrm{d}t'}\delta(t - t')\mathrm{d}t'\Big), \\
+			&= \lim_{\epsilon\to0}\frac{1}{\epsilon}\int\frac{\mathrm{d}}{\mathrm{d}t'}\epsilon\delta(t_0 - t')\delta(t - t')\mathrm{d}t', \\
+			&= \int\frac{\mathrm{d}}{\mathrm{d}t'}\delta(t_0-t')\delta(t-t')\mathrm{d}t', \\
+			&= \frac{\mathrm{d}}{\mathrm{d}t}\delta(t - t_0).
+		\end{align*}
+	\end{solution}
+	
+	\question For a three-dimensional elastic medium, the potential energy is 
+	\[
+		V = \frac{\mathcal{T}}{2}\int\mathrm{d}^3x(\grad{\psi})^2,
+	\]
+	and the kinetic energy is
+	\[
+		T = \frac{\rho}{2}\int\mathrm{d}^3x\Big(\frac{\partial\psi}{\partial{t}}\Big)^2.
+	\]
+	Use these results, and the functional derivative approach, to show that $\psi$ obeys the wave equation
+	\[
+		\laplacian{\psi} = \frac{1}{v^2}\frac{\partial^2\psi}{\partial{t}^2}.
+	\]
+	
+	\begin{solution}
+		The Lagrangian of the system is given by
+		\[
+			L = T - V = \int\frac{\rho}{2}\Big(\frac{\partial\psi}{\partial{t}}\Big)^2 - \frac{\mathcal{T}}{2}(\grad{\psi})^2\mathrm{d}^3x.
+		\]
+		We know that this must be stationary, and so we functionally differentiate and set the result equal to zero:
+		\begin{align*}
+			\frac{\delta{L}[\psi]}{\delta\psi} &= \lim_{\epsilon\to0}\frac{1}{\epsilon}\int\rho\Big(\frac{\partial\psi}{\partial{t}}\Big)\Big(\epsilon\frac{\partial\delta(\mathbf{x} - \mathbf{x}')}{\partial{t}}\Big) - \mathcal{T}(\grad{\psi})\big(\epsilon\grad{\delta(\mathbf{x}-\mathbf{x}')}\big) + \mathcal{O}(\epsilon^2)\mathrm{d}^3x', \\
+			&= \lim_{\epsilon\to0}\frac{1}{\epsilon}\int\Big(\mathcal{T}\laplacian{\psi} - \rho\frac{\partial^2\psi}{\partial{t}^2}\Big)\epsilon\delta(\mathbf{x}-\mathbf{x}')\mathrm{d}^3x', \\
+			&= \int\Big(\mathcal{T}\laplacian{\psi} - \rho\frac{\partial^2\psi}{\partial{t}^2}\Big)\delta(\mathbf{x}-\mathbf{x}')\mathrm{d}^3x', \\
+			&= \mathcal{T}\laplacian{\psi} - \rho\frac{\partial^2\psi}{\partial{t}^2} = 0.
+		\end{align*}
+		Keeping mind that $\mathcal{T}/\rho = v^2$, this can be written as
+		\[
+			\laplacian{\psi} = \frac{1}{v^2}\frac{\partial^2\psi}{\partial{t}^2}.
+		\]
+	\end{solution}
+	
+	\question Show that if $Z_0[J]$ is given by
+	\[
+		Z_0[J] = \exp\Big({-\frac{1}{2}}\int\mathrm{d}^4x\mathrm{d}^4yJ(x)\Delta(x-y)J(y)\Big),
+	\]
+	where $\Delta(x) = \Delta(-x)$ then
+	\[
+		\frac{\delta{Z_0}[J]}{\delta{J}(z_1)} = -\Big[\int\mathrm{d}^4y\Delta(z_1-y)J(y)\Big]Z_0[J].
+	\]
+	
+	\begin{solution}
+		A straightforward application of the functional derivative gives
+		\begin{align*}
+			\frac{\delta{Z_0}[J]}{\delta{J}(z_1)} &= \lim_{\epsilon\to0}\frac{1}{\epsilon}\Big[\exp\Big({-\frac{1}{2}}\int\mathrm{d}^4x\mathrm{d}^4y\big(J(x) + \epsilon\delta(z_1 - x)\big)\Delta(x - y)\big(J(y) + \epsilon\delta(z_1 - y)\big)\Big) - Z_0[J]\Big].
+		\end{align*}
+		The exponent of the first term in brackets can be expanded to yield
+		\[
+			-\frac{1}{2}\int\mathrm{d}^4x\mathrm{d}^4y\Big(J(x)\Delta(x-y)J(y) + \epsilon\delta(z_1-x)\Delta(x-y)J(y) + J(x)\Delta(x-y)\epsilon\delta(z_1-y) + \mathcal{O}(\epsilon^2)\Big),
+		\]
+		which can used to rewrite the first term as a product of three exponentials,
+		\[
+			Z_0[J]\exp\Big(-\frac{1}{2}\int\mathrm{d}^4x\mathrm{d}^4y\epsilon\delta(z_1-x)\Delta(x-y)J(y)\Big)\exp\Big(-\frac{1}{2}\int\mathrm{d}^4x\mathrm{d}^4yJ(x)\Delta(x-y)\epsilon\delta(z_1-y)\Big).
+		\]
+		These can be expanded in a Taylor series in $\epsilon$, giving
+		\[
+		Z_0[J]\Big(1 - \frac{\epsilon}{2}\int\mathrm{d}^4x\mathrm{d}^4y\delta(z_1-x)\Delta(x-y)J(y) - \frac{\epsilon}{2}\int\mathrm{d}^4x\mathrm{d}^4yJ(x)\Delta(x-y)\delta(z_1-y) + \mathcal{O}(\epsilon^2)\Big).
+		\]
+		Substituting this into our expression for the functional derivative gives
+		\begin{align*}
+			\frac{\delta{Z_0}[J]}{\delta{J}(z_1)} &= \lim_{\epsilon\to0}\frac{1}{\epsilon}Z_0[J]\Big({-\frac{\epsilon}{2}}\int\mathrm{d}^4x\mathrm{d}^4y\delta(z_1-x)\Delta(x-y)J(y) - \frac{\epsilon}{2}\int\mathrm{d}^4x\mathrm{d}^4yJ(x)\Delta(x-y)\delta(z_1-y)\Big), \\
+			&= Z_0[J]\Big({-\frac{1}{2}}\int\mathrm{d}^4x\mathrm{d}^4y\delta(z_1-x)\Delta(x-y)J(y) - \frac{1}{2}\int\mathrm{d}^4x\mathrm{d}^4yJ(x)\Delta(x-y)\delta(z_1-y)\Big), \\
+			&= Z_0[J]\Big({-\frac{1}{2}}\int\mathrm{d}^4y\Delta(z_1-y)J(y) - \frac{1}{2}\int\mathrm{d}^4xJ(x)\Delta(x-z_1)\Big), \\
+			&= Z_0[J]\Big({-\frac{1}{2}}\int\mathrm{d}^4y\Delta(z_1-y)J(y) - \frac{1}{2}\int\mathrm{d}^4y\Delta(z_1-y)J(y)\Big), \\
+			&= -\Big[\int\mathrm{d}^4y\Delta(z_1-y)J(y)\Big]Z_0[J].
+		\end{align*}
+	\end{solution}
+	
+\end{questions}
+	
+\end{document}

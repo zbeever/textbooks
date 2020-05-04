@@ -1,0 +1,414 @@
+\documentclass[../road-to-reality.tex]{subfiles}
+
+\begin{document}
+
+\section{Lagrangians and Hamiltonians}
+
+\begin{questions}
+
+\question Fill in the full details, completing the argument to obtain
+  Galileo's parabolic motion for free fall under gravity.
+
+  \begin{solution}
+    Looking at the Euler-Lagrange equation for $z$, we find
+    \begin{align*}
+      \frac{\partial\mathcal{L}}{\partial{z}} &= -mg, \\
+      \frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial{\mathcal{L}}}{\partial{\dot{z}}} &= \frac{\mathrm{d}}{\mathrm{d}t}(m\dot{z}), \\
+                                              &= m\ddot{z}.
+    \end{align*}
+    Setting both of these equal to each other gives
+    \[
+      m\ddot{z} = -mg.
+    \]
+    If we wish to find the motion of the freely falling particle, we may
+    simply divide by $m$ and integrate both sides twice with respect to time, obtaining
+    \[
+      \int_{-\infty}^t\int_{-\infty}^{t'}\ddot{z}\,\mathrm{d}t''\mathrm{d}t' = z(0) + v_z(0)t - \frac{1}{2}gt^2,
+    \]
+    which is the arc of a parabola.
+  \end{solution}
+
+\question Why?
+
+  \begin{solution}
+    $\mathbf{S}$ satisfies $\mathrm{d}\mathbf{S}=0$ by virtue of the fact that
+    $\mathrm{d}^2=0$, as we have
+    \begin{align*}
+      \mathrm{d}\mathbf{S} &= \mathrm{d}(\mathrm{d}p_a\wedge\mathrm{d}q^a), \\
+                           &= \mathrm{d}^2p_a\wedge\mathrm{d}q^a - \mathrm{d}p_a\wedge\mathrm{d}^2q^a, \\
+                           &= 0.
+    \end{align*}
+
+  \end{solution}
+
+\question Do this explicitly. Use Hamilton's equations to obtian the Newtonian
+  equations fo motion for a particel falling in a constant gravitational field.
+
+  \begin{solution}
+    From the Lagrangian given in problem 20.1, we may perform a Legendre
+    transform to find the associated Hamiltonian. The conjugate momentum of our
+    Lagrangian are given by
+    \begin{align*}
+      p_x = \frac{\partial\mathcal{L}}{\partial{\dot{x}}} &= m\dot{x}, \\
+      p_y = \frac{\partial\mathcal{L}}{\partial{\dot{y}}} &= m\dot{y}, \\
+      p_z = \frac{\partial\mathcal{L}}{\partial{\dot{z}}} &= m\dot{z}.
+    \end{align*}
+    Using this, we see our Hamiltonian is
+    \begin{align*}
+      \mathcal{H} &= \dot{q}^r\frac{\partial\mathcal{L}}{\partial\dot{q}^r} - \mathcal{L}, \\
+                  &= m(\dot{x}^2 + \dot{y}^2 + \dot{z}^2) - \Big(\frac{1}{2}m(\dot{x}^2 + \dot{y}^2 + \dot{z}^2) - mgz\Big), \\
+                  &= \frac{1}{2}m(\dot{x}^2 + \dot{y}^2 + \dot{z}^2) + mgz, \\
+                  &= \frac{p_x^2 + p_y^2 + p_z^2}{2m} + mgz.
+    \end{align*}
+    Using Hamilton's equations along the $z$ direction, we find
+    \begin{align*}
+      \frac{\mathrm{d}p_z}{\mathrm{d}t} = -\frac{\partial\mathcal{H}}{\partial{z}} &= -mg, \\
+      \frac{\mathrm{d}z}{\mathrm{d}t} = \frac{\partial\mathcal{H}}{\partial{p_z}} &= \frac{p_z}{m}.
+    \end{align*}
+    Taking the time derivative of the second equation and using the first gives
+    \[
+      \ddot{z} = \frac{\dot{p_z}}{m} = -g,
+    \]
+    which is the equation of a particle undergoing uniform acceleration. The
+    solution to this equation is given in problem 20.1.
+  \end{solution}
+
+\question Confirm this, explaining why $\omega/2\pi$ is the frequency. Explain
+  why the graph of this function still looks like a sine curve. Why is this the
+  \textit{general} solution?
+
+  \begin{solution}
+    It is trivial to confirm that the given $q$ satisfies the differential
+    equation,
+    \begin{align*}
+      \frac{\mathrm{d}^2q}{\mathrm{d}t^2} &= \frac{\mathrm{d}^2}{\mathrm{d}t^2}\Big(a\cos\omega{t} + b\sin\omega{t}\Big), \\
+                                          &= \frac{\mathrm{d}}{\mathrm{d}t}\Big(-a\omega\sin\omega{t} + b\omega\cos\omega{t}\Big), \\
+                                          &= -a\omega^2\cos\omega{t} - b\omega^2\sin\omega{t}, \\
+                                          &= -\omega^2q.
+    \end{align*}
+    That this is the general solution can be seen by inserting the inverse
+    Fourier transform of both sides of the differential equation, obtaining
+    \[
+      \frac{1}{\sqrt{2\pi}}\int{Q}(\Omega)(i\Omega)^2e^{i\Omega{t}}\mathrm{d}\Omega
+      = \frac{1}{\sqrt{2\pi}}\int{Q}(\Omega)(-\omega^2)e^{i\Omega{t}}\mathrm{d}\Omega.
+    \]
+    This holds only when
+    \[
+      (i\Omega)^2 + \omega^2 = 0
+    \]
+    which is an algebraic equation with exactly two unique roots, $\Omega =
+    \pm{\omega}$. Hence $Q(\Omega) = \sqrt{2\pi}\delta(\Omega \pm \omega)$, or
+    $q(t) = e^{\pm{i}\omega{t}}$. Since the original differential equation is
+    linear, any superposition of these solutions yields another solution. Using
+    Euler's identity, we may make a change of basis from complex exponentials to
+    trigonometric functions via 
+    \begin{align*}
+      \cos\omega{t} &= \frac{1}{2}e^{i\omega{t}} + \frac{1}{2}e^{-i\omega{t}}, \\
+      \sin\omega{t} &= \frac{1}{2j}e^{i\omega{t}} - \frac{1}{2}e^{-i\omega{t}},
+    \end{align*}
+    which yields two linearly independent solutions that may be combined just as
+    our original solutions could.
+
+    That $\omega/2\pi$ is frequency can be seen from the fact that $q$ undergoes
+    one complete oscillation when $\omega{T}=2\pi$, where $T$ is the period of
+    oscillation. But $T = 1/f$, and so $f = \omega/2\pi$.
+
+    Finally, the fact that any combination of sine and cosine waves at the same
+    frequency still looks like a sine curve can be explain as
+    \begin{align*}
+      a\cos\omega{t} + b\sin\omega{t} &= \frac{a}{2}\Big(e^{i\omega{t}} + e^{-i\omega{t}}\Big) + \frac{b}{2j}\Big(e^{i\omega{t}} - e^{-i\omega{t}}\Big), \\
+                                      &= \frac{(a - jb)}{2}e^{i\omega{t}} + \frac{(a + jb)}{2}e^{-i\omega{t}}, \\
+                                      &= \frac{\sqrt{a^2+b^2}e^{i\arctan(-b/a)}}{2}e^{i\omega{t}} + \frac{\sqrt{a^2+b^2}e^{i\arctan(b/a)}}{2}e^{-i\omega{t}}, \\
+                                      &= \frac{\sqrt{a^2+b^2}}{2}\Big(e^{i(\omega{t} - \arctan(b/a))} + e^{-i(\omega{t} - \arctan(b/a))}), \\
+                                      &= \sqrt{a^2 + b^2}\cos\Big(\omega{t} - \arctan{\frac{b}{a}}\Big).
+    \end{align*}
+  \end{solution}
+
+\question Show this, finding the \textit{full} equation, (a) using the
+  Lagrangian method, (b) using the Hamiltonian method, and (c) directly from
+  Newton's laws. \textit{Hint}: Show that
+  $\mathcal{L}=\frac{1}{2}mh^2\dot{q}^2(h^2-q^2)^{-1} + mg(h^2-q^2)^{1/2}$.
+  (Note that the Lagrangian and Hamiltonian methods do not gain us anything in
+  this simple case; their power resides in treating more general situations.)
+
+  \begin{solution}
+    In such a simplistic situation, the Lagrangian is simply equal to the
+    kinetic minus the potential energy. The kinetic energy is most easily seen
+    by examining the angle $\theta$ the pendulum makes with the downward vertical. In
+    this case, we have
+    \[T = \frac{1}{2}mv^2 = \frac{1}{2}m(\dot{\theta}{h})^2 =
+      \frac{1}{2}mh^2\dot{\theta}^2. \]
+    For the potential energy, it is most convenient to take the zero line to be
+    when the pendulum is exactly horizontal, in which case it becomes
+    \[V = -mgh\cos\theta, \]
+    where $h\cos\theta$ is simply the vertical coordinate of the pendulum bob.
+
+    Altogether, our Lagrangian is
+    \[
+      \mathcal{L} = T - V = \frac{1}{2}mh^2\dot{\theta}^2 + mgh\cos\theta.
+    \]
+    This has the Euler-Lagrange equations
+    \begin{align*}
+      \frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial\mathcal{L}}{\partial{\dot{\theta}}} &= \frac{\mathrm{d}}{\mathrm{d}t}\Big(mh^2\dot{\theta}\Big), \\
+                                                                                       &= mh^2\ddot{\theta}, \\
+      \frac{\partial\mathcal{L}}{\partial{\theta}} &= -mgh\sin\theta.
+    \end{align*}
+    Equating these gives
+    \[
+      \ddot{\theta} = -\frac{g}{h}\sin\theta,
+    \]
+    which, for small angles, is simply
+    \[
+      \ddot{\theta} \approx - \frac{g}{h}\theta.
+    \]
+    The Hamiltonian can be found in a straightforward manner by identifiying the
+    total energy of the system, but instead we will take the route of performing
+    a Legendre transform. Doing so yields
+    \begin{align*}
+      \mathcal{H} &= \dot{\theta}\frac{\partial\mathcal{L}}{\partial\dot{\theta}} - \mathcal{L}, \\
+                 &= mh^2\dot{\theta}^2 - \Big(\frac{1}{2}mh^2\dot{\theta}^2 + mgh\cos\theta\Big), \\
+                 &= \frac{1}{2}mh^2\dot{\theta}^2 - mgh\cos\theta, \\
+                 &= \frac{1}{2}\frac{p_{\theta}^2}{mh^2} - mgh\cos\theta,
+    \end{align*}
+    where $p_{\theta}$ is the conjugate momentum, given by
+    $\partial\mathcal{L}/\partial\dot{\theta} = mh^2\dot{\theta}$.
+    From this, Hamilton's equations give us
+    \[
+      \dot{p}_{\theta} = \frac{\partial{\mathcal{H}}}{\partial{\theta}} =
+      mgh\sin\theta, \qquad \dot{\theta} =
+      -\frac{\partial{\mathcal{H}}}{\partial{p_{\theta}}} =
+      -\frac{p_{\theta}}{mh^2}.
+    \]
+    Taking the time derivative of $\dot{\theta}$ and substituting in our
+    expression for $\dot{p}_{\theta}$, we find
+    \[
+      \ddot{\theta} = -\frac{g}{h}\sin\theta \approx -\frac{g}{h}\theta,
+    \]
+    just as we found from the Lagrangian formulation.
+
+    Using the standard Newtonian formulation, we recognize that there are two
+    forces acting on our pendulum: gravity, directed downward, and tension,
+    directed along the rod to which our mass is attached. Let us take $\theta$ to
+    refer to the angle the pendulum makes with the downward vertical (just as
+    before) and use polar coordinates where a positive movement in $\theta$ is
+    taken to mean counterclockwise. Then we have
+    \[
+      m\frac{\mathrm{d}^2r}{\mathrm{d}t^2} = mg\cos\theta - T = 0 \qquad m\frac{\mathrm{d}^2(h\theta)}{\mathrm{d}t^2} = -mg\sin\theta.
+    \]
+    where the angular coordinate is $h\theta$ by dimensional considerations.
+    Clearly, this second equation is equivalent to the ones found above, giving
+    \[
+      \ddot{\theta} = -\frac{g}{h}\sin\theta \approx - \frac{g}{h}\theta.
+    \]
+  \end{solution}
+
+\question Why?
+
+  \begin{solution}
+    Since $\mathbf{F}=-\nabla{U}$, we see that $U$ attaining a stationary point (in which its
+    gradient is zero) necessarily implies that our system is in 
+    equilibrium (as this is when there are no external forces, $\mathbf{F} =
+    0$). The condition that this equilibrium be stable implies that a small disturbance about this point produces a restoring force, i.e. $\|\nabla{U}\|
+    > 0$ at all points near $q^a$. But this is equivalent to the condition that our stationary point is a minimum.
+  \end{solution}
+
+\question Can you explain this all more fully? Can we have the linear terms if
+  the equilibrium is unstable? Explain.
+
+  \begin{solution}
+    Let us examine the power series expansion of $\mathcal{H}$ about $(0, 0)$,
+    \[
+      \mathcal{H}(q, p) = \mathcal{H}(0, 0) + \frac{\partial\mathcal{H}}{\partial{q^a}}\Big|_{(0,0)}q^a +
+      \frac{\partial\mathcal{H}}{\partial{p_a}}\Big|_{(0,0)}p_a + \frac{1}{2}\frac{\partial^2\mathcal{H}}{\partial{q^aq^b}}\Big|_{(0,0)}q^aq^b +
+      \frac{\partial^2\mathcal{H}}{\partial{q^a}\partial{p_b}}\Big|_{(0,0)}q^ap_b +
+      \frac{1}{2}\frac{\partial^2\mathcal{H}}{\partial{p_ap_b}}\Big|_{(0,0)}p_ap_b + \cdots
+    \]
+    Clearly, $\mathcal{H}(0,0)$ is simply a constant---the value of the total
+    energy of the system at its equilibrium point. What about the first order
+    terms? By virtue of $(0,0)$ being a point of equilibrium, these are
+    $0$---and so are our terms with mixed partial derivatives. That is, when a
+    minimum occurs about $(0,0)$, our Hamiltonian appears as
+    \[
+      \mathcal{H}(q, p) = \text{constant} +
+      \frac{1}{2}\frac{\partial^2\mathcal{H}}{\partial{q^aq^b}}\Big|_{(0,0)}q^aq^b +
+      \frac{1}{2}\frac{\partial^2\mathcal{H}}{\partial{p_ap_b}}\Big|_{(0,0)}p_ap_b
+      + \cdots
+    \]
+    Because our point is a \textit{stable} equilibrium, the second derivatives
+    of $\mathcal{H}$ with respect to momentum or position are necessarily
+    positive, i.e. the matrices being contracted with $q^aq^b$ and $p_ap_b$ are
+    positive definite, and so we arrive at the form Penrose gives
+    \[
+      \mathcal{H}(q,p) = \text{constant} + \frac{1}{2}Q_{ab}q^aq^b +
+      \frac{1}{2}P^{ab}p_ap_b + \cdots
+    \]
+    Through the above arguments, it is clear that linear terms preclude any sort
+    of equilibrium, stable or not. An unstable equilibrium instead implies the
+    lack of positive-semi-definiteness of both $Q_{ab}$ and $P^{ab}$.
+  \end{solution}
+
+\question See if you can prove this deduction. \textit{Hint}: Show that the
+  inverse of a positive-definite matrix is positive-definite.
+
+  \begin{solution}
+    Consider the geometric meaning of eigenvalues: the amount by which space is
+    stretched in the direction of the corresponding eigenvector. Clearly,
+    positive stretching in all directions followed by additional positive
+    stretching leads to a total positive deformation, i.e. the product of two
+    positive-definite matrices is again a positive-definite matrix.
+  \end{solution}
+
+
+\question See if you can carry out the foregoing analysis in the Lagrangian,
+  rather than Hamiltonian, form.
+
+  \begin{solution}
+    The arguments given by Penrose for $q^a = 0 = p_a$ extend to the Lagrangian
+    formalism, though we will instead refer to the velocity of the generalized
+    coordinates instead of the conjugate momenta, so $q^a = \dot{q}^a = 0$. This
+    gives the requirement that $\mathcal{L}$ be stationary, though it does
+    \textit{not} impose the requirement of a local minimum, instead requiring
+    our Lagrangian to lie on a saddle point. This is because,
+    with the interpretation of
+    \[
+      \mathcal{L}(q, \dot{q}) = K(q, \dot{q}) - V(q, \dot{q}),
+    \]
+    any change in $q^a$ increases the value of $V$ (which decreases $\mathcal{L}$)
+    while any change in $\dot{q}^a$ increases the value of $K$ (which increases
+    $\mathcal{L}$).
+
+    Assuming $\mathcal{L}$ is analytic, we may expand it in a
+    power series to find 
+    \[
+      \mathcal{L}(q, \dot{q}) = \mathcal{L}(0,0) +
+      \frac{\partial\mathcal{L}}{\partial{q^a}}\Big|_{(0,0)}q^a +
+      \frac{\partial\mathcal{L}}{\partial{\dot{q}^a}}\Big|_{(0,0)}\dot{q}^a +
+      \frac{1}{2}\frac{\partial^2\mathcal{L}}{\partial{q^aq^b}}\Big|_{(0,0)}q^aq^b +
+      \frac{\partial^2\mathcal{L}}{\partial{q^a\dot{q}^b}}\Big|_{(0,0)}q^a\dot{q}^b
+      +
+      \frac{1}{2}\frac{\partial^2\mathcal{L}}{\partial{\dot{q}^a\dot{q}^b}}\Big|_{(0,0)}\dot{q}^a\dot{q}^b
+      + \cdots
+    \]
+    By the same arguments given in the previous problem, this reduces to
+    \[
+      \mathcal{L} = \text{constant} +
+      \frac{1}{2}\frac{\partial^2\mathcal{L}}{\partial{q^aq^b}}\Big|_{(0,0)}q^aq^b
+      +
+      \frac{1}{2}\frac{\partial^2\mathcal{L}}{\partial{\dot{q}^a\dot{q}^b}}\Big|_{(0,0)}\dot{q}^a\dot{q}^b
+      + \cdots 
+    \]
+    With this form for $\mathcal{L}$, the Euler-Lagrange equations become
+    \[
+      \frac{\partial\mathcal{L}}{\partial{q}^a\partial{q}^b}\Big|_{(0,0)}q^b
+      = \frac{\partial\mathcal{L}}{\partial{\dot{q}}^a\partial{\dot{q}}^b}\Big|_{(0,0)}\ddot{q}^b.
+    \]
+    As $\mathcal{L}$ is at a saddle point, we are unable---in this current
+    form---to arrive at the result for a harmonic oscillator. However, recalling
+    that $K$ is really independent of $q$ and $V$ is independent of $\dot{q}$
+    (for conservative, and therefore all fundamental, forces), our equation
+    reduces to
+    \[
+      -\frac{\partial{V}}{\partial{q^a}\partial{q^b}}\Big|_{(0,0)}q^b = \frac{\partial{K}}{\partial\dot{q}^a\partial\dot{q}^b}\Big|_{(0,0)}\ddot{q}^b,
+    \]
+    or, labeling the above matrices $A$ and $B$,
+    \[
+      -A_{ab}q^b = B_{ab}\ddot{q}^b.
+    \]
+    Both of these matrices are necessarily positive-definite as a consequence of
+    $V$ and $K$ attaining their minimal values at $(0,0)$. We may inverse $B$,
+    then, to arrive at
+    \[
+      \ddot{q}^c = -{C^{c}}_{b}q^b.
+    \]
+    Since $C$ is positive definite, we may now follow the argument
+    given by Penrose to show that our system undergoes oscillations about its
+    normal modes.
+  \end{solution}
+
+\question Desribe the system of eigenvectors in such degenerate cases.
+
+  \begin{solution}
+    In such cases, the necessary independent solutions for such modes are
+    described by so-called generalized eigenvectors.
+  \end{solution}
+
+\question Prove this. (Recall from $\S{13.7}$ that `T' stands for `transposed'.)
+
+\question Describe this behaviour.
+
+  \begin{solution}
+    The basic equation of the harmonic oscillator, whereby $\omega^2$ is
+    an eigenvalue, is
+    \[
+      \frac{\mathrm{d}^2\mathbf{q}}{\mathrm{d}t^2} + \omega^2\mathbf{q} = 0.
+    \]
+    This has solutions of the form
+    \[
+      \mathbf{q} = Ae^{-i\omega{t}} + Be^{i\omega{t}}.
+    \]
+    When $\mathbf{W}$ is not a positive-definite matrix, some of its eigenvalues
+    will be negative (or zero, in which case $\mathbf{q}=At + B$ trivially),
+    producing solutions of the form 
+    \[
+      \mathbf{q} = Ae^{-\omega{t}} + Be^{\omega{t}}.
+    \]
+    Such solutions diverge exponentially away from equilibrium.
+  \end{solution}
+
+\question Confirm that this expression for $\{\Phi,\Psi\}$ agrees with that of $\S{14.8}$.
+
+\question Show this.
+
+\question Why?
+
+  \begin{solution}
+    Because
+    \[
+      \{\mathcal{H},\mathcal{H}\} =
+      \frac{\partial\mathcal{H}}{\partial{p_a}}\frac{\partial\mathcal{H}}{\partial{q^a}}
+      -
+      \frac{\partial\mathcal{H}}{\partial{q^a}}\frac{\partial\mathcal{H}}{\partial{p_a}}
+      = 0.
+    \]
+  \end{solution}
+
+\question Explain why.
+
+  \begin{solution}
+    If the Lagrangian is free of some generalized `position' coordinate $q^r$,
+    then
+    \[
+      \frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial\mathcal{L}}{\partial{\dot{q}^r}}
+      = \frac{\partial\mathcal{L}}{\partial{q^r}} = 0,
+    \]
+    i.e. $p_r=\partial\mathcal{L}/\partial\dot{q}^r$ does not change with time.
+  \end{solution}
+
+\question Show this.
+
+  \begin{solution}
+    I believe Penrose is mistaken. By referring to the electromagnetic field tensor and its raised counterpart,
+    \[
+      F_{ab} = \begin{pmatrix} 0 & E_1 & E_2 & E_3 \\ -E_1 & 0 & -B_3 & B_2 \\
+        -E_2 & B_3 & 0 & -B_1 \\ -E_3 & -B_2 & B_1 & 0 \end{pmatrix} \qquad
+      F^{ab} = \begin{pmatrix} 0 & -E_1 & -E_2 & -E_3 \\ E_1 & 0 & -B_3 & B_2
+        \\ E_2 & B_3 & 0 & -B_1 \\ E_3 & -B_2 & B_1 & 0 \end{pmatrix}
+    \]
+    we can immediately write down
+    \begin{align*}
+      \frac{1}{4}F_{ab}F^{ab} &= \frac{1}{4}(-E_1^2 - E_2^2 - E_3^2 - E_1^2 + B_3^2 + B_2^2 - E_2^2 + B_3^2 + B_1^2 - E_3^2 + B_2^2 + B_1^2), \\
+      &= \frac{1}{2}(\mathbf{B}^2 - \mathbf{E}^2).
+    \end{align*}
+    In order for the Lagrangian to equal $(\mathbf{E}^2-\mathbf{B}^2)/8$, it
+    must be given by
+    \[
+      \mathcal{L} = -\frac{1}{16}F_{\mu\nu}F^{\mu\nu}.
+    \]
+  \end{solution}
+
+
+\question Show that this prescription is equivalent to that given in the main text.
+
+\end{questions}
+
+\end{document}

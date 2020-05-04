@@ -1,0 +1,166 @@
+\documentclass[../the-road-to-reality.tex]{subfiles}
+
+\begin{document}
+
+\section{Manifolds of $n$ dimensions}
+
+\begin{questions}
+
+\question Explain this dimension count more explicitly.
+
+\begin{solution}
+        In space, we need three numbers to specify a location. For rotation, we need a further three: two for the orientation of the rotation axis, and one for the twist about this axis. All in all, this gives us six total dimensions.
+\end{solution}
+
+\question Show how to do this, e.g. by appealing to the representation of $R$ as given in Exercise [12.17].
+
+\begin{solution}
+        See the answer to Exercise 12.17, where I have included this.
+\end{solution}
+
+\question Show that '$\mathrm{d}\Phi$', defined in this way, indeed satisfies the 'linearity' requirements of a covector, as specified above.
+
+\begin{solution}
+        Using the defining feature of the exterior derivative,
+
+        \begin{align*}
+                \mathrm{d}\Phi \cdot (\mathbf{\xi} + \mathbf{\eta}) &= (\mathbf{\xi} + \mathbf{\eta})(\Phi) \\
+                &= (\xi^1\frac{\partial}{\partial{x^1}} + \cdots + \xi^n\frac{\partial}{\partial{x^n}} + \eta^1\frac{\partial}{\partial{x^1}} + \cdots + \eta^n\frac{\partial}{\partial{x^n}})(\Phi) \\
+                &= \xi^1\frac{\partial\Phi}{\partial{x^1}} + \cdots + \xi^n\frac{\partial\Phi}{\partial{x^n}} + \eta^1\frac{\partial\Phi}{\partial{x^1}} + \cdots + \eta^n\frac{\partial\Phi}{\partial{x^n}} \\
+                &= \mathbf{\xi}(\Phi) + \mathbf{\eta}(\Phi) \\
+                &= \mathrm{d}\Phi \cdot \mathbf{\xi} + \mathrm{d}\Phi \cdot \mathbf{\eta}
+        \end{align*}
+
+        and
+
+        \begin{align*}
+                \mathrm{d}\Phi \cdot (\omega\mathbf{\xi}) &= (\omega\mathbf{\xi})(\Phi) \\
+                &= (\omega\xi^1\frac{\partial}{\partial{x^1}} + \cdots + \omega\xi^n\frac{\partial}{\partial{x^n}})(\Phi) \\
+                &= \omega(\xi^1\frac{\partial\Phi}{\partial{x^1}} + \xi^n\frac{\partial\Phi}{\partial{x^n}}) \\
+                &= \omega(\mathbf{\xi}(\Phi)) \\
+                &= \omega(\mathrm{d}\Phi \cdot \mathbf{\xi})
+        \end{align*}
+\end{solution}
+
+\question Why?
+
+\begin{solution}
+        Because $\mathrm{d}\Phi \cdot \mathbf{\xi} = \mathbf{\xi}(\Phi) = 0$ occurs along surfaces of constant $\Phi$.
+\end{solution}
+
+\question For example, show that $\mathrm{d}x^2$ has components $(0, 1, 0, \cdots, 0)$ and represents the tangent hyperplane elements to $x^2 = \mathrm{constant}$.
+
+\begin{solution}
+        For $\mathrm{d}x^n$ to be the dual of $\frac{\partial}{\partial{x^n}}$, it must obey $\mathrm{d}x^n \cdot \frac{\partial}{\partial{x^k}} = \delta^n_k$. In component form, this is easily captured as a row of all $0$'s with the exception of the $n$th spot, where a $1$ is placed. Such a 'normal vector' can be visualized as defining a hyperplane orthogonal to it, wherin the components to $x^n$ are constant.
+\end{solution}
+
+\question Show, by use of the chain rule (see $\S$10.3), that this expression for $\mathbf{\alpha}\cdot\mathbf{\xi}$ is consistent with $\mathrm{d}\Phi \cdot \mathbf{\xi} = \mathbf{\xi}(\Phi)$.
+
+\begin{solution}
+        Noting that in the case of $\alpha = \mathrm{d}\Phi$, $\alpha_n = \frac{\partial\Phi}{\partial{x^n}}$, we see
+
+        \begin{align*}
+                \mathrm{d}\Phi \cdot \mathbf{\xi} &= \mathbf{\xi}(\Phi) \\
+                &= (\xi^1\frac{\partial}{\partial{x^1}} + \cdots + \xi^n\frac{\partial}{\partial{x^n}})(\Phi) \\
+                &= \xi^1\frac{\partial\Phi}{\partial{x^1}} + \cdots + \xi^n\frac{\partial\Phi}{\partial{x^n}} \\
+                &= \xi^1\mathrm{d}\Phi_1 + \cdots + \xi^n\mathrm{d}\Phi_n
+        \end{align*}
+\end{solution}
+
+\question Explain why this works.
+
+\begin{solution}
+        All quantities may be decomposed into their symmetric and antisymmetric parts. If a quantity is equal to its antisymmetric part, it is entirely antisymmetric.
+\end{solution}
+
+\question Justify the fact that $\psi \wedge \chi = \alpha \wedge \cdots \wedge \gamma \wedge \lambda \wedge \cdots \nu$ where $\psi = \alpha \wedge \cdots \wedge \gamma$, $\chi = \lambda \wedge \cdots \wedge \nu$.
+
+\question Show this explicitly, explaining how to treat the limits, for a definite integral $\int_a^b\mathbf{\alpha}$.
+
+\begin{solution}
+        Suppose we were to make a change of variables from $x$ to $X$, where the latter is related to the former by $X = g(x)$. Then we have
+
+	\[
+	\alpha = f(x)\mathrm{d}x \to \alpha = f(g^{-1}(X))\frac{1}{g'(g^{-1}(X))}\mathrm{d}X
+	.\] 
+
+        Where we have made use of the fact that $\mathrm{d}X = g'(x)\mathrm{d}x$ and $x = g^{-1}(X)$. Noting that $(g^{-1})'(X) = \frac{1}{g'(g^{-1}(X))}$, this becomes
+
+	\[
+        \alpha = f(g^{-1}(X))(g^{-1})'(X)\mathrm{d}X
+	.\] 
+
+        This, however, is our original $\alpha$. To see this, simply replace $g^{-1}(X)$ with $x$ and note that $x'\mathrm{d}X = \mathrm{d}x$. Ergo, our expression remains unchanged under a change of variables.
+
+        If we were to place $\alpha$ within a definite integral and carry out the operation, the limits $a$ and $b$ would have been changed to $g(a)$ and $g(b)$.
+\end{solution}
+
+\question Let $G = \int_{-\infty}^{\infty}e^{-x^2}\mathrm{d}x$. Explain why $G^2 = \int_{\mathbb{R}^2}e^{-(x^2+y^2)}\mathrm{d}x\wedge\mathrm{d}y$ and evaluate this by changing to polar coordinates $(r, \theta)$. ($\S$5.1). Hence prove $G = \sqrt{\pi}$.
+
+\begin{solution}
+        Squaring $G$ gives
+
+	\[
+        \Big(\int_{-\infty}^{\infty}e^{-x^2}\mathrm{d}x\Big)\Big(\int_{-\infty}^{\infty}e^{-y^2}\mathrm{d}y\Big) = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}e^{-(x^2+y^2)}\mathrm{d}x\wedge\mathrm{d}y
+	\] 
+
+        where we have moved the rearranged the integral signs by virtue of both integrands' analyticity and combined the one-forms through a wedge product to express a well-defined two dimensional integral.
+
+        In polar coordinates, $x = r\cos\theta$ and $y = r\sin\theta$; these are the equivalent of $g^{-1}(X)$ given in the last answer. Additionally, $\mathrm{d}x = \mathrm{d}r\cos\theta - r\sin\theta\mathrm{d}\theta$ and $\mathrm{d}y = \mathrm{d}r\sin\theta + r\cos\theta\mathrm{d}\theta$, so
+
+	\[
+	\mathrm{d}x \wedge \mathrm{d}y = r\cos^2\theta\mathrm{d}r\wedge\mathrm{d}\theta - r\sin^2\mathrm{d}\theta\wedge\mathrm{d}r = r\mathrm{d}r\wedge\mathrm{d}\theta
+	.\] 
+
+        The limits for the integral over $\mathrm{d}r$ are from $0$ to $\infty$, while the limits for the integral over $\theta$ are from $0$ to $2\pi$. We get
+
+        \begin{align*}
+                G^2 &= \int_0^{2\pi}\int_0^{\infty}re^{-r^2}\mathrm{d}r\wedge\mathrm{d}\theta \\
+                &= \frac{1}{2}\int_0^{2\pi}\int_0^{\infty}e^{-u}\mathrm{d}u\wedge\mathrm{d}\theta \\
+                &= \frac{1}{2}\int_0^{2\pi}\mathrm{d}\theta \\
+                &= \pi
+        \end{align*}
+
+        Which implies $G = \sqrt{\pi}$.
+\end{solution}
+
+\question Using the above relations, show that $\mathrm{d}(A\mathrm{d}x + B\mathrm{d}y) = (\partial{B}/\partial{x} - \partial{A}/\partial{y})\mathrm{d}x\wedge\mathrm{d}y$.
+
+\begin{solution}
+        We have
+
+        \begin{align*}
+                \mathrm{d}(A\mathrm{d}x + B\mathrm{d}y) &= \mathrm{d}(A\mathrm{d}x) + \mathrm{d}(B\mathrm{d}y) \\
+                &= \Big(\frac{\partial{A}}{\partial{x}}\mathrm{d}x + \frac{\partial{A}}{\partial{y}}\mathrm{d}y\Big)\wedge\mathrm{d}x + \Big(\frac{\partial{B}}{\partial{x}}\mathrm{d}x + \frac{\partial{B}}{\partial{y}}\mathrm{d}y\Big)\wedge\mathrm{d}y \\
+                &= \frac{\partial{A}}{\partial{y}}\mathrm{d}y\wedge\mathrm{d}x + \frac{\partial{B}}{\partial{x}}\mathrm{d}x\wedge\mathrm{d}y \\
+                &= \Big(\frac{\partial{B}}{\partial{x}} - \frac{\partial{A}}{\partial{y}}\Big)\mathrm{d}x\wedge\mathrm{d}y
+        \end{align*}
+\end{solution}
+
+\question Why?
+
+\begin{solution}
+        Because, by the third axiom, $\mathrm{d}(\mathrm{d}\Phi) = 0$ for all $p$-forms $\Phi$, including $0$-forms.
+\end{solution}
+
+\question Assuming the result of Exercise [12.10], prove the Poincare lemma for $p = 1$.
+
+\question Show directly that all the 'axioms' for exterior derivative are satisfied by this coordinate definition.
+
+\question Show that this coordinate definition gives the same quantity $\mathrm{d}\mathbf{\alpha}$, whatever choice of coordinates is made, where the transformation of the components $\alpha_{r\cdots{t}}$ of a form is defined by the requirement that the form $\mathbf{\alpha}$ itself be unaltered by coordinate change. \textit{Hint}: Show that this transformation is identical with the passive transformation of $[0, p]$-valent tensor components, as given in $\S$13.8.
+
+\question Confirm the equivalence of all these conditions for simplicity; prove the sufficiency of $\alpha_{[rs}\alpha_{u]v} = 0$ in the case $p = 2$. (\textit{Hint}: contract this expression with two vectors.)
+
+\question By representing a rotation in ordinary $3$-space as a vector pointing along the rotation axis of length equal to the angle of rotation, show that the topology of $R$ can be described as a solid ball (of radius $\pi$) bounded by an ordinary sphere, where each point of the sphere is identified with its antipodal point. Give a direct argument to show why a closed loop representing a $2\pi$-rotation cannot be continuously deformed to a point.
+
+\begin{solution}
+        With rotations represented this way (as a vector in $3$-space), restrict the available angle of rotation between $-\pi \leq \theta \leq \pi$. Clearly, the space of rotations is given by a solid ball of radius $\pi$ (representing those rotations less than $\pi$) combined with its boundary. All points on this boundary correspond to rotations about an angle of $\pi$. But, as rotations about an angle of $\pi$ are indistinguishable from rotations about an angle of $-\pi$, antipodal points on this boundary are to be identified with one another.
+
+        Now, consider a path in this space representing a $2\pi$ rotation. Starting at the origin, this is a line to the boundary, then from the antipodal point of \textit{that} point back to the origin. Because of these identified antipodal points, such a line cannot be deformed to a point: any movement of one of the boundary points moves the other.
+
+        If, on the other hand, such a path is taken \textit{twice}, then the path of one pair of antipodal points can be moved around the sphere to lie opposed to the other, cancelling them out and leaving a point.
+\end{solution}
+
+\end{questions}
+	
+\end{document}

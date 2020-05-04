@@ -1,0 +1,99 @@
+\documentclass[../the-road-to-reality.tex]{subfiles}
+
+\begin{document}
+
+\section{Complex-number calculus}
+
+\begin{questions}
+	
+\question Explain why $\oint{z^n}\mathrm{dz}=0$ when $n$ is an integer other than $-1$.
+
+\begin{solution}
+	Integrating $z^n$ when $n$ is not $-1$ yields $z^{n+1}$. As this is a single-valued function, the contour integral of it results in $z_0^m - z_0^m$, which is $0$.
+\end{solution}
+
+\question Show this simply by substituting the Maclaurin series for $f(z)$ into the integral.
+
+\begin{solution}
+	Doing as the question suggests yields
+	
+	\[
+		\frac{n!}{2\pi{i}}\oint\frac{f(0) + zf^{(1)}(0) + z^2f^{(2)}(0)/2! + \cdots}{z^{n+1}}\mathrm{d}z
+	.\] 	
+
+	Since each $f^{(n)}(0)$ is a constant, our integral becomes a linear superposition of terms of the form $z^n$. As explained in the answer to the previous question, these all evaluate to $0$ except for the $n$th term, which becomes
+	
+	\[
+	\frac{n!}{2\pi{i}}\oint\frac{z^nf^{(n)}(0)}{z^{n+1}n!}\mathrm{d}z = \frac{f^{(n)}(0)}{2\pi{i}}\oint\frac{1}{z}\mathrm{d}z = f^{(n)}(0)
+	.\] 
+\end{solution}
+
+\question Show all this at least at the level of formal expressions; don't worry about the rigorous justification. \textit{Hint}: Look at the origin-shifted Cauchy formula.
+
+\question The function $f(z)$ is holomorphic everywhere on a closed contour $\Gamma$, and also within $\Gamma$ except at a finite set of points where $f$ has poles. Recall from \S4.4 that a \textit{pole} of order $n$ at $z=\alpha$ occures where $f(z)$ is of the form $h(z)/(z-\alpha)^n$, where $h(z)$ is regular at $\alpha$. Show that $\oint{f(z)}\mathrm{d}z=2\pi{i}\times\{$sum of the residues at these poles$\}$, where the \textit{residue} at the pole $\alpha$ is $h^{(n-1)}(\alpha)(n-1)!$.
+
+\begin{solution}
+	We may divide our closed contour up into separate regions which surround the poles of our function. If we traverse each region in the opposite manner to its adjacent regions, the interior contours cancel and we are left with the original contour. This patchwork of regions can then be shrunk until it consists of separate patches surrounding each pole, being of it maintains its homology class. In this way, we may write
+	
+	\[
+		\oint_\Gamma{f(z)}\mathrm{d}z = \sum_k\oint_k\frac{h(z)}{(z-\alpha_k)^n}\mathrm{d}z
+	.\] 	
+
+	where $k$ denotes a different region surrounding a unique pole.
+
+	We recognize in the above a weighted Cauchy formula. Making this substitution gives us our answer
+
+	\[
+	\oint_\Gamma{f(z)}\mathrm{d}z = \sum_k2\pi{i}\frac{h^{(n-1)}(\alpha_k)}{(n-1)!}
+	.\] 
+\end{solution}
+
+\question Show that $\int_0^{\infty}x^{-1}\sin{x}\mathrm{d}x=\frac{\pi}{2}$ by integrated $z^{-1}e^{iz}$ around a closed contour $\Gamma$ consisting of two portions of the real axis, from $-R$ to $-\epsilon$ and from $\epsilon$ to $R$ (with $R>\epsilon>0$) and two connecting semi-circular arcs in the upper half-plane, of respective radii $\epsilon$ and $R$. Then let $\epsilon\to0$ and $R\to\infty$.
+
+\begin{solution}
+	Denote the small semi-circular arc by $\gamma$ (traversed clockwise) and the large one by $\Gamma$ (traversed anti-clockwise). Then we have
+	
+	\[
+		\oint\frac{e^{iz}}{z}\mathrm{d}z = \lim_{R\to\infty,\epsilon\to{0}}\Big(\int_{-R}^{\epsilon}\frac{e^{iz}}{z}\mathrm{d}z + \int_\gamma\frac{e^{iz}}{z}\mathrm{d}z + \int_\epsilon^{R}\frac{e^{iz}}{z}\mathrm{d}z + \int_\Gamma\frac{e^{iz}}{z}\mathrm{d}z = 0\Big)
+	.\] 	
+
+	where the last equality comes from the fact that our integrand is analytic along this contour.
+
+	Focus on the last term. By Jordan's Lemma, this is $0$, i.e. the very large imaginary values used in place of $z$ completely damp the exponential. The first and third terms combine to give our sought after real-line integral. What about the third term? Rewrite it as$$\int_\gamma\frac{e^{iz}-1}{z}\mathrm{d}z + \int_\gamma\frac{1}{z}\mathrm{d}z$$The first term of this can be expanded in a power series as $\int_\gamma(1+\frac{z}{2!}+\frac{z^2}{3!}+\cdots)\mathrm{d}z$. This has no poles, and so becomes $0$ as $\epsilon$ shrinks to $0$. The remaining part of this semi-circular contour integral is easily evaluated as 
+	
+	\[
+		\int_\gamma\frac{1}{z}\mathrm{d}z = \ln\epsilon{e}^{i0}-\ln\epsilon{e}^{i\pi} = \ln\epsilon + i0 - \ln\epsilon - i\pi = -i\pi
+	.\] 
+
+	In order for our initial expansion to hold, we must have $\int_{-\infty}^{\infty}\frac{e^{iz}}{z}\mathrm{d}z = i\pi$. Taking the imaginary part of this and recognizing the resulting integrand as even, this implies
+	
+	\[
+	\int_{0}^{\infty}\frac{\sin{x}}{x}\mathrm{d}x = \frac{\pi}{2}
+	.\] 
+\end{solution}
+
+\question Show that $1 + \frac{1}{2^2} + \frac{1}{3^2} + \frac{1}{4^2} + \cdots = \frac{\pi^2}{6}$ by integrated $f(z) = z^{-2}\cot\pi{z}$ (see Note 5.1) around a large contour, say a square of side-length $2N + 1$ centered at the origin ($N$ being a large integer), and then letting $N\to\infty$. (\textit{Hint}: Use Exercise [7.4], finding the poles of $f(z)$ and their residues. Try to show why the integral of $f(z)$ around $\Gamma$ approaches the limiting value $0$ as $N\to\infty$.)
+
+\question What is the power series, taken about the point $p$, for $f(z)=1/z$?
+
+\begin{solution}
+	Taking successive derivatives of $f(z)=z^{-1}$ yields $f^{(1)}(z)=-z^{-2}$, $f^{(2)}(z)=2z^{-3}$, $f^{(3)}(z)=-3!z^{-4}$, and so on. Plugging this into the Taylor series for $f(z)$ gives
+
+	\[
+	\sum_{k=0}^{\infty}\frac{f^{(k)}(p)}{k!}(z-p)^k = \sum_{k=0}^{\infty}\frac{(-1)^kk!}{p^{k+1}k!}(z-p)^k = \sum_{k=0}^{\infty}\frac{(-1)^k}{p^{k+1}}(z-p)^k
+	.\] 
+\end{solution}
+
+\question Derive this series.
+
+\begin{solution}
+	We can find this series by setting $p=1$ in the series found in the answer to the previous question, then integrating (because $\int\frac{1}{z}\mathrm{d}z=\ln{z}$). Doing so gives us
+
+\[
+\sum_{k=0}^{\infty}\frac{(-1)^k}{k+1}(z-1)^{k+1}
+.\] 
+\end{solution}
+
+\end{questions}
+	
+\end{document}

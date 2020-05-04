@@ -1,0 +1,141 @@
+\documentclass[../the-road-to-reality.tex]{subfiles}
+
+\begin{document}
+
+\section{Fibre bundles and gauge connections}
+
+\begin{questions}
+
+  \question Explain why the dimension of $\mathcal{M}\times\mathcal{V}$ is the
+  sum of the dimensions of $\mathcal{M}$ and $\mathcal{V}$.
+
+  \begin{solution}
+    An element in the product space $\mathcal{M}\times\mathcal{V}$ is specified
+    by the ordered pair $(m, v)$. That is, we associate to every point in $\mathcal{M}$
+    a space $\mathcal{V}$. The dimension of our product space is, then, the
+    dimension of $\mathcal{M}$ augmented by the dimension of $\mathcal{V}$, or
+    $\dim\mathcal{M} + \dim\mathcal{V}$.
+  \end{solution}
+
+  \question Explain this.
+
+  \begin{solution}
+    A structure preserving transformation is one such that
+    \[
+      \mathbf{T}(x)\mathbf{T}(y) = \mathbf{T}(xy).
+    \]
+    For the transformation $\mathbf{T}(x) = -x$, we have
+    \[
+      \mathbf{T}(x)\mathbf{T}(y) = (-x)(-y) = xy \neq \mathbf{T}(xy) = -xy,
+    \]
+    and so such a `flip' of $\mathbb{R}$ is not a symmetry.
+  \end{solution}
+
+  \question Spell this argument out, using the construction of $B$ from two
+  patches, as indicated above.
+
+  \begin{solution}
+    Suppose, as Penrose does, that we build our M{\"o}bius from two
+    semi-circular bands---one having `vertical' coordinates flipped in relation
+    to the other. To smoothly glue such parts together, we must avoid
+    discontinuities, and so our coordinate systems must match on the overlap in
+    these two sections, but the only such coordinate that satisfies $x=-x$ is
+    $x=0$. Therefore, a smooth cross-section through the M{\"o}bius bundle must
+    cross $0$ if it is to pass through all patches.
+  \end{solution}
+
+  \question Carry out this argument. Can you see how to do the $S^{15}$ case?
+
+  \question Show this. \textit{Hint}: Take the tangent vector to be
+  $u\partial/\partial{v} - v\partial/\partial{u} + x\partial/\partial{y} - y\partial/\partial{x}$.
+
+  \question Why does every such spinor field take the value zero at at least one
+  point of $S^2$?
+
+  \begin{solution}
+    Consider traversing such a field around a great circle of $S^2$. Being as
+    this is a rotation of $2\pi$, the spinor vectorspin we arrive at should be the negative
+    of what we started with. But these are the same, and so must equal zero.
+  \end{solution}
+
+  \question Explain this in detail.
+
+  \question Show that $\mathcal{B}'^{\mathbb{C}}$, interpreted as a real bundle
+  over $S^2$ is indeed the same as $T(S^2)$. \textit{Hint}: Re-examine Exercise [15.5].
+
+  \question Explain how to do this. \textit{Hint}: Think of Cartesian
+    coordinates $(x,y,z)$. Take two at a time, with the canvas given by the
+    third set to unity.
+
+  \begin{solution}
+    To cover the whole of $\mathbb{P}^2$, our three planes must capture every
+    single point. Points in a $2$-dimensional projective space are represented as slopes of
+    lines through the origin of a $3$-dimensional vector space. We need to find
+    $2$ points on each line to calculate its slope, and so consider choosing as our
+    three planes those Penrose suggests.
+
+    Because the $3$-dimensional vector space containing our projective space is
+    Euclidean, any line through its origin will intersect these planes two
+    times, except when such a line is exactly perpendicular to one plane. But,
+    being as this occurs for only one such line per plane, it is uniquely
+    specified by such a projection. Thus, all points in our projective space are
+    captured on these three planes.
+  \end{solution}
+
+  \question Explain why there are $n$ independent ratios. Find $n+1$ sets of $n$
+    ordinary coordinates (constructed from the $z$s), for $n+1$ different
+    coordinate spatches, which together cover $P^n$.
+
+    \begin{solution}
+      There are $n$ independent ratios because we can normalize every value with
+      respect to a particlar one. This is also the key to constructing the
+      necessary coordinate sets. One possible answer is
+      \begin{gather*}
+        \{1, z^1, \dots, z^n\} \\
+        \{z^0, 1, \dots, z^n\} \\
+        \vdots \\
+        \{z^0, z^1, \dots, 1\}
+      \end{gather*}
+    \end{solution}
+
+
+  \question Explain this geometry, showing that the bundle $\mathbb{R}^{n+1}-O$
+    over $\mathbb{RP}^n$ can be understood as the composition of the bundle
+    $\mathbb{R}^{n+1}-O$ over $S^n$ (the fibre, $\mathbb{R}^{+}$, being the
+    positive reals) and of $S^n$ as a twofold cover of $\mathbb{RP}^n$.
+
+  \question Check this.
+
+    \begin{solution}
+      We are simply asked to check this, so
+      \begin{align*}
+        \frac{\partial\Phi}{\partial{z}} &= \Big(\frac{\partial{B}}{\partial{z}} + \frac{\partial{\overline{B}}}{\partial{z}}\Big)e^{(B+\overline{B})} \\
+&= A\Phi + \overline{\frac{\partial{B}}{\partial{\overline{z}}}}\Phi \\
+&= A\Phi + \overline{\int\frac{\partial{A}}{\partial\overline{z}}\mathrm{d}z} \\
+&= A\Phi,
+      \end{align*}
+      where the second term becomes zero by virtue of $A$'s holomorphicity.
+    \end{solution}
+    
+\question Verify this formula.
+
+\begin{solution}
+  Expanding each nabla yields
+  \begin{align*}
+    (\nabla\overline{\nabla} - \overline{\nabla}\nabla)\Phi &= \Big(\frac{\partial}{\partial{z}} - A\Big)\overline{\Big(\frac{\partial}{\partial{z}} - A\Big)}\Phi - \overline{\Big(\frac{\partial}{\partial{z}} - A\Big)}\Big(\frac{\partial}{\partial{z}} - A\Big)\Phi \\
+&= \Big(\frac{\partial}{\partial{z}} - A\Big)\Big(\frac{\partial}{\partial\overline{z}} - \overline{A}\Big)\Phi - \Big(\frac{\partial}{\partial\overline{z}} - \overline{A}\Big)\Big(\frac{\partial}{\partial{z}} - A)\Phi \\
+&= \frac{\partial^2\Phi}{\partial{z}\partial\overline{z}} - \frac{\partial\overline{A}}{\partial{z}}\Phi - A\frac{\partial\Phi}{\partial\overline{z}} + A\overline{A}\Phi - \frac{\partial^2\Phi}{\partial\overline{z}\partial{z}} + \frac{\partial{A}}{\partial\overline{z}}\Phi + \overline{A}\frac{\partial\Phi}{\partial{z}} - \overline{A}A\Phi \\
+&= \frac{\partial{A}}{\partial\overline{z}}\Phi - \frac{\partial\overline{A}}{\partial{z}}\Phi + \overline{A}\frac{\partial\Phi}{\partial{z}} - \overline{\overline{A}\frac{\partial\Phi}{\partial{z}}} \\
+&= (\frac{\partial{A}}{\partial\overline{z}} - \frac{\partial\overline{A}}{\partial{z}})\Phi,
+  \end{align*}
+  
+where the vanishing of the last two terms in the second to last line comes from
+the fact that $\Phi$ is real, and anything minus its complex conjugate is purely imaginary.
+\end{solution}
+
+\question Confirm the assertions in this paragraph, finding the explicit value
+  of $k$ that gives this required factor $2$.
+    
+\end{questions}
+
+\end{document}

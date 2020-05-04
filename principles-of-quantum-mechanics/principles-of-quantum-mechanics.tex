@@ -1,0 +1,25 @@
+\documentclass{exam}
+
+\usepackage{scrextend}
+\usepackage{tikz, tkz-euclide}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{commath}
+\usepackage{sectsty}
+\usepackage{array}
+\usepackage{etoolbox}
+\usepackage{color}
+\usepackage{subfiles}
+\usepackage{wasysym}
+
+\renewcommand{\solutiontitle}{}
+\AtBeginEnvironment{solution}{}
+\renewcommand{\thequestion}{\thesection.\arabic{question}}
+
+\begin{document}
+\printanswers
+
+\subfile{sections/mathematical-introduction}
+\subfile{sections/review-of-classical-mechanics}
+
+\end{document}

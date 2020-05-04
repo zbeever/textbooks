@@ -1,0 +1,223 @@
+\documentclass[../feynman-lectures-on-physics.tex]{subfiles}
+
+\begin{document}
+
+\section{Atoms in Motion}
+
+\begin{questions}
+	
+\question If heat is merely molecular motion, what is the difference between a hot, stationary baseball and a cool, rapidly moving one?
+
+\begin{solution}
+	The hot, stationary baseball's atoms are vibrating rapidly; the ball is stationary because the motion of its atoms has no preferred direction. By contrast, the cool baseball's atoms \textit{do} have a preferred direction. It is cool because its atoms are jiggling less vigorously than those of the hot baseball.
+\end{solution}
+
+\question If the atoms of all objects are perpetually in motion, how can there be any permanent objects, such as fossil imprints?
+
+\begin{solution}
+	In the end, there \textit{are} no permanent objects, only very long-lasting ones. The ones that have lasted longer have done so by virtue of the forces between the atoms being strong enough to overcome their vibrations.
+\end{solution}
+
+\question Explain qualitatively why and how friction in a moving machine produces heat. Explain also, if you can, why heat cannot produce useful motion by the reverse process.
+
+\begin{solution}
+	When a machine moves, the parts in contact with one another rub against each other by exchanging atoms and knocking others loose, releasing energy that is imparted to nearby atoms in the form of vibrations.
+
+	Heat cannot produce useful motion because such atomic motion is random: it has no preferred direction, and so cannot produce useful work.
+\end{solution}
+
+\question Chemists have found that the molecules of rubber consist of long criss-crossed chains of atoms. Explain why a rubber band becomes warm when it is stretched.
+
+\begin{solution}
+	As a rubber band is stretched, these chains pass by each other. The forces present in each push against the others, causing atomic motion, i.e. heat.
+\end{solution}
+
+\question What should happen to a rubber band which is supporting a given weight, if it is heated? (To find out, try it.)
+
+\begin{solution}
+	When a rubber band is heated, the additional motion within each chain will create more knots and twists, shrinking the band.
+\end{solution}
+
+\question Can you explain why there are no crystals that have the shape of a regular pentagon?
+
+\begin{solution}
+	A regular pentagon cannot be used to tile the plane, and therefore a layer of crystal cannot be made from atoms arranged in such a way.
+\end{solution}
+
+\question You are given a large number of steel balls of equal diameter $d$ and a container of known volume $V$. Every dimension of the container is much greater than the diameter of a ball. What is the greatest number of balls, $N$, that can be placed in the container?
+
+\begin{solution}
+	This is a sphere packing problem, which can become quite complicated the deeper you want to go. As a first approximation, we may treat each ball as a box, giving
+
+	\[
+	N = \frac{V}{d^3}
+	.\] 
+	
+	We can do better than this. Consider packing the balls into a lattice and zooming in on a small question of the structure, centered at one ball. There are eight other balls touching this one: we'll take the studied volume to be the cube containing the corners of these balls. That is, our volume contains eight eighth-spheres (one at each corner) touching the central ball. The diagonal of this cube is clearly $2d$, giving a side length of $l = \frac{2}{\sqrt{3}}d$ and a volume of $V_B = \frac{8}{3\sqrt{3}}d^3$. The volume occupied by our steel balls is equivalent to two of them, or $V_S = 2\times\frac{\pi}{6}d^3$. Taking the ratio of these gives us the percentage of volume available to be occupied by our steel balls,
+
+	\[
+	\frac{V_S}{V_B} = \frac{\pi}{3}d^3\cdot\frac{3\sqrt{3}}{8d^3} = \frac{\pi\sqrt{3}}{8}
+	.\] 
+
+	The number of balls we can fit in our space with this packing method is given by
+
+	\[
+	N = V\frac{\pi\sqrt{3}}{8}\cdot\frac{6}{\pi{d^3}} = \frac{3\sqrt{3}}{4}\frac{V}{d^3}
+	.\] 
+
+	But we can do even better! Instead of the previous imagined volume, consider a cube with, once again, its corners filled with eighth-spheres. But now, instead of a ball at the center, there are half-spheres emanating from the middle of each face. The diagonal of each face of this cube is clearly $2d$, giving a side length of $l = \sqrt{2}d$ and a volume of $V_B = 2\sqrt{2}d^3$. The volume occupied by our steel balls is equivalent to four of them (one from the eight eighths, and three from the six halves), or $V_S = \frac{2}{3}\pi{d^3}$. The ratio of these is
+
+	\[
+	\frac{V_S}{V_B} = \frac{2}{3}\pi{d^3}\cdot\frac{1}{2\sqrt{2}d^3} = \frac{\pi}{3\sqrt{2}}
+	.\] 
+
+	This, the optimal result (as proven by Gauss), gives us
+
+	\[
+	N = V\frac{\pi}{3\sqrt{2}}\cdot\frac{6}{\pi{d^3}} = \sqrt{2}\frac{V}{d^3}
+	.\] 
+\end{solution}
+
+\question How should the pressure $P$ of a gas vary with $n$, the number of atoms per unit volume, and $\langle{v}\rangle$, the average speed of an atom? (Should $P$ be proportional to $n$ and/or $\langle{v}\rangle$, or should it vary more, or less, rapidly than linearly?
+
+\begin{solution}
+	If we double the number of atoms per unit volume, twice as many atoms will be colliding with each side of our container, suggesting $P \propto n$. If we increase the average speed of our atoms, not only will they be colliding against each wall with greater force (their change in momentum will be larger, and $F = \frac{dp}{dt}$), but collisions will also happen more frequently (as each atom takes less time to traverse its bounding volume). Therefore, we expect $P \propto \langle{v}\rangle^2$. This makes sense from an energy standpoint, too: we expect $P$ to be proportional to the energy of the gas, which is proportional to $\langle{v}\rangle^2$.
+\end{solution}
+
+\question Ordinary air has a density of about $\rho_G = \SI{0.001}{\gram\per\centi\meter\cubed}$, while liquid air has a density of about $\rho_L = \SI{1.0}{\gram\per\centi\meter\cubed}$.
+\begin{parts}
+	\part Estimate the number of air molecules per cm$^3$ in ordinary air, $n_G$, and in liquid air, $n_L$.
+	\part Estimate the mass $m$ of an air molecule.
+	\part Estimate the average distance $l$ an air molecule should travel between collisions at normal temperature and pressure (NTP, 20$^\circ$ C at $1$ atm). This distance is called the \textit{mean free path}.
+	\part Estimate at what pressure $P$, in normal atmospheres, a vacuum system should be operated in order that the mean free path be about one meter.
+\end{parts}
+
+\begin{solution}
+	\begin{parts}
+		\part The atmosphere is approximately 80\% $N_2$ and 20\% $O_2$, with the former having an atomic mass of $\approx 2\times14$ u and the latter having an atomic mass of $\approx 2\times16$ u. Noting that Avogadro's number is $N_A = \SI{6e23}{\per\mole}$, and defining $\alpha_N = \SI{1/28}{\mole\per\gram}$ and $\alpha_O = \SI{1/32}{\mole\per\gram}$, we can perform dimensional analysis to find 
+
+		\begin{align*}
+			n_G &= N_A(0.8\alpha_N + 0.2\alpha_O)\rho_G = \SI{2e19}{\per\centi\meter\cubed} \\
+			n_L &= N_A(0.8\alpha_N + 0.2\alpha_O)\rho_L = \SI{2e22}{\per\centi\meter\cubed}
+		\end{align*}
+
+		\part We can find $m$ by dividing the density by the number of air molecules in a given volume
+
+		\[
+		m = \frac{\rho_G}{n_G} = \SI{5e-23}{\gram}
+		.\] 
+
+		\part To estimate the mean free path, imagine the trajectory of a single molecule. If we idealize this molecule as a sphere, its motion sweeps out a cylinder of volume $\pi{r}^2l$, where $r$ is the molecule radius and $l$ is the length of the cylinder. A 'free' path corresponds to a volume containing exactly one such molecule, or 
+
+		\[
+		n_G\pi{r^2}l = 1
+		.\] 
+
+		\part Since each air molecule consists of two atoms, we'll guess a radius of $\SI{2}{\angstrom}$, or $\SI{2e-8}{\centi\meter}$. This gives us an estimated mean free path of
+
+		\[
+		l = \frac{1}{n_G\pi{r^2}} = \SI{4e-5}{\centi\meter}
+		.\] 
+
+		Now, we estimated earlier that $P \propto n_GT$ (as $T \propto \langle{v}\rangle^2$). We can explicitly include the constant of proportionality $B$ and solve for it using our given values of $\SI{1}{atm}$ and $\SI{20}{\degreeCelsius}$,
+
+		\[
+		B = \frac{P}{n_GT} = \SI{2.5e-21}{atm\per\centi\meter\cubed\per\degreeCelsius}
+		.\] 
+
+		With this, we can then express $n_G$ in terms of $P$ and solve for it in the mean free path equation. At $l = 100$ cm, we find
+
+		\[
+		P = \frac{BT}{l\pi{r}^2} = \SI{4e-7}{atm}
+		.\] 
+	\end{parts}
+\end{solution}
+
+\question The intensity of a collimated, parallel beam of potassium atoms is reduced $3.0$\% by a layer of argon gas $\SI{1.0}{\milli\meter}$ thick at a pressure of $\SI{6.0e-4}{\mmHg}$. Calculate the effective target area $A$ per argon atom.
+
+\begin{solution}
+	If the argon reduces the potassium beam's intensity by $3$\%, we may guess that, if the thickness of the gas layer were larger, more reduction would occur. Total attenuation would correspond to the thickness of the gas layer equaling the mean free path of the argon, as this is when, on average, atoms passing through the gas would collide with something every time. (Here, we are relying on the fact that both types of atoms have a similar size and that the potassium beam is coherent enough to avoid self-collisions.) Put another way, if $l$ is the mean free path, we have $0.03l = \SI{0.1}{\centi\meter}$, or $l = \SI{3}{\centi\meter}$.
+
+	With this information, we can rearrange (1.12) by identifying $A = \pi{r}^2$ and swapping it with $P$, resulting in
+
+	\[
+	A = \frac{BT}{lP} = \SI{2e-14}{\centi\meter\squared}
+	.\] 
+
+	where we have made the conversion from $\si{\mmHg}$ to atm implicit.
+\end{solution}
+
+\question X-ray diffraction studies show that NaCl crystals have a cubic lattice, with a spacing of $2.820$ $\si{\angstrom}$ between nearest neighbors. Look up the density and molecular weight of NaCl and calculate Avogadro's number $N_A$. (This is one of the most precise experimental methods for determining $N_A$.)
+
+\begin{solution}
+	The density of NaCl is $\rho = \SI{2.16}{\gram\per\centi\meter\cubed}$ and its molecular weight is $m = \SI{58.44}{\gram\per\mole}$. If we were to cube the length given to us, we would have a volume that, when combined with these two quantities, would allow us to compute Avogadro's number.
+
+	But that isn't quite right. The spacing given is between nearest \textit{atoms}, not molecules, and so our cube only contains half as many molecules as we initially expected it to have. That is
+
+	\[
+	\frac{1}{2}\frac{m}{\rho}\frac{1}{l^3} = \SI{6.03e23}{\per\mole}
+	.\] 
+\end{solution}
+
+\question Boltwood and Rutherford found that radium in equilibrium with its disintegration products produced $13.6\times{10^{10}}$ helium atoms per second per gram of radium. They also measured that the disintegration of $192$ mg of radium produced $\SI{0.0824}{\milli\meter\cubed}$ of helium per day at standard temperature and pressure (STP, $\SI{0}{\degreeCelsius}$ at $\SI{1}{atm}$). Use these data to calculate:
+\begin{parts}
+	\part The number of helium atoms $N_H$ per cm$^3$ of gas at STP.
+	\part Avogadro's number $N_A$.
+\end{parts}
+
+\begin{solution}
+	\begin{parts}
+		\part Jumping right to it, we estimate
+		\[
+		N_H = \SI{13.6e10}{\per\gram\per\second} \times \frac{\SI{192}{\milli\gram}}{\SI{0.0824}{\milli\meter\cubed\per{day}}} = \SI{2.7e19}{\per\centi\meter\cubed}
+		.\] 
+		\part Looking up the atomic weight of helium, as well as its density at STP, gives $m = \SI{4}{\gram\per\mole}$ and $\rho = \SI{1.786e-4}{\gram\per\centi\meter\cubed}$. Combining these with $N_H$ gives
+		\[
+		N_A = N_H\frac{m}{\rho} = \SI{6.04e23}{\per\mole}
+		.\] 
+	\end{parts}
+\end{solution}
+
+\question Rayleigh found that $\SI{0.81}{\milli\gram}$ of olive oil on a water surface produced a mono-molecular layer $\SI{84}{\centi\meter}$ in diameter. What value of Avogadro's number $N_A$ results, assuming the approximate composition H(CH$_2$)$_{18}$COOH in a linear chain, with density $\SI{0.8}{\gram\per\centi\meter\cubed}$?
+
+\question About $1860$, Maxwell showed that the viscosity of a gas is given by
+\[
+\eta = \frac{1}{3}\rho{vl}
+.\] 
+where $\rho$ is the density, $v$ is the mean molecular speed, and $l$, the mean free path. The latter quantity he had earlier shown to be $l = 1/(\sqrt{2}\pi{N_g}\sigma^2)$, where $\sigma$ is the diameter of the molecule. Loschmidt ($1865$) used the measured value of $\eta$, $\rho$ (gas), and $\rho$ (solid) together with Joule's calculated $v$ to determine $N_g$, the number of molecules per cm$^{3}$ in a gas at STP. He assumed the molecules to be hard spheres, tightly packed in a solid. Given $\eta = \SI{2.0e-4}{\gram\per\centi\meter\per\second}$ for air at STP, $\rho$ (liquid) $\approx \SI{1.0}{\gram\per\centi\meter\cubed}$, $\rho$ (gas) $\approx \SI{1.0e-3}{\gram\per\centi\meter\cubed}$ and $v \approx \SI{500}{\meter\per\second}$, calculate $N_g$.
+
+\begin{solution}
+	Making sure to use $\rho$ (gas), we can substitute in the expression for the mean free path into $\eta$ and solve for $N_g$. Estimating the diameter of a molecule to be $2\times\SI{2}{\angstrom}$, we find
+	\[
+	N_g = \frac{1}{3}\frac{\rho{v}}{\sqrt{2}\pi\eta\sigma^2} = \SI{1.2e-19}{}
+	.\] 
+\end{solution}
+
+\question A glass full of water is left standing on an average outdoor windowsill in California.
+\begin{parts}
+	\part How much time $T$ do you think it would take to evaporate completely?
+	\part How many molecules $J$ per cm$^2$ and per s would be leaving the water glass at this rate?
+	\part Briefly discuss the connection, if any, between your answer to part (a) above and the average rainfall over the earth.
+\end{parts}
+
+\question A raindrop of an afternoon thundershower fell upon a Paleozoic mud flat and left an imprint which is later dug up as a fossil by a hot, thirsty geology student. As he drains his canteen, the student idly wonders how many molecules of water, $N$, of that ancient raindrop he has just drunk. Estimate $N$ using only data which you already know. (Make reasonable assumptions regarding necessary information which you do not know.)
+
+\begin{solution}
+	Let's estimate a radius for the raindrop of $\SI{0.5}{\centi\meter}$, giving it a volume of $V_R = \SI{0.5}{\centi\meter\cubed}$. The density of water is $\rho = \SI{1.0}{\gram\per\centi\meter\cubed}$, its molar mass is $m = \SI{18}{\gram\per\mole}$, and Avogadro's number is $N_A = \SI{6e23}{\per\mole}$, so there are 
+	\[
+	N_M = V_RN_A\frac{\rho}{m} = \SI{2e22}{}
+	\] 
+	molecules in our prehistoric raindrop. How many raindrops are there on earth? With a radius of $r = \SI{6e8}{\centi\meter}$, the earth has a surface area of $A = \SI{4.5e18}{\centi\meter\squared}$. The ocean occupies approximately $30$\% of this area and has a mean depth of $D = \SI{4e5}{\centi\meter}$, giving us
+	\[
+	N_R = \frac{AD}{V_R} = \SI{4e24}{}
+	\] 
+	raindrops on the earth. Since our original raindrop first hit the ground a long time ago, it's reasonable to assume its molecules have spread out evenly across the globe, giving us approximately
+	\[
+	\frac{N_M}{N_R} = \SI{5e-3}{}
+	\] 
+	ancient molecules per raindrop's worth of water. If the canteen the student drank from holds a liter of water, then it can be filled with $2000$ raindrops. From this, we estimate the student drank approximately $10$ molecules of water that were once in the raindrop he's observing.
+\end{solution}
+
+\end{questions}
+
+\end{document}

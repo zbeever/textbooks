@@ -1,0 +1,253 @@
+\documentclass[../feynman-lectures-on-physics.tex]{subfiles}
+
+\begin{document}
+
+\section{Kepler's Laws and Gravitation}
+
+\begin{questions}
+
+	\question Some properties of the ellipse. The size and shape of an ellipse are determined by specifying the values of any two of the following quantities (as shown in Fig. 3-1):
+	\begin{align*}
+		a &: \text{the semi-major axis} \\
+		b &: \text{the semi-minor axis} \\
+		c &: \text{the distance from the center to one focus} \\
+		e &: \text{the eccentricity} \\
+		r_p &: \text{the perihelion (or perigee) distance (the closest distance from a focus to the ellipse)} \\
+		r_a &: \text{the aphelion (or apogee) distance (the farthest distance from a focus to the ellipse)}
+	\end{align*}
+	The relationships of these various quantities are
+	\begin{align*}
+		a^2 &= b^2 + c^2, \\
+		e &= \frac{c}{a}\quad\text{(definition of $e$)}, \\
+		r_p &= a - c = a(1 - e), \\
+		r_a &= a + c = a(1 + e).
+	\end{align*}
+	Show that the area of an ellipse is given by $A = \pi{ab}$.
+
+	\begin{solution}
+		Imagine a circle in the plane with a radius of $a$, having an area of $\pi{a}^2$. To transform this into an ellipse, we may apply a linear transformation that stretches an arbitrary axis by $\frac{b}{a}$, thereby transforming our circle into an ellipse with a semi-major axis of $b$ and a semi-minor axis of $a$. This linear transformation has a determinant of $\frac{b}{a}$, and thus transforms our circle's array by the same amount, giving an area of
+		\[
+		\pi{a^2}\frac{b}{a} = \pi{ab}.
+		\] 
+	\end{solution}
+
+	\question The distance of the moon from the center of the earth varies from $\SI{363300}{\kilo\meter}$ at perigee to $\SI{405500}{\kilo\meter}$ at apogee, and its period is $27.322$ days. A certain artificial earth satellite is orbiting so that its perigee height from the surface of the Earth is $\SI{225}{\kilo\meter}$ and its apogee height is $\SI{710}{\kilo\meter}$. The mean diameter of the Earth is $\SI{12756}{\kilo\meter}$. What is the sidereal period $T$ of the satellite?
+
+	\begin{solution}
+		We know that $T\, \propto\, a^{3/2}$, where $a$ is the semi-major axis of the ellipse of a body's orbit. We also know that the semi-major axis is given by $\frac{r_p + r_a}{2}$.
+
+		Given the apogee, perigee, and period of the moon, we can determine the constant of proportionality relating $T$ to $a^{3/2}$, 
+		\[
+		C = \frac{T}{\Big(\frac{r_p+r_a}{2}\Big)^{3/2}}	= \frac{27.322\,\text{days}}{\Big(\frac{\SI{363300}{\kilo\meter} + \SI{405500}{\kilo\meter}}{2}\Big)^{3/2}} = \SI{1.146e-7}{days\per\kilo\meter}^{3/2}
+		.\] 
+		From this, we can find the period of the satellite via
+		\[
+			T = C\Big(\frac{r_p + r_a}{2}\Big)^{3/2} = \SI{1.146e-7}{days\per\kilo\meter}^{3/2}\Big(\frac{\SI{225}{\kilo\meter} + \SI{6378}{\kilo\meter} + \SI{710}{\kilo\meter} + \SI{6378}{\kilo\meter}}{2}\Big)^{3/2},
+		\] 
+		which is approximately $1.56$ hours.
+	\end{solution}
+
+	\question The eccentricity of the earth's orbit is $0.0167$. Find the ratio $v_{max}/v_{min}$ of its maximum speed in its orbit to its minimum speed.
+
+	\begin{solution}
+		The earth's maximum speed is at perihelion, while its slowest occurs at aphelion. Equating the area swept out at each moment (imagining a triangle with a base stretching from the earth to the sun with another side tangential to the orbit), we see
+		\[
+			\frac{1}{2}r_pv_{max} = \frac{1}{2}r_av_{min},
+		\] 
+		or $v_{max}/v_{min} = r_a/r_p$. This ratio, in turn, is given by
+		\[
+		\frac{r_a}{r_p} = \frac{1 + e}{1 - e} = \frac{1 + 0.0167}{1 - 0.0167} = 1.034
+		.\] 
+	\end{solution}
+
+	\question The radii of the earth and the moon are $\SI{6378}{\kilo\meter}$ and $\SI{1738}{\kilo\meter}$, respectively, and their masses are in the ratio $81.3$ to $1.000$. Calculate the acceleration of gravity $g_{\leftmoon}$ at the surface of the moon. ($g_{\varEarth} = \SI{9.81}{\meter\per\second\squared}$.)
+
+	\begin{solution}
+		The force of gravity is given by
+		\[
+			\mathbf{F} = m\mathbf{a} = G\frac{Mm}{r^2}\hat{\mathbf{r}},
+		\] 
+		and so the magnitude of the gravitational acceleration at a given point from a body is
+		\[
+			a = G\frac{M}{r^2}
+		.\] 
+		We can solve for $G$ in terms of the parameters of the Earth, and substitute this into the equation for the gravitational acceleration of the moon,
+		\[
+		G = \frac{gr_\varEarth^2}{M_\varEarth}, \qquad a_\leftmoon = \frac{gr_\varEarth^2}{M_\varEarth}\frac{\frac{1}{81.3}M_\varEarth}{r_\leftmoon^2} = \Big(\frac{r_\varEarth}{r_\leftmoon}\Big)^2\frac{g}{81.3} = \Big(\frac{\SI{6378}{\kilo\meter}}{\SI{1738}{\kilo\meter}}\Big)^2\cdot\frac{\SI{9.8}{\meter\per\second\squared}}{81.3} = \SI{1.62}{\meter\per\second\squared}
+		.\] 
+	\end{solution}
+
+	\question In 1986, Halley's comet is expected to return on its seventh trip around the sun since the days in $1456$ when people were so frightened that they offered prayers in the church ``to be saved from the Devil, the Turk, and the comet.'' In its most recent perihelion on April 19, 1910, it was observed to pass near the sun at a distance $0.60$ AU.
+	\begin{parts}
+		\part How far $r_a$ does it go from the sun at the outer extreme of its orbit?
+		\part What is the ratio $v_{max}/v_{min}$ of its maximum orbital speed to its minimum speed?
+	\end{parts}
+
+	\begin{solution}
+		\begin{parts}
+			\part The constant found in Exercise 3.2 is dependent on the mass of the system under consideration. Since this was the Earth-Moon system, it is \textit{not} appropriate to use it in this problem. Instead, we must make an approximation. Given that the mass of the sun dwarfs everything else in the solar system, we suppose that this constant is roughly the same for Halley's comet as it is for the Earth-Sun system. In the Earth-Sun system, we have
+			\[
+				\SI{1}{year}\, \propto\, (\SI{1}{AU})^{3/2}
+			.\] 
+			This simple relationship sets the constant of proportionality equal to unity. Rearranging the formula derived in Exercise 3.2, we see
+			\[
+				r_a = 2\Big(\frac{T}{C}\Big)^{2/3} - r_p = 2\Big(\frac{\SI{76}{years}}{\SI{1}{year\per{AU}}^{3/2}}\Big)^{2/3} - 0.60 = \SI{35.3}{AU}		
+			.\] 
+		\end{parts}
+	\end{solution}
+
+	\question A satellite in a circular orbit near the earth's surface has a typical period of about $100$ minutes. What should be the radius $r$ of its orbit (in Earth radii, $r_{\varEarth}$) for a period of $24$ hours?
+
+	\begin{solution}
+		We can once again solve for the constant of proportionality in Kepler's third law by noting
+		\[
+			C = \frac{\SI{100}{minutes}}{(1.1\,r_{\varEarth})^{3/2}}
+		,\] 
+		where we have chosen the orbital radius of the $T = 100$ minute satellite to be slightly more than the earth's radius. For a period of $24$ hours, or $1440$ minutes, a satellite must orbit at a radius of
+		\[
+			r = \Big(\frac{T}{C}\Big)^{2/3} = 6.5\,r_\varEarth
+		.\] 
+	\end{solution}
+
+	\question Consider two earth satellites of equal orbital radius, one of them in a polar orbit, the other in an orbit in the equatorial plane. Which satellite needed the larger booster rocket and why?
+
+	\begin{solution}
+		The one in the polar orbit needed a larger booster rocket as the energy it received from the earth's rotation had to be fought against.
+	\end{solution}
+
+	\question A true ``Syncom'' satellite rotates synchronously with the earth. It always remains in a fixed position with respect to a point $P$ on the earth's surface.
+	\begin{parts}
+		\part Consider the straight line connecting the center of the earth with the satellite. If $P$ lies on the intersection of this line with the earth's surface, can $P$ have any geographic latitude $\lambda$ or what restrictions do exist? Explain.
+		\part What is the distance $r_s$ from the earth's center to a Syncom satellite of mass $m$? Express $r_s$ in units of the earth-moon distance $r_{\varEarth\leftmoon}$
+	\end{parts}
+
+	\textit{Note}: Consider the earth a uniform sphere. You may use $T_\leftmoon = 27$ days for the moon's period.
+
+	\begin{solution}
+		\begin{parts}
+			\part $P$ must lie along the equator, for if it did not our satellite would be orbiting about a point not coinciding with the system's center of mass. This is most clearly seen when $P$ is taken to be one of the poles.
+			\part Once again returning to Kepler's third law, we estimate the constant associate with an Earth orbit to be
+			\[
+				C = \frac{\SI{27}{days}}{(r_{\varEarth\leftmoon})^{3/2}}
+			.\] 
+			Requiring our Syncom satellite have a period of $1$ days allows us to estimate an orbital distance of
+			\[
+				r = \Big(\frac{T}{C}\Big)^{2/3} = \frac{1}{9}\,r_{\varEarth\leftmoon}
+			.\] 
+		\end{parts}
+	\end{solution}
+
+	\question
+	\begin{parts}
+		\part Comparing data describing the earth's orbital motion about the sun with data for the moon's orbital motion about the earth, determine the mass of the sun $m_\Sun$ relative to the mass of the earth $m_{\varEarth}$.
+		\part Io, a moon of Jupiter, has an orbital period of revolution of $1.769$ days and an orbital radius of $\SI{421800}{\kilo\meter}$. Determine the mass of Jupiter $m_\Jupiter$ in terms of the mass of the earth.
+	\end{parts}
+
+	\begin{solution}
+		\begin{parts}
+			\part We will need improve our methods used in previous problems and find the explicit way in which the mass of a body enters into the constant of proportionality in Kepler's third law. Assuming the orbits of interest are nearly circular, we may use Newton's law of gravitation to write
+			\[
+				m\omega^2r^2 = \frac{GMm}{r}
+			.\] 
+			We can cancel the mass of the orbiting body from both sides, exchange $\omega$ for $2\pi/T$, and solve for the mass $M$ of the central body to find
+			\[
+				M = \frac{4\pi^2r^3}{GT^2}
+			.\] 
+			This allows us to find the requested mass ratio $m_\Sun/m_\varEarth$,
+			\[
+				\frac{m_\Sun}{m_\varEarth} = \frac{(389\,r_{\varEarth\leftmoon})^3/(\SI{365}{days})^2}{(1\,r_{\varEarth\leftmoon})^3 /(\SI{27}{days})^2} = 322000\,\,m_\varEarth
+			,\] 
+			where we have expressed the distance from the earth to the sun in terms of earth-lunar distances.
+			\part Utilizing the above method, we see
+			\[
+				\frac{m_\Jupiter}{m_\varEarth} = \frac{(\SI{421800}{\kilo\meter})^3 / (\SI{1.769}{days})^2}{(\SI{384400}{\kilo\meter})^3 / (\SI{27}{days})^2} = 308\,\,m_\varEarth
+			.\] 
+			
+		\end{parts}
+	\end{solution}
+
+	\question Two stars, $a$ and $b$, move around one another under the influence of their mutual gravitational attraction. If the semi major axis of their relative orbit is observed to be $R$, measured in astronomical units (AU) and their period of revolution is $T$ years, find an expression for the sum of the mass, $m_a + m_b$, in terms of the mass $m_\Sun$ of the sun.
+
+	\begin{solution}
+		In this case, the stars are orbiting their common center of mass. We can use the method of the previous exercise (where the expression for the sun's mass uses the earth's orbit) to quickly find
+		\[
+			\frac{m_a+m_b}{m_\Sun} = \frac{(R\,\si{AU})^3 / (T\,\si{years})^2}{(\SI{1}{AU})^3 / (\SI{1}{year})^2} = \frac{R^3}{T^2}\,m_\Sun
+		.\] 
+	\end{solution}
+
+	\question If the attractive gravitational force between a very large central sphere $M$ and a satellite $m$ in orbit about it were actually $\mathbf{F} = -GMm\mathbf{R}/R^{(3+a)}$, (where $\mathbf{R}$ is the radial vector between them) how would Kepler's second and third law be modified? (In discussing the third law, assume a circular orbit.) 
+
+	\begin{solution}
+		Clearly, Kepler's third law would be amended to read
+		\[
+			T^2\,\propto\,R^{3+a},
+		\] 
+		as can be seen in the explicit form of the third law present in the solution to Exercise 3.9. Working in polar coordinates, we see that the second law implies
+		\[
+			\frac{\mathrm{d}A}{\mathrm{d}t} = \frac{\mathrm{d}}{\mathrm{d}t}\Big(\frac{1}{2}\cdot{r}\cdot{r\theta}\Big) = r\frac{\mathrm{d}r}{\mathrm{d}\theta}\theta + \frac{1}{2}r^2\frac{\mathrm{d}\theta}{\mathrm{d}t} = \frac{\mathrm{d}r}{\mathrm{d}t}{s} + \frac{1}{2}{r}{v} = 0
+		,\]
+		where $s$ is the arclength of the orbit and $v$ is the orbiting body's tangential velocity. We know that, given a circular orbit, $r' = 0$ and the radius is explicitly dependent on the period (which is a constant). Thus, areas swept out in equal times are still equivalent.
+	\end{solution}
+
+	\question In making laboratory measurements of $g$, how precise does one have to be to detect diurnal variations $\Delta{g}$ due to the moon's gravitation? For simplicity, assume that your laboratory is so located that the moon passes through zenith and nadir. Also, neglect earth-tide effects.
+
+	\begin{solution}
+		When the moon is `below' the laboratory, the total acceleration due to the gravitational field will be 
+		\[
+			a_{max} = G\frac{M_\varEarth}{r_\varEarth^2} + G\frac{M_\leftmoon}{(r_{\varEarth\leftmoon} + r_\varEarth)^2}
+		.\] 
+		When the moon is `above' the laboratory, the total acceleration will now be
+		\[
+			a_{min} = G\frac{M_\varEarth}{r_\varEarth^2} - G\frac{M_\leftmoon}{(r_{\varEarth\leftmoon} - r_\varEarth)^2}
+		.\] 
+		Subtracting these two gives us the difference in the gravitational acceleration, $\Delta{g}$,
+		\[
+			a_{max} - a_{min} = G\frac{M_\leftmoon}{(r_{\varEarth\leftmoon} + r_\varEarth)^2 } + G\frac{M_\leftmoon}{(r_{\varEarth\leftmoon} - r_\varEarth)^2} = \SI{6.64e-5}{\meter\per\second\squared}
+		.\] 
+	\end{solution}
+
+	\question An eclipsing binary star system is one whose orbital plane nearly contains the line of sight, so that one star eclipses the other periodically. The relative orbital velocity of the two components can be measured from the Doppler shift of their spectral lines. If $T$ is the observed period in days, and $V$ is the orbital velocity in $\si{\kilo\meter\per\second}$, what is the total mass $M$ of the binary system in solar masses?
+
+	\textit{Note}: The mean distance from the earth to the sun is $\SI{1.50e8}{\kilo\meter}$.
+
+	\begin{solution}
+		Be equating the orbital velocity to the star's angular velocity, we find
+		\[
+			V = \omega{R} = \frac{2\pi}{T}R
+		.\] 
+		Solving for $R$ and cubing this equation allows us to plug in the explicit form of Kepler's third law found in an earlier exercise,
+		\[
+			\frac{V^3T^3}{8\pi^3} = G\frac{M_{total}T^2}{4\pi^2}
+		\] 
+		which can be solved for the mass of the system
+		\[
+			M_{total} = \frac{V^3T}{2\pi{G}}
+		.\] 
+		To express this in terms of the mass of the sun, we may simply divide everything by Kepler's third law, solved for mass, in terms of the Earth-Sun orbit,
+		\[
+			\frac{M_{total}}{M_{\Sun}} = \frac{V^3T}{2\pi{G}}\cdot\frac{GT^2_{\varEarth\Sun}}{4\pi^2R^3_{\varEarth\Sun}} = \frac{V^3TT^2_{\varEarth\Sun}}{8\pi^3R^3_{\varEarth\Sun}}
+		.\] 
+	\end{solution}
+
+	\question A comet rounds the sun at a perihelion distance of $r_p = \SI{1.00e6}{\kilo\meter}$. At this point its velocity is $v = \SI{500.0}{\kilo\meter\per\second}$.
+	\begin{parts}
+		\part What is the radius of curvature $R_c$ of the orbit at perihelion (in km)?
+		\part For an ellipse with semi-major axis $a$ and semi-minor axis $b$, the radius of curvature at perihelion is $R_c = \frac{b^2}{a}$. If you know $R_c$ and $r_p$ you should be able to write a relation involving $a$ and only these quantities. Do so, and find $a$.
+		\part If you were able to solve for $a$ from the above information, you should be able to calculate the period $T_c$ of the comet. Do so.
+	\end{parts}
+
+	\question Using the idea that two mutually gravitating bodies each ``fall'' toward the other, and thus move about some fixed common point (their center of mass), show that their period in an orbit in which they remain a given fixed distance apart depends only upon the sum of their masses $M + m$ and not at all upon the ratio of their masses. This is also true for elliptical orbits. Assuming that the semi-major axes of the ellipses in which the bodies move are $R$ and $r$, find the period $T$ of their orbit.
+
+	\question How can one find the mass of the moon?
+
+	\question The trigonometric parallax of Sirius (i.e., the angle subtended at Sirius by the radius of the Earth's orbit) is $0.378$ degrees arc. Using this and the data contained in Fig. 3-2, deduce as best you can the mass $M$ of the Sirius system in terms of that of the sun, and
+	\begin{parts}
+		\part assuming that the orbital plane is perpendicular to the line of sight, and
+		\part allowing for the actual tilt of the orbit.
+	\end{parts}
+
+	Is your value in part (b) above an upper or lower limit (or either)?
+
+\end{questions}
+
+\end{document}

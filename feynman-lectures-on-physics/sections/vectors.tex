@@ -1,0 +1,441 @@
+\documentclass[../feynman-lectures-on-physics.tex]{subfiles}
+
+\begin{document}
+
+\section{Vectors}
+
+Generalize Exs. 6.1 through 6.4 to three dimensional motion using vector notation.
+
+\begin{questions}
+\question If two bodies have masses $m_1$ and $m_2$ and are moving at velocities $\mathbf{v}_1$ and $\mathbf{v}_2$, show that the CM system is moving at velocity
+  \[
+    \mathbf{v}_{\text{cm}} = \frac{m_1\mathbf{v}_1 + m_2\mathbf{v}_2}{m_1+m_2}
+    .\] 
+
+  \begin{solution}
+    If we transform to the center of mass system, we have, by definition		
+    \[
+      m_1(\mathbf{v}_1 - \mathbf{v}_{\text{cm}}) + m_2(\mathbf{v}_2 - \mathbf{v}_{\text{cm}}) = 0
+      .\] 
+    Rearranging this gives
+    \[
+      \mathbf{v}_{\text{cm}} = \frac{m_1\mathbf{v}_1 + m_2\mathbf{v}_2}{m_1+m_2}
+      .\] 
+  \end{solution}
+
+\question Show that for $N$ bodies of masses $m_i$ and velocities $\mathbf{v}_i$ the velocity of the coordinate system, in which the total momentum is zero, is given by
+  \[
+    \mathbf{v}_{\text{cm}} = \frac{\sum_{i=1}^Nm_i\mathbf{v}_i}{\sum_{i=1}^Nm_i}
+    .\] 
+
+  \begin{solution}
+    For the same reasons given in the previous answer, we have
+    \[
+      \sum_{i=1}^Nm_i(\mathbf{v}_i - \mathbf{v}_{\text{cm}}) = 0
+      ,\] 
+    which can be rearranged to get
+    \[
+      \mathbf{v}_{\text{cm}} = \frac{\sum_{i=1}^Nm_i\mathbf{v}_i}{\sum_{i=1}^Nm_i}
+      .\] 
+  \end{solution}
+
+\question If $T$ is the total kinetic energy of the two masses in Ex. 7.1 and $T_{\text{CM}}$ their total kinetic energy in the CM system, show that
+\[
+T = T_{\text{CM}} + \Big(\frac{m_1+m_2}{2}\Big)\|\mathbf{v}_{\text{cm}}\|^2
+.\] 
+
+\begin{solution}
+	Following the argument used in the answer to Ex. 6.3, we have
+	\[
+	T_{\text{CM}} = \frac{1}{2}m_1\mathbf{v}_1'\cdot\mathbf{v}_1' + \frac{1}{2}m_2\mathbf{v}_2'\cdot\mathbf{v}_2'
+	.\] 
+	We can write the expression for the energy of the original system using $\mathbf{v}_1' = \mathbf{v}_1 - \mathbf{v}_{\text{CM}}$ and $\mathbf{v}_2' = \mathbf{v}_2 - \mathbf{v}_{\text{CM}}$,
+	\begin{align*}
+		T &= \frac{1}{2}m_1(\mathbf{v}_1'+\mathbf{v}_{\text{CM}})\cdot(\mathbf{v}_1'+\mathbf{v}_{\text{CM}}) + \frac{1}{2}m_2(\mathbf{v}_2'+\mathbf{v}_{\text{CM}})\cdot(\mathbf{v}_2'+\mathbf{v}_{\text{CM}}) \\
+		&= \frac{1}{2}m_1\mathbf{v}_1'\cdot\mathbf{v}_1' + m_1\mathbf{v}_1'\cdot\mathbf{v}_{\text{CM}} + \frac{1}{2}m_1\mathbf{v}_{\text{CM}}\cdot\mathbf{v}_{\text{CM}} + \frac{1}{2}m_2\mathbf{v}_2'\cdot\mathbf{v}_2' + m_2\mathbf{v}_2'\cdot\mathbf{v}_{\text{CM}} + \frac{1}{2}m_2\mathbf{v}_{\text{CM}}\cdot\mathbf{v}_{\text{CM}} \\
+		&= T_{\text{CM}} + (m_1\mathbf{v}_1' + m_2\mathbf{v}_2')\cdot\mathbf{v}_{\text{CM}} + \Big(\frac{m_1+m_2}{2}\Big)\mathbf{v}_{\text{CM}}\cdot\mathbf{v}_{\text{CM}} \\
+		&= T_{\text{CM}} + \Big(\frac{m_1+m_2}{2}\Big)\|\mathbf{v}_{\text{CM}}\|^2
+	\end{align*}
+	where the middle term in the second to last equation disappears because the momentum of the center of mass system is zero.
+\end{solution}
+
+\question Generalize the result of Ex. 7.3 to $N$ masses. Show that
+\[
+T = T_{\text{CM}} + \frac{\sum_{i=1}^Nm_i}{2}\|\mathbf{v}_{\text{cm}}\|^2
+.\] 
+
+\begin{solution}
+	In this case,
+	\[
+	T_{\text{CM}} = \sum_{i=1}^N\frac{1}{2}m_i\mathbf{v}_i'\cdot\mathbf{v}_i'
+	,\] 
+	and so we have
+	\begin{align*}
+		T &= \sum_{i=1}^N\frac{1}{2}m_i(\mathbf{v}_i' + \mathbf{v}_{\text{CM}})\cdot(\mathbf{v}_i' + \mathbf{v}_{\text{CM}}) \\
+		&= \sum_{i=1}^N\frac{1}{2}m_i\mathbf{v}_i'\cdot\mathbf{v}_i' + \sum_{i=1}^Nm_i\mathbf{v}_i'\cdot\mathbf{v}_{\text{CM}} + \sum_{i=1}^N\frac{1}{2}m_i\mathbf{v}_{\text{CM}}\cdot\mathbf{v}_{\text{CM}} \\
+		&= T_{\text{CM}} + \mathbf{v}_{CM}\cdot\sum_{i=1}^Nm_i\mathbf{v}_i' + \frac{\sum_{i=1}^Nm_i}{2}\|\mathbf{v}_{\text{CM}}\|^2 \\
+		&= T_{\text{CM}} + \frac{\sum_{i=1}^Nm_i}{2}\|\mathbf{v}_{\text{CM}}\|^2, 
+	\end{align*}
+	where the middle term in the second to last equation disappears for the same reason as it did in the previous exercise.
+\end{solution}
+
+\question A particle is initially at a point $\mathbf{r}_0$, and is moving under gravity with an initial velocity $\mathbf{v}_0$. Find the subsequent motion $\mathbf{r}(t)$.
+
+\begin{solution}
+	Assuming the gravitational field remains roughly constant over the particle's trajectory, we may denote its acceleration by $\mathbf{a}$ and integrate twice to find
+	\begin{align*}
+		\mathbf{r}(t) &= \int\int\mathbf{a}\,\mathrm{d}t\mathrm{d}t \\
+		&= \int \mathbf{a}t + \mathbf{v}_0\,\mathrm{d}t \\
+		&= \frac{1}{2}\mathbf{a}t^2 + \mathbf{v}_0t + \mathbf{r}_0.
+	\end{align*}
+\end{solution}
+
+\question You are given three vectors,
+\begin{align*}
+	\mathbf{a} &= 3\mathbf{i} + 2\mathbf{j} - \mathbf{k}, \\
+	\mathbf{b} &= 2\mathbf{i} - \mathbf{j} + \mathbf{k}, \\
+	\mathbf{c} &= \mathbf{i} + 3\mathbf{j} \\
+\end{align*}
+Find
+\begin{parts}
+	\part $\mathbf{a} + \mathbf{b}$
+	\part $\mathbf{a} - \mathbf{b}$
+	\part $\mathbf{a}_x$
+	\part $\mathbf{a} \cdot \mathbf{i}$
+	\part $\mathbf{a} \cdot \mathbf{b}$
+	\part $(\mathbf{a}\cdot\mathbf{c})\mathbf{b} - (\mathbf{a}\cdot\mathbf{b})\mathbf{c}$
+\end{parts}
+
+\begin{solution}
+	\begin{parts}
+		\part $(3+2)\mathbf{i} + (2-1)\mathbf{j} + (-1+1)\mathbf{k} = 5\mathbf{i} - \mathbf{j}$
+		\part $(3-2)\mathbf{i} + (2 - {-1})\mathbf{j} + (-1-1)\mathbf{k} = \mathbf{i} + 3\mathbf{j} - 2\mathbf{k}$
+		\part $3$
+		\part $3\cdot{1} + 0\cdot{0} + 0\cdot{0} = 3$
+		\part $3\cdot{2}+2\cdot{-1}+{-1}\cdot{1} = 3$
+		\part $(3\cdot{1} + 2\cdot{3} + -1\cdot{0})(2\mathbf{i}-\mathbf{j}+\mathbf{k}) - (3)(\mathbf{i} + 3\mathbf{j}) = (19 - 3)\mathbf{i} + (-9 + 9)\mathbf{j} + (9 + 0)\mathbf{k} = 16\mathbf{i} + 9\mathbf{k}$
+	\end{parts}
+\end{solution}
+
+\question A particle of mass $\SI{1}{\kilo\gram}$ is moving in such a way that its position is described by the vector
+\[
+\mathbf{r}(t) = t\mathbf{i} + (t + t^2/2)\mathbf{j} - (4/\pi^2)\sin(\pi{t}/2)\mathbf{k}.
+\]
+\begin{parts}
+	\part Find the position, velocity $\mathbf{v}(t)$, acceleration $\mathbf{a}(t)$, and kinetic energy $T(t)$ of the particle at $t=0$ and $t=1$ second.
+	\part Find the force $\mathbf{F}(t)$ that will produce this motion.
+	\part Find the radius of curvature $R(t)$ of the particle's path at $t=1$ second.
+\end{parts}
+
+\begin{solution}
+	\begin{parts}
+		\part The position vector is already given. Its derivative is the sought velocity vector,
+		\[
+		\mathbf{v}(t) = \frac{\mathrm{d}\mathbf{r}(t)}{\mathrm{d}t} = \mathbf{i} + (1 + t)\mathbf{j} - (2/\pi)\cos(\pi{t}/2)\mathbf{k}.
+		\]
+		The derivative of this is the acceleration,
+		\[
+		\mathbf{a}(t) = \frac{\mathrm{d}\mathbf{v}(t)}{\mathrm{d}t} = \mathbf{j} + \sin(\pi{t}/2)\mathbf{k}.
+		\]
+		The particle's kinetic energy at time $t$ is given by $m\|v(t)\|^2/2$, or
+		\[
+		T(t) = \frac{1}{2}\Big(1 + (1 + t)^2 + (2/\pi)^2\cos^2(\pi{t}/2)\Big) = 1 + t + t^2/2 + (2/\pi^2)\cos(\pi{t}/2).
+		\]
+		At $0$ and $1$ seconds, these values are
+		\[
+		\mathbf{r}(0) = \mathbf{0}\,\si{\meter} \qquad \mathbf{v}(0) = \mathbf{i} + \mathbf{j} - (2/\pi)\mathbf{k}\,\si{\meter\per\second} \qquad \mathbf{a}(0) = \mathbf{j}\,\si{\meter\per\second\squared} \qquad T(0) = 1 + (2/\pi^2)\,\si{\joule}
+		\]
+		and
+		\[
+		\mathbf{r}(1) = \mathbf{i} + (3/2)\mathbf{j} - (4/\pi^2)\mathbf{k}\,\si{\meter} \qquad \mathbf{v}(1) = \mathbf{i} + 2\mathbf{j}\,\si{\meter\per\second} \qquad \mathbf{a}(1) = \mathbf{j} + \mathbf{k}\si{\meter\per\second\squared} \qquad T(1) = 5/2\,\si{joule}
+		\]
+		\part The force capable of producing such a motion is simply the acceleration vector times the mass of the particle, or
+		\[
+		\mathbf{F}(t) = m\mathbf{a}(t) = \mathbf{j} + \sin(\pi{t}/2)\mathbf{k}.
+		\]
+		\part We can find the radius of curvature by solving $\|\mathbf{a}_{\perp}(t)\|=\|\mathbf{v}(t)\|^2/R$ for $R$, where $\mathbf{a}_{\perp}(t)$ is the acceleration perpendicular to the velocity vector. This can be found by subtracting off the part of the acceleration vector tangential to the velocity vector,
+		\[
+		\mathbf{a}_{\perp}(t) = \mathbf{a}(t) - \frac{\mathbf{v}(t)\cdot\mathbf{a}(t)}{\|\mathbf{v}(t)\|^2}\mathbf{v}(t).
+		\]
+		At $1$ second, this becomes
+		\[
+		\mathbf{a}_{\perp}(1) = -(2/5)\mathbf{i} + (1/5)\mathbf{j} + \mathbf{k}\,\si{\meter\per\second\squared},
+		\]
+		while $\|\mathbf{v}(1)\|^2 = \SI{5}{\meter\per\second}$. The magnitude of $\mathbf{a}_{\perp}(1)$ is $sqrt(6/5)$, and so the radius of curvature at $1$ second is
+		\[
+		R(1) = 5/\sqrt{6/5} \approx \SI{4.56}{\meter}.
+		\]
+	\end{parts}
+\end{solution}
+
+\question A pilot flying at an air speed of $100$ knots wishes to travel due north. He knows, from talking to the airport meteorologist, that there is a $25$ knot wind from west to east at his flight altitude.
+\begin{parts}
+	\part In what direction should he head his plane?
+	\part What will be the duration $T$ of his flight, if his destination is $100$ land miles away? (Neglect the time for landing and take-off, and note that $1$ knot $=$ $1.15$ miles per hour.)
+\end{parts}
+
+\begin{solution}
+	\begin{parts}
+		\part The desired velocity vector, the planes velocity vector, and the wind's
+		velocity vector will combine to make a right triangle with a hypotenuse of
+		$100$ knots and a short side of $25$ knots. From north, then, the pilot will
+		have to face
+		\[
+		\arcsin\frac{25}{100} \approx 14.48^\circ
+		\]
+		towards the east
+		\part The pilot's northward velocity is given by $v_N = \sqrt{100^2 - 25^2}
+		\approx 96.82$ knots, or $\SI{111.35}{mi\per{h}}$. So the duration of the
+		flight will be
+		\[
+		T = \frac{d}{v_N} = \SI{53.9}{min}.
+		\]
+	\end{parts}
+\end{solution}
+
+\question A cyclist rides at $\SI{10}{{mi}\per{h}}$ due north and the wind, which is blowing at $\SI{6}{mi\per{h}}$ from a point between $N$ and $E$, appears to the cyclist to come from a point $15^\circ$E of N.
+\begin{parts}
+	\part Find the true direction of the wind.
+	\part Find the direction in which the wind will appear to meet the cyclist on his return if he rides at the same speed.
+\end{parts}
+
+\begin{solution}
+	\begin{parts}
+		\part We can find the true direction of the wind by observing that the
+		apparent velocity $\mathbf{v}_A$ is related to the true velocity
+		$\mathbf{v}_T$ and the cyclist's velocity $\mathbf{v}_C$ by
+		$\mathbf{v}_T - \mathbf{v}_C = \mathbf{v}_A$. In Cartesian coordinates,
+		the three vectors are given by
+		\begin{gather*}
+			\mathbf{v}_C = 10\mathbf{j} \\
+			\mathbf{v}_A = -A\sin(15^\circ)\mathbf{i} - A\cos(15^\circ)\mathbf{j} \\
+			\mathbf{v}_T = -6\sin(\theta)\mathbf{i} - 6\cos(\theta)\mathbf{j}
+		\end{gather*}
+		If we equate the $\|\mathbf{v}_T\|^2 = 36$ to the squared
+		magnitude of $\mathbf{v}_A + \mathbf{v}_C$, we find $A \approx
+		\SI{15.072}{mi\per{h}}$, and so the angle the true velocity vector makes
+		with respect to north is
+		\[
+		\angle{\mathbf{v}_T} =
+		\arctan\Big(\frac{-15.072\sin(15^\circ)}{10-15.072\cos(15^\circ)}\Big)
+		= 40.5^\circ.
+		\]
+		\part Using the relationship above, we find
+		\[
+		\mathbf{v}_A = \mathbf{v}_T - \mathbf{v}_C = (-6\sin(40.5^\circ))\mathbf{i} + (10-6\cos(40.5^\circ))\mathbf{j}
+		\]
+		which makes an angle of $35.6^\circ$E of S.
+	\end{parts}
+\end{solution}
+	
+	\question A man standing on the bank of a river $\SI{1.0}{mi}$ wide wishes to get to a point directly opposite him on the other bank. He can do this in two ways:
+	\begin{parts}
+		\part head somewhat upstream, so that his resultant motion is straight across,
+		\part head toward the opposite bank and then walk up along the bank from the point downstream to which the current has carried him.
+	\end{parts}
+	If he can swim $\SI{2.5}{mi\per{h}}$ and walk $\SI{4.0}{mi\per{h}}$, and if
+	the current is $\SI{2.0}{mi\per{h}}$ which is the faster way to cross, and by
+	how much?
+	
+	\begin{solution}
+		In the first case, the velocity vectors for the stream and his independent motion are
+		given by
+		\begin{gather*}
+			\mathbf{v}_S = -2\hat{\mathbf{i}} \\
+			\mathbf{v}_M = 2.5\cos\theta\hat{\mathbf{i}} + 2.5\sin\theta\hat{\mathbf{j}},
+		\end{gather*}
+		where $\theta$ is such that the $\hat{\mathbf{i}}$ component of the vector sum
+		of these velocities is zero, i.e. $\theta = \cos^{-1}(4/5)$. In this case,
+		the man's overall velocity is given by
+		\[
+		\mathbf{v}_T = 2.5\sin\cos^{-1}\frac{4}{5}\hat{\mathbf{j}} = 1.5\hat{\mathbf{j}}.
+		\]
+		The total time taken to cross the river is then $t =
+		\|\mathbf{d}\|/\|\mathbf{v}_T\|$, or $40$ minutes.
+		
+		In the second case, the velocity vectors for the stream and the man are
+		\begin{gather*}
+			\mathbf{v}_S = -2\hat{\mathbf{i}} \\
+			\mathbf{v}_M = 2.5\hat{\mathbf{j}}.
+		\end{gather*}
+		The man will cross the stream once he has gone a distance of one mile in the
+		$\hat{\mathbf{j}}$ direction, which occurs at the $24$ minute mark. At this point, he will have moved a distance
+		$-0.8$ miles downstream. At a speed of $\SI{4}{mi\per{h}}$, he will cover
+		this distance in $12$ minutes to arrive at his destination, giving a total
+		travel time of $36$ minutes. Hence, method two is faster by approximately
+		$4$ minutes.
+	\end{solution}
+	
+	\question A motorboat that runs at a constant speed $V$ relative to the water
+	is operated in a straight river channel where the water is flowing smoothly
+	with a constant speed $R$. The boat is first sent on a round trip from its
+	anchor point to a point a distance $d$ directly upstream. It is then sent on
+	a round trip from its anchor point to a point a distance $d$ away directly
+	across the stream. For simplicity assume that the boat runs the entire
+	distance in each case at full speed and that no time is lost in reversing
+	course at the end of the outward lap. If $t_V$ is the time the boat took to
+	make the round trip in line with the stream flow, $t_A$ the time the boat
+	took to make the round trip across the stream, and $t_L$ the time the boat
+	would take to go a distance $2d$ on a lake,
+	\begin{parts}
+		\part What is the ratio $t_V$/$t_A$?
+		\part What is the ratio $t_A/t_L$?
+	\end{parts}
+	
+	\begin{solution}
+		\begin{parts}
+			\part The first case is particularly simple, as the magnitude of the boat's
+			total velocity moving upstream is $V - R$, while the magnitude of its
+			velocity downstream is $V + R$. This gives a total time of
+			\[
+			t_V = \frac{d}{V-R} + \frac{d}{V+R} = \frac{2d}{V^2-R^2}V.
+			\]
+			For the second case, if the boat is to move in a straight line, then the
+			boat's must be at an angle to the channel's edge such that $V\cos\theta
+			= R$, which, after geometric considerations, gives a cross-stream
+			velocity of
+			\[
+			V\sin\theta = V\sin\cos^{-1}\frac{R}{V} = \sqrt{V^2-R^2}.
+			\]
+			By symmetry, this velocity is the same for both legs of the trip. The
+			total time taken is
+			\[
+			t_A = \frac{2d}{\sqrt{V^2-R^2}},
+			\]
+			and thus the desired ratio is
+			\[
+			\frac{t_V}{t_A} = \frac{V}{\sqrt{V^2-R^2]}}.
+			\]
+			This makes sense, as if $R$ were to be $0$, the two times would be equal.
+			\part The time taken to go a distance of $2d$ on a lake is simply
+			\[
+			t_L = \frac{2d}{V}
+			\]
+			and from this we see that $t_A/t_L=t_V/t_A$.
+		\end{parts}
+	\end{solution}
+	
+	\question Use vectors to find the great circle distance $D$ between two points
+	on the earth (radius = $r_{\varEarth}$), whose latitudes and longitudes are
+	$(\lambda_1,\phi_1)$ and $(\lambda_2,\phi_2)$.
+	
+	\textit{Note}: Use a system of rectangular coordinates with the origin at the
+	center of the earth, one axis along the earth's axis, another pointed toward
+	$\lambda=0$, $\phi=0$, and the third axis pointed toward $\lambda=0$, $\phi =
+	90^\circ$ W. Let longitudes vary from $0^\circ$ westward to $360^\circ$.
+	
+	\question What is the magnitude and direction of the acceleration $\mathbf{a}$
+	of the moon at
+	\begin{parts}
+		\part New moon?
+		\part Quarter moon?
+		\part Full moon?
+	\end{parts}
+	\textit{Note}:
+	\begin{align*}
+		R_{\varEarth\Sun} &= \SI{1.50e8}{\kilo\meter} \\
+		R_{\varEarth\leftmoon} &= \SI{3.85e5}{\kilo\meter} \\
+		M_{\Sun} &= \SI{3.33e5}{M_{\varEarth}}
+	\end{align*}
+	
+	\question Two identical $45^\circ$ wedges $M_1$ and $M_2$, with smooth faces
+	and $M_1=M_2=\SI{8}{\kilo\gram}$, are used to move a smooth-faced mass $M =
+	\SI{384}{\kilo\gram}$, as shown in Fig. 7-1. Both wedges rest upon a smooth
+	horizontal plane; one wedge is butted against a vertical wall, and to the
+	other wedge a force $F=\SI{592}{kg-wt}$ is applied horizontally.
+	\begin{parts}
+		\part What is the magnitude and direction of the acceleration
+		$\mathbf{a}_1$ of the movable wedge $M_1$?
+		\part What is the magnitude and direction of the acceleration
+		$\mathbf{a}$ of the larger wedge $M$?
+		\part What force $F_2$ does the stationary wedge $M_2$ exert on the
+		heavy mass $M$?
+	\end{parts}
+	Neglect friction.
+	
+	\question A mass $m$ is suspended from a frictionless pivot at the end of a
+	string of arbitrary length, and is set to whirling in a horizontal circular
+	path whose plane is a distance $H$ below the pivot point, as shown in Fig.
+	7-2. Find the period of revolution $T$ of the mass in its orbit.
+	
+	\begin{solution}
+		There are only two forces acting on the mass, friction and tension. If the
+		mass is to move in a plane, the vertical components of both forces must
+		cancel, and so
+		\[
+		A\sin\theta = mg,
+		\]
+		where $A$ is the tension and $\theta$
+		is the angle made between the string and the horizontal. The requirement
+		that the mass move in a circular manner introduces the additional
+		restriction of
+		\[
+		A\cos\theta = \frac{mv^2}{R}.
+		\]
+		We may divide the first equation by the second to find
+		\[
+		\tan\theta = \frac{gR}{v^2},
+		\]
+		and, using $\tan\theta = H/R$, we obtain
+		\[
+		\frac{H}{R} = \frac{gR}{v^2}.
+		\]
+		The period of the mass's revolution is given by the total distance it
+		traverses in one revolution divided by its velocity, or $T = 2\pi{R}/v$.
+		Substituting this into the above equation and simplifying gives
+		\[
+		T = 2\pi\sqrt{\frac{H}{g}};
+		\]
+		the greater the distance between the ceiling and the mass, the longer its period.
+	\end{solution}
+	
+	\question Two small, sticky, putty balls $a$ and $b$, each of mass $1$ gram,
+	travel under the influence of gravity with acceleration
+	$-9.8\hat{\mathbf{k}}\,\si{\meter\per\second\squared}$. Given the initial
+	condition at $t=0$,
+	\begin{align*}
+		\mathbf{r}_a(0) &= 7\hat{\mathbf{i}} + 4.9\hat{\mathbf{k}}, \\
+		\mathbf{v}_a(0) &= 7\hat{\mathbf{i}} + 3\hat{\mathbf{j}}, \\
+		\mathbf{r}_b(0) &= 49\hat{\mathbf{i}} + 4.9\hat{\mathbf{k}}, \\
+		\mathbf{v}_b(0) &= -7\hat{\mathbf{i}} + 3\hat{\mathbf{j}},
+	\end{align*}
+	find $\mathbf{r}_a(t)$ and $\mathbf{r}_b(t)$ for all times $t>0$.
+	
+	\begin{solution}
+		By simple integration, one can immediately find
+		\begin{align*}
+			\mathbf{r}_a(t) &= (7 + 7t)\hat{\mathbf{i}} + (3t)\hat{\mathbf{j}} + (4.9 - 4.9t^2)\hat{\mathbf{k}} \\
+			\mathbf{r}_b(t) &= (49 - 7t)\hat{\mathbf{i}} + (3t)\hat{\mathbf{j}} + (4.9-4.9t^2)\hat{\mathbf{k}}
+		\end{align*}
+		which, from inspection, breaks down at $t = 3$ seconds, as this is when
+		both position vectors are equal: the two balls will stick together and
+		continue on as one. To find the resulting position, we may use
+		conservation of momentum at the instant of impact to obtain
+		\[
+		m\mathbf{v}_a(3) + m\mathbf{v}_b(3) = 2m\mathbf{v_c}(3),
+		\]
+		or
+		\[
+		\mathbf{v}_c(3) = 3\hat{\mathbf{j}} - 29.4\hat{\mathbf{k}}.
+		\]
+		Then, for $t>3$, we have
+		\begin{align*}
+			\mathbf{r}_c(t) &= \mathbf{r}_a(3) + \mathbf{v}_c(3)(t - 3) + \frac{1}{2}\mathbf{a}(3)(t-3)^2 \\
+			&= (28)\hat{\mathbf{i}} + (9 + 3(t-3))\hat{\mathbf{j}} + (-39.2 - 29.4(t-3) - 4.9(t-3)^2)\hat{\mathbf{k}} \\
+			&= (28)\hat{\mathbf{i}} + (3t)\hat{\mathbf{j}} + (4.9-4.9t^2)\hat{\mathbf{k}}.
+		\end{align*}
+	\end{solution}
+	
+	\question You are on a ship traveling steadily east at $15$ knots. A ship
+	o a steady course whose speed is known to be $26$ knots is observed
+	$6.0$ miles due south of you; it is later observed to pass behind you,
+	its distance of closest approach being $3.0$ miles.
+	\begin{parts}
+		\part What was the course of the other ship?
+		\part What was the time $T$ between its position south of you and its
+		position of closest approach?
+	\end{parts}
+
+\end{questions}
+
+\end{document}

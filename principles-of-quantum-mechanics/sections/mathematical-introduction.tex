@@ -1,0 +1,1091 @@
+\documentclass[../principles-of-quantum-mechanics.tex]{subfiles}
+
+\begin{document}
+\printanswers
+
+\section{Mathematical Introduction}
+
+\begin{questions}
+
+\question Verify these claims. For the first consider $|0\rangle + |0'\rangle$
+and use the advertised properties of the two null vectors in turn. For the
+second start with $|0\rangle = (0 + 1)|V\rangle + |{-V}\rangle$. For the third,
+begin with $|V\rangle + (-|V\rangle)=0|V\rangle=|0\rangle$. For the last, let
+$|W\rangle$ also satisfy $|V\rangle+|W\rangle=|0\rangle$. Since $|0\rangle$ is
+unique, this means $|V\rangle+|W\rangle=|V\rangle + |{-V}\rangle$. Take it from
+here.
+
+\begin{solution}
+	If both $|0\rangle$ and $|0'\rangle$ have the properties of the null vector, then
+	\[
+		|0\rangle + |0'\rangle = |0\rangle = |0'\rangle,
+	\]
+	i.e. they must be the same vector. \\
+	
+	To verify that $0|V\rangle = |0\rangle$, consider
+	\begin{align*}
+		|0\rangle &= |V\rangle + |{-V}\rangle \\
+		&= (0 + 1)|V\rangle + |{-V}\rangle \\
+		&= 0|V\rangle + |V\rangle + |{-V}\rangle \\
+		&= 0|V\rangle + |0\rangle \\
+		&= 0|V\rangle
+	\end{align*} \\
+	
+	From the fact that $0|V\rangle = |0\rangle$, we may write
+	\begin{align*}
+		|0\rangle &= 0|V\rangle \\
+		&= (1 - 1)|V\rangle \\
+		&= |V\rangle + (-|V\rangle)
+	\end{align*}
+	which implies that $-|V\rangle = |{-V}\rangle$. \\
+	
+	Finally, consider two vectors that satisfy the property of being the inverse of $|V\rangle$, $|W\rangle$ and $|{-V}\rangle$. Then, since the addition of either of these to $|V\rangle$ equals $|0\rangle$, we have
+	\begin{align*}
+		|V\rangle + |{-V}\rangle &= |V\rangle + |W\rangle \\
+		|{-V}\rangle &= |W\rangle
+	\end{align*}
+\end{solution}
+
+\question Consider the set of all entities of the form $(a, b, c)$ where the
+entries are real numbers. Addition and scalar multiplication are defined as
+follows:
+\begin{gather*}
+  (a, b, c) + (d, e, f) = (a + d, b + e, c + f) \\
+  \alpha(a, b, c) = (\alpha{a}, \alpha{b}, \alpha{c}).
+\end{gather*}
+Write down the null vector and inverse of $(a, b, c)$. Show that vectors of the form $(a, b, 1)$ do not form a vector space.
+
+\begin{solution}
+	The null vector is clearly given by 
+	\[
+		(0, 0, 0)
+	\]
+	as this preserves any vector to which it is added.
+	
+	Vectors of the form $(a, b, 1)$ do not form a space because, among other things, addition among them is not closed. That is, if $(a, b, 1) \in \mathbb{V}$, then
+	\[
+		(a, b, 1) + (c, d, 1) = (a + c, b + d, 2) \not\in \mathbb{V}
+	\]
+\end{solution}
+
+\question Do functions that vanish at the end points $x=0$ and $x=L$ form a vector space? How about \textit{periodic functions} obeying $f(0)=f(L)$? How about functions that obey $f(0)=4$? If the functions do not qualify, list the things that go wrong.
+
+\begin{solution}
+	Functions that satisfy $f(0)=f(L)=0$ do indeed form a vector space, as do those that generically satisfy $f(0)=f(L)$. Under these conditions, the identifying characteristic of functions within the vector space is preserved: if $f(x)$ and $g(x)$ separately satisfy periodicity, then $f(x)+g(x)$ satisfies periodicity. All other vector space axioms are satisfied trivially. \\
+	
+	Functions obeying $f(0)=4$ do \textit{not} form a vector space because they are not closed under addition.
+\end{solution}
+
+\question Consider three elements from the vector space of real $2\times{2}$ matrices:
+\[
+	|1\rangle = \begin{bmatrix}
+	0 & 1 \\ 0 & 0
+	\end{bmatrix} \qquad
+	|2\rangle = \begin{bmatrix}
+	1 & 1 \\ 0 & 1
+	\end{bmatrix} \qquad
+	|3\rangle = \begin{bmatrix}
+	-2 & -1 \\ 0 & -2
+	\end{bmatrix}
+\]
+Are they linearly independent? Support your answer with details. (Notice we are calling these matrices vectors and using kets to represent them to emphasize their role as elements of a vector space.)
+
+\begin{solution}
+	These three vectors are not linearly independent, because
+	\[
+		{-2}|2\rangle + |1\rangle = \begin{bmatrix}
+		-2 & -1 \\ 0 & -2
+		\end{bmatrix} = |3\rangle.
+	\]
+\end{solution}
+
+\question Show that the following row vectors are linearly dependent: $(1, 1, 0)$, $(1, 0, 1)$, and $(3, 2, 1)$. Show the opposite for $(1, 1, 0)$, $(1, 0, 1)$, and $(0, 1, 1)$.
+
+\begin{solution}
+	For the first case, notice that
+	\[
+		2(1, 1, 0) + (1, 0, 1) = (3, 2, 1),
+	\]
+	showing the linear dependence of these three vectors. \\
+	
+	For the second case, observe that linear dependence would imply a nontrivial solution to the system of equations
+	\begin{align*}
+		x + y &= 0, \\
+		x + z &= 0, \\
+		y + z &= 0.
+	\end{align*}
+	From this system, we see $x = -y$, and hence $y = z$, which implies $z = y = x = 0$. Because this system has the same number of equations as unknowns, this is the unique solution, and hence the original three vectors are linearly independent.
+\end{solution}
+
+\question Form an orthonormal basis in two dimensions starting with $\vec{A} = 3\vec{i} + 4\vec{j}$ and $\vec{B} = 2\vec{i} - 6\vec{j}$. Can you generate another orthonormal basis starting with these two vectors? If so, produce another.
+
+\begin{solution}
+	Following the Gram-Schmidt procedure, we first determine the length of $\vec{A}$, which is $\sqrt{\vec{A}\cdot\vec{A}} = \sqrt{9 + 16} = 5$. We can then normalize $\vec{A}$ to obtain
+	\[
+		\vec{A}' = \frac{3}{5}\vec{i} + \frac{4}{5}\vec{j}.
+	\]
+	The projection of $\vec{B}$ along $\vec{A}'$ is $\vec{A}'\cdot\vec{B} = 6/5 - 24/5 = -18/5$. From this, we can find
+	\[
+		\vec{B}'' = 2\vec{i} - 6\vec{j} + \frac{18}{5}\Big(\frac{3}{5}\vec{i} + \frac{4}{5}\vec{j}\Big) = \frac{104}{25}\vec{i} - \frac{78}{25}\vec{j}
+	\]
+	which has a length of $\sqrt{\vec{B}''\cdot\vec{B}''} = 26/5$. Using this, we may normalize our second basis vector as
+	\[
+		\vec{B}' = \frac{4}{5}\vec{i} - \frac{3}{5}\vec{j}.
+	\]
+	We may form another orthonormal basis from these two vectors by starting with $\vec{B}$. In this case, $\sqrt{\vec{B}\cdot\vec{B}} = 2\sqrt{10}$, and so
+	\[
+		\vec{B}' = \frac{1}{\sqrt{10}}\vec{i} - \frac{3}{\sqrt{10}}\vec{j}.
+	\]
+	The projection of $\vec{A}$ along this is $\vec{B}'\cdot\vec{A} = -9/\sqrt{10}$, and so
+	\[
+		\vec{A}'' = 3\vec{i} + 4\vec{j} + \frac{9}{\sqrt{10}}\Big(\frac{1}{\sqrt{10}}\vec{i} - \frac{3}{\sqrt{10}}\vec{j}\Big) = \frac{39}{10}\vec{i} + \frac{13}{10}\vec{j}.
+	\]
+	This has a length of $\sqrt{\vec{A}''\cdot\vec{A}''}=13/\sqrt{10}$, giving a normalized vector
+	\[
+		\vec{A}' = \frac{3}{\sqrt{10}}\vec{i} + \frac{1}{\sqrt{10}}\vec{j}.
+	\]
+\end{solution}
+
+\question Show how to go from the basis
+\[
+	|I\rangle = \begin{bmatrix}
+		3 \\ 0 \\ 0
+	\end{bmatrix} \qquad
+	|II\rangle = \begin{bmatrix}
+		0 \\ 1 \\ 2
+	\end{bmatrix} \qquad
+	|III\rangle = \begin{bmatrix}
+		0 \\ 2 \\ 5
+	\end{bmatrix}
+\]
+to the orthonormal basis
+\[
+	|1\rangle = \begin{bmatrix}
+	1 \\ 0 \\ 0
+	\end{bmatrix} \qquad
+	|2\rangle = \begin{bmatrix}
+	0 \\ 1/\sqrt{5} \\ 2/\sqrt{5}
+	\end{bmatrix} \qquad
+	|3\rangle = \begin{bmatrix}
+	0 \\ -2/\sqrt{5} \\ 1/\sqrt{5}
+	\end{bmatrix}
+\]
+
+\begin{solution}
+	$|I\rangle$ clearly reduces to $|1\rangle$. Since $|II\rangle$ is already orthogonal to $|1\rangle$, we simply need to normalize it. Because $\langle{II}|II\rangle=5$, we have
+	\[
+		|2\rangle = \begin{bmatrix}
+		0 \\ 1/\sqrt{5} \\ 2/\sqrt{5}
+		\end{bmatrix}.
+	\]
+	Since $|III\rangle$ is orthogonal to $|1\rangle$, we can find it via
+	\begin{align*}
+		|3'\rangle &= |III\rangle - |2\rangle\langle{2}|III\rangle \\
+		&= \begin{bmatrix}0 \\ 2 \\ 5\end{bmatrix} - \Big(\frac{12}{\sqrt{5}}\Big)\begin{bmatrix} 0 \\ 1/\sqrt{5} \\ 2/\sqrt{5} \end{bmatrix} \\
+		&= \begin{bmatrix}
+		0 \\ -2/5 \\ 1/5
+		\end{bmatrix}.
+	\end{align*}
+	Because $\langle{2}'|2'\rangle=1/5$, our normalized third vector becomes
+	\[
+		|3\rangle = \begin{bmatrix}
+		0 \\ -2/\sqrt{5} \\ 1/\sqrt{5}
+		\end{bmatrix}.
+	\]
+\end{solution}
+
+\question When will this equality be satisfied? Does this agree with your experience with arrows?
+
+\begin{solution}
+	The Schwarz inequality will be satisfied when $|W\rangle=\alpha|V\rangle$, because then we have
+	\begin{align*}
+		|\langle{V}|\alpha{V}\rangle| &= |V||\alpha{V}| \\
+		|\alpha||\langle{V}|V\rangle| &= |\alpha||V||V| \\
+		|\alpha||V|^2 &= |\alpha||V|^2.
+	\end{align*}
+	If we consider the case where our vectors are arrows, $\langle{V}|W\rangle=\vec{V}\cdot\vec{W}=|V||W|\cos\theta$, which equals $|V||W|$ when $\theta=0$, i.e. when $\vec{W}=\alpha\vec{V}$.
+\end{solution}
+
+\question Prove the triangle inequality starting with $|V+W|^2$. You must use $\mathrm{Re}\langle{V}|W\rangle\leq|\langle{V}|W\rangle|$ and the Schwarz inequality. Show that the final inequality becomes na equality only if $|V\rangle = a|W\rangle$ where $a$ is a real positive scalar.
+
+\begin{solution}
+	We have
+	\begin{align*}
+		|V+W|^2 &= \langle{V + W}|{V + W}\rangle, \\
+		&= \langle{V}|V\rangle + \langle{W}|V\rangle + \langle{V}|W\rangle + \langle{W}|W\rangle, \\
+		&= |V|^2 + |W|^2 + \langle{V}|W\rangle + \langle{V}|W\rangle^*, \\
+		&= |V|^2 + |W|^2 + 2\mathrm{Re}\langle{V}|W\rangle, \\
+		&\leq |V|^2 + |W|^2 + 2|\langle{V}|W\rangle|, \\
+		&\leq |V|^2 + |W|^2 + 2|V||W|, \\
+		&= (|V| + |W|)^2,
+	\end{align*}
+	where the second to last line invokes the Schwarz inequality. Taking the square root of both sides yields the triangle inequality,
+	\[
+		|V + W| \leq |V| + |W|.
+	\]
+\end{solution}
+  
+\question In a space $\mathbb{V}^n$, prove that the set of all vectors $\{|V_\perp^1\rangle, |V_\perp^2\rangle,\dots\}$, orthogonal to any $|V\rangle\neq|0\rangle$, form a subspace $\mathbb{V}^{n-1}$.
+
+\begin{solution}
+	Clearly, the set of all vectors orthogonal to $|V\rangle$ is closed under addition, as 
+	\[
+		\langle{V}|W\rangle = \langle{V}|\Big(\sum_i\alpha_i|V_\perp^i\rangle\Big) = \sum_i\alpha_i\langle{V}|V_\perp^i\rangle = |0\rangle.
+	\]
+	Also trivial is the fact that the suggested set contains $|0\rangle$, as $\langle{V}|0\rangle=|0\rangle$. All that is left is to show that the space must span $n-1$ dimensions. \\
+	
+	Consider an orthogonal basis for $\mathbb{V}^n$ with $|V\rangle$ as one of its vectors. Removing $|V\rangle$ leaves $n-1$ linearly independent vectors orthogonal to $|V\rangle$. If there were vectors in $\mathbb{V}^n$ orthogonal to $|V\rangle$ incapable of being expressed in terms of these, $\mathbb{V}^n$ would have a dimension larger than $n$. On the other hand, if the space of vector spanned by all those orthogonal to $|V\rangle$ was smaller than $n-1$, our reduced set would be linearly dependent, contradicting our initial assumption of an orthogonal basis. Therefore, the subspace spanned by such a set must have dimension $n+1$.
+\end{solution}
+
+\question Suppose $\mathbb{V}_1^{n_1}$ and $\mathbb{V}_2^{n_2}$ are two subspaces such that any element of $\mathbb{V}_1$ is orthogonal to any element of $\mathbb{V}_2$. Show that the dimensionality of $\mathbb{V}_1\oplus\mathbb{V}_2$ is $n_1 + n_2$. (Hint: Theorem 4.)
+
+\begin{solution}
+	Because every possible basis of either space is orthogonal to the possible bases  of the other space, Theorem 4 tells us that the span of $\mathbb{V}_1\oplus\mathbb{V}_2$ is the sum of the dimensions spanned by both, i.e. $n_1+n_2$.
+\end{solution}
+
+\question An operator $\Omega$ is given by the matrix
+\[
+\begin{bmatrix}
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+0 & 1 & 0
+\end{bmatrix}
+\]
+What is its action?
+
+\begin{solution}
+	$\Omega$ simply permutes the components of vectors expressed in its basis.
+\end{solution}
+
+\question Given $\Omega$ and $\Lambda$ are Hermitian what can you say about (1) $\Omega\Lambda$; (2) $\Omega\Lambda + \Lambda\Omega$; (3) $[\Omega, \Lambda]$; and (4) $i[\Omega,\Lambda]$?
+
+\begin{solution}
+	For (1), we see that $(\Omega\Lambda)^\dagger = \Lambda^\dagger\Omega^\dagger = \Lambda\Omega$, and so $\Omega\Lambda$ is \textit{not} Hermitian. \\
+	
+	This problem is alleviated by the configuration of operators expressed in (2), as now we have 
+	\[
+		(\Omega\Lambda + \Lambda\Omega)^\dagger = \Lambda^\dagger\Omega^\dagger + \Omega^\dagger\Lambda^\dagger = \Lambda\Omega + \Omega\Lambda = \Omega\Lambda + \Lambda\Omega,
+	\]
+	which is clearly Hermitian. \\
+	
+	For (3), we see
+	\[
+		(\Omega\Lambda - \Lambda\Omega)^\dagger = \Lambda^\dagger\Omega^\dagger - \Omega^\dagger\Lambda^\dagger = \Lambda\Omega - \Omega\Lambda = -(\Omega\Lambda - \Lambda\Omega),
+	\]
+	which is anti-Hermitian. \\
+	Finally, taking the adjoint of (4) shows that
+	\[
+		(i\Omega\Lambda - i\Lambda\Omega)^\dagger = -i\Lambda^\dagger\Omega^\dagger + i\Omega^\dagger\Lambda^\dagger = -i\Lambda\Omega + i\Omega\Lambda = i\Omega\Lambda - i\Lambda\Omega,
+	\]
+	is Hermitian.
+\end{solution}
+
+\question Show that a product of unitary operators is unitary.
+
+\begin{solution}
+	Suppose $\Omega$ and $\Lambda$ are both unitary. Then we have
+	\[
+		(\Omega\Lambda)(\Omega\Lambda)^\dagger = \Omega\Lambda\Lambda^\dagger\Omega^\dagger = \Omega{I}\Omega^\dagger = \Omega\Omega^\dagger = I,
+	\]
+	which shows that their product is unitary.
+\end{solution}
+
+\question It is assumed that you know (1) what a \textit{determinant} is, (2) that $\det\Omega^T=\det\Omega$ ($T$ denotes transpose), (3) that the determinant of a product of matrices is the product of the determinants. [If you do not, verify these properties for a two-dimensional case]
+\[
+	\Omega = \begin{pmatrix}\alpha & \beta \\ \gamma & \delta\end{pmatrix}
+\]
+with $\det\Omega=(\alpha\delta-\beta\gamma)$.] Prove that the determinant of a unitary matrix is a complex number of unit modulus.
+
+\begin{solution}
+	Taking the determinant of $UU^\dagger=I$, we find
+	\[
+	|\det{UU^\dagger}| = |\det{U}||\det{U}^\dagger| = |\det{U}|^2 = |\det{I}| = 1,
+	\]
+	which, upon taking the square root, yields $|\det{U}|=\pm{1}$. This is satisfied when the determinant of $U$ is of the form $e^{i\phi}$.
+\end{solution}
+
+\question Verify that $R(\frac{1}{2}\pi\mathbf{\hat{i}})$ is unitary (orthogonal) by examining its matrix.
+
+\begin{solution}
+	The matrix for $R(\frac{1}{2}\pi\mathbf{\hat{i}})$ in a Cartesian basis is given by
+	\[
+		R(\frac{1}{2}\pi\mathbf{\hat{i}}) = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 0 & -1 \\ 0 & 1 & 0 \end{bmatrix},
+	\]
+	which clearly has a determinant of $1$. That it is unitary is easily verified by the fact that both its rows and columns form orthonormal bases and that
+	\[
+		R(\frac{1}{2}\pi\mathbf{\hat{i}})R(\frac{1}{2}\pi\mathbf{\hat{i}})^\dagger = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 0 & -1 \\ 0 & 1 & 0\end{bmatrix}\begin{bmatrix}1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & -1 & 0\end{bmatrix} = \begin{bmatrix}1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1\end{bmatrix} = I.
+	\]
+\end{solution}
+
+\question Verify that the following matrices are unitary:
+\[
+\frac{1}{2^{1/2}}\begin{bmatrix}1 & i \\ i & 1\end{bmatrix}, \qquad \frac{1}{2}\begin{bmatrix}1 + i & 1 - i \\ 1 - i & 1 + i\end{bmatrix}
+\]
+Verify that the determinant is of the form $e^{i\theta}$ in each case. Are any of the above matrices Hermitian?
+
+\begin{solution}
+	The determinant of the first matrix is $1$, and its unitarity can be verified via
+	\[
+		\frac{1}{2}\begin{bmatrix}1 & i \\ i & 1\end{bmatrix}\begin{bmatrix}1 & -i \\ -i & 1\end{bmatrix} = \frac{1}{2}\begin{bmatrix}1 + 1 & -i + i \\ i - i & 1 + 1\end{bmatrix} = \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}.
+	\]
+	This determinant of the second matrix is
+	\[
+		\frac{1}{4}\big((1+i)^2 - (1-i)^2\big) = \frac{1}{4}(1 + 2i -1 - 1 + 2i + 1) = i,
+	\]
+	while its unitarity is shown with
+	\begin{align*}
+		\frac{1}{4}\begin{bmatrix}1 + i & 1 - i \\ 1 - i & 1 + i\end{bmatrix}\begin{bmatrix}1 - i & 1 + i \\ 1 + i & 1 - i\end{bmatrix} &= \frac{1}{4}\begin{bmatrix}2(1+i)(1-i) & (1+i)^2 + (1-i)^2 \\ (1-i)^2 + (1+i)^2 & 2(1+i)(1-i)\end{bmatrix} \\
+		&= \frac{1}{4}\begin{bmatrix}2 + 2 & 1 + 2i - 1 + 1 - 2i - 1 \\ 1 + 2i - 1 + 1 - 2i - 1 & 2 + 2\end{bmatrix} \\
+		&= \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}.
+	\end{align*}
+	Neither of the above matrices are Hermitian.
+\end{solution}
+
+\question Show that
+
+(1) $\mathrm{Tr}(\Omega\Lambda) = \mathrm{Tr}(\Lambda\Omega)$
+
+(2) $\mathrm{Tr}(\Omega\Lambda\theta) = \mathrm{Tr}(\Lambda\theta\Omega) = \mathrm{Tr}(\theta\Omega\Lambda)$ (The permutations are \textit{cyclic}.)
+
+(3) The trace of an operator is unaffected by a unitary change of basis $|i\rangle \to U|i\rangle$. [Equivalently, show $\mathrm{Tr}(\Omega) = \mathrm{Tr}(U^\dagger\Omega{U})$.
+
+\begin{solution}
+	If we write matrix multiplication in component form,
+	\[
+		[\Omega\Lambda]_{ij} = \sum_{k}\Omega_{ik}\Lambda_{kj},
+	\]
+	we can easily show (1) and (2). For the first case, we have
+	\[
+		\mathrm{Tr}(\Omega\Lambda) = \sum_{i}\sum_{k}\Omega_{ik}\Lambda_{ki} = \sum_{k}\sum_{i}\Lambda_{ki}\Omega_{ik} = \mathrm{Tr}(\Lambda\Omega).
+	\]
+	For the second case, matrix multiplication becomes,
+	\[
+		[\Omega\Lambda\theta]_{ij} = \sum_k\sum_l\Omega_{ik}\Lambda_{kl}\theta_{lj},
+	\]
+	and so the expression for the trace is
+	\begin{align*}
+		\mathrm{Tr}(\Omega\Lambda\theta) = \sum_i\sum_k\sum_l\Omega_{ik}\Lambda_{kl}\theta_{li}
+		&= \sum_k\sum_l\sum_i\Lambda_{kl}\theta_{li}\Omega_{ik} = \mathrm{Tr}(\Lambda\theta\Omega) \\
+		&= \sum_l\sum_i\sum_k\theta_{li}\Omega_{ik}\Lambda_{kl} = \mathrm{Tr}(\theta\Omega\Lambda)
+	\end{align*}
+	Using the results above, we can immediately see
+	\[
+		\mathrm{Tr}(U^\dagger\Omega{U}) = \mathrm{Tr}(UU^\dagger\Omega) = \mathrm{Tr}(I\Omega) = \mathrm{Tr}(\Omega).
+	\]
+\end{solution}
+
+\question Show that the determinant of a matrix is unaffected by a unitary change of basis. [Equivalently show $\det\Omega = \det(U^\dagger\Omega{U})$.]
+
+\begin{solution}
+	Since the determinant of a product is the product of the determinants, we have
+	\[
+		\det(U^\dagger\Omega{U}) = \det({U^\dagger})\det(\Omega)\det({U}) = e^{-i\phi}\det(\Omega){e^{i\phi}} = e^{-i\phi}e^{i\phi}\det(\Omega) = \det(\Omega),
+	\]
+	because the determinant of a unitary matrix is a complex number of unit modulus.
+\end{solution}
+
+\question (1) Find the eigenvalues and normalized eigenvectors of the matrix
+\[
+	\Omega = \begin{bmatrix}1 & 3 & 1 \\ 0 & 2 & 0 \\ 0 & 1 & 4\end{bmatrix}
+\]
+(2) Is the matrix Hermitian? Are the eigenvectors orthogonal?
+
+\begin{solution}
+		The characteristic equation of the above matrix is given by
+		\[
+			\det(\Omega - \omega{I})=\begin{vmatrix}1 - \omega & 3 & 1 \\ 0 & 2 - \omega & 0 \\ 0 & 1 & 4 - \omega\end{vmatrix} = (1-\omega)(2-\omega)(4-\omega) = 0,
+		\]
+		from which we immediately see $\omega=1, 2, 4$. By inspection, it is clear that \\
+		\[
+			|1\rangle=\begin{bmatrix}1 \\ 0 \\ 0\end{bmatrix}
+		\]
+		For $\omega = 2$, $\Omega-\omega{I}$ becomes
+		\[
+			\Omega - 2I = \begin{bmatrix}-1 & 3 & 1 \\ 0 & 0 & 0 \\ 0 & 1 & 2\end{bmatrix}
+		\]
+		One possible vector that spans the null space of this matrix is
+		\[
+			|2'\rangle = \begin{bmatrix}5 \\ 2 \\ -1\end{bmatrix}.
+		\]
+		We can normalize this to find
+		\[
+			|2\rangle = \frac{1}{30^{1/2}}\begin{bmatrix}5 \\ 2 \\ -1\end{bmatrix}
+		\]
+		Finally, for $\omega=4$, $\Omega - \omega{I}$ is
+		\[
+			\Omega - 4I = \begin{bmatrix}-3 & 3 & 1 \\ 0 & -2 & 0 \\ 0 & 1 & 0\end{bmatrix}
+		\]
+		which is associated with eigenvectors parallel to
+		\[
+			|3\rangle = \frac{1}{10^{1/2}}\begin{bmatrix}1 \\ 0 \\ 3\end{bmatrix}
+		\]
+		
+		It is clear that the original matrix is not Hermitian and that the eigenvectors are not pairwise orthogonal.
+\end{solution}
+
+\question Consider the matrix
+\[
+	\begin{bmatrix}0 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & 0\end{bmatrix}
+\]
+(1) Is it Hermitian? \\
+(2) Find its eigenvalues and eigenvectors. \\
+(3) Verify that $U^\dagger\Omega{U}$ is diagonal, $U$ being the matrix of eigenvectors of $\Omega$.
+
+\begin{solution}
+	Yes, the given matrix is Hermitian. Its eigenvalues are the solutions to
+	\[
+		\det(\Omega - \omega{I}) = \begin{vmatrix}
+			-\omega & 0 & 1 \\ 0 & -\omega & 0 \\ 1 & 0 & -\omega
+		\end{vmatrix} = -\omega^3+\omega = \omega(1 - \omega^2) = 0,
+	\]
+	which are $\omega=0,1,{-1}$. Clearly, the normalized eigenvector corresponding to $\omega=0$ is
+	\[
+		|0\rangle = \begin{bmatrix}0 \\ 1 \\ 0\end{bmatrix}
+	\]
+	The remaining eigenvectors are also found by inspection,
+	\begin{align*}
+		|1\rangle &= \frac{1}{2^{1/2}}\begin{bmatrix}1 \\ 0 \\ 1\end{bmatrix} \\
+		|{-1}\rangle &= \frac{1}{2^{1/2}}\begin{bmatrix}1 \\ 0 \\ -1\end{bmatrix}
+	\end{align*}
+	If we define
+	\[
+		U = \frac{1}{2^{1/2}}\begin{bmatrix}1 & 0 & 1 \\ 0 & \sqrt{2} & 0 \\ 1 & 0 & {-1}\end{bmatrix}
+	\]
+	then we see
+	\begin{align*}
+		U^\dagger\Omega{U} &= \frac{1}{2}\begin{bmatrix}1 & 0 & 1 \\ 0 & \sqrt{2} & 0 \\ 1 & 0 & {-1}\end{bmatrix}\begin{bmatrix}0 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & 0 \end{bmatrix}\begin{bmatrix}1 & 0 & 1 \\ 0 & \sqrt{2} & 0 \\ 1 & 0 & {-1}\end{bmatrix} \\
+		&= \frac{1}{2}\begin{bmatrix}1 & 0 & 1 \\ 0 & \sqrt{2} & 0 \\ 1 & 0 & {-1}\end{bmatrix}\begin{bmatrix}1 & 0 & -1\\ 0 & 0 & 0 \\ 1 & 0 & 1\end{bmatrix} \\
+		&= \frac{1}{2}\begin{bmatrix}2 & 0 & 0\\ 0 & 0 & 0\\ 0 & 0 & -2\end{bmatrix} \\
+		&= \begin{bmatrix}1 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & -1\end{bmatrix}
+	\end{align*}
+\end{solution}
+
+\question Consider the Hermitian matrix
+\[
+	\Omega = \frac{1}{2}\begin{bmatrix}2 & 0 & 0 \\ 0 & 3 & {-1} \\ 0 & {-1} & {3} \end{bmatrix}
+\]
+(1) Show that $\omega_1=\omega_2=1$; $\omega_3=2$. \\
+(2) Show that $|\omega=2\rangle$ is any vector of the form
+\[
+	\frac{1}{(2a^2)^{1/2}}\begin{bmatrix}0 \\ a \\ -a\end{bmatrix}
+\]
+(3) Show that the $\omega=1$ eigenspace contains all vectors of the form
+\[
+	\frac{1}{(b^2+2c^2)^{1/2}}\begin{bmatrix}b \\ c \\ c\end{bmatrix}
+\]
+either by feeding $\omega=1$ into the equations or by requiring that the $\omega=1$ eigenspace be orthogonal to $|\omega=2\rangle$.
+
+\begin{solution}
+	We begin by examining the characteristic equation,
+	\begin{align*}
+		\det(\Omega-\omega{I}) &= \begin{vmatrix}1 - \omega & 0 & 0 \\ 0 & 1.5 - \omega & -0.5 \\ 0 & -0.5 & 1.5 - \omega\end{vmatrix}, \\
+		&= (1-\omega)[(1.5-\omega)^2 - 0.25], \\
+		&= (1 - \omega)(2.25 - 3\omega + \omega^2 - 0.25), \\
+		&= (1 - \omega)(\omega^2 - 3\omega + 2) \\
+		&= (1 - \omega)^2(2 - \omega) = 0
+	\end{align*}
+	which clearly shows a repeated root at $1$ and an single root at $2$.
+	
+	Let us examine $\Omega - 2{I}$,
+	\[
+		\begin{bmatrix}
+			-1 & 0 & 0 \\ 0 & -0.5 & -0.5 \\ 0 & -0.5 & -0.5
+		\end{bmatrix}
+	\]
+	Clearly, any vector of the form
+	\[
+		|2'\rangle = \begin{bmatrix}0 \\ a \\ -a\end{bmatrix}
+	\]
+	will reside in the null space of this matrix. If we normalize this vector, we find
+	\[
+		|2\rangle = \frac{1}{(2a^2)^{1/2}}\begin{bmatrix}0 \\ a \\ -a\end{bmatrix}
+	\]
+	For $\omega = 1$, we examine
+	\[
+		\Omega - I = \begin{bmatrix} 0 & 0 & 0 \\ 0 & 0.5 & -0.5 \\ 0 & -0.5 & 0.5 \end{bmatrix}
+	\]
+	In this case, all vectors within the null space of the above matrix will take the form
+	\[
+		|1'\rangle = \begin{bmatrix}b \\ c \\ c\end{bmatrix}
+	\]
+	Normalizing this gives
+	\[
+		|1\rangle = \frac{1}{(b^2 + 2c^2)^{1/2}}\begin{bmatrix}b \\ c \\ c\end{bmatrix}
+	\]
+\end{solution}
+
+\question An arbitrary $n\times{n}$ matrix need not have $n$ eigenvectors. Consider as an example
+\[
+\begin{bmatrix}4 & 1 \\ -1 & 2\end{bmatrix}
+\]
+(1) Show that $\omega_1=\omega_2=3$.
+(2) By feeding in this value show we get only one eigenvector of the form
+\[
+	\frac{1}{(2a^2)^{1/2}}\begin{bmatrix}+a \\ -a\end{bmatrix}
+\]
+We cannot find another one that is LI.
+
+\begin{solution}
+	We begin, as always, by investigating the solutions of the characteristic equation,
+	\begin{align*}
+		\det(\Omega - \omega{I}) &= \begin{vmatrix}4 - \omega & 1 \\ -1 & 2 - \omega\end{vmatrix}, \\
+		&= (4-\omega)(2-\omega) + 1, \\
+		&= 8 - 4\omega - 2\omega + \omega^2 + 1, \\
+		&= \omega^2 - 6\omega + 9, \\
+		&= (\omega-3)^2 = 0.
+	\end{align*}
+	Armed with the single solution of a repeated root at $\omega=3$, we examine the null space of
+	\[
+		\Omega - 3I = \begin{bmatrix}1 & 1 \\ -1 & -1\end{bmatrix}
+	\]
+	This is spanned by any (normalized) vector of the form
+	\[
+		|\omega\rangle = \frac{1}{(2a^2)^{1/2}}\begin{bmatrix}+a \\ -a\end{bmatrix}
+	\]
+\end{solution}
+
+\question Consider the matrix
+\[
+	\Omega = \begin{bmatrix}\cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix}
+\]
+(1) Show that it is unitary. \\
+(2) Show that its eigenvalues are $e^{i\theta}$ and $e^{-i\theta}$. \\
+(3) Find the corresponding eigenvectors; show that they are orthogonal. \\
+(4) Verify that $U^\dagger\Omega{U}=\text{(diagonal matrix)}$, where $U$ is the matrix of eigenvectors of $\Omega$.
+
+\begin{solution}
+	To show the unitarity of the above matrix, we need only consider the product of $\Omega$ with its conjugate transpose,
+	\begin{align*}
+		\Omega\Omega^\dagger &= \begin{bmatrix}\cos\theta & \sin\theta \\ -\sin\theta & \cos\theta\end{bmatrix}\begin{bmatrix}\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta\end{bmatrix} \\
+		&= \begin{bmatrix}\cos^2\theta + \sin^2\theta & -\sin\theta\cos\theta + \sin\theta\cos\theta \\ -\cos\theta\sin\theta + \cos\theta\sin\theta & \sin^2\theta + \cos^2\theta\end{bmatrix} \\
+		&= \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}
+	\end{align*}
+	This has the characteristic feature $\Omega\Omega^\dagger = I$ of a unitary matrix. To find the eigenvalues of this matrix, we examine its characteristic equation,
+	\begin{align*}
+		\det(\Omega - \omega{I}) &= \begin{vmatrix}\cos\theta - \omega & \sin\theta \\ -\sin\theta & \cos\theta - \omega\end{vmatrix} \\
+		&= (\cos\theta - \omega)^2 + \sin^2\theta \\
+		&= \cos^2\theta - 2\omega\cos\theta + \omega^2 + \sin^2\theta \\
+		&= \omega^2 - 2\omega\cos\theta + 1 = 0
+	\end{align*}
+	The solutions to this are given by
+	\begin{align*}
+		\omega &= \frac{2\cos\theta \pm \sqrt{4\cos^2\theta - 4}}{2} \\
+		& \cos\theta \pm \sqrt{\cos^2 - 1} \\
+		&= \cos\theta \pm i\sin\theta \\
+		&= \frac{1}{2}e^{i\theta} + \frac{1}{2}e^{-i\theta} \pm \frac{1}{2}e^{i\theta} \mp \frac{1}{2}e^{-i\theta} \\
+		&= e^{\pm{i}\theta}
+	\end{align*}
+	To find the $|e^{i\theta}\rangle$ and $|e^{-i\theta}\rangle$, we may look at
+	\begin{align*}
+		\Omega - e^{i\theta}I &= \frac{1}{2}\begin{bmatrix}-(e^{i\theta} - e^{-i\theta}) & -i(e^{i\theta} - e^{-i\theta}) \\ i(e^{i\theta} - e^{-i\theta}) & -(e^{i\theta} - e^{-i\theta})\end{bmatrix} \\
+		\Omega - e^{-i\theta} &= \frac{1}{2}\begin{bmatrix}e^{i\theta} - e^{-i\theta} & -i(e^{i\theta} - e^{-i\theta}) \\ i(e^{i\theta} - e^{-i\theta}) & e^{i\theta} - e^{-i\theta}\end{bmatrix}
+	\end{align*}
+	The null space each matrix is spanned by
+	\[
+		|e^{i\theta}\rangle = \frac{1}{2^{1/2}}\begin{bmatrix}i \\ 1\end{bmatrix} \qquad |e^{-i\theta}\rangle = \frac{1}{2^{1/2}}\begin{bmatrix}-i \\ 1\end{bmatrix}
+	\]
+	Finally, to confirm the diagonal nature of $U^\dagger\Omega{U}$, we compute
+	\begin{align*}
+		U^\dagger\Omega{U} &= \frac{1}{4}\begin{bmatrix}-i & 1 \\ i & 1\end{bmatrix}\begin{bmatrix}e^{i\theta} + e^{-i\theta} & -i(e^{i\theta} - e^{-i\theta}) \\ i(e^{i\theta} - e^{-i\theta}) & e^{i\theta} + e^{-i\theta}\end{bmatrix}\begin{bmatrix}i & -i \\ 1 & 1\end{bmatrix} \\
+		&= \frac{1}{2}\begin{bmatrix}-i & 1 \\ i & 1\end{bmatrix}\begin{bmatrix}ie^{-i\theta} & -ie^{i\theta} \\ e^{-i\theta} & e^{i\theta}\end{bmatrix} \\
+		&= \begin{bmatrix}e^{-i\theta} & 0 \\ 0 & e^{i\theta}\end{bmatrix}
+	\end{align*}
+\end{solution}
+
+\question (1) We have seen that the determinant of a matrix is unchanged under a unitary change of basis. Argue now that
+\[
+	\det\Omega = \text{product of eigenvalues of }\Omega = \prod_{i=1}^n\omega_i
+\]
+for a Hermitian or unitary $\Omega$. \\
+(2) Using the invariance of the trace under the same transformation, show that
+\[
+	\mathrm{Tr}\,\Omega = \sum_{i=1}^n\omega_i
+\]
+
+\begin{solution}
+	We know that $\det(\Omega) = \det(U^\dagger\Omega{U})$. Because $U^\dagger\Omega{U}$ is a diagonal matrix consisting of the eigenvalues of $\Omega$, we have
+	\[
+		\det(\Omega) = \det(U^\dagger\Omega{U}) = \begin{vmatrix}\omega_1 & 0 & \cdots & 0 \\ 0 & \omega_2 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & \omega_n\end{vmatrix} = \prod_{i=1}^n\omega_i.
+	\]
+	By a similar argument, we have
+	\[
+	\mathrm{Tr}(\Omega) = \mathrm{Tr}(U^\dagger\Omega{U}) = \mathrm{Tr}\begin{bmatrix}\omega_1 & 0 & \cdots & 0 \\ 0 & \omega_2 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & \omega_n\end{bmatrix} = \sum_{i=1}^n\omega_i.
+	\]
+\end{solution}
+
+\question By using the results on the trace and determinant from the last problem, show that the eigenvalues of the matrix
+\[
+	\Omega = \begin{bmatrix}1 & 2 \\ 2 & 1\end{bmatrix}
+\]
+are $3$ and $-1$. Verify this by explicit computation. Note that the Hermitian nature of the matrix is an essential ingredient.
+
+\begin{solution}
+	By inspection, we see $\det(\Omega) = -3$ and $\mathrm{Tr}(\Omega) = 2$, therefore $\omega_1\omega_2 = -3$ and $\omega_1 + \omega_2 = 2$. This holds when $\omega_1 = 3$ and $\omega_2 = -1$.
+	
+	We may verify this by explicit computation. The roots of
+	\[
+		\det(\Omega - \omega{I}) = \begin{vmatrix}1 - \omega & 2 \\ 2 & 1 - \omega\end{vmatrix} = (1-\omega)^2 - 4 = \omega^2 - 2\omega - 3 = (\omega-3)(\omega+1)
+	\]
+	are clearly $\omega_1 = 3$ and $\omega_2 = -1$.
+\end{solution}
+
+\question Consider Hermitian matrices $M^1$, $M^2$, $M^3$, $M^4$ that obey
+\[
+	M^iM^j + M^jM^i = 2\delta^{ij}I, \qquad i, j = 1, \dots, 4
+\]
+(1) Show that the eigenvalues of $M^i$ are $\pm{1}$. (Hint: go to the eigenbasis of $M^i$ and use the equation for $i=j$.) \\
+(2) By considering the relation
+\[
+	M^iM^j = -M^jM^i \quad \text{for }i\neq{j}
+\]
+show that $M^i$ are traceless. [Hint: $\mathrm{Tr}(ACB) = \mathrm{Tr}(CBA)$.] \\
+(3) Show that they cannot be odd-dimensional matrices.
+
+\begin{solution}
+	When $i=j$, the above relation becomes
+	\[
+		(M^i)^2 = I.
+	\]
+	In the eigenbasis of $M^i$, this becomes \\
+	\[
+		\begin{bmatrix}\omega_1 & 0 & \cdots & 0 \\ 0 & \omega_2 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & \omega_n\end{bmatrix}^2 = \begin{bmatrix}\omega_1^2 & 0 & \cdots & 0 \\ 0 & \omega_2^2 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & \omega_n^2\end{bmatrix} = \begin{bmatrix}1 & 0 & \cdots & 0 \\ 0 & 1 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & 1\end{bmatrix}
+	\]
+	Put another way, for each $\omega_i$ we have the equation $\omega_i^2 = 1$. This has the solutions $\pm 1$, showing that each eigenvalue of $M^i$ is one of the two values.
+	
+	Taking the trace of the relation in part (2) gives
+	\[
+		\mathrm{Tr}(M^iM^j) = \mathrm{Tr}(M^jM^i) = -\mathrm{Tr}(M^jM^i) = 0,
+	\]
+	where we have made use of the invariance of the trace under cyclic permutations in the second equality.
+	
+	Since the trace of a matrix is also the sum of its eigenvalues, each $M^i$ must have an even number of dimensions. If it did not, we would find that its eigenvalues do not exactly cancel.
+\end{solution}
+
+\question A collection of masses $m_\alpha$, located at $\mathbf{r}_\alpha$ and rotating with angular velocity $\omega$ around a common axis has an angular momentum
+\[
+	\mathbf{l} = \sum_{\alpha}m_\alpha(\mathbf{r}_\alpha\times\mathbf{v}_\alpha)
+\]
+where $\mathbf{v}_\alpha=\omega\times\mathbf{r}_\alpha$ is the velocity of $m_\alpha$. By using the identity
+\[
+\mathbf{A}\times(\mathbf{B}\times\mathbf{C}) = \mathbf{B}(\mathbf{A}\cdot\mathbf{C}) - \mathbf{C}(\mathbf{A}\cdot\mathbf{B})
+\]
+show that each Cartesian component $l_i$ of $\mathbf{l}$ is given by
+\[
+	l_i = \sum_j M_{ij}\omega_j
+\]
+where
+\[
+	M_{ij} = \sum_\alpha m_\alpha[r_\alpha^2\delta_{ij} - (\mathbf{r}_\alpha)_i(\mathbf{r}_\alpha)_j]
+\]
+or in Dirac notation
+\[
+	|l\rangle = M|\omega\rangle
+\]
+(1) Will the angular momentum and angular velocity always be parallel? \\
+(2) Show that the moment of inertia matrix $M_{ij}$ is Hermitian. \\
+(3) Argue now that there exist three directions for $\omega$ such that $\mathbf{l}$ and $\omega$ will be parallel. How are these directions to be found? \\
+(4) Consider the moment of inertia matrix of a sphere. Due to the complete symmetry of the sphere, it is clear that every direction is its eigendirection for rotation. What does this say about the given three eigenvalues of the matrix $M$?
+
+\begin{solution}
+	A simple application of the above identity yields
+	\begin{align*}
+		\mathbf{l} &= \sum_\alpha m_\alpha(\mathbf{r}_\alpha \times (\omega \times \mathbf{r}_\alpha)) \\
+		&= \sum_\alpha m_\alpha[\omega(r_\alpha^2) - \mathbf{r}_\alpha(\mathbf{r}_\alpha\cdot\omega)]
+	\end{align*}
+	which has a component form of
+	\begin{align*}
+		l_i &= \sum_\alpha m_\alpha(r_\alpha^2\omega_i - (\mathbf{r}_\alpha)_i(\mathbf{r}_\alpha\cdot\omega)) \\
+		&= \sum_j\sum_\alpha m_\alpha(r_\alpha^2\omega_i - (\mathbf{r}_\alpha)_i[(\mathbf{r}_\alpha)_j\omega_j]) \\
+		&= \sum_j\Big(\sum_\alpha m_\alpha[r_\alpha^2\delta_{ij} - (\mathbf{r}_\alpha)_i(\mathbf{r}_\alpha)_j] \Big)\omega_j \\
+		&= \sum_j M_{ij}\omega_j
+	\end{align*}
+	From this, there is no reason to expect that the angular momentum and angular velocity will always be parallel. This would imply that all angular velocity vectors are eigenvectors of the moment of intertia matrix.
+	
+	As all of the values of $M_{ij}$ are real, its Hermiticity is equivalent to it being a symmetric matrix. Since $\delta_{ij}$ and $(\mathbf{r}_\alpha)_i(\mathbf{r}_\alpha)_j$ are symmetric, so is $M_{ij}$; therefore it is Hermitian.
+	
+	The three directions for which $\mathbf{l}$ and $\omega$ are parallel are those denoted by the eigenvectors of $M_{ij}$. They can be found using the same methods we have used in previous problems.
+	
+	Due to the symmetry of the system, the eigenvalues of its moment of inertia matrix must be identical. If this were otherwise, a preferred direction would be implied.
+\end{solution}
+
+\question By considering the commutator, show that the following Hermitian matrices may be simultaneously diagonalized. Find the eigenvectors common to both and verify that under a unitary transformation to this basis, both matrices are diagonalized.
+\[
+	\Omega = \begin{bmatrix}1 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & 1\end{bmatrix} \qquad \Lambda = \begin{bmatrix}2 & 1 & 1 \\ 1 & 0 & -1 \\ 1 & -1 & 2\end{bmatrix}
+\]
+Since $\Omega$ is degenerate and $\Lambda$ is not, you must be prudent in deciding which matrix dictates the choice of basis.
+
+\begin{solution}
+	We calculate each product in turn
+	\begin{align*}
+		\Omega\Lambda &= \begin{bmatrix}1 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & 1\end{bmatrix}\begin{bmatrix}2 & 1 & 1 \\ 1 & 0 & -1 \\ 1 & -1 & 2\end{bmatrix} \\
+		&= \begin{bmatrix}3 & 0 & 3 \\ 0 & 0 & 0 \\ 3 & 0 & 3\end{bmatrix} \\
+		\Lambda\Omega &= \begin{bmatrix}2 & 1 & 1 \\ 1 & 0 & -1 \\ 1 & -1 & 2\end{bmatrix}\begin{bmatrix}1 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & 1\end{bmatrix} \\
+		&= \begin{bmatrix}3 & 0 & 3 \\ 0 & 0 & 0 \\ 3 & 0 & 3\end{bmatrix} \\
+	\end{align*}
+	and so $[\Omega, \Lambda] = \Omega\Lambda - \Lambda\Omega = 0$. Since $\Lambda$ is not degenerate, we will work in its eigenbasis. We begin by finding its eigenvalues, the solutions to
+	\begin{align*}
+		\det(\Lambda - \lambda{I}) &= \begin{vmatrix}2 - \lambda & 1 & 1 \\ 1 & -\lambda & -1 \\ 1 & -1 & 2 - \lambda\end{vmatrix} \\
+		&= (2-\lambda)(\lambda^2 - 2\lambda - 1) - (3-\lambda) + (\lambda - 1) \\
+		&= -\lambda^3 + 4\lambda^2 - \lambda - 6 \\
+		&= -(\lambda-3)(\lambda-2)(\lambda+1) = 0
+	\end{align*}
+	which are $\lambda={-1}, 2, 3$. The relevant degenerate matrices are
+	\begin{align*}
+		\Lambda + I &= \begin{bmatrix}
+			3 & 1 & 1 \\ 1 & 1 & -1 \\ 1 & -1 & 3
+		\end{bmatrix} \\
+		\Lambda - 2I &= \begin{bmatrix}
+			0 & 1 & 1 \\ 1 & -2 & -1 \\ 1 & -1 & 0
+		\end{bmatrix} \\
+		\Lambda - 3I &= \begin{bmatrix}
+			-1 & 1 & 1 \\ 1 & -3 & -1 \\ 1 & -1 & -1
+		\end{bmatrix}
+	\end{align*}
+	Solving for the null space of each tells us the eigenvectors
+	\begin{align*}
+		|{-1}\rangle &= \frac{1}{6^{1/2}}\begin{bmatrix}1 \\ -2 \\ -1\end{bmatrix} \qquad \\
+		|2\rangle &= \frac{1}{3^{1/2}}\begin{bmatrix}1 \\ 1 \\ {-1}\end{bmatrix} \\
+		|3\rangle &= \frac{1}{2^{1/2}}\begin{bmatrix}1 \\ 0 \\ 1\end{bmatrix}
+	\end{align*}
+	We can collect these together into a unitary matrix,
+	\[
+		U = \begin{bmatrix}
+		1/\sqrt{6} & 1/\sqrt{3} & 1/\sqrt{2} \\
+		-2/\sqrt{6} & 1/\sqrt{3} & 0 \\
+		-1/\sqrt{6} & -1/\sqrt{3} & 1/\sqrt{2}
+		\end{bmatrix}
+	\]
+	After some tedious matrix algebra, we find
+	\begin{align*}
+		U^\dagger\Lambda{U} &= \begin{bmatrix}
+			-1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3
+		\end{bmatrix} \\
+		U^\dagger\Omega{U} &= \begin{bmatrix}
+			0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 2
+		\end{bmatrix}
+	\end{align*}
+	which shows that we can simultaneously diagonalize both $\Omega$ and $\Lambda$.
+\end{solution}
+
+\question Consider the coupled mass problem discussed above. \\
+(1) Given that the initial state is $|1\rangle$, in which the first mass is displaced by unity and the second is left alone, calculate $|1(t)\rangle$ by following the algorithm. \\
+(2) Compare your result with that following from Eq. (1.8.39).
+
+\begin{solution}
+	This amounts to resolving the above problem. By Newton's laws, it is clear that
+	\begin{align*}
+		m\ddot{x}_1 &= {-2k}x_1 + kx_2 \\
+		m\ddot{x}_2 &= kx_1 - 2kx_2
+	\end{align*}
+	Dividing by $m$ and using ket notation, this can be rewritten as
+	\[
+		|\ddot{x}\rangle = \Omega|x\rangle
+	\]
+	where
+	\[
+		\Omega = \begin{bmatrix}
+			-\frac{2k}{m} & \frac{k}{m} \\
+			\frac{k}{m} & -\frac{2k}{m}
+		\end{bmatrix}
+	\]
+	The characteristic equation for the above matrix is
+	\[
+		\det(\Omega - \omega{I}) = \begin{vmatrix} -\frac{2k}{m} - \omega & \frac{k}{m} \\ \frac{k}{m} & -\frac{2k}{m} - \omega\end{vmatrix} = \Big({-\frac{2k}{m}} - \omega\Big)^2 - \frac{k^2}{m^2} = \Big(\omega + \frac{3k}{m}\Big)\Big(\omega + \frac{k}{m}\Big) = 0
+	\]
+	which has the solutions $\omega_{\mathrm{I}} = -k/m$ and $\omega_{\mathrm{II}} = -3k/m$. By inspection, we see that the associated eigenvectors are
+	\[
+		|\omega_{\mathrm{I}}\rangle = \frac{1}{2^{1/2}}\begin{bmatrix}1 \\ 1\end{bmatrix} \qquad |\omega_{\mathrm{II}}\rangle = \frac{1}{2^{1/2}}\begin{bmatrix}1 \\ -1\end{bmatrix}
+	\]
+	Expressing $|x\rangle$ in this basis gives the equation
+	\begin{align*}
+		|\omega_I\rangle\ddot{x}_{\mathrm{I}} + |\omega_{\mathrm{II}}\rangle\ddot{x}_{\mathrm{II}} &= \Omega(|\omega_{\mathrm{I}}\rangle{x}_{\mathrm{I}} + |\omega_{\mathrm{II}}\rangle{x}_{\mathrm{II}}) \\
+		&= {-\frac{k}{m}}|\omega_{\mathrm{I}}\rangle x_{\mathrm{I}} - \frac{3k}{m}|\omega_{\mathrm{II}}\rangle x_{\mathrm{II}}
+	\end{align*}
+	or, consolidating terms,
+	\[
+		|\omega_{\mathrm{I}}\rangle\Big(\ddot{x}_{\mathrm{I}} + \frac{k}{m}x_{\mathrm{I}}\Big) + |\omega_{\mathrm{II}}\rangle\Big(\ddot{x}_{\mathrm{II}} + \frac{3k}{m}x_{\mathrm{II}}\Big) = 0.
+	\]
+	As $|\omega_{\mathrm{I}}\rangle$ and $|\omega_{\mathrm{II}}\rangle$ are linearly independent, this shows
+	\begin{align*}
+		\ddot{x}_{\mathrm{I}} &= {-\frac{k}{m}}x_{\mathrm{I}} \\
+		\ddot{x}_{\mathrm{II}} &= {-\frac{3k}{m}}x_{\mathrm{II}}
+	\end{align*}
+	The solutions to the above equations that obey $\dot{x}_i(0)=0$ are
+	\begin{align*}
+		x_{\mathrm{I}}(t) &= x_{\mathrm{I}}(0)\cos\Big[\Big(\frac{k}{m}\Big)^{1/2}t\Big] \\
+		x_{\mathrm{II}}(t) &= x_{\mathrm{II}}(0)\cos\Big[\Big(\frac{3k}{m}\Big)^{1/2}t\Big]
+	\end{align*}
+	In vector form, this becomes
+	\[
+		|x(t)\rangle = \Big(|\omega_{\mathrm{I}}\rangle\langle\omega_{\mathrm{I}}|\cos\Big[\Big(\frac{k}{m}\Big)^{1/2}t\Big] + |\omega_{\mathrm{II}}\rangle\langle\omega_{\mathrm{II}}|\cos\Big[\Big(\frac{3k}{m}\Big)^{1/2}t\Big]\Big)|x(0)\rangle
+	\]
+	From the above, we can immediately identify
+	\begin{align*}
+		U(t) &= |\omega_{\mathrm{I}}\rangle\langle\omega_{\mathrm{I}}|\cos\Big[\Big(\frac{k}{m}\Big)^{1/2}t\Big] + |\omega_{\mathrm{II}}\rangle\langle\omega_{\mathrm{II}}|\cos\Big[\Big(\frac{3k}{m}\Big)^{1/2}t\Big] \\
+		&= \sum_{i=\mathrm{I}}^{\mathrm{II}}|\omega_i\rangle\langle\omega_i|\cos(\omega_it)
+	\end{align*}
+	To find $|1(t)\rangle$, we need to contract $U(t)$ with $|1\rangle$, then project it onto the $|1\rangle, |2\rangle$ basis.
+	\begin{align*}
+		\sum_{j=1}^2|j\rangle\langle{j}|U(t)|1\rangle = &\frac{1}{2}\Big(\cos\Big[\Big(\frac{k}{m}\Big)^{1/2}t\Big] + |\cos\Big[\Big(\frac{3k}{m}\Big)^{1/2}t\Big]\Big)|1\rangle \\
+		&+ \frac{1}{2}\Big(\cos\Big[\Big(\frac{k}{m}\Big)^{1/2}t\Big] - |\cos\Big[\Big(\frac{3k}{m}\Big)^{1/2}t\Big]\Big)|2\rangle
+	\end{align*}
+	This is the same as what we would have gotten were we to directly use Eq. (1.8.39).
+\end{solution}
+
+\question Consider once again the problem discussed in the previous example. \\
+(1) Assuming that
+\[
+	|\ddot{x}\rangle = \Omega|x\rangle
+\]
+has a solution
+\[
+	|x(t)\rangle = U(t)|x(0)\rangle
+\]
+find the differential equation satisfied by $U(t)$. Use the fact that $|x(0)\rangle$ is arbitrary.
+
+(2) Assuming (as is the case) that $\Omega$ and $U$ can be simultaneously diagonalized, solve for the elements of the matrix $U$ in this common basis and regain Eq. (1.8.43). Assume $|\dot{x}(0)\rangle = 0$.
+
+\begin{solution}
+	Substituting the second equation into the first gives
+	\[
+		\frac{\mathrm{d}^2}{\mathrm{d}t^2}U(t)|x(0)\rangle = \Omega|x\rangle
+	\]
+	Recognizing that $|x\rangle = |x(t)\rangle = U(t)|x(0)\rangle$, we find
+	\[
+		\frac{\mathrm{d}^2}{\mathrm{d}t^2}U(t)|x(0)\rangle = \Omega{U(t)}|x(0)\rangle
+	\]
+	which encodes the condition
+	\[
+		\frac{\mathrm{d}^2}{\mathrm{d}t^2}U(t) = \Omega{U(t)}
+	\]
+	$U(t)$ satisfies the above equation when
+	\[
+		U(t) = A\exp(\sqrt{\Omega}{t}) + B\exp(-\sqrt{\Omega}{t})
+	\]
+	where the exponential and square root of $\Omega$ are defined in terms of their power series. From this, we can immediately diagonalize $U(t)$ by using the eigenbasis for the component form of $\Omega$. In particular, we find
+	\begin{align*}
+		U(t) &= A\exp\Big(\begin{bmatrix}
+			{-\frac{k}{m}} & 0 \\ 0 & {-\frac{3k}{m}}
+		\end{bmatrix}^{1/2}t\Big) + B\exp\Big({-\begin{bmatrix}
+		{-\frac{k}{m}} & 0 \\ 0 & {-\frac{3k}{m}}
+		\end{bmatrix}}^{1/2}t\Big) \\
+		&= A\exp\Big(\begin{bmatrix}
+			i\sqrt{\frac{k}{m}} & 0 \\
+			0 & i\sqrt{\frac{3k}{m}}
+		\end{bmatrix}t\Big) + B\exp\Big({-\begin{bmatrix}
+		i\sqrt{\frac{k}{m}} & 0 \\
+		0 & i\sqrt{\frac{3k}{m}}
+		\end{bmatrix}}t\Big) \\
+	&= A\begin{bmatrix}
+		e^{i\sqrt{k/m}} & 0 \\ 0 & e^{i\sqrt{3k/m}}
+	\end{bmatrix} + B\begin{bmatrix}
+	e^{-i\sqrt{k/m}} & 0 \\ 0 & e^{-i\sqrt{3k/m}}
+	\end{bmatrix}
+	\end{align*}
+	In order for 
+	\[
+		|\dot{x}(0)\rangle=\frac{\mathrm{d}}{\mathrm{d}t}U(t)|x(0)\rangle=0
+	\]
+	we must have $A = B$, or
+	\[
+		U(t) = 2A\begin{bmatrix}
+			\cos\Big[\Big(\frac{k}{m}\Big)^{1/2}t\Big] & 0 \\
+			0 & \cos\Big[\Big(\frac{3k}{m}\Big)^{1/2}t\Big]
+		\end{bmatrix}
+	\]
+	The condition that $U(0)|x(0)\rangle = |x(0)\rangle$ further imposes $A = \frac{1}{2}$, and so
+	\[
+		U(t) = \begin{bmatrix}
+		\cos\Big[\Big(\frac{k}{m}\Big)^{1/2}t\Big] & 0 \\
+		0 & \cos\Big[\Big(\frac{3k}{m}\Big)^{1/2}t\Big]
+		\end{bmatrix}
+	\]
+	which is exactly Eq. (1.8.43).
+\end{solution}
+
+\question We know that the series
+\[
+	f(x) = \sum_{n=0}^{\infty}x^n
+\]
+may be equated to the function $f(x) = (1-x)^{-1}$ if $|x|<1$. By going to the eigenbasis, examine when the $q$ number power series
+\[
+	f(\Omega) = \sum_{n=0}^{\infty}\Omega^n
+\]
+of a Hermitian operator $\Omega$ may be identified with $(1 - \Omega)^{-1}$.
+
+\begin{solution}
+	As defined for scalar functions, we know that $f(x)$ converges if and only if $|x|<1$. Examining the equivalent matrix expression in the eigenbasis yields
+	\begin{align*}
+		f(\Omega) &= \sum_{n=0}^{\infty}\begin{bmatrix}
+			\omega_1 & 0 & \cdots & 0 \\
+			0 & \omega_2 & \cdots & 0 \\
+			\vdots & \vdots & \ddots & \vdots \\
+			0 & 0 & \cdots & \omega_m
+		\end{bmatrix}^n \\
+		&= \sum_{n=0}^{\infty}\begin{bmatrix}
+		\omega_1^n & 0 & \cdots & 0 \\
+		0 & \omega_2^n & \cdots & 0 \\
+		\vdots & \vdots & \ddots & \vdots \\
+		0 & 0 & \cdots & \omega_m^n
+	\end{bmatrix}
+	\end{align*}
+	From this, we can immediately see that $f(\Omega)$ will converge if and only if $\omega_i<1$ for each $i=1,\dots,n$.
+\end{solution}
+
+\question If $H$ is a Hermitian operator, show that $U=e^{iH}$ is unitary. (Notice the analogy with $c$ numbers: if $\theta$ is real, $u=e^{i\theta}$ is a number of unit modulus.)
+
+\begin{solution}
+	Unitarity of an operator can be shown through the property $U^\dagger{U}=I$. In this case, we have
+	\begin{align*}
+		U^\dagger U &= e^{-iH^\dagger}e^{iH} \\
+		&= e^{-iH}e^{iH} \\
+		&= I
+	\end{align*}
+	where in the second line we have used the fact that $H^\dagger = H$.
+\end{solution}
+
+\question For the case above, show that $\det{U}=e^{i\mathrm{Tr}H}$.
+
+\begin{solution}
+	In the eigenbasis of $H$, its exponentiation becomes
+	\begin{align*}
+		e^{iH} &= \exp\Big(i\begin{bmatrix}
+			\omega_1 & 0 & \cdots & 0 \\
+			0 & \omega_2 & \cdots & 0 \\
+			\vdots & \vdots & \ddots & \vdots \\
+			0 & 0 & \cdots & \omega_m
+		\end{bmatrix}\Big) \\
+	&= \begin{bmatrix}
+		e^{i\omega_1} & 0 & \cdots & 0 \\
+		0 & e^{i\omega_2} & \cdots & 0 \\
+		\vdots & \vdots & \ddots & \vdots \\
+		0 & 0 & \cdots & e^{i\omega_n}
+	\end{bmatrix}
+	\end{align*}
+	and so the determinant of $U$ is
+	\begin{align*}
+		\det U &= \prod_{j=1}^n e^{i\omega_j} \\
+		&= e^{i\sum_{j=1}^n\omega_j} \\
+		&= e^{i\mathrm{Tr}\,H}
+	\end{align*}
+\end{solution}
+
+\question Show that $\delta(ax) = \delta(x)/|a|$. [Consider $\int\delta(ax)\,\mathrm{d}(ax)$. Remember that $\delta(x)=\delta(-x)$.]
+
+\begin{solution}
+	First consider scaling the delta function argument by a positive constant $a$. We can define $u = ax$ and $\mathrm{d}u = a\mathrm{d}x$ to rewrite such a scaling as
+	\[
+		\int_{-\infty}^{\infty}\delta(ax)\,\mathrm{d}x = \int_{-\infty}^{\infty}\frac{\delta(u)}{a}\,\mathrm{d}u
+	\]
+	Now consider negating $a$. Making the appropriate substitutions yields
+	\[
+	\int_{-\infty}^{\infty}\delta(-ax)\,\mathrm{d}x = -\int_{\infty}^{-\infty}\frac{\delta(u)}{a}\,\mathrm{d}u = \int_{-\infty}^{\infty}\frac{\delta(u)}{a}\,\mathrm{d}x
+	\]
+	And so we see that $\delta(ax) = \delta(x)/|a|$.
+\end{solution}
+
+\question Show that
+\[
+	\delta(f(x)) = \sum_i \frac{\delta(x_i - x)}{|\mathrm{d}f/\mathrm{d}x_i|}
+\]
+where $x_i$ are the zeros of $f(x)$. Hint: Where does $\delta(f(x))$ blow up? Expand $f(x)$ near such points in a Taylor series, keeping the first nonzero term.
+
+\begin{solution}
+	Clearly, the integrand of
+	\[
+		\int_{-\infty}^{\infty}\delta(f(x))\,\mathrm{d}x
+	\]
+	produces nonzero values only at the zeros of $f(x)$. Denoting these by $x_i$, we may rewrite the above integral as
+	\[
+		\int_{-\infty}^{\infty}\delta(f(x))\,\mathrm{d}x = \sum_i\int_{x_i-\epsilon}^{x_i+\epsilon}\delta(f(x))\,\mathrm{d}x
+	\]
+	Expanding $f(x)$ about each $x_i$ (keeping in mind that $f(x_i)=0$) reveals
+	\begin{align*}
+		\sum_i\int_{x_i-\epsilon}^{x_i+\epsilon}\delta(f(x))\,\mathrm{d}x &= \sum_i\int_{x_i-\epsilon}^{x_i+\epsilon}\delta\Big(f(x_i) + \frac{\mathrm{d}f}{\mathrm{d}x}\Big|_{x=x_i}(x - x_i) + \cdots\Big)\,\mathrm{d}x \\
+		&= \int_{x_i-\epsilon}^{x_i+\epsilon}\sum_i\delta\Big(\frac{\mathrm{d}f}{\mathrm{d}x_i}(x - x_i)\Big)\,\mathrm{d}x \\
+		&= \int_{-\infty}^{\infty}\sum_i\frac{\delta(x_i - x)}{|\mathrm{d}f/\mathrm{d}x_i|}\,\mathrm{d}x
+	\end{align*}
+	where we have used the abuse of notation 
+	\[
+		\frac{\mathrm{d}f}{\mathrm{d}x}\Big|_{x=x_i} = \frac{\mathrm{d}f}{\mathrm{d}x_i}
+	\]
+	and made use of the evenness and scaling property of the delta function. Equating integrands shows
+	\[
+	\delta(f(x)) = \sum_i \frac{\delta(x_i - x)}{|\mathrm{d}f/\mathrm{d}x_i|}.
+	\]
+\end{solution}
+
+\question Consider the \textit{theta function} $\theta(x-x')$ which vanishes if $x-x'$ is negative and equals $1$ if $x-x'$ is positive. Show that $\delta(x - x') = \mathrm{d}/\mathrm{d}x\,\theta(x-x')$.
+
+\begin{solution}
+	Consider inserting $\mathrm{d}/\mathrm{d}x\,\theta(x-x')$ into an integral,
+	\[
+		\lim_{\epsilon\to0}\int_{-\infty}^{\infty}\frac{\theta(x - x' + \epsilon) - \theta(x - x')}{\epsilon}f(x)\,\mathrm{d}x
+	\]
+	Since this is nonzero only between $x = x' - \epsilon$ and $x = x'$, we may rewrite the above as
+	\[
+		\lim_{\epsilon\to0}\int_{x' - \epsilon}^{x'}\frac{\theta(x - x' + \epsilon) - \theta(x - x')}{\epsilon}f(x)\,\mathrm{d}x = \lim_{\epsilon\to0}\int_{x'-\epsilon}^{x'}\frac{1}{\epsilon}f(x)\,\mathrm{d}x
+	\]
+	Just as Shankar does, we can approximate any sufficiently smooth $f$ about the point $x'$ by $f(x')$ and pull it out of the integral to get
+	\[
+		f(x')\Big(\lim_{\epsilon\to0}\int_{x'-\epsilon}^{x'}\frac{1}{\epsilon}\,\mathrm{d}x\Big)
+	\]
+	The parenthesized term evaluates to $1$, as it is the area under a rectangle of width $\epsilon$ and height $1/\epsilon$. Hence,
+	\[
+		\delta(x - x') = \frac{\mathrm{d}}{\mathrm{d}x}\theta(x-x').
+	\]
+\end{solution}
+
+\question A string is displaced as follows at $t = 0$:
+\begin{align*}
+	\psi(x, 0) &= \frac{2xh}{L},  &0 \leq x \leq \frac{L}{2} \\
+	&= \frac{2h}{L}(L - x), &\frac{L}{2} \leq x \leq L
+\end{align*}
+Show that
+\[
+	\psi(x, t) = \sum_{m=1}^{\infty}\sin\Big(\frac{m\pi{x}}{L}\Big)\cos\omega_mt\cdot\Big(\frac{8h}{\pi^2m^2}\Big)\sin\Big(\frac{\pi m}{2}\Big)
+\]
+
+\begin{solution}
+	We first compute $\langle m|\psi(0)\rangle$,
+	\begin{align*}
+		\langle m|\psi(0)\rangle &= \Big(\frac{2}{L}\Big)^{1/2}\int_0^{L/2}\sin\Big(\frac{m\pi{x}}{L}\Big)\frac{2xh}{L}\mathrm{d}x + \Big(\frac{2}{L}\Big)^{1/2}\int_{L/2}^{L}\sin\Big(\frac{m\pi{x}}{L}\Big)\frac{2h}{L}(L-x)\mathrm{d}x
+	\end{align*}
+	The first term can be integrated by parts to find
+	\[
+	\Big({-\frac{L}{m\pi}}\Big)\cos\Big(\frac{m\pi{x}}{L}\Big)\frac{2xh}{L}\Big|_{0}^{L/2} +  \Big(\frac{2}{L}\Big)^{1/2}\int_0^{L/2}\Big({\frac{L}{m\pi}}\Big)\cos\Big(\frac{m\pi{x}}{L}\Big)\frac{2h}{L}\mathrm{d}x
+	\]
+	The leftmost term evaluates to $0$ when $x = 0$, and
+	\[
+		\Big({-\frac{Lh}{m\pi}}\Big)\cos\Big(\frac{m\pi}{2}\Big)
+	\]
+	at the other point. Meanwhile, the rightmost term is a simple integral of a cosine, becoming
+	\[
+		\Big(\frac{2}{L}\Big)^{1/2}\Big(\frac{2Lh}{m^2\pi^2}\Big)\sin\Big(\frac{m\pi}{2}\Big)
+	\]
+	Integrating the second term by parts, we see that it is equivalent to
+	\[
+	\Big({-\frac{L}{m\pi}}\Big)\cos\Big(\frac{m\pi{x}}{L}\Big)\frac{2h}{L}(L-x)\Big|_{L/2}^{L} -  \Big(\frac{2}{L}\Big)^{1/2}\int_0^{L/2}\Big({\frac{L}{m\pi}}\Big)\cos\Big(\frac{m\pi{x}}{L}\Big)\frac{2h}{L}\mathrm{d}x
+	\]
+	The leftmost term evaluates to
+	\[
+		\Big({\frac{Lh}{m\pi}}\Big)\cos\Big(\frac{m\pi}{2}\Big)
+	\]
+	while the rightmost term becomes
+	\[
+		\Big(\frac{2}{L}\Big)^{1/2}\Big(\frac{2Lh}{m^2\pi^2}\Big)\sin\Big(\frac{m\pi}{2}\Big) - \Big(\frac{2}{L}\Big)^{1/2}\Big(\frac{2Lh}{m^2\pi^2}\Big)\sin\Big(m\pi\Big) = \Big(\frac{2}{L}\Big)^{1/2}\Big(\frac{2Lh}{m^2\pi^2}\Big)\sin\Big(\frac{m\pi}{2}\Big)
+	\]
+	Adding everything together shows that the boundary terms vanish, leaving us with
+	\[
+		\langle{m}|\psi(0)\rangle = \Big(\frac{2}{L}\Big)^{1/2}\Big(\frac{4Lh}{m^2\pi^2}\Big)\sin\Big(\frac{m\pi}{2}\Big)
+	\]
+	Substituting this into (1.10.59) gives us the answer
+	\begin{align*}
+		\psi(x, t) &= \sum_{m=1}^{\infty}\Big(\frac{2}{L}\Big)^{1/2}\sin\Big(\frac{m\pi{x}}{L}\Big)\cos \omega_mt\cdot\Big(\frac{2}{L}\Big)^{1/2}\Big(\frac{4Lh}{m^2\pi^2}\Big)\sin\Big(\frac{m\pi}{2}\Big) \\
+		&= \sum_{m=1}^{\infty}\sin\Big(\frac{m\pi{x}}{L}\Big)\cos\omega_mt\cdot\Big(\frac{8h}{\pi^2m^2}\Big)\sin\Big(\frac{m\pi}{2}\Big)
+	\end{align*}
+\end{solution}
+
+\end{questions}
+
+\end{document}

@@ -1,0 +1,176 @@
+\documentclass[../the-road-to-reality.tex]{subfiles}
+
+\begin{document}
+
+\section{Hypercomplex numbers}
+
+\begin{questions}
+
+\question Prove these directly from Hamilton's 'Brougham Bridge equations', assuming only the associative law $a(bc) = (ab)c$.
+
+\begin{solution}
+        Starting from $\mathbf{ijk}={-1}$, we can pre- and post-multiply both sides by $k$ to obtain $\mathbf{kijk}^2=-kk$, or $\mathbf{kij}=-1$. This can be done again with $j$ to find $\mathbf{jki}=-1$. We can combine the first two of these expressions to find
+        \begin{align*}
+                (\mathbf{ijk})(\mathbf{kij}) &= 1 \\
+                -\mathbf{ijij} &= 1 \\
+                -\mathbf{ijij}^2\mathbf{i} &= \mathbf{ji} \\
+                -\mathbf{ij} &= \mathbf{ji}
+        \end{align*}
+        The other combinations of these results yield $-\mathbf{ik}=\mathbf{ki}$ and $-\mathbf{jk}=\mathbf{kj}$.
+\end{solution}
+
+\question Express the sum and product of two general quaternions so that all these indeed hold.
+
+\begin{solution}
+        The sum of two quaternions, $\mathbf{q}_1 = a_0 + a_1\mathbf{i} + a_2\mathbf{j} + a_3\mathbf{k}$ and $\mathbf{q}_2 = b_0 + b_1\mathbf{i} + b_2\mathbf{j} + b_3\mathbf{k}$, can be defined as
+
+	\[
+        \mathbf{q}_1 + \mathbf{q}_2 = (a_0 + b_0) + (a_1 + b_1)\mathbf{i} + (a_2 + b_2)\mathbf{j} + (a_3 + b_3)\mathbf{k}
+	.\] 
+
+        Multiplication is slightly trickier. After expanding everything, we can replace $\mathbf{ij}$ with $\mathbf{k}$, $\mathbf{jk}$ with $\mathbf{i}$, and $\mathbf{ki}$ with $\mathbf{j}$. Then we have
+
+	\[
+        \mathbf{q}_1\mathbf{q}_2 = (a_0b_0 - a_1b_1 - a_2b_2 - a_3b_3) + (a_0b_1 + a_1b_0 + a_2b_3 - a_3b_2)\mathbf{i} + (a_0b_2 - a_1b_3 + a_2b_0 + a_3b_1)\mathbf{j} + (a_0b_3 + a_1b_2 - a_2b_1 + a_3b_0)\mathbf{k}
+	.\] 
+\end{solution}
+
+\question Check that this definition of $\mathbf{q}^{-1}$ actually works.
+
+\begin{solution}
+        In order to check this definition, we will consider a general quaternion of the form $\mathbf{q} = t + u\mathbf{i} + v\mathbf{j} + w\mathbf{k}$. Its inverse is
+
+	\[
+        \mathbf{q}^{-1} = \bar{\mathbf{q}}(\mathbf{q}\bar{\mathbf{q}})^{-1} = \frac{t-u\mathbf{i}-v\mathbf{j}-w\mathbf{k}}{t^2+u^2+v^2+w^2}
+	.\] 
+
+        Expanding $\mathbf{q}\mathbf{q}^{-1}$ produces a lengthy, yet simple, expression. Upon replacing pairs of basis elements with single ones (e.g. replacing $\mathbf{ij}$ with $\mathbf{k}$), we find that all terms cancel with the exception of $t^2 - u^2\mathbf{i}^2 - v^2\mathbf{j}^2 - w^2\mathbf{k}^2$. Using Hamilton's identities, this equals the denominator, giving us $\mathbf{q}\mathbf{q}^{-1} = 1$.
+\end{solution}
+
+\question Check this.
+
+\begin{solution}
+        Once again denoting a general quaternion with $\mathbf{q} = t + u\mathbf{i} + v\mathbf{j} + w\mathbf{k}$, we see that
+
+        \begin{align*}
+                \mathbf{i}\mathbf{q}\mathbf{i} &= t\mathbf{i}^2 + u\mathbf{i}^3 + v\mathbf{i}\mathbf{j}\mathbf{i} + w\mathbf{i}\mathbf{k}\mathbf{i} \\
+                &= -t - u\mathbf{i} + v\mathbf{k}\mathbf{i} + w\mathbf{i}\mathbf{j} \\
+                &= -t - u\mathbf{i} + v\mathbf{j} + w\mathbf{k}
+        \end{align*}
+
+        Similarly, $\mathbf{jqj} = -t + u\mathbf{i} - v\mathbf{j} + w\mathbf{k}$ and $\mathbf{kqk} = -t + u\mathbf{i} + v\mathbf{j} - w\mathbf{k}$. Summing all of these together with $\mathbf{q}$ gives
+
+	\[
+        \mathbf{q} + \mathbf{iqi} + \mathbf{jqj} + \mathbf{kqk} = -2t + 2u\mathbf{i} + 2v\mathbf{j} + 2w\mathbf{k}
+	.\] 
+
+        Multiplying this quantity by $-\frac{1}{2}$ gives us $\bar{\mathbf{q}}$.
+\end{solution}	
+
+\question In Hamilton's original version of this construction, the 'dual' spherical triangle to this one is used, whose vertices are where the sphere meets the three axes of rotation involved in the problem. Give a direct demonstration of how this works (perhaps 'dualizing' the argument given in the text), the amounts of the rotations being represented as twice the \textit{angles} of this dual triangle.
+
+\question Find the geometrical nature of the transformation, in Euclidean 3-space, which is the composition of two reflections in planes that are not perpendicular.
+
+\question Show this.
+
+\begin{solution}
+        We must show that $\mathbf{i}^2 = \mathbf{j}^2 = \mathbf{k}^2 = \mathbf{ijk} = -1$. For $\mathbf{i}^2$, we have
+
+\[
+        \gamma_2\gamma_3\gamma_2\gamma_3 = -\gamma_3\gamma_2^2\gamma_3 = \gamma_3^2 = -1
+.\] 
+
+        Similarly, we find for $\mathbf{j}^2$ that
+
+\[
+        \gamma_3\gamma_1\gamma_3\gamma_1 = -\gamma_1\gamma_3^2\gamma_1 = \gamma_1^2 = -1
+.\] 
+
+        And for $\mathbf{k}^2$,
+
+\[
+        \gamma_1\gamma_2\gamma_1\gamma_2 = -\gamma_2\gamma_1^2\gamma_2 = \gamma_2^2 = -1
+.\] 
+
+        Finally, for $\mathbf{ijk}$, we see
+
+	\[
+        \gamma_2\gamma_3\gamma_3\gamma_1\gamma_1\gamma_2 = \gamma_2(-1)(-1)\gamma_2 = \gamma_2^2 = -1
+	.\] 
+\end{solution}	
+
+\question Explain all this counting. \textit{Hint}: Think of $(1 + 1)^n$.
+
+\begin{solution}
+        In an $n$-dimensional space, the linearly independent elements are distinct products of the available $\gamma$'s. Since there are $n$ different individual $\gamma$'s, each grouping of $k$th-order entities has ${n\choose{k}}$ elements.
+\end{solution}	
+
+\question Show this.
+
+\begin{solution}
+        Writing our two vectors as $\mathbf{a} = a_1\mathbf{\eta}_1 + \cdots + a_n\mathbf{\eta}_n$ and $\mathbf{b} = b_1\mathbf{\eta}_1 + \cdots + b_n\mathbf{\eta}_n$, we see that their wedge product is
+
+        \begin{align*}
+                \mathbf{a} \wedge \mathbf{b} &= \Big(\sum_{i=1}^na_i\mathbf{\eta}_i\Big) \wedge \Big(\sum_{j=1}^nb_j\mathbf{\eta}_j\Big) \\
+                &= \sum_{i=1}^n\sum_{j=1}^na_ib_j\mathbf{\eta}_i\wedge\mathbf{\eta}_j \\
+                &= -\sum_{j=1}^n\sum_{i=1}^nb_ja_i\mathbf{\eta}_j\wedge\mathbf{\eta}_i \\
+                &= -\Big(\sum_{j=1}^nb_j\mathbf{\eta}_j\Big)\wedge\Big(\sum_{i=1}^na_i\mathbf{\eta}_i\Big) \\
+                &= -\mathbf{b}\wedge\mathbf{a}
+        \end{align*}
+\end{solution}	
+
+\question Write out $\mathbf{a} \wedge \mathbf{b}$ fully in the case $n = 2$, to see how this comes about.
+
+\begin{solution}
+        Carrying out the product, we see
+
+        \begin{align*}
+                \mathbf{a} \wedge \mathbf{b} &= (a_1\mathbf{\eta}_1 + a_2\mathbf{\eta}_2) \wedge (b_1\mathbf{\eta}_1 + b_2\mathbf{\eta}_2) \\
+                &= a_1b_1\mathbf{\eta}_1\wedge\mathbf{\eta}_1 + a_1b_2\mathbf{\eta}_1\wedge\mathbf{\eta}_2 + a_2b_1\mathbf{\eta}_2\wedge\mathbf{\eta}_1 + a_2b_2\mathbf{\eta}_2\wedge\mathbf{\eta}_2 \\
+                &= a_1b_2\mathbf{\eta}_1\wedge\mathbf{\eta}_2 + a_2b_1\mathbf{\eta}_2\wedge\mathbf{\eta}_1 \\
+                &= \frac{1}{2}a_1b_2\mathbf{\eta}_1\wedge\mathbf{\eta}_2 + \frac{1}{2}a_2b_1\mathbf{\eta}_2\wedge\mathbf{\eta}_1 + \frac{1}{2}a_1b_2\mathbf{\eta}_1\wedge\mathbf{\eta}_2 + \frac{1}{2}a_2b_1\mathbf{\eta}_2\wedge\mathbf{\eta}_1 \\
+                &= \frac{1}{2}(a_1b_2-a_2b_1)\mathbf{\eta}_1\wedge\mathbf{\eta}_2 + \frac{1}{2}(a_2b_1-a_1b_2)\mathbf{\eta}_2\wedge\mathbf{\eta}_1
+        \end{align*}
+
+        where in the third line we split each term $a$ into $\frac{1}{2}(a + a)$. Put into this form, we see that each component of $\mathbf{a}\wedge\mathbf{b}$ is given by $a_{[p}b_{q]}$.
+\end{solution}	
+
+\question Write down this expression explicitly in the case of a wedge product of four vectors.
+
+\begin{solution}
+        This is quite a tedious exercise, and so has been skipped. The result is the alternating sum of all permutations of four vector components divided by $4! = 24$.
+\end{solution}
+
+\question Show that the wedge product remains unaltered if $\mathbf{a}$ is replaced by $\mathbf{a}$ added to any multiple of any of the other vectors involved in the wedge product.
+
+\begin{solution}
+        The wedge product is zero if any vectors involved in the expression are the same. Therefore,
+
+        \begin{align*}
+                (\mathbf{a} + \mathbf{b}_k)\wedge\mathbf{b}_1\wedge\cdots\wedge\mathbf{b}_k\wedge\cdots\wedge\mathbf{b}_n &= \mathbf{a}\wedge\mathbf{b}_1\wedge\cdots\wedge\mathbf{b}_n + \mathbf{b}_k\wedge\mathbf{b}_1\wedge\cdots\wedge\mathbf{b}_k\wedge\cdots\wedge\mathbf{b}_n \\
+                &= \mathbf{a}\wedge\mathbf{b}_1\wedge\cdots\wedge\mathbf{b}_n + 0 \\
+                &= \mathbf{a}\wedge\mathbf{b}_1\wedge\cdots\wedge\mathbf{b}_n
+        \end{align*}
+\end{solution}
+
+\question Show this.
+
+\begin{solution}
+        The wedge product of $\mathbf{P}$ and $\mathbf{Q}$ is given by
+
+	\[
+        \sum\sum P_{a\dots{c}}Q_{d\dots{f}}\mathbf{\eta}_1\wedge\cdots\wedge\mathbf{\eta}_p\wedge\mathbf{\xi}_1\wedge\cdots\wedge\mathbf{\xi}_q
+	.\] 
+
+        The wedge product of $\mathbf{Q}$ and $\mathbf{P}$ can be reached from this expression by moving the elements of the form $\mathbf{\eta_1}\wedge\cdots\wedge\mathbf{\eta}_p$ to the right of those of the form $\mathbf{\xi}_1\wedge\cdots\wedge\mathbf{\xi}_q$. If either $q$ or $p$ are even, this introduces an even number of swaps, resulting in no change of sign. If, on the other hand, $q$ and $p$ are both odd, this results in an odd number of swaps, giving $\mathbf{Q}\wedge\mathbf{P} = -\mathbf{P}\wedge\mathbf{Q}$.
+\end{solution}
+
+\question Deduce that $\mathbf{P}\wedge\mathbf{P} = 0$, if $p$ is odd.
+
+\begin{solution}
+        By the above argument, $\mathbf{P}\wedge\mathbf{P} = -\mathbf{P}\wedge\mathbf{P}$, implying this quantity equals $0$.
+\end{solution}
+
+\end{questions}
+	
+\end{document}

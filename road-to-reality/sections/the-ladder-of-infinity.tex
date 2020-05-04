@@ -1,0 +1,194 @@
+\documentclass[../the-road-to-reality.tex]{subfiles}
+
+\begin{document}
+
+\section{The ladder of infinity}
+
+\begin{questions}
+
+	\question Show how these rules work, explaining why $p$ has to be prime.
+
+	\begin{solution}
+		Addition and subtraction are quite straight-forward, being defined as
+		\[
+			a_1 + a_2 \equiv b\mod{p} \iff a_1 + a_2 - b = kp, \quad k\in\mathbb{Z}
+		\]
+		and
+		\[
+			a_1 - a_2 \equiv b\mod{p} \iff a_1 - a_2 - b = kp, \quad k\in\mathbb{Z},
+		\]
+		i.e. where $b$ is the remainder of $a_1 + a_2$ (or $a_1 - a_2$) on
+		division by $p$. The existence of such a remainder follows from the
+		division theorem. The additive inverse of $a_1$ is simply $-a_1$, while
+		the additive identity is $0$---both rules arise due the
+		definition of modulo arithmetic via the integers.
+
+		Multiplication is defined similarly, but here we see the need for $p$ to
+		be prime. We have
+		\[
+			a_1a_2 \equiv b\mod{p} \iff a_1a_2 - b = kp, \quad k\in\mathbb{Z}.
+		\]
+		The multiplicative identity is $1$, but what about the
+		multiplicative inverse? This is the number $a^{-1}$ such that
+		\[
+			aa^{-1} \equiv 1\mod{p} \iff aa^{-1} - 1 = kp,\quad k\in\mathbb{Z}.
+		\]
+		That is, $aa^{-1}$ must be coprime to $p$. In each finite field (with $p$ prime), there is
+		only one element that, when multiplying $a$, returns such an element.
+
+		If $p$ were composite, say $p=mn$, then elements $m$ and $n$ would 
+		not have a multiplicative inverse. This is because, when $p$ is prime and
+		$a \equiv b\mod{p}$, the smallest integer we may multiply $a$ by to leave
+		it unchanged is $p$---all others less than this are not divisible by $p$,
+		and thus will modify $b$. If, on the other hand, $p = mn$, then element
+		$m$ and $n$ may be multiplied by each other to return to themselves,
+		thereby bypassing the other elements (including the multiplicative
+		identity, which cannot exist because $am$ will never be coprime to $mn$
+		for any $a$).
+	\end{solution}
+
+	\question Make complete addition and multiplication tables for $\mathbb{F}_4$
+	and check that the laws of algebra work (where we assume that $1 + \omega +
+	\omega^2 = 0$).
+
+	\begin{solution}
+		Assuming the multiplicative and additive identities are unaltered in this case, we have
+
+		\[
+			\begin{tabular}{>{$}l<{$}|*{4}{>{$}l<{$}}}
+				+  & 0  & 1 & \omega & \omega^2 \\
+				\hline\vrule height 12pt width 0pt
+				0  & 0  & 1 & \omega & \omega^2 \\
+				1 & 1 & 0  & \omega^2  &  \omega \\
+				\omega  & \omega  & \omega^2 & 0  & 1 \\
+				\omega^2 & \omega^2 & \omega & 1 & 0  \\
+			\end{tabular} 
+		\]
+
+		\[
+			\begin{tabular}{>{$}l<{$}|*{4}{>{$}l<{$}}}
+				\times  & 0  & 1 & \omega & \omega^2 \\
+				\hline\vrule height 12pt width 0pt
+				0  & 0  & 0 & 0 & 0 \\
+				1 & 0 & 1  & \omega  &  \omega^2 \\
+				\omega  & 0 & \omega & \omega^2 & 1 \\
+				\omega^2 & 0 & \omega^2 & 1 & \omega \\
+			\end{tabular} 
+		\]
+		In the case of the addition table, a brief explanation of $\omega^2 + 1$
+		is in order: if we assume $\omega^2 = 1 +
+		\omega$, then $\omega^2 + \omega = 1 + \omega + \omega = 1 + 0 = 1$.
+	\end{solution}
+
+	\question Show this.
+
+	\begin{solution}
+		We can return to $\S15.6$ to remind ourselves that a projective space
+		$\mathbb{P}^n$ can be described by $n$ independent ratios. We can express these
+		as coordinates, just as in Exercise 15.10, taking care to ensure there is no
+		overlap. Then, we simply count the number of possible coordinates (each
+		mapping to a specific point).
+
+		Consider
+		\begin{gather*}
+			A_1 = \{1,0,\dots,0\} \\
+			A_2 = \{z^0, 1, \dots, 0\} \\
+			\vdots \\
+			A_n = \{z^0, z^1, \dots, 1\},
+		\end{gather*}
+		where a projective space $\mathbb{P}^n$ can be described in coordinates with the union of the
+		first $n$ such sets. Working with finite fields, each coordinate $z^i$ is
+		limited to a finite number of values $q$. Thus, for
+		$\mathbb{P}^n(\mathbb{F}_q)$, there are
+		\[
+			1 + q + q^2 + \cdots + q^n = \frac{q^{n+1} - 1}{q - 1}
+		\]
+		different points.
+	\end{solution}
+
+	\question Show how to construct \textit{new} magic discs, in teh cases $q=3,5$
+	by starting at a particular marked point on one of the discs that I have
+	given and then multiplying each of the angular distances from the other
+	marked points by some fixed integer. Why does this work?
+
+	\question The finite field $\mathbb{F}_8$ has elements $0, 1, \varepsilon,
+	\varepsilon^2, \varepsilon^3, \varepsilon^4, \varepsilon^5,
+	\varepsilon^6$, where $\varepsilon^7=1$ and $1+1=0$. Show that either (1)
+	there is an identity of the form $\varepsilon^a + \varepsilon^b +
+	\varepsilon^c=0$ whenever $a$, $b$, and $c$ are numbers on the background
+	circle of Fig. 16.1a which can line up with the three spots on the disc,
+	or else (2) the same holds, but with $\varepsilon^2$ in place of
+	$\varepsilon$ (i.e. $\varepsilon^{3a} + \varepsilon^{3b} + \varepsilon^{3c}
+	= 0$).
+
+	\question Show that the `associator' $a(bc) - (ab)c$ is antisymmetrical in
+	$a$, $b$, $c$ when these are generating elements, and deduce that this
+	(whence also $a(ab) = a^2b$) holds for \textit{all} elements.
+	\textit{Hint}: Make use of Fig. 16.3 and the full symmetry of the Fano
+	plane.
+
+	\question See if you can provide such an explicit procedure, by finding
+	some sort of systematic way of ordering all the fractions. You may find
+	the result of Exercise [16.8] helpful.
+
+	\begin{solution}
+		Perhaps the simplest procedure is to imagine a table where the rows and columns are labeled by elements of $\mathbb{N}$ and each cell's value is given by the ratio of the corresponding column label to its row label. This construction lists all possible rational numbers.
+
+		To create a mapping between $\mathbb{N}$ and such a construction, imagine drawing a line from the origin of our table (the cell corresponding to $1:1$) up one cell, then diagonally down (skipping the original cell), then over one cell, then diagonally up, and so on. We can parameterize the line via the natural numbers, providing a mapping from $\mathbb{N}$ to $\mathbb{Q}$.
+	\end{solution}
+
+	\question Show that the function $\frac{1}{2}((a+b)^2+3a+b)$ explicitly
+	provides a $1$-$1$ correspondence between the natural numbers and the
+	pairs $(a, b)$ of natural numbers.
+
+	\question Spell this out in detail.
+
+	\begin{solution}
+		Imagine we have three sets, $A$, $B$, and $C$, with respective cardinal numbers $\alpha$, $\beta$, $\gamma$. The first two inequalities in the text imply that we can set up $1$-to-$1$ correspondences between $A$ and $B$ and between $B$ and $C$. Call the first of these $T$ and the second $S$, so $T(A) = B$ and $S(B) = C$. The fact that we can write $\alpha \leq \gamma$ follows from our ability to string together successive mappings. That is, if $A$ can be mapped to $B$ in a bijective manner, then we can simply map all of \textit{these} elements into $C$ with $S$ in a similarly bijective manner.
+	\end{solution}
+
+	\question Prove this. Outline: there is a $1$-$1$ map $b$ taking $A$ to some subset $bA (=B(A))$ of $B$, and a $1$-$1$ map $a$ taking $B$ to some subset $aB$ of $A$; consider the map of $A$ to $B$ which uses $b$ to map $A$-$aB$ to $bA$-$baB$ and $abA$-$abaB$ to $babA$-$babaB$, etc. and which uses $a^{-1}$ to map $aB$-$abA$ to $B-bA$ and $abaB-ababA$ to $baB-babA$, etc., and sort out what to do with the rest of $A$ and $B$.
+
+	\question Explain this.
+
+	\begin{solution}
+		Treating such a number as binary (with a decimal point to the far left) leads to ambiguities between numbers such as 
+		\[
+			1000000\cdots \qquad \text{and} \qquad 0111111\cdots
+		,\] 
+		as, in the limit, $1011111\cdots$ converges to $1100000\cdots$. To see this, we can convert such a number to our decimal system by expanding in base-$2$,
+		\begin{align*}
+			0111111\cdots &= 0\cdot{2}^{-1} + 1\cdot{2}^{-2} + 1\cdot{2}^{-3} + \cdots \\
+				      &= \sum_{n=2}^{\infty}2^{-n} \\
+				      &= \frac{1}{2},
+		\end{align*}
+		which equals $1000000\cdots = 1\cdot{2}^{-1} = \frac{1}{2}$.
+	\end{solution}
+
+	\question Exhibit one. \textit{Hint}: Look at Fig. 9.8, for example.
+
+	\begin{solution}
+		Commonly used is the $\arctan$ function, which takes the entirety of $\mathbb{R}$ to $(-\frac{\pi}{2}, \frac{\pi}{2})$.
+	\end{solution}
+
+	\question Explain why this is essentially the same argument as the one I have given here, in the case $\alpha = \aleph_0$ for showing $\alpha < 2^\alpha$.
+
+	\question Show that this is what happens.
+
+	\question Give a rough description of how our algorithm might be performed and explain these particular values.
+
+	\question Show this.
+
+	\question Can you see why this is so? \textit{Hint}: For an arbitrary Turing machine action of $\mathbf{T}$ applied to $n$, we can consider an effective Turing machine $\mathbf{Q}$ which has the property that $\mathbf{Q}(r)=0$ if $\mathbf{T}$ applied to $n$ has not stopped after $r$ computational steps, and $\mathbf{Q}(r)=1$ if it has. Take the modulo $2$ sum of $\mathbf{Q}(n)$ with $\mathbf{T}_t(n)$ to get $\mathbf{T}_s(n)$.
+
+	\question See if you can establish this.
+
+	\question Explain why $(A^B)^C$ may be identified with $A^{B\times{C}}$, for sets $A$, $B$, $C$.
+
+	\begin{solution}
+		Because, in the convention we are using, $(A^B)^C$ stands for the set of all mappings from $C$ into the set of all mappings from $B$ into $A$. This is associating each mapping from $B$ into $A$ with a copy of $C$, allowing us to view it as a mapping from the pair of elements in $C$ and $B$ into $A$. Applying this to the entire set of mappings yields $A^{B\times{C}}$.
+	\end{solution}
+
+\end{questions}
+
+\end{document}

@@ -1,0 +1,235 @@
+\documentclass[../road-to-reality.tex]{subfiles}
+
+\begin{document}
+\printanswers
+
+\section{The quantum particle}
+
+\begin{questions}
+
+\question Show that $(1 + D^2)\cos{x}=0$ and $(1 + D^2)\sin{x}=0$ (referring
+  to formulae in $\S6.5$, if you need them).
+
+  \begin{solution}
+    Both cosine and sine are eigenfunctions of $D^2$ with eigenvaues of $-1$,
+    and so
+    \begin{align*}
+      (1 + D^2)\cos{x} &= (1 - 1)\cos{x} = 0, \\
+      (1 + D^2)\sin{x} &= (1 - 1)\sin{x} = 0.
+    \end{align*}
+  \end{solution}
+
+\question Taking note of Exercise [21.1], find the \textit{general} solution
+  of $(1 + D^2)y=x^5$, providing a proof that your solution is, in fact, the
+  most general.
+
+  \begin{solution}
+    To find the most general solution of this equation, we must add to the
+    particular solution the homogenous one, i.e. the set of solutions satisfying
+    \[
+      (1 + D^2)y = 0.
+    \]
+    This set is exactly that given in the solution to the above problem,
+    yielding a general solution of
+    \[
+      y = x^5 - 20x^3+120x + A\cos{x} + B\sin{x}.
+    \]
+  \end{solution}
+
+\question See if you can explain why the procedure given in the text isses
+  most of the solutions given in Exercise [21.2]. Can you suggest a modified
+  general procedure which finds them all? \textit{Hint}: To what extent does `$1
+  - D^2 + D^4 - D^6 + \dots$' really satisfy the requirements for an inverse to
+  $1+D^2$? Try acting on $(1 + D^2)\cos{x}$ with this infinite expression.
+
+\question Why?
+
+  \begin{solution}
+    When $a\neq{b}$, we have $D_bx^a=x^aD_b$, i.e. $x$ and $D$ commute. This is
+    patently obvious, though, as the partial derivative of an expression absent
+    of the coordinate to differentiated is necessarily zero.
+  \end{solution}
+
+\question Solve this Schrodinger equation explicitly in the case of a particle
+  of mass $m$ in a constant Newtonian gravitational field: $V = mgz$. (Here
+  $z$ is the height above the Earth's surface and $g$ is the downward
+  gravitational acceleration.)
+
+  \begin{solution}
+    There is no reason for the solution to such an equation to vary in either
+    the $x$ or $y$ coordinate, and so the Schrodinger equation with the relevant
+    Hamiltonian collapses to
+    \[
+      i\hbar\frac{\partial\psi}{\partial{t}} =
+      -\frac{\hbar^2}{2m}\frac{\partial^2\psi}{\partial{z}^2} + mgz\psi.
+    \]
+    Let us suppose that our wavefunction is a product of two independent
+    functions, $\psi(z; t) = \phi(z)\nu(t)$. Then our equation becomes
+    \[
+      i\hbar\frac{1}{\nu}\frac{\mathrm{d}\nu}{\mathrm{d}t} =
+      -\frac{\hbar^2}{2m}\frac{1}{\phi}\frac{\mathrm{d}^2\phi}{\mathrm{d}z^2}
+      + mgz.
+    \]
+    Because $\phi$ and $\nu$ are independent, this equation can only be
+    satisified if both sides equal the same, constant value $E$.
+    
+    The time function $\nu$ is easily solved as $\nu = e^{-i\frac{E}{\hbar}t}$. Unfortunately, the solution of $\phi$ is not as nice. We are looking for a function $\phi$ that satisfies
+    \[
+    	{-\frac{\hbar^2}{2m}}\frac{\mathrm{d}^2\phi}{\mathrm{d}z^2} + (mgz - E)\phi = 0,
+    \]
+    or, equivalently,
+    \[
+    	\frac{\mathrm{d}^2\phi}{\mathrm{d}z^2} - \frac{mgz - E}{\hbar^2/2m}\phi = 0.
+    \]
+    Functions that satisfy such a relation are called Airy functions. If we assume $\phi$ goes to zero at infinity, $\phi$ is given by $\mathrm{Ai}(x)$, where such a function equals
+    \[
+    	\mathrm{Ai}(x) = \frac{1}{\pi}\int_0^{\infty}\cos\Big(\frac{t^3}{3}+xt\Big)\mathrm{d}t
+    \]
+    and $x$ is the variable multiplying $\phi$ in the rightmost term of the differential equation.
+  \end{solution}
+
+\question By transforming to the freely-falling frame with coordinates
+  $X=x$, $Y=y$, $Z=z-\frac{1}{2}t^2g$, $T=t$, show that the Schrodinger
+  equation of Exericse [21.5] transforms to one without a gravitational
+  field, with wavefunction $\Psi = e^{i(\frac{1}{6}mt^3g^2+mtzg)}\psi$. What
+  does this tell us about Einstein's principle of equivalence (see
+  $\S17.4$), as applied to quantum systems? (Take note of $\S21.9$.)
+
+\question Show that, if the quantum Hamiltonian $\mathcal{H}$ has a
+  translation invariance, say being independent of the position variable
+  $x^3$, then the corresponding momentum $p_3$ is conserved in the sense that
+  the operator $p_3$ commutes with the time evolution $\partial/\partial{t}$.
+  Explain, in the light fo the interpretations given later, why this
+  commutation implies conservation.
+
+  \begin{solution}
+    From Schrodinger's equation, we know that
+    \[
+      \hat{\mathcal{H}} = i\hbar\frac{\partial}{\partial{t}},
+    \]
+    i.e. the Hamiltonian \textit{is} the time-evolution operator.
+    Simultaneously, we also know that
+    \[
+      \hat{p}_a = -i\hbar\frac{\partial}{\partial{q}^a},
+    \]
+    i.e. the operator for the $a$th momentum tells us how the quantity acted
+    upon changes in the $a$th coordinate. But if $\mathcal{H}$ is independent of
+    the $a$th coordinate, then
+    $\hat{p}_a(\hat{\mathcal{H}}\psi)=\hat{\mathcal{H}}(\hat{p}_a\psi)$, i.e. $p_a$ commutes
+    with the Hamiltonian, or time-evolution, operator.
+
+    The commutativity of $p_a$ and $\mathcal{H}$ allows us to equate both
+    ordered products, and since $\hat{p}_a\mathcal{H} = 0$, so also does
+    $\hat{\mathcal{H}}p_a=0$. But this last equation says that the $a$th
+    momentum does not change in time, i.e. it is conserved.
+  \end{solution}
+
+\question See if you can see why the requirements of special relativity enable
+  Planck's $E=h\nu$ to be deduced from de Broglie's $p=h\lambda^{-1}$.
+  (\textit{Hint}: You may assume that the hyperplanes in $\mathbb{M}$ along which
+  the wave takes a constant value are Lorentz-orthogonal to the particle's $4$-velocity.)
+  
+  \begin{solution}
+  	From SR, we know that energy and momentum may be combined to form a four-vector 
+  	\[
+  		(E, \mathbf{p}) = (E, \hbar\mathbf{k}),
+  	\]
+  	where we have used de Broglie's $p = h\lambda^{-1} = \hbar{k}$ in the second equality. We can then \textit{define} the frequency as $E = \hbar\omega = h\nu$. 
+ 	\end{solution}
+  
+\question Why? Here linear dependence can involve continuous sums, namely integrals.
+
+\question Why can I split it this way?
+
+\begin{solution}
+	This is because
+	\begin{align*}
+		e^{-iP_ax^a/\hbar} &= e^{-i(Et - p_xx - p_yy - p_zz)/\hbar} \\
+		&= e^{-iEt/\hbar + i(p_xx + p_yy + p_zz)/\hbar} \\
+		&= e^{-iEt/\hbar + i\mathbf{P}\cdot\mathbf{x}/\hbar} \\
+		&= e^{-iEt/\hbar}e^{i\mathbf{P}\cdot\mathbf{x}/\hbar}
+	\end{align*}
+\end{solution}
+
+\question Replacing the real number $C$ in the above displayed expression by the complex number $C + iD$ (where $C$ and $D$ are real), find the frequency of the wave packet and the location of its peak.
+
+\begin{solution}
+	Making the substitution and expanding yields
+	\begin{align*}
+		Ae^{-B^2(x-C)^2} &= Ae^{-B^2[x-(C+iD)]^2} \\
+		&= Ae^{-B^2[x^2 - 2x(C + iD) + (C + iD)^2]} \\
+		&= Ae^{-B^2[x^2 - 2xC - i2xD + C^2 + i2CD - D^2]} \\
+		&= Ae^{-B^2(x^2-2xC+C^2-D^2)}e^{-i2B^2D(C-x)} \\
+		&= \big[Ae^{B^2D^2}e^{-B^2(x-C)^2}\big]e^{-i2B^2D(C-x)}
+	\end{align*}
+	We can immediately identify the frequency as $\omega = 2B^2D$. The peak occurs when the argument of the exponential dictating the amplitude of the wave is largest. This occurs at $x = C$.
+\end{solution}
+
+\question Show that the probability of such double-spot appearances, according to such a picture, must be quite appreciable, whatever the law of probability of spot appearance in terms of wavefunction intensity might be. \textit{Hint}: Divide the screen into two parts, with equal probability of spot appearance in each.
+
+\question Check this from the hyperfunctional definition given in \S9.7.
+
+\begin{solution}
+	The definition of the Dirac delta function is
+	\[
+		\delta(x) = \Big(\!\!\big|\frac{1}{2\pi{i}z}, \frac{1}{2\pi{i}z}\big|\!\!\Big).
+	\]
+	By the properties of hyperfunctions,
+	\[
+		x\delta(x) = \Big(\!\!\big|\frac{x}{2\pi{i}z}, \frac{x}{2\pi{i}z}\big|\!\!\Big),
+	\]
+	which, when evaluated at $0$, becomes
+	\[
+		0\cdot\delta(0) = \Big(\!\!\big|0, 0\big|\!\!\Big) = 0
+	\]
+\end{solution}
+
+\question Show that replacing $\psi$ by $x^1\psi$ or by $i\hbar\partial\psi/\partial{x^1}$ corresponds, respectively, to replacing $\tilde{\psi}$ by $-i\hbar\partial\tilde{\psi}/\partial{p_1}$ or by $p_1\tilde{\psi}$. Show that replacing $\psi(x^a)$ by $\psi(x^a + C^a)$ corresponds to replacing $\psi$ by $e^{-iC^ap_a/\hbar}\tilde{\psi}$ (where $a$ ranges over $1$, $2$, $3$).
+
+\begin{solution}
+	These correspondences are easily seen when either representation is expressed as the Fourier transform of the other. For example,
+	\begin{align*}
+		i\hbar\frac{\partial\tilde{\psi}}{\partial{p_1}} &= i\hbar\frac{\partial}{\partial{p_1}}\Big((2\pi)^{-3/2}\int_{\mathbb{E}^3}\psi(\mathbf{X})e^{-i\mathbf{p}\cdot\mathbf{X}/\hbar}\mathrm{d}^3\mathbf{X}\Big), \\
+		&= i\hbar(2\pi)^{-3/2}\int_{\mathbb{E}^3}\psi(\mathbf{X})\frac{\partial}{\partial{p_1}}\Big(e^{-i(p_1x^1+p_2x^2+p_3x^3)/\hbar}\Big)\mathrm{d}^3\mathbf{X}, \\
+		&= i\hbar(2\pi)^{-3/2}\int_{\mathbb{E}^3}\psi(\mathbf{X})\Big(\frac{-ix^1}{\hbar}\Big)e^{-i(p_1x^1+p_2x^2+p_3x^3)/\hbar}\mathrm{d}^3\mathbf{X}, \\
+		&= (2\pi)^{-3/2}\int_{\mathbb{E}^3}\Big(x^1\psi(\mathbf{X})\Big)e^{-i\mathbf{p}\cdot\mathbf{X}/\hbar}\mathrm{d}^3\mathbf{X},
+	\end{align*}
+	which shows the identification
+	\[
+		i\hbar\frac{\partial\tilde{\psi}}{\partial{p_1}} \leftrightarrow x^1\psi.
+	\]
+	Meanwhile, we have
+	\begin{align*}
+		-i\hbar\frac{\partial\psi}{\partial{x^1}} &= -i\hbar\frac{\partial}{\partial{x^1}}\Big((2\pi)^{-3/2}\int_{\mathbb{E}^3}\tilde{\psi}(\mathbf{p})e^{i\mathbf{p}\cdot\mathbf{X}/\hbar}\mathrm{d}^3\mathbf{p}\Big), \\
+		&= -i\hbar(2\pi)^{-3/2}\int_{\mathbb{E}^3}\tilde{\psi}(\mathbf{p})\frac{\partial}{\partial{x^1}}\Big(e^{i(p_1x^1 + p_2x^2 + p_3x^3)/\hbar}\Big)\mathrm{d}^3\mathbf{p}, \\
+		&= -i\hbar(2\pi)^{-3/2}\int_{\mathbb{E}^3}\tilde{\psi}(\mathbf{p})\Big(\frac{ip_1}{\hbar}\Big)e^{i(p_1x^1 + p_2x^2 + p_3x^3)/\hbar}\mathrm{d}^3\mathbf{p}, \\
+		&= (2\pi)^{-3/2}\int_{\mathbb{E}^3}\Big(p_1\tilde{\psi}(\mathbf{p})\Big)e^{i\mathbf{p}\cdot\mathbf{X}/\hbar}\mathrm{d}^3\mathbf{p}, \\
+	\end{align*}
+	which shows 
+	\[
+		-i\hbar\frac{\partial{\psi}}{\partial{x^1}} \leftrightarrow p_1\tilde{\psi}.
+	\]
+	In both cases, I believe Penrose has mistakenly used the wrong sign.
+	
+	For the last case, observe that
+	\begin{align*}
+		e^{iC^ap_a/\hbar}\tilde{\psi} &= e^{iC^ap_a/\hbar}\Big((2\pi)^{-3/2}\int_{\mathbb{E}^3}\psi(x^a)e^{-ip_ax^a/\hbar}\mathrm{d}^3\mathbf{X}\Big), \\
+		&= (2\pi)^{-3/2}\int_{\mathbb{E}^3}\psi(x^a)e^{-ip_ax^a/\hbar}e^{ip_aC^a/\hbar}\mathrm{d}^3\mathbf{X}, \\
+		&= (2\pi)^{-3/2}\int_{\mathbb{E}^3}\psi(x^a)e^{-ip_a(x^a-C^a)/\hbar}\mathrm{d}^3\mathbf{X}, \\
+		&= (2\pi)^{-3/2}\int_{\mathbb{E}^3}\psi(\bar{x}^a+C^a)e^{-ip_a\bar{x}^a/\hbar}\mathrm{d}^3\bar{\mathbf{X}},
+	\end{align*}
+	where we made the substitution $\bar{x}^a = x^a - C^a$ in the last line. This shows
+	\[
+		e^{-iC^ap_a/\hbar}\tilde{\psi} \leftrightarrow \psi(x^a+C^a).
+	\]
+	
+	In all of the above cases, I believe Penrose has mistakenly used the wrong sign in each of the transforms' exponential arguments.
+\end{solution}
+
+\question Use the results of Exercises [21.11], [21.13], and [21.14] to show that the Fourier transform of the wave packet $\psi = Ae^{-B^2(x-C)^2}e^{i\omega{x}}$ is $\tilde{\psi}=(Ae^{i\omega{C}}/B\sqrt{2})e^{-(p-\omega)^2/4B^2}e^{-iCp}$ (putting $\hbar=1$ for convenience.)
+
+\question Can you see how to justify the factor $-\frac{1}{2}\hbar\log{2}$? (The half-life is the time at which the probability of decay has reached one half.)
+
+\end{questions}
+
+\end{document}

@@ -1,0 +1,633 @@
+\documentclass[../group-theory-in-a-nutshell-for-physicists.tex]{subfiles}
+
+\begin{document}
+\printanswers
+
+\section{A Brief Review of Linear Algebra}
+
+\begin{questions}
+
+\question Let $E = \begin{pmatrix}
+0 & 1 \\
+1 & 0 \\
+\end{pmatrix}$ and $M$ be a $2$-by-$2$ matrix. Show that the matrix
+$EM$ is obtained from $M$ by interchanging the first and second
+rows.
+
+\begin{solution}
+	By direct calculation,
+	\begin{align*}
+		EM &= \begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+		\end{pmatrix}\begin{pmatrix}
+		M_{11} & M_{12} \\
+		M_{21} & M_{22} \\
+		\end{pmatrix} \\
+		& = \begin{pmatrix}
+		0 \cdot M_{11} + 1 \cdot M_{21} & 0 \cdot M_{12} + 1 \cdot M_{22} \\
+		1 \cdot M_{11} + 0 \cdot M_{21} & 1 \cdot M_{12} + 0 \cdot M_{22} \\
+		\end{pmatrix} \\
+		& = \begin{pmatrix}
+		M_{21} & M_{22} \\
+		M_{11} & M_{12} \\
+		\end{pmatrix}
+	\end{align*}
+	which is simply $M$ with its rows interchanged.
+\end{solution}
+
+\question Let $E = \begin{pmatrix}
+s_{1} & 0 \\
+0 & s_{2} \\
+\end{pmatrix}$ and $M$ be a $2$-by-$2$ matrix. Show that the matrix
+$EM$ is obtained from $M$ by multiplying the elements in the first
+row by $s_{1}$ and the elements in the second row by $s_{2}$.
+
+\begin{solution}
+	By direct calculation,
+	\begin{align*}
+		EM &= \begin{pmatrix}
+		s_{1} & 0 \\
+		0 & s_{2} \\
+		\end{pmatrix}\begin{pmatrix}
+		M_{11} & M_{12} \\
+		M_{21} & M_{22} \\
+		\end{pmatrix} \\
+		&= \begin{pmatrix}
+		s_{1} \cdot M_{11} + 0 \cdot M_{21} & s_{1} \cdot M_{12} + 0 \cdot M_{22} \\
+		0 \cdot M_{11} + s_{2} \cdot M_{21} & 0 \cdot M_{12} + s_{2} \cdot M_{22} \\
+		\end{pmatrix} \\
+		&= \begin{pmatrix}
+		s_{1}M_{11} & s_{1}M_{12} \\
+		s_{2}M_{21} & s_{2}M_{22} \\
+		\end{pmatrix}
+	\end{align*}
+	which is simply $M$ with its first row multiplied by $s_1$ and its second row multiplied by $s_2$.
+\end{solution}
+
+\question Let $E_{1} = \begin{pmatrix}
+1 & 0 \\
+s & 1 \\
+\end{pmatrix}$ and $M$ by a $2$-by-$2$ matrix. Show that the matrix
+$E_{1}M$ is obtained from $M$ by multiplying the first row by $s$
+and adding it to the second row. Similarly for the matrix
+$E_{2} = \begin{pmatrix}
+1 & s \\
+0 & 1 \\
+\end{pmatrix}$: $E_{2}M$ is obtained from $M$ by multiplying the
+second row by $s$ and adding it to the first row.
+
+\begin{solution}
+	By direct calculation,
+	\begin{align*}
+		E_{1}M &= \begin{pmatrix}
+		1 & 0 \\
+		s & 1 \\
+		\end{pmatrix}\begin{pmatrix}
+		M_{11} & M_{12} \\
+		M_{21} & M_{22} \\
+		\end{pmatrix} \\
+		&= \begin{pmatrix}
+		1 \cdot M_{11} + 0 \cdot M_{21} & 1 \cdot M_{12} + 0 \cdot M_{22} \\
+		s \cdot M_{11} + 1 \cdot M_{21} & s \cdot M_{12} + 1 \cdot M_{22} \\
+		\end{pmatrix} \\
+		&= \begin{pmatrix}
+		M_{11} & M_{12} \\
+		sM_{11} + M_{21} & sM_{12} + M_{22} \\
+		\end{pmatrix}
+	\end{align*}
+	which is simply $M$ with its first row multiplied by $s$ and added to its second row. Similarly,
+	\begin{align*}
+		E_{1}M &= \begin{pmatrix}
+		1 & s \\
+		0 & 1 \\
+		\end{pmatrix}\begin{pmatrix}
+		M_{11} & M_{12} \\
+		M_{21} & M_{22} \\
+		\end{pmatrix} \\
+		&= \begin{pmatrix}
+		1 \cdot M_{11} + s \cdot M_{21} & 1 \cdot M_{12} + s \cdot M_{22} \\
+		0 \cdot M_{11} + 1 \cdot M_{21} & 0 \cdot M_{12} + 1 \cdot M_{22} \\
+		\end{pmatrix} \\
+		&= \begin{pmatrix}
+		sM_{21} + M_{11} & sM_{22} + M_{12} \\
+		M_{21} & M_{22} \\
+		\end{pmatrix}
+	\end{align*}
+	
+	is just $M$ with its second row multiplied by $s$ and added to its first row.
+\end{solution}
+
+\question The three operations effected in exercises 1-3 are known as elementary
+row operations. The $E$s defined here are called elementary matrices.
+How do you effect the corresponding there elementary column operations
+on an arbitrary $2$-by-$2$ matrix M?
+
+\begin{solution}
+	The elementary column operations are the transpose of the elementary row operations. To see this, note that we can enact column operations through
+	\[
+		(EM^T)^T = (M^T)^TE^T = ME^T
+	\]
+	In particular, we see that we must act on $M$ from the right with $E^T$ to enact column operations.
+\end{solution}
+
+\question Let $e = \begin{pmatrix}
+1 & 0 & 0 \\
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+\end{pmatrix}$. Show that multiplying a 3-by-3 matrix $M$ from the
+right with $e$ interchanges two columns in $M$ and that multiplying
+$M$ from the left with $e$ interchanges two rows in $M$.
+
+\begin{solution}
+Denote $M = \begin{pmatrix}
+{\overrightarrow{M}}_{1} & {\overrightarrow{M}}_{2} & {\overrightarrow{M}}_{3} \\
+\end{pmatrix}$, where each ${\overrightarrow{M}}_{i}$ is a column
+vector. Then
+\[Me = \begin{pmatrix}
+{\overrightarrow{M}}_{1} & \overrightarrow{0} & \overrightarrow{0} \\
+\end{pmatrix} + \begin{pmatrix}
+\overrightarrow{0} & \overrightarrow{0} & {\overrightarrow{M}}_{2} \\
+\end{pmatrix} + \begin{pmatrix}
+\overrightarrow{0} & {\overrightarrow{M}}_{3} & \overrightarrow{0} \\
+\end{pmatrix} = \begin{pmatrix}
+{\overrightarrow{M}}_{1} & {\overrightarrow{M}}_{3} & {\overrightarrow{M}}_{2} \\
+\end{pmatrix},
+\]
+i.e. postmultiplying by $e$ exchanges two columns in $M$.
+
+Now let's change our labeling so that ${\overrightarrow{M}}_{i}^{T}$
+refers to a row in $M$. That is
+
+\[
+M = \begin{pmatrix}
+{\overrightarrow{M}}_{1}^{T} \\
+{\overrightarrow{M}}_{2}^{T} \\
+{\overrightarrow{M}}_{3}^{T} \\
+\end{pmatrix}.
+\]
+
+Premultiplying $M$ by $e$ gives
+
+\[
+eM = \begin{pmatrix}
+{\overrightarrow{M}}_{1}^{T} \\
+{\overrightarrow{0}}^{T} \\
+{\overrightarrow{0}}^{T} \\
+\end{pmatrix} + \begin{pmatrix}
+{\overrightarrow{0}}^{T} \\
+{\overrightarrow{0}}^{T} \\
+{\overrightarrow{M}}_{2}^{T} \\
+\end{pmatrix} + \begin{pmatrix}
+{\overrightarrow{0}}^{T} \\
+{\overrightarrow{M}}_{3}^{T} \\
+{\overrightarrow{0}}^{T} \\
+\end{pmatrix} = \begin{pmatrix}
+{\overrightarrow{M}}_{1}^{T} \\
+{\overrightarrow{M}}_{3}^{T} \\
+{\overrightarrow{M}}_{2}^{T} \\
+\end{pmatrix},
+\]
+i.e. it exchanges two rows in $M$.
+\end{solution}
+
+\question Generalize the elementary row and column operations to \(n\)-by-\(n\)
+matrices.
+
+\begin{solution}
+To exchange two rows, simply exchange the desired two rows in the
+identity matrix before right-multiplying $M$. You can pull off a
+similar trick with columns: just switch the desired two columns in the
+identity before left-multiplying by $M$.
+
+Scaling rows and columns is easily achieved by placing scaling factors
+on the diagonal of an empty matrix. Multiplying by $M$ on the right
+scales the $n$th row by the $n$th value, while multiplying by $M$
+on the left scales the $n$th column correspondingly.
+
+Now consider a `near-identity matrix' with some off-diagonal element given by $s$. If this is in the $E_{ij}$th spot, left-multiplying by $M$ will add $s$ times the $j$th column to the
+$i$th column. By contrast, right-multiplying by $M$ will add $s$
+times the $j$th row to the $i$th row.
+\end{solution}
+
+\question Let $c = \begin{pmatrix}
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+\end{pmatrix}$ and $d$ be a $3$-by-$3$ diagonal matrix. Show that the
+similarity transformation $c^{- 1}dc$ permutes the diagonal elements
+of $d$ cyclically.
+
+\begin{solution}
+To start,
+
+\[
+c^{- 1} = \begin{pmatrix}
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+\end{pmatrix},
+\]
+
+which shows us that
+
+\begin{align*}
+c^{- 1}dc &= \begin{pmatrix}
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+\end{pmatrix}\begin{pmatrix}
+d_{1} & 0 & 0 \\
+0 & d_{2} & 0 \\
+0 & 0 & d_{3} \\
+\end{pmatrix}\begin{pmatrix}
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+\end{pmatrix} \\
+&= \begin{pmatrix}
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+\end{pmatrix}\begin{pmatrix}
+0 & 0 & d_{1} \\
+d_{2} & 0 & 0 \\
+0 & d_{3} & 0 \\
+\end{pmatrix} \\
+&= \begin{pmatrix}
+d_{2} & 0 & 0 \\
+0 & d_{3} & 0 \\
+0 & 0 & d_{1} \\
+\end{pmatrix}
+\end{align*}
+
+Repeating this yields
+
+\begin{align*}
+c^{-1}(c^{- 1}dc)c &= \begin{pmatrix}
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+\end{pmatrix}\begin{pmatrix}
+d_{2} & 0 & 0 \\
+0 & d_{3} & 0 \\
+0 & 0 & d_{1} \\
+\end{pmatrix}\begin{pmatrix}
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+\end{pmatrix} \\
+&= \begin{pmatrix}
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+\end{pmatrix}\begin{pmatrix}
+0 & 0 & d_{2} \\
+d_{3} & 0 & 0 \\
+0 & d_{1} & 0 \\
+\end{pmatrix} \\
+&= \begin{pmatrix}
+d_{3} & 0 & 0 \\
+0 & d_{1} & 0 \\
+0 & 0 & d_{2} \\
+\end{pmatrix}
+\end{align*}
+
+and
+
+\begin{align*}
+c^{-1}(c^{-1}c^{- 1}dcc)c&= \begin{pmatrix}
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+\end{pmatrix}\begin{pmatrix}
+d_{3} & 0 & 0 \\
+0 & d_{1} & 0 \\
+0 & 0 & d_{2} \\
+\end{pmatrix}\begin{pmatrix}
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+\end{pmatrix} \\
+&= \begin{pmatrix}
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+\end{pmatrix}\begin{pmatrix}
+0 & 0 & d_{3} \\
+d_{1} & 0 & 0 \\
+0 & d_{2} & 0 \\
+\end{pmatrix} \\
+&= \begin{pmatrix}
+d_{1} & 0 & 0 \\
+0 & d_{2} & 0 \\
+0 & 0 & d_{3} \\
+\end{pmatrix}
+\end{align*}
+
+As this is the matrix we began with, we see that repeatedly applying
+$c^{- 1}dc$ yields a cycle of permutations.
+\end{solution}
+
+\question Show that the determinant of antisymmetric $n$-by-$n$ matrices
+vanishes if $n$ is odd.
+
+\begin{solution}
+Since all antisymmetric matrices satisfy $M^{T} = {-M}$, we have
+$\det M^{T} = {-\det M}$ for $n$ odd and $\det M^{T} = \det M$
+for $n$ even. This follows from viewing $M^{T}$ as an operation
+that multiplies each column by ${-1}$, and hence $\det M^T = (-1)^n\det{M}$.
+
+Using the fact that $\det M = \det M^{T}$ for all matrices, we see
+that an antisymmetric odd-dimensional matrix must have
+$\det M = {- \det M}^{}$. This is only possible if $\det M$
+vanishes.
+\end{solution}
+
+\question Diagonalize the matrix $M = \begin{pmatrix}
+a & 1 \\
+0 & b \\
+\end{pmatrix}$. Show that $M$ is not diagonalizable if $a=b$.
+
+\begin{solution}
+The eigenvalues of $M$ are $a$ and $b$ (to see this, consider the invariant nature of eigenvalues under the transpose operation), and so its eigenvectors are 
+\[
+\eta_{1} = \begin{pmatrix}
+1 \\
+0 \\
+\end{pmatrix} \quad \text{and} \quad \eta_{2} = \begin{pmatrix}
+1 \\
+b - a \\
+\end{pmatrix}
+\]
+We could go through the process of
+performing a similarity transformation, but it's more useful to think of
+diagonalization as a change of basis to these eigenvectors. In that case, our
+matrix can be expressed as
+
+\[M_{\text{diag}} = \begin{pmatrix}
+a & 0 \\
+0 & b \\
+\end{pmatrix},
+\]
+
+where $x_{1} = \begin{pmatrix}
+1 \\
+0
+\end{pmatrix}$ corresponds to $\eta_{1}$ in our new basis and
+$x_{2} = \begin{pmatrix}
+0 \\
+1
+\end{pmatrix}$ corresponds to $\eta_{2}$.
+
+Clearly, when $a = b$, we have $\eta_{1} = \eta_{2}$. This
+degeneracy makes diagonalization impossible. To see this explicitly,
+remember that the similarity transformation we need to perform to
+diagonalize our matrix is $S^{- 1}MS$ where
+
+\[
+S = \begin{pmatrix}
+1 & 1 \\
+0 & b - a \\
+\end{pmatrix}.
+\]
+
+When \(a = b\) this has no inverse.
+\end{solution}
+
+\question Write the polynomial equation satisfied by the eigenvalues of a matrix
+$M$ that is diagonalizable as
+$\lambda^{n} + \sum_{k = 1}^{n}c_{k}\lambda^{n - k} = 0$. Show that
+the matrix $M$ satisfies the equation
+$M^{n} + \sum_{k = 1}^{n}c_{k}M^{n - k} = 0$.
+
+\begin{solution}
+It is easiest to exponentiate $M$ after it has been diagonalized.
+Since $S^{- 1}MS = D$, we have $M = SDS^{- 1}$. Exponentiating this
+gives $M^{k} = SDS^{- 1}S\cdots SDS^{- 1} = SD^{k}S^{- 1}$. Inserting
+this into our matrix's characteristic equation yields
+
+\[
+SD^{n}S^{- 1} + \overset{n}{\sum_{k = 1}}c_{k}SD^{n - k}S^{- 1} = S(D^{n} + \overset{n}{\sum_{k = 1}}c_{k}D^{n - k})S^{- 1} = S \cdot 0 \cdot S^{- 1} = 0,\]
+
+where the middle equality follows from the fact that each entry in $D$
+is one of $M$'s eigenvalues, and so $D^n$ satisfies
+$D^{n} + \sum_{k = 1}^{n}c_{k}D^{n - k} = 0$.
+\end{solution}
+
+\question Show by explicit computation that the eigenvalues of the traceless
+matrix $M = \begin{pmatrix}
+c & a - b \\
+a + b & - c \\
+\end{pmatrix}$ with $a$, $b$, $c$ real have the form
+$\lambda = {\pm w}$, with $w$ either real or imaginary. Show that
+for $b = 0$, the eigenvalues are real. State the theorem that this
+result verifies.
+
+\begin{solution}
+The characteristic equation of $M$ is given by
+\[
+- (c + \lambda)(c - \lambda) - (a + b)(a - b) = \lambda^{2} - c^{2} + b^{2} - a^{2} = 0
+\]
+
+i.e. $\lambda = \pm \sqrt{a^{2} + c^{2} - b^{2}}$. This value is real
+when $b^{2} \leq a^{2} + b^{2}$ and imaginary otherwise. When
+$b = 0$, we have $\lambda = \pm \sqrt{a^{2} + c^{2}}$. This makes
+sense: eigenvalues give the values by which our matrix stretches the
+plane. $M$ rotates our standard Cartesian unit vectors while
+stretching by $a$ in one direction and $c$ in another. Our
+eigenvalues are simply the total distance stretched. We have just
+verified the Pythagorean theorem.
+\end{solution}
+
+\question Let the matrix in exercise $11$ be complex. Find its eigenvalues. When do
+they become real?
+
+\begin{solution}
+Our characteristic equation does not change, and so
+$\lambda = \pm \sqrt{a^{2} + c^{2} - b^{2}}$. From this, it is clear
+that we obtain real eigenvalues when $a^{2} - b^{2} + c^{2}$ lands on
+the positive half of the real line.
+\end{solution}
+
+\question There were of course quite a few nineteenth-century theorems about
+matrices. Given $A$ and $B$ an $m$-by-$n$ matrix and an
+$n$-by-$m$ matrix, respectively, Sylvester's theorem states that
+$\det(I_{m} + AB) = \det(I_{n} + BA)$. Prove this for $A$ and $B$
+square and invertible.
+
+\begin{solution}
+A particularly nice way to prove this involves finding two matrices
+$M$ and $N$ such that $\det MN = \det(I + AB)$ and
+$\det NM = \det(I + BA)$. Then the proof follows from the fact that
+$\det MN = \det M\det N = \det N\det M = \det NM$.
+
+Consider the matrices
+\[M = \begin{pmatrix}
+1 & - A \\
+B & 1 \\
+\end{pmatrix} \quad \text{and} \quad N = \begin{pmatrix}
+1 & A \\
+0 & 1 \\
+\end{pmatrix},
+\]
+
+where each $1$ denotes a fitting identity submatrix. We have
+$\det MN = \det(I + AB)$ and $\det NM = \det(I + BA)$, and so
+$\det(I_{m} + AB) = \det(I_{n} + BA)$. As indicated in the punchline
+of the last sentence, this proof works for all matrices that are
+compatible, not just those that are square and invertible.
+\end{solution}
+
+\question Show that $(M^{- 1})^{T} = (M^{T})^{- 1}$ and
+$(M^{- 1})^{*} = (M^{*})^{- 1}$. Thus,
+$(M^{- 1})^{\dagger} = (M^{\dagger})^{- 1}$.
+
+\begin{solution}
+Starting with an identity, we see
+
+\begin{align*}
+MM^{- 1} &= I \\
+(MM^{- 1})^{T} &= I \\
+(M^{- 1})^{T}M^{T} &= I \\
+(M^{- 1})^{T} &= (M^{T})^{- 1}
+\end{align*}
+
+Similarly,
+
+\begin{align*}
+MM^{- 1} &= I \\
+M^{*}(M^{- 1})^{*} &= I \\
+(M^{- 1})^{*} &= (M^{*})^{- 1}
+\end{align*}
+
+As $M^{\dagger} = M^{*T}$, the above results show
+$(M^{- 1})^{\dagger} = (M^{\dagger})^{- 1}$.
+\end{solution}
+
+\question The $n$-by-$n$ matrix $M$ defined by $M_{ij} = x_{j}^{i - 1}$
+plays an important role in random matrix theory, for example. Show that
+$\det M$, known as the Vandermonde determinant, is equal to (up to an
+overall sign) $\prod_{i < j}(x_{i} - x_{j})$.
+
+\begin{solution}
+Consider the Vandermonde matrix
+\[
+M = \begin{pmatrix}
+1 & 1 & \cdots & 1 \\
+x_{1} & x_{2} & \cdots & x_{n} \\
+ \vdots & \vdots & \ddots & \vdots \\
+x_{1}^{n - 1} & x_{2}^{n - 1} & \cdots & x_{n}^{n - 1} \\
+\end{pmatrix}.
+\]
+Let us diagonalize this matrix by use of elementary column operations.
+Subtracting the first column from all others, we see $\det M = \det A$, where $A$ is the $(n-1)$-by-$(n-1)$ matrix given by
+\[
+A = \begin{pmatrix}
+x_{2} - x_{1} & \cdots & x_{n} - x_{1} \\
+ \vdots & \ddots & \vdots \\
+x_{2}^{n - 1} - x_{1}^{n - 1} & \cdots & x_{n}^{n - 1} - x_{1}^{n - 1} \\
+\end{pmatrix}.
+\]
+From this, it is clear that
+\[
+A_{ij} = (x_{j+1}^{i} - x_{1}^{i}) = (x_{j+1} - x_{1})\sum_{k = 0}^{i - 1}x_{j+1}^{k}x_{1}^{i - 1 - k}.
+\]
+
+Dividing each column by its associated $(x_{j+1} - x_{1})$, we find
+$\det M = \det A = \prod_{j = 2}^{n}(x_{j} - x_{1})\det B$, where
+
+\[
+B = \begin{pmatrix}
+1 & 1 & \cdots & 1 \\
+\sum_{k = 0}^{1}x_{2}^{k}x_{1}^{1 - k} & \sum_{k = 0}^{1}x_{3}^{k}x_{1}^{1 - k} & \cdots & \sum_{k = 0}^{1}x_{n}^{k}x_{1}^{1 - k} \\
+ \vdots & \vdots & \ddots & \vdots \\
+\sum_{k = 0}^{n - 2}x_{2}^{k}x_{1}^{n - 2 - k} & \sum_{k = 0}^{n - 2}x_{3}^{k}x_{1}^{n - 2 - k} & \cdots & \sum_{k = 0}^{n - 2}x_{n}^{k}x_{1}^{n - 2 - k} \\
+\end{pmatrix}
+\]
+
+Defining $a_{ij} = \sum_{k = 0}^{i - 1}x_{j+1}^{k}x_{1}^{i - 1 - k}$, we
+see
+$a_{ij} = x_{j+1}^{i - 1} + x_{1}\sum_{k = 0}^{i - 2}x_{j+1}^{k}x_{1}^{i - 2 - k} = x_{j+1}^{i - 1} + x_{1}a_{i - 1,j}$.
+Thus we can rewrite our new matrix as
+
+\[
+B = \begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1,n-1} \\
+x_{2} + x_{1}a_{11} & x_{3} + x_{1}a_{12} & \cdots & x_{n} + x_{1}a_{1,n-1} \\
+ \vdots & \vdots & \ddots & \vdots \\
+x_{2}^{n - 2} + x_{1}a_{n - 2,1} & x_{3}^{n - 2} + x_{1}a_{n - 2,2} & \cdots & x_{n}^{n - 2} + x_{1}a_{n - 2,n-1} \\
+\end{pmatrix}.
+\]
+
+Noting that $B_{ij} = a_{ij}$, we can start at the bottom of this matrix and subtract $x_{1}$ times the $(i - 1)$th row from the $i$th row to determine $B'$
+
+\[
+B' = \begin{pmatrix}
+1 & 1 & \cdots & 1 \\
+x_{2} & x_{3} & \cdots & x_{n} \\
+ \vdots & \vdots & \ddots & \vdots \\
+x_{2}^{n - 2} & x_{3}^{n - 2} & \cdots & x_{n}^{n - 2} \\
+\end{pmatrix},\]
+
+which is a $(n - 1) \times (n - 1)$ Vandermonde matrix with $\det{B'} = \det{B}$. We can
+continue in this fashion until we reach a \(1 \times 1\) matrix, at
+which point we see the determinant of $A$ is given by
+
+\[
+\det{A} = \prod_{i < j}(x_{i} - x_{j}).
+\]
+\end{solution}
+
+\question Let the Cartesian coordinates of the three vertices of a triangle be
+given by $(x_{i},y_{i})$ for $i = 1,2,3$. Show that the area of a
+triangle is given by
+
+\[
+\text{Area of triangle} = \frac{1}{2}\det\begin{pmatrix}
+x_{1} & x_{2} & x_{3} \\
+y_{1} & y_{2} & y_{3} \\
+1 & 1 & 1
+\end{pmatrix}
+\]
+
+Interestingly, this expression is the beginning of the notion of
+projective geometry and plays a crucial role in recent development in
+theoretical physics (see, for example, Henriette Elvang and You-tin
+Huang, Scattering Amplitudes in Gauge Theory and Gravity, p. 203).
+
+\begin{solution}
+Consider the bounding box of an arbitrary triangle with one vertex being
+shared between the two objects. Label the coordinates of this vertex
+$(x_{1},y_{1})$. Take the other two vertices to be $(x_{2},y_{2})$
+and $(x_{3},y_{3})$. Obviously, these lie on the edges of the bounding
+box.
+
+We will arbitrarily take the second point to be further from the first
+in the $x$-coordinate, with the third point being further from the
+first in the $y$-coordinate. The argument can be repeated for
+different variations.
+
+The total area of our triangle is given by the area of its bounding box
+minus the area of its surrounding triangles. In our case, these
+quantities are given by
+
+\begin{align*}
+A & = (x_{2} - x_{1})(y_{3} - y_{1}) = x_{2}y_{3} - x_{2}y_{1} - x_{1}y_{3} + x_{1}y_{1} \\
+B & = \frac{1}{2}(x_{3} - x_{1})(y_{3} - y_{1}) = \frac{1}{2}(x_{3}y_{3} - x_{3}y_{1} - x_{1}y_{3} + x_{1}y_{1}) \\
+C & = \frac{1}{2}(x_{2} - x_{3})(y_{3} - y_{2}) = \frac{1}{2}(x_{2}y_{3} - x_{2}y_{2} - x_{3}y_{3} + x_{3}y_{2}) \\
+D & = \frac{1}{2}(x_{2} - x_{1})(y_{2} - y_{1}) = \frac{1}{2}(x_{2}y_{2} - x_{2}y_{1} - x_{1}y_{2} + x_{1}y_{1})
+\end{align*}
+
+and so our triangle's area is
+
+\[A - B - C - D = \frac{1}{2}(x_{1}(y_{2} - y_{3}) - x_{2}(y_{1} - y_{3}) + x_{3}(y_{1} - y_{2})) = \frac{1}{2}\begin{vmatrix}
+x_{1} & x_{2} & x_{3} \\
+y_{1} & y_{2} & y_{3} \\
+1 & 1 & 1 \\
+\end{vmatrix}.\]
+\end{solution}
+
+\end{questions}
+
+\end{document}

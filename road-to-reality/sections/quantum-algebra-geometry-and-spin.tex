@@ -1,0 +1,378 @@
+\documentclass[../road-to-reality.tex]{subfiles}
+
+\begin{document}
+\printanswers
+
+\section{Quantum algebra, geometry, and spin}
+
+\begin{questions}
+
+\question Make it clear why the action of any Schrodinger evolution is linear, despite the fact that $\mathcal{H}$ may be a highly non-linear function of the $p$s and $q$s.
+
+\begin{solution}
+	Given that the operator representing a Schrodinger evolution is identified with the partial derivative operator, its linearity is simply a consequence of the linearity of partial derivatives. 
+\end{solution}
+
+\question See if you can explain why the $\langle\phi|\psi\rangle$ integral converges whenever both $\langle\phi|\phi\rangle$ and $\langle\psi|\psi\rangle$ converge. \textit{Hint}: Consider what is implied by the integral of $|\phi - \lambda\psi|^2$ being non-negative over any \textit{finite} region of $\mathbb{E}^3$, deriving an inequality connecting the square modulus of the integral of $\bar{\phi}\psi$ with the product of the integral of $\bar{\phi}\phi$ with the integral of $\bar{\psi}\psi$. As an intermediate step, find conditions on complex numbers $a$, $b$, $c$, $d$ that imply $a + \lambda{b} + \bar{\lambda}c + \bar{\lambda}\lambda{d}\geq0$ for all $\lambda$.
+
+\begin{solution}
+	The non-negativity of the integral of $|\phi - \lambda\psi|^2$ over any finite region $\Omega$ of $\mathbb{E}^3$ implies
+	\[
+		\int_{\Omega}\bar{\phi}\phi\,\mathrm{d}^3x - \lambda\int_{\Omega}\bar{\phi}\psi\,\mathrm{d}^3x - \bar{\lambda}\int_{\Omega}\bar{\psi}\phi\,\mathrm{d}^3x + \lambda\bar{\lambda}\int_{\Omega}\bar{\psi}\psi\,\mathrm{d}^3x \geq 0.
+	\]
+	We can rewrite this as
+	\[
+		\int_{\Omega}\bar{\phi}\phi\,\mathrm{d}^3x - 2\mathrm{Re}\Big(\lambda\int_{\Omega}\bar{\phi}\psi\,\mathrm{d}^3x\Big) + |\lambda|^2\int_{\Omega}\bar{\psi}\psi\,\mathrm{d}^3x \geq 0.
+	\]
+	If we express the middle term in polar form (with angle $\theta$), we find
+	\begin{align*}
+		 {-2}\mathrm{Re}\Big(\Big|\lambda\int_{\Omega}\bar{\phi}\psi\,\mathrm{d}^3x\Big|e^{i\theta}\Big), &= {-2}\Big|\lambda\int_{\Omega}\bar{\phi}\psi\,\mathrm{d}^3x\Big|\cos\theta \\ &\geq {-2}\Big|\lambda\int_{\Omega}\bar{\phi}\psi\,\mathrm{d}^3x\Big|,\\
+	\end{align*}
+	and hence
+	\[
+		\int_{\Omega}\bar{\phi}\phi\,\mathrm{d}^3x - 2|\lambda|\Big|\int_{\Omega}\bar{\phi}\psi\,\mathrm{d}^3x\Big| + |\lambda|^2\int_{\Omega}\bar{\psi}\psi\,\mathrm{d}^3x \geq 0.
+	\]
+	This is a quadratic equation in $|\lambda|$. In order for the inequality to hold true, the parabola formed must never dip below the $x$-axis, i.e. the discriminant of the above equation must be less than or equal to $0$. In other words, we have
+	\[
+		\Big|\int_{\Omega}\bar{\phi}\psi\,\mathrm{d}^3x\Big|^2 \leq \Big(\int_{\Omega}\bar{\phi}\phi\,\mathrm{d}^3x\Big)\Big(\int_{\Omega}\bar{\psi}\psi\,\mathrm{d}^3x\Big)
+	\]
+	Since both integrals on the right are convergent, we may take the limit as $\Omega$ goes to $\mathbb{E}^3$ to show that $\langle\phi|\psi\rangle$ converges,
+	\[
+	\Big|\int_{\mathbb{E}^3}\bar{\phi}\psi\,\mathrm{d}^3x\Big| \leq \Big|\int_{\mathbb{E}^3}\bar{\phi}\psi\,\mathrm{d}^3x\Big|^2 \leq \Big(\int_{\mathbb{E}^3}\bar{\phi}\phi\,\mathrm{d}^3x\Big)\Big(\int_{\mathbb{E}^3}\bar{\psi}\psi\,\mathrm{d}^3x\Big)
+	\]
+\end{solution}
+
+\question Following on from Exercise [22.2], show that the normalizable wavefunctions indeed constitute a vector space.
+
+\begin{solution}
+	Take the standard function space definitions of addition and multiplication as pointwise operations. Clearly, all `standard properties,` such as associativity and commutativity, are immediately satisfied. We need only check whether the space is closed. If two normalizable (but not necessarily normalized) wave functions $\phi$ and $\psi$ are added together to produce $\sigma$, we may normalize the latter by dividing by $\sqrt{D}$, where
+	\begin{align*}
+		\|\sigma\| &= \int \bar{\sigma}\sigma \, \mathrm{d}^3x \\
+		&= \int (\bar{\phi} + \bar{\psi})(\phi + \psi) \, \mathrm{d}^3x \\
+		&= \int \bar{\phi}\phi + \bar{\phi}\psi + \bar{\psi}\phi + \bar{\psi}\psi \, \mathrm{d}^3x \\
+		&= \int\bar{\phi}\phi\,\mathrm{d}^3x + \int\bar{\phi}\psi\,\mathrm{d}^3x + \int\bar{\psi}\phi\,\mathrm{d}^3x + \int\bar{\psi}\psi\,\mathrm{d}^3x \\
+		&= A + B + \bar{B} + C \\
+		&= D
+	\end{align*}
+	Here, the finite nature of $A$ and $C$ was given by the normalizability of $\phi$ and $\psi$. Meanwhile, the finite nature of $B$ and $\bar{B}$ was shown in the previous exercise.
+	
+	Closure under scalar multiplication is also simple to address. If $\|\phi\| = A$, then, by the linearity of integration, $\|s\phi\| = |s|^2A$, and hence $\phi$ can be normalized by dividing by $s\sqrt{A}$.
+\end{solution}
+
+\question Verify this, stating carefully which properties of integration are being used.
+
+\begin{solution}
+	Going down the list, we see
+	\begin{align*}
+		\langle\phi|\psi + \chi\rangle &= \int\bar{\phi}(\psi + \chi)\,\mathrm{d}^3x \\
+		&= \int\bar{\phi}\psi\,\mathrm{d}^3x + \int\bar{\phi}\chi\,\mathrm{d}^3x \\
+		&= \langle\phi|\psi\rangle + \langle\phi|\chi\rangle \\
+		\langle\phi|a\psi\rangle &= \int\bar{\phi}a\psi\,\mathrm{d}^3x \\
+		&= a\int\bar{\phi}\psi\,\mathrm{d}^3x \\
+		&= a\langle\phi|\psi\rangle \\
+		\langle\phi|\psi\rangle &= \int\bar{\phi}\psi\mathrm{d}^3x \\
+		&= \overline{\int{\phi\bar{\psi}}\,\mathrm{d}^3x} \\
+		&= \overline{\int{\bar{\psi}\phi}\,\mathrm{d}^3x} \\ 
+		&= \overline{\langle\psi|\phi\rangle}
+	\end{align*}
+	where we have used the properties superposition, homogeneity, and commutativity with complex conjugation, respectively.
+	
+	Finally, if $\psi\neq0$, then
+	\begin{align*}
+		\langle\psi|\psi\rangle &= \int\bar{\psi}\psi\,\mathrm{d}^3x \\
+		&= \int |\psi|^2\,\mathrm{d}^3x \\
+		&\geq 0
+	\end{align*}
+\end{solution}
+then
+\question Show why.
+
+\begin{solution}
+	By the third listed property, we see
+	\begin{align*}
+		\langle\phi+\chi|\psi\rangle &= \overline{\langle\psi|\phi+\chi\rangle} \\
+		&= \overline{\langle\psi|\phi\rangle + \langle\psi|\chi\rangle} \\
+		&= \overline{\langle\psi|\phi\rangle} + \overline{\langle\psi|\chi\rangle} \\
+		&= \langle\phi|\psi\rangle + \langle\chi|\psi\rangle
+	\end{align*}
+	and
+	\begin{align*}
+		\langle{a}\phi|\psi\rangle &= \overline{\langle\psi|a\phi\rangle} \\
+		&= \overline{a\langle\psi|\phi\rangle} \\
+		&= \bar{a}\langle\phi|\psi\rangle
+	\end{align*}
+\end{solution}
+
+\question Show how $\langle\phi|\psi\rangle$ can be defined from the norm. \textit{Hint}:
+Work out the norms of $\phi + \psi$ and $\phi + i\psi$.
+
+\begin{solution}
+	Doing as Penrose suggests, we find
+	\begin{align*}
+		\|\phi+\psi\| &= \langle\phi + \psi|\phi + \psi\rangle \\
+		&= \langle\phi|\phi\rangle + \langle\phi|\psi\rangle + \langle\psi|\phi\rangle + \langle\psi|\psi\rangle \\
+		&= \|\phi\| + 2\mathrm{Re}(\langle{\phi|\psi}\rangle) + \|\psi\| \\
+		\|\phi + i\psi\| &= \langle\phi+ i\psi|\phi + i\psi\rangle \\
+		&= \langle\phi|\phi\rangle + i\langle\phi|\psi\rangle - i\langle\psi|\phi\rangle + \langle\psi|\psi\rangle \\
+		&= \|\phi\| - 2\mathrm{Im}(\langle\phi|\psi\rangle) + \|\psi\|
+	\end{align*}
+	Therefore, we may define $\langle\phi|\psi\rangle$ as
+	\begin{align*}
+		\langle\phi|\psi\rangle &= \frac{1}{2}\Big(\|\phi+\psi\| - i\|\phi + i\psi\|\Big)
+	\end{align*}
+\end{solution}
+
+\question Spell this argument out a little more fully. Can you explain why we should expect the Leibniz property to hold for a Hilbert-space scalar product?
+
+\begin{solution}
+	Because the Hilbert-space scalar product of $\phi$ and $\psi$ is defined in terms of the convergent integral
+	\[
+		\langle\phi|\psi\rangle = \int\bar{\phi}\psi\mathrm{d}^3x,
+	\]
+	we may use the Leibniz integral rule to find
+	\begin{align*}
+		\frac{\mathrm{d}}{\mathrm{d}t}\langle\phi|\psi\rangle &= \frac{\mathrm{d}}{\mathrm{d}t}\int\bar{\phi}\psi\mathrm{d}^3x \\
+		&= \int \frac{\mathrm{d}}{\mathrm{d}t}\Big(\bar{\phi}\psi\Big)\mathrm{d}^3x \\
+		&= \int \frac{\mathrm{d}\bar{\phi}}{\mathrm{d}t}\psi + \bar{\phi}\frac{\mathrm{d}\psi}{\mathrm{d}t}\mathrm{d}^3x \\
+		&= \int\overline{\frac{\mathrm{d}\phi}{\mathrm{d}t}}\psi\mathrm{d}^3x + \int\bar{\phi}\frac{\mathrm{d}\psi}{\mathrm{d}t}\mathrm{d}^3x \\
+		&= \Big\langle\frac{\mathrm{d}}{\mathrm{d}t}\phi\Big|\psi\Big\rangle + \Big\langle\phi\Big|\frac{\mathrm{d}}{\mathrm{d}t}\psi\Big\rangle
+	\end{align*}
+	In the above, it was necessary to have the integral be convergent to take the derivative under the integral sign. We have kept the derivative as an ordinary derivative through the assumption that the coordinate parameters of $\phi$ and $\psi$ do not depend on time.
+\end{solution}
+
+\question Explain all this in detail.
+
+\begin{solution}
+	To prove that observables maintain their eigenvalues, we examine the characteristic equation of an arbitrary, time-evolved observable,
+	\begin{align*}
+		\det(\mathbf{Q}_{\mathrm{H}} - \lambda\mathbf{I}) &= \det(\mathbf{U}_t^*\mathbf{Q}\mathbf{U}_t - \lambda\mathbf{I}) \\
+		&= \det(\mathbf{U}_t^*\mathbf{Q}\mathbf{U}_t - \lambda\mathbf{U}_t^*\mathbf{I}\mathbf{U}_t) \\
+		&= \det(\mathbf{U}_t^*[\mathbf{Q}-\lambda\mathbf{I}]\mathbf{U}_t) \\
+		&= \det(\mathbf{U}_t^*)\det(\mathbf{Q}-\lambda\mathbf{I})\det(\mathbf{U}_t) \\
+		&= \det(\mathbf{Q}-\lambda\mathbf{I})
+	\end{align*}
+	Since this is the same as the original observable's characteristic equation, the two share the same set of eigenvalues.
+	
+	Meanwhile, all scalar products are held because
+	\begin{align*}
+		\langle\phi|_H\mathbf{Q}_H|\psi\rangle_H &= \langle\phi|\mathbf{U}_t\mathbf{U}_t^*\mathbf{Q}\mathbf{U}_t\mathbf{U}_t^*|\psi\rangle \\
+		&= \langle\phi|\mathbf{Q}|\psi\rangle
+	\end{align*}
+\end{solution}
+
+\question See if you can confirm this.
+
+\begin{solution}
+	We can easily verify this by first recalling that
+	\[
+		\mathbf{U}_t = e^{\frac{i\mathcal{H}t}{\hbar}}.
+	\]
+	Using the product rule gives
+	\begin{align*}
+		i\hbar\frac{\mathrm{d}}{\mathrm{d}t}\mathbf{Q}_{\mathrm{H}} &= i\hbar\frac{\mathrm{d}}{\mathrm{d}t}\Big(\mathbf{U}_t^*\mathbf{Q}\mathbf{U}_t\Big) \\
+		&= i\hbar\frac{\mathrm{d}}{\mathrm{d}t}\Big(\mathbf{U}_t^*\Big)\mathbf{Q}\mathbf{U}_t + i\hbar\mathbf{U}_t^*\mathbf{Q}\frac{\mathrm{d}}{\mathrm{d}t}\Big(\mathbf{U}_t\Big) \\
+		&= i\hbar\mathbf{U}_t^*\Big({-\frac{i\mathcal{H}}{\hbar}}\Big)\mathbf{Q}\mathbf{U}_t + i\hbar\mathbf{U}_t^*\mathbf{Q}\mathbf{U}_t\Big({\frac{i\mathcal{H}}{\hbar}}\Big) \\
+		&= \mathcal{H}\mathbf{U}_t^*\mathbf{Q}\mathbf{U}_t - \mathbf{U}_t^*\mathbf{Q}\mathbf{U}_t\mathcal{H} \\
+		&= \mathcal{H}\mathbf{Q}_{\mathrm{H}} - \mathbf{Q}_{\mathrm{H}}\mathcal{H} \\
+		&= [\mathcal{H}, \mathbf{Q}_{\mathrm{H}}]
+	\end{align*}
+	In the above, we have made use of the fact that $\mathcal{H}$ commutes with itself, and hence with the matrix exponential of itself (the time-evolution operator).
+\end{solution}
+
+\question Show that any eigenvalue of a Hermitian operator $\mathbf{Q}$ is indeed a \textit{real} number.
+
+\begin{solution}
+	Consider the action of $\mathbf{Q}$ on one of its normalized eigenvectors $|\lambda_i\rangle$. We know that
+	\begin{align*}
+		\mathbf{Q}|\lambda_i\rangle &= \lambda_i|\lambda_i\rangle \\
+		\langle\lambda_j|\mathbf{Q}^* &= \langle\lambda_j|\bar{\lambda}_j
+	\end{align*}
+	Taking the scalar product of both sides of the above yields
+	\[
+		\langle\lambda_j|\mathbf{Q}^*\mathbf{Q}|\lambda_i\rangle = \bar{\lambda}_j\lambda_i\langle\lambda_j|\lambda_i\rangle
+	\]
+	But, since $\mathbf{Q}^*=\mathbf{Q}$, we can apply $\mathbf{Q}^2$ to $|\lambda\rangle$ to obtain
+	\[
+		\langle\lambda_j|\mathbf{Q}^*\mathbf{Q}|\lambda_i\rangle = \lambda_i^2\langle\lambda_j|\lambda_i\rangle
+	\]
+	Subtracting one from the other and examining the case when $i=j$ gives
+	\[
+		|\lambda_i|^2 = \lambda_i^2
+	\]
+	This can only be true if $\lambda_i\in\mathbb{R}$.
+\end{solution}
+
+\question See if you can prove this. \textit{Hint}: By considering the expression $\langle\psi|(\mathbf{Q}^* - \bar{\lambda}\mathbf{I})(\mathbf{Q} - \lambda\mathbf{I})|\psi\rangle$, show first that if $\mathbf{Q}|\psi\rangle = \lambda|\psi\rangle$, then $\mathbf{Q}^*|\psi\rangle = \bar{\lambda}|\psi\rangle$.
+
+\begin{solution}
+	Expanding out the above expression gives
+	\[
+	\langle\psi|(\mathbf{Q}^* - \bar{\lambda}\mathbf{I})(\mathbf{Q} - \lambda\mathbf{I})|\psi\rangle = \langle\psi|\mathbf{Q}^*\mathbf{Q}|\psi\rangle - \lambda\langle\psi|\mathbf{Q}^*|\psi\rangle - \bar{\lambda}\langle\psi|\mathbf{Q}|\psi\rangle + |\lambda|^2\langle\psi|\psi\rangle
+	\]
+	If $\lambda$ is an eigenvalue of $\mathbf{Q}$, the lefthand side evaluates to zero. Meanwhile, the righthand side becomes
+	\[
+		0 = \langle\psi|\mathbf{Q}\mathbf{Q}^*|\psi\rangle - \lambda\langle\psi|\mathbf{Q}^*|\psi\rangle - |\lambda|^2\langle\psi|\psi\rangle + |\lambda|^2\langle\psi|\psi\rangle = \langle\psi|\mathbf{Q}\mathbf{Q}^*|\psi\rangle - \lambda\langle\psi|\mathbf{Q}^*|\psi\rangle,
+	\]
+	where we have made use of the fact that $\mathbf{Q}$ is normal in switching the order of operations of $\mathbf{Q}$ and $\mathbf{Q}^*$. Since
+	\[
+		\mathbf{Q}^*|\psi\rangle = \omega|\psi\rangle \implies \langle\psi|\mathbf{Q} = \bar{\omega}\langle\psi|,
+	\]
+	the previous equation implies
+	\[
+		|\omega|^2\langle\psi|\psi\rangle = \lambda\omega\langle\psi|\psi\rangle
+	\]
+	or simply
+	\[
+		\bar{\omega}\omega = \lambda\omega
+	\]
+	That is, $\omega = \bar{\lambda}$, and so
+	\[
+		\mathbf{Q}|\psi\rangle = \lambda|\psi\rangle \implies \mathbf{Q}^*|\psi\rangle = \bar{\lambda}|\psi\rangle
+	\]
+	Now consider the scalar product of
+	\[
+		\langle\lambda_j|\mathbf{Q}\mathbf{Q}|\lambda_i\rangle
+	\]
+	On the one hand, this is equivalent to operating on $|\lambda_i\rangle$ with $\mathbf{Q}^2$, which yields
+	\[
+		\langle\lambda_j|\mathbf{Q}\mathbf{Q}|\lambda_i\rangle = \lambda_i^2\langle\lambda_j|\lambda_i\rangle
+	\]
+	On the other, using $\langle\lambda_j|\mathbf{Q} = \lambda_j\langle\lambda_j|$ gives
+	\[
+		\langle\lambda_j|\mathbf{Q}\mathbf{Q}|\lambda_i\rangle = \lambda_j\lambda_i\langle\lambda_j|\lambda_i\rangle.
+	\]
+	Subtracting one from the other yields the condition
+	\[
+		\lambda_i(\lambda_j - \lambda_i)\langle\lambda_j|\lambda_i\rangle=0.
+	\]
+	If all of the eigenvalues are distinct and nonzero, the only way for such a condition to hold when $i\neq{j}$ is when $\langle\lambda_j|\lambda_i\rangle=0$, i.e. when the eigenvectors of $\mathbf{Q}$ are mutually orthogonal.
+\end{solution}
+
+\question Show this, from the algebraic properties of $\langle\,\,|\,\,\rangle$ by methods used in Exercise [22.2].
+
+\begin{solution}
+	In 22.2, we showed that
+	\[
+		\langle\phi|\psi\rangle\langle\psi|\phi\rangle \leq \langle\phi|\phi\rangle\langle\psi|\psi\rangle
+	\]
+	from which it immediately follows that
+	\[
+		\frac{\langle\phi|\psi\rangle\langle\psi|\phi\rangle}{\langle\phi|\phi\rangle\langle\psi|\psi\rangle} \leq 1
+	\]
+	If $\phi = C\psi$, we this becomes
+	\[
+		\frac{\langle\phi|\psi\rangle\langle\psi|\phi\rangle}{\langle\phi|\phi\rangle\langle\psi|\psi\rangle} = \frac{\bar{C}\langle\psi|\psi\rangle C\langle\psi|\psi\rangle}{\bar{C}C\langle\psi|\psi\rangle\langle\psi|\psi\rangle} = 1.
+	\]
+\end{solution}
+
+\question Show that if an observable $\mathbf{Q}$ satisfies some polynomial equation, then every one of its eigenvalues satisfies the same equation.
+
+\begin{solution}
+	Suppose we have
+	\[
+		a_n\mathbf{Q}^n + a_{n-1}\mathbf{Q}^{n-1} + \cdots + a_1\mathbf{Q} + a_0 = 0.
+	\]
+	Acting on this with $|q\rangle$, an eigenvector of $\mathbf{Q}$, reveals
+	\[
+		(a_nq^n + a_{n-1}q^{n-1} + \cdots + a_1q + a_0)|q\rangle = 0.
+	\]
+	Since $|q\rangle$ is not the zero vector, we must have
+	\[
+		a_nq^n + a_{n-1}q^{n-1} + \cdots + a_1q + a_0 = 0
+	\]
+\end{solution}
+
+\question Show this.
+
+\begin{solution}
+	Using $\mathbf{E}^*=\mathbf{E}$ and $\mathbf{E}^2 = \mathbf{E}$, we see
+	\begin{align*}
+		\langle\psi|\mathbf{E}^*(\mathbf{I}-\mathbf{E})|\psi\rangle &= \langle\psi|\mathbf{E}(\mathbf{I}-\mathbf{E})|\psi\rangle \\
+		&= \langle\psi|\mathbf{E}-\mathbf{E}^2|\psi\rangle \\
+		&= \langle\psi|\mathbf{E}-\mathbf{E}|\psi\rangle \\
+		&= \langle\psi|\mathbf{0}|\psi\rangle \\
+		&= 0
+	\end{align*}
+	i.e. $\mathbf{E}|\psi\rangle$ and $(\mathbf{I} - \mathbf{E})|\psi\rangle$ are orthogonal.
+\end{solution}
+
+\question Why?
+
+\begin{solution}
+	By the Pythagorean theorem, we have
+	\[
+		\langle\psi|\psi\rangle = \langle\psi|(\mathbf{I}-\mathbf{E})^*(\mathbf{I} - \mathbf{E})|\psi\rangle + \langle\psi|\mathbf{E}^*\mathbf{E}|\psi\rangle
+	\]
+	Therefore, probability of either projection (onto $\mathbf{E}$ or orthogonal to it) is described by the amount the norm of $|\psi\rangle$ is reduced in such a space.
+\end{solution}
+	
+\question Can you see a simple reason for this?
+
+\begin{solution}
+	If we do as Penrose suggests and think of a photon spinning about its direction of motion, we can see that a $180^\circ$ change in direction that leaves its direction of spin unaltered must necessarily flip the polarization of the photon.
+\end{solution}
+
+\question Explain more fully why the correct answer is given by `projection'.
+	
+\begin{solution}
+	As Penrose points out, the measuring device can only tell us yes or no. Because of this, we might expect to find a measurement of either one would simply indicate that the particle is within the associated eigenspace, but it is more precise than this. The original state has an effect on the final. Following Penrose's example, where $|\rho+\rangle$ and $|\rho-\rangle$ are in the no eigenspace and $|\tau+\rangle$ and $\tau-\rangle$ span the yes eigenspace, we find a measurement of makes the following mapping of states
+	\begin{align*}
+		|\tau+\rangle + |\rho+\rangle &\to |\rho+\rangle \\
+		|\tau+\rangle + |\rho-\rangle &\to |\rho-\rangle \\
+		|\tau-\rangle + |\rho+\rangle &\to |\rho+\rangle \\
+		|\tau-\rangle + |\rho-\rangle &\to |\rho-\rangle
+	\end{align*}
+	This is most appropriately captured by projection.
+\end{solution}
+
+\question Use quaternions to check this.
+
+\question Check this. Explain how their multiplication rules relate to those of quaternions.
+
+\begin{solution}
+	We first compute all necessary products,
+	\begin{align*}
+		\mathbf{L}_1\mathbf{L}_2 &= \frac{\hbar^2}{4}\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}\begin{pmatrix}0 & -i \\ i & 0\end{pmatrix} = \frac{\hbar^2}{4}\begin{pmatrix}i & 0 \\ 0 & -i\end{pmatrix} = \frac{i\hbar}{2}\mathbf{L}_3 \\
+		\mathbf{L}_2\mathbf{L}_1 &= \frac{\hbar^2}{4}\begin{pmatrix}0 & -i \\ i & 0\end{pmatrix}\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix} = \frac{\hbar^2}{4}\begin{pmatrix}-i & 0 \\ 0 & i\end{pmatrix} = -\frac{i\hbar}{2}\mathbf{L}_3 \\
+		\mathbf{L}_2\mathbf{L}_3 &= \frac{\hbar^2}{4}\begin{pmatrix}0 & -i \\ i & 0\end{pmatrix}\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix} = \frac{\hbar^2}{4}\begin{pmatrix}0 & i \\ i & 0\end{pmatrix} = \frac{i\hbar}{2}\mathbf{L}_1 \\
+		\mathbf{L}_3\mathbf{L}_2 &= \frac{\hbar^2}{4}\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}\begin{pmatrix}0 & -i \\ i & 0\end{pmatrix} = \frac{\hbar^2}{4}\begin{pmatrix}0 & -i \\ -i & 0\end{pmatrix} = {-\frac{i\hbar}{2}\mathbf{L}_1} \\
+		\mathbf{L}_3\mathbf{L}_1 &= \frac{\hbar^2}{4}\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix} = \frac{\hbar^2}{4}\begin{pmatrix}0 & 1 \\ -1 & 0\end{pmatrix} = {\frac{i\hbar}{2}\mathbf{L}_2} \\
+		\mathbf{L}_3\mathbf{L}_1 &= \frac{\hbar^2}{4}\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix} = \frac{\hbar^2}{4}\begin{pmatrix}0 & -1 \\ 1 & 0\end{pmatrix} = {-\frac{i\hbar}{2}\mathbf{L}_2}
+	\end{align*}
+	From the above, we can immediately see
+	\begin{align*}
+		\mathbf{L}_1\mathbf{L}_2 - \mathbf{L}_2\mathbf{L}_1 &= i\frac{\hbar}{2}\mathbf{L}_3 + i\frac{\hbar}{2}\mathbf{L}_3 = i\hbar\mathbf{L}_3 \\
+		\mathbf{L}_2\mathbf{L}_3 - \mathbf{L}_3\mathbf{L}_2 &= i\frac{\hbar}{2}\mathbf{L}_1 + i\frac{\hbar}{2}\mathbf{L}_1 = i\hbar\mathbf{L}_1 \\
+		\mathbf{L}_3\mathbf{L}_1 - \mathbf{L}_1\mathbf{L}_3 &= i\frac{\hbar}{2}\mathbf{L}_2 + i\frac{\hbar}{2}\mathbf{L}_2 = i\hbar\mathbf{L}_2 \\
+	\end{align*}
+	From the products we computed at the beginning of this exercise, we see
+	\[
+		\mathbf{L}_1\mathbf{L}_2\mathbf{L}_3 = \frac{i\hbar}{2}\mathbf{L}_3^2 = \frac{i\hbar^3}{8}\mathbf{I}
+	\]
+	If we drop the factors of $\hbar/2$ from these matrices, there is a clear correspondence between their products and the multiplication rules for quaternions. The primary difference is the additional factor of $i$ in the Pauli products.
+\end{solution}
+
+\question Do this explicitly.
+	
+\begin{solution}
+	Let's pick (arbitrarily) the generator corresponding to the first Pauli matrix,
+	\[
+		\mathcal{L}_1 = -\frac{i}{\hbar}\mathbf{L}_1 = -\frac{i}{2}\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}.
+	\]
+	Noting that $\mathcal{L}_1^2 = -\mathbf{I}/4$, we can exponentiate this through an angle $\theta$ to find
+	\begin{align*}
+		\exp(\theta\mathcal{L}_1) &= \mathbf{I} + \theta\mathcal{L}_1 + \frac{1}{2!}\theta^2\mathcal{L}_1^2 + \frac{1}{3!}\theta^3\mathcal{L}_1^3 + \frac{1}{4!}\theta^4\mathcal{L}_1^4 + \cdots \\
+		&= \Big[\mathbf{I} - \frac{1}{2!}\frac{\theta^2}{4}\mathbf{I} + \frac{1}{4!}\frac{\theta^4}{16}\mathbf{I} + \cdots\Big] + \Big[\theta\mathcal{L}_1 - \frac{1}{3!}\frac{\theta^3}{4}\mathcal{L}_1 + \cdots\Big] \\
+		&= \Big[1 - \frac{1}{2!}\Big(\frac{\theta}{2}\Big)^2 + \frac{1}{4!}\Big(\frac{\theta}{2}\Big)^4 + \cdots\Big]\mathbf{I} + \Big[\frac{\theta}{2} - \frac{1}{3!}\Big(\frac{\theta}{2}\Big)^3 + \cdots\Big]\mathcal{L}_1 \\
+		&= \cos\Big(\frac{\theta}{2}\Big)\mathbf{I} + \sin\Big(\frac{\theta}{2}\Big)\mathcal{L}_1
+	\end{align*}
+	If $\theta=2\pi$, this becomes
+	\[
+		\exp(2\pi\mathcal{L}_1) = \cos(\pi)\mathbf{I} + \sin(\pi)\mathcal{L}_1 = -\mathbf{I}.
+	\]
+	Since $\mathcal{L}_i^2 = -\mathbf{I}/4$ holds for each generator corresponding to a Pauli matrix, we would have arrived at the same result if we were to choose $\mathcal{L}_2$ or $\mathcal{L}_3$ instead of $\mathcal{L}_1$.
+\end{solution}
+
+\end{questions}
+	
+\end{document}
