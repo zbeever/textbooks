@@ -1,0 +1,367 @@
+\documentclass{article}
+
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{mathtools}
+\usepackage{transparent}
+\usepackage{amsmath}
+\usepackage{isotope}
+\usepackage{physics}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{fancyhdr}
+\usepackage{import}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{positioning, shapes, arrows}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Zach Beever}
+\lhead{Oscillator Notes}
+\rfoot{Page \thepage}
+
+\author{Zach Beever}
+
+\title{Notes on Electronic Oscillators}
+
+\date{}
+
+\begin{document}
+	\maketitle
+	
+	\tikzstyle{block} = [draw, rectangle, minimum height=3em, minimum width=6em]
+	\tikzstyle{sum} = [draw, circle, node distance=1cm]
+	\tikzstyle{input} = [coordinate]
+	\tikzstyle{output} = [coordinate]
+	\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+	
+	\section{Basic theory}
+	
+	An electronic oscillator produces a stable, periodic signal from a DC power source. In order to sustain itself, an oscillator must make use of positive feedback. Starting from these simple observations, we may draw the basic block diagram of an oscillator,
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[auto, node distance=2cm,>=latex']
+		% We start by placing the blocks
+		\node [input, name=input] {};
+		\node [sum, right of=input] (sum) {};
+		\node [block, right of=sum] (system) {$A(j\omega)$};
+		
+		% We draw an edge between the controller and system block to 
+		% calculate the coordinate u. We need it to place the measurement block. 
+		\node [output, right of=system] (output) {};
+		\node [block, below of=system] (measurements) {$B(j\omega)$};
+		
+		% Once the nodes are placed, connecting them is easy. 
+		\draw [draw,->] (input) -- node {$V_{\text{in}}$} (sum);
+		\draw [->] (sum) -- node {} (system);
+		\draw [->] (system) -- node [name=y] {$V_{\text{out}}$}(output);
+		\draw [->] (y) |- (measurements);
+		\draw [->] (measurements) -| node[pos=0.98] {$+$} node [near end] {} (sum);
+		\end{tikzpicture}
+	\end{figure}
+	which has the transfer function
+	\[
+		\frac{V_{\text{out}}(j\omega)}{V_{\text{in}}(j\omega)} = \frac{A(j\omega)}{1 - A(j\omega)B(j\omega)}
+	\]
+	At the frequency of oscillation $\omega_n$, the gain of the system must be $1$ and the total phase shift of the signal must be $360^\circ$. As $V_{\text{in}}=0$ during oscillation, we must have
+	\[
+		|A(j\omega_n)B(j\omega_n)| = 1
+	\]
+	If $A(j\omega_n)$ is purely real, this implies $B(j\omega_n)$ must be real, too. This is the so-called Barkhausen criterion. It amounts to saying that our system must have complex poles on the $j\omega$ axis to exhibit oscillations.
+	
+	The above is a theoretical ideal; it is impossible to place poles exactly on the $j\omega$ axis in practice. Therefore, real oscillators will always have some nonlinearities that makes such a simple analysis wrong (after all, the above use of transfer functions and block diagrams assumes we can take advantage of the linearity of the system). Nevertheless, this simple introduction is enough to get us started.
+	
+	\section{Simple oscillator design in the frequency domain}
+	
+	As a first swing at creating an oscillator, let's realize $A(j\omega)$ through a standard inverting amplifier topology:
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}
+			\node [op amp](A1){};
+			\draw (A1.-) to[short] ++(0,1) coordinate(tmp) to[R, l_=$R_2$] (tmp -| A1.out) to[short] (A1.out);
+			\draw (A1.-) to[short, *-] ++(-0.5, 0) to[R, l_=$R_1$] ++(-1.5, 0) to[short, -o] ++(-0.5, 0) node[left]{};
+			\draw (A1.out) to[short, *-o] ++(1, 0) node[right]{};
+			\draw (A1.+) node[ground](GND){};
+		\end{circuitikz}
+	\end{figure}
+
+	Assuming we're working with frequencies and voltages wherein the operational amplifier is linear and ideal, this provides a phase shift of $180^\circ$ and gain of $R_2/R_1$.
+	
+	Using the same topology for $B(j\omega)$ would be a bad idea, as the circuit would have no frequency selectivity, i.e. it would amplify everything (including noise). We want $B(j\omega)$ to be some circuit that will provide a phase shift of $180^\circ$ at a particular frequency. After all, we want to make an oscillator, not a noise machine.
+	
+	Remembering our studies of circuits, we guess a good first choice for $B(j\omega)$ to be a filter network. (Recall that lowpass and highpass RC circuits produce a phase shift in addition to frequency-dependent attenuation.) Take a look at a simple first order RC highpass filter,
+
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}
+			\node[left](in){};
+			\draw (in) to[C, l=$C$, o-] (2, 0) to [R, l=$R$] (2, -2) to node[ground]{} (2, -2);
+			\draw (2, 0) to[short, -o] (3, 0);
+		\end{circuitikz}
+	\end{figure}
+
+	Its transfer function is given by
+	\[
+		\frac{V_{\text{out}}(j\omega)}{V_{\text{in}}(j\omega)} = \frac{R}{R + \frac{1}{j\omega C}} = \frac{j\omega RC}{1+j\omega{RC}}.
+	\]
+	This has a phase shift of $90^\circ$ at $\omega = \SI{0}{\radian\per\second}$, transitioning gradually to $0^\circ$ as $\omega$ increases toward infinity. Since $\omega \neq \SI{0}{\radian\per\second}$ for a sensible oscillator, we'll need at least three of these to produce a phase shift of $180^\circ$. Let's take the naive approach and simply connect $3$ of them in series, keeping all $C$ and $R$ values the same to reduce the algebra in the coming steps,
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}
+			\node[left](in){};
+			\draw (in) to[C, l=$C$, o-] (2, 0) to[R, l=$R$] (2, -2) to node[ground]{} (2, -2);
+			\draw (2, 0) to[C, l=$C$] (4, 0) to[R, l=$R$] (4, -2) to node[ground]{} (4, -2);
+			\draw (4, 0) to[C, l=$C$] (6, 0) to[R, l=$R$] (6, -2) to node[ground]{} (6, -2);
+			\draw (6, 0) to[short, -o] (7, 0);
+		\end{circuitikz}
+	\end{figure}
+	The transfer function of this network is
+	\[
+		\frac{V_{\text{out}}(j\omega)}{V_{\text{in}}(j\omega)} = \Big(\frac{R}{R + Z_C}\Big)\Big(\frac{R}{R + Z_C + R\parallel Z_C}\Big)\Big(\frac{R}{R + Z_C + R\parallel(Z_C + R\parallel Z_C)}\Big) \\
+	\]
+	Setting $Z_C = -j/\omega C$ and feeding this into a computer algebra system yields
+	\[
+		B(j\omega) = \frac{V_{\text{out}}(j\omega)}{V_{\text{in}}(j\omega)} = \frac{C^4R^4\omega^4(C^2R^2\omega^2-5)}{C^6R^6\omega^6 + 26C^4R^4\omega^4 + 13C^2R^2\omega^2 + 1} + j\frac{C^3R^3\omega^3(6C^2R^2\omega^2 - 1)}{C^6R^6\omega^6 + 26C^4R^4\omega^4 + 13C^2R^2\omega^2 + 1}
+	\]
+	from which we see that $\text{Im}\big(B(j\omega)\big) = 0$ when
+	\[
+		\omega = \omega_n = \frac{1}{\sqrt{6}RC}
+	\]
+	i.e. $f_n = (2\pi\sqrt{6}RC)^{-1}$. At this frequency, the cascading filter network gives a gain of 
+	\[
+		|B(j\omega_n)| = \frac{1}{29}
+	\]
+	and so we must choose $R_2 = 29R_1$ in the inverting amplifier used to realize $A(j\omega)$. The complete circuit is then
+	
+	\begin{figure}[H]
+	\centering
+	\begin{circuitikz}
+		\node [op amp](A1){};
+		\draw (A1.-) to[short] ++(0,1) coordinate(tmp) to[R, l_=$29R_1$] (tmp -| A1.out) to[short] (A1.out);
+		\draw (A1.-) to[short, *-] ++(-0.5, 0) to[R, l_=$R_1$] ++(-1.5, 0) to[short] ++(-0.5, 0) node[](vin){};
+		\draw (A1.out) to[short, *-] ++(3, 0) to[short] ++(0, -2) node[](vout){};
+		\draw (A1.+) node[ground](GND){};
+		\draw (vout) to[C, l=$C$] ++(-2, 0) node[](v1){} to[R, l=$R$] ++(0,-2) to node[ground]{} ++(0,0);
+		\draw (v1) to[C, l=$C$, *-] ++(-2, 0) node[](v2){} to[R, l=$R$] ++(0,-2) to node[ground]{} ++(0,0);
+		\draw (v2) to[C, l=$C$, *-] ++(-2, 0) node[](v3){} to[R, l=$R$] ++(0,-2) to node[ground]{} ++(0,0);
+		\draw (-3, -2) node[op amp, anchor=+, xscale=-1, yscale=-1](A2){};
+		\draw (A2.-) to[short] ++(0,-1) coordinate(tmp) to[short] (tmp -| A2.out) to[short] (A2.out);
+		\fill (v3) circle [radius=2pt];
+		\draw (A2.+) -| (v3);
+		\draw (A2.out) to[short, *-] ++(0, 2.98) -| (vin);
+		\draw (A1.out) ++(3, 0) to[short, *-o] ++(1, 0);
+	\end{circuitikz}
+\caption{A phase-shift oscillator built using cascaded filters. The oscillator's frequency is $f_n = (2\pi\sqrt{6}RC)^{-1}$.}
+	\end{figure}
+	where we have used a buffer in the return loop to prevent loading of the filter network by $R_1$. The circuit shown above is called a phase-shift oscillator. There are many variants of it, but they all consist of an inverting amplifier and a filter network.
+	
+	Suppose in our design of this circuit we found the analysis too cumbersome. Another approach is to cascade three buffered filters for $B(j\omega)$, each of which provides a phase shift of $60^\circ$ (or $-60^\circ$). This time, let's use the RC lowpass filter as the building block (for sake of variety):
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}
+			\node[left](in){};
+			\draw (in) to[R, l=$R$, o-] (2, 0) to [C, l=$C$] (2, -2) to node[ground]{} (2, -2);
+			\draw (2, 0) to[short, -o] (3, 0);
+		\end{circuitikz}
+	\end{figure}
+	
+	The transfer function of the above circuit is
+	\[
+		\frac{V_{\text{out}}(j\omega)}{V_{\text{in}}(j\omega)} = \frac{\frac{1}{j\omega C}}{R + \frac{1}{j\omega C}} = \frac{1}{1 + j\omega RC},
+	\]
+	This attains a phase shift of -$60^\circ$ when
+	\[
+		\omega RC = \arctan(60^\circ)
+	\]
+	or
+	\[
+		\omega = \omega_n = \frac{1}{RC}\frac{\sqrt{3}/2}{1/2} = \frac{\sqrt{3}}{RC}
+	\]
+	i.e. $f_n = \sqrt{3}(2\pi RC)^{-1}$. At this frequency, the gain of each filter is $1/2$, making
+	\[
+		|B(j\omega_n)| = \frac{1}{2^3} = \frac{1}{8}
+	\]
+	so we must choose $R_2 = 8R_1$ in our realization of $A(j\omega)$. The complete circuit is
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}
+			\node [op amp](A1){};
+			\draw (A1.out) to[short, *-] ++(0, 1.8) to[R, l=$8R_1$] ++(-2.3, 0) node[](0){} -| (A1.-);
+			\draw (A1.+) node[ground]{} ++(0, 0);
+			\draw (A1.out) to[R, l=$R$] ++(2, 0) node[](1){} to[C, l=$C$, *-] ++(0, -1.5) to node[ground]{} ++(0, 0);
+			\draw (4, 0) node[op amp, anchor=+](A2){};
+			\draw (1) ++(-0.1, 0) -| (A2.+);
+			\draw (A2.out) to[R, l=$R$] ++(2, 0) node[](2){} to[C, l=$C$, *-] ++(0, -1.5) to node[ground]{} ++(0, 0);
+			\draw (A2.-) to[short] ++(0, 1) -| (A2.out);
+			\draw (9.2, 0.49) node[op amp, anchor=+](A3){};
+			\draw (2) ++(-0.1, 0) -| (A3.+);
+			\draw (A3.out) to[R, l=$R$] ++(2, 0) node[below](3){} to[C, l=$C$, *-] ++(0, -1.5) to node[ground]{} ++(0, 0);
+			\draw (A3.-) to[short] ++(0, 1) -| (A3.out);
+			\draw (0) ++(-0.08, 0) to[R, l=$R_1$] ++(0, 2) -| (3);
+			\draw (3) ++(0, 0.12) to[short, -o] ++(1, 0);
+		\end{circuitikz}
+		\caption{A phase-shift oscillator built using buffered filters. The oscillator's frequency is $f_n = \sqrt{3}(2\pi RC)^{-1}$.}
+	\end{figure}
+
+	In the case of this circuit, as well as in the case of the circuit using the unbuffered filter network, it is important to realize that unaccounted for losses necessitate a value of $R2$ larger than $8R_1$ and $29R_1$, respectively. While you might be tempted to think this would cause an increase in amplitude for each oscillation period, in reality the finite gain of the operational amplifier keeps this from happening.
+	
+	\section{A time domain approach}
+	
+	As a way to broaden our understanding, let's try our hand at designing an oscillator by thinking in terms of the time domain. Since sinusoids are solutions to second order differential equations, we can try combining two differentiators or two integrators. Integrators are more stable, so let's investigate using them. A generic format for the circuit is
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}
+			\node [op amp](A1){};
+			\draw (A1.-) to[R, l=$R$] ++(-2, 0) to[short, -o] ++(-0.5, 0);
+			\draw (A1.-) to[short, *-] ++(0, 1) to[C, l=$C$] ++(2.3, 0)-| (A1.out);
+			\draw (A1.+) to[short, -o] ++(0, -1);
+			\draw (4, 0) node[op amp, anchor=-](A2){};
+			\draw (A1.out) to [R, l=$R$, *-] ++(2, 0) -| (A2.-);
+			\draw (A2.-) to[short, *-] ++(0, 1) to[C, l=$C$] ++(2.3, 0)-| (A2.out);
+			\draw (A2.+) to[short, -o] ++(0, -1);
+			\draw (A2.out) to[short, *-o] ++(1, 0);
+		\end{circuitikz}
+	\end{figure}
+	
+	Where we have purposefully avoided connecting the noninverting inputs to ground, expecting some modification to be made. (Try naively connecting two integrators together; nothing happens. Still, we expect \textit{some} combination of two integrators to work, what with it being an active, second order circuit.)
+	
+	Denoting the noninverting voltage by $v_{p_i}$---where $i$ indexes the operational amplifier ($1$ for the left one, $2$ for the right one)---the relation between $v_{\text{in}_i}$ and $v_{\text{out}_i}$ is found by remembering $v_{p_i} = v_{n_i}$ and that no current enters the input terminals,
+	\[
+		\frac{v_{\text{in}_i} - v_{p_i}}{R} = C\frac{\mathrm{d}}{\mathrm{d}t}\Big(v_{p_i} - v_{\text{out}_i}\Big)
+	\]
+	Solving for $v_{\text{in}_2}$ and substituting the resulting expression in for $v_{\text{out}_1}$ gives
+	\[
+		\frac{v_{\text{in}_1} - v_{p_1}}{R} = C\frac{\mathrm{d}}{\mathrm{d}t}\Big(v_{p_1} - \Big[v_{p_2} + RC\frac{\mathrm{d}}{\mathrm{d}t}\Big(v_{p_2} - v_{\text{out}_2}\Big)\Big]\Big)
+	\]
+	or
+	\[
+		v_{\text{in}_1} = v_{p_1} + RC\frac{\mathrm{d}}{\mathrm{d}t}\Big(v_{p_1} - v_{p_2}\Big) - R^2C^2\frac{\mathrm{d}^2}{\mathrm{d}t^2}\Big(v_{p_2} - v_{\text{out}_2}\Big)
+	\]
+	If we had initially set $v_{p_1}=v_{p_2}=\SI{0}{\volt}$, the above expression would simplify to
+	\[
+		v_{\text{in}_1} = R^2C^2\frac{\mathrm{d}^2}{\mathrm{d}t^2}(v_{\text{out}_2}),
+	\]
+	which has the solution of an exponential, not a sinusoid. As we would prefer the simplest possible solution, let's try the other possible combinations with only one nonzero input variable. Leaving only $v_{p_2}$ nonzero would result in a first order equation, so we opt to examine the case where $v_{\text{in}_1} = v_{p_2} = \SI{0}{\volt}$, reducing the input-output relationship to
+	\[
+		 \frac{\mathrm{d}^2}{\mathrm{d}t^2}(v_{\text{out}_2}) = -\frac{1}{R^2C^2}\Big(v_{p_1} + RC\frac{\mathrm{d}}{\mathrm{d}t}(v_{p_1})\Big)
+	\]
+	This will have a sinusoidal solution with angular frequency $1/RC$ if the term in parentheses is equal to $v_{\text{out}_2}$. This is encouraging, so let's set
+	\[
+		v_{\text{out}_2} = v_{p_1} + RC\frac{\mathrm{d}}{\mathrm{d}t}(v_{p_1})
+	\]
+	The derivative of a voltage often shows up in the $V$-$I$ equation for a capacitor, so we isolate it,
+	\[
+		\frac{v_{\text{out}_2} - v_{p_1}}{R} = C\frac{\mathrm{d}}{\mathrm{d}t}(v_{p_1})
+	\]
+	This is a simple result: it tells us that if we connect a resistor between $v_{\text{out}_2}$ and $v_{p_1}$, and a capacitor between $v_{p_1}$ and ground, $v_{\text{out}_2}$ will be sinusoidal. The finished oscillator circuit is
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}
+			\node [op amp](A1){};
+			\draw (A1.-) to[R, l=$R$] ++(-2, 0) node[ground](){};
+			\draw (A1.-) to[short, *-] ++(0, 1) to[C, l=$C$] ++(2.3, 0)-| (A1.out);
+			\draw (4, 0) node[op amp, anchor=-](A2){};
+			\draw (A1.out) to [R, l=$R$, *-] ++(2, 0) -| (A2.-);
+			\draw (A2.-) to[short, *-] ++(0, 1) to[C, l=$C$] ++(2.3, 0)-| (A2.out);
+			\draw (A2.+) node[ground](){} ++(0, 0);
+			\draw (A2.out) to[short, *-o] ++(1, 0);
+			\draw (A1.+) to[short] ++(0, -2) node[](a){} to[C, l=$C$] ++(0, -2) node[ground](){};
+			\draw (a) to[R, l=$R$, *-] ++(2, 0) -| (A2.out);
+		\end{circuitikz}
+		\caption{An oscillator built with two integrators. The oscillator's frequency is $f_n = (2\pi RC)^{-1}$.}
+	\end{figure}
+
+	Of course, we don't have to think of an oscillator in such an abstract manner. Let's try to make a square wave oscillator. This is accomplished by having a digital switch go on and off at a regular rate. One obvious way to make this self-sustaining is to have the switch control itself, albeit with a time delay.
+	
+	A simple switch topology is that of the comparator built using an operational amplifier,
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}
+			\node [op amp](A1){};
+			\draw (A1.-) to[short, -o] ++(-2, 0);
+			\draw (A1.+) to[short] ++(-1, 0) node[](a){};
+			\draw (a) to[short] ++(0, 1) to[R, l=$R_1$] ++(0, 2) node[vcc](){} node[above=0.18, label=$V_+$](){};
+			\draw (a) to[R, l=$R_2$, *-] ++(0, -2) node[vee](){} node[below=1, label=$V_-$](){};
+			\draw (A1.out) to[short, -o] ++(1, 0);
+		\end{circuitikz}
+	\end{figure}
+
+	In the above circuit, the output voltage changes depending on whether the input to the inverting terminal is above (negative output) or below (positive output) the reference voltage at the noninverting terminal. The simplest way to connect a delayed output to the input is to use the output to charge a capacitor between the inverting terminal and ground a la
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}
+			\node [op amp](A1){};
+			\draw (A1.-) to[short] ++(-0.7, 0) node[](b){} to[C, l=$C$] ++(0, -2.8) node[ground](){};
+			\draw (b) to[short, *-] ++(0, 1) to[R, l=$R$] ++(3, 0) -| (A1.out);
+			\draw (A1.+) to[short] ++(-2, 0) node[](a){};
+			\draw (a) to[short] ++(0, 1) to[R, l=$R_1$] ++(0, 2) node[vcc](){} node[above=0.18, label=$V_+$](){};
+			\draw (a) to[R, l=$R_2$, *-] ++(0, -2) node[vee](){} node[below=1, label=$V_-$](){};
+			\draw (A1.out) to[short, *-o] ++(1, 0);
+		\end{circuitikz}
+	\end{figure}
+	The problem with this is that the circuit quickly stablizes to $v_p = v_n$. In order for it to produce sustained oscillations, the reference voltage needs to jump in tandem with the output. Of course, we don't even have to follow the analysis this far: in order for something to oscillate it must have positive feedback, and that is currently missing from the above circuit. We can correct these errors by setting $V_-$ to ground and conecting $V_+$ to the output.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}
+			\node [op amp](A1){};
+			\draw (A1.-) to[short, -*] ++(-1.3, 0) node[](b){};
+			\draw (b) to[C, l=$C$] ++(0, -2) node[ground](){};
+			\draw (b) to[short] ++(0, 1) to[R, l=$R$] ++(3.6, 0) -| (A1.out);
+			\draw (A1.+) to[short] ++(0, -1) node[](a){};
+			\draw (a) to[short] ++(0, 0) to[R, l=$R_2$] ++(0, -2) node[ground](){};
+			\draw (a) to[R, l=$R_1$, *-] ++(2, 0) -| (A1.out);
+			\draw (A1.out) to[short, *-o] ++(1, 0);
+		\end{circuitikz}
+		\caption{A relaxation oscillator. The frequency of oscillation is $f_n = -\frac{1}{2RC}\Big[\ln\Big(1 - \frac{1}{1 + R_1/2R_2}\Big)\Big]^{-1}$.}
+	\end{figure}
+	We can examine this oscillator in greater detail. Any residual noise in the circuit will be greatly amplified, setting the output to one of the rail voltages. For the sake of discussion, let's imagine the output saturates to the positive rail. This will cause the capacitor to charge with time constant $RC$. When the capacitor's voltage goes beyond $v_{\text{out}}\cdot R_2/(R_1+R_2)$, the inverting input will have a larger voltage than the noninverting input and so the output voltage will jump to the negative rail. From here, the capacitor will discharge with time constant $RC$ until its voltage drops below $v_{\text{out}}\cdot R_2/(R_1+R_2)$; at which point the output will jump to the positive rail and the process will repeat.
+	
+	We can figure out the frequency of this circuit by looking at how long it takes the capacitor to swing from one reference voltage to the other. Starting from the negative reference voltage, the capacitor's voltage changes as
+	\[
+		v_c(t) = \Big(V_+ - V_-\frac{R_2}{R_1+R_2}\Big)(1 - e^{-t/RC})  + V_-\frac{R_2}{R_1+R_2}
+	\]
+	Half of the oscillator's period marks the point when the above equals the positive reference voltage,
+	\[
+		\Big(V_+ - V_-\frac{R_2}{R_1+R_2}\Big)(1 - e^{-T/2RC})  + V_-\frac{R_2}{R_1+R_2} = V_+\frac{R_2}{R_1+R_2}
+	\]
+	With symmetric rails of magnitude $V$ volts, this becomes
+	\begin{align*}
+	\Big(V - V\frac{R_2}{R_1+R_2}\Big)(1 - e^{-T/2RC}) - V\frac{R_2}{R_1+R_2} &= V\frac{R_2}{R_1+R_2} \\
+	V\Big(1 + \frac{R_2}{R_1+R_2}\Big)(1 - e^{-T/2RC}) &= 2V\frac{R_2}{R_1+R_2} \\
+	1 - e^{-T/2RC} &= \frac{2\frac{R_2}{R_1+R_2}}{1 + \frac{R_2}{R_1+R_2}} \\
+	e^{-T/2RC} &= 1 - \frac{2R_2}{R_1 + 2R_2}
+	\end{align*}
+	or
+	\[
+		T = -2RC\ln\Big(1 - \frac{2R_2}{R_1 + 2R_2}\Big)
+	\]
+	Inverting this gives us the oscillation frequency
+	\[
+		f_n = -\frac{1}{2RC}\Big[\ln\Big(1 - \frac{1}{1 + R_1/2R_2}\Big)\Big]^{-1}
+	\]
+	When $R_1 \gg R_2$, we can approximate this expression by
+	\[
+		f_n \approx \frac{R_1}{4R_2RC} + \frac{1}{4RC}
+	\]
+	which is linear in $R_1$. This might prove useful in making a voltage controlled oscillator.
+	
+\end{document}

@@ -162,5 +162,159 @@
 				&= \frac{|\mathbf{p}|^2}{2\mu} + \frac{|\mathbf{p}_{\mathrm{CM}}|^2}{2M} + V(r)
 			\end{align*}
 		\end{solution}
+	
+		\question Show that
+		\begin{gather*}
+			\{\omega, \lambda\} = -\{\lambda, \omega\} \\
+			\{\omega, \lambda + \sigma\} = \{\omega, \lambda\} + \{\omega, \sigma\} \\
+			\{\omega, \lambda\sigma\} = \{\omega, \lambda\}\sigma + \lambda\{\omega, \sigma\}
+		\end{gather*}
+		
+		\begin{solution}
+			Starting from the definition, we see
+			\begin{align*}
+				\{\omega, \lambda\} &= \sum_i\Big(\frac{\partial\omega}{\partial q_i}\frac{\partial\lambda}{\partial p_i} - \frac{\partial\omega}{\partial p_i}\frac{\partial\lambda}{\partial q_i}\Big) \\
+				&= -\sum_i\Big(\frac{\partial\omega}{\partial p_i}\frac{\partial\lambda}{\partial q_i} - \frac{\partial\omega}{\partial q_i}\frac{\partial\lambda}{\partial p_i}\Big) \\
+				&= -\{\lambda, \omega\}
+			\end{align*}
+			while the linearity of the partial derivative produces
+			\begin{align*}
+				\{\omega, \lambda + \sigma\} &= \sum_i\Big(\frac{\partial\omega}{\partial q_i}\frac{\partial(\lambda + \sigma)}{\partial p_i} - \frac{\partial\omega}{\partial p_i}\frac{\partial(\lambda + \sigma)}{\partial q_i}\Big) \\
+				&= \sum_i\Big(\frac{\partial\omega}{\partial q_i}\Big[\frac{\partial\lambda}{\partial p_i} + \frac{\partial\sigma}{\partial p_i}\Big] - \frac{\partial\omega}{\partial p_i}\Big[\frac{\partial\lambda}{\partial q_i} + \frac{\partial\sigma}{\partial q_i}\Big]\Big) \\
+				&= \sum_i\Big(\frac{\partial\omega}{\partial q_i}\frac{\partial\lambda}{\partial p_i} + \frac{\partial\omega}{\partial q_i}\frac{\partial\sigma}{\partial p_i} - \frac{\partial\omega}{\partial p_i}\frac{\partial\lambda}{\partial q_i} - \frac{\partial\omega}{\partial p_i}\frac{\partial\sigma}{\partial q_i}\Big) \\
+				&= \sum_i\Big(\frac{\partial\omega}{\partial q_i}\frac{\partial\lambda}{\partial p_i} - \frac{\partial\omega}{\partial p_i}\frac{\partial\lambda}{\partial q_i}\Big) + \sum_i\Big(\frac{\partial\omega}{\partial q_i}\frac{\partial\sigma}{\partial p_i} - \frac{\partial\omega}{\partial p_i}\frac{\partial\sigma}{\partial q_i}\Big) \\
+				&= \{\omega, \lambda\} + \{\omega, \sigma\}
+			\end{align*}
+			and the product rule gives
+			\begin{align*}
+				\{\omega, \lambda\sigma\} &= \sum_i\Big(\frac{\partial\omega}{\partial q_i}\frac{\partial(\lambda\sigma)}{\partial p_i} - \frac{\partial\omega}{\partial p_i}\frac{\partial(\lambda\sigma)}{\partial q_i}\Big) \\
+				&= \sum_i\Big(\frac{\partial\omega}{\partial q_i}\Big[\frac{\partial\lambda}{\partial p_i}\sigma + \lambda\frac{\partial\sigma}{\partial p_i}\Big] - \frac{\partial\omega}{\partial p_i}\Big[\frac{\partial\lambda}{\partial q_i}\sigma + \lambda\frac{\partial\sigma}{\partial q_i}\Big]\Big) \\
+				&= \sum_i\Big(\frac{\partial\omega}{\partial q_i}\frac{\partial\lambda}{\partial p_i}\sigma + \lambda\frac{\partial\omega}{\partial q_i}\frac{\partial\sigma}{\partial p_i} - \frac{\partial\omega}{\partial p_i}\frac{\partial\lambda}{\partial q_i}\sigma - \lambda\frac{\partial\omega}{\partial p_i}\frac{\partial\sigma}{\partial q_i}\Big) \\
+				&= \sum_i\Big(\frac{\partial\omega}{\partial q_i}\frac{\partial\lambda}{\partial p_i} - \frac{\partial\omega}{\partial p_i}\frac{\partial\lambda}{\partial q_i}\Big)\sigma + \lambda\sum_i\Big(\frac{\partial\omega}{\partial q_i}\frac{\partial\sigma}{\partial p_i} - \frac{\partial\omega}{\partial p_i}\frac{\partial\sigma}{\partial q_i}\Big) \\
+				&= \{\omega, \lambda\}\sigma + \lambda\{\omega, \sigma\}
+			\end{align*}
+		\end{solution}
+	
+		\question (i) Verify Eqs. (2.7.4) and (2.7.5). (ii) Consider a problem in two dimensions given by $\mathcal{H} = p_x^2 + p_y^2 + ax^2 + by^2$. Argue that if $a=b$, $\{l_z, \mathcal{H}\}$ must vanish. Verify by explicit computation.
+		
+		\begin{solution}
+			Eq. (2.7.4) is immediately obvious from the fact that $\partial q_i/\partial q_j = \partial p_i/\partial p_j = \delta_{ij}$, and so $\{q_i, q_j\} = \{p_i, p_j\} = 0$. Furthermore,
+			\begin{align*}
+				\{q_i, p_j\} &= \sum_k\Big(\frac{\partial q_i}{\partial q_k}\frac{\partial p_j}{\partial p_k} - \frac{\partial q_i}{\partial p_k}\frac{\partial p_j}{\partial q_k}\Big) \\
+				&= \sum_k\delta_{ik}\delta_{jk} \\
+				&= \delta_{ij}
+			\end{align*}
+			For eq (2.7.5), we see
+			\begin{align*}
+				\{q_i, \mathcal{H}\} &= \sum_j\Big(\frac{\partial q_i}{\partial q_j}\frac{\partial \mathcal{H}}{\partial p_j} - \frac{\partial q_i}{\partial p_j}\frac{\partial \mathcal{H}}{\partial q_j}\Big) \\
+				&= \sum_j\delta_{ij}\frac{\partial \mathcal{H}}{\partial p_j} \\
+				&= \frac{\partial \mathcal{H}}{\partial p_i} \\
+				&= \dot{q}_i
+			\end{align*}
+			and
+			\begin{align*}
+			\{p_i, \mathcal{H}\} &= \sum_j\Big(\frac{\partial p_i}{\partial q_j}\frac{\partial \mathcal{H}}{\partial p_j} - \frac{\partial p_i}{\partial p_j}\frac{\partial \mathcal{H}}{\partial q_j}\Big) \\
+			&= -\sum_j\delta_{ij}\frac{\partial \mathcal{H}}{\partial q_j} \\
+			&= -\frac{\partial \mathcal{H}}{\partial q_i} \\
+			&= \dot{p}_i
+			\end{align*}
+			If $a = b$ in the given Hamiltonian, the potential energy is dependent only on the radial distance from the origin, i.e. the Hamiltonian is circularly symmetric. With no preferred direction in space, we expect $l_z$ to be conserved, or $\{l_z, \mathcal{H}\} = 0$. We can verify this explicitly via by noting that
+			\begin{gather*}
+				\frac{\partial l_z}{\partial x} = \frac{\partial}{\partial x}(xp_y - yp_x) = p_y \\
+				\frac{\partial l_z}{\partial y} = \frac{\partial}{\partial y}(xp_y - yp_x) = {-p_x} \\
+				\frac{\partial l_z}{\partial p_x} = \frac{\partial}{\partial p_x}(xp_y - yp_x) = {-y} \\
+				\frac{\partial l_z}{\partial p_y} = \frac{\partial}{\partial p_y}(xp_y - yp_x) = x
+			\end{gather*}
+			and
+			\begin{gather*}
+				\frac{\partial \mathcal{H}}{\partial x} = \frac{\partial}{\partial x}(p_x^2 + p_y^2 + ax^2 + by^2) = 2ax \\
+				\frac{\partial \mathcal{H}}{\partial y} = \frac{\partial}{\partial y}(p_x^2 + p_y^2 + ax^2 + by^2) = 2by \\
+				\frac{\partial \mathcal{H}}{\partial p_x} = \frac{\partial}{\partial p_x}(p_x^2 + p_y^2 + ax^2 + by^2) = 2p_x \\
+				\frac{\partial \mathcal{H}}{\partial p_y} = \frac{\partial}{\partial p_y}(p_x^2 + p_y^2 + ax^2 + by^2) = 2p_y
+			\end{gather*}
+			and so, with $a = b$,
+			\begin{align*}
+				\{l_z, \mathcal{H}\} &= \frac{\partial l_z}{\partial x}\frac{\partial\mathcal{H}}{\partial p_x} - \frac{\partial l_z}{\partial p_x}\frac{\partial\mathcal{H}}{\partial x} + \frac{\partial l_z}{\partial y}\frac{\partial\mathcal{H}}{\partial p_y} - \frac{\partial l_z}{\partial p_y}\frac{\partial\mathcal{H}}{\partial y} \\
+				&= (p_y)(2p_x) - (-y)(2ax) + (-p_x)(2p_y) - (x)(2ay) \\
+				&= 2p_xp_y - 2p_xp_y + 2axy - 2axy \\
+				&= 0
+			\end{align*}
+		\end{solution}
+	
+		\question Fill in the missing steps leading to Eq. (2.7.18) starting from Eq. (2.7.14).
+		
+		\question Verify that the change to a rotate frame
+		\begin{gather*}
+			\bar{x} = x\cos\theta - y\sin\theta \\
+			\bar{y} = x\sin\theta + y\cos\theta \\
+			\bar{p}_x = p_x\cos\theta - p_y\sin\theta \\
+			\bar{p}_y = p_x\sin\theta + p_y\cos\theta
+		\end{gather*}
+		is a canonical transformation.
+		
+		\question SHow that the polar variables $\rho = (x^2+y^2)^{1/2}$, $\phi = \tan^{-1}(y/x)$,
+		\[
+			p_\rho = \hat{e}_\rho\cdot\mathbf{p} = \frac{xp_x - yp_y}{(x^2 + y^2)^{1/2}}, \quad p_\phi = xp_y - yp_x (= l_z)
+		\]
+		are canonical. ($\hat{e}_\rho$ is the unit vector in the radial direction.)
+		
+		\question Verify that the change from the variables $\mathbf{r}_1$, $\mathbf{r}_2$, $\mathbf{p}_1$, $\mathbf{p}_2$ to $\mathbf{r}_{\text{CM}}$, $\mathbf{p}_{\text{CM}}$, $\mathbf{r}$, and $\mathbf{p}$ is a canonical transformation. (See Exercise 2.5.4).
+		
+		\question Verify that
+		\begin{gather*}
+			\bar{q} = \ln(q^{-1}\sin p) \\
+			\bar{p} = q\cot p
+		\end{gather*}
+		is a canonical transformation.
+		
+		\question We would like to derive here Eq. (2.7.9), which gives the transformation of the momenta under a coordinate transformation in configuration space:
+		\[
+			q_i \to \bar{q}_i(q_1, \dots, q_n)
+		\]
+		(1) Argue that if we invert the above equation to get $q = q(\bar{q})$, we can derive the following counterpart of Eq. (2.7.7):
+		\[
+			\dot{q}_i = \sum_j\frac{\partial q_i}{\partial \bar{q}_j}\dot{\bar{q}}_j
+		\]
+		
+		(2) Show from the above that
+		\[
+			\Big(\frac{\partial\dot{q}_i}{\partial\dot{\bar{q}}_j}\Big)_{\bar{q}} = \frac{\partial q_i}{\partial\bar{q}_j}
+		\]
+		
+		(3) Now calculate
+		\[
+			\bar{p}_i = \Big[\frac{\partial\mathcal{L}(\bar{q}, \dot{\bar{q}})}{\partial\dot{\bar{q}}_i}\Big]_{\bar{q}} = \Big[\frac{\partial\mathcal{L}({q}, \dot{{q}})}{\partial\dot{\bar{q}}_i}\Big]_{\bar{q}}
+		\]
+		Use the chain rule and the fact that $q = q(\bar{q})$ and note $q(\bar{q}, \dot{\bar{q}})$ to derive Eq. (2.7.9).
+		
+		(4) Verify, by calculating the PB in Eq. (2.7.18), that the point transformation is canonical.
+		
+		\question Verify Eq. (2.7.19) by direct computation. Use the chain rule to go from $q, p$ derivatives to $\bar{q}, \bar{p}$ derivatives. Collect terms that represent PB of the latter.
+		
+		\question Show that $p = p_1 + p_2$, the total momentum, is the generator of infinitesimal translations for a two-particle system.
+		
+		\question Verify that the infinitesimal transformation generated by any dynamical variables $g$ is a canonical transformation. (Hint: Work, as usual, to first order in $\varepsilon$.)
+		
+		\question Consider
+		\[
+			\mathcal{H} = \frac{p_x^2 + p_y^2}{2m} + \frac{1}{2}m\omega^2(x^2+y^2)
+		\]
+		whose invariance under the rotation of the coordinates \textit{and} momenta leads to the conservation of $l_z$. But $\mathcal{H}$ is also invariant under the rotation of \textit{just the coordinates}. Verify that this is a \textit{noncanonical} transformation. Convince yourself that in this case it is not possible to write $\delta\mathcal{H}$ as $\varepsilon\{\mathcal{H}, g\}$ for any $g$, i.e. that no conservation law follows.
+		
+		\question Consider $\mathcal{H} = \frac{1}{2}p^2 + \frac{1}{2}x^2$, which is invariant under infinitesimal rotations in \textit{phase space} (the $x-p$ plane). Find the generator of this transformation (after verifying that it is canonical). (You could have guessed the answer based on Exercise 2.5.2).
+		
+		\question Why is it that a \textit{non}canonical transformation that leaves $\mathcal{H}$ invariant does not map a solution into another? Or, in view of the discussion on consequence II, why is it that an experiment and its transformed version do not give the same result when the transformation that leaves $\mathcal{H}$ invariant is not canonical? It is best to consider an example. Consider the potential given in Exercise 2.8.3. Suppose I release a particle at $(x = a, y = 0)$ with $(p_x = b, p_y = 0)$, i.e., you rotate the coordinates but not the momenta. This is a noncanonical transformation that leaves $\mathcal{H}$ invariant. Convince yourself that at later times the states of the two particles are no related by the same transformation. Try to understand what goes wrong in the general case.
+		
+		\question Show that $\partial S_{\text{cl}}/\partial x_f = p(t_f)$.
+		
+		\question Consider the harmonic oscillator, for which the general solution is
+		\[
+			x(t) = A\cos\omega t + B\sin\omega t.
+		\]
+		Express the energy in terms of $A$ and $B$ and note that it does not depend on time. Now choose $A$ and $B$ such that $x(0) = x_1$ and $x(T) = x_2$. Write down the energy in terms of $x_1$, $x_2$, and $T$. Show that the action for the trajectory connecting $x_1$ and $x_2$ is
+		\[
+			S_{\text{cl}}(x_1, x_2, T) = \frac{m\omega}{2\sin\omega T}[(x_1^2+x_2^2)\cos\omega T - 2x_1x_2].
+		\]
+		Verify that $\partial S_{\text{cl}}/\partial T = -E$.
 	\end{questions}
 \end{document}

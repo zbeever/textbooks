@@ -373,6 +373,100 @@ Work out the norms of $\phi + \psi$ and $\phi + i\psi$.
 	Since $\mathcal{L}_i^2 = -\mathbf{I}/4$ holds for each generator corresponding to a Pauli matrix, we would have arrived at the same result if we were to choose $\mathcal{L}_2$ or $\mathcal{L}_3$ instead of $\mathcal{L}_1$.
 \end{solution}
 
+\question See if you can work this out, from the information given.
+
+\begin{solution}
+	The symmetry of the indices of the spin-tensor, coupled with their restriction to either $0$ or $1$, implies that the only meaningful distinction between two spin-tensors is the number of $1$s (or, equivalently, the number of $0$s) they have in their indicial signature. This can range from $0$ to $n$ for a total of $n+1$ independent components.
+\end{solution}
+
+\question Check this commutation directly from the angular-momentum commutation rules.
+
+\begin{solution}
+	For ease of reference, the angular-momentum commutation rules are
+	\[
+		[\mathbf{L}_i,\mathbf{L}_j] = i\hbar\epsilon_{ijk}\mathbf{L}_k,
+	\]
+	where no summation is implied. Using the above, together with the identity $[AB, C] = A[B, C] + [A, C]B$, we find
+	\begin{align*}
+		[\mathbf{J}^2, \mathbf{L}_i] &= [\mathbf{L}_1^2 + \mathbf{L}_2^2 + \mathbf{L}_3^2, \mathbf{L}_i] \\
+		&= [\mathbf{L}_1^2, \mathbf{L}_i] + [\mathbf{L}_2^2, \mathbf{L}_i] + [\mathbf{L}_2^2, \mathbf{L}_i] \\
+		&= \mathbf{L}_1[\mathbf{L}_1, \mathbf{L}_i] + [\mathbf{L}_1, \mathbf{L}_i]\mathbf{L}_1 + \mathbf{L}_2[\mathbf{L}_2, \mathbf{L}_i] + [\mathbf{L}_2, \mathbf{L}_i]\mathbf{L}_2 + \mathbf{L}_3[\mathbf{L}_3, \mathbf{L}_i] + [\mathbf{L}_3, \mathbf{L}_i]\mathbf{L}_3
+	\end{align*}
+	Because the above expression is symmetric in the indices $1$, $2$, and $3$, we can rewrite it (using $[\mathbf{L}_i,\mathbf{L}_i]=0$) as
+	\begin{align*}
+	[\mathbf{J}^2, \mathbf{L}_i] &= \mathbf{L}_j[\mathbf{L}_j, \mathbf{L}_i] + [\mathbf{L}_j, \mathbf{L}_i]\mathbf{L}_j + \mathbf{L}_k[\mathbf{L}_k, \mathbf{L}_i] + [\mathbf{L}_k, \mathbf{L}_i]\mathbf{L}_k \\
+	&= i\hbar(\epsilon_{jik}\mathbf{L}_j\mathbf{L}_k + \epsilon_{jik}\mathbf{L}_k\mathbf{L}_j + \epsilon_{kij}\mathbf{L}_k\mathbf{L}_j + \epsilon_{kij}\mathbf{L}_j\mathbf{L}_k) \\
+	&= i\hbar\epsilon_{jik}(\mathbf{L}_j\mathbf{L}_k + \mathbf{L}_k\mathbf{L}_j) + i\hbar\epsilon_{kij}(\mathbf{L}_k\mathbf{L}_j + \mathbf{L}_j\mathbf{L}_k) \\
+	&= i\hbar\epsilon_{jik}(\mathbf{L}_j\mathbf{L}_k + \mathbf{L}_k\mathbf{L}_j) - i\hbar\epsilon_{jik}(\mathbf{L}_k\mathbf{L}_j + \mathbf{L}_j\mathbf{L}_k) \\
+	&= 0
+	\end{align*}
+	where it is implied that $i \neq j \neq k$.
+\end{solution}
+
+\question Consider the operators $\mathbf{L}^+ = \mathbf{L}_1 + i\mathbf{L}_2$ and $\mathbf{L}^- = \mathbf{L}_1 - i\mathbf{L}_2$ and work out their commutators with $\mathbf{L}_3$. Work out $\mathbf{J}^2$ in terms of $\mathbf{L}^\pm$ and $\mathbf{L}_3$. Show that if $|\psi\rangle$ is an eigenstate of $\mathbf{L}_3$, then so also is each of $\mathbf{L}^\pm|\psi\rangle$, whenever it is non-zero, and find its eigenvalue in terms of that of $|\psi\rangle$. Show that if $|\psi\rangle$ belongs to a finite-dimensional irreducible representation space spanned by such eigenstates, then the dimension is an integer $2j$, where $j(j+1)$ is an eigenvalue of $\mathbf{J}^2$ for all states in the space.
+
+\question Why?
+
+\begin{solution}
+	If the uncertainty in momentum is zero, the uncertainty in position must be maximum: the state is spread throughout the entire space of variables $\mathbf{x}$.
+\end{solution}
+
+\question Obtain this expression.
+
+\begin{solution}
+	We have
+	\begin{align*}
+		\langle\{a, b\}|\{w, z\}\rangle &= \big(\langle\uparrow\!|\bar{a} + \langle\downarrow\!|\bar{b}\big)\big(w|\!\uparrow\rangle + z|\!\downarrow\rangle\big) \\
+		&= \bar{a}w\langle\uparrow\!|\!\uparrow\rangle + \bar{a}z\langle\uparrow\!|\!\downarrow\rangle + \bar{b}w\langle\downarrow\!|\!\uparrow\rangle + \bar{b}z\langle\downarrow\!|\!\downarrow\rangle \\
+		&= \bar{a}w + \bar{b}z
+	\end{align*}
+\end{solution}
+
+\question See if you can derive this fact in two different ways: (i) finding the direction explicitly in some suitable Cartesian frame, where the state $\{a, b\}$ defines $b/a$ as a point on the complex plane of Fig. 8.7a; (ii) without direct calculation, using the fact that because $\mathbf{H}^2$ is a representation space of SO(3), every direction of spin is included, yet $\mathbb{P}\mathbf{H}^2$ is not `big enough' to contain any more states than this.
+
+\question Show this.
+
+\begin{solution}
+	The probability of obtaining a measurement of $\nearrow$ when the state is $\nwarrow$ is given by the squared projection of one onto the other,
+	\[
+		\|\langle\nearrow|\nwarrow\rangle\|^2.
+	\]
+	If we use a spherical system of coordinates with the zenith aligned along the $\nwarrow$ state, then the above expression is dependent only on the zenith angle $\theta$ that the $\nearrow$ state makes with respect to this axis. In particular, we see that it is $1$ when $\theta$ is $0^circ$, $0$ when $\theta$ is $180^\circ$, and that it should vary as $\cos\theta$ (being a projection). The expression that meets these requirements is
+	\[
+		\|\langle\nearrow|\nwarrow\rangle\|^2 = \frac{1}{2}(1 + \cos\theta).
+	\]
+\end{solution}
+
+\question Confirm this.
+
+\begin{solution}
+	This is exactly what we have done in the previous problem. The division by the diameter is simply enacting the normalization required by a well-defined probability.
+\end{solution}
+
+\question Verify all this. Why do I not worry about the \textit{sign} of $q$?
+
+\question See if you can prove this, using the `fundamental theorem of algebra' stated in Note 4.2. \textit{Hint}: Consider the polynomial $\psi_{AB\dots F}\zeta^A\zeta^B\cdot\zeta^F$, where the components of $\zeta^4$ are $\{1, z\}$.
+
+\question See if you can show all this using the geometry of $\S 22.9$. Apply this result to the orthogonality of the various eigenstates of $L_3$.
+
+\question Can you derive this spherical polar expression?
+
+\question Explain wy the points are antipodal.
+
+\question Calculate the ordinary spherical harmonics explicitly this way (up to an overall factor) for $j = 1,2,3$. Check that they are indeed eigenstates of $\nabla^2$ and $\partial/\partial\phi$.
+
+\question Show that the commutators given in $\S 22.8$ for $3$-dimensional angular momentum are contained in these.
+
+\question Work out the details of these claims---where you may assume, for convenience, that the eigenvalues form a discrete rather than a continuous system. Assume first that there are no degenerate eigenvalues, and then show how the argument carries through when there are degeneracies. \textit{Hint}: Express each eigenvector of $\mathbf{A}$ in terms of eigenvectors of $\mathbf{B}$, and so on.
+
+\question Establish the properties claimed in these four sentences.
+
+\question Provide a simple reason why these two displayed operators must commmute with $p_a$ and $M^{ab}$. \textit{Hint}: Have a look at $\S 22.13$.
+
+\question How can $S_a$ and $p_a$ be orthogonal and proportional?
+
+\question Explain why. \textit{Hint}: A glance at $\S 22.4$ may help.
+
 \end{questions}
 	
 \end{document}

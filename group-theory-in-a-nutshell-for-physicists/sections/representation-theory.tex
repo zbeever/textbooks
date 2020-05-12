@@ -9,11 +9,47 @@
 
 \question Show that the identity is in a class by itself.
 
+\begin{solution}
+	We know that two elements $g$ and $g'$ are in the same class when
+	\[
+		g' = f^{-1}gf.
+	\]
+	In the case of $g = e$, any arbitrary $f$ will result in $g' = e$, as 
+	\[
+		g' = f^{-1}ef = f^{-1}f = e,
+	\]
+	i.e. the identity element is the only member of its equivalence class.
+\end{solution}
+
 \question Show that in an abelian group, every element is in a class by itself.
+
+\begin{solution}
+	In an abelian group, the condition for two elements to belong to the same equivalence class becomes
+	\[
+		g' = f^{-1}gf = f^{-1}fg = eg = g,
+	\]
+	i.e. each element belongs to a unique equivalence class.
+\end{solution}
 
 \question These days, it is easy to generate finite groups at will. Start with a list consisting of a few invertible $d$-by-$d$ matrices and their inverses. Generate a new list by adding to the old list all possible pairwise products of these matrices. Repeat. Stop when no new matrices appear. Write such a program. (In fact, a student did write such a program for me once.) The problem is of course that you can't predict when the process will (or if it will ever) end. But if it does end, you've got yourself a finite group together with a $d$-dimensional representation.
 
 \question In chapter I.2, we worked out the equivalence classes of $S_4$. Calculate the characters of the $4$-dimensional representation of $S_4$ as a function of its classes.
+
+\begin{solution}
+	Given that character is a function of class, we need only find a representation of one element from each class. By inspection, we can write
+	\begin{align*}
+		I &\to \begin{pmatrix}1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1\end{pmatrix} \\
+		(12)(34) &\to \begin{pmatrix}0 & 1 & 0 & 0 \\ 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 0 & 1 & 0\end{pmatrix} \\
+		(123) &\to \begin{pmatrix}0 & 0 & 1 & 0 \\ 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 1\end{pmatrix} \\
+		(132) &\to \begin{pmatrix}0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1\end{pmatrix}
+	\end{align*}
+	where we immediately see
+	\begin{align*}
+		\chi^{(4)}(I) &= 4 \\
+		\chi^{(4)}\big((12)(34)\big) &= 0 \\
+		\chi^{(4)}\big((123)\big) = \chi^{(4)}\big((132)\big) &= 1
+	\end{align*}
+\end{solution}
 
 \end{questions}
 
