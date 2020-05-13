@@ -44,7 +44,7 @@
 	\tikzstyle{output} = [coordinate]
 	\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
 	
-	\section{Basic theory}
+	\section{Basic theory of linear oscillators}
 	
 	An electronic oscillator produces a stable, periodic signal from a DC power source. In order to sustain itself, an oscillator must make use of positive feedback. Starting from these simple observations, we may draw the basic block diagram of an oscillator,
 	
@@ -287,6 +287,8 @@
 		\caption{An oscillator built with two integrators. The oscillator's frequency is $f_n = (2\pi RC)^{-1}$.}
 	\end{figure}
 
+	\section{Nonlinear oscillator design}
+
 	Of course, we don't have to think of an oscillator in such an abstract manner. Let's try to make a square wave oscillator. This is accomplished by having a digital switch go on and off at a regular rate. One obvious way to make this self-sustaining is to have the switch control itself, albeit with a time delay.
 	
 	A simple switch topology is that of the comparator built using an operational amplifier,
@@ -317,7 +319,7 @@
 			\draw (A1.out) to[short, *-o] ++(1, 0);
 		\end{circuitikz}
 	\end{figure}
-	The problem with this is that the circuit quickly stablizes to $v_p = v_n$. In order for it to produce sustained oscillations, the reference voltage needs to jump in tandem with the output. Of course, we don't even have to follow the analysis this far: in order for something to oscillate it must have positive feedback, and that is currently missing from the above circuit. We can correct these errors by setting $V_-$ to ground and conecting $V_+$ to the output.
+	The problem with this is that the circuit quickly stablizes to $v_p = v_n$. In order for it to produce sustained oscillations, the reference voltage needs to jump in tandem with the output. Of course, we don't even have to follow the analysis this far: in order for something to oscillate it must have positive feedback, and this is currently missing from the above circuit. We can correct these errors by setting $V_-$ to ground and conecting $V_+$ to the output.
 	
 	\begin{figure}[H]
 		\centering
@@ -333,7 +335,7 @@
 		\end{circuitikz}
 		\caption{A relaxation oscillator. The frequency of oscillation is $f_n = -\frac{1}{2RC}\Big[\ln\Big(1 - \frac{1}{1 + R_1/2R_2}\Big)\Big]^{-1}$.}
 	\end{figure}
-	We can examine this oscillator in greater detail. Any residual noise in the circuit will be greatly amplified, setting the output to one of the rail voltages. For the sake of discussion, let's imagine the output saturates to the positive rail. This will cause the capacitor to charge with time constant $RC$. When the capacitor's voltage goes beyond $v_{\text{out}}\cdot R_2/(R_1+R_2)$, the inverting input will have a larger voltage than the noninverting input and so the output voltage will jump to the negative rail. From here, the capacitor will discharge with time constant $RC$ until its voltage drops below $v_{\text{out}}\cdot R_2/(R_1+R_2)$; at which point the output will jump to the positive rail and the process will repeat.
+	We can examine this oscillator in greater detail. Any noise in the circuit will be greatly amplified, setting the output to one of the rail voltages. For the sake of discussion, let's imagine the output saturates to the positive rail. This will cause the capacitor to charge with time constant $RC$. When the capacitor's voltage goes beyond $v_{\text{out}}\cdot R_2/(R_1+R_2)$, the inverting input will have a larger voltage than the noninverting input and so the output voltage will jump to the negative rail. From here, the capacitor will discharge with time constant $RC$ until its voltage drops below $v_{\text{out}}\cdot R_2/(R_1+R_2)$, at which point the output will jump to the positive rail and the process will repeat.
 	
 	We can figure out the frequency of this circuit by looking at how long it takes the capacitor to swing from one reference voltage to the other. Starting from the negative reference voltage, the capacitor's voltage changes as
 	\[
@@ -343,7 +345,7 @@
 	\[
 		\Big(V_+ - V_-\frac{R_2}{R_1+R_2}\Big)(1 - e^{-T/2RC})  + V_-\frac{R_2}{R_1+R_2} = V_+\frac{R_2}{R_1+R_2}
 	\]
-	With symmetric rails of magnitude $V$ volts, this becomes
+	With symmetric rails of $\pm V$ volts, this becomes
 	\begin{align*}
 	\Big(V - V\frac{R_2}{R_1+R_2}\Big)(1 - e^{-T/2RC}) - V\frac{R_2}{R_1+R_2} &= V\frac{R_2}{R_1+R_2} \\
 	V\Big(1 + \frac{R_2}{R_1+R_2}\Big)(1 - e^{-T/2RC}) &= 2V\frac{R_2}{R_1+R_2} \\
@@ -362,6 +364,88 @@
 	\[
 		f_n \approx \frac{R_1}{4R_2RC} + \frac{1}{4RC}
 	\]
-	which is linear in $R_1$. This might prove useful in making a voltage controlled oscillator.
+	which is linear in $R_1$.
 	
+	Armed with such this new square wave oscillator (called a relaxation oscillator), we can immediately obtain a triangle wave by attaching an integrator to its output,
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}
+			\node [op amp](A1){};
+			\draw (A1.-) to[short, -*] ++(-1.3, 0) node[](b){};
+			\draw (b) to[C, l=$C$] ++(0, -2) node[ground](){};
+			\draw (b) to[short] ++(0, 1) to[R, l=$R$] ++(3.6, 0) -| (A1.out);
+			\draw (A1.+) to[short] ++(0, -1) node[](a){};
+			\draw (a) to[short] ++(0, 0) to[R, l=$R_2$] ++(0, -2) node[ground](){};
+			\draw (a) to[R, l=$R_1$, *-] ++(2, 0) -| (A1.out);
+			\draw (A1.out) to[R, l=$R_3$, *-] ++(3, 0) -| (A2.-);
+			\draw (4, 0) node[op amp, anchor=-](A2){};
+			\draw (A2.-) to[short, *-] ++(0, 1) to[C, l=$C_1$] ++(2.3, 0) -| (A2.out);
+			\draw (A2.+) node[ground](){};
+			\draw (A2.out) to[short, -o] ++(1, 0);
+		\end{circuitikz}
+	\end{figure}
+	where we have to make sure the time constant $\tau = R_3C_1$ is larger than the oscillator period, but small enough for the output to acquire an appreciable amplitude.
+	
+	It's useful to think of how to rearrange circuits without disrupting their behavior. Is there anything we can do to the above circuit's topology without qualitatively changing its output? Instead of using the output of the first operational amplifier to mark each half period, let's see if we can accomplish the same task using the output of the second operational amplifier. Our tentative circuit is
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}
+			\node [op amp](A1){};
+			\draw (A1.-) to[short, -o] ++(-1, 0);
+			\draw (A1.+) to[short, -o] ++(-1, 0);
+			\draw (A1.out) to[R, l=$R$, *-] ++(3, 0) -| (A2.-);
+			\draw (A1.out) to[short, -o] ++(0, 1);
+			\draw (A1.out) to[short, -o] ++(0, -1);
+			\draw (4, 0) node[op amp, anchor=-](A2){};
+			\draw (A2.-) to[short, *-] ++(0, 1) to[C, l=$C$] ++(2.3, 0) -| (A2.out);
+			\draw (A2.+) node[ground](){};
+			\draw (A2.out) to[short, -o] ++(1, 0);
+		\end{circuitikz}
+	\end{figure}
+
+	where we are imagining that the first operational amplifier is still generating a square wave (as it must for the output of the second operational amplifier to be a triangle wave).
+	
+	When the input to our integrator is high, the output voltage will decrease linearly (because the capacitor will charge linearly and its leftmost terminal is held at ground). When the output passes below a certain threshold, we want the first operational amplifier to swing to the negative rail. After that, the capacitor will begin to discharge and the output will increase linearly. When this passes above a certain threshold, we want the first operational amplifier to swing to the positive rail. The process then repeats.
+	
+	We might be tempted to ground the inverting input of the first operational amplifier and connect its noninverting input to the circuit's output. But this would create extremely fast, small amplitude oscillations, as any deviations from ground would drive the circuit in the opposite direction. Just as when we designed the relaxation oscillator, we need to use the first operational amplifier's output to inform its reference voltage.
+	
+	Imagine that the first operational amplifier has just swung to the positive rail. In this case, the output voltage is also positive. It then begins to decrease as the capacitor charges. If we attach a voltage divider between the outputs of both operational amplifiers, the node between the two new resistors will similarly start at a high positive voltage, decreasing in value with time. But it will decrease \textit{slower} than the circuit's output. If we connect this node to the first operational amplifier's noninverting input, our output can swing appreciably beyond ground before the comparator's input reaches ground, thereby solving the problem of the small, rapid oscillations produced by connecting the output of the second operational amplifier to the noninverting input of the first one. The final circuit is
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}
+			\node [op amp](A1){};
+			\draw (A1.-) node[ground](){};
+			\draw (A1.out) to[R, l=$R$, *-] ++(3, 0) -| (A2.-);
+			\draw (A1.out) to[R, l=$R_1$] ++(0, -2) node[](a){} to[R, l=$R_2$, *-] ++(3, 0) -| (A2.out);
+			\draw (a) to[short] ++(-1, 0) -| (A1.+);
+			\draw (4, 0) node[op amp, anchor=-](A2){};
+			\draw (A2.-) to[short, *-] ++(0, 1) to[C, l=$C$] ++(2.3, 0) -| (A2.out);
+			\draw (A2.+) node[ground](){};
+			\draw (A2.out) to[short, *-o] ++(1, 0);
+		\end{circuitikz}
+		\caption{A triangle wave oscillator. The frequency of oscillation is $f_n = \frac{R_1}{R_2}\frac{1}{4RC}$.}
+	\end{figure}
+	
+	This has the advantage of needing one less capacitor than our previous design of a triangle wave oscillator. We can analyze this further to determine the oscillator's frequency. The value of $v_{\text{out}}$ that corresponds to a flip in the first operational amplifier's output from positive to negative satisfies
+	\[
+		(V_+ - v_{\text{out}})\frac{R_2}{R_1+R_2} + v_{\text{out}} = 0
+	\]
+	or, solving for $v_{\text{out}}$,
+	\[
+		v_{\text{out}} = -V_+\frac{R_2}{R_1}.
+	\]
+	A half period corresponds to the time it takes to charge the capacitor from this value to its positive counterpart. During this entire period, the input to the integrator is $V_+$, and so we may write
+	\begin{align*}
+		2V_+\frac{R_2}{R_1} &= \frac{1}{RC}\int_0^{T/2} V_+ \mathrm{d}t \\
+		2\frac{R_2}{R_1} &= \frac{1}{RC}\frac{T}{2} \\
+		4RC\frac{R_2}{R_1} &= T
+	\end{align*}
+	Inverting this gives us the oscillation frequency,
+	\[
+		f_n = \frac{R_1}{R_2}\frac{1}{4RC}
+	\]
+	We see another advantage to this design is the frequency's linear dependence on one of the resistors.
 \end{document}
