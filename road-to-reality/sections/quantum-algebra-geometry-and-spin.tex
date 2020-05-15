@@ -451,9 +451,136 @@ Work out the norms of $\phi + \psi$ and $\phi + i\psi$.
 
 \question Can you derive this spherical polar expression?
 
-\question Explain wy the points are antipodal.
+\begin{solution}
+		An easy way to get the metric on $S^2$ is to rewrite the line element using spherical coordinates and simply read off the components. The relationships between Cartesian and spherical coordinates are given by simple geometrical considerations,
+		\begin{align*}
+			x &= r\sin\theta\cos\phi \\
+			y &= r\sin\theta\sin\phi \\
+			z &= r\cos\theta
+		\end{align*} 
+		Setting $r=1$, taking the differential of the above equations, and squaring the results gives
+		\begin{align*}
+			\mathrm{d}x &= \cos\theta\cos\phi\,\mathrm{d}\theta - \sin\theta\sin\phi\,\mathrm{d}\phi \\
+			\mathrm{d}x^2 &= \cos^2\theta\cos^2\phi\,\mathrm{d}\theta^2 - 2\cos\theta\cos\phi\sin\theta\sin\phi\,\mathrm{d}\theta\mathrm{d}\phi + \sin^2\theta\sin^2\phi\,\mathrm{d}\phi^2 \\ \\
+			\mathrm{d}y &= \cos\theta\sin\phi\,\mathrm{d}\theta + \sin\theta\cos\phi\,\mathrm{d}\phi \\
+			\mathrm{d}y^2 &= \cos^2\theta\sin^2\phi\,\mathrm{d}\theta^2 + 2\cos\theta\cos\phi\sin\theta\sin\phi\,\mathrm{d}\theta\mathrm{d}\phi + \sin^2\theta\cos^2\phi\,\mathrm{d}\phi^2 \\ \\
+			\mathrm{d}z &= -\sin\theta\,\mathrm{d}\theta \\
+			\mathrm{d}z^2 &= \sin^2\theta\,\mathrm{d}\theta^2
+		\end{align*}
+		The line element is given by
+		\begin{align*}
+			\mathrm{d}s^2 &= \mathrm{d}x^2 + \mathrm{d}y^2 + \mathrm{d}z^2 \\
+			&= \cos^2\theta(\cos^2\phi + \sin^2\phi)\mathrm{d}\theta^2 + \sin^2\theta(\cos^2\phi + \sin^2\phi)\mathrm{d}\phi^2 + \sin^2\theta\,\mathrm{d}\theta^2 \\
+			&= (\cos^2\theta + \sin^2\theta)\mathrm{d}\theta^2 + \sin^2\theta\,\mathrm{d}\phi^2 \\
+			&= \mathrm{d}\theta^2 + \sin^2\theta\,\mathrm{d}\phi^2
+		\end{align*}
+		and so, with coordinates ordered as $(\theta, \phi)$, the metric takes on the form
+		\[
+			g_{ab} = \begin{pmatrix}1 & 0 \\ 0 & \sin^2\theta\end{pmatrix} \qquad g^{ab} = \begin{pmatrix}1 & 0 \\ 0 & \sin^{-2}\theta\end{pmatrix}
+		\]
+		Using this, we can calculate the Christoffel symbols neccessary to compute the covariant derivative with
+		\[
+			\Gamma^a_{bc} = \frac{1}{2}g^{ad}\Big(\frac{\partial g_{db}}{\partial x^c} + \frac{\partial g_{dc}}{\partial x^b} - \frac{\partial g_{bc}}{\partial x^d}\Big).
+		\]
+		These are
+		\begin{gather*}
+			\Gamma^{\theta}_{\theta\theta} = \Gamma^{\theta}_{\theta\phi} = \Gamma^{\theta}_{\phi\theta} = \Gamma^{\phi}_{\theta\theta} = \Gamma^{\phi}_{\phi\phi} = 0 \\
+			\Gamma^{\theta}_{\phi\phi} = -\sin\theta\cos\theta \\
+			\Gamma^{\phi}_{\theta\phi} = \Gamma^{\phi}_{\phi\theta} = \cot\theta
+		\end{gather*}
+		The Laplacian on a scalar is then
+		\begin{align*}
+			\nabla^2\Phi &= g^{ab}\nabla_a\nabla_b\Phi \\
+			&= g^{ab}\nabla_a\frac{\partial\Phi}{\partial x^b} \\
+			&= g^{ab}\Big(\frac{\partial^2\Phi}{\partial x^a\partial x^b} - \Gamma^{c}_{ab}\frac{\partial\Phi}{\partial x^c}\Big) \\
+			&= g^{\theta\theta}\frac{\partial^2\Phi}{\partial\theta^2} + g^{\phi\phi}\Big(\frac{\partial^2\Phi}{\partial\phi^2} - \Gamma^{\theta}_{\phi\phi}\frac{\partial\Phi}{\partial\theta}\Big) \\
+			&= \frac{\partial^2\Phi}{\partial\theta^2} + \frac{1}{\sin^2\theta}\frac{\partial^2\Phi}{\partial\phi^2} + \frac{\cos\theta}{\sin\theta}\frac{\partial\Phi}{\partial\theta}
+		\end{align*}
+		which implies
+		\[
+			\nabla^2 = \frac{\partial^2}{\partial\theta^2} + \frac{\cos\theta}{\sin\theta}\frac{\partial}{\partial\theta} + \frac{1}{\sin^2\theta}\frac{\partial^2}{\partial\phi^2}
+		\]
+		on $S^2$.
+\end{solution}
+
+\question Explain why the points are antipodal.
+
+\begin{solution}
+	Fig. 22.10 tells us that the components of a spinor $\{w, z\}$ map from the Riemann sphere to the point in the complex plane 
+	\[
+		u = \frac{z}{w}
+	\]
+	where $u$ can also be found by stereographically projecting the spinor from the Riemann sphere to the complex plane via the south pole.
+	
+	In this case, the projected points are
+	\[
+		u = e^{-i\phi}\tan\tfrac{\theta}{2} \qquad v = -e^{-i\phi}\cot\tfrac{\theta}{2}
+	\]
+	where $u = \xi^1/\xi^0$ and $v = \eta^1/\eta^0$. Mapping $u$ and $v$ to the $x$-$y$ plane, we can check their three-dimensional cartesian coordinates by
+	\begin{align*}
+		x &= \frac{2\mathrm{Re}(w)}{1 + |w|^2} \\
+		y &= \frac{2\mathrm{Im}(w)}{1 + |w|^2} \\
+		z &= \frac{1 - |w|^2}{1 + |w|^2}
+	\end{align*}
+	The points $u$ and $v$ can be rewritten as
+	\begin{align*}
+		u &= \cos\phi\tan\tfrac{\theta}{2} - i\sin\phi\tan\tfrac{\theta}{2} \\
+		v &= {-\cos\phi\cot\tfrac{\theta}{2}} + i\sin\phi\cot\tfrac{\theta}{2}
+	\end{align*}
+	where $|u|^2 = \tan^2\tfrac{\theta}{2}$ and $|v|^2 = \cot^2\tfrac{\theta}{2}$. From this, we see that $u$ maps to the point
+	\[
+		\frac{1}{1 + \tan^2\tfrac{\theta}{2}}\begin{pmatrix}2\cos\phi\tan\tfrac{\theta}{2} \\ -2\sin\phi\tan\tfrac{\theta}{2} \\ 1 - \tan^2\tfrac{\theta}{2}\end{pmatrix}
+	\]
+	while $v$ maps to the point
+	\[
+	\frac{1}{1 + \cot^2\tfrac{\theta}{2}}\begin{pmatrix}-2\cos\phi\cot\tfrac{\theta}{2} \\ 2\sin\phi\cot\tfrac{\theta}{2} \\ 1 - \cot^2\tfrac{\theta}{2}\end{pmatrix}
+	\]
+	If we multiply every coordinate of the above point by $(\tan^2\tfrac{\theta}{2})/( \tan^2\tfrac{\theta}{2})$, we find it becomes 
+	\[
+	\frac{1}{\tan^2\tfrac{\theta}{2} + 1}\begin{pmatrix}-2\cos\phi\tan\tfrac{\theta}{2} \\ 2\sin\phi\tan\tfrac{\theta}{2} \\ \tan^2\tfrac{\theta}{2} - 1\end{pmatrix}
+	\]
+	which is the negative of the point $u$ mapped to, i.e. the two points are antipodal on the Riemann sphere. Thus, the given spinors represent antipodal points.
+\end{solution}
 
 \question Calculate the ordinary spherical harmonics explicitly this way (up to an overall factor) for $j = 1,2,3$. Check that they are indeed eigenstates of $\nabla^2$ and $\partial/\partial\phi$.
+
+\begin{solution}
+	This question isn't as bad as it seems, we just have to remember the symmetry of the resulting product. For reference, the needed spinors are
+	\begin{align*}
+		\{\xi^0, \xi^1\} &= e^{i\phi/2}\cos\tfrac{\theta}{2}, e^{-i\phi/2}\sin\tfrac{\theta}{2} \\
+		\{\eta^0, \eta^1\} &= -e^{i\phi/2}\sin\tfrac{\theta}{2}, e^{-i\phi/2}\cos\tfrac{\theta}{2}
+	\end{align*}
+	
+	For $j = 1$, we have three values of $m$. The spherical harmonics corresponding to these can be found via
+	\begin{gather*}
+		Y_{1}^{1}(\theta, \phi) \propto \xi^0\eta^0 = -e^{i\phi}\cos\tfrac{\theta}{2}\sin\tfrac{\theta}{2} \propto e^{i\phi}\sin\theta \\
+		Y_1^0(\theta, \phi) \propto \xi^0\eta^1 + \xi^1\eta^0 = \cos^2\tfrac{\theta}{2} - \sin^2\tfrac{\theta}{2} \propto \cos\theta \\
+		Y_1^{-1}(\theta, \phi) \propto \xi^1\eta^1 = e^{-i\phi}\cos\tfrac{\theta}{2}\sin\tfrac{\theta}{2} \propto e^{-i\phi}\sin\theta 
+	\end{gather*}
+	Things become more tricky for the $j = 2$ case. While the extremum values of $m$ are simple enough,
+	\begin{gather*}
+	Y_{2}^{2}(\theta, \phi) \propto \xi^0\xi^0\eta^0\eta^0 = e^{i2\phi}\cos^2\tfrac{\theta}{2}\sin^2\tfrac{\theta}{2} \propto e^{i2\phi}\sin^2\theta \\
+	Y_{2}^{-2}(\theta, \phi) \propto \xi^1\xi^1\eta^1\eta^1 = e^{-i2\phi}\cos^2\tfrac{\theta}{2}\sin^2\tfrac{\theta}{2} \propto e^{-i2\phi}\sin^2\theta
+	\end{gather*}
+	the others are more tediuous. For $m = 1$ we have
+	\begin{align*}
+		Y_{2}^{1}(\theta, \phi) &\propto \xi^1\xi^0\eta^0\eta^0 + \xi^0\xi^1\eta^0\eta^0 + \xi^0\xi^0\eta^1\eta^0 + \xi^0\xi^0\eta^0\eta^1 \\
+		&= 2\xi^1\xi^0\eta^0\eta^0 + 2\xi^0\xi^0\eta^1\eta^0 \\
+		&=  2e^{i\phi}\cos\tfrac{\theta}{2}\sin^3\tfrac{\theta}{2} - 2e^{i\phi}\sin\tfrac{\theta}{2}\cos^3\tfrac{\theta}{2}\\
+		&= 2e^{i\phi}\cos\tfrac{\theta}{2}\sin\tfrac{\theta}{2}(\sin^2\tfrac{\theta}{2} - \cos^2\tfrac{\theta}{2}) \\
+		&\propto e^{i\phi}\sin\theta\cos\theta \\
+		&\propto e^{i\phi}\sin2\theta \\
+		Y_{2}^0(\theta, \phi) &\propto \xi^{1}\xi^{1}\eta^0\eta^0 + 4\xi^1\xi^0\eta^1\eta^0 + \xi^0\xi^0\eta^1\eta^1 \\
+		&= \sin^4\tfrac{\theta}{2} - 4\cos^2\tfrac{\theta}{2}\sin^2\tfrac{\theta}{2} + \cos^4\tfrac{\theta}{2} \\
+		&\propto 2 - 3\sin^2\theta \\
+		Y_{2}^{-1}(\theta, \phi) &\propto 2\xi^1\xi^1\eta^1\eta^0 + 2\xi^0\xi^1\eta^1\eta^1 \\
+		&= -2e^{-i\phi}\cos\tfrac{\theta}{2}\sin^3\tfrac{\theta}{2} + 2e^{-i\phi}\sin\tfrac{\theta}{2}\cos^3\tfrac{\theta}{2} \\
+		&\propto e^{-i\phi}\sin2\theta
+	\end{align*}
+	where we have made use of extensive trigonometric identities in the intervening steps, most notably $\cos\theta\sin\theta = \sin(2\theta)/2$ and $\sin^2\theta - \cos^2\theta = {-\cos2\theta}$. In the case of $Y_{2}^{0}(\theta, \phi)$, a computer algebra system was employed. We will refrain from calculating the spherical harmonics corresponding to $j=3$ because the method is sufficiently clear from the above.
+	
+	That each $Y_{i}^{j}(\theta, \phi)$ is an eigenfunction of $\partial/\partial\phi$ is immediately seen. While one could use the previously found Laplacian to check the harmonic nature of each of these functions, we will refrain from doing so and note that the found functions correspond directly to the known spherical harmonics up to a scale factor (and hence must satisfy the Laplacian).
+\end{solution}
 
 \question Show that the commutators given in $\S 22.8$ for $3$-dimensional angular momentum are contained in these.
 
