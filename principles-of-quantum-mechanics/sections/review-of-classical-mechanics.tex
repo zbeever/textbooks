@@ -243,6 +243,27 @@
 	
 		\question Fill in the missing steps leading to Eq. (2.7.18) starting from Eq. (2.7.14).
 		
+		\begin{solution}
+			If we view $\mathcal{H}$ as a function of $\bar{q}$ and $\bar{p}$, we find
+			\begin{align*}
+				\dot{\bar{q}}_j &= \{\bar{q}, \mathcal{H}\} \\
+				&= \sum_i\Big(\frac{\partial\bar{q}_j}{\partial q_i}\frac{\partial\mathcal{H}}{\partial p_i} - \frac{\partial\bar{q}_j}{\partial p_i}\frac{\partial\mathcal{H}}{\partial q_i}\Big) \\
+				&= \sum_i\Big(\frac{\partial\bar{q}_j}{\partial q_i}\Big[\sum_k\frac{\partial\mathcal{H}}{\partial\bar{q}_k}\frac{\partial\bar{q}_k}{\partial p_i} + \frac{\partial\mathcal{H}}{\partial\bar{p}_k}\frac{\partial \bar{p}_k}{\partial p_i}\Big] - \frac{\partial\bar{q}_j}{\partial p_i}\Big[\sum_l\frac{\partial\mathcal{H}}{\partial\bar{q}_l}\frac{\partial\bar{q}_l}{\partial q_i} + \frac{\partial\mathcal{H}}{\partial\bar{p}_l}\frac{\partial \bar{p}_l}{\partial q_i}\Big] \Big) \\
+				&= \sum_i\sum_k\Big(\frac{\partial\bar{q}_j}{\partial q_i}\frac{\partial\mathcal{H}}{\partial\bar{q}_k}\frac{\partial\bar{q}_k}{\partial p_i} + \frac{\partial\bar{q}_j}{\partial q_i}\frac{\partial\mathcal{H}}{\partial\bar{p}_k}\frac{\partial \bar{p}_k}{\partial p_i} - \frac{\partial\bar{q}_j}{\partial p_i}\frac{\partial\mathcal{H}}{\partial\bar{q}_k}\frac{\partial\bar{q}_k}{\partial q_i} - \frac{\partial\bar{q}_j}{\partial p_i}\frac{\partial\mathcal{H}}{\partial\bar{p}_k}\frac{\partial \bar{p}_k}{\partial q_i}\Big) \\
+				&= \sum_k\Big(\frac{\partial\mathcal{H}}{\partial\bar{q}_k}\Big[\sum_i\frac{\partial\bar{q}_j}{\partial q_i}\frac{\partial\bar{q}_k}{\partial p_i} - \frac{\partial\bar{q}_j}{\partial p_i}\frac{\partial\bar{q}_k}{\partial q_i}\Big] + \frac{\partial\mathcal{H}}{\partial\bar{p}_k}\Big[\sum_i\frac{\partial\bar{q}_j}{\partial q_i}\frac{\partial \bar{p}_k}{\partial p_i} - \frac{\partial\bar{q}_j}{\partial p_i}\frac{\partial \bar{p}_k}{\partial q_i}\Big]\Big) \\
+				&= \sum_k \Big(\frac{\partial\mathcal{H}}{\partial \bar{q}_k}\{\bar{q}_j, \bar{q}_k\} + \frac{\partial\mathcal{H}}{\partial \bar{p}_k}\{\bar{q}_j, \bar{p}_k\} \Big)
+			\end{align*}
+			We can find $\dot{\bar{p}}_j$ by exchanging $\bar{q}_j$ for $\bar{p}_j$ in the result above,
+			\[
+				\dot{\bar{p}}_j = \Big(\frac{\partial\mathcal{H}}{\partial \bar{q}_k}\{\bar{p}_j, \bar{q}_k\} + \frac{\partial\mathcal{H}}{\partial \bar{p}_k}\{\bar{p}_j, \bar{p}_k\} \Big)
+			\]
+			In order for these to reduce to the canonical equations,
+			\[
+				\dot{\bar{q}}_k = \frac{\partial\mathcal{H}}{\partial\bar{p}_k} \qquad \dot{\bar{p}}_k = -\frac{\partial\mathcal{H}}{\partial\bar{q}_k}
+			\]
+			we must have $\{\bar{q}_j, \bar{q}_k\} = \{\bar{p}_j, \bar{p}_k\} = 0$ and $\{\bar{q}_j, \bar{p}_k\} = -\{\bar{p}_k, \bar{q}_j\} = \delta_{jk}$.
+		\end{solution}
+		
 		\question Verify that the change to a rotate frame
 		\begin{gather*}
 			\bar{x} = x\cos\theta - y\sin\theta \\
@@ -252,11 +273,40 @@
 		\end{gather*}
 		is a canonical transformation.
 		
-		\question SHow that the polar variables $\rho = (x^2+y^2)^{1/2}$, $\phi = \tan^{-1}(y/x)$,
+		\begin{solution}
+			From the above, we immediately see $\{\bar{x}, \bar{y}\} = \{\bar{p}_x, \bar{p}_y\} = 0$ and
+			\begin{align*}
+				\{\bar{x}, \bar{p}_x\} &= \frac{\partial\bar{x}}{\partial{x}}\frac{\partial\bar{p}_x}{\partial p_x} - \frac{\partial\bar{x}}{\partial{p_x}}\frac{\partial\bar{p}_x}{\partial x} + \frac{\partial\bar{x}}{\partial{y}}\frac{\partial\bar{p}_x}{\partial p_y} - \frac{\partial\bar{x}}{\partial{p_y}}\frac{\partial\bar{p}_x}{\partial y}  \\
+				&= \cos^2\theta + \sin^2\theta \\
+				&= 1 \\
+				\{\bar{x}, \bar{p}_y\} &= \frac{\partial\bar{x}}{\partial{x}}\frac{\partial\bar{p}_y}{\partial p_x} - \frac{\partial\bar{x}}{\partial{p_x}}\frac{\partial\bar{p}_y}{\partial x} + \frac{\partial\bar{x}}{\partial{y}}\frac{\partial\bar{p}_y}{\partial p_y} - \frac{\partial\bar{x}}{\partial{p_y}}\frac{\partial\bar{p}_y}{\partial y}  \\
+				&= \cos\theta\sin\theta - \sin\theta\cos\theta \\
+				&= 0 \\
+				\{\bar{y}, \bar{p}_y\} &= \frac{\partial\bar{y}}{\partial{x}}\frac{\partial\bar{p}_y}{\partial p_x} - \frac{\partial\bar{y}}{\partial{p_x}}\frac{\partial\bar{p}_y}{\partial x} + \frac{\partial\bar{y}}{\partial{y}}\frac{\partial\bar{p}_y}{\partial p_y} - \frac{\partial\bar{y}}{\partial{p_y}}\frac{\partial\bar{p}_y}{\partial y}  \\
+				&= \sin^2\theta + \cos^2\theta \\
+				&= 1 \\
+				\{\bar{y}, \bar{p}_x\} &= \frac{\partial\bar{y}}{\partial{x}}\frac{\partial\bar{p}_x}{\partial p_x} - \frac{\partial\bar{y}}{\partial{p_x}}\frac{\partial\bar{p}_x}{\partial x} + \frac{\partial\bar{y}}{\partial{y}}\frac{\partial\bar{p}_x}{\partial p_y} - \frac{\partial\bar{y}}{\partial{p_y}}\frac{\partial\bar{p}_x}{\partial y}  \\
+				&= \sin\theta\cos\theta - \sin\theta\cos\theta \\
+				&= 0
+			\end{align*}
+			i.e. $\{\bar{q}_j, \bar{q}_k\} = \{\bar{p}_j, \bar{p}_k\} = 0$ and $\{\bar{q}_j, \bar{p}_k\} = -\{\bar{p}_k, \bar{q}_j\} = \delta_{jk}$---the transformation is canonical.
+		\end{solution}
+		
+		\question Show that the polar variables $\rho = (x^2+y^2)^{1/2}$, $\phi = \tan^{-1}(y/x)$,
 		\[
 			p_\rho = \hat{e}_\rho\cdot\mathbf{p} = \frac{xp_x - yp_y}{(x^2 + y^2)^{1/2}}, \quad p_\phi = xp_y - yp_x (= l_z)
 		\]
 		are canonical. ($\hat{e}_\rho$ is the unit vector in the radial direction.)
+		
+		\begin{solution}
+			For ease of reference, we will first compute all necessary derivatives
+			\begin{gather*}
+				\frac{\partial\rho}{\partial x} = \frac{x}{(x^2 + y^2)^{1/2}} \qquad \frac{\partial\rho}{\partial y} = \frac{y}{(x^2 + y^2)^{1/2}} \\
+				\frac{\partial\phi}{\partial x} = -\frac{y}{x^2 + y^2} \qquad \frac{\partial\phi}{\partial y} = \frac{x}{x^2 + y^2} \\
+				\frac{\partial p_\rho}{\partial p_x} = \frac{x}{(x^2 + y^2)^{1/2}} \qquad \frac{\partial p_\rho}{\partial p_y} = -\frac{y}{(x^2 + y^2)^{1/2}} \\
+				\frac{\partial p_\phi}{\partial p_x} = -y \qquad \frac{\partial p_\phi}{\partial p_y} = x
+			\end{gather*}
+		\end{solution}
 		
 		\question Verify that the change from the variables $\mathbf{r}_1$, $\mathbf{r}_2$, $\mathbf{p}_1$, $\mathbf{p}_2$ to $\mathbf{r}_{\text{CM}}$, $\mathbf{p}_{\text{CM}}$, $\mathbf{r}$, and $\mathbf{p}$ is a canonical transformation. (See Exercise 2.5.4).
 		
