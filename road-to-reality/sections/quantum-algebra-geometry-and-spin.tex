@@ -590,9 +590,33 @@ Work out the norms of $\phi + \psi$ and $\phi + i\psi$.
 
 \question Provide a simple reason why these two displayed operators must commmute with $p_a$ and $M^{ab}$. \textit{Hint}: Have a look at $\S 22.13$.
 
+\begin{solution}
+	The system's rest mass and its total angular momentum in its rest frame are part of its `internal workings' in the sense of $\S 22.13$, and so the given operators must commute with the the symmetry operators $p_a$ and $M^{ab}$.
+\end{solution}
+
 \question How can $S_a$ and $p_a$ be orthogonal and proportional?
 
+\begin{solution}
+	In the massless case $p_ap^a = 0$, and so
+	\[
+		S_ap^a = sp_ap^a = 0,
+	\]
+	i.e. $S_a$ and $p_a$ are both proportional and orthogonal.
+\end{solution}
+
 \question Explain why. \textit{Hint}: A glance at $\S 22.4$ may help.
+
+\begin{solution}
+	If the internal state of the system and the observable $\mathbf{Q}$ are unchanged by some symmetry operation, then
+	\[
+		|\psi\rangle \to \mathbf{S}|\psi\rangle
+	\]
+	implies we must have
+	\[
+		\langle\psi|\mathbf{Q}|\psi\rangle = \langle\psi|\mathbf{S}^{-1}\mathbf{Q}_{\mathbf{S}}\mathbf{S}|\psi\rangle.
+	\]
+	This is possible only if $\mathbf{Q}_\mathbf{S} = \mathbf{S}\mathbf{Q}\mathbf{S}^{-1}$.
+\end{solution}
 
 \end{questions}
 	
