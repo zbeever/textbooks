@@ -25,10 +25,75 @@
 			and so $|\Omega\rangle$ must be multiplied by $1/\sqrt{2}$ make it normalized.
 		\end{solution}
 	
-		\question Can you see quickly why this has spin $0$? \textit{Hint}: One way is to use the index notation to show that any such anti-symmetrical combination must essentially be a scalar, bearing in mind taht the spin space is $2$-dimensional.
+		\question Can you see quickly why this has spin $0$? \textit{Hint}: One way is to use the index notation to show that any such anti-symmetrical combination must essentially be a scalar, bearing in mind that the spin space is $2$-dimensional.
 		
 		\question Why not? Find a way of doing this, however, if $|\alpha\rangle$ and $|\beta\rangle$ are not so localized.
 		
 		\question Confirm this parenthetic comment, and give a direct calculational verification of the above expression for $|\Omega\rangle$. \textit{Hint}: See Exercise [22.26].
+		
+		\begin{solution}
+			A general normalized $2$-spinor can be written in component form as
+			\[
+				|\!\swarrow\rangle = \begin{pmatrix}e^{i\phi/2}\cos\tfrac{\theta}{2} \\ e^{-i\phi/2}\sin\tfrac{\theta}{2}\end{pmatrix}
+			\]
+			where $\theta$ and $\phi$ correspond to the usual coordinates parameterizing $S^2$. In the standard up-down spin basis,
+			\[
+				|\!\uparrow\rangle = \begin{pmatrix}1 \\ 0\end{pmatrix} \qquad |\!\downarrow\rangle = \begin{pmatrix}0 \\ 1\end{pmatrix}
+			\]
+			we see 
+			\[
+			|\!\swarrow\rangle = a|\!\uparrow\rangle + b|\!\downarrow\rangle
+			\]
+			where $a = e^{i\phi/2}\cos\tfrac{\theta}{2}$ and $b = e^{-i\phi/2}\sin\tfrac{\theta}{2}$. To change this to a spinor representing a state pointing in the opposite direction, we must make the substitutions 
+			\begin{gather*}
+				\theta \to \pi - \theta \\
+				\phi \to \pi + \phi
+			\end{gather*}
+			which enacts the changes
+			\begin{gather*}
+				a \to ie^{i\phi/2}\sin\tfrac{\theta}{2} = i\bar{b} \\
+				b \to -ie^{-i\phi/2}\cos\tfrac{\theta}{2} = -i\bar{a}
+			\end{gather*}
+			We can ignore the common factor of $i$ here, including it in the arbitrary phase factor of the state. Therefore, we have found
+			\begin{gather*}
+				|\!\swarrow\rangle = a|\!\uparrow\rangle + b|\!\downarrow\rangle \\
+				|\!\nearrow\rangle = \bar{b}|\!\uparrow\rangle - \bar{a}|\!\downarrow\rangle 
+			\end{gather*}
+			To show that the state $|\!\swarrow\rangle|\!\nearrow\rangle - |\!\nearrow\rangle|\!\swarrow\rangle$ is proportional to $|\Omega\rangle = |\!\uparrow\rangle|\!\downarrow\rangle - |\!\downarrow\rangle|\!\uparrow\rangle$, we expand out the former using what we have found above
+			\begin{align*}
+				|\!\swarrow\rangle|\!\nearrow\rangle - |\!\nearrow\rangle|\!\swarrow\rangle &= \big(a|\!\uparrow\rangle + b|\!\downarrow\rangle\big)\big(\bar{b}|\!\uparrow\rangle - \bar{a}|\!\downarrow\rangle\big) - \big(\bar{b}|\!\uparrow\rangle - \bar{a}|\!\downarrow\rangle\big)\big(a|\!\uparrow\rangle + b|\!\downarrow\rangle\big) \\
+				&= (a\bar{b} - \bar{b}a)|\!\uparrow\rangle|\!\uparrow\rangle - (a\bar{a} + \bar{b}b)|\!\uparrow\rangle|\!\downarrow\rangle + (b\bar{b} + \bar{a}a)|\!\downarrow\rangle|\!\uparrow\rangle - (b\bar{a} - \bar{a}b)|\!\downarrow\rangle|\!\downarrow\rangle \\
+				&= -(a\bar{a} + b\bar{b})\big(|\!\uparrow\rangle|\!\downarrow\rangle - |\!\downarrow\rangle|\!\uparrow\rangle\big) \\
+				&\propto |\!\uparrow\rangle|\!\downarrow\rangle - |\!\downarrow\rangle|\!\uparrow\rangle
+			\end{align*}
+		\end{solution}
+	
+		\question Why?
+		
+		\begin{solution}
+			The Majorana description calls for a state of $n$ spins to be the symmetric product of them, and so we have
+			\[
+				|\!\leftarrow\nearrow\rangle = |\!\leftarrow\rangle|\!\nearrow\rangle + |\!\nearrow\rangle|\!\leftarrow\rangle
+			\]
+		\end{solution}
+	
+		\question See if you can prove these. \textit{Hint}: Use the coordinate and/or geometric desicrptions of $\S22.9$.
+		
+		\begin{solution}
+			It's easiest to rewrite our states in terms of the up and down basis states. We can do this using our results from 23.5,
+			\begin{align*}
+				|\!\leftarrow\rangle &= \frac{\sqrt{2}}{2}|\!\uparrow\rangle + \frac{\sqrt{2}}{2}|\!\downarrow\rangle \\
+				|\!\nearrow\rangle &= \frac{4}{5}|\!\uparrow\rangle - \frac{3}{5}|\!\downarrow\rangle
+			\end{align*}
+			Using these, we can rewrite the state as
+			\begin{align*}
+				|\!\leftarrow\nearrow\rangle &= \Big(\frac{\sqrt{2}}{2}|\!\uparrow\rangle + \frac{\sqrt{2}}{2}|\!\downarrow\rangle\Big)\Big(\frac{4}{5}|\!\uparrow\rangle - \frac{3}{5}|\!\downarrow\rangle\Big) + \Big(\frac{4}{5}|\!\uparrow\rangle - \frac{3}{5}|\!\downarrow\rangle\Big)\Big(\frac{\sqrt{2}}{2}|\!\uparrow\rangle + \frac{\sqrt{2}}{2}|\!\downarrow\rangle\Big) \\
+				&= \frac{4\sqrt{2}}{5}|\!\uparrow\rangle|\!\uparrow\rangle + \frac{\sqrt{2}}{10}|\!\uparrow\rangle|\!\downarrow\rangle + \frac{\sqrt{2}}{10}|\!\downarrow\rangle|\!\uparrow\rangle - \frac{6\sqrt{2}}{10}|\!\downarrow\rangle|\!\downarrow\rangle
+			\end{align*}
+			This is clearly not orthogonal to $|\!\downarrow\rangle|\!\downarrow\rangle$. As for the other states, let's examine them one at a time.
+			\begin{align*}
+				(\langle\downarrow|\langle\leftarrow\!|)|\!\leftarrow\nearrow\rangle &= \Big(\frac{\sqrt{2}}{2}\langle\downarrow\!|\langle\uparrow\!| + \frac{\sqrt{2}}{2}\langle\downarrow|\langle\downarrow\!|\Big)
+			\end{align*}
+		\end{solution}
 	\end{questions}
 \end{document}
