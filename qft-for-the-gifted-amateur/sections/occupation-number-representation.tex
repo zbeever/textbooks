@@ -1,0 +1,208 @@
+\documentclass[../qft-for-the-gifted-amateur.tex]{subfiles}
+
+\begin{document}
+
+\section{Lagrangians}
+
+\begin{questions}
+	\printanswers
+	
+	\question For boson operators satisfying
+	\[
+	[{\hat{a}}_{\mathbf{p}},{\hat{a}}_{\mathbf{q}}^{\dagger}] = \delta_{\mathbf{p}\mathbf{q}},
+	\]
+	show that
+	\[
+	\frac{1}{V}\sum_{\mathbf{p}\mathbf{q}}e^{i(\mathbf{p} \cdot \mathbf{x} - \mathbf{q} \cdot \mathbf{y})}[{\hat{a}}_{\mathbf{p}},{\hat{a}}_{\mathbf{q}}^{\dagger}] = \delta^{(3)}(\mathbf{x} - \mathbf{y}),
+	\]
+	where $V$ is the volume of space over which the system is defined.
+	Repeat this for fermion commutation operators.
+
+	\begin{solution}
+	By direct substitution we have
+
+	\begin{align*}
+		\frac{1}{V}\sum_{\mathbf{p}\mathbf{q}}e^{i(\mathbf{p} \cdot \mathbf{x} - \mathbf{q} \cdot \mathbf{y})}[{\hat{a}}_{\mathbf{p}},{\hat{a}}_{\mathbf{q}}^{\dagger}] &= \frac{1}{V}\sum_{\mathbf{p}\mathbf{q}}e^{i(\mathbf{p} \cdot \mathbf{x} - \mathbf{q} \cdot \mathbf{y})}\delta_{\mathbf{p}\mathbf{q}}, \\
+		&= \frac{1}{V}\sum_{\mathbf{p}}e^{i\mathbf{p} \cdot (\mathbf{x} - \mathbf{y})}.
+	\end{align*}
+
+	The same holds for the fermion anticommutator
+
+	\begin{align*}
+		\frac{1}{V}\sum_{\mathbf{p}\mathbf{q}}e^{i(\mathbf{p} \cdot \mathbf{x} - \mathbf{q} \cdot \mathbf{y})}\{{\hat{c}}_{\mathbf{p}},{\hat{c}}_{\mathbf{q}}^{\dagger}\} &= \frac{1}{V}\sum_{\mathbf{p}\mathbf{q}}e^{i(\mathbf{p} \cdot \mathbf{x} - \mathbf{q} \cdot \mathbf{y})}\delta_{\mathbf{p}\mathbf{q}} \\
+		&= \frac{1}{V}\sum_{\mathbf{p}}e^{i\mathbf{p} \cdot (\mathbf{x} - \mathbf{y})}.
+	\end{align*}
+	That these expressions are equivalent to the three dimensional Dirac
+	delta can be seen through examining a similar expression in Fourier
+	transforms. Suppose we have a function $f$ and we wish to find
+	$\tilde{f}$, its Fourier transform. Then we have
+
+	\[
+	f(x) = \frac{1}{\sqrt{2\pi}}\sum_{k=-\infty}^{\infty}\tilde{f}(k)e^{ikx}.
+	\]
+	We can find $\tilde{f}(k)$ by noting the orthogonality of complex
+	exponentials over a full period. That is
+
+	\begin{align*}
+		\frac{1}{\sqrt{2\pi}}\int_{0}^{2\pi}f(x)e^{- ixm}\,\mathrm{d}x &= \frac{1}{2\pi}\int_{0}^{2\pi}\sum_{k=-\infty}^{\infty}\tilde{f}(k)e^{i(k - m)x}\,\mathrm{d}x, \\
+		&= \frac{1}{2\pi}\int_{0}^{2\pi}\tilde{f}(m)\,\mathrm{d}x, \\
+		&= \tilde{f}(m)
+	\end{align*}
+
+	Now that we have an expression for each $\tilde{f}(m)$, let's
+	substitute this back into our Fourier series of $f$.
+
+	\begin{align*}
+	f(x) &= \frac{1}{\sqrt{2\pi}}\sum_{k=-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}\int_{0}^{2\pi}f(y)e^{-iyk}\,\mathrm{d}ye^{ikx}, \\
+	     &= \int_{0}^{2\pi}f(y)\frac{1}{2\pi}\sum_{k = - \infty}^{\infty}e^{ik(x - y)}\,\mathrm{d}y
+	\end{align*}
+	Our last line implies
+	\[
+		\frac{1}{2\pi}\sum_{k=-\infty}^{\infty}e^{ik(x - y)} = \delta(x - y)
+	\]
+	over our length of integration. It is easy to see, then, that
+	\[
+	\frac{1}{V}\sum_{\mathbf{p}}e^{i\mathbf{p} \cdot (\mathbf{x} - \mathbf{y})} = \delta^{(3)}(\mathbf{x} - \mathbf{y}),
+	\]
+	provided our exponentials are periodic over the volume, a fact
+	guaranteed by the periodic boundary conditions imposed on our momentum
+	eigenstates.
+\end{solution}
+
+	\question Show that for the simple harmonic oscillator:
+	\begin{gather*}
+	[\hat{a},({\hat{a}}^{\dagger})^{n}] = n({\hat{a}}^{\dagger})^{n - 1} \\
+	\langle 0|{\hat{a}}^{n}({\hat{a}}^{\dagger})^{m}|0\rangle = n!\delta_{nm} \\
+	\langle m|{\hat{a}}^{\dagger}|n\rangle = \sqrt{n + 1}\delta_{m,n + 1} \\
+	\langle m|\hat{a}|n\rangle = \sqrt{n}\delta_{m,n - 1}
+	\end{gather*}
+
+	\begin{solution}
+	For (a), look at its effect on $|n\rangle$,
+	\begin{align*}
+		[\hat{a},({\hat{a}}^{\dagger})^{n}]|n_{0}\rangle &= \hat{a}({\hat{a}}^{\dagger})^{n}|n_{0}\rangle - ({\hat{a}}^{\dagger})^{n}\hat{a}|n_{0}\rangle \\
+		 &= \hat{a}\sqrt{\frac{(n_{0} + n)!}{n_{0}!}}|n_{0} + n\rangle - ({\hat{a}}^{\dagger})^{n}\sqrt{n_{0}}|n_{0} - 1\rangle \\
+		 &= (n_{0} + n)\sqrt{\frac{(n_{0} + n - 1)!}{n_{0}!}}|n_{0} + n - 1\rangle - n_{0}\sqrt{\frac{(n_{0} + n - 1)!}{n_{0}!}}|n_{0} + n - 1\rangle \\
+		 &= n\sqrt{\frac{(n_{0} + n - 1)!}{n_{0}!}}|n_{0} + n - 1\rangle \\
+		 &= n({\hat{a}}^{\dagger})^{n - 1}|n_{0}\rangle
+	\end{align*}
+	For (b), we have
+	\[
+	({\hat{a}}^{\dagger})^{m}|0\rangle = \sqrt{m!}|m\rangle\langle 0|{\hat{a}}^{n} = \overline{({\hat{a}}^{\dagger})^{n}|0\rangle} = \overline{\sqrt{n!}|n\rangle} = \langle n|\sqrt{n!},
+	\]
+	so
+	\[
+	\langle 0|{\hat{a}}^{n}({\hat{a}}^{\dagger})^{m}|0\rangle = \sqrt{n!m!}\langle n|m\rangle = n!\delta_{nm},
+	\]
+	where the Kroenecker delta appears because our states are eigenvectors
+	of Hermitian operators, and hence orthogonal. Both (c) and (d) follow
+	immediately from this last point.
+	\begin{gather*}
+	\langle m|{\hat{a}}^{\dagger}|n\rangle = \sqrt{n + 1}\langle m|n + 1\rangle = \sqrt{n + 1}\delta_{m,n + 1} \\
+	\langle m|\hat{a}|n\rangle = \sqrt{n}\langle m|n\rangle = \sqrt{n}\delta_{m,n - 1}
+	\end{gather*}
+\end{solution}
+
+	\question The three-dimensional harmonic oscillator is described by the
+	Hamiltonian
+	\[
+	\hat{H} = \frac{1}{2m}({\hat{p}}_{1}^{2} + {\hat{p}}_{2}^{2} + {\hat{p}}_{3}^{2}) + \frac{1}{2}m\omega^{2}({\hat{x}}_{1}^{2} + {\hat{x}}_{2}^{2} + {\hat{x}}_{3}^{2}).
+	\]
+	Define the creation operators ${\hat{a}}_{1}^{\dagger}$, ${\hat{a}}_{2}^{\dagger}$, and ${\hat{a}}_{3}^{\dagger}$ so that $[{\hat{a}}_{i},{\hat{a}}_{j}^{\dagger}] = \delta_{ij}$ and show that $\hat{H} = \hslash\omega\sum_{i = 1}^{3}(\frac{1}{2} + {\hat{a}}_{i}^{\dagger}{\hat{a}}_{i})$. Angular momentum can be defined as
+	\[
+	{\hat{L}}^{i} = - i\hslash\epsilon^{ijk}{\hat{a}}_{j}{\hat{a}}_{k},
+	\]
+	so that for example ${\hat{L}}^{3} = - i\hslash({\hat{a}}_{1}^{\dagger}{\hat{a}}_{2} - {\hat{a}}_{2}^{\dagger}{\hat{a}}_{1})$. Define new creation operators
+	\begin{align*}
+	{\hat{b}}_{1}^{\dagger} &= -\frac{1}{\sqrt{2}}({\hat{a}}_{1}^{\dagger} + i{\hat{a}}_{2}^{\dagger}), \\
+	{\hat{b}}_{0}^{\dagger} &= {\hat{a}}_{3}^{\dagger}, \\
+	{\hat{b}}_{- 1}^{\dagger} &= \frac{1}{\sqrt{2}}({\hat{a}}_{1}^{\dagger} - i{\hat{a}}_{2}^{\dagger}),
+	\end{align*}
+	and show that $[{\hat{b}}_{i},{\hat{b}}_{j}^{\dagger}] = \delta_{ij}$, the Hamiltonian is $\hat{H} = \hslash\omega\sum_{m = - 1}^{1}(\frac{1}{2} + {\hat{b}}_{m}^{\dagger}{\hat{b}}_{m})$ and ${\hat{L}}^{3} = \hslash\sum_{m = - 1}^{1}m{\hat{b}}_{m}^{\dagger}{\hat{b}}_{m}$.
+	\begin{solution}
+	Let's define our \[{\hat{a}}_{i}^{\dagger}\] as a straightforward generalization to our one dimensional case: 
+	\[
+	{\hat{a}}_{i}^{\dagger} = \Big(\hat{x_{i}} - \frac{i}{m\omega}\hat{p_{i}}\Big).
+	\]
+	By virtue of $[{\hat{x}}_{i},{\hat{p}}_{j}] = i\hslash\delta_{i,j}$, we have $[{\hat{a}}_{i},{\hat{a}}_{j}^{\dagger}] = \delta_{i,j}.$ We can construct our three dimensional oscillator Hamiltonian in the same manner as our one dimensional version, then,
+	\[
+	\hat{H} = \hslash\omega\overset{3}{\sum_{i = 1}}(\frac{1}{2} + {\hat{a}}_{i}^{\dagger}{\hat{a}}_{i}).
+	\]
+	Given ${\hat{b}}_{i}^{\dagger}$, let's confirm their commutation relations:
+	\begin{align*}
+		[{\hat{b}}_{1},{\hat{b}}_{1}^{\dagger}] &= \frac{1}{2}[({\hat{a}}_{1} - i{\hat{a}}_{2}),({\hat{a}}_{1}^{\dagger} + i{\hat{a}}_{2}^{\dagger})] \\
+							&= \frac{1}{2}([{\hat{a}}_{1},{\hat{a}}_{1}^{\dagger}] + i[{\hat{a}}_{1},{\hat{a}}_{2}^{\dagger}] - i[{\hat{a}}_{2},{\hat{a}}_{1}^{\dagger}] + [{\hat{a}}_{2},{\hat{a}}_{2}^{\dagger}]) \\
+							&= 1 \\
+		[{\hat{b}}_{0},{\hat{b}}_{0}^{\dagger}] &= [{\hat{a}}_{3}^{,}{\hat{a}}_{3}^{\dagger}] \\
+							&= 1 \\
+		[{\hat{b}}_{- 1},{\hat{b}}_{- 1}^{\dagger}] &= \frac{1}{2}[({\hat{a}}_{1} + i{\hat{a}}_{2}),({\hat{a}}_{1}^{\dagger} - i{\hat{a}}_{2}^{\dagger})] \\
+						      &= \frac{1}{2}([\hat{a_{1}},{\hat{a}}_{1}^{\dagger}] - i[{\hat{a}}_{1},{\hat{a}}_{2}^{\dagger}] + i[{\hat{a}}_{2}{\hat{a}}_{1}^{\dagger}] + [{\hat{a}}_{2},{\hat{a}}_{2}^{\dagger}]) \\
+						      &= 1
+	\end{align*}
+	Clearly, both $[{\hat{b}}_{0},{\hat{b}}_{1}^{\dagger}]$ and $[{\hat{b}}_{0},{\hat{b}}_{- 1}^{\dagger}]$ are $0$. This just leaves
+	\begin{align*}
+		[{\hat{b}}_{1},{\hat{b}}_{- 1}^{\dagger}] &= - \frac{1}{2}[({\hat{a}}_{1} - i{\hat{a}}_{2}),({\hat{a}}_{1}^{\dagger} - i{\hat{a}}_{2}^{\dagger})] \\
+							  &= - \frac{1}{2}([{\hat{a}}_{1},{\hat{a}}_{1}^{\dagger}] - i[{\hat{a}}_{1},{\hat{a}}_{2}^{\dagger}] - i[{\hat{a}}_{2},{\hat{a}}_{1}^{\dagger}] - [{\hat{a}}_{2},{\hat{a}}_{2}^{\dagger}]) \\
+							  &= 0
+	\end{align*}
+	showing $[{\hat{b}}_{i},{\hat{b}}_{j}^{\dagger}] = \delta_{ij}.$ Now let's compute each ${\hat{b}}_{m}^{\dagger}{\hat{b}}_{m}$.
+
+	\begin{align*}
+		{\hat{b}}_{1}^{\dagger}{\hat{b}}_{1} &= \frac{1}{2}({\hat{a}}_{1}^{\dagger} + i{\hat{a}}_{2}^{\dagger})({\hat{a}}_{1} - i{\hat{a}}_{2}) \\
+					 &= \frac{1}{2}({\hat{a}}_{1}^{\dagger}{\hat{a}}_{1} - i{\hat{a}}_{1}^{\dagger}{\hat{a}}_{2} + i{\hat{a}}_{2}^{\dagger}{\hat{a}}_{1} + {\hat{a}}_{2}^{\dagger}{\hat{a}}_{2}) \\
+		{\hat{b}}_{0}^{\dagger}{\hat{b}}_{0} &= {\hat{a}}_{3}^{\dagger}{\hat{a}}_{3} \\
+		{\hat{b}}_{- 1}^{\dagger}{\hat{b}}_{- 1} &= \frac{1}{2}({\hat{a}}_{1}^{\dagger} - i{\hat{a}}_{2}^{\dagger})({\hat{a}}_{1} + i{\hat{a}}_{2}) \\
+						   &= \frac{1}{2}({\hat{a}}_{1}^{\dagger}{\hat{a}}_{1} + i{\hat{a}}_{1}^{\dagger}{\hat{a}}_{2} - i{\hat{a}}_{2}^{\dagger}{\hat{a}}_{1} + {\hat{a}}_{2}^{\dagger}{\hat{a}}_{2})
+	\end{align*}
+	Their sum is
+	\[
+	\overset{1}{\sum_{m = - 1}}{\hat{b}}_{m}^{\dagger}{\hat{b}}_{m} = \overset{3}{\sum_{i = 1}}{\hat{a}}_{i}^{\dagger}{\hat{a}}_{i},
+	\]
+	so we may safely rewrite our Hamiltonian as
+	\[
+	\hat{H} = \hslash\omega\overset{1}{\sum_{m = - 1}}\Big(\frac{1}{2} + {\hat{b}}_{m}^{\dagger}{\hat{b}}_{m}\Big).
+	\]
+	Similarly, it is clear that we can rewrite
+	\[
+	{\hat{L}}^{3} = - i\hslash({\hat{a}}_{1}^{\dagger}{\hat{a}}_{2} - {\hat{a}}_{2}^{\dagger}{\hat{a}}_{1})
+	\]
+	as
+	\[
+	{\hat{L}}^{3} = \hslash\overset{1}{\sum_{m = - 1}}m{\hat{b}}_{m}^{\dagger}{\hat{b}}_{m},
+	\]
+	because our cross terms in each ${\hat{b}}_{m}^{\dagger}{\hat{b}}_{m}$ already contain $i$ and $m = 0$ gets rid of our ${\hat{a}}_{3}^{\dagger}{\hat{a}}_{3}$.
+	\end{solution}
+
+	\question Since for fermions we have ${\hat{c}}_{1}^{\dagger}{\hat{c}}_{2}^{\dagger}|0\rangle = - {\hat{c}}_{2}^{\dagger}{\hat{c}}_{1}^{\dagger}|0\rangle$, then the state $|11\rangle$ depends on which fermion is added first. If we put the first fermion into the state $\psi_{i}(r_{1})$ and we put the second fermion into the state $\psi_{j}(r_{2})$, a representation for $|11\rangle$ is
+	\[
+	\Psi(r_{1},r_{2}) = \frac{1}{\sqrt{2}}[\psi_{1}(r_{1})\psi_{2}(r_{2}) - \psi_{2}(r_{1})\psi_{1}(r_{2})].
+	\]
+	Show that a generalization of this result for $N$ fermions is
+	$\Psi(r_{1}\ldots r_{N})$, which can be written out as
+	\[
+		\frac{1}{\sqrt{N!}}\left| \begin{matrix}
+	\psi_{1}(r_{1}) & \psi_{2}(r_{1}) & \ldots & \psi_{N}(r_{1}) \\
+	\psi_{1}(r_{2}) & \psi_{2}(r_{2}) & \ldots & \psi_{N}(r_{2}) \\
+	 \vdots & \vdots & & \vdots \\
+	\psi_{1}(r_{N}) & \psi_{2}(r_{N}) & \ldots & \psi_{1}(r_{N}) \\
+	\end{matrix} \right|.
+	\]
+	This expression is known as a Slater determinant.
+	
+	\begin{solution}
+	Given $N$ fermions, a composite state may be arrived at $N!$ ways,
+	corresponding to the number of permutations of single particle states.
+	Furthermore, changing the order in which fermions are added to these
+	single states introduces a minus sign to our wave function. Further
+	still, having two fermions in the same state is impossible, and our wave
+	function for such a composite state should be identically zero.
+
+	These properties may be captured succinctly in the determinant of a
+	matrix consisting of individual states. Put another way, systems
+	representable by a Slater determinant trivially satisfy antisymmetry and
+	the Pauli exclusion principal. The leading $\frac{1}{\sqrt{N!}}$ is
+	simply a normalization factor.
+	\end{solution}
+\end{questions}
+
+\end{document}

@@ -12,6 +12,23 @@
 			Since we are concerned with the case where no sources are present, Gauss's law for the electric field is $0$. The divergence of the magnetic field is always taken to be $0$.
 		\end{solution}
 	
+		\question If $|\!\uparrow\rangle$ and $|\!\downarrow\rangle$ are normalized, what factor does $|\Omega\rangle$ need to make it normalized? (You may assume that $\||\alpha\rangle|\beta\rangle\|=\|\alpha\|\|\beta\|$.)
+		
+		\begin{solution}
+			The norm of $|\Omega\rangle$, as currently defined, is
+			\begin{align*}
+				\langle\Omega|\Omega\rangle &= \big(\langle\downarrow\!|\langle\uparrow\!| - \langle\uparrow\!|\langle\downarrow\!|\big)\big(|\!\uparrow\rangle|\!\downarrow\rangle - |\!\downarrow\rangle|\!\uparrow\rangle\big) \\
+				&= \langle\downarrow\!|\langle\uparrow\!|\!\uparrow\rangle|\!\downarrow\rangle - \langle\downarrow\!|\langle\uparrow\!|\!\downarrow\rangle|\!\uparrow\rangle - \langle\uparrow\!|\langle\downarrow\!|\!\uparrow\rangle|\!\downarrow\rangle + \langle\uparrow\!|\langle\downarrow\!|\!\downarrow\rangle|\!\uparrow\rangle \\
+				&= \langle\downarrow\!|\!\downarrow\rangle + \langle\uparrow\!|\!\uparrow\rangle \\
+				&= 2
+			\end{align*}
+			and so $|\Omega\rangle$ must be multiplied by $1/\sqrt{2}$ make it normalized.
+		\end{solution}
 	
+		\question Can you see quickly why this has spin $0$? \textit{Hint}: One way is to use the index notation to show that any such anti-symmetrical combination must essentially be a scalar, bearing in mind taht the spin space is $2$-dimensional.
+		
+		\question Why not? Find a way of doing this, however, if $|\alpha\rangle$ and $|\beta\rangle$ are not so localized.
+		
+		\question Confirm this parenthetic comment, and give a direct calculational verification of the above expression for $|\Omega\rangle$. \textit{Hint}: See Exercise [22.26].
 	\end{questions}
 \end{document}
