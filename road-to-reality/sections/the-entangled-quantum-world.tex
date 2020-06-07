@@ -83,17 +83,45 @@
 			It's easiest to rewrite our states in terms of the up and down basis states. We can do this using our results from 23.5,
 			\begin{align*}
 				|\!\leftarrow\rangle &= \frac{\sqrt{2}}{2}|\!\uparrow\rangle + \frac{\sqrt{2}}{2}|\!\downarrow\rangle \\
-				|\!\nearrow\rangle &= \frac{4}{5}|\!\uparrow\rangle - \frac{3}{5}|\!\downarrow\rangle
+				|\!\nearrow\rangle &= \cos \alpha|\!\uparrow\rangle + \sin \alpha|\!\downarrow\rangle
 			\end{align*}
-			Using these, we can rewrite the state as
+			where
+			\[
+				\alpha = -\frac{1}{2}\Big(\frac{\pi}{2} - \cos^{-1}\frac{3}{5}\Big).
+			\]
+			It is useful to note that $\sin^2\alpha = 1/10$ and $\cos^2\alpha = 9/10$, and so $\sin\alpha = -1/\sqrt{10}$ and $\cos\alpha = 3/\sqrt{10}$. Using this, we can rewrite the state as
 			\begin{align*}
-				|\!\leftarrow\nearrow\rangle &= \Big(\frac{\sqrt{2}}{2}|\!\uparrow\rangle + \frac{\sqrt{2}}{2}|\!\downarrow\rangle\Big)\Big(\frac{4}{5}|\!\uparrow\rangle - \frac{3}{5}|\!\downarrow\rangle\Big) + \Big(\frac{4}{5}|\!\uparrow\rangle - \frac{3}{5}|\!\downarrow\rangle\Big)\Big(\frac{\sqrt{2}}{2}|\!\uparrow\rangle + \frac{\sqrt{2}}{2}|\!\downarrow\rangle\Big) \\
-				&= \frac{4\sqrt{2}}{5}|\!\uparrow\rangle|\!\uparrow\rangle + \frac{\sqrt{2}}{10}|\!\uparrow\rangle|\!\downarrow\rangle + \frac{\sqrt{2}}{10}|\!\downarrow\rangle|\!\uparrow\rangle - \frac{6\sqrt{2}}{10}|\!\downarrow\rangle|\!\downarrow\rangle
+				|\!\leftarrow\nearrow\rangle &= \Big(\frac{\sqrt{2}}{2}|\!\uparrow\rangle + \frac{\sqrt{2}}{2}|\!\downarrow\rangle\Big)\Big(\cos\alpha|\!\uparrow\rangle + \sin\alpha|\!\downarrow\rangle\Big) + \Big(\cos\alpha|\!\uparrow\rangle + \sin\alpha|\!\downarrow\rangle\Big)\Big(\frac{\sqrt{2}}{2}|\!\uparrow\rangle + \frac{\sqrt{2}}{2}|\!\downarrow\rangle\Big) \\
+				&= \frac{3\sqrt{5}}{5}|\!\uparrow\rangle|\!\uparrow\rangle + \frac{\sqrt{5}}{5}|\!\uparrow\rangle|\!\downarrow\rangle + \frac{\sqrt{5}}{5}|\!\downarrow\rangle|\!\uparrow\rangle - \frac{\sqrt{5}}{5}|\!\downarrow\rangle|\!\downarrow\rangle
 			\end{align*}
 			This is clearly not orthogonal to $|\!\downarrow\rangle|\!\downarrow\rangle$. As for the other states, let's examine them one at a time.
 			\begin{align*}
-				(\langle\downarrow|\langle\leftarrow\!|)|\!\leftarrow\nearrow\rangle &= \Big(\frac{\sqrt{2}}{2}\langle\downarrow\!|\langle\uparrow\!| + \frac{\sqrt{2}}{2}\langle\downarrow|\langle\downarrow\!|\Big)
+				\Big(\langle\downarrow\!|\langle\leftarrow\!|\Big)|\!\leftarrow\nearrow\rangle &= \Big(\frac{\sqrt{2}}{2}\langle\downarrow\!|\langle\uparrow\!| + \frac{\sqrt{2}}{2}\langle\downarrow|\langle\downarrow\!|\Big)|\!\leftarrow\nearrow\rangle \\
+				&= \frac{3}{2}\sin\alpha + \frac{1}{2}\cos\alpha \\
+				&= 0 \\
+				\Big(\langle\leftarrow\!|\langle\downarrow\!|\Big)|\!\leftarrow\nearrow\rangle &= \Big(\frac{\sqrt{2}}{2}\langle\uparrow\!|\langle\downarrow\!| + \frac{\sqrt{2}}{2}\langle\downarrow|\langle\downarrow\!|\Big)|\!\leftarrow\nearrow\rangle \\
+				&= \frac{3}{2}\sin\alpha + \frac{1}{2}\cos\alpha \\
+				&= 0 \\
+				\Big(\langle\rightarrow\!|\langle\rightarrow\!|\Big) |\!\leftarrow\nearrow\rangle &= \Big(\frac{\sqrt{2}}{2}\langle\uparrow\!| - \frac{\sqrt{2}}{2}\langle\downarrow\!|\Big)\Big(\frac{\sqrt{2}}{2}\langle\uparrow\!| - \frac{\sqrt{2}}{2}\langle\downarrow\!|\Big)|\!\leftarrow\nearrow\rangle \\
+				&= \frac{1}{2}\Big(\langle\uparrow\!|\langle\uparrow\!| - \langle\uparrow\!|\langle\downarrow\!| - \langle\downarrow\!|\langle\uparrow\!| + \langle\downarrow\!|\langle\downarrow\!|\Big)|\!\leftarrow\nearrow\rangle \\
+				&= \frac{\sqrt{2}}{2}\cos\alpha + \frac{\sqrt{2}}{2}\sin\alpha - \frac{\sqrt{2}}{4}\Big(2\cos\alpha + 2\sin\alpha\Big) \\
+				&= 0
 			\end{align*}
+		\end{solution}
+	
+		\question Show this.
+		
+		\begin{solution}
+			We must first normalize $|\!\leftarrow\nearrow\rangle$. Its norm is
+			\begin{align*}
+				\langle\leftarrow\nearrow\!|\!\leftarrow\nearrow\rangle &= 2\cos^2\alpha + 2\sin^2\alpha + (\cos\alpha+ \sin\alpha)^2 \\
+				&= 3\cos^2\alpha + 2\cos\alpha\sin\alpha + 3\sin^2\alpha \\
+				&= \frac{12}{5}
+			\end{align*}
+			and so we multiply it by $\sqrt{5/12}$. Both parties measuring $|\!\downarrow\rangle|\!\downarrow\rangle$ results in a probability of
+			\[
+				\Big[\Big(\langle\downarrow\!|\langle\downarrow\!|\Big)|\!\leftarrow\nearrow\rangle\Big]^2 = \frac{5}{6}\sin^2\alpha = \frac{1}{12}.
+			\]
 		\end{solution}
 	\end{questions}
 \end{document}
