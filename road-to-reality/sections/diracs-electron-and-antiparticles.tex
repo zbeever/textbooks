@@ -1,0 +1,31 @@
+\documentclass[../road-to-reality.tex]{subfiles}
+
+\begin{document}
+	\printanswers
+	
+	\section{Dirac's electron and antiparticles}
+	
+	\begin{questions}
+		\question Check that this is indeed a solution.
+		
+		\begin{solution}
+			This can be exactly solved through integration, as it can be rewritten
+			\begin{align*}
+				\frac{1}{\psi}\frac{\partial\psi}{\partial t} &= {-\frac{iE}{\hbar}} \\
+				\int_0^t\frac{1}{\psi}\frac{\partial\psi}{\partial t'}\,\mathrm{d}t' &= \int_0^t{-\frac{iE}{\hbar}}\,\mathrm{d}t' \\
+				\int_{\psi_0}^{\psi}\frac{\mathrm{d}\psi}{\psi} &= {-\frac{iE}{\hbar}}t \\
+				\ln\psi &= \ln\psi_0 - \frac{iE}{\hbar}t \\
+				\psi &= \psi_0e^{-iEt/\hbar}
+			\end{align*}
+		\end{solution}
+		
+		\question Explain why adding a constant $K$ to the Hamiltonian simply has the effect that all solutions of the Schr\"odinger equation are multiplied by the same factor. Find this factor. Does this substantially affect the quantum dynamics? Supose we are concerned with the gravitational effect of a qunatum system. Why can we not simply `renormalize` the energy in this way under the circumstances?
+	
+		\begin{solution}
+			As can be seen from the previous problem, adding $K$ to the Hamiltonian will result in the phase factor $e^{-iKt/\hbar}$ multiplying every solution. Since wavefunctions are fixed up to a phase factor, this does not change the dynamics.
+			
+			The reason we cannot renormalize gravitational energy this way is because now a constant addition to the Hamiltonian corresponds to a change in mass. Such a change would effect how gravity couples to the system, and thus change its dynamics.
+		\end{solution}
+	
+	\end{questions}
+\end{document}
