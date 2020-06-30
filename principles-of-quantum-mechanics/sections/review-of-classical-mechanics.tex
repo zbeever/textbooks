@@ -264,7 +264,7 @@
 			we must have $\{\bar{q}_j, \bar{q}_k\} = \{\bar{p}_j, \bar{p}_k\} = 0$ and $\{\bar{q}_j, \bar{p}_k\} = -\{\bar{p}_k, \bar{q}_j\} = \delta_{jk}$.
 		\end{solution}
 		
-		\question Verify that the change to a rotate frame
+		\question Verify that the change to a rotated frame
 		\begin{gather*}
 			\bar{x} = x\cos\theta - y\sin\theta \\
 			\bar{y} = x\sin\theta + y\cos\theta \\
@@ -294,21 +294,72 @@
 		
 		\question Show that the polar variables $\rho = (x^2+y^2)^{1/2}$, $\phi = \tan^{-1}(y/x)$,
 		\[
-			p_\rho = \hat{e}_\rho\cdot\mathbf{p} = \frac{xp_x - yp_y}{(x^2 + y^2)^{1/2}}, \quad p_\phi = xp_y - yp_x (= l_z)
+			p_\rho = \hat{e}_\rho\cdot\mathbf{p} = \frac{xp_x + yp_y}{(x^2 + y^2)^{1/2}}, \quad p_\phi = xp_y - yp_x (= l_z)
 		\]
 		are canonical. ($\hat{e}_\rho$ is the unit vector in the radial direction.)
 		
 		\begin{solution}
-			For ease of reference, we will first compute all necessary derivatives
+			First we collect the necessary derivatives,
 			\begin{gather*}
-				\frac{\partial\rho}{\partial x} = \frac{x}{(x^2 + y^2)^{1/2}} \qquad \frac{\partial\rho}{\partial y} = \frac{y}{(x^2 + y^2)^{1/2}} \\
-				\frac{\partial\phi}{\partial x} = -\frac{y}{x^2 + y^2} \qquad \frac{\partial\phi}{\partial y} = \frac{x}{x^2 + y^2} \\
-				\frac{\partial p_\rho}{\partial p_x} = \frac{x}{(x^2 + y^2)^{1/2}} \qquad \frac{\partial p_\rho}{\partial p_y} = -\frac{y}{(x^2 + y^2)^{1/2}} \\
-				\frac{\partial p_\phi}{\partial p_x} = -y \qquad \frac{\partial p_\phi}{\partial p_y} = x
+				\frac{\partial\rho}{\partial x} = \frac{x}{(x^2 + y^2)^{1/2}} \qquad \frac{\partial\rho}{\partial y} = \frac{y}{(x^2+y^2)^{1/2}} \qquad \frac{\partial\rho}{\partial p_x} = 0 \qquad \frac{\partial\rho}{\partial p_y} = 0 \\
+				\frac{\partial\phi}{\partial x} = -\frac{y}{x^2+y^2} \qquad \frac{\partial\phi}{\partial{y}} = \frac{x}{x^2+y^2} \qquad \frac{\partial\phi}{\partial p_x} = 0 \qquad \frac{\partial\phi}{\partial p_y} = 0 \\
+				\frac{\partial p_\rho}{\partial{x}} = -\frac{y(p_yx - p_xy)}{(x^2+y^2)^{3/2}} \qquad \frac{\partial p_\rho}{\partial{y}} = -\frac{x(p_xy - p_yx)}{(x^2+y^2)^{3/2}} \qquad \frac{\partial p_\rho}{\partial p_x} = \frac{x}{(x^2+y^2)^{1/2}} \qquad \frac{\partial p_\rho}{\partial p_y} = \frac{y}{(x^2+y^2)^{1/2}} \\
+				\frac{\partial p_\phi}{\partial x} = p_y \qquad \frac{\partial p_\phi}{\partial y} = -p_x \qquad \frac{\partial p_\phi}{\partial p_x} = -y \qquad \frac{\partial p_\phi}{\partial p_y} = x
 			\end{gather*}
+			From these, we can compute the Poisson bracket of all variable combinations. Clearly the Poisson bracket of any coordinate (or conjugate momenta) with itself is $0$, so we need only check those that differ:
+			\begin{align*}
+				\{\rho, \phi\} &= \frac{\partial\rho}{\partial{x}}\frac{\partial\phi}{\partial p_x} - \frac{\partial\rho}{\partial{p_x}}\frac{\partial\phi}{\partial x} + \frac{\partial\rho}{\partial{y}}\frac{\partial\phi}{\partial p_y} - \frac{\partial\rho}{\partial{p_y}}\frac{\partial\phi}{\partial y}  \\
+				&= 0 \\
+				\{p_\rho, p_\phi\} &= \frac{\partial p_\rho}{\partial{x}}\frac{\partial p_\phi}{\partial p_x} - \frac{\partial p_\rho}{\partial{p_x}}\frac{\partial p_\phi}{\partial x} + \frac{\partial p_\rho}{\partial{y}}\frac{\partial p_\phi}{\partial p_y} - \frac{\partial p_\rho}{\partial{p_y}}\frac{\partial p_\phi}{\partial y} \\
+				&= \frac{y^2(p_yx - p_xy)}{(x^2+y^2)^{3/2}} - \frac{p_yx}{(x^2+y^2)^{1/2}} - \frac{x^2(p_xy - p_yx)}{(x^2+y^2)^{3/2}} + \frac{p_xy}{(x^2+y^2)^{1/2}} \\
+				&= \frac{p_yx-p_xy}{(x^2+y^2)^{1/2}} - \frac{p_yx - p_xy}{(x^2+y^2)^{1/2}} \\
+				&= 0 \\
+				\{\rho, p_\rho\} &= \frac{\partial \rho}{\partial{x}}\frac{\partial p_\rho}{\partial p_x} - \frac{\partial \rho}{\partial{p_x}}\frac{\partial p_\rho}{\partial x} + \frac{\partial \rho}{\partial{y}}\frac{\partial p_\rho}{\partial p_y} - \frac{\partial \rho}{\partial{p_y}}\frac{\partial p_\rho}{\partial y} \\
+				&= \frac{x^2}{x^2+y^2} + \frac{y^2}{x^2 + y^2} \\
+				&= 1 \\
+				\{\rho, p_\phi\} &= \frac{\partial \rho}{\partial{x}}\frac{\partial p_\phi}{\partial p_x} - \frac{\partial \rho}{\partial{p_x}}\frac{\partial p_\phi}{\partial x} + \frac{\partial \rho}{\partial{y}}\frac{\partial p_\phi}{\partial p_y} - \frac{\partial \rho}{\partial{p_y}}\frac{\partial p_\phi}{\partial y} \\
+				&= -xy + xy \\
+				&= 0 \\
+				\{\phi, p_\rho\} &= \frac{\partial \phi}{\partial{x}}\frac{\partial p_\rho}{\partial p_x} - \frac{\partial \phi}{\partial{p_x}}\frac{\partial p_\rho}{\partial x} + \frac{\partial \phi}{\partial{y}}\frac{\partial p_\rho}{\partial p_y} - \frac{\partial \phi}{\partial{p_y}}\frac{\partial p_\rho}{\partial y} \\
+				&= -\frac{xy}{(x^2+y^2)^{3/2}} + \frac{xy}{(x^2+y^2)^{3/2}} \\
+				&= 0 \\
+				\{\phi, p_\phi\} &= \frac{\partial \phi}{\partial{x}}\frac{\partial p_\phi}{\partial p_x} - \frac{\partial \phi}{\partial{p_x}}\frac{\partial p_\phi}{\partial x} + \frac{\partial \phi}{\partial{y}}\frac{\partial p_\phi}{\partial p_y} - \frac{\partial \phi}{\partial{p_y}}\frac{\partial p_\phi}{\partial y} \\
+				&= \frac{y^2}{x^2+y^2} + \frac{x^2}{x^2+y^2} \\
+				&= 1
+			\end{align*}
 		\end{solution}
 		
 		\question Verify that the change from the variables $\mathbf{r}_1$, $\mathbf{r}_2$, $\mathbf{p}_1$, $\mathbf{p}_2$ to $\mathbf{r}_{\text{CM}}$, $\mathbf{p}_{\text{CM}}$, $\mathbf{r}$, and $\mathbf{p}$ is a canonical transformation. (See Exercise 2.5.4).
+		
+		\begin{solution}
+			The new variables are defined by
+			\begin{align*}
+				\mathbf{r} &= \mathbf{r}_1 - \mathbf{r}_2 \\
+				\mathbf{p} &= \frac{m_1m_2}{m_1+m_2}\Big(\frac{\mathbf{p}_1}{m_1} - \frac{\mathbf{p}_2}{m_2}\Big) \\
+				\mathbf{r}_{\text{CM}} &= \frac{1}{m_1 + m_2}\Big(m_1\mathbf{r}_1 + m_2\mathbf{r}_2\Big) \\
+				\mathbf{p}_{\text{CM}} &= \mathbf{p}_1 + \mathbf{p}_2
+			\end{align*}
+			Because these are linear relationships, we can work entirely in the Poisson algebra,
+			\begin{align*}
+				\{\mathbf{r}, \mathbf{p}\} &= \frac{m_1m_2}{m_1+m_2}\{\mathbf{r}_1-\mathbf{r}_2, \frac{\mathbf{p}_1}{m_1} - \frac{\mathbf{p}_2}{m_2}\} \\
+				&= \frac{m_2}{m_1+m_2}\{\mathbf{r}_1, \mathbf{p}_1\} + \frac{m_1}{m_1+m_2}\{\mathbf{r}_2, \mathbf{p}_2\} \\
+				&= \frac{m_2 + m_1}{m_1 + m_2} \\
+				&= 1 \\
+				\{\mathbf{r}, \mathbf{p}_{\text{CM}}\} &= \{\mathbf{r}_1 - \mathbf{r}_2, \mathbf{p}_1 + \mathbf{p}_2\} \\
+				&= \{\mathbf{r}_1, \mathbf{p}_1\} - \{\mathbf{r}_2, \mathbf{p}_2\} \\
+				&= 1 - 1 \\
+				&= 0 \\
+				\{\mathbf{r}_{\text{CM}}, \mathbf{p}\} &= \frac{m_1m_2}{(m_1+m_2)^2}\{m_1\mathbf{r}_1 + m_2\mathbf{r}_2, \frac{\mathbf{p}_1}{m_1} - \frac{\mathbf{p}_2}{m_2}\} \\
+				&= \frac{m_1m_2}{(m_1+m_2)^2}(\{\mathbf{r}_1, \mathbf{p}_1\} - \{\mathbf{r}_2, \mathbf{p}_2\}) \\
+				&= \frac{m_1m_2}{(m_1+m_2)^2}(1 - 1) \\
+				&= 0 \\
+				\{\mathbf{r}_{\text{CM}}, \mathbf{p}_{\text{CM}}\} &= \frac{1}{m_1+m_2}\{m_1\mathbf{r}_1 + m_2\mathbf{r}_2, \mathbf{p}_1 + \mathbf{p}_2\} \\
+				&= \frac{m_1}{m_1 + m_2}\{\mathbf{r}_1, \mathbf{p}_1\} + \frac{m_2}{m_1 + m_2}\{\mathbf{r}_2, \mathbf{p}_2\} \\
+				&= \frac{m_1 + m_2}{m_1 + m_2} \\
+				&= 1
+			\end{align*}
+			All other combinations are trivially $0$, implying that the transformation is canonical.
+		\end{solution}
 		
 		\question Verify that
 		\begin{gather*}
@@ -316,6 +367,28 @@
 			\bar{p} = q\cot p
 		\end{gather*}
 		is a canonical transformation.
+		
+		\begin{solution}
+			Once again collecting derviatives,
+			\begin{gather*}
+				\frac{\partial \bar{q}}{\partial q} = -\frac{1}{q} \qquad \frac{\partial \bar{q}}{\partial p} = \cot p \\
+				\frac{\partial \bar{p}}{\partial q} = \cot{p} \qquad \frac{\partial \bar{p}}{\partial p} = -q\csc^2p
+			\end{gather*}
+			we find
+			\begin{align*}
+				\{\bar{q}, \bar{p}\} &= \csc^2p - \cot^2 p \\
+				&= 1
+			\end{align*}
+			where this identity can be seen from
+			\[
+				\cos^2p + \sin^2p = 1
+			\]
+			and so
+			\[
+				\cot^2p + 1 = \csc^2p.
+			\]
+			As this is the only nontrivial combination we are done: the transformation is canonical.
+		\end{solution}
 		
 		\question We would like to derive here Eq. (2.7.9), which gives the transformation of the momenta under a coordinate transformation in configuration space:
 		\[
@@ -338,6 +411,29 @@
 		Use the chain rule and the fact that $q = q(\bar{q})$ and note $q(\bar{q}, \dot{\bar{q}})$ to derive Eq. (2.7.9).
 		
 		(4) Verify, by calculating the PB in Eq. (2.7.18), that the point transformation is canonical.
+		
+		\begin{solution}
+			The first step is simply applying the chain rule when taking the total time derivative of $q_i = q_i(\bar{q}_1,\dots\bar{q}_n)$, yielding
+			\[
+				\dot{q}_i = \sum_k\frac{\partial q_i}{\partial \bar{q}_k}\dot{\bar{q}}_k.
+			\]
+			Taking the partial derivative of this with respect to a particular $\dot{\bar{q}}_j$ gives
+			\[
+				\frac{\partial\dot{q}_i}{\partial \dot{\bar{q}}_j} = \sum_k\frac{\partial q_i}{\partial \bar{q}_k} \frac{\partial \dot{\bar{q}}_k}{\partial \dot{\bar{q}}_j} = \sum_k\frac{\partial q_i}{\partial \bar{q}_k}\delta_{kj} = \frac{\partial q_i}{\partial q_j},
+			\]
+			where we have used the fact that $\partial q_i / \partial \bar{q}_k$ is independent of $\dot{\bar{q}}_j$.
+			
+			Differentiating the Lagrangian with respect to $\dot{\bar{q}}_i$ gives
+			\[
+				\bar{p}_i = \frac{\partial \mathcal{L}(q, \dot{q})}{\partial \dot{\bar{q}}_i} = \sum_j\frac{\partial\mathcal{L}}{\partial q_j}\frac{\partial q_j}{\partial \dot{\bar{q}}_i} + \frac{\partial \mathcal{L}}{\partial \dot{q}_j}\frac{\partial \dot{q}_j}{\partial \dot{\bar{q}}_i} = \sum_j\frac{\partial q_j}{\partial \bar{q}_i}p_j
+			\]
+			where we have used $q = q(\bar{q})$ and so $\partial q_j / \partial \dot{\bar{q}}_i = 0$.
+			
+			The independence of each $\bar{q}_i$ with respect to each $p_k$ implies $\{\bar{q}_i, \bar{q}_j\} = 0$ for all $i, j$. Poisson brackets of the barred momenta are
+			\begin{align*}
+				\{\bar{p}_i, \bar{p}_j\} = 
+			\end{align*}
+		\end{solution}
 		
 		\question Verify Eq. (2.7.19) by direct computation. Use the chain rule to go from $q, p$ derivatives to $\bar{q}, \bar{p}$ derivatives. Collect terms that represent PB of the latter.
 		
