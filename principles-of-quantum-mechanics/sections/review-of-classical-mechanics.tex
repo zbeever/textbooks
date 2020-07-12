@@ -419,7 +419,7 @@
 			\]
 			Taking the partial derivative of this with respect to a particular $\dot{\bar{q}}_j$ gives
 			\[
-				\frac{\partial\dot{q}_i}{\partial \dot{\bar{q}}_j} = \sum_k\frac{\partial q_i}{\partial \bar{q}_k} \frac{\partial \dot{\bar{q}}_k}{\partial \dot{\bar{q}}_j} = \sum_k\frac{\partial q_i}{\partial \bar{q}_k}\delta_{kj} = \frac{\partial q_i}{\partial q_j},
+				\frac{\partial\dot{q}_i}{\partial \dot{\bar{q}}_j} = \sum_k\frac{\partial q_i}{\partial \bar{q}_k} \frac{\partial \dot{\bar{q}}_k}{\partial \dot{\bar{q}}_j} = \sum_k\frac{\partial q_i}{\partial \bar{q}_k}\delta_{kj} = \frac{\partial q_i}{\partial \bar{q}_j},
 			\]
 			where we have used the fact that $\partial q_i / \partial \bar{q}_k$ is independent of $\dot{\bar{q}}_j$.
 			
@@ -429,17 +429,98 @@
 			\]
 			where we have used $q = q(\bar{q})$ and so $\partial q_j / \partial \dot{\bar{q}}_i = 0$.
 			
-			The independence of each $\bar{q}_i$ with respect to each $p_k$ implies $\{\bar{q}_i, \bar{q}_j\} = 0$ for all $i, j$. Poisson brackets of the barred momenta are
-			\begin{align*}
-				\{\bar{p}_i, \bar{p}_j\} = 
-			\end{align*}
+			We skip verification of the invariance of the Poisson bracket, noting the fact that $\bar{p}_i$ defined this way guarantees canonical phase space coordiantes.
 		\end{solution}
 		
 		\question Verify Eq. (2.7.19) by direct computation. Use the chain rule to go from $q, p$ derivatives to $\bar{q}, \bar{p}$ derivatives. Collect terms that represent PB of the latter.
 		
+		\begin{solution}
+			Canonical transformations must obey $\dot{\bar{q}}_i = \frac{\partial\mathcal{H}}{\partial \bar{p}}$. Expanded out, this requirement becomes
+			\begin{align*}
+				\frac{\mathrm{d} \bar{q}_i}{\mathrm{d} t} &= \sum_j\frac{\partial \bar{q}_i}{\partial q_j}\frac{\partial q_j}{\partial t} + \frac{\partial\bar{q}_i}{\partial p_j}\frac{\partial p_j}{\partial t} \\
+				&= \sum_j\frac{\partial \bar{q}_i}{\partial q_j}\frac{\partial \mathcal{H}}{\partial p_j} - \frac{\partial\bar{q}_i}{\partial p_j}\frac{\partial \mathcal{H}}{\partial q_j} \\
+				&= \frac{\partial \mathcal{H}}{\partial \bar{p}_i} \\
+			    &= \sum_j\frac{\partial\mathcal{H}}{\partial q_j}\frac{\partial q_j}{\partial\bar{p}_i} + \frac{\partial\mathcal{H}}{\partial p_j}\frac{\partial p_j}{\partial \bar{p}_i}
+			\end{align*}
+			i.e. $\partial q_j/\partial \bar{p}_i = -\partial \bar{q}_i/\partial p_j$ and $\partial p_j/\partial \bar{p}_i = \partial\bar{q}_i/\partial q_j$. Using this last relationship makes this verification especially easy, as
+			\begin{align*}
+				\{\omega, \sigma\}_{q,p} &= \sum_i\frac{\partial\omega}{\partial q_i}\frac{\partial\sigma}{\partial p_i} - \frac{\partial\omega}{\partial p_i}\frac{\partial\sigma}{\partial q_i} \\
+				&= \sum_{i, j, k}\frac{\partial\omega}{\partial \bar{q}_j}\frac{\partial\bar{q}_j}{\partial q_i}\frac{\partial\sigma}{\partial \bar{p}_k}\frac{\partial\bar{p}_k}{\partial p_i} - \frac{\partial\omega}{\partial \bar{p}_k}\frac{\partial\bar{p}_k}{\partial p_i}\frac{\partial\sigma}{\partial \bar{q}_j}\frac{\partial\bar{q}_j}{\partial q_i} \\
+				&= \sum_{j, k}\Big(\frac{\partial\omega}{\partial \bar{q}_j}\frac{\partial\sigma}{\partial \bar{p}_k} - \frac{\partial\omega}{\partial \bar{p}_k}\frac{\partial\sigma}{\partial \bar{q}_j}\Big)\sum_i\frac{\partial\bar{q}_j}{\partial q_i}\frac{\partial\bar{p}_k}{\partial p_i} \\
+				&= \sum_{j, k}\Big(\frac{\partial\omega}{\partial \bar{q}_j}\frac{\partial\sigma}{\partial \bar{p}_k} - \frac{\partial\omega}{\partial \bar{p}_k}\frac{\partial\sigma}{\partial \bar{q}_j}\Big)\sum_i\frac{\partial{p}_i}{\partial \bar{p}_j}\frac{\partial\bar{p}_k}{\partial p_i} \\
+				&= \sum_{j, k}\Big(\frac{\partial\omega}{\partial \bar{q}_j}\frac{\partial\sigma}{\partial \bar{p}_k} - \frac{\partial\omega}{\partial \bar{p}_k}\frac{\partial\sigma}{\partial \bar{q}_j}\Big)\frac{\partial\bar{p}_k}{\partial p_j} \\
+				&= \sum_{j, k}\Big(\frac{\partial\omega}{\partial \bar{q}_j}\frac{\partial\sigma}{\partial \bar{p}_k} - \frac{\partial\omega}{\partial \bar{p}_k}\frac{\partial\sigma}{\partial \bar{q}_j}\Big)\delta_{kj} \\
+				&= \sum_{j}\frac{\partial\omega}{\partial \bar{q}_j}\frac{\partial\sigma}{\partial \bar{p}_j} - \frac{\partial\omega}{\partial \bar{p}_j}\frac{\partial\sigma}{\partial \bar{q}_j} \\
+				&= \{\omega, \sigma\}_{\bar{q}, \bar{p}}
+			\end{align*}
+		\end{solution}
+		
 		\question Show that $p = p_1 + p_2$, the total momentum, is the generator of infinitesimal translations for a two-particle system.
 		
+		\begin{solution}
+			A generic two-particle system has the Hamiltonian
+			\[
+				\mathcal{H} = \frac{p_1^2}{2m_1} + \frac{p_2^2}{2m_2} + V(q_1 - q_2)
+			\]
+			Consider the generator
+			\[
+				g(q, p) = p_1 + p_2
+			\]
+			which has the partial derivatives
+			\[
+				\frac{\partial g}{\partial q_i} = 0 \quad\text{and}\quad \frac{\partial g}{\partial p_i} = 1 \quad\text{for }i=1,2.
+			\]
+			Under the canonical transformation
+			\begin{align*}
+				q_i &\to q_i + \varepsilon\frac{\partial g}{\partial p_i} = q_i + \varepsilon \\
+				p_i &\to p_i - \varepsilon\frac{\partial g}{\partial q_i} = p_i
+			\end{align*}
+			the Hamiltonian is clearly left unchanged. Physically, this transformation can be seen as a spatial translation, offsetting the positions of the particles by an amount $\varepsilon$.
+		\end{solution}
+		
 		\question Verify that the infinitesimal transformation generated by any dynamical variables $g$ is a canonical transformation. (Hint: Work, as usual, to first order in $\varepsilon$.)
+		
+		\begin{solution}
+			This process is made easier if we first examine the Poisson bracket of $\{q_i, f\}$ and $\{p_i, f\}$ for an arbitrary well-behaved function $f(q, p)$,
+			\begin{align*}
+				\{q_i, f\} &= \sum_k\frac{\partial q_i}{\partial q_k}\frac{\partial f}{\partial p_k} - \frac{\partial q_i}{\partial p_k}\frac{\partial f}{\partial q_k} \\
+				&= \sum_k\delta_{ik}\frac{\partial f}{\partial p_k} \\
+				&= \frac{\partial f}{\partial p_i} \\
+				\{p_i, f\} &= \sum_k\frac{\partial p_i}{\partial q_k}\frac{\partial f}{\partial p_k} - \frac{\partial p_i}{\partial p_k}\frac{\partial f}{\partial q_k} \\
+				&= -\sum_k\delta_{ik}\frac{\partial f}{\partial q_k} \\
+				&= -\frac{\partial f}{\partial q_i}
+			\end{align*}
+			where we have used the fact that phase space coordinates are independent of one another. Remembering the Jacobi identity, we proceed to check that the given transformation preserves the Poisson bracket. For the position coordinates we have
+			\begin{align*}
+				\{\bar{q}_i, \bar{q}_j\} &= \{q_i + \varepsilon\frac{\partial g}{\partial p_i}, q_j + \varepsilon\frac{\partial g}{\partial p_j}\} \\
+				&= \{q_i, q_j\} + \varepsilon\Big(\{q_i,\frac{\partial g}{\partial p_j}\} + \{\frac{\partial g}{\partial p_i}, q_j\}\Big) + \mathcal{O}(\varepsilon^2) \\
+				&= \varepsilon\Big(\{q_i, \{q_j, g\}\} + \{\{q_i, g\}, q_j\}\Big) \\
+				&= \varepsilon\Big(\{q_i, \{q_j, g\}\} + \{q_j, \{g, q_i\}\}\Big) \\
+				&= -\varepsilon\{g, \{q_i, q_j\}\} \\
+				&= -\varepsilon\{g, 0\} \\
+				&= 0
+			\end{align*}
+			while the momenta coordinates are
+			\begin{align*}
+				\{\bar{p}_i, \bar{p}_j\} &= \{p_i - \varepsilon\frac{\partial g}{\partial q_i}, p_j - \varepsilon\frac{\partial g}{\partial q_j}\} \\
+				&= \{p_i, p_j\} - \varepsilon\Big(\{p_i, \frac{\partial g}{\partial q_j}\} + \{\frac{\partial g}{\partial q_i}, p_j\}\Big) + \mathcal{O}(\varepsilon^2) \\
+				&= -\varepsilon\Big(\{p_i, \{g, p_j\}\} + \{\{g, p_i\}, p_j\}\Big) \\
+				&= -\varepsilon\Big(\{p_i, \{g, p_j\}\} + \{p_j, \{p_i, g\}\}\Big) \\
+				&= \varepsilon\{g, \{p_i, p_j\}\} \\
+				&= \varepsilon\{g, 0\} \\
+				&= 0
+			\end{align*}
+			Finally, the Poisson bracket of an arbitrary pair of position and momentum coordinates is given by
+			\begin{align*}
+				\{\bar{q}_i, \bar{p}_j\} &= \{q_i + \varepsilon\frac{\partial g}{\partial p_i}, p_j - \varepsilon\frac{\partial g}{\partial q_j}\} \\
+				&= \{q_i, p_j\} -\varepsilon\Big(\{q_i, \frac{\partial g}{\partial q_j}\} - \{\frac{\partial g}{\partial p_i}, p_j\}\Big) + \mathcal{O}(\varepsilon^2) \\
+				&= \delta_{ij} - \varepsilon\Big(\{q_i, \{g, p_j\}\} - \{\{q_i, g\}, p_j\}\Big) \\
+				&= \delta_{ij} - \varepsilon\Big(\{q_i, \{g, p_j\}\} + \{p_j, \{q_i, g\}\}\Big) \\
+				&= \delta_{ij} + \varepsilon\{g, \{p_j, q_i\}\} \\
+				&= \delta_{ij} - \varepsilon\{g, \delta_{ji}\} \\
+				&= \delta_{ij}
+			\end{align*}
+		\end{solution}
 		
 		\question Consider
 		\[
@@ -447,11 +528,89 @@
 		\]
 		whose invariance under the rotation of the coordinates \textit{and} momenta leads to the conservation of $l_z$. But $\mathcal{H}$ is also invariant under the rotation of \textit{just the coordinates}. Verify that this is a \textit{noncanonical} transformation. Convince yourself that in this case it is not possible to write $\delta\mathcal{H}$ as $\varepsilon\{\mathcal{H}, g\}$ for any $g$, i.e. that no conservation law follows.
 		
-		\question Consider $\mathcal{H} = \frac{1}{2}p^2 + \frac{1}{2}x^2$, which is invariant under infinitesimal rotations in \textit{phase space} (the $x-p$ plane). Find the generator of this transformation (after verifying that it is canonical). (You could have guessed the answer based on Exercise 2.5.2).
+		\begin{solution}
+			If we transform solely the coordinates as
+			\begin{align*}
+				\bar{x} &= x\cos\theta + y\sin\theta \\
+				\bar{y} &= -x\sin\theta + y\cos\theta
+			\end{align*}
+			the momenta become
+			\begin{align*}
+				p_x(\bar{x}, \bar{y}) &= m\dot{x} = m(\dot{\bar{x}}\cos\theta - \dot{\bar{y}}\sin\theta) = p_{\bar{x}}\cos\theta - p_{\bar{y}}\sin\theta\\
+				p_y(\bar{x}, \bar{y}) &= m\dot{y} = m(\dot{\bar{x}}\sin\theta + \dot{\bar{y}}\cos\theta) = p_{\bar{x}}\sin\theta + p_{\bar{y}}\cos\theta \\
+			\end{align*}
+			where $p_{\bar{x}}$ and $p_{\bar{y}}$ are the canonical momenta conjugate to $x$ and $y$.
+			
+			The only possible nonzero Poisson brackets are
+			\begin{align*}
+				\{\bar{x}, p_x\} &= \{\bar{x}, p_{\bar{x}}\cos\theta - p_{\bar{y}}\sin\theta\} \\
+				&= \{\bar{x}, p_{\bar{x}}\}\cos\theta - \{\bar{x}, p_{\bar{y}}\}\sin\theta \\
+				&= \cos\theta \\
+				\{\bar{x}, p_y\} &= \{\bar{x}, p_{\bar{x}}\sin\theta + p_{\bar{y}}\cos\theta\} \\
+				&= \{\bar{x}, p_{\bar{x}}\}\sin\theta + \{\bar{x}, p_{\bar{y}}\}\cos\theta \\
+				&= \sin\theta \\
+				\{\bar{y}, p_x\} &= \{\bar{y}, p_{\bar{x}}\cos\theta - p_{\bar{y}}\sin\theta\} \\
+				&= \{\bar{y}, p_{\bar{x}}\}\cos\theta - \{\bar{y}, p_{\bar{y}}\}\sin\theta \\
+				&= -\sin\theta \\
+				\{\bar{y}, p_y\} &= \{\bar{y}, p_{\bar{x}}\sin\theta + p_{\bar{y}}\cos\theta\} \\
+				&= \{\bar{y}, p_{\bar{x}}\}\sin\theta + \{\bar{y}, p_{\bar{y}}\}\cos\theta \\
+				&= \cos\theta
+			\end{align*}
+			Because the Poisson bracket no longer reproduces $\{q_i, p_j\} = \delta_{ij}$, this is a noncanonical coordinate transformation.
+			
+			We know that $\{\mathcal{H}, g\}$ should capture the time derivative of $g$, which depends on the system's coordinates. Because the new coordinates are noncanonical, their time derivatives are \textit{not} captured by their Poisson bracket with $\mathcal{H}$, and so those functions depending on them lose this property, too.
+		\end{solution}
 		
-		\question Why is it that a \textit{non}canonical transformation that leaves $\mathcal{H}$ invariant does not map a solution into another? Or, in view of the discussion on consequence II, why is it that an experiment and its transformed version do not give the same result when the transformation that leaves $\mathcal{H}$ invariant is not canonical? It is best to consider an example. Consider the potential given in Exercise 2.8.3. Suppose I release a particle at $(x = a, y = 0)$ with $(p_x = b, p_y = 0)$, i.e., you rotate the coordinates but not the momenta. This is a noncanonical transformation that leaves $\mathcal{H}$ invariant. Convince yourself that at later times the states of the two particles are no related by the same transformation. Try to understand what goes wrong in the general case.
+		\question Consider $\mathcal{H} = \frac{1}{2}p^2 + \frac{1}{2}x^2$, which is invariant under infinitesimal rotations in \textit{phase space} (the $x$-$p$ plane). Find the generator of this transformation (after verifying that it is canonical). (You could have guessed the answer based on Exercise 2.5.2).
+		
+		\begin{solution}
+			A rotation in the $x$-$p$ plane by an angle $\theta$ can be written
+			\begin{align*}
+				\bar{x} &= x\cos\theta + p\sin\theta \\
+				\bar{p} &= -x\sin\theta + p\cos\theta
+			\end{align*}
+			which, as $\theta$ becomes infinitesimal, transforms to
+			\begin{align*}
+				\bar{x} &= x + \varepsilon p \stackrel{?}{=} x + \varepsilon\frac{\partial g}{\partial p}\\
+				\bar{p} &= p - \varepsilon x \stackrel{?}{=} p - \varepsilon\frac{\partial g}{\partial x}
+			\end{align*}
+			We can simply integrate to find $g$,
+			\begin{align*}
+				\frac{\partial g}{\partial p} &= p \implies g(x, p) = \frac{1}{2}p^2 + \mathcal{O}(x) \\
+				\frac{\partial g}{\partial x} &= x \implies g(x, p) = \frac{1}{2}x^2 + \mathcal{O}(p)
+			\end{align*}
+			i.e. $g(x, p) = \mathcal{H}$ up to the addition of a constant factor.
+			
+			To verify the canonical nature of the transformation, observe
+			\begin{align*}
+				\{\bar{x}, \bar{x}\} &= \{x + \varepsilon p, x + \varepsilon p\} \\
+									&= \{x, x\} + \varepsilon\Big(\{x, p\} + \{p, x\}\Big) + \mathcal{O}(\varepsilon^2) \\
+									&= 0 \\
+				\{\bar{x}, \bar{p}\} &= \{x + \varepsilon p, p - \varepsilon x\} \\
+				&= \{x, p\} - \varepsilon\Big(\{x, x\} - \{p, p\}\Big) + \mathcal{O}(\varepsilon^2) \\
+				&= 1 \\
+				\{\bar{p}, \bar{p}\} &= \{p - \varepsilon x, p - \varepsilon x\} \\
+				&= \{p, p\} - \varepsilon\Big(\{p, x\} + \{x, p\}\Big) + \mathcal{O}(\varepsilon^2) \\
+				&= 0
+			\end{align*}
+		\end{solution}
+		
+		\question Why is it that a \textit{non}canonical transformation that leaves $\mathcal{H}$ invariant does not map a solution into another? Or, in view of the discussion on consequence II, why is it that an experiment and its transformed version do not give the same result when the transformation that leaves $\mathcal{H}$ invariant is not canonical? It is best to consider an example. Consider the potential given in Exercise 2.8.3. Suppose I release a particle at $(x = a, y = 0)$ with $(p_x = b, p_y = 0)$ and you release one in the transformed state in which $(x=0, y=a)$ and $(p_x=b, p_y=0)$, i.e., you rotate the coordinates but not the momenta. This is a noncanonical transformation that leaves $\mathcal{H}$ invariant. Convince yourself that at later times the states of the two particles are no related by the same transformation. Try to understand what goes wrong in the general case.
 		
 		\question Show that $\partial S_{\text{cl}}/\partial x_f = p(t_f)$.
+		
+		\begin{solution}
+			Consider the classical action with the path parameterized by both $t$ and $x_f$. Its partial derivative with respect to $x_f$ is then
+			\begin{align*}
+				\frac{\partial S_{\text{cl}}}{\partial x_f} &= \frac{\partial}{\partial x_f}\int_0^{t_f}\mathcal{L}(x_{\text{cl}}(x_f, t), \dot{x}_{\text{cl}}(x_f, t))\,\mathrm{d}t \\
+				&= \int_0^{t_f}\frac{\partial \mathcal{L}}{\partial x_{\text{cl}}}\frac{\partial x_{\text{cl}}}{\partial x_f} + \frac{\partial \mathcal{L}}{\partial \dot{x}_{\text{cl}}}\frac{\partial \dot{x}_{\text{cl}}}{\partial x_f}\,\mathrm{d}t \\
+				&= \int_0^{t_f}\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial \mathcal{L}}{\partial \dot{x}_{\text{cl}}}\frac{\partial x_{\text{cl}}}{\partial x_f} + \frac{\partial \mathcal{L}}{\partial \dot{x}_{\text{cl}}}\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial x_{\text{cl}}}{\partial x_f}\,\mathrm{d}t \\
+				&= \int_0^{t_f}\frac{\mathrm{d}}{\mathrm{d}t}\Big(\frac{\partial \mathcal{L}}{\partial \dot{x}_{\text{cl}}}\frac{\partial x_{\text{cl}}}{\partial x_f}\Big)\mathrm{d}t \\
+				&= p(t)\frac{\partial x_{\text{cl}}}{\partial x_f}\Big|_0^{t_f} \\
+				&= p(t_f)
+			\end{align*}
+			where $x_{\text{cl}}(0) = x_1$ and $x_{\text{cl}}(t_f) = x_f$, and so $\partial x_{\text{cl}}/\partial x_f|_0^{t_f} = 1 - 0 = 1$.
+		\end{solution}
 		
 		\question Consider the harmonic oscillator, for which the general solution is
 		\[
@@ -462,5 +621,64 @@
 			S_{\text{cl}}(x_1, x_2, T) = \frac{m\omega}{2\sin\omega T}[(x_1^2+x_2^2)\cos\omega T - 2x_1x_2].
 		\]
 		Verify that $\partial S_{\text{cl}}/\partial T = -E$.
+		
+		\begin{solution}
+			The kinetic energy of the harmonic oscillator is given by
+			\begin{align*}
+				\frac{1}{2}m\dot{x}^2 &= \frac{1}{2}m(-\omega A\sin\omega t + \omega B\cos\omega t)^2 \\
+				&= \frac{1}{2}m\omega^2(B\cos\omega t - A\sin\omega t)^2 \\
+				&= \frac{1}{2}m\omega^2\Big(B\frac{e^{i\omega t} + e^{-i\omega t}}{2} - A\frac{e^{i \omega t} - e^{-i\omega t}}{2i}\Big)^2 \\
+				&= \frac{1}{2}m\omega^2\Big((B + iA)\frac{e^{i\omega t}}{2} + (B - iA)\frac{e^{-i\omega t}}{2}\Big)^2 \\
+				&= \frac{1}{2}m\omega^2(A^2 + B^2)\Big(\frac{e^{i(\omega t + \tan^{-1}(A/B))} + e^{-i(\omega t + \tan^{-1}(A/B))}}{2}\Big)^2 \\
+				&= \frac{1}{2}m\omega^2(A^2+B^2)\cos^2(\omega t + \tan^{-1}(A/B)) \\
+				&\leq \frac{1}{2}m\omega^2(A^2+B^2)
+			\end{align*}
+			Since the total energy of the harmonic oscillator is equal to the maximum of the kinetic energy, $E = \frac{1}{2}m\omega^2(A^2+B^2)$.
+			
+			To satisfy the first initial condition, $A = x_1$. The second is equivalent to
+			\[
+				x_2 = x_1\cos\omega T + B\sin\omega T,
+			\]
+			which, upon solving for $B$, yields
+			\[
+				B = \frac{x_2 - x_1\cos\omega T}{\sin\omega T}.
+			\]
+			Using the above, we can rewrite the energy in terms of $x_1$ and $x_2$,
+			\begin{align*}
+				E &= \frac{1}{2}m\omega^2\Big(x_1^2 + \frac{x_2^2 - 2x_1x_2\cos\omega T + x_1^2\cos^2\omega T}{\sin^2\omega T}\Big) \\
+				&= \frac{1}{2}m\omega^2\Big(\frac{x_1^2 - 2x_1x_2\cos\omega T + x_2^2}{\sin^2\omega T}\Big)
+			\end{align*}
+			The Lagrangian for the simple harmonic oscillator is given by
+			\[
+				\mathcal{L} = T - V = \frac{1}{2}m\dot{x}^2 - \frac{1}{2}m\omega^2x^2
+			\]
+			or, substituting in the classical path,
+			\begin{align*}
+				\mathcal{L} &= \frac{1}{2}m(\dot{x}^2 - \omega^2x^2) \\
+				&= \frac{1}{2}m\omega^2(B^2\cos^2\omega t + A^2\sin^2\omega t - A^2\cos^2\omega t - B^2\sin^2\omega t - 4AB\cos\omega t\sin\omega t) \\
+				&= \frac{1}{2}m\omega^2\Big((B^2 - A^2)\cos2\omega t - 2AB\sin2\omega t\Big)
+			\end{align*}
+			The action is thus
+			\begin{align*}
+				S_{\text{cl}} &= \frac{1}{2}m\omega^2(B^2 - A^2)\int_0^T\cos 2\omega t\,\mathrm{d}t - m\omega^2AB\int_0^T\sin2\omega t\,\mathrm{d}t \\
+				&= \frac{1}{4}m\omega(B^2-A^2)\sin2\omega T + \frac{1}{2}m\omega AB(\cos2\omega T - 1)
+			\end{align*}
+			where in our calculations of both $\mathcal{L}$ and $S$ we have relied on the following identities
+			\begin{align*}
+				\sin2\theta &= 2\sin\theta\cos\theta \\
+				\cos2\theta &= \cos^2\theta - \sin^2\theta \\
+				&= 1 - 2\sin^2\theta
+			\end{align*}
+			Using a CAS, $S$ simplifies to the solution,
+			\[
+				S_{\text{cl}}(x_1, x_2, T) = \frac{m\omega}{2\sin\omega T}[(x_1^2+x_2^2)\cos\omega T - 2x_1x_2].
+			\]
+			Finally, 
+			\begin{align*}
+				\frac{\partial S_{\text{cl}}}{\partial T} &= \frac{-m\omega^2\cos\omega T}{2\sin^2\omega T}[(x_1^2+x_2^2)\cos\omega T - 2x_1x_2] - \frac{m\omega^2}{2}(x_1^2+x_2^2) \\
+				&= -\frac{1}{2}m\omega^2\Big(\frac{x_1^2 - 2x_1x_2\cos\omega T + x_2^2}{\sin^2\omega T}\Big) \\
+				&= -E
+			\end{align*}
+		\end{solution}
 	\end{questions}
 \end{document}

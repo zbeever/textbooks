@@ -1,5 +1,7 @@
 \documentclass[../road-to-reality.tex]{subfiles}
 
+\usepackage{slashed}
+
 \begin{document}
 	\printanswers
 	
@@ -26,6 +28,50 @@
 			
 			The reason we cannot renormalize gravitational energy this way is because now a constant addition to the Hamiltonian corresponds to a change in mass. Such a change would effect how gravity couples to the system, and thus change its dynamics.
 		\end{solution}
+	
+	\question Schr\"odinger's equation, here, is $\partial\psi/\partial t = (i\hbar/2\mu)\nabla^2\psi$. Confirming, first, that for an energy eigenstate with energy $E$ we have $-\nabla^2\psi = A\psi$, where $A = 2\mu\hbar^{-2}E$, use \textit{Green's theorem} $\int\bar{\psi}\nabla^2\psi\,\mathrm{d}^3x=-\int\nabla\bar{\psi}\cdot\nabla\psi\,\mathrm{d}^3x$ to show that $A$ must be positive for a normalizable state. (Conversely, it is in fact true that, for positive $A$, there are many solutions of $-\nabla^2\psi=A\psi$, which tail off suitably towards infinity so that the norm $\|\psi\|$ remains finite and we can normalize to $\|\psi\|=1$, if we wish.) Show how to derive Green's theorem, from the fundamental theorem of exterior calculus.
+	
+	\question Make some suggestions, either using Fourier transforms (\S9.4), or a power series, or contour integrals, or otherwise.
+	
+	\question Check.
+	
+	\begin{solution}
+		Expanding out the wave operator, we find
+		\begin{align*}
+			\square &= \Big(\gamma_0\frac{\partial}{\partial t} - \gamma_1\frac{\partial}{\partial x} - \gamma_2\frac{\partial}{\partial y} - \gamma_3\frac{\partial}{\partial z}\Big)^2 \\
+			&= \gamma_0^2\frac{\partial^2}{\partial t^2} - \gamma_0\gamma_1\frac{\partial^2}{\partial t\partial x} - \gamma_0\gamma_2\frac{\partial^2}{\partial t\partial y} - \gamma_0\gamma_3\frac{\partial^2}{\partial t\partial z} \\
+			&\qquad-\gamma_1\gamma_0\frac{\partial^2}{\partial x\partial y} + \gamma_1^2\frac{\partial^2}{\partial x^2} - \gamma_1\gamma_2\frac{\partial^2}{\partial x\partial y} - \gamma_1\gamma_3\frac{\partial^2}{\partial x\partial z} \\
+			&\qquad - \gamma_2\gamma_0\frac{\partial^2}{\partial y\partial t} - \gamma_2\gamma_1\frac{\partial^2}{\partial y\partial x} + \gamma_2^2\frac{\partial^2}{\partial y^2} - \gamma_2\gamma_3\frac{\partial^2}{\partial y\partial z} \\
+			&\qquad - \gamma_3\gamma_0\frac{\partial^2}{\partial z\partial t} - \gamma_3\gamma_1\frac{\partial^2}{\partial z\partial x} - \gamma_3\gamma_2\frac{\partial^2}{\partial z\partial y} + \gamma_3^2 \frac{\partial^2}{\partial z^2} \\
+			&= \frac{\partial^2}{\partial t^2} - \frac{\partial^2}{\partial x^2} - \frac{\partial^2}{\partial y^2} - \frac{\partial^2}{\partial z^2}
+		\end{align*}
+		where the other terms cancel by the equality of mixed partial derivatives.
+	\end{solution}
+
+	\question Show this.
+	
+	\begin{solution}
+		The Dirac equation is
+		\[
+			\hbar\slashed\partial\psi = -i\mu\psi
+		\]
+		or, expanding out $\slashed\partial$,
+		\[
+			\hbar\gamma_0\frac{\partial\psi}{\partial t} - \hbar\gamma\cdot\nabla\psi = -i\mu\psi
+		\]
+		Moving the spatial term to the right and multiplying by $\gamma_0$ (keeping in mind that $\gamma_0^2 = 1$) gives
+		\[
+			i\hbar\frac{\partial\psi}{\partial t} = (i\hbar\gamma_0\gamma\cdot\nabla + \gamma_0\mu)\psi
+		\]
+	\end{solution}
+
+	\question Explain this. \textit{Hint}: Generalize Exercise [22.18].
+	
+	\question Explain this comment in relation to the connection between quaternions and Clifford elements explained in \S11.5.
+	
+	\question Show why $2\times2$ matrices cannot satisfy all the conditions; find a set of $4\times4$ matrices that do.
+
+	\question Explain why this is the standard `gauge prescription.'
 	
 	\end{questions}
 \end{document}

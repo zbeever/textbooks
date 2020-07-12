@@ -109,15 +109,34 @@
 \begin{solution}
 	Let us start with (1.33),
 	\[
-		\delta J|_y (\eta) = \lim_{\alpha \to 0}\frac{\int_0^1\varphi(y(x) + \alpha\eta(x))\,\mathrm{d}x - \int_0^1\varphi(y(x))\,\mathrm{d}x}{\alpha}.
+		\delta J|_y (\eta) = \lim_{\alpha \to 0}\frac{1}{\alpha}\Big(\int_0^1\varphi(y(x) + \alpha\eta(x))\,\mathrm{d}x - \int_0^1\varphi(y(x))\,\mathrm{d}x\Big)
 	\]
 	As $\alpha$ approaches $0$, we may replace $\varphi(y(x) + \alpha\eta(x))$ with its first order linear approximation about $y(x)$ (which is possible because $\varphi$ is once differentiable). In particular, we have
 	\begin{align*}
-		\delta J|_y (\eta) &= \lim_{\alpha \to 0}\frac{\int_0^1\varphi(y(x)) + \alpha\varphi'(y(x))\eta(x)\,\mathrm{d}x - \int_0^1\varphi(y(x))\,\mathrm{d}x}{\alpha} \\
-		&= \lim_{\alpha \to 0}\frac{\alpha\int_0^1\varphi'(y(x))\eta(x)\,\mathrm{d}x}{\alpha} \\
+		\delta J|_y (\eta) &= \lim_{\alpha \to 0}\frac{1}{\alpha}\Big(\int_0^1\varphi(y(x)) + \alpha\varphi'(y(x))\eta(x)\,\mathrm{d}x - \int_0^1\varphi(y(x))\,\mathrm{d}x\Big) \\
+		&= \lim_{\alpha \to 0}\frac{\alpha}{\alpha}\int_0^1\varphi'(y(x))\eta(x)\,\mathrm{d}x \\
 		&= \int_0^1\varphi'(y(x))\eta(x)\,\mathrm{d}x
 	\end{align*}
 \end{solution}
+
+\question Consider the same functional $J$ as in Exercise 1.5, but assume now that $\psi$ is $C^2$. Derive a formula for the second variation of $J$ (make sure that it is indeed a quadratic form).
+
+\begin{solution}
+	The second variation is given by the functional derivative of $\delta J|_y(\eta)$
+	\begin{align*}
+		\delta^2 J|_y(\eta, \xi) &= \lim_{\alpha\to0}\frac{\delta J|_{y+\alpha\xi}(\eta) - \delta J|_y(\eta)}{\alpha} \\
+		&= \lim_{\alpha\to0}\frac{1}{\alpha}\Big(\int_0^1\varphi'(y(x) + \alpha\xi(x))\eta(x)\,\mathrm{d}x - \int_0^1\varphi'(y(x))\eta(x)\,\mathrm{d}x\Big)
+	\end{align*}
+	where we have used $\xi$ to aid in the expansion process with the understanding that it will eventually be set to $\eta$. Since $\varphi(y(x))$ is twice differentiable, we may replace $\varphi'(y(x))$ with its first order linear approximation to find
+	\begin{align*}
+		\delta^2J|_y(\eta, \xi) &= \lim_{\alpha\to0}\frac{1}{\alpha}\Big(\int_0^1\varphi'(y(x))\eta(x) + \alpha\varphi''(y(x))\xi(x)\eta(x)\,\mathrm{d}x - \int_0^1\varphi'(y(x))\eta(x)\,\mathrm{d}x\Big) \\
+		&= \lim_{\alpha\to0}\frac{\alpha}{\alpha}\int_0^1\varphi''(y(x))\xi(x)\eta(x)\,\mathrm{d}x \\
+		&= \int_0^1\varphi''(y(x))\xi(x)\eta(x)\,\mathrm{d}x
+	\end{align*}
+	Replacing $\xi$ with $\eta$ gives us the second variation of $J$ with respect to $y$. This is a bilinear functional with both of its arguments given by $\eta$, i.e. a quadratic form.
+\end{solution}
+
+\question Give an example of a function space $V$, a norm on $V$, a closed and bounded subset $A$ of $V$, and a continuous functional $J$ on $V$ such that a global minimum of $J$ over $A$ does not exist. (Be sure to demonstrate that all the requested properties hold.)
 
 \end{questions}
 
