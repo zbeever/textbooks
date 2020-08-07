@@ -1,0 +1,106 @@
+\documentclass{article}
+
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{mathtools}
+\usepackage{transparent}
+\usepackage{amsmath}
+\usepackage{isotope}
+\usepackage{physics}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{fancyhdr}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Zach Beever}
+\lhead{Canonical quantization of the massive scalar field}
+\rfoot{Page \thepage}
+
+\author{Zach Beever}
+
+\title{Notes on quantizing the massive scalar field}
+
+\date{}
+
+\begin{document}
+	\maketitle
+	
+	\section{From coordinates to fields}
+	
+	Consider the familiar simple harmonic oscillator. It has the Lagrangian
+	\[
+		\mathcal{L}(x, \dot{x}) = T - V = \frac{1}{2}m\dot{x}^2 - \frac{1}{2}kx^2.
+	\]
+	From mechanics, we know the equations of motion for this system are revealed by taking the functional derivative of the action $S = \int\mathcal{L}(x,\dot{x})\,\mathrm{d}t$  and setting it equal to $0$ (i.e. finding an extremal trajectory of the action). Doing so reveals
+	\begin{align*}
+		\frac{\delta S[x(t)]}{\delta x(t)} &= \lim_{\varepsilon\to0}\frac{1}{\varepsilon}\Big(\int_a^b\frac{1}{2}m(\dot{x} + \varepsilon\dot{\eta})^2 - \frac{1}{2}k(x+\varepsilon\eta)^2\,\mathrm{d}t - \int_a^b\frac{1}{2}m\dot{x}^2 - \frac{1}{2}kx^2\,\mathrm{d}t\Big) \\
+		&= \lim_{\varepsilon\to0}\Big(\int_a^b m\dot{x}\dot{\eta} - kx\eta\,\mathrm{d}t + \mathcal{O}(\varepsilon)\Big) \\
+		&= -\int_a^b (m\ddot{x} + kx)\eta\,\mathrm{d}t \\
+		&= 0
+	\end{align*}
+	which implies $m\ddot{x} = -kx$, as we expect.\footnote{In the above series of steps, $\eta(t)$ is an arbitrary function that vanishes at the endpoints of the integral. It perturbs the action from the true path $x(t)$.} More generally we have
+	\begin{align*}
+		\frac{\delta S[x(t)]}{\delta x(t)} &= \lim_{\varepsilon\to0}\frac{1}{\varepsilon}\Big(\int_a^b\mathcal{L}(x + \varepsilon\eta,\dot{x} + \varepsilon\dot{\eta})\,\mathrm{d}t - \int_a^b\mathcal{L}(x, \dot{x})\,\mathrm{d}t\Big) \\
+		&= \lim_{\varepsilon\to0}\Big(\int_a^b\frac{\partial\mathcal{L}}{\partial x}\eta + \frac{\partial\mathcal{L}}{\partial \dot{x}}\dot{\eta}\,\mathrm{d}t + \mathcal{O}(\varepsilon)\Big) \\
+		&= \int_a^b\Big(\frac{\partial\mathcal{L}}{\partial x}-\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial\mathcal{L}}{\partial \dot{x}}\Big)\eta\,\mathrm{d}t
+	\end{align*}
+	which shows that valid trajectories must satisfy
+	\[
+		\frac{\partial\mathcal{L}}{\partial x} - \frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial \mathcal{L}}{\partial \dot{x}} = 0.
+	\]
+	This can immediately be generalized to a system with multiple coordinates,
+	\[
+		\frac{\partial\mathcal{L}}{\partial q^a} - \frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial \mathcal{L}}{\partial \dot{q}^a} = 0.
+	\]
+	What is the equivalent principle for a covariant field $\phi(x)$? We know that a relativistic system must treat both temporal and spatial derivatives similarly, so the Lagrangian for such a field will have dependencies on $\phi$ and $\partial_\mu\phi$. By similar considerations, the action must be promoted to an integral over spacetime. Finding the extrema of this new action yields
+	
+	\begin{align*}
+		\frac{\delta S[\phi(x)]}{\delta \phi(x)} &= \lim_{\varepsilon\to0}\frac{1}{\varepsilon}\Big(\int_\Gamma\mathcal{L}(\phi + \varepsilon\varphi, \partial_\mu\phi + \varepsilon\partial_\mu\varphi)\,\mathrm{d}^4x - \int_{\Gamma}\mathcal{L}(\phi, \partial_\mu\phi)\,\mathrm{d}^4x\Big) \\
+		&= \lim_{\varepsilon\to0}\Big(\int_{\Gamma}\frac{\partial\mathcal{L}}{\partial\phi}\varphi + \frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi)}\partial_\mu\varphi\,\mathrm{d}^4x + \mathcal{O}(\varepsilon)\Big) \\
+		&= \int_{\Gamma}\Big(\frac{\partial\mathcal{L}}{\partial\phi} - \partial_\mu\frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi)}\Big)\varphi\,\mathrm{d}^4x \\
+		&= 0
+	\end{align*}
+	or\footnote{As an aside, we can easily deal with vector and tensor fields by tacking an index onto $\phi$.}
+	\[
+		\frac{\partial\mathcal{L}}{\partial\phi} - \partial_\mu\frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi)} = 0.
+	\]
+	This is the covariant form of the Euler-Lagrange equation. We have found it by assuming the action principle holds for fields.
+	
+	\section{The massive scalar field}
+	
+	Consider the relativistic classical field described by\footnote{In many ways this is the first classical field one would suggest: the first term is the simplest way to construct a Lorentz scalar out of $\partial_\mu\phi$, and the second represents a potential dependent on the absolute value of the field. The factor of $m^2$ is there to make the units work out (where $\hbar=c=1$). It is conveniently labeled to suggest mass, as it turns out the quanta of this field have a mass $m$.}
+	\begin{align*}
+	\mathcal{L}(\phi, \partial_\mu\phi) &= \frac{1}{2}\partial_\mu\partial^\mu\phi - \frac{1}{2}m^2\phi^2 \\&
+	= \frac{1}{2}\dot{\phi}^2 - \frac{1}{2}(\nabla\phi)\cdot(\nabla\phi)-\frac{1}{2}m^2\phi^2
+	\end{align*}
+	where, by analogy to the Lagrangian of the simple harmonic oscillator, we identify $\frac{1}{2}\dot\phi^2$ with the kinetic energy of the field and $\frac{1}{2}(\nabla\phi)\cdot(\nabla\phi)+\frac{1}{2}m^2\phi^2$  with its potential energy. Recognizing that the Hamiltonian should be described by the sum of both quantities, we define the momentum conjugate to $\phi$ to be\footnote{From this definition, we can see that an `upstairs' index in $\phi$ gets converted to a `downstairs' index in $\pi$. The converse holds true, too.}
+	\[
+		\pi = \frac{\partial\mathcal{L}}{\partial\dot{\phi}}.
+	\]
+	With this definition, we have
+	\[
+		\mathcal{H}(\phi, \pi) = \pi\dot\phi - \mathcal{L}(\phi, \partial_\mu\phi),
+	\]
+	which is a nice generalization of the Hamiltonian to fields.
+	
+	\section{From classical to quantum}
+	
+	We would like to quantize this field. For single particle quantum mechanics, we know that the quantization process involves promoting observable variables to operators.  In particular, we know that a variable $q^a$ and its conjugate momentum $p_a$ have the commutation relation
+	\[
+		[q^a, p_b] = i\delta_{ab}.
+	\]
+	Inspired by this, we do the same for fields. Continuing with our simple relativistic field expression, we try to find an expression for $\phi$. Following the Euler-Lagrange equation, we arrive at
+	\[
+		(\partial_\mu\partial^\mu + m^2)\phi(x) = 0
+	\]
+	where we have shown the dependence of $\phi$ on $x^\mu$. It is easiest to work in energy-momentum space, so we carry out a Fourier transform a la 
+	
+	
+\end{document}
+
+\end{document}

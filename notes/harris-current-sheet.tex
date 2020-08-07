@@ -1,0 +1,92 @@
+\documentclass{article}
+
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{mathtools}
+\usepackage{transparent}
+\usepackage{amsmath}
+\usepackage{isotope}
+\usepackage{physics}
+\usepackage{indentfirst}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{fancyhdr}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Zach Beever}
+\lhead{Deriving the electric field associated with an evolving current sheet}
+\rfoot{Page \thepage}
+
+\author{Zach Beever}
+
+\title{Notes on the induced field from an evolving Harris current sheet}
+
+\date{}
+
+\begin{document}
+	\maketitle
+	
+	\section{Time-evolution of the Harris model}
+	
+	The Harris current sheet model takes the simple form
+	\[
+		\mathbf{B} = B_0\tanh\Big(\frac{z}{L}\Big)\hat{\mathbf{i}} + 0\hat{\mathbf{j}} + 0\hat{\mathbf{k}}.
+	\]
+	If $L$ changes with time there will be an induced electric field described by 
+	\[
+		\curl{\mathbf{E}} = -\frac{\partial\mathbf{B}}{\partial t}.
+	\]
+	Signaling the dependence of $L$ on $t$ via $L(t)$, we find
+	\[
+		\frac{\partial\mathbf{B}}{\partial t} = B_0\sech^2\Big(\frac{z}{L(t)}\Big)\cdot\Big({-\frac{z}{L^2(t)}}\Big)\cdot\frac{\mathrm{d}L(t)}{\mathrm{d}t}\,\hat{\mathbf{i}}.
+	\]
+	The relevant Maxwell equation then becomes
+	\[
+		\frac{\partial E_z}{\partial y} - \frac{\partial E_y}{\partial z} = -B_0\sech^2\Big(\frac{z}{L(t)}\Big)\cdot\frac{z}{L^2(t)}\cdot\frac{\mathrm{d}L(t)}{\mathrm{d}t}.
+	\]
+	Because the Harris model extends infinitely along the $y$-axis, $E_z = 0$. If this were not so, we would see infinite growth as we moved in this direction. There is no such restriction for $E_y$, though, and so\footnote{The limits of integration are chosen so that the entire field contributes to $E_y$ at the given $z$. As we will see, we find the same result whether we set the lower limit to $\infty$ or $-\infty$.}
+	\[
+		E_y(z) = \int_{-\infty}^z B_0\sech^2\Big(\frac{z}{L(t)}\Big)\cdot\frac{z}{L^2(t)}\cdot\frac{\mathrm{d}L(t)}{\mathrm{d}t}\,\mathrm{d}z.
+	\]
+	Setting $u = z/L(t)$ and $\mathrm{d}u = \mathrm{d}z/L(t)$, this simplifies to
+	\[
+		E_y(z) = B_0\frac{\mathrm{d}L(t)}{\mathrm{d}t}\int_{-\infty}^{z/L(t)}\sech^2(u)\cdot u\,\mathrm{d}u.
+	\]
+	We can integrate this by parts to get
+	\[
+		E_y(z) = B_0\frac{\mathrm{d}L(t)}{\mathrm{d}t}\Big(u\tanh(u)\Big|_{-\infty}^{z/L(t)} - \int_{-\infty}^{z/L(t)}\tanh(u)\,\mathrm{d}u\Big).
+	\]
+	This remaining integral can be rewritten as
+	\[
+		\int_{-\infty}^{z/L(t)}\tanh(u)\,\mathrm{d}u = \int_{-\infty}^{z/L(t)}\frac{\sinh(u)}{\cosh(u)}\,\mathrm{d}u = \int_{-\infty}^{z/L(t)}\mathrm{d}(\ln{\cosh(u)}) = \ln\cosh u\Big|_{-\infty}^{z/L(t)}.
+	\]
+	Using the above, $E_y(z)$ becomes
+	\[
+		E_y(z) = B_0\frac{\mathrm{d}L(t)}{\mathrm{d}t}\Big[\frac{z}{L(t)}\tanh\Big(\frac{z}{L(t)}\Big)- \ln\cosh\Big(\frac{z}{L(t)} \Big) + C\Big]
+	\]
+	where $C$ is given by
+	\[
+		C = \lim_{u\to{-\infty}}\ln\cosh u - u\tanh u.
+	\]
+	Since, by defintion,
+	\[
+		\cosh u = \frac{e^u + e^{-u}}{2} \qquad \text{and} \qquad \tanh u = \frac{e^u - e^{-u}}{e^u + e^{-u}}
+	\]
+	we can rewrite $C$ as
+	\begin{align*}
+		C &= \lim_{u\to{-\infty}}\ln\frac{e^{-u}}{2} + u\frac{e^{-u}}{e^{-u}} \\
+		&= \lim_{u\to-\infty}-u + u - \ln 2\\
+		&= {-\ln 2}
+	\end{align*}
+	The final expression for the induced field is given by
+	\[
+		\mathbf{E}(z, t) = B_0\frac{\mathrm{d}L(t)}{\mathrm{d}t}\Big[\frac{z}{L(t)}\tanh\Big(\frac{z}{L(t)}\Big)- \ln\cosh\Big(\frac{z}{L(t)} \Big) - \ln 2\Big]\,\hat{\mathbf{j}}
+	\]
+	
+	One major question remains: the Harris model is formulated as an equilibrium solution to the Vlasov equation. Is a time-dependent model physical? Certainly the above result captures the real $y$-directed current found in the magnetosphere, so it is at least on the right track.
+	
+\end{document}
