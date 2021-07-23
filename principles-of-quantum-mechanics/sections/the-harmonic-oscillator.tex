@@ -1,0 +1,810 @@
+\documentclass[../principles-of-quantum-mechanics.tex]{subfiles}
+
+\begin{document}
+	\printanswers
+	
+	\setcounter{section}{6}
+	\section{The Harmonic Oscillator}
+	
+	\begin{questions}
+		\setcounter{subsection}{2}
+		\setcounter{question}{0}
+		\subsection{Quantization of the Oscillator (Coordinate Basis)}
+		\question Consider the question why we tried a power-series solution for Eq. (7.3.11) but not Eq. (7.3.8). By feeding in a series into the latter, verify that a three-term recursion relation between $C_{n+2}$, $C_n$, and $C_{n-2}$ obtains, from which the solution does not follow so readily. The problem is that $\psi''$ has two powers of $y$ less than $2\epsilon y$, while the $-y^2$ piece has two more powers of $y$. In Eq. (7.3.11) on the other hand, of the three pieces $u''$, $-2yu'$, and $(2\epsilon - 1)u$, the last two have the same powers of $y$.
+		
+		\begin{solution}
+			The differential equation in terms of $\psi$ is given by
+			$$\psi'' + (2\varepsilon - y^2)\psi = 0$$
+			Substituting in
+			$$\psi = \sum_{n=0}^{\infty}C_ny^n$$
+			yields
+			\begin{align*}
+				\psi'' + (2\varepsilon - y^2)\psi &= \sum_{n=0}^{\infty}C_nn(n-1)y^{n-2} + (2\varepsilon - y^2)\sum_{n=0}^{\infty}C_ny^n \\
+				&= \sum_{m=-2}^{\infty}C_{m+2}(m+2)(m+1)y^m + \sum_{n=0}^{\infty}2\varepsilon C_ny^n- \sum_{n=0}^{\infty}C_ny^{n+2} \\
+				&= \sum_{n=0}^{\infty}y^n[C_{n+2}(n+2)(n+1) + 2\varepsilon C_n] - \sum_{m=2}^{\infty}C_{m-2}y^m
+			\end{align*}
+			That is, the relationship
+			$$C_{n+2}(n+2)(n+1) + 2\varepsilon C_n = 0$$
+			holds for $n = 0$ and $n = 1$, after which we find
+			$$C_{n+2}(n+2)(n+1) + 2\varepsilon C_n - C_{n - 2} = 0$$
+			This is a three term recursion relation and is much more difficult to work with.
+		\end{solution}
+		
+		\question Verify that $H_3(y)$ and $H_4(y)$ obey the recursion relation, Eq. (7.3.15).
+		
+		\begin{solution}
+			We know that
+			\begin{align*}
+				H_3(y) &= -12(y - \tfrac{2}{3}y^3) = -12y + 8y^3 = C_1y + C_3y^3 \\
+				H_4(y) &= 12(1 - 4y^2 + \tfrac{4}{3}y^4) = 12 - 48y^2 + 16y^4 = C_0 + C_2y^2 + C_4y^4 \\
+			\end{align*}
+			By Eq. (7.3.15), we know
+			\begin{align*}
+				C_{n + 2} = C_n\frac{2(n - m)}{(n + 2)(n + 1)}
+			\end{align*}
+			where $m$ denotes the energy level. For $H_3(y)$ with $C_1 = -12$, we have
+			$$C_3 = (-12)\frac{2(1 - 3)}{(1 + 2)(1 + 1)} = (-12)\Big(\frac{-2}{3}\Big) = 8$$
+			while for $H_4(y)$ with $C_1 = 12$, we have
+			\begin{align*}
+				C_2 &= 12\frac{2(0 - 4)}{(0 + 2)(0 + 1)} = 12(-4) = -48 \\
+				C_4 &= (-48)\frac{2(2 - 4)}{(2 + 2)(2 + 1)} = (-48)\Big({-\frac{1}{3}}\Big) = 16
+			\end{align*}
+		\end{solution}
+		
+		\question If $\psi(x)$ is even and $\phi(x)$ is odd under $x\to {-x}$, show that
+		$$\int_{-\infty}^{\infty}\psi(x)\phi(x)\,\mathrm{d}x = 0$$
+		Use this to show that $\psi_2(x)$ and $\psi_1(x)$ are orthogonal. Using the values of Gaussian integrals in Appendix A.2 verify that $\psi_2(x)$ and $\psi_0(x)$ are orthogonal.
+		
+		\begin{solution}
+			If $\psi(x)$ is even and $\phi(x)$ is odd, then
+			\begin{align*}
+				\int_{-\infty}^{\infty}\psi(x)\phi(x)\,\mathrm{d}x &= \int_{\infty}^{-\infty}\psi(-x)\phi(-x)(-\mathrm{d}x) \\
+				&= \int_{\infty}^{-\infty}\psi(x)(-\phi(x))(-\mathrm{d}x) \\
+				&= -\int_{-\infty}^{\infty}\psi(x)\phi(x)\,\mathrm{d}x
+			\end{align*}
+			which is only possible is the integral evaluates to $0$.
+			
+			Whether a given harmonic oscillator wave function is even or add depends on the behavior of its associate Hermite polynomial. These are
+			\begin{align*}
+				H_1(y) &= 2y \\
+				H_2(y) &= -2(1 - 2y^2)
+			\end{align*}
+			in the case of $\psi_1(y)$ and $\psi_2(y)$. Since $H_2(y)$ is even and $H_1(y)$ is odd,
+			$$\int_{-\infty}^{\infty}\psi_1(x)\psi_2(x)\,\mathrm{d}x = 0.$$
+			
+			The first two wave functions are given by
+			\begin{align*}
+				\psi_0(x) &= \Big(\frac{m\omega}{\pi\hbar}\Big)^{1/4}\exp\Big({-\frac{m\omega x^2}{2\hbar}}\Big) \\
+				\psi_1(x) &= \Big(\frac{m\omega}{4\pi\hbar}\Big)^{1/4}\exp\Big({-\frac{m\omega x^2}{2\hbar}}\Big)2\Big(\frac{m\omega}{\hbar}\Big)^{1/2}x \\
+				&= \Big(\frac{4m^3\omega^3}{\pi\hbar^3}\Big)^{1/4}x\exp\Big({-\frac{m\omega x^2}{2\hbar}}\Big) 
+			\end{align*}
+			Integrating these against one another yields
+			$$\int_{-\infty}^{\infty}\psi_0(x)\psi_1(x)\,\mathrm{d}x = \frac{m\omega}{\hbar}\Big(\frac{2}{\pi}\Big)^{1/2}\int_{-\infty}^{\infty}x\exp\Big({-\frac{m\omega x^2}{\hbar}}\Big)\,\mathrm{d}x = 0$$
+			where the $0$ follows because $x$ is odd and $\exp(-m\omega x^2/\hbar)$ is even.
+		\end{solution}
+		
+		\question Using Eqs. (7.3.23)-(7.3.25), show that
+		\begin{align*}
+			\langle n'|x|n\rangle &= \Big(\frac{\hbar}{2m\omega}\Big)^{1/2}[\delta_{n', n+1}(n + 1)^{1/2} + \delta_{n', n -1}n^{1/2}] \\
+			\langle n'|P|n\rangle &= \Big(\frac{m\omega\hbar}{2}\Big)^{1/2}i[\delta_{n',n+1}(n+1)^{1/2} - \delta_{n',n - 1}n^{1/2}]
+		\end{align*}
+	
+		\begin{solution}
+			Plowing straight ahead, we find
+			\begin{align*}
+				\langle n'|x|n\rangle &= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\langle n'|x'\rangle \langle x'|x|x\rangle \langle x|n\rangle\,\mathrm{d}x'\,\mathrm{d}x \\
+				&= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}x\langle n'|x'\rangle \delta(x' - x) \langle x|n\rangle\,\mathrm{d}x'\,\mathrm{d}x \\
+				&= \int_{-\infty}^{\infty}x\,\psi_{n'}^*(x)\,\psi_n(x)\,\mathrm{d}x \\
+				&= A_{n'}A_{n}\int_{-\infty}^{\infty}\exp\big({-\tfrac{m\omega x^2}{\hbar}}\big)xH_{n'}\Big[\big(\tfrac{m\omega}{\hbar}\big)^{1/2}x\Big]H_{n}\Big[\big(\tfrac{m\omega}{\hbar}\big)^{1/2}x\Big]\,\mathrm{d}x \\
+				&= A_{n'}A_{n}\big(\tfrac{\hbar}{m\omega}\big)\int_{-\infty}^{\infty}yH_n(y)H_{n'}(y)e^{-y^2}\mathrm{d}y
+			\end{align*}
+			using Eq. (7.3.25), we can replace with $yH_n(y) = \tfrac{1}{2}H_{n+1}(y) + nH_{n-1}(y)$ to find
+			\begin{align*}
+				\langle n'|x|n\rangle =\,&A_{n'}A_{n}\big(\tfrac{\hbar}{m\omega}\big)\int_{-\infty}^{\infty}\big(\tfrac{1}{2}H_{n+1}(y) + nH_{n-1}(y)\big)H_{n'}(y)e^{-y^2}\mathrm{d}y \\
+				=\, &A_{n'}A_n\big(\tfrac{\hbar}{m\omega}\big)\Big[\tfrac{1}{2}\int_{-\infty}^{\infty}H_{n+1}(y)H_{n'}(y)e^{-y^2}\mathrm{d}y + n\int_{-\infty}^{\infty}H_{n-1}(y)H_{n'}(y)e^{-y^2}\mathrm{d}y\Big] \\
+				=\, &\big(\tfrac{m\omega}{\hbar}\big)^{1/2}\big(\tfrac{1}{2^{2n}(n!)^2}\big)^{1/4}\big(\tfrac{1}{2^{2n'}(n'!)^2}\big)^{1/4}\big(\tfrac{\hbar}{m\omega}\big)\big[\tfrac{1}{2}\delta_{n', n+1}(2^{n+1}(n+1)!)  + n\delta_{n', n-1}(2^{n-1}(n-1)!)\big]
+			\end{align*}
+			From here, let's examine each term one at a time. The term on the left can be simplified as
+			\begin{align*}
+				\tfrac{1}{2}\big(\tfrac{\hbar}{m\omega}\big)^{1/2}\big(\tfrac{1}{2^{n + n'}(n!)(n'!)}\big)^{1/2}\delta_{n', n+1}(2^{n+1}(n+1)!) &= \big(\tfrac{\hbar}{m\omega}\big)^{1/2}\big(\tfrac{1}{2^{2n+1}(n!)(n+1)!}\big)^{1/2}\delta_{n', n+1}(2^{n}(n+1)!) \\
+				&= \big(\tfrac{\hbar}{m\omega}\big)^{1/2}\tfrac{1}{2^n(n!)}\big(\tfrac{1}{2(n+1)}\big)^{1/2}\delta_{n',n+1}(2^n(n+1)!) \\
+				&= \big(\tfrac{\hbar}{m\omega}\big)^{1/2}\big(\tfrac{1}{2(n+1)}\big)^{1/2}\delta_{n',n+1}(n+1) \\
+				&= \big(\tfrac{\hbar}{2m\omega}\big)^{1/2}\delta_{n', n+1}(n+1)^{1/2}
+			\end{align*}
+			while the term on the right becomes
+			\begin{align*}
+				n\big(\tfrac{\hbar}{m\omega}\big)^{1/2}\big(\tfrac{1}{2^{n + n'}(n!)(n'!)}\big)^{1/2}\delta_{n', n-1}(2^{n-1}(n-1)!) &= n\big(\tfrac{\hbar}{m\omega}\big)^{1/2}\big(\tfrac{1}{2^{2n - 1}(n!)(n-1)!}\big)^{1/2}\delta_{n', n-1}(2^{n-1}(n-1)!) \\
+				&= n\big(\tfrac{\hbar}{m\omega}\big)^{1/2}\tfrac{1}{2^n(n-1)!}\big(\tfrac{1}{2^{-1}n}\big)^{1/2}\delta_{n', n-1}(2^{n-1}(n-1)!) \\
+				&= \big(\tfrac{\hbar}{2m\omega}\big)^{1/2}\delta_{n', n-1}n^{1/2} \\
+			\end{align*}
+			and so we have
+			$$
+			\langle x'|x|n\rangle = \big(\tfrac{\hbar}{2m\omega}\big)^{1/2}[\delta_{n', n+1}(n + 1)^{1/2} + \delta_{n', n -1}n^{1/2}]$$
+			We can perform a similar simplification to the second expression, starting with
+			\begin{align*}
+				\langle n'|P|n\rangle &= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\langle n'|x'\rangle\langle x'|{-i\hbar\frac{\mathrm{d}}{\mathrm{d}x}}|x\rangle\langle x|n\rangle\,\mathrm{d}x'\,\mathrm{d}x \\
+				&= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\psi_{n'}^*(x')\delta(x - x')\Big({-i\hbar\frac{\mathrm{d}}{\mathrm{d}x}}\Big)\psi_n(x)\,\mathrm{d}x'\,\mathrm{d}x \\
+				&= -i\hbar\int_{-\infty}^{\infty}\psi_{n'}^*(x)\frac{\mathrm{d}\psi_n(x)}{\mathrm{d}x}\,\mathrm{d}x \\
+				&= -i\hbar A_{n'}A_n\int_{-\infty}^{\infty}\exp\big({-\tfrac{m\omega x^2}{2\hbar}}\big)H_{n'}\big[\big(\tfrac{m\omega}{\hbar}\big)^{1/2}x\big]\frac{\mathrm{d}}{\mathrm{d}x}\Big(\exp\big({-\tfrac{m\omega x^2}{2\hbar}}\big)H_{n}\big[\big(\tfrac{m\omega}{\hbar}\big)^{1/2}x\big]\Big)\mathrm{d}x \\
+				&= -i\hbar A_{n'}A_n\int_{-\infty}^{\infty}\exp\big({-\tfrac{y^2}{2}}\big)H_{n'}(y)\frac{\mathrm{d}}{\mathrm{d}y}\Big(\exp\big({-\tfrac{ y^2}{2}}\big)H_{n}(y)\Big)\mathrm{d}y \\
+				&= i\hbar A_{n'}A_n\int_{-\infty}^{\infty}y\exp\big({-y^2}\big)H_{n'}(y)H_n(y) - \exp(-y^2)H_{n'}(y)H'_n(y)\mathrm{d}y
+			\end{align*}
+			and then using $H'_n(y) = 2nH_{n-1}(y)$ and $yH_n(y) = \tfrac{1}{2}H_{n+1}(y) + nH_{n-1}(y)$ to get
+			\begin{align*}
+				&i\hbar A_{n'}A_n\int_{-\infty}^{\infty}\exp(-y^2)\Big(\tfrac{1}{2}H_{n+1}(y) + nH_{n-1}(y) - 2nH_{n-1}(y)\Big)H_{n'}(y)\mathrm{d}y \\
+				=\,&i\hbar A_{n'}A_n\Big[\tfrac{1}{2}\int_{-\infty}^{\infty}H_{n+1}(y)H_{n'}(y)e^{-y^2}\mathrm{d}y - n\int_{-\infty}^{\infty}H_{n-1}(y)H_{n'}(y)e^{-y^2}\mathrm{d}y\Big]
+			\end{align*}
+			From here, we can use our previous results to immediately write
+			$$\langle n'| P|n\rangle = \big(\tfrac{m\omega\hbar}{2}\big)^{1/2}i[\delta_{n',n+1}(n+1)^{1/2} - \delta_{n',n - 1}n^{1/2}]$$
+			since the found expression is simply a scaled, alternating version of the first expression.
+		\end{solution}
+	
+		\question Using the symmetry arguments from Exercise 7.3.3 show that $\langle n|X|n\rangle = \langle n|P|n\rangle = 0$ and thus that $\langle X^2\rangle = (\Delta X)^2$ and $\langle P^2\rangle = (\Delta P)^2$ in these states. Show that $\langle 1|X^2|1\rangle = 3\hbar/2m\omega$ and $\langle 1|P^2|1\rangle = \frac{3}{2}m\omega\hbar$. Show that $\psi_0(x)$ saturates the uncertainty bound $\Delta X \cdot \Delta P \geq \hbar/2$.
+		
+		\begin{solution}
+			In general, for an operator $L$ in the position basis, we have
+			$$\langle n| L |n\rangle = \int_{-\infty}^{\infty}\psi_n^*(x) L \psi_n(x)\,\mathrm{d}x$$
+			When $L = X$, this becomes
+			$$\langle n |X|n\rangle = \int_{-\infty}^{\infty}\psi_n^*(x)X\psi_n(x)\,\mathrm{d}x = \int_{-\infty}^{\infty}\overbrace{x}^{\text{odd}}\underbrace{|\psi_n(x)|^2}_{\text{even}}\,\mathrm{d}x = 0$$
+			When $L = P$, we have
+			$$\langle n | P |n\rangle = \int_{-\infty}^{\infty}\psi_n^*(x)\Big({-i\hbar\frac{\mathrm{d}}{\mathrm{d}x}}\Big)\psi_n(x)\,\mathrm{d}x = -i2\hbar n\int_{-\infty}^{\infty}\psi_n^*(x)\psi_{n-1}(x)\,\mathrm{d}x = 0$$
+			where the last equality follows from the fact that the wave functions alternate between even and odd solutions as $n$ changes by $1$. These results show that $\langle X \rangle = \langle P \rangle = 0$. Since
+			$$(\Delta X)^2 = \langle X^2\rangle - \langle X\rangle^2$$
+			and
+			$$(\Delta P)^2 = \langle P^2\rangle - \langle P\rangle ^2,$$
+			this implies $\langle X^2\rangle = (\Delta X)^2$ and $\langle P^2\rangle = (\Delta P)^2$. To calculate $\langle 1| X^2|1 \rangle$, we compute
+			\begin{align*}
+				\int_{-\infty}^{\infty}\psi_1^*(x)x^2\psi_1(x)\,\mathrm{d}x &= 4\Big(\frac{m\omega}{4\pi\hbar}\Big)^{1/2}\Big(\frac{m\omega}{\hbar}\Big)\int_{-\infty}^{\infty}x^4\exp\Big({-\frac{m\omega x^2}{\hbar}}\Big)\,\mathrm{d}x \\
+				&= \frac{2}{(\pi)^{1/2}}\Big(\frac{m\omega}{\hbar}\Big)^{3/2}\cdot\Big[(\pi)^{1/2}\cdot\frac{3}{4}\Big(\frac{m\omega}{\hbar}\Big)^{-5/2}\Big] \\
+				&= \frac{3\hbar}{2m\omega}
+			\end{align*}
+			where we have used the fact that $H_1(y) = 2y$ and $I_4(\alpha) = (3/4)(\pi/\alpha^5)^{1/2}$. Similarly, we have
+			\begin{align*}
+				-\hbar^2\int_{-\infty}^{\infty}\psi_1^*(x)\psi_1''(x)\,\mathrm{d}x &= -4\hbar^2\Big(\frac{m\omega}{4\pi\hbar}\Big)^{1/2}\Big(\frac{m\omega}{\hbar}\Big)\int_{-\infty}^{\infty}x\exp\Big({-\frac{m\omega x^2}{2\hbar}}\Big)\frac{\mathrm{d}^2}{\mathrm{d}x^2}\Big[x\exp\Big({-\frac{m\omega x^2}{2\hbar}}\Big)\Big]\mathrm{d}x \\
+				&= -\frac{2m\omega}{(\pi)^{1/2}}\Big(\frac{m\omega}{\hbar}\Big)^{3/2}\int_{-\infty}^{\infty}x^2\exp\Big({-\frac{m\omega x^2}{\hbar}}\Big)(m\omega x^2 - 3\hbar)\mathrm{d}x \\
+				&= -\frac{2m\omega}{(\pi)^{1/2}}\Big(\frac{m\omega}{\hbar}\Big)^{3/2}\Big(m\omega(\pi)^{1/2}\cdot\frac{3}{4}\Big(\frac{m\omega}{\hbar}\Big)^{-5/2} - 3\hbar\Big(\frac{m\omega}{\hbar}\Big)^{-3/2}\frac{(\pi)^{1/2}}{2}\Big) \\
+				&= -2\frac{(m\omega)^{5/2}}{(\hbar)^{3/2}}\Big(\frac{3}{4}\frac{(\hbar)^{5/2}}{(m\omega)^{3/2}} - \frac{3}{2}\frac{(\hbar)^{5/2}}{(m\omega)^{3/2}}\Big) \\
+				&= \frac{3m\omega\hbar}{2}
+			\end{align*}
+			Finally, we calculate the uncertainties in position and momentum for the ground state of the harmonic oscillator,
+			\begin{align*}
+				(\Delta X)^2 &= \Big(\frac{m\omega}{\pi\hbar}\Big)^{1/2}\int_{-\infty}^{\infty}x^2\exp\Big({-\frac{m\omega x^2}{\hbar}}\Big)\mathrm{d}x \\
+				&= \Big(\frac{m\omega}{\pi\hbar}\Big)^{1/2}\frac{(\pi)^{1/2}}{2}\Big(\frac{m\omega}{\hbar}\Big)^{-3/2} \\
+				&= \frac{\hbar}{2m\omega} \\
+				(\Delta P)^2 &= -\hbar^2\Big(\frac{m\omega}{\pi\hbar}\Big)^{1/2}\int_{-\infty}^{\infty}\exp\Big({-\frac{m\omega x^2}{2\hbar}}\Big)\frac{\mathrm{d}^2}{\mathrm{d}x^2}\Big[\exp\Big({-\frac{m\omega x^2}{2\hbar}}\Big)\Big]\mathrm{d}x \\
+				&= -\hbar^2\Big(\frac{m\omega}{\pi\hbar}\Big)^{1/2}\frac{m\omega}{\hbar}\int_{-\infty}^{\infty}\exp\Big({-\frac{m\omega x^2}{\hbar}}\Big)\Big(\frac{m\omega}{\hbar}x^2 - 1\Big)\mathrm{d}x \\
+				&= -\hbar^2\Big(\frac{m\omega}{\pi\hbar}\Big)^{1/2}\frac{m\omega}{\hbar}\Big(\frac{m\omega}{2\hbar}\Big(\frac{\pi}{(m\omega/\hbar)^3}\Big)^{1/2} - \Big(\frac{\pi}{m\omega/\hbar}\Big)^{1/2}\Big) \\
+				&= -\hbar^2\Big(\frac{m\omega}{\hbar}\Big)^{3/2}\Big[\frac{1}{2}\Big(\frac{\hbar}{m\omega}\Big)^{1/2} - \Big(\frac{\hbar}{m\omega}\Big)^{1/2}\Big] \\
+				&= \frac{m\omega\hbar}{2}
+			\end{align*}
+			which gives
+			$$(\Delta X)\cdot(\Delta P) = \Big(\frac{\hbar}{2m\omega}\Big)^{1/2}\Big(\frac{m\omega\hbar}{2}\Big)^{1/2} = \frac{\hbar}{2}$$
+		\end{solution}
+		
+		\question Consider a particle in a potential
+		$$V(x) = \begin{cases}
+			\frac{1}{2}m\omega^2x^2, &x > 0\\
+			\infty, &x \leq 0
+		\end{cases}$$
+		What are the boundary conditions on the wave functions now? Find the eigenvalues and eigenfunctions.
+		
+		\begin{solution}
+			This is a very similar problem to the harmonic oscillator, and we may freely make the assumption that
+			$$\psi(y) = u(y)e^{-y^2/2}$$
+			However, unlike the previous case, we now look for a function $u(y)$ that approaches $0$ as $y$ approaches $0$. This is accomplished when $C_0 = 0$, see Eq. (7.3.16).
+			
+			Another way to look at the problem is that the wave function in the region $y \geq 0$ should look like its counterpart in the original harmonic oscillator potential, except we should have $\psi(0) = 0$. This only occurs with those odd solutions to the original harmonic oscillator potential, i.e. our wave functions will look like
+			$$\psi_{2n + 1}(x) = \begin{cases}0, &x \leq 0 \\
+				A_{n}\exp\Big({-\frac{m\omega x^2}{2\hbar}}\Big)H_{2n+1}\Big[\Big(\frac{m\omega}{\hbar}\Big)^{1/2}x\Big], &x > 0
+			\end{cases}$$
+			To find $A_n$, we normalize this as
+			\begin{align*}
+				A_n^2\int_{-\infty}^{\infty}\Theta(x)\exp\big({-\tfrac{m\omega x^2}{\hbar}}\big)\big(H_{2n+1}\big[\big(\tfrac{m\omega}{\hbar}\big)^{1/2}x\big]\big)^2\mathrm{d}x &= A_n^2\tfrac{1}{2}\big(\tfrac{m\omega}{\hbar}\big)^{1/2}\int_{-\infty}^{\infty}e^{-y^2}\big(H_{2n+1}(y)\big)^2\mathrm{d}y \\
+				&= A_n^2\tfrac{1}{2}\big(\tfrac{m\omega}{\hbar}\big)^{1/2}(\pi^{1/2}2^{2n+1}(2n+1)!) \\
+				&= A_n^2\big(\tfrac{\pi m\omega \cdot 2^{4n}[(2n + 1)!]^2}{\hbar}\big)^{1/2} \\
+				&= 1
+			\end{align*}
+			i.e.
+			$$A_n = \Big(\frac{\hbar}{\pi m \omega 2^{4n}[(2n+1)!]^2}\Big)$$
+		\end{solution}
+	
+		\question \textit{The Oscillator in Momentum Space}. By setting up an eigenvalue equation for the oscillator in the $P$ basis and comparing it to Eq. (7.3.2), show that the momentum space eigenfunctions may be obtained from the ones in coordinate space through the substitution $x \to p$, $m\omega \to 1/m\omega$. Thus, for example,
+		$$\psi_0(p) = \Big(\frac{1}{m\pi\hbar \omega}\Big)^{1/4}e^{-p^2/2m\hbar \omega}$$
+		There are several other pairs, such as $\Delta X$ and $\Delta P$ in the state $|n\rangle$, which are related by the substitution $m\omega \to 1/m\omega$. You may wish to watch out for them. (Refer back to Exercise 7.3.5).
+		
+		\begin{solution}
+			In the $P$ basis, the time-independent Schr\"odinger equation becomes
+			$$\frac{p^2}{2m}\psi_E(p) - \frac{1}{2}m\omega^2\hbar^2\frac{\mathrm{d}^2\psi_E(p)}{\mathrm{d}p^2} = E\psi_E(p)$$
+			or, collecting terms,
+			$$\frac{\mathrm{d}^2\psi_E(p)}{\mathrm{d}p^2} + \frac{2}{m\omega^2\hbar^2}\Big(E - \frac{p^2}{2m}\Big)\psi_E(p) = 0$$
+			Introducing the dimensionless parameter $y$ related to $p$ via $p = by$, we find
+			$$\frac{\mathrm{d}^2\psi_E(y)}{\mathrm{d}y^2} + \frac{2Eb^2}{m\omega^2\hbar^2}\psi_E(y) - \frac{b^4}{m^2\omega^2\hbar^2}y^2\psi_E(y) = 0$$
+			which can be simplified nicely through the choice $b = (m\omega\hbar)^{1/2}$. Further defining
+			$$\varepsilon = \frac{Eb^2}{m\omega^2\hbar^2} = \frac{E}{\hbar\omega},$$
+			we arrive at
+			$$\frac{\mathrm{d}^2\psi_E(y)}{\mathrm{d}y^2} + (2\varepsilon - y^2)\psi_E(y) = 0.$$
+			This is exactly the same as Eq (7.3.8) and so has the same solution. Instead of substituting
+			$$y = \Big(\frac{m\omega}{\hbar}\Big)^{1/2}x,$$
+			we simply substitute
+			$$y = \Big(\frac{1}{m\omega\hbar}\Big)^{1/2}p,$$
+			which is equivalent to the substitutions $x \to p$, $m\omega \to 1/m\omega$ in the problem statement.
+		\end{solution}
+	
+		\setcounter{subsection}{3}
+		\setcounter{question}{0}
+		\subsection{The Oscillator in the Energy Basis}
+		\question Compute the matrix elements of $X$ and $P$ in the $|n\rangle$ basis and compare with the result from Exercise 7.3.4.
+		\begin{solution}
+			Given
+			\begin{align*}
+				X &= \Big(\frac{\hbar}{2m\omega}\Big)^{1/2}(a + a^\dagger) \\
+				P &= i\Big(\frac{m\omega\hbar}{2}\Big)^{1/2}(a^\dagger - a)
+			\end{align*}
+			we have
+			\begin{align*}
+				\langle n'|X|n\rangle &= \Big(\frac{\hbar}{2m\omega}\Big)^{1/2}\Big[\langle n'|a|n\rangle + \langle n'|a^\dagger|n\rangle\Big] \\
+				&= \Big(\frac{\hbar}{2m\omega}\Big)^{1/2}\Big[n^{1/2}\langle n'|n - 1\rangle + (n+1)^{1/2}\langle n'|n+1\rangle\Big] \\
+				&= \Big(\frac{\hbar}{2m\omega}\Big)^{1/2}\Big[\delta_{n', n-1}n^{1/2} + \delta_{n', n+1}(n+1)^{1/2}\Big] \\
+				\langle n'|P|n\rangle &= i\Big(\frac{m\omega\hbar}{2}\Big)^{1/2}\Big[\langle n'|a^\dagger|n\rangle - \langle n'|a|n\rangle\Big] \\
+				&= i\Big(\frac{m\omega\hbar}{2}\Big)^{1/2}\Big[(n+1)^{1/2}\langle n'|n+1\rangle - n^{1/2}\langle n'|n - 1\rangle\Big] \\
+				&= i\Big(\frac{m\omega\hbar}{2}\Big)^{1/2}\Big[\delta_{n', n+1}(n+1)^{1/2}- \delta_{n', n-1}n^{1/2}\Big]
+			\end{align*}
+			We have found the same results as those in Exercise 7.3.4 with significantly less computation!
+		\end{solution}
+		
+		\question Find $\langle X\rangle$, $\langle P\rangle$, $\langle X^2\rangle$, $\langle P^2\rangle$, $\Delta X \cdot \Delta P$ in the state $|n\rangle$.
+		\begin{solution}
+			From the previous exercise, we know that $\langle X\rangle = \langle P \rangle = 0$. The other values are computed as
+			\begin{align*}
+				\langle n|X^2|n\rangle &= \frac{\hbar}{2m\omega}\langle n|(a + a^\dagger)^2|n\rangle \\
+				&= \frac{\hbar}{2m\omega}\langle n|aa + aa^\dagger + a^\dagger a + a^\dagger a^\dagger|n\rangle \\
+				&= \frac{\hbar}{2m\omega}\Big[\langle n|aa^\dagger |n\rangle + \langle n|a^\dagger a|n\rangle\Big] \\
+				&= \frac{\hbar}{2m\omega}\Big[(n+1)^{1/2}\langle n|a|n + 1\rangle + n^{1/2}\langle n|a^\dagger|n - 1\rangle\Big] \\
+				&= \frac{\hbar}{2m\omega}\Big[(n + 1)\delta_{n,n} + n\delta_{n, n}\Big] \\
+				&= \frac{\hbar}{2m\omega}(2n + 1)
+			\end{align*}
+			and
+			\begin{align*}
+				\langle n|P^2|n\rangle &= -\frac{m\omega\hbar}{2}\langle n|(a^\dagger - a)^2|n\rangle \\
+				&= -\frac{m\omega\hbar}{2}\langle n|a^\dagger a^\dagger - a^\dagger a - aa^\dagger + aa|n\rangle \\
+				&= \frac{m\omega\hbar}{2}\Big[\langle n|a^\dagger a|n\rangle + \langle n|aa^\dagger|n\rangle\Big] \\
+				&= \frac{m\omega\hbar}{2}(2n + 1)
+			\end{align*}
+			Combining our results gives us an uncertainty of
+			\begin{align*}
+				\Delta X \cdot \Delta P &= \sqrt{\langle X^2\rangle - \langle X\rangle^2}\cdot\sqrt{\langle P^2\rangle - \langle P\rangle ^2} \\
+				&= \sqrt{\langle X^2\rangle\langle P^2\rangle} \\
+				&= \sqrt{\frac{\hbar^2}{4}(2n + 1)^2} \\
+				&= \frac{\hbar}{2}(2n + 1)
+			\end{align*}
+		\end{solution}
+		
+		\question (\textit{Virial Theorem}). The virial theorem in classical mechanics states that for a particle bound by a potential $V(r) = ar^k$, the average (over the orbit) kinetic and potential energies are related by
+		$$\bar{T} = c(k)\bar{V}$$
+		when $c(k)$ depends only on $k$. Show that $c(k) = k/2$ by considering a circular orbit. Using the results from the previous exercise show that for the oscillator ($k=2$)
+		$$\langle T\rangle = \langle V\rangle$$
+		in the quantum state $|n\rangle$.
+		
+		\begin{solution}
+			When a particle undergoes a circular orbit, it experiences a centripetal force equal in magnitude to to
+			$$|\mathbf{F}| = |{-\nabla V}| = \frac{mv^2}{r}$$
+			For the given potential, its gradient is
+			\begin{align*}
+				\frac{\partial V}{\partial x_i} &= akr^{k-1}\frac{\partial r}{\partial x_i} \\
+				&= akr^{k-1}\frac{\partial}{\partial x_i}\Big(\sum_i x_i^2\Big)^{1/2} \\
+				&= akr^{k-1}\frac{1}{2}\Big(\sum_i x_i^2\Big)^{-1/2}(2x_i) \\
+				&= akr^{k-2}x_i
+			\end{align*}
+			which has a magnitude of
+			$$|{-\nabla V}| = akr^{k-2}\sqrt{\sum_i x_i^2} = akr^{k-1}$$
+			Equating this with our centripetal force allows us to solve for $v^2$ as
+			$$v^2 = \frac{akr^k}{m}$$
+			which gives a kinetic energy of
+			$$T = \frac{1}{2}mv^2 = \frac{akr^k}{2}$$
+			Since $r$ is constant over a circular orbit, $\bar{T} = T$ and $\bar{V} = V$, in which case it is clear that
+			$$\bar{T} = \frac{k}{2}\bar{V}$$
+			In the case of our quantum harmonic oscillator,
+			\begin{align*}
+				\langle T\rangle &= \frac{1}{2m}\langle n|P^2|n\rangle \\
+				&= \frac{\hbar\omega}{2}(n + \tfrac{1}{2}) \\
+				\langle V\rangle &= \frac{1}{2}m\omega^2\langle n|X^2|n\rangle \\
+				&= \frac{\hbar\omega}{2}(n + \tfrac{1}{2})
+			\end{align*}
+			So the virial theorem holds in the case of the quantum harmonic oscillator.
+		\end{solution}
+		
+		\question Show that $\langle n|X^4|n\rangle = (\hbar/2m\omega)^2[3 + 6n(n+1)]$.
+		\begin{solution}
+			Since we are sandwiching our operator between the same state, only those terms that contain two $a$s and two $a^\dagger$s will survive (all others will have terms like $\langle n|n-2\rangle = \delta_{n, n-2} = 0$). So we have
+			\begin{align*}
+				\langle n|X^4|n\rangle &= \Big(\frac{\hbar}{2m\omega}\Big)^2\langle n|a^\dagger a^\dagger a a + a^\dagger a a^\dagger a + aa^\dagger a^\dagger a + a^\dagger a a a^\dagger + a a^\dagger a a^\dagger+ a a a^\dagger a^\dagger|n\rangle \\
+				&= \Big(\frac{\hbar}{2m\omega}\Big)^2\Big[n(n-1) + n^2 + n(n+1) + (n+1)n + (n+1)^2 + (n+2)(n+1)\Big] \\
+				&= \Big(\frac{\hbar}{2m\omega}\Big)^2\Big[n^2 - n + n^2 + n^2 + n + n^2 + n + n^2 + 2n + 1 + n^2 + 3n + 2\Big] \\
+				&= \Big(\frac{\hbar}{2m\omega}\Big)\big[3 + 6n(n + 1)\big]
+			\end{align*}
+		\end{solution}
+		
+		\question At $t = 0$ a particle starts out in $|\psi(0)\rangle = 1/2^{1/2}(|0\rangle + |1\rangle)$. (1) Find $|\psi(t)\rangle$; (2) find $\langle X(0)\rangle = \langle\psi(0)|X|\psi(0)\rangle$, $\langle P(0)\rangle$, $\langle X(t)\rangle$, $\langle P(t)\rangle$; (3) find $\langle \dot{X}(t)\rangle$ and $\langle \dot{P}(t)\rangle$ using Ehrenfest's theorem and solve for $\langle X(t)\rangle$ and $\langle P(t)\rangle$ and compare with part (2).
+		\begin{solution}
+			From Chapter 4, we know that we can find the time-varying state by appending time evolution operators to each energy eigenstate contributing to the state,
+			$$|\psi(t)\rangle = \frac{1}{2^{1/2}}\Big(e^{-iE_0t/\hbar}|0\rangle + e^{-iE_1t/\hbar}|1\rangle\Big) = \frac{1}{2^{1/2}}\Big(e^{-i\omega t/2}|0\rangle + e^{-i3\omega t/2}|1\rangle\Big)$$
+			Working with $|\psi(t)\rangle$, we find
+			\begin{align*}
+				\langle \psi(t)|X|\psi(t)\rangle &= \frac{1}{2}\Big(\frac{\hbar}{2m\omega}\Big)^{1/2}\Big(e^{i\omega t/2}\langle 0| + e^{i3\omega t/2}\langle 1|\Big)\Big(a + a^\dagger\Big)\Big(e^{-i\omega t/2}|0\rangle + e^{-i3\omega t/2}|1\rangle\Big) \\
+				&= \frac{1}{2}\Big(\frac{\hbar}{2m\omega}\Big)^{1/2}\Big(e^{i\omega t/2}\langle 0| + e^{i3\omega t/2}\langle 1|\Big)\Big(e^{-i3\omega t/2}|0\rangle + e^{-i\omega t/2}|1\rangle + 2^{1/2}e^{-i3\omega t/2}|2\rangle\Big) \\
+				&= \frac{1}{2}\Big(\frac{\hbar}{2m\omega}\Big)^{1/2}\Big(e^{-i\omega t}\langle 0|0\rangle + e^{i\omega t}\langle 1|1\rangle\Big) \\
+				&= \Big(\frac{\hbar}{2m\omega}\Big)^{1/2}\cos(\omega t) \\
+				\langle \psi(t)|P|\psi(t)\rangle &= i\Big(\frac{m\omega\hbar}{2}\Big)^{1/2}\Big(e^{i\omega t/2}\langle 0| + e^{i3\omega t/2}\langle 1|\Big)\Big(a^\dagger - a\Big)\Big(e^{-i\omega t/2}|0\rangle + e^{-i3\omega t/2}|1\rangle\Big) \\
+				&= i\Big(\frac{m\omega\hbar}{2}\Big)^{1/2}\Big(e^{i\omega t/2}\langle 0| + e^{i3\omega t/2}\langle 1|\Big)\Big(e^{-i\omega t/2}|1\rangle + 2^{1/2}e^{-i3\omega t/2}|2\rangle - e^{-i3\omega t/2}|0\rangle \Big) \\
+				&= i\Big(\frac{m\omega\hbar}{2}\Big)^{1/2}\Big({-e^{-i\omega t}}\langle 0|0\rangle + e^{i\omega t/2}\langle 1|1\rangle\Big) \\
+				&= -\Big(\frac{m\omega\hbar}{2}\Big)^{1/2}\sin(\omega t)
+			\end{align*}
+			which immediately implies $\langle X(0)\rangle = (\hbar/2m\omega)^{1/2}$ and $\langle P(0)\rangle = 0$.
+			
+			Using Ehrenfest's theorem gives
+			\begin{align*}
+				\frac{\mathrm{d}}{\mathrm{d}t}\langle X\rangle &= -\frac{i}{\hbar}\langle \psi|[X, H]|\psi\rangle \\
+				&= -\frac{i}{\hbar}\langle\psi|[X, \tfrac{1}{2m}P^2 + \tfrac{1}{2}m\omega^2X^2]|\psi\rangle \\
+				&= -\frac{i}{2m\hbar}\langle\psi|[X, P^2]|\psi\rangle \\
+				&= -\frac{i}{2m\hbar}\langle\psi|XPP - PXP - PPX + PXP|\psi\rangle \\
+				&= -\frac{i}{2m\hbar}\langle\psi|[X, P]P + P[X, P]|\psi\rangle \\
+				&= \frac{1}{2m}\langle\psi| 2P|\psi\rangle \\
+				&= \frac{1}{m}\langle P\rangle
+			\end{align*}
+			and
+			\begin{align*}
+				\frac{\mathrm{d}}{\mathrm{d}t}\langle P\rangle &= -\frac{i}{\hbar}\langle \psi|[P, H]|\psi\rangle \\
+				&= -\frac{i}{\hbar}\langle\psi|[P, \tfrac{1}{2m}P^2 + \tfrac{1}{2}m\omega^2X^2]|\psi\rangle \\
+				&= -\frac{im\omega^2}{2\hbar}\langle\psi|[P, X^2]|\psi\rangle \\
+				&= -\frac{im\omega^2}{2\hbar}\langle\psi|[P, X]X + X[P, X]|\psi\rangle \\
+				&= -\frac{m\omega^2}{2}\langle\psi|2X|\psi\rangle \\
+				&= -m\omega^2\langle X\rangle
+			\end{align*}
+			Differentiating each of these equations again and substituting in the above gives
+			\begin{align*}
+				\frac{\mathrm{d}^2}{\mathrm{d}t^2}\langle X\rangle &= -\omega^2\langle X\rangle \\
+				\frac{\mathrm{d}^2}{\mathrm{d}t^2}\langle P\rangle &= -\omega^2\langle X\rangle 
+			\end{align*}
+			which each have the solution
+			\begin{align*}
+				\langle X\rangle &= C_1\cos(\omega t) + C_2\sin(\omega t) \\
+				\langle P\rangle&= C_3\cos(\omega t) + C_4\sin(\omega t)
+			\end{align*}
+			This reduces to the solution we found at the beginning when
+			\begin{align*}
+				C_1 &= \Big(\frac{\hbar}{2m\omega}\Big)^{1/2} \\
+				C_2 &= 0 \\
+				C_3 &= 0 \\
+				C_4 &= -\Big(\frac{m\omega\hbar}{2}\Big)^{1/2}
+			\end{align*}
+		\end{solution}
+		
+		\question Show that $\langle a(t) \rangle = e^{-i\omega t}\langle a(0)\rangle$ and that $\langle a^\dagger(t)\rangle = e^{i\omega t}\langle a^\dagger(0)\rangle$.
+		\begin{solution}
+			We know that an arbitrary state can be written as
+			$$|\psi(t)\rangle = \sum_{n=0}^{\infty}A_ne^{-iE_nt/\hbar}|n\rangle$$
+			in which case
+			\begin{align*}
+				\langle a(t)\rangle &= \langle \psi(t)|a|\psi(t)\rangle \\
+				&= \Big(\sum_{n=0}^{\infty}A_ne^{iE_nt/\hbar}\langle n|\Big)a\Big(\sum_{n=0}^{\infty}A_ne^{-iE_nt/\hbar}|n\rangle\Big) \\
+				&= \Big(\sum_{n=0}^{\infty}A_ne^{iE_nt/\hbar}\langle n|\Big)\Big(\sum_{n=0}^{\infty}n^{1/2}A_{n+1}e^{-iE_{n+1}t/\hbar}|n\rangle\Big) \\
+				&= \sum_{n=0}^{\infty}n^{1/2}A_nA_{n+1}e^{-i(E_{n+1}-E_n)t/\hbar} \\
+				&= \sum_{n=0}^{\infty}n^{1/2}A_nA_{n+1}e^{-i\omega t} \\
+				&= e^{-i\omega t}\langle a(0)\rangle
+			\end{align*}
+			It is clear that the same pattern holds for $a^\dagger$, with
+			\begin{align*}
+				\langle a^\dagger(t)\rangle &= \Big(\sum_{n=0}^{\infty}A_ne^{iE_nt/\hbar}\langle n|\Big)a^\dagger\Big(\sum_{n=0}^{\infty}A_ne^{-iE_nt/\hbar}|n\rangle\Big) \\
+				&= \Big(\sum_{n=0}^{\infty}A_ne^{iE_nt/\hbar}\langle n|\Big)\Big(\sum_{n=0}^{\infty}(n+1)^{1/2}A_{n}e^{-iE_{n}t/\hbar}|n + 1\rangle\Big) \\
+				&= \sum_{n=0}^{\infty}(n+1)^{1/2}A_{n+1}A_ne^{-i(E_n - E_{n+1})t/\hbar} \\
+				&= \sum_{n=0}^{\infty}(n+1)^{1/2}A_{n+1}A_ne^{i\omega t} \\
+				&= e^{i\omega t}\langle a^\dagger(0)\rangle
+			\end{align*}
+		\end{solution}
+		
+		\question Verify Eq. (7.4.40) for the case
+		\begin{align*}
+			&\text{(1)}\,\,\Omega = X, \quad \Lambda = X^2 + P^2 \\
+			&\text{(2)}\,\,\Omega = X^2, \quad \Lambda = P^2
+		\end{align*}
+		The second case illustrates the ordering ambiguity.
+		\begin{solution}
+			Classically, we have
+			\begin{align*}
+				\{x, x^2 + p^2\} &= \frac{\partial}{\partial x}(x)\frac{\partial}{\partial p}(x^2 + p^2) - \frac{\partial}{\partial p}(x)\frac{\partial}{\partial x}(x^2 + p^2) \\
+				&= 1\cdot(2p) - 0\cdot(2x) \\
+				&= 2p \\
+				\{x^2, p^2\} &= \frac{\partial}{\partial x}(x^2)\frac{\partial}{\partial p}(p^2) - \frac{\partial}{\partial p}(x^2)\frac{\partial}{\partial x}(p^2) \\
+				&= (2x)\cdot(2p) - 0\cdot0 \\
+				&= 4xp
+			\end{align*}
+			while quantum mechanically we have
+			\begin{align*}
+				[X, X^2 + P^2] &= [X, X^2] + [X, P^2] \\
+				&= 0 + [X, P]P + P[X, P] \\
+				&= i\hbar P + Pi\hbar \\
+				&= i\hbar\cdot 2P \\
+				[X^2, P^2] &= [X^2, P]P + P[X^2, P] \\
+				&= X[X, P]P + [X, P]XP + PX[X, P] + P[X, P]X \\
+				&= i\hbar XP + i\hbar XP + i\hbar PX + i\hbar PX \\
+				&= i\hbar\cdot 2XP + i\hbar \cdot 2PX
+			\end{align*}
+			We see that Eq. (7.4.40) relating the commutator to the Poisson bracket through $i\hbar$ holds, though $[X^2, P^2]$ is a symmetrized version of $\{x^2, p^2\}$.
+		\end{solution}
+		
+		\question Consider the three angular momentum variables in classical mechanics:
+		\begin{align*}
+			l_x &= yp_z - zp_y \\
+			l_y &= zp_x - xp_z \\
+			l_z &= xp_y - yp_x
+		\end{align*}
+		(1) Construct $L_x$, $L_y$, and $L_z$, the quantum counterparts, and note that there are no ordering ambiguities.
+		
+		(2) Verify that $\{l_x, l_y\} = l_z$ [see Eq. (2.7.3) for the definition of the PB].
+		
+		(3) Verify that $[L_x, L_y] = i\hbar L_z$.
+		\begin{solution}
+			The quantum mechanical angular momentum operators are given by
+			\begin{align*}
+				L_x &= YP_z - ZP_y \\
+				L_y &= ZP_x - XP_z \\
+				L_z &= XP_y - YP_x
+			\end{align*}
+			These have no ordering ambiguities because the momentum operator in each term is independent from the coordinate in the same term.
+			
+			The Poisson bracket of $l_x$ and $l_y$ is
+			\begin{align*}
+				\{l_x, l_y\} &= \sum_i\frac{\partial}{\partial x_i}(yp_z - zp_y)\frac{\partial}{\partial p_i}(zp_x - xp_z) - \frac{\partial}{\partial p_i}(yp_z - zp_y)\frac{\partial}{\partial x_i}(zp_x - xp_z) \\
+				&= \big[0\cdot z - 0\cdot(-p_z)\big] + \big[p_z\cdot 0 - (-z)\cdot 0\big] + \big[(-p_y)\cdot(-x) - y\cdot p_x\big] \\
+				&= xp_y - yp_x \\
+				&= l_z
+			\end{align*}
+		
+			The analogous commutator is 
+			\begin{align*}
+				[L_x, L_y] =\,&[YP_z - ZP_y, ZP_x - XP_z] \\
+				=\,&[YP_z, ZP_x] - [YP_z, XP_z] - [ZP_y, ZP_x] + [ZP_y, XP_z] \\
+				=\,&Y[P_z, Z]P_x + [Y, Z]P_zP_x + ZY[P_z, P_x] + Z[Y, P_x]P_z - 0 - 0 \\
+				&+ Z[P_y, X]P_z + [Z, X]P_yP_z + XZ[P_y, P_z] + X[Z, P_z]P_y \\
+				=\,&{-i\hbar} YP_x + 0 + 0 + 0 + 0 + 0 + 0 + i\hbar XP_y \\
+				=\,&i\hbar(XP_y - YP_x) \\
+				=\,&i\hbar L_z
+			\end{align*}
+		\end{solution}
+		
+		\question (\textit{Important}). Consider the unconventional (but fully acceptable) operator choice
+		\begin{align*}
+			X &\to x \\
+			P &\to {-i\hbar}\frac{\mathrm{d}}{\mathrm{d}x} + f(x)
+		\end{align*}
+		in the $X$ basis.
+		
+		(1) Verify that the canonical commutation relation is satisfied.
+		
+		(2) It is possible to interpret the change in the operator assignment as a result of a unitary change of the $X$ basis:
+		$$|x\rangle \to |\tilde{x}\rangle = e^{ig(X)/\hbar}|x\rangle = e^{ig(x)/\hbar}|x\rangle$$
+		where
+		$$g(x) = \int^xf(x')\mathrm{d}x'$$
+		First verify that
+		$$\langle \tilde{x}|X|\tilde{x}'\rangle = x\delta(x - x')$$
+		i.e.
+		$$X \xrightarrow[\text{new }X\text{ basis}]{} x$$
+		Next verify that
+		$$\langle \tilde{x}|P|\tilde{x}'\rangle = \Big[{-i\hbar\frac{\mathrm{d}}{\mathrm{d}x} + f(x)}\Big]\delta(x - x')$$
+		i.e.
+		$$P \xrightarrow[\text{new }X\text{ basis}]{} {-i\hbar\frac{\mathrm{d}}{\mathrm{d}x}} + f(x)$$
+		This exercise teaches us that the ``X basis'' is not unique; given a basis $|x\rangle$, we can get another $|\tilde{x}\rangle$, by multiplying by a phase factor which changes neither the norm nor the orthogonality. The matrix elements fo $P$ change with $f$, the standard choice corresponding to $f = 0$. Since the presence of $f$ is related to a change of basis, the invariance of the physics under a change in $f$ (from zero to nonzero) follows. What is novel here is that we are changing from one $X$ basis to another $X$ basis rather than to some other $\Omega$ basis. Another lesson to remember is that two different differential operator $\omega(x, {-i\hbar\mathrm{d}/\mathrm{d}x})$ and $\omega(x, {-i\hbar\mathrm{d}/\mathrm{d}x} + f)$ can have the same eigenvalues and a one-to-one correspondence between their eigenfunctions, since they both represent the same abstract operator $\Omega(X, P)$.
+		\begin{solution}
+			The commutation relation can be obtained by applying the operators to a wave function,
+			\begin{align*}
+				XP\psi(x) &= x\Big({-i\hbar\frac{\mathrm{d}}{\mathrm{d}x}} + f(x)\Big)\psi(x) \\
+				&= -i\hbar x\frac{\mathrm{d}}{\mathrm{d}x}\psi(x) + xf(x)\psi(x) \\
+				PX\psi(x) &= \Big({-i\hbar\frac{\mathrm{d}}{\mathrm{d}x}} + f(x)\Big)x\psi(x) \\
+				&= -i\hbar\frac{\mathrm{d}}{\mathrm{d}x}\big(x\psi(x)\big) + xf(x)\psi(x) \\
+				&= -i\hbar\psi(x) - i\hbar x\frac{\mathrm{d}}{\mathrm{d}x}\psi(x) + xf(x)\psi(x) \\
+				[X, P]\psi(x) &= XP\psi(x) - PX\psi(x) \\
+				&= i\hbar\psi(x)
+			\end{align*}
+			so $[X, P] = i\hbar$. When we perform the suggested unitary transformation on the state vectors, we find
+			\begin{align*}
+				\langle\tilde{x}|X|\tilde{x}'\rangle &= \langle x|e^{-ig(x)/\hbar}Xe^{ig(x')/\hbar}|x'\rangle \\
+				&= e^{-i(g(x) - g'(x))/\hbar}\langle x|X|x'\rangle \\
+				&= e^{-i(g(x) - g'(x))/\hbar}x'\langle x|x'\rangle \\
+				&= e^{-i(g(x) - g'(x))/\hbar}x'\delta(x - x')\\
+				&= x\delta(x - x')
+			\end{align*}
+			and
+			\begin{align*}
+				\langle\tilde{x}|P|\tilde{x}'\rangle &= \langle x|e^{-ig(x)/\hbar}\Big({-i\hbar\frac{\mathrm{d}}{\mathrm{d}x'}}\Big)e^{ig(x')/\hbar}|x'\rangle \\
+				&= \langle x|e^{-ig(x)/\hbar}\Big({-i\hbar} e^{ig(x')/\hbar}\cdot\frac{i}{\hbar}\frac{\mathrm{d}}{\mathrm{d}x'}g(x') - i\hbar e^{ig(x')/\hbar}\frac{\mathrm{d}}{\mathrm{d}x'}\Big)|x'\rangle \\
+				&= e^{-i(g(x) - g(x'))/\hbar}\langle x|\Big(f(x') - i\hbar\frac{\mathrm{d}}{\mathrm{d}x'}\Big)|x'\rangle \\
+				&= e^{-i(g(x) - g(x'))/\hbar}\Big(f(x')\langle x|x'\rangle - i\hbar\langle x|\frac{\mathrm{d}}{\mathrm{d}x'}|x'\rangle\Big) \\
+				&= e^{-i(g(x) - g(x'))/\hbar}\Big(f(x')\delta(x - x') - i\hbar\Big[\frac{\mathrm{d}}{\mathrm{d}x'}\langle x|x'\rangle - \Big(\frac{\mathrm{d}}{\mathrm{d}x'}\langle x|\Big)|x'\rangle\Big]\Big) \\
+				&= e^{-i(g(x) - g(x'))/\hbar}\Big(f(x') - i\hbar\frac{\mathrm{d}}{\mathrm{d}x'}\Big)\delta(x - x') \\
+				&= \Big({-i\hbar\frac{\mathrm{d}}{\mathrm{d}x}} + f(x)\Big)\delta(x - x')
+			\end{align*}
+		\end{solution}
+		
+		\question Recall that we always quantize a system by promoting the Cartesian coordinate $x_1,\ldots, x_N$; and momenta $p_1,\ldots ,p_n$ to operators obeying the canonical commutation rules. If non-Cartesian coordinates seem more natural in some cases, such as the eigenvalue problem of a Hamiltonian with spherical symmetry, we first set up the differential equation in Cartesian coordinates and \textit{then} change to spherical coordinates (Section 4.2). In Section 4.2 it was pointed out that if $\mathcal{H}$ is written in terms of non-Cartesian but canonical coordinates $q_1 \ldots q_N$; $p_1 \ldots p_N$; $\mathcal{H}(q_i \to q_i, p_i \to {-i\hbar\partial/\partial q_i})$ does not generate the correct Hamiltonian $H$, even though the operator assignment satisfies the canonical commutation rules. In this section we revisit the problem in order to explain some of the subtleties arising in the direct quantization of non-Cartesian coordinates without the use of Cartesian coordinates in intermediate stages.
+		
+		(1) Consider a particle in two dimensions with
+		$$\mathcal{H} = \frac{p_x^2 + p_y^2}{2m} + a(x^2 + y^2)^{1/2}$$
+		which leads to 
+		$$H = \frac{-\hbar^2}{2m}\Big(\frac{\partial^2}{\partial \rho^2} + \frac{1}{\rho}\frac{\partial}{\partial \rho} + \frac{1}{\rho^2}\frac{\partial}{\partial \phi^2}\Big) + a\rho$$
+		Since $\rho$ and $\phi$ are not mixed up as $x$ and $y$ are [in the $(x^2 + y^2)^{1/2}$ term] the polar version can be more readily solved.
+		
+		The question we address is the following: why not \textit{start} with $\mathcal{H}$ expressed in terms of polar coordinates and the conjugate momenta
+		$$p_\rho = \mathbf{e}_\rho\cdot\mathbf{p} = \frac{xp_x + yp_y}{(x^2 + y^2)^{1/2}}$$
+		(where $\mathbf{e}_\rho$ is the unit vector in the radial direction), and 
+		$$p_\phi = xp_y - yp_x\quad\text{(the angular momentum, also called }l_z\text{)}$$
+		i.e.
+		$$\mathcal{H} = \frac{p_\rho^2}{2m} + \frac{p_\phi^2}{2m\rho^2} + a\rho\quad\text{(verify this)}$$
+		and directly promote all classical variables $\rho$, $p_\rho$, $\phi$, and $p_\phi$ to quantum operators obeying the canonical commutations rules? Let's do it and see what happens. If we choose operators
+		\begin{align*}
+			P_\rho &\to {-i\hbar\frac{\partial}{\partial \rho}} \\
+			P_\phi &\to {-i\hbar\frac{\partial}{\partial \phi}} 
+		\end{align*}
+		that obey the commutation rules, we end up with
+		$$H \xrightarrow[\text{coordinate basis}]{} \frac{-\hbar^2}{2m}\Big(\frac{\partial^2}{\partial \rho^2} + \frac{1}{\rho^2}\frac{\partial^2}{\partial \phi^2}\Big) + a\rho$$
+		which disagrees with Eq. (7.4.41). Now this in itself is not serious, for as seen in the last exercise the same physics may be hidden in two different equations. In the present case this isn't true: as we will see, the Hamiltonians in Eqs. (7.4.41) and (7.4.42) do not have the same eigenvalues. We know Eq. (7.4.41) is the correct one, since the quantization procedure in terms of Cartesian coordinates has empirical support. What do we do now?
+		
+		(2) A way out is suggested by the fact that although the choice $P_\rho \to {-i\hbar \partial/\partial \rho}$ leads to the correct commutation rule, it is not Hermitian! Verify that
+		\begin{align*}
+			\langle \psi_1| P_\rho|\psi_2\rangle &= \int_0^{\infty}\int_0^{2\pi}\psi_1^*\Big({-i\hbar\frac{\partial \psi_2}{\partial \rho}}\Big)\rho\,\mathrm{d}\rho\,\mathrm{d}\phi \\
+			&\neq \int_0^{\infty}\int_0^{2\pi}\Big({-i\hbar\frac{\partial \psi_1}{\partial \rho}}\Big)^*\psi_2\rho\,\mathrm{d}\rho\,\mathrm{d}\phi \\
+			&= \langle \mathbf{P}_\rho\psi_1|\psi_2\rangle
+		\end{align*}
+		(You may assume $\rho\psi_1^*\psi_2 \to 0$ as $\rho \to 0$ or $\infty$. The problem comes from the fact that $\rho\,\mathrm{d}\rho\,\mathrm{d}\phi$ and not $\mathrm{d}\rho\,\mathrm{d}\phi$ is the measure for integration.)
+		
+		Show, however, that
+		$$P_\rho \to {-i\hbar}\Big(\frac{\partial}{\partial \rho} + \frac{1}{2\rho}\Big)$$
+		is indeed Hermitian and also satisfies the canonical commutation rule. The angular momentum $P_\rho \to {-i\hbar\partial/\partial \phi}$ is Hermitian, as it stands, on single-valued functions: $\psi(\rho, \phi) = \psi(\rho, \phi+ 2\pi)$.
+		
+		(3) In the Cartesian case we saw that adding an arbitrary $f(x)$ to ${-i\hbar\partial/\partial x}$ didn't have any physical effect, whereas there the addition of a function of $\rho$ to ${-i\hbar\partial / \partial \rho}$ seems important. Why? [Is $f(x)$ completely arbitrary? Mustn't it be real? Why? Is the same true for the ${-i\hbar/2\rho}$ piece?]
+		
+		(4) Feed in the new momentum operator $P_\rho$ and show that
+		$$H\xrightarrow[\text{coordinate basis}]{} {-\hbar^2}{2m}\Big(\frac{\partial^2}{\partial \rho^2} + \frac{1}{\rho}\frac{\partial}{\partial \rho} - \frac{1}{4\rho^2} + \frac{1}{\rho^2}\frac{\partial^2}{\partial \phi^2}\Big) + a\rho$$
+		which still disagrees with Eq. (7.4.41). We have satisfied the commutation rules, chosen Hermitian operators, and yet do not get the right quantum Hamiltonian. The key to the mystery lies in the fact that $\mathcal{H}$ doesn't determine $H$ uniquely since terms of order $\hbar$ (or higher) may be present in $H$ but absent in $\mathcal{H}$. While this ambiguity is present even in the Cartesian case, it is resolved by symmetrization in all interesting cases. With non-Cartesian coordinates the ambiguity is more severe. There \textit{are} ways of constructing $H$ given $\mathcal{H}$ (the path integral formulation suggests one) such that the substitution $P_\rho \to {-i\hbar(\partial / \partial \rho + 1/2\rho)}$ leads to Eq. (7.4.41). In the present case the quantum Hamiltonian corresponding to 
+		$$\mathcal{H} = \frac{p_\rho^2}{2m}+ \frac{p_\phi^2}{2m\rho^2} + a\rho$$
+		is given by
+		$$H \xrightarrow[\text{coordinate basis}]{} \mathcal{H}\Big(\rho \to \rho, p_\rho \to {-i\hbar}\Big[\frac{\partial}{\partial \rho} + \frac{1}{2\rho}\Big]; \phi \to \phi, p_\phi \to {-i\hbar}\frac{\partial}{\partial \phi}\Big) - \frac{\hbar^2}{8m\rho^2}$$
+		Notice the additional term is indeed of nonzero order in $\hbar$.
+		\begin{solution}
+			Our Cartesian Hamiltonian is given by
+			$$\mathcal{H} = \frac{p_x^2 + p_y^2}{2m} + a(x^2 + y^2)^{1/2} = \frac{p_x^2 + p_y^2}{2m} + a\rho$$
+			We are given that
+			\begin{align*}
+				p_\rho\rho = xp_x + yp_y \\
+				p_\phi = xp_y - yp_x
+			\end{align*}
+			from which we can find
+			\begin{align*}
+				p_x &= \frac{p_\rho\rho - yp_y}{x} \\
+				&= \frac{p_\rho\rho - y\frac{p_\phi + yp_x}{x}}{x} \\
+				&= \frac{xp_\rho\rho - yp_\phi - y^2p_x}{x^2}\\
+				&= \frac{xp_\rho\rho - yp_\phi}{x^2 + y^2} \\
+				&= \frac{xp_\rho\rho - yp_\phi}{\rho^2}
+			\end{align*}
+			and
+			\begin{align*}
+				p_y &= \frac{p_\rho\rho - xp_x}{y} \\
+				&= \frac{p_\rho\rho - x\frac{xp_y - p_\phi}{y}}{y} \\
+				&= \frac{yp_\rho\rho - x^2p_y + xp_\phi}{y^2} \\
+				&= \frac{yp_\rho\rho + xp_\phi}{x^2 + y^2} \\
+				&= \frac{yp_\rho\rho + xp_\phi}{\rho^2}
+			\end{align*}
+			Substituting this into our original Hamiltonian gives
+			\begin{align*}
+				\mathcal{H} &= \frac{1}{2m}\Big(\frac{xp_\rho\rho - yp_\phi}{\rho^2}\Big)^2 + \frac{1}{2m}\Big(\frac{yp_\rho\rho + xp_\phi}{\rho^2}\Big)^2 + a\rho \\
+				&= \frac{1}{2m}\frac{x^2p_\rho^2\rho^2 - 2xyp_\rho p_\phi \rho + y^2p_\phi^2}{\rho^4} + \frac{1}{2m}\frac{y^2p_\rho^2\rho^2 + 2xyp_\rho p_\phi\rho + x^2p_\phi^2}{\rho^4} + a\rho \\
+				&= \frac{1}{2m}\frac{x^2 + y^2}{\rho^4}p_\rho^2\rho^2 + \frac{1}{2m}\frac{x^2 + y^2}{\rho^4}p_\phi^2 + a\rho \\
+				&= \frac{p_\rho^2}{2m} + \frac{p_\phi^2}{2m\rho^2} + a\rho
+			\end{align*}
+			Given $\rho\psi_1^*\psi_2 \to 0$ as $\rho\to 0$, we can perform integration by parts on $\langle \psi_1|P_\rho|\psi_2\rangle$ to get
+			\begin{align*}
+				\langle \psi_1|P_\rho|\psi_2\rangle &= \int_0^\infty\int_0^{2\pi}\psi_1^*\Big({-i\hbar}\frac{\partial \psi_2}{\partial \rho}\Big)\rho\,\mathrm{d}\rho\,\mathrm{d}\phi \\
+				&= \int_0^{\infty}\int_0^{2\pi}\Big({i\hbar}\frac{\partial (\psi_1^*\rho)}{\partial\rho}\Big)\psi_2\,\mathrm{d}\rho\,\mathrm{d}\phi \\
+				&= \int_0^{\infty}\int_0^{2\pi}\Big(i\hbar\frac{\partial\psi_1^*}{\partial \rho}\Big)\psi_2\rho\,\mathrm{d}\rho\,\mathrm{d}\phi + \int_0^\infty\int_0^{2\pi}i\hbar\psi_1^*\psi_2\,\mathrm{d}\rho\,\mathrm{d}\phi \\
+				&= \int_0^{\infty}\int_0^{2\pi}\Big({-i\hbar}\frac{\partial\psi_1}{\partial \rho}\Big)^*\psi_2\rho\,\mathrm{d}\rho\,\mathrm{d}\phi + \int_0^\infty\int_0^{2\pi}i\hbar\psi_1^*\psi_2\,\mathrm{d}\rho\,\mathrm{d}\phi \\
+				&\neq \int_0^{\infty}\int_0^{2\pi}\Big({-i\hbar}\frac{\partial \psi_1}{\partial\rho}\Big)^*\psi_2\,\rho\,\mathrm{d}\rho\,\mathrm{d}\phi
+			\end{align*}
+			If we use the suggested new operator, we can build off our results above to find that
+			\begin{align*}
+				\langle \psi_1|P_\rho|\psi_2\rangle &= \int_0^\infty\int_0^{2\pi}\psi_1^*\Big({-i\hbar}\Big[\frac{\partial \psi_2}{\partial \rho} + \frac{\psi_2}{2\rho}\Big]\Big)\rho\,\mathrm{d}\rho\,\mathrm{d}\phi \\
+				&= \int_0^\infty\int_0^{2\pi}\psi_1^*\Big({-i\hbar}\frac{\partial \psi_2}{\partial \rho}\Big)\rho\,\mathrm{d}\rho\,\mathrm{d}\phi - \frac{1}{2}\int_0^\infty\int_0^{2\pi}i\hbar\psi_1^*\psi_2\,\mathrm{d}\rho\,\mathrm{d}\phi \\
+				&= \int_0^{\infty}\int_0^{2\pi}\Big({-i\hbar}\frac{\partial\psi_1}{\partial \rho}\Big)^*\psi_2\rho\,\mathrm{d}\rho\,\mathrm{d}\phi + \frac{1}{2}\int_0^\infty\int_0^{2\pi}i\hbar\psi_1^*\psi_2\,\mathrm{d}\rho\,\mathrm{d}\phi \\
+				&= \int_0^\infty\int_0^{2\pi}\Big({-i\hbar}\Big[\frac{\partial\psi_1}{\partial \rho} + \frac{\psi_1}{2\rho}\Big]\Big)^*\psi_2\rho\,\mathrm{d}\rho\,\mathrm{d}\phi
+			\end{align*}
+			i.e. $P_\rho$ is now Hermitian. To check that it gives rise to the canonical commutation relation, we compute
+			\begin{align*}
+				[\rho, P_\rho]\psi(\rho, \phi) &= (\rho P_\rho - P_\rho\rho)\psi(\rho, \phi) \\
+				&= {-i\hbar}\rho\frac{\partial \psi(\rho, \phi)}{\partial \rho} - \frac{i\hbar}{2}\psi(\rho, \phi)  + i\hbar\frac{\partial\big(\rho\psi(\rho, \phi)\big)}{\partial\rho} + \frac{i\hbar}{2}\psi(\rho, \phi) \\ 
+				&= {-i\hbar}\rho\frac{\partial\psi(\rho, \phi)}{\partial \rho} + i\hbar\rho\frac{\partial\psi(\rho, \phi)}{\partial \rho} + i\hbar\psi(\rho, \phi) \\
+				&= i\hbar\psi(\rho, \phi)
+			\end{align*}
+			which shows that $[\rho, P_\rho] = i\hbar$.
+			
+			There are a few ways to view the difficulties of using this basis: for one, the integration measure is changed, introducing the problem we explored in step (2). For another, the $f(x)$ function considered in the previous exercise was restricted to be real so that the new basis could be seen as a unitary transformation of the previous one---this is not so in the current case, as polar / cylindrical / spherical coordinates are not related to Cartesian coordinates through a simple unitary transformation.
+			
+			If we feed our new momentum operator into $\mathcal{H}$, we obtain
+			\begin{align*}
+				H &= \frac{1}{2m}P_\rho^2 + \frac{1}{2m\rho^2}P_\phi^2 + a\rho \\
+				&= \frac{1}{2m}\Big({-i\hbar}\frac{\partial}{\partial\rho} - i\hbar\frac{1}{2\rho}\Big)^2 + \frac{1}{2m\rho^2}\Big({-i\hbar}\frac{\partial}{\partial\phi}\Big)^2 + a\rho \\
+				&= {-\frac{\hbar^2}{2m}}\Big(\frac{\partial^2}{\partial\rho^2} - \frac{1}{\rho}\frac{\partial}{\partial\rho} + \frac{1}{4\rho^2}\Big) - \frac{\hbar^2}{2m\rho^2}\frac{\partial^2}{\partial\phi^2} + a\rho \\
+				&= {-\frac{\hbar^2}{2m}}\Big(\frac{\partial^2}{\partial\rho^2} - \frac{1}{\rho}\frac{\partial}{\partial\rho} + \frac{1}{4\rho^2} + \frac{1}{\rho^2}\frac{\partial^2}{\partial\phi^2}\Big) + a\rho
+			\end{align*}
+		\end{solution}
+		 
+		\setcounter{subsection}{4}
+		\setcounter{question}{0}
+		\subsection{Passage from the Energy Basis to the $X$ Basis}
+		\question Project Eq. (7.5.1) on the $P$ basis and obtain $\psi_0(p)$.
+		\begin{solution}
+			From earlier in the chapter, we know that
+			$$a = \Big(\frac{m\omega}{2\hbar}\Big)^{1/2}X + i\Big(\frac{1}{2m\omega\hbar}\Big)^{1/2}P$$
+			which, in the $P$ basis, becomes
+			$$a = i\Big(\frac{m\omega\hbar}{2}\Big)^{1/2}\frac{\mathrm{d}}{\mathrm{d}p} + i\Big(\frac{1}{2m\omega\hbar}\Big)^{1/2}p$$
+			Using the choice of 
+			$$y = (m\omega\hbar)^{-1/2}p$$
+			from an earlier exercise, this simplifies to
+			$$a = \frac{i}{2^{1/2}}\Big(\frac{\mathrm{d}}{\mathrm{d}y} + y\Big)$$
+			and so Eq. (7.5.1) becomes
+			$$\Big(\frac{\mathrm{d}}{\mathrm{d}y} + y\Big)\psi_0(y) = 0$$
+			which has the solution
+			$$\psi_0(y) = A_0e^{-y^2/2}$$
+			or
+			$$\psi_0(p) = A_0e^{-p^2/2m\omega\hbar}$$
+			We can normalize this by recognizing that
+			$$\int_{-\infty}^{\infty} \psi_0^2(p)\,\mathrm{d}p = A_0^2(\pi m\omega\hbar)^{1/2} = 1$$
+			i.e.
+			$$\psi_0(p) = \Big(\frac{1}{\pi m\omega\hbar}\Big)^{1/4}\exp\Big({-\frac{p^2}{2m\omega\hbar}}\Big)$$
+		\end{solution}
+		
+		\question Project the relation
+		$$a|n\rangle = n^{1/2}|n - 1\rangle$$
+		on the $X$ basis and derive the recursion relation
+		$$H_n'(y) = 2nH_{n-1}(y)$$
+		using Eq. (7.3.22).
+		\begin{solution}
+			In the $X$ basis, the above equation becomes
+			$$\frac{1}{2^{1/2}}\Big(y + \frac{\mathrm{d}}{\mathrm{d}y}\Big)\Big(\frac{m\omega}{\pi\hbar 2^{2n}(n!)^2}\Big)^{1/4}e^{-y^2/2}H_n(y) = n^{1/2}\Big(\frac{m\omega}{\pi\hbar 2^{2n - 2}([n-1]!)^2}\Big)^{1/4}e^{-y^2/2}H_{n-1}(y)$$
+			Canceling common terms and collecting what remains gives
+			$$\Big(y + \frac{\mathrm{d}}{\mathrm{d}y}\Big)e^{-y^2/2}H_n(y) = 2ne^{-y^2/2}H_{n-1}(y)$$
+			Applying the parenthesized operator to the lefthand side gives
+			\begin{align*}
+				2ne^{-y^2/2}H_{n-1}(y) &= ye^{-y^2/2}H_n(y) - ye^{-y^2/2}H_n(y) + e^{-y^2/2}H_n'(y) \\
+				&= e^{-y^2/2}H_n'(y)
+			\end{align*}
+			i.e. $H_n'(y) = 2nH_{n-1}(y)$.
+		\end{solution}
+		
+		\question Starting with
+		$$a + a^\dagger = 2^{1/2}y$$
+		and
+		$$(a + a^\dagger)|n\rangle = n^{1/2}|n - 1\rangle + (n + 1)^{1/2}|n + 1\rangle$$
+		and Eq. (7.3.22), derive the relation
+		$$H_{n+1}(y) = 2yH_n(y) - 2nH_{n-1}(y)$$
+		\begin{solution}
+			To reduce clutter, we precancel all common factors (including $e^{-y^2/2}$), giving a (simplified) projection of
+			$$2^{1/2}y\Big(\frac{1}{(n!)^2}\Big)^{1/4}H_n(y) = n^{1/2}\Big(\frac{1}{2^{-2}([n-1]!)^2}\Big)^{1/4}H_{n-1}(y) + (n+1)^{1/2}\Big(\frac{1}{2^{2}([n+1]!)^2}\Big)^{1/4}H_{n+1}(y)$$
+			Canceling the additional overlapping factorial reduces this to
+			$$2^{1/2}yn^{-1/2}H_n(y) = n^{1/2}2^{1/2}H_{n-1}(y) + (n+1)^{1/2}2^{-1/2}(n+1)^{-1/2}n^{-1/2}H_{n+1}(y)$$
+			Isolating $H_{n+1}(y)$ gives us the desired relation
+			$$H_{n+1}(y) = 2yH_n(y) - 2nH_{n-1}(y)$$
+		\end{solution}
+		
+		\question \textit{Thermodynamics of Oscillators}. The Boltzmann formula
+		$$P(i) = e^{-\beta E(i)}/Z$$
+		where
+		$$Z = \sum_i e^{-\beta E(i)}$$
+		gives the probability of finding a system in a state $i$ with energy $E(i)$, when it is in thermal equilibrium with a reservoir of absolute temperature $T = 1/\beta k$, $k = 1.4\times 10^{-16}$ ergs/K; being Boltzmann's constant. (The ``probability'' referred to above is in relation to a classical ensemble of similar systems and has nothing to do with quantum mechanics.)
+		
+		(1) Show that the thermal average of the system's energy is
+		$$\bar{E} = \sum_i E(i)P(i) = \frac{-\partial}{\partial \beta}\ln Z$$
+		
+		(2) Let the system be a classical oscillator. The index $i$ is now continuous and corresponds to the variables $x$ and $p$ describing the state of the oscillator, i.e.
+		$$i \to x, p$$
+		and
+		$$\sum_i \to \int\!\!\!\!\int \mathrm{d}x\,\mathrm{d}p$$
+		and
+		$$E(i) \to E(x, p) = \frac{p^2}{2m} + \frac{1}{2}m\omega^2x^2$$
+		Show that
+		$$Z_{\text{cl}} = \Big(\frac{2\pi}{\beta m \omega^2}\Big)^{1/2}\Big(\frac{2\pi m}{\beta}\Big)^{1/2} = \frac{2\pi}{\omega \beta}$$
+		and that
+		$$\bar{E}_{\text{cl}} = \frac{1}{\beta} = kT$$
+		Note that $E_{\text{cl}}$ is independent of $m$ and $\omega$.
+		
+		(3) For the quantum oscillator the quantum number $n$ plays the role of the index $i$. Show that
+		$$Z_{\text{qu}} = e^{-\beta\hbar\omega/2}(1 - e^{-\beta\hbar\omega})^{-1}$$
+		and
+		$$\bar{E}_{\text{qu}} = \hbar\omega\Big(\frac{1}{2} + \frac{1}{e^{\beta\hbar\omega} - 1}\Big)$$
+		
+		(4) It is intuitively clear that as the temperature $T$ increases (and $\beta = 1/kT$ decreases) the oscillator will get more and more excited and eventually (from the correspondence principle)
+		$$\bar{E}_{\text{qu}} \xrightarrow[T\to\infty]{} \bar{E}_{\text{cl}}$$
+		Verify that this is indeed true and show that ``large $T$'' means $T \gg \hbar\omega / k$.
+		
+		(5) Consider a crystal with $N_0$ atoms, which, for small oscillations, is equivalent to $3N_0$ decoupled oscillators. The mean thermal energy of the crystal $\bar{E}_{\text{crystal}}$ is $\bar{E}_{\text{cl}}$ or $\bar{E}_{\text{qu}}$ summed over all the normal modes. Show that if the oscillators are treated classically, the specific heat per atom is 
+		$$C_{\text{cl}}(T) = \frac{1}{N_0}\frac{\partial \bar{E}_{\text{crystal}}}{\partial T} = 3k$$
+		which is independent of $T$ and the parameters of the oscillators and hence the same for all crystals. This agrees with experiment at high temperatures but not as $T \to 0$. Empirically,
+		\begin{align*}
+		C(T) &\to 3k \quad (T\text{ large}) \\
+		&\to 0 \quad (T \to 0)
+		\end{align*}
+		Following Einstein, treat the oscillators quantum mechanically, assuming for simplicity that they all have the same frequency $\omega$. Show that 
+		$$C_{\text{qu}}(T) = 3k\Big(\frac{\theta_E}{T}\Big)^2\frac{e^{\theta_E/T}}{(e^{\theta_E/T} - 1)^2}$$
+		where $\theta_E = \hbar\omega / k$ is called the \textit{Einstein temperature} and varies from crystal to crystal. Show that
+		\begin{align*}
+		C_{\text{qu}}(T) &\xrightarrow[T\gg\theta_E]{} 3k \\
+		C_{\text{qu}}(T) &\xrightarrow[T \ll \theta_E]{}3k\Big(\frac{\theta_E}{T}\Big)^2e^{-\theta_E/T}
+		\end{align*}
+		Although $C_{\text{qu}}(T) \to 0$ as $T \to 0$, the exponential falloff disagrees with the observed $C(t) \to_{T \to 0} T^3$ behavior. This discrepancy arises from assuming that the frequencies of all normal modes are equal, which is of course not generally true. [Recall that in the case of two coupled masses we get $\omega_I = (k/m)^{1/2}$ and $\omega_{II}=(3k/m)^{1/2}$.] This discrepancy was eliminated by Debye.
+		
+		But Einstein's simple picture by itself is remarkably successful (see Fig. 7.3).
+		\begin{solution}
+			By the definition of the expected value, the thermal average is
+			\begin{align*}
+				\bar{E} &= \sum_iE(i)P(i) \\
+				&= \frac{1}{Z}\sum_iE(i)e^{-\beta E(i)}
+			\end{align*}
+			This can be written more compactly as
+			\begin{align*}
+				{-\frac{\partial}{\partial \beta}} \ln Z &= -\frac{1}{Z}\frac{\partial Z}{\partial \beta} \\
+				&= -\frac{1}{Z}\sum_i \frac{\partial}{\partial\beta}e^{-\beta E(i)} \\
+				&= -\frac{1}{Z}\sum_i \big({-E(i)}\big)e^{-\beta E(i)} \\
+				&= \frac{1}{Z}\sum_i E(i)e^{-\beta E(i)} \\
+				&= \bar{E}
+			\end{align*}
+			Moving from a sum to an integral gives
+			\begin{align*}
+				Z_{\text{cl}} &= \int\!\!\!\!\int\exp\Big({-\frac{\beta}{2m}}p^2 - \frac{\beta m\omega^2}{2}x^2\Big)\mathrm{d}x\,\mathrm{d}p \\
+				&= \int\exp\Big({-\frac{\beta}{2m}}p^2\Big)\mathrm{d}p\int\exp\Big({-\frac{\beta m\omega^2}{2}}x^2\Big)\mathrm{d}x \\
+				&= \Big(\frac{\pi}{\beta/2m}\Big)^{1/2}\Big(\frac{\pi}{\beta m \omega^2/2}\Big)^{1/2} \\
+				&= \frac{2\pi}{\omega\beta}
+			\end{align*}
+			which corresponds to an average thermal energy of
+			\begin{align*}
+				\bar{E}_{\text{cl}} &= {-\frac{\partial}{\partial\beta}}\ln Z_{\text{cl}} \\
+				&= {-\frac{\omega \beta}{2\pi}}\frac{\partial}{\partial \beta}\Big(\frac{2\pi}{\omega\beta}\Big) \\
+				&= {-\frac{\omega\beta}{2\pi}}\Big({-\frac{2\pi}{\omega\beta^2}}\Big) \\
+				&= \frac{1}{\beta}
+			\end{align*}
+			For the quantum oscillator, the partition function is given by
+			\begin{align*}
+				Z_{\text{qu}} &= \sum_ne^{-\beta E_n} \\
+				&= \sum_n \exp\Big({-\beta}(n + \tfrac{1}{2})\hbar\omega\Big) \\
+				&= e^{-\beta\hbar\omega/2}\sum_n \big(e^{-\beta\hbar\omega}\big)^n \\
+				&= \frac{e^{-\beta\hbar\omega/2}}{1 - e^{-\beta\hbar\omega}}
+			\end{align*}
+			which corresponds to an average thermal energy of
+			\begin{align*}
+				\bar{E}_{\text{qu}} &= {-\frac{\partial}{\partial \beta}}\ln Z_{\text{qu}} \\
+					&= {-\frac{1 - e^{-\beta\hbar\omega}}{e^{-\beta\hbar\omega/2}}\frac{\partial}{\partial\beta}}\Big(\frac{e^{-\beta\hbar\omega/2}}{1 - e^{-\beta\hbar\omega}}\Big) \\
+					&= -\frac{1 - e^{-\beta\hbar\omega}}{e^{-\beta\hbar\omega/2}}\Big(\frac{-\hbar\omega e^{-\beta\hbar\omega/2}}{2(1 - e^{-\beta\hbar\omega})} - \frac{e^{-\beta\hbar\omega/2}}{(1 - e^{-\beta\hbar\omega})^2}(-e^{-\beta\hbar\omega})(-\hbar\omega)\Big) \\
+					&= -\frac{1 - e^{-\beta\hbar\omega}}{e^{-\beta\hbar\omega/2}}\Big(\frac{-\hbar\omega e^{-\beta\hbar\omega/2}(1 - e^{-\beta\hbar\omega})}{2(1 - e^{-\beta\hbar\omega})^2} - \frac{\hbar\omega e^{-3\beta\hbar\omega/2}}{(1 - e^{-\beta\hbar\omega})^2}\Big) \\
+					&= \frac{1}{1 - e^{-\beta\hbar\omega}}\Big(\frac{1}{2}\hbar\omega (1 - e^{-\beta\hbar\omega}) + \hbar\omega e^{-\beta\hbar\omega}\Big) \\
+					&= \hbar\omega\Big(\frac{1}{2} + \frac{e^{-\beta\hbar\omega}}{1 - e^{-\beta\hbar\omega}}\Big) \\
+					&= \hbar\omega\Big(\frac{1}{2} + \frac{1}{e^{\beta\hbar\omega} - 1}\Big)
+			\end{align*}
+			As $T$ increases (equivalently, as $\beta$ decreases), the argument of the exponential becomes small and we can Taylor expand this term about $0$, giving
+			\begin{align*}
+				\lim_{T\to\infty}\bar{E}_{\text{qu}} &= \hbar\omega\Big(\frac{1}{2} + \frac{1}{1 + \frac{\hbar\omega}{kT} - 1}\Big) \\
+				&= \frac{\hbar\omega}{2} + kT \\
+				&\approx kT \\
+				&= \bar{E}_{\text{cl}}
+			\end{align*}
+			Of course, this approximation is only valid when the argument to the exponential is much less than $1$, or
+			$$\frac{\hbar\omega}{kT} \ll 1 \implies T \gg \frac{\hbar\omega}{k}$$
+			
+			If we treat a crystal as a system of $3N_0$ decoupled oscillators, the (classical) average thermal energy will be given by
+			$$\bar{E}_{\text{crystal}} = 3N_0kT$$
+			The specific heat per atom is the change in thermal energy with temperature normalized by the number of atoms, or
+			$$C_{\text{cl}}(T) = \frac{1}{N_0}\frac{\partial \bar{E}_{\text{crystal}}}{\partial T} = 3k$$
+			If we perform the same calculation quantum mechanically, we find instead that
+			\begin{align*}
+				C_{\text{qu}}(T) &= \frac{1}{N_0}\frac{\partial}{\partial T}\Big(3N_0\hbar\omega\Big[\frac{1}{2} + \frac{1}{e^{\theta_E/T} - 1}\Big]\Big) \\
+				&= -3\hbar\omega\frac{1}{(e^{\theta_E/T} - 1)^2}(e^{\theta_E/T})\Big({-\frac{\theta_E}{T^2}}\Big) \\
+				&= 3k\Big(\frac{\theta_E}{T}\Big)^2\frac{e^{\theta_E/T}}{(e^{\theta_E/T} - 1)^2}
+			\end{align*}
+		\end{solution}
+	\end{questions}
+\end{document}

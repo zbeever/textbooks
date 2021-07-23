@@ -5,6 +5,8 @@
 
 \section{Mathematical Introduction}
 
+\subsection{Linear Vector Spaces: Basics}
+
 \begin{questions}
 
 \question Verify these claims. For the first consider $|0\rangle + |0'\rangle$
@@ -117,6 +119,9 @@ Are they linearly independent? Support your answer with details. (Notice we are 
 	From this system, we see $x = -y$, and hence $y = z$, which implies $z = y = x = 0$. Because this system has the same number of equations as unknowns, this is the unique solution, and hence the original three vectors are linearly independent.
 \end{solution}
 
+\setcounter{subsection}{2}
+\setcounter{question}{0}
+\subsection{Dual Spaces and the Dirac Notation}
 \question Form an orthonormal basis in two dimensions starting with $\vec{A} = 3\vec{i} + 4\vec{j}$ and $\vec{B} = 2\vec{i} - 6\vec{j}$. Can you generate another orthonormal basis starting with these two vectors? If so, produce another.
 
 \begin{solution}
@@ -224,7 +229,10 @@ to the orthonormal basis
 		|V + W| \leq |V| + |W|.
 	\]
 \end{solution}
-  
+
+\setcounter{subsection}{3}
+\setcounter{question}{0}
+\subsection{Subspaces}
 \question In a space $\mathbb{V}^n$, prove that the set of all vectors $\{|V_\perp^1\rangle, |V_\perp^2\rangle,\dots\}$, orthogonal to any $|V\rangle\neq|0\rangle$, form a subspace $\mathbb{V}^{n-1}$.
 
 \begin{solution}
@@ -243,6 +251,9 @@ to the orthonormal basis
 	Because every possible basis of either space is orthogonal to the possible bases  of the other space, Theorem 4 tells us that the span of $\mathbb{V}_1\oplus\mathbb{V}_2$ is the sum of the dimensions spanned by both, i.e. $n_1+n_2$.
 \end{solution}
 
+\setcounter{subsection}{5}
+\setcounter{question}{0}
+\subsection{Matrix Elements of Linear Operators}
 \question An operator $\Omega$ is given by the matrix
 \[
 \begin{bmatrix}
@@ -341,7 +352,12 @@ Verify that the determinant is of the form $e^{i\theta}$ in each case. Are any o
 	Neither of the above matrices are Hermitian.
 \end{solution}
 
-\question Show that
+\setcounter{subsection}{6}
+\setcounter{question}{0}
+\subsection{Active and Passive Transformations}
+\question The \textit{trace} of a matrix is defined to be the sum of its diagonal matrix elements
+$$\mathrm{Tr}\Omega = \sum_i\Omega_{ii}$$
+Show that
 
 (1) $\mathrm{Tr}(\Omega\Lambda) = \mathrm{Tr}(\Lambda\Omega)$
 
@@ -384,6 +400,9 @@ Verify that the determinant is of the form $e^{i\theta}$ in each case. Are any o
 	because the determinant of a unitary matrix is a complex number of unit modulus.
 \end{solution}
 
+\setcounter{subsection}{7}
+\setcounter{question}{0}
+\subsection{The Eigenvalue Problem}
 \question (1) Find the eigenvalues and normalized eigenvectors of the matrix
 \[
 	\Omega = \begin{bmatrix}1 & 3 & 1 \\ 0 & 2 & 0 \\ 0 & 1 & 4\end{bmatrix}
@@ -747,14 +766,13 @@ Since $\Omega$ is degenerate and $\Lambda$ is not, you must be prudent in decidi
 		|2\rangle &= \frac{1}{3^{1/2}}\begin{bmatrix}1 \\ 1 \\ {-1}\end{bmatrix} \\
 		|3\rangle &= \frac{1}{2^{1/2}}\begin{bmatrix}1 \\ 0 \\ 1\end{bmatrix}
 	\end{align*}
+	\pagebreak
 	We can collect these together into a unitary matrix,
-	\[
-		U = \begin{bmatrix}
+	$$U = \begin{bmatrix}
 		1/\sqrt{6} & 1/\sqrt{3} & 1/\sqrt{2} \\
 		-2/\sqrt{6} & 1/\sqrt{3} & 0 \\
 		-1/\sqrt{6} & -1/\sqrt{3} & 1/\sqrt{2}
-		\end{bmatrix}
-	\]
+		\end{bmatrix}$$
 	After some tedious matrix algebra, we find
 	\begin{align*}
 		U^\dagger\Lambda{U} &= \begin{bmatrix}
@@ -903,6 +921,9 @@ find the differential equation satisfied by $U(t)$. Use the fact that $|x(0)\ran
 	which is exactly Eq. (1.8.43).
 \end{solution}
 
+\setcounter{subsection}{8}
+\setcounter{question}{0}
+\subsection{Functions of Operators and Related Concepts}
 \question We know that the series
 \[
 	f(x) = \sum_{n=0}^{\infty}x^n
@@ -970,6 +991,9 @@ of a Hermitian operator $\Omega$ may be identified with $(1 - \Omega)^{-1}$.
 	\end{align*}
 \end{solution}
 
+\setcounter{subsection}{9}
+\setcounter{question}{0}
+\subsection{Generalization to Infinite Dimensions}
 \question Show that $\delta(ax) = \delta(x)/|a|$. [Consider $\int\delta(ax)\,\mathrm{d}(ax)$. Remember that $\delta(x)=\delta(-x)$.]
 
 \begin{solution}

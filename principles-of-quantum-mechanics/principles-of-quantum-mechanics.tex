@@ -5,21 +5,31 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{commath}
+\usepackage{mathtools}
 \usepackage{sectsty}
 \usepackage{array}
 \usepackage{etoolbox}
 \usepackage{color}
 \usepackage{subfiles}
 \usepackage{wasysym}
+\usepackage{blkarray}
+
+\allowdisplaybreaks
 
 \renewcommand{\solutiontitle}{}
 \AtBeginEnvironment{solution}{}
-\renewcommand{\thequestion}{\thesection.\arabic{question}}
+\renewcommand{\thequestion}{\thesubsection.\arabic{question}}
 
 \begin{document}
 \printanswers
 
 \subfile{sections/mathematical-introduction}
 \subfile{sections/review-of-classical-mechanics}
+\subfile{sections/the-postulates-a-general-discussion}
+\subfile{sections/simple-problems-in-one-dimension}
+\subfile{sections/the-harmonic-oscillator}
+\subfile{sections/the-path-integral-formulation-of-quantum-theory}
+\subfile{sections/the-heisenberg-uncertainty-relations}
+\subfile{sections/systems-with-n-degrees-of-freedom}
 
 \end{document}

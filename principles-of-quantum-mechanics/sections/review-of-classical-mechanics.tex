@@ -6,6 +6,9 @@
 	\section{Review of Classical Mechanics}
 	
 	\begin{questions}
+		\setcounter{subsection}{0}
+		\setcounter{question}{0}
+		\subsection{The Principle of Least Action and Lagrangian Mechanics}
 		
 		\question Consider the following system, called a \textit{harmonic oscillator}. The block has a mass $m$ and lies on a frictionless surface. The spring has a force constant $k$. Write the Lagrangian and get the equation of motion.
 		
@@ -75,6 +78,9 @@
 			\end{align*}
 		\end{solution}
 	
+		\setcounter{subsection}{2}
+		\setcounter{question}{0}
+		\subsection{The Two-Body Problem}
 		\question Derive Eq. (2.3.6) from (2.3.5) by changing variables.
 		
 		\begin{solution}
@@ -89,8 +95,10 @@
 			\end{align*}
 		\end{solution}
 	
+		\setcounter{subsection}{4}
+		\setcounter{question}{0}
+		\subsection{The Hamiltonian Formalism}
 		\question Show that if $T = \sum_i\sum_j{T_{ij}}(q)\dot{q}^i\dot{q}^j$, where $\dot{q}$'s are generalized velocities, $\sum_ip_i\dot{q}^i=2T$.
-		
 		\begin{solution}
 			Assuming the Lagrangian built from $T$ contains a potential term independent of velocity, the conjugate momentum to $q$ is
 			\begin{align*}
@@ -163,6 +171,9 @@
 			\end{align*}
 		\end{solution}
 	
+		\setcounter{subsection}{6}
+		\setcounter{question}{0}
+		\subsection{Cyclic Coordinates, Poisson Brackets, and Canonical Transformations}
 		\question Show that
 		\begin{gather*}
 			\{\omega, \lambda\} = -\{\lambda, \omega\} \\
@@ -455,6 +466,9 @@
 			\end{align*}
 		\end{solution}
 		
+		\setcounter{subsection}{7}
+		\setcounter{question}{0}
+		\subsection{Symmetries and Their Consequences}
 		\question Show that $p = p_1 + p_2$, the total momentum, is the generator of infinitesimal translations for a two-particle system.
 		
 		\begin{solution}
@@ -596,6 +610,25 @@
 		\end{solution}
 		
 		\question Why is it that a \textit{non}canonical transformation that leaves $\mathcal{H}$ invariant does not map a solution into another? Or, in view of the discussion on consequence II, why is it that an experiment and its transformed version do not give the same result when the transformation that leaves $\mathcal{H}$ invariant is not canonical? It is best to consider an example. Consider the potential given in Exercise 2.8.3. Suppose I release a particle at $(x = a, y = 0)$ with $(p_x = b, p_y = 0)$ and you release one in the transformed state in which $(x=0, y=a)$ and $(p_x=b, p_y=0)$, i.e., you rotate the coordinates but not the momenta. This is a noncanonical transformation that leaves $\mathcal{H}$ invariant. Convince yourself that at later times the states of the two particles are no related by the same transformation. Try to understand what goes wrong in the general case.
+		
+		\begin{solution}
+			As detailed on p. 94, the transformation 
+			\begin{gather*}
+				q \to \bar{q}(q, p) \\
+				p \to \bar{p}(q, p)
+			\end{gather*}
+			sends
+			\begin{gather*}
+				\dot{\bar{q}}_j \to \sum_k \frac{\partial\mathcal{H}}{\partial \bar{q}_k}\{\bar{q}_j, \bar{q}_k\} + \frac{\partial\mathcal{H}}{\partial \bar{p}_k}\{\bar{q}_j, \bar{p}_k\} \\
+				\dot{\bar{p}}_j \to \sum_k \frac{\partial\mathcal{H}}{\partial \bar{q}_k}\{\bar{p}_j, \bar{q}_k\} + \frac{\partial\mathcal{H}}{\partial \bar{p}_k}\{\bar{p}_j, \bar{p}_k\}
+			\end{gather*}
+			If the transformation is noncanonical, the Poison brackets will be nontrivial and we have
+			\begin{gather*}
+				\dot{\bar{q}}_j \neq \frac{\partial\mathcal{H}}{\partial \bar{p}_j} \\
+				\dot{\bar{p}}_j \neq \frac{\partial\mathcal{H}}{\partial \bar{q}_j}
+			\end{gather*}
+			thus showing that such a transformation does not map one solution of Hamilton's equation to another.
+		\end{solution}
 		
 		\question Show that $\partial S_{\text{cl}}/\partial x_f = p(t_f)$.
 		

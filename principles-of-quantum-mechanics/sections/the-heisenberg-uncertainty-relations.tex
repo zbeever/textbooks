@@ -1,0 +1,118 @@
+\documentclass[../principles-of-quantum-mechanics.tex]{subfiles}
+
+\begin{document}
+	\printanswers
+	
+	\setcounter{section}{8}
+	\section{The Heisenberg Uncertainty Relations}
+	
+	\setcounter{subsection}{3}
+	\subsection{Applications of the Uncertainty Principle}
+	
+	\begin{questions}
+		\question Consider the oscillator in the state $|n = 1\rangle$ and verify that
+		$$\Big\langle\frac{1}{X^2}\Big\rangle \simeq \frac{1}{\langle X^2\rangle} \simeq \frac{m\omega}{\hbar}$$
+		\begin{solution}
+			Projected onto the $x$ basis, we have
+			$$\langle x|n = 1\rangle = \psi_1(x) = \Big(\frac{4m^3\omega^3}{\pi\hbar^3}\Big)^{1/4} x\exp\Big({-\frac{m\omega x^2}{2\hbar}}\Big)$$
+			giving
+			\begin{align*}
+				\Big\langle \frac{1}{X^2}\Big\rangle &= \int \psi_1^*(x)\frac{1}{x^2}\psi_1(x)\,\mathrm{d}x \\
+				&= \Big(\frac{4m^3\omega^3}{\pi\hbar^3}\Big)^{1/2}\int \exp\Big({-\frac{m\omega x^2}{\hbar}}\Big)\,\mathrm{d}x \\
+				&= \Big(\frac{4m^3\omega^3}{\pi\hbar^3}\Big)^{1/2}\Big(\frac{\pi\hbar}{m\omega}\Big)^{1/2} \\
+				&= \frac{2m\omega}{\hbar}
+			\end{align*}
+			If we instead compute $\langle X^2\rangle$, we get
+			\begin{align*}
+				\langle X^2\rangle &= \Big(\frac{4m^3\omega^3}{\pi\hbar^3}\Big)^{1/2}\int x^4\exp\Big({-\frac{m\omega x^2}{\hbar}}\Big)\,\mathrm{d}x \\
+				&= \frac{3}{4}\Big(\frac{4m^3\omega^3}{\pi\hbar^3}\Big)^{1/2}\Big(\frac{\pi\hbar^5}{m^5\omega^5}\Big)^{1/2} \\
+				&= \frac{3\hbar}{2m\omega}
+			\end{align*}
+			and so
+			$$\frac{1}{\langle X^2\rangle} = \frac{2m\omega}{3\hbar}$$
+			Both of these results are approximately the same as $m\omega/\hbar$.
+		\end{solution}
+		
+		\question (1) By referring to the table of integrals in Appendix A.2, verify that
+		$$\psi = \frac{1}{(\pi a_0^3)^{1/2}}e^{-r/a_0}, \qquad r = (x^2 + y^2 + z^2)^{1/2}$$
+		is a normalized wave function (of the ground state of hydrogen). Note that in three dimensions the normalization condition is
+		\begin{align*}
+			\langle \psi|\psi\rangle &= \int\psi^*(r, \theta, \phi)\psi(r, \theta, \phi)r^2\,\mathrm{d}r\,\mathrm{d}(\cos\theta)\,\mathrm{d}\phi \\
+			&= 4\pi\int \psi^*(r)\psi(r) r^2\,\mathrm{d}r = 1
+		\end{align*}
+		for a function of just $r$.
+		
+		(2) Calculate $(\Delta X)^2$ in this state [argue that $(\Delta X)^2 = \tfrac{1}{3}\langle r^2\rangle$] and regain the result quoted in Eq. (9.4.9).
+		
+		(3) Show that $\langle 1/r\rangle \simeq 1 / \langle r\rangle \simeq m e^2/\hbar^2$ in this state.
+		\begin{solution}
+			The normalization condition is
+			\begin{align*}
+				\langle \psi|\psi\rangle &= \frac{4\pi}{\pi a_0^3}\int_0^\infty r^2e^{-2r/a_0}\,\mathrm{d}r \\
+				&= \frac{4}{a_0^3}\Big(\frac{2!}{(2/a_0)^3}\Big) \\
+				&= 1
+			\end{align*}
+			Since $(\Delta X)^2 = \langle X^2\rangle - \langle X\rangle^2$ and the three Cartesian coordinates should be symmetric, 
+			\begin{align*}
+				(\Delta X)^2 &= \frac{(\Delta X^2) + (\Delta Y^2) + (\Delta Z^2)}{3} \\
+				&= \frac{\langle X^2\rangle - \langle X\rangle^2 + \langle Y^2\rangle - \langle Y\rangle^2 + \langle Z^2\rangle - \langle Z\rangle^2}{3}
+			\end{align*}
+			We expect the average $x$, $y$, and $z$ values to be $0$, so 
+			\begin{align*}
+				(\Delta X)^2 &= \frac{\langle X^2\rangle + \langle Y^2\rangle + \langle Z^2\rangle}{3} \\
+				&= \frac{1}{3}\langle X^2 + Y^2 + Z^2\rangle \\
+				&= \frac{1}{3}\langle r^2\rangle
+			\end{align*}
+			Computing the listed expected values yields
+			\begin{align*}
+				\Big\langle\frac{1}{r}\Big\rangle &= \frac{4}{a_0^3}\int_0^\infty re^{-2r/a_0}\mathrm{d}r \\
+				&= \frac{4}{a_0^3}\frac{1!}{(2/a_0)^2} \\
+				&= \frac{1}{a_0} \\
+				\langle r\rangle &= \frac{4}{a_0^3}\int_0^{\infty}r^3e^{-2r/a_0} \\
+				&= \frac{4}{a_0^3}\frac{3!}{(2/a_0)^4} \\
+				&= \frac{3a_0}{2} \\
+			\end{align*}
+			and so $1/\langle r\rangle = 2/3a_0$. Substituting in the value of the Bohr radius as $a_0 = 4\pi\varepsilon_0\hbar^2/m e^2$ gives
+			\begin{align*}
+				\Big\langle\frac{1}{r}\Big\rangle &= \frac{1}{4\pi\varepsilon_0}\frac{m e^2}{\hbar^2} \\
+				\frac{1}{\langle r\rangle} &= \frac{1}{6\pi\varepsilon_0}\frac{me^2}{\hbar^2}
+			\end{align*}
+			which are approximately equal, with both being proportional to $me^2/\hbar^2$.
+		\end{solution}
+		
+		\question Ignore the fact that the hydrogen atom is a three-dimensional system and pretend that
+		$$H = \frac{P^2}{2m} - \frac{e^2}{(R^2)^{1/2}}\qquad (P^2 = P_x^2 + P_y^2 + P_z^2, R^2 = X^2 + Y^2 + Z^2)$$
+		corresponds to a one-dimensional problem. Assuming
+		$$\Delta P \cdot \Delta R \geq \hbar/2$$
+		estimate the ground-state energy.
+		\begin{solution}
+			In the ground state, $\langle P\rangle = \langle R \rangle = 0$, so $\langle H\rangle$ should be approximately
+			\begin{align*}
+				\langle H\rangle &= \Big\langle\frac{P^2}{2m}\Big\rangle - \Big\langle\frac{e^2}{(R^2)^{1/2}}\Big\rangle \\
+				&\simeq \frac{1}{2m}\langle P^2\rangle - \frac{e^2}{\langle (R^2)^{1/2}\rangle} \\
+				&\simeq \frac{1}{2m}(\Delta P)^2 - \frac{e^2}{(\langle R^2\rangle)^{1/2}} \\
+				&= \frac{1}{2m}(\Delta P)^2 - \frac{e^2}{\Delta R} \\
+				&\gtrsim \frac{\hbar^2}{8m(\Delta R)^2} - \frac{e^2}{\Delta R}
+			\end{align*}
+			The minimum value of $\langle H\rangle$ occurs when
+			$$\frac{\mathrm{d}\langle H\rangle}{\mathrm{d}\Delta R} = -\frac{\hbar^2}{4m(\Delta R)^3} + \frac{e^2}{(\Delta R)^2} = 0$$
+			or $\Delta R = \hbar^2/4me^2$. Plugging this into $\langle H\rangle$ gives a ground state estimate of
+			$$\langle H\rangle \simeq \frac{\hbar^2}{8m}\frac{16m^2e^4}{\hbar^4} - e^2\frac{4me^4}{\hbar^2} = {-\frac{2me^4}{\hbar^2}}$$
+		\end{solution}
+		
+		\question Compute $\Delta T \cdot \Delta X$, where $T = P^2/2m$. Why is this relation not so famous?
+		\begin{solution}
+			The general uncertainty relation between $X$ and $T$ is
+			$$(\Delta X)^2(\Delta T)^2 \geq \tfrac{1}{4}\langle \psi|[X - \langle X\rangle, T - \langle T \rangle]_+|\psi\rangle^2 + \tfrac{1}{4}\langle \psi|\Gamma|\psi\rangle^2$$
+			where $[X, T] = i\Gamma$. Since $[X - \langle X\rangle, T - \langle T \rangle]_+$ is real, the first term is positive definite. Also, with
+			\begin{align*}
+				[X, T] &= \frac{1}{2m}[X, P^2] \\
+				&= \frac{1}{2m}\big([X, P]P + P[X, P]\big) \\
+				&= \frac{i\hbar}{m}P
+			\end{align*}
+			we may write
+			$$\Delta X \cdot \Delta T \geq \tfrac{\hbar}{2m}\langle \psi|P|\psi\rangle$$
+			Since $P|\psi\rangle$ may be $0$, this relationship does not give an interesting lower bound like the canonically conjugate $X$ and $P$ operators give.
+		\end{solution}
+	\end{questions}
+\end{document}

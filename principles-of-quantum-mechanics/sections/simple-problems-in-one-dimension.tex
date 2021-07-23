@@ -1,0 +1,483 @@
+\documentclass[../principles-of-quantum-mechanics.tex]{subfiles}
+
+\begin{document}
+	\printanswers
+	
+	\section{Simple Problems in One Dimension}
+	
+	\begin{questions}
+		\setcounter{subsection}{0}
+		\setcounter{question}{0}
+		\subsection{The Free Particle}
+		\question Show that Eq. (5.1.9) may be rewritten as an integral over $E$ and a sum over the $\pm$ index as
+		$$U(t) = \sum_{\alpha=\pm}\int_0^\infty\Big[\frac{m}{(2mE)^{1/2}}\Big]|E,\alpha\rangle\langle E, \alpha|e^{-iEt/\hbar}\,\mathrm{d}E$$
+		
+		\begin{solution}
+			Using Eqs. (5.1.6) and (5.1.7), we can replace $p$ in Eq. (5.1.9) with $E_-$ and $E_+$ over the negative and positive parts of the real line. Doing so gives
+			\begin{align*}
+				U(t) =\,&\int_{-\infty}^{\infty}|p\rangle\langle p|e^{-ip^2t/2m\hbar}\,\mathrm{d}p \\
+				=\,&\int_{-\infty}^{0}|p\rangle\langle p|e^{-ip^2t/2m\hbar}\,\mathrm{d}p + \int_{0}^{\infty}|p\rangle\langle p|e^{-ip^2t/2m\hbar}\,\mathrm{d}p \\
+				=\,&\int_{\infty}^{0}|E, -\rangle\langle E, -|e^{-i(2mE)t/2m\hbar}\Big({-\frac{1}{2}}\cdot 2m \cdot(2mE)^{-1/2}\Big)\,\mathrm{d}E \\
+				&+ \int_{0}^{\infty}|E, +\rangle\langle E, +|e^{-i(2mE)t/2m\hbar}\Big({\frac{1}{2}}\cdot 2m \cdot(2mE)^{-1/2}\Big)\,\mathrm{d}E \\
+				=\,&\int_{0}^{\infty}\Big[\frac{m}{(2mE)^{1/2}}\Big]|E,-\rangle\langle E, -|e^{-iEt/\hbar}\,\mathrm{d}E \\
+				&+ \int_0^{\infty}\Big[\frac{m}{(2mE)^{1/2}}\Big]|E, +\rangle\langle E, -|e^{-iEt/\hbar}\,\mathrm{d}E \\
+				=\,&\sum_{\alpha=\pm}\int_0^\infty\Big[\frac{m}{(2mE)^{1/2}}\Big]|E,\alpha\rangle\langle E, \alpha|e^{-iEt/\hbar}\,\mathrm{d}E
+			\end{align*}
+			where we have used the fact that $\lim_{p\to\pm\infty}E = \infty$.
+		\end{solution}
+		
+		\question By solving the eigenvalue equation (5.1.3) in the $X$ basis, regain Eq. (5.1.8), i.e., show that the general solution of energy $E$ is
+		$$\psi_E(x) = \beta\frac{\exp[i(2mE)^{1/2}x/\hbar]}{(2\pi\hbar)^{1/2}} + \gamma\frac{\exp[-i(2mE)^{1/2}x/\hbar]}{(2\pi\hbar)^{1/2}}$$
+		[The factor $(2\pi\hbar)^{-1/2}$ is arbitrary and may be absorbed into $\beta$ and $\gamma$.] Though $\psi_E(x)$ will satisfy the equation even if $E<0$, are these functions in the Hilbert space?
+		
+		\begin{solution}
+			In the $X$ basis, Eq. (5.1.3) becomes
+			$$-\frac{\hbar^2}{2m}\frac{\mathrm{d}^2}{\mathrm{d}x^2}\psi_E(x) = E\psi_E(x)$$
+			This is the well known differential equation of a harmonic oscillator, spanned by 
+			$$\psi_E(x) = A\exp(i(2mE)^{1/2}x/\hbar) + B\exp(-i(2mE)^{1/2}x/\hbar)$$
+			We can replace $A$ and $B$ by $\beta/(2\pi\hbar)^{1/2}$ and $\gamma/(2\pi\hbar)^{1/2}$ to arrive at the given form of the general solution.
+			
+			If $E < 0$, Eq. (5.1.3) does not describe a harmonic oscillator, but a real exponential. This is non-normalizable, and so the associated $\psi_E(x)$ is not within Hilbert space.
+		\end{solution}
+	
+		\question (\textit{Another Way to Do the Gaussian Problem}). We have seen that there exists another formula for $U(t)$, namely, $U(t)=e^{iHt/\hbar}$. For a free particle this becomes
+		$$U(t) = \exp\Big[\frac{i}{\hbar}\Big(\frac{\hbar^2t}{2m}\frac{\mathrm{d}^2}{\mathrm{d}x^2}\Big)\Big] = \sum_{n=0}^{\infty}\frac{1}{n!}\Big(\frac{i\hbar t}{2m}\Big)^n\frac{\mathrm{d}^{2n}}{\mathrm{d}x^{2n}}$$
+		Consider the initial state in Eq. (5.1.14) with $p_0=0$, and set $\Delta = 1$, $t'=0$:
+		$$\psi(x, 0) = \frac{e^{-x^2/2}}{(\pi)^{1/4}}$$
+		Find $\psi(x, t)$ using Eq. (5.1.18) above and compare with Eq. (5.1.15).
+		
+		Hints: (1) Write $\psi(x, 0)$ as a power series:
+		$$\psi(x, 0) = (\pi)^{-1/4}\sum_{n=0}^{\infty}\frac{(-1)^nx^{2n}}{n!(2)^n}$$
+		
+		(2) Find the action of a few terms
+		$$1, \qquad \Big(\frac{i\hbar t}{2m}\Big) \frac{\mathrm{d}^2}{\mathrm{d}x^2},\qquad \frac{1}{2!}\Big(\frac{i\hbar t}{2m}\frac{\mathrm{d}^2}{\mathrm{d}x^2}\Big)^2$$
+		etc., on this power series.
+		
+		(3) Collect terms with the same power of $x$.
+		
+		(4) Look for the following series expansion in the coefficient of $x^{2n}$:
+		
+		$$\Big(1 + \frac{it\hbar}{m}\Big)^{-n-1/2} = 1 - (n + 1/2)\Big(\frac{i\hbar t}{m}\Big) + \frac{(n + 1/2)(n + 3/2)}{2!}\Big(\frac{it\hbar}{m}\Big)^2 + \cdots$$
+		
+		(5) Juggle around till you get the answer.
+		
+		\begin{solution}
+			Labeling the terms of the power series of $U(t)$ by $U(t) = U_0(t) + U_1(t) + U_2(t) + \cdots$, we find
+			\begin{align*}
+				U_0(t)\psi(x, 0) &= \frac{1}{(\pi)^{1/4}}\sum_{n=0}^{\infty}\frac{(-1)^nx^{2n}}{n!(2)^n} \\
+				U_1(t)\psi(x, 0) &= \frac{1}{(\pi)^{1/4}}\Big(\frac{i\hbar t}{2m}\Big)\sum_{n=0}^{\infty}(2n)(2n - 1)\frac{(-1)^nx^{2(n - 1)}}{n!(2)^n} \\
+				&= \frac{1}{(\pi)^{1/4}}\Big(\frac{i\hbar t}{2m}\Big)\sum_{k=-1}^{\infty}(2k + 2)(2k + 1)\frac{(-1)^{k+1}x^{2k}}{(k + 1)!(2)^{k + 1}} \\
+				&= \frac{1}{(\pi)^{1/4}}\Big(\frac{i\hbar t}{m}\Big)\sum_{k=0}^{\infty}(k + 1)(k + \tfrac{1}{2})\frac{(-1)^{k+1}x^{2k}}{(k + 1)!(2)^k} \\
+				&= \frac{1}{(\pi)^{1/4}}\sum_{k=0}^{\infty}-(k + \tfrac{1}{2})\Big(\frac{i\hbar t}{m}\Big)\frac{(-1)^{k}x^{2k}}{k!(2)^k} \\
+				U_2(t)\psi(x, 0) &= \frac{1}{2!}\frac{1}{(\pi)^{1/4}}\Big(\frac{i\hbar t}{2m}\Big)^2\sum_{n=0}^{\infty}(2n)(2n - 1)(2n-2)(2n-3)\frac{(-1)^nx^{2(n - 2)}}{n!(2)^n} \\
+				&= \frac{1}{2!}\frac{1}{(\pi)^{1/4}}\Big(\frac{i\hbar t}{2m}\Big)^2\sum_{k=-2}^{\infty}(2k + 4)(2k + 3)(2k + 2)(2k + 1)\frac{(-1)^{k+2}x^{2k}}{(k+2)!(2)^{k+2}} \\
+				&= \frac{1}{2!}\frac{1}{(\pi)^{1/4}}\Big(\frac{i\hbar t}{m}\Big)^2\sum_{k=0}^{\infty}(k + 2)(k + \tfrac{3}{2})(k + 1)(k + \tfrac{1}{2})\frac{(-1)^{k}x^{2k}}{(k+2)!(2)^{k}} \\
+				&= \frac{1}{2!}\frac{1}{(\pi)^{1/4}}\sum_{k=0}^{\infty}(k + \tfrac{3}{2})(k + \tfrac{1}{2})\Big(\frac{i\hbar t}{m}\Big)^2\frac{(-1)^{k}x^{2k}}{k!(2)^{k}} \\
+				&\,\,\,\vdots
+			\end{align*}
+			If we collect those terms that have similar powers of $x$, we find
+			\begin{align*}
+				U(t)\psi(x, 0) &= \frac{1}{(\pi)^{1/4}}\sum_{n=0}^{\infty}\Big(1 - (n + \tfrac{1}{2})\Big(\frac{i\hbar t}{m}\Big) + (n+\tfrac{3}{2})(n + \tfrac{1}{2})\Big(\frac{i\hbar t}{m}\Big)^2 + \cdots\Big)\frac{(-1)^nx^{2n}}{n!(2)^n} \\
+				&= \frac{1}{(\pi)^{1/4}}\sum_{n=0}^{\infty}\Big(1 + \frac{i\hbar t}{m}\Big)^{-n-1/2}\frac{(-1)^nx^{2n}}{n!(2)^n} \\
+				&= \Big[\pi^{1/2}\Big(1 + \frac{i\hbar t}{m}\Big)\Big]^{-1/2}\sum_{n=0}^{\infty}\frac{1}{n!}\Big[\frac{-x^2}{2(1 + i\hbar t / m)}\Big]^n \\
+				&= \Big[\pi^{1/2}\Big(1 + \frac{i\hbar t}{m}\Big)\Big]^{-1/2}\cdot\exp\Big[\frac{-x^2}{2(1 + i\hbar t / m)}\Big]
+			\end{align*}
+			This is the solution for a Gaussian wavepacket in free space with a mean momentum of $p_0 = 0$ and uncertainty in position of $\Delta = 1$.
+		\end{solution}
+		
+		\question \textit{A Famous Counterexample}. Consider the wave function
+		\begin{align*}
+			\psi(x, 0) &= \sin\Big(\frac{\pi x}{L}\Big), &|x| \leq L/2 \\
+			&= 0, &|x| > L/2
+		\end{align*}
+		It is clear that when this function is differentiated any number of times we get another function confined to the interval $|x| \leq L/2$. Consequently the action of
+		$$U(t) = \exp\Big[\frac{i}{\hbar}\Big(\frac{\hbar^2t}{2m}\Big)\frac{\mathrm{d}^2}{\mathrm{d}x^2}\Big]$$
+		on this function is to give a function confined to $|x| \leq L/2$. What about the spreading of the wave packet?
+		
+		[Answer: Consider the derivatives at the boundary. We have here an example where the (exponential) operator power series doesn't converge. Notice that the convergence of an operator power series depends not just on the operator but also on the operand. So there is no paradox: if the function dies abruptly as above, so that there seems to be a paradox, the derivatives are singular at the boundary, while if it falls of continuously, the function will definitely leak out given enough time, no matter how rapid the falloff.]
+		\begin{solution}
+			As the answer points out, the power series of $U(t)\psi(x, 0)$ does not converge, and so we cannot use the propagator to determine the time evolution of this system.
+		\end{solution}
+	
+	\setcounter{subsection}{1}
+	\setcounter{question}{0}
+	\subsection{The Particle in a Box}
+	\question A particle is in the ground state of a box of length $L$. Suddenly the box expands (symmetrically) to twice its size, leaving the wave function undisturbed. Show that the probability of finding the particle in the ground state of the new box is $(8/3\pi)^2$.
+	\begin{solution}
+		Our particle is in the initial state
+		$$\psi_{1, L} \propto \cos\Big(\frac{\pi x}{L}\Big)$$
+		Upon expansion of the box, the wave function is unaffected except up to a multiplicative factor. Normalizing the integral of its squared magnitude over $-L\leq x \leq L$ gives 
+		$$\psi_{2L} = \langle x | \psi_{2L}\rangle = \Big(\frac{2}{2L}\Big)^{1/2}\cos\Big(\frac{\pi x}{L}\Big)$$
+		To find the probability amplitude that the particle can be found in the ground state of this new box, we compute
+		\begin{align*}
+			\langle\psi_{1, 2L}|\psi_{2L}\rangle &= \int_{-\infty}^{\infty}\langle\psi_{1, 2L}|x\rangle\langle x|\psi_{2L}\rangle\,\mathrm{d}x \\
+			&= \int_{-L}^{L}\Big(\frac{2}{2L}\Big)^{1/2}\cos\Big(\frac{\pi x}{2L}\Big)\Big(\frac{2}{2L}\Big)^{1/2}\cos\Big(\frac{\pi x}{L}\Big)\,\mathrm{d}x \\
+			&= \frac{1}{L}\int_{-L}^{L}\frac{(e^{i\pi x/2L} + e^{-i\pi x/2L})}{2}\frac{(e^{i2\pi x/2L} + e^{-i2\pi x/2L})}{2}\,\mathrm{d}x \\
+			&= \frac{1}{L}\int_{-L}^{L}\frac{e^{i3\pi x / 2L} + e^{-i3\pi x / 2L}}{2} + \frac{e^{i\pi x / 2L} + e^{-i\pi x / 2L}}{2}\,\mathrm{d}x \\
+			&= \frac{1}{L}\int_{-L}^{L}\cos\Big(\frac{3\pi x}{2L}\Big) + \cos\Big(\frac{\pi x}{2L}\Big)\,\mathrm{d}x \\
+			&= \frac{1}{L}\Big[\frac{2L}{3\pi}\sin\Big(\frac{3\pi x}{2L}\Big)\Big|_{-L}^L + \frac{2L}{\pi}\sin\Big(\frac{\pi x}{2L}\Big)\Big|_{-L}^{L}\Big] \\
+			&= \frac{2}{3\pi}(-1 - (1)) + \frac{2}{\pi}(1 - (-1)) \\
+			&= -\frac{4}{3\pi} + \frac{4}{\pi} \\
+			&= \frac{8}{3\pi}
+		\end{align*}
+		Squaring this quantity gives the probability for finding the particle in the ground state of the new box, $(8/3\pi)^2$.
+	\end{solution}
+	
+	\question (a) Show that for any normalized $|\psi\rangle$, $\langle\psi|H|\psi\rangle \geq E_0$, where $E_0$ is the lowest-energy eigenvalue. (Hint: Expand $|\psi\rangle$ in the eigenbasis of $H$.)
+	
+	(b) Prove the following theorem: Every attractive potential in one dimension has at least one bound state. Hint: Since $V$ is attractive, if we define $V(\infty)=0$, it follows that $V(x) = -|V(x)|$ for all $x$. To show that there exists a bound state with $E<0$, consider
+	$$\psi_\alpha(x) = \Big(\frac{\alpha}{\pi}\Big)^{1/4}e^{-\alpha x^2/2}$$
+	and calculate
+	$$E(\alpha) = \langle\psi_\alpha|H|\psi_\alpha\rangle, \qquad H = -\frac{\hbar^2}{2m}\frac{\mathrm{d}^2}{\mathrm{d}x^2}-|V(x)|$$
+	Show that $E(\alpha)$ can be made negative by a suitable choice of $\alpha$. The desired result follows from the application of the theorem proved above.
+	
+	\begin{solution}
+		(a) If $|\psi\rangle$ is normalized, then 
+		\begin{align*}
+			\langle \psi|\psi\rangle &= (\langle E_0|A_0^* + \langle E_1|A_1^* + \langle E_2|A_2^* + \cdots)(A_0|E_0\rangle + A_1|E_1\rangle + A_2|E_2\rangle + \cdots) \\
+			&= |A_0|^2 + |A_1|^2 + |A_2|^2 + \cdots \\
+			&= 1
+		\end{align*}
+		Applying the Hamitlonian operator to $|\psi\rangle$ before applying its bra vector gives
+		$$\langle \psi|H|\psi\rangle = E_0|A_0|^2 + E_1|A_1|^2 + E_2|A_2|^2 + \cdots$$
+		This computation gives the expectation value of the energy, with each $|A_i|^2$ acting as a value from a probability mass function. This cannot be smaller than the lowest possible energy state $E_0$, thus $\langle\psi|H|\psi\rangle \geq E_0$.
+		
+		(b) Working in the position basis, we find
+		\begin{align*}
+			E(\alpha) &= \int_{-\infty}^{\infty}\Big(\frac{\alpha}{\pi}\Big)^{1/4}e^{-\alpha x^2/2}\Big({-\frac{\hbar^2}{2m}}\frac{\mathrm{d}^2}{\mathrm{d}x^2}-|V(x)|\Big)\Big(\frac{\alpha}{\pi}\Big)^{1/4}e^{-\alpha x^2/2}\,\mathrm{d}x \\
+			&= \Big(\frac{\alpha}{\pi}\Big)^{1/2}\int_{-\infty}^{\infty}e^{-\alpha x^2/2}\Big({-\frac{\hbar^2}{2m}}(\alpha^2x^2 - \alpha) - |V(x)|\Big)e^{-\alpha x^2/2}\,\mathrm{d}x \\
+			&= \Big(\frac{\alpha}{\pi}\Big)^{1/2}\Big[\frac{-\hbar^2\alpha^2}{2m}\int_{-\infty}^{\infty}x^2e^{-\alpha x^2}\,\mathrm{d}x + \alpha\int_{-\infty}^{\infty}e^{-\alpha x^2}\,\mathrm{d}x - \int_{-\infty}^{\infty}|V(x)|e^{-\alpha x^2}\,\mathrm{d}x\Big] \\
+			&= \Big(\frac{\alpha}{\pi}\Big)^{1/2}\Big[\frac{-\hbar^2\alpha^2}{2m}\frac{1}{2\alpha}\Big(\frac{\pi}{\alpha}\Big)^{1/2} + \alpha\Big(\frac{\pi}{\alpha}\Big)^{1/2} - \int_{-\infty}^{\infty}|V(x)|e^{-\alpha x^2}\,\mathrm{d}x\Big]
+		\end{align*}
+		In order for this to evaluate to $E(\alpha) < 0$, we must have
+		\begin{align*}
+			\alpha < \frac{1}{\pi}\frac{1}{(1 - \hbar^2/4m)^2}\Big(\int_{-\infty}^{\infty}|V(x)|e^{-\alpha x^2}\,\mathrm{d}x\Big)^2
+		\end{align*}
+		i.e. the wave function must be suitably spread over position space. Maximal uncertainty in position space gives minimal uncertainty in momentum space, and since a bound state will have $\langle P\rangle = 0$, this small uncertainty in momentum space allows a lower energy ground state.
+	\end{solution}
+	
+	\question Consider $V(x) = -aV_0\delta(x)$. Show that it admits a bound state of energy $E = -ma^2V_0^2/2\hbar^2$. Are there any other bound states? Hint: Solve Schr\"odinger's equation outside the potential for $E<0$, and keep only the solution that has the right behavior at infinity and is continuous at $x = 0$. Draw the wave function and see how there is a cusp, or a discontinuous change of slope at $x = 0$. Calculate the change in slope and equate it to
+	$$\int_{-\varepsilon}^{\varepsilon}\Big(\frac{\mathrm{d}^2\psi}{\mathrm{d}x^2}\Big)\,\mathrm{d}x$$
+	(where $\varepsilon$ is infinitesimal) determined from Schr\"odinger's equation.
+	
+	\begin{solution}
+		Outside the potential the particle is free, and thus the wave function has the general solution
+		$$\psi(x) = A\exp(i(2mE)^{1/2}x/\hbar) + B\exp(-i(2mE)^{1/2}x/\hbar)$$
+		When $E<0$ a factor of $i$ is introduced into the arguments, changing the above into
+		$$\psi(x) = A\exp(-(2mE)^{1/2}x/\hbar) + B\exp((2mE)^{1/2}x/\hbar)$$
+		In order for this function be normalizable, we must have $A = 0$ when $x < 0$ and $B = 0$ when $x > 0$. At $x = 0$, $A = B$ to enforce continuity.
+		$$\psi(x) = \begin{cases}A\exp((2mE)^{1/2}x/\hbar), &x < 0 \\ A\exp(-(2mE)^{1/2}x/\hbar), &x > 0\end{cases}$$
+		We can normalize this via
+		$$2A^2\int_{0}^{\infty}\exp(-2(2mE)^{1/2}x/\hbar)\,\mathrm{d}x = \frac{-2A^2\hbar}{2(2mE)^{1/2}}\exp(-2(2mE)^{1/2}x/\hbar)\Big|_{0}^{\infty} = \frac{A^2\hbar}{(2mE)^{1/2}}$$
+		and thus $A = (2mE/\hbar^2)^{1/4}$, or
+		$$\psi(x) = \begin{cases}(\frac{2mE}{\hbar^2})^{1/4}\exp({\frac{(2mE)^{1/2}}{\hbar}x}), &x < 0 \\ (\frac{2mE}{\hbar^2})^{1/4}\exp(-\frac{(2mE)^{1/2}}{\hbar}x), &x > 0\end{cases}$$
+		The change in slope from $x<0$ to $x>0$ is given by
+		$$\psi'(0^+) - \psi'(0^-) = -\Big(\frac{8m^3E^3}{\hbar^6}\Big)^{1/4} - \Big(\frac{8m^3E^3}{\hbar^6}\Big)^{1/4} = -\Big(\frac{128m^3E^3}{\hbar^6}\Big)^{1/4}$$
+		From the Schr\"odinger equation,
+		$$-\frac{\hbar^2}{2m}\frac{\mathrm{d}^2\psi}{\mathrm{d}x^2} - aV_0\delta(x)\psi(x) = E\psi(x)$$
+		we can isolate the second derivative term via
+		$$\frac{\mathrm{d}^2\psi}{\mathrm{d}x^2} = -\frac{2mE}{\hbar^2}\psi(x) - \frac{2maV_0}{\hbar^2}\delta(x)\psi(x)$$
+		The first of these terms will go to $0$ as $\varepsilon\to0$, and so
+		$$\int_{-\varepsilon}^{\varepsilon}\frac{\mathrm{d}^2\psi}{\mathrm{d}x^2}\,\mathrm{d}x = -\frac{2maV_0}{\hbar^2}\psi(0) = -\frac{2maV_0}{\hbar^2}\Big(\frac{2mE}{\hbar^2}\Big)^{1/4} = -\Big(\frac{32m^5a^4V_0^4E}{\hbar^{10}}\Big)$$
+		Equating this with the found change in slope gives the requirement that 
+		$$E^2 = \frac{m^2a^4V_0^4}{4\hbar^4}.$$
+		Enforcing $E<0$ gives
+		$$E = -\frac{ma^2V_0^2}{2\hbar^2}.$$
+	\end{solution}
+	
+	\question Consider a particle of mass $m$ in the state $|n\rangle$ of a box of length $L$. Find the force $F = -\partial E / \partial L$ encountered when the walls are slowly pushed in, assuming the particle remains in the $n$th state of the box as its size changes. Consider a classical particle of energy $E_n$ in this box. Find its velocity, the frequency of collision on a given wall, the momentum transfer per collision, and hence the average force. Compare it to $-\partial E / \partial L$ computed above.
+	
+	\begin{solution}
+		With the energy given by
+		$$E_n = \frac{\hbar^2\pi^2n^2}{2mL^2},$$
+		the force is
+		$$F = -\frac{\partial E}{\partial L} = \frac{\hbar^2\pi^2n^2}{mL^3}$$
+		In the classical case, a particle of energy $E_n$ will have a velocity of
+		$$v = \Big(\frac{2E_n}{m}\Big)^{1/2} = \frac{\hbar\pi n}{mL}$$
+		The time between successive collisions on the same wall is
+		$$T = \frac{2L}{v} = \frac{2mL^2}{\hbar\pi n}$$
+		and so the collision frequency is $f = \hbar \pi n / (2mL^2)$. Upon colliding with the wall, the particle feels a change in momentum of $\Delta p_p = -2mv$, and so the wall feels a transfer of momentum of
+		$$\Delta p_w = 2mv = \frac{2\hbar \pi n}{L}.$$
+		The change in momentum over time (i.e. force) is given by $f\Delta p_w$,
+		$$F = f\Delta p_w = \frac{\hbar^2\pi^2n^2}{mL^3}$$
+		This is the same as the force we found quantum mechanically!
+	\end{solution}
+	
+	\question If the box extends from $x = 0$ to $L$ (instead of $-L/2$ to $L/2$) show that $\psi_n(x) = (2/L)^{1/2}\sin(n\pi x/L)$, $n=1, 2, \ldots, \infty$ and $E_n = \hbar^2\pi^2 n^2/2mL^2$.
+	
+	\begin{solution}
+		Just as before, $\psi(x)$ must be $0$ in the region of infinite potential, so we need only solve for the case where $0 \leq x \leq L$. The Schr\"odinger equation in this region is 
+		$$-\frac{\hbar^2}{2m}\frac{\mathrm{d}^2\psi(x)}{\mathrm{d}x^2} = E\psi(x)$$
+		which has the general solution
+		$$\psi(x) = A\cos((2mE)^{1/2}x/\hbar) + B\sin((2mE)^{1/2}x/\hbar)$$
+		If $\psi(0) = 0$, we must have $A = 0$. To enforce $\psi(L) = 0$, we must have
+		$$\frac{(2mE)^{1/2}}{\hbar}L = n\pi$$
+		or 
+		$$E = \frac{\hbar^2\pi^2 n^2}{2mL^2}$$
+		$B$ can then be set by normalizing $\psi(x)$,
+		$$B^2\int_0^L\sin^2((2mE)^{1/2}x/\hbar)\,\mathrm{d}x = B^2\int_0^L\frac{1}{2} - \frac{1}{2}\cos(2(2mE)^{1/2}x/\hbar)\,\mathrm{d}x = B^2\frac{L}{2}$$
+		i.e. $B = (2/L)^{1/2}$. Since $n = 0$ would give us a trivial solution (it would imply there is no particle) $n < 0$ gives the same set of solutions as $n > 0$ (due to the wave function's indifference to an overall phase factor), we have found
+		\begin{gather*}
+			\psi_n(x) = \Big(\frac{2}{L}\Big)^{1/2}\sin\Big(\frac{n\pi x}{L}\Big), \\
+			E_n = \frac{\hbar^2\pi^2 n^2}{2mL^2}
+		\end{gather*}
+	\end{solution}
+	
+	\question \textit{Square Well Potential}. Consider a particle in a square well potential:
+	$$V(x) = \begin{cases}
+		0, &|x| \leq a \\
+		V_0, &|x| \geq a
+	\end{cases}$$
+	Since when $V_0\to\infty$, we have a box, let us guess what the lowering of the walls does to the states. First of all, all the bound states (which alone we are interested in), will have $E \leq V_0$. Second, the wave functions of the low-lying levels will look like those of the particle in a box, with the obvious difference that $\psi$ will not vanish at the walls but instead spill out with an exponential tail. The eigenfunctions will still be even, odd, even, etc.
+	
+	(1) Show that the even solutions have energies that satisfy the transcendental equation
+	$$k\tan ka = \kappa$$
+	while the odd ones will have energies that satisfy
+	$$k \cot ka = -\kappa$$
+	where $k$ and $i\kappa$ are the real and complex wave numbers inside and outside the well, respectively. Note that $k$ and $\kappa$ are related by
+	$$k^2 + \kappa^2 = 2mV_0/\hbar^2$$
+	Verify that as $V_0$ tends to $\infty$, we regain the levels in the box.
+	
+	(2) Equations (5.2.23) and (5.2.24) must be solved graphically. In the $(\alpha = ka, \beta = \kappa a)$ plane, imagine a circle that obeys Eq. (5.2.25). The bound states are then given by the intersection of the curve $\alpha \tan \alpha = \beta$ or $\alpha \cot \alpha = -\beta$ with the circle. (Remember $\alpha$ and $\beta$ are positive.)
+	
+	(3) Show that there is always one even solution and that there is no odd solution unless $V_0 \geq \hbar^2\pi^2 / 8ma^2$. What is $E$ when $V_0$ just meets this requirement? Note that the general result from Exercise 5.2.2b holds.
+	
+	\begin{solution}
+		Where $|x| \leq a$, Schr\"odinger's equation becomes
+		$$-\frac{\hbar^2}{2m}\frac{\mathrm{d}^2\psi}{\mathrm{d}x^2} = E\psi(x)$$
+		which has the general solution
+		$$\psi(x) = A\sin(kx) + B\cos(kx)$$
+		where we have defined $k = (2mE)^{1/2}/\hbar$. Outside of the well, the equation becomes
+		$$\frac{\hbar^2}{2m}\frac{\mathrm{d}^2\psi}{\mathrm{d}x^2} = (V_0 - E)\psi(x)$$
+		Since both sides are positive, the solutions here are exponentials, i.e.
+		$$\psi(x) = Ce^{-\kappa x} + De^{\kappa x}$$
+		where we have defined $\kappa = [2m(V_0-E)]^{1/2}/\hbar$. To be a physically valid solution, we must have $\lim_{x\to\pm\infty}\psi(x) = 0$, and so $C = 0$ when $x < a$ and $D = 0$ when $x > a$. That is, our preliminary wave function has the form
+		$$\psi(x) = \begin{cases}De^{\kappa x}, &x < -a \\ A\sin(kx) + B\cos(kx), &|x| \leq a \\ Ce^{-\kappa x}, &x > a\end{cases}$$
+		Enforcing continuity of $\psi(x)$ and $\psi'(x)$ at $x = \pm a$ gives the restrictions
+		\begin{align*}
+			De^{-\kappa a} &= -A\sin(ka) + B\cos(ka) \\
+			\kappa De^{-\kappa a} &= kA\cos(ka) + kB\sin(ka) \\
+			Ce^{-\kappa a} &= A\sin(ka) + B\cos(ka) \\
+			-\kappa Ce^{-\kappa a} &= kA\cos(ka) - kB\sin(ka)
+		\end{align*}
+		Odd solutions are those in which $B = 0$, in which case we can divide Eq. 2 by Eq. 1 (or Eq. 4 by Eq. 3) to find
+		$$-\kappa = k\cot(ka)$$
+		Doing the same with even solutions (those in which $A = 0$) gives the restriction
+		$$\kappa = k\tan(ka)$$
+		Of course, as $V_0\to\infty$, $\kappa\to\infty$ and so the wave function in regimes where $|x| > a$ falls to $0$, just as we found for the infinite square well.
+		
+		As the problem statement suggests, we can find valid values of $k$ and $\kappa$ by treating $\kappa$ as the vertical axis of our plane, $k$ as the horizontal axis, plotting
+		\begin{gather*}
+			\kappa = k\tan(ka) \\
+			\kappa = -k\cot(ka) \\
+			k^2 + \kappa^2 = \frac{2mV_0}{\hbar^2}
+		\end{gather*}
+		and looking for intersections of the first two equations with the last one in the first quadrant (since both $k$ and $\kappa$ must be positive). Since $k\tan(ka)$ goes through the origin of the plane, it will always intersect the circle at least once, and so there will always be a bound state that is an even solution.
+		
+		The first intersection of the circle with the odd solution requirement occurs at the the latter's first zero, $-k\cot(ka) = 0$. This happens when $ka = \pi/2$ and $\kappa = 0$, or
+		$$\frac{\pi^2}{4a^2} = \frac{2mV_0}{\hbar^2}$$
+		Rearranging to isolate $V_0$ gives
+		$$V_0 = \frac{\hbar^2\pi^2}{8ma^2}$$
+		Since this is a lower bound (a higher potential will permit more bound states), we can write
+		$$V_0 \geq \frac{\hbar^2\pi^2}{8ma^2}.$$
+		When this is an equality, $\kappa = 0$ and so $E = V_0$.
+	\end{solution}
+
+	\setcounter{subsection}{2}
+	\setcounter{question}{0}
+	\subsection{The Continuity Equation for Probability}
+	\question Consider the case where $V = V_r - iV_i$, where the imaginary part $V_i$ is a constant. Is the Hamiltonian Hermitian? Go through the derivation of the continuity equation and show that the total probability for finding the particle decreases exponentially as $e^{-2V_it/\hbar}$. Such complex potentials are used to describe processes in which particles are absorbed by a sink.
+	\begin{solution}
+		In this case, the Hamiltonian (in the position basis) is given by
+		$$H = -\frac{\hbar^2}{2m}\frac{\mathrm{d}^2}{\mathrm{d}x^2} + (V_r - iV_i)$$
+		This is not Hermitian, as $H^\dagger$ will have a $+iV_i$ term. Now, consider the Schr\"odinger equation and its conjugate
+		\begin{align*}
+			i\hbar\frac{\partial\psi}{\partial t} &= -\frac{\hbar^2}{2m}\nabla^2\psi + V_r\psi - iV_i\psi \\
+			-i\hbar\frac{\partial\psi^*}{\partial t} &= -\frac{\hbar^2}{2m}\nabla^2\psi^* + V_r\psi^* + iV_i\psi^*
+		\end{align*}
+		Multiplying the top equation by $\psi^*$ and the bottom one by $\psi$ and subtracting gives
+		$$i\hbar\psi^*\frac{\partial\psi}{\partial t} + i\hbar\psi\frac{\partial\psi^*}{\partial t} = -\frac{\hbar^2}{2m}\psi^*\nabla^2\psi + \frac{\hbar^2}{2m}\psi\nabla^2\psi^* + V_r\psi^*\psi - V_r\psi\psi^* - iV_i\psi^*\psi - iV_i\psi\psi^*$$
+		which can be simplified to
+		$$i\hbar\frac{\partial}{\partial t}(\psi^*\psi) = -\frac{\hbar^2}{2m}(\psi^*\nabla^2\psi - \psi\nabla^2\psi^*) - i2V_i\psi^*\psi$$
+		or
+		$$\frac{\partial P}{\partial t} = -\nabla\cdot\mathbf{j} - \frac{2V_iP}{\hbar}$$
+		where $P = \psi^*\psi$ and $\mathbf{j} = (\tfrac{\hbar}{2mi})(\psi^*\nabla\psi - \psi\nabla\psi^*)$. We can move all terms with $P$ to the left side to find
+		$$\frac{\partial P}{\partial t} + \frac{2V_iP}{\hbar} = -\nabla\cdot\mathbf{j}$$
+		The homogeneous solution solution to this differential equation is
+		$$P \propto e^{-2V_it/\hbar}$$
+		which shows that the probability decreases on its own with an influx of probability current, i.e. there is a particle sink.
+	\end{solution}
+	
+	\question Convince yourself that if $\psi = c\tilde{\psi}$, where $c$ is constant (real or complex) and $\tilde{\psi}$ is real, the corresponding $\mathbf{j}$ vanishes.
+	
+	\begin{solution}
+		In the given case, the probability current is
+		\begin{align*}
+			\mathbf{j} &= \frac{\hbar}{2mi}(c^*\tilde{\psi}\nabla c\tilde{\psi} - c\tilde{\psi}\nabla c^*\tilde{\psi}) \\
+			&= \frac{\hbar}{2mi}(|c|^2\tilde{\psi}\nabla\tilde{\psi} - |c|^2\tilde{\psi}\nabla\tilde{\psi}) \\
+			&= \boldsymbol{0}
+		\end{align*}
+		which follows from the fact that $c$ commutes with $\nabla$.
+	\end{solution}
+	
+	\question Consider
+	$$\psi_{\mathbf{p}} = \Big(\frac{1}{2\pi\hbar}\Big)^{3/2}e^{i(\mathbf{p}\cdot\mathbf{r})/\hbar}$$
+	Find $\mathbf{j}$ and $P$ and compare the relation between them to the electromagnetic equation $\mathbf{j} = \rho\mathbf{v}$, $\mathbf{v}$ being the velocity. Since $\rho$ and $\mathbf{j}$ are constant, note that the continuity Eq. (5.3.7) is trivially satisfied.
+	
+	\begin{solution}
+		The probability $P$ is given by
+		$$P = \psi^*_{\mathbf{p}}\psi_{\mathbf{p}} = \Big(\frac{1}{2\pi\hbar}\Big)^{3/2}e^{-i(\mathbf{p}\cdot\mathbf{r})/\hbar}\Big(\frac{1}{2\pi\hbar}\Big)^{3/2}e^{i(\mathbf{p}\cdot\mathbf{r})/\hbar} = \frac{1}{8\pi^3\hbar^3}$$
+		The gradient of $\psi_{\mathbf{p}}$ is
+		$$\nabla\psi_{\mathbf{p}} = \frac{i}{\hbar}\Big(\frac{1}{2\pi\hbar}\Big)^{3/2}e^{i(\mathbf{p}\cdot\mathbf{r})/\hbar}\mathbf{p} = \frac{i\psi_{\mathbf{p}}}{\hbar}\mathbf{p}$$
+		and so the probability current $\mathbf{j}$ is given by
+		\begin{align*}
+			\mathbf{j} &= \frac{\hbar}{2mi}(\psi_{\mathbf{p}}^*\nabla\psi_{\mathbf{p}} - \psi_{\mathbf{p}}\nabla\psi_{\mathbf{p}}^*) \\
+			&= \frac{\hbar}{2mi}\Big(\psi_{\mathbf{p}}^*\frac{i\psi_{\mathbf{p}}}{\hbar}\mathbf{p} + \psi_{\mathbf{p}}\frac{i\psi_{\mathbf{p}}^*}{\hbar}\mathbf{p}\Big) \\
+			&= P\frac{\mathbf{p}}{m}
+		\end{align*}
+		This is of the same form as the electromagnetic equation $\mathbf{j} = \rho\mathbf{v}$.
+	\end{solution}
+	
+	\question Consider $\psi = Ae^{ipx/\hbar} + Be^{-ipx/\hbar}$ in one dimension. Show that $j = (|A|^2 - |B|^2)p/m$. The absence of cross terms between the right- and left-moving pieces in $\psi$ allows us to associate the two parts of $j$ with corresponding parts of $\psi$.
+	
+	\begin{solution}
+		In one dimension,
+		$$\frac{\mathrm{d}\psi}{\mathrm{d}x} = \frac{ip}{\hbar}Ae^{ipx/\hbar} - \frac{ip}{\hbar}Be^{-ipx/\hbar}$$
+		and so 
+		\begin{align*}
+			\psi^*\frac{\mathrm{d}\psi}{\mathrm{d}x} &= \frac{ip}{\hbar}(A^*e^{-ipx/\hbar} + B^*e^{ipx/\hbar})(Ae^{ipx/\hbar} - Be^{-ipx/\hbar}) \\
+			&= \frac{ip}{\hbar}(|A|^2 - A^*Be^{-i2px/\hbar} + B^*Ae^{i2px/\hbar} - |B|^2)
+		\end{align*}
+		The probability current is then
+		\begin{align*}
+			j &= \frac{\hbar}{2mi}\Big(\psi^*\frac{\mathrm{d}\psi}{\mathrm{d}x} - \psi\frac{\mathrm{d}\psi^*}{\mathrm{d}x}\Big) \\
+			&= \frac{p}{2m}\Big(2|A|^2 - 2|B|^2 - A^*Be^{-i2px/\hbar} + B^*Ae^{i2px/\hbar} - AB^*e^{i2px/\hbar} + BA^*e^{-i2px/\hbar}\Big) \\
+			&= \frac{p}{m}(|A|^2 - |B|^2)
+		\end{align*}
+	\end{solution}
+
+	\setcounter{subsection}{3}
+	\setcounter{question}{0}
+	\subsection{The Single-Step Potential: A Problem in Scattering}
+	\question (\textit{Quite Hard}). Evaluate the third piece in Eq. (5.4.16) and compare the resulting $T$ with Eq. (5.4.21). [Hint: Expand the factor $(k_1^2-2mV_0/\hbar^2)^{1/2}$ near $k_1=k_0$, keeping just the first derivative in the Taylor series.]
+	
+	\begin{solution}
+		$\cdots$
+	\end{solution}
+	
+	\question (a) Calculate $R$ and $T$ for scattering off a potential $V(x) = V_0a\delta(x)$. (b) Do the same for the case $V=0$ for $|x| > a$ and $V = V_0$ for $|x| < a$. Assume that the energy is positive but less than $V_0$.
+	
+	\begin{solution}
+		(a) In both the positive and negative parts of the real line, the wave function will have the free space solution
+		$$\psi(x) = \begin{cases}Ae^{ikx} + Be^{-ikx}, &x < 0 \\Ce^{ikx}, &x > 0\end{cases}$$
+		where $k$ is the same in both areas owing to their lack of potential and $D$ is suppressed (since there are no waves incident from the right). By continuity,
+		$$\psi(0^-) = \psi(0^+) \implies A + B = C$$
+		Since the potential is infinitely large, we expect a discontinuity in the wave function's derivative at $x = 0$. This discontinuity is given by
+		$$\psi'(0^+) - \psi'(0^-) = ikC - ik(A - B) = ik(C + B - A)$$
+		Furthermore, since Schr\"odinger's equation for this potential (written in terms of $k$ instead of $E$) is given by
+		$$\frac{\hbar^2k^2}{2m}\psi(x) = -\frac{\hbar^2}{2m}\frac{\mathrm{d}^2\psi(x)}{\mathrm{d}x^2} + V_0a\delta(x)\psi(x)$$
+		we have
+		\begin{align*}
+			\psi'(0^+) - \psi'(0-) &= \lim_{\varepsilon\to 0}\int_{-\varepsilon}^{\varepsilon}\frac{\mathrm{d}^2\psi(x)}{\mathrm{d}x^2}\mathrm{d}x \\
+			&= \lim_{\varepsilon\to 0}\int_{-\varepsilon}^{\varepsilon}\Big(\frac{2m}{\hbar^2}V_0a\delta(x) - k^2\Big)\psi(x)\mathrm{d}x \\
+			&= \frac{2m}{\hbar^2}V_0a\psi(0) \\
+			&= \frac{2m}{\hbar^2}V_0a(A + B)
+		\end{align*}
+		Removing $C$ from the first discontinuity equation and comparing gives the condition
+		$$i2kB = \frac{2m}{\hbar^2}V_0a(A + B)$$
+		or
+		$$\frac{B}{A} = \frac{2maV_0}{i2\hbar^2k + 2maV_0}$$
+		Removing the common factor of two and taking the squared modulus of this gives us
+		$$R = \frac{(maV_0)^2}{\hbar^4k^2 + (maV_0)^2}$$
+		in which case we have
+		$$T = \frac{\hbar^4k^2}{\hbar^4k^2 + (maV_0)^2}$$
+		We see that larger energies have a greater chance of being transmitted, as expected. 
+		
+		(b) The general solution to the wave function in such a space is given by
+		$$\psi(x) = \begin{cases}
+			Ae^{ikx} + Be^{-ikx}, &x < -a \\
+			Ce^{\kappa x} + De^{-\kappa x}, & |x| < a \\
+			Fe^{ikx} + Ge^{-ikx}, &x > a
+		\end{cases}$$
+		where
+		\begin{align*}
+			k &= \frac{\sqrt{2mE}}{\hbar} \\
+			\kappa &= \frac{\sqrt{2m(V_0 - E)}}{\hbar}
+		\end{align*}
+		Setting $G = 0$ (i.e. there are no particles incident from the right) and imposing continuity of $\psi(x)$ and $\psi'(x)$ gives the system of equations
+		\begin{align*}
+			Ae^{-ika} + Be^{ika} &= Ce^{-\kappa a} + De^{\kappa a} \\
+			ik(Ae^{-ika} - Be^{ika}) &= \kappa (Ce^{-\kappa a} - De^{\kappa a}) \\
+			Ce^{\kappa a} + De^{-\kappa a} &= Fe^{ika} \\
+			\kappa(Ce^{\kappa a} - De^{-\kappa a}) &= ikFe^{ika}
+		\end{align*}
+		By adding and subtracting the last two of these equations, we can solve for $C$ and $D$ in terms of $F$,
+		\begin{align*}
+			C &= \frac{F}{2}e^{-\kappa a}e^{ika}\Big(1 + \frac{ik}{\kappa}\Big) \\
+			D &= \frac{F}{2}e^{\kappa a}e^{ika}\Big(1 - \frac{ik}{\kappa}\Big)
+		\end{align*}
+		By adding the first two of these equations, we can solve $A$ in terms of $C$ and $D$, then substitute in our found expressions for $C$ and $D$ to get
+		\begin{align*}
+			A &= \frac{C}{2}e^{-\kappa a}e^{ika}\Big(1 + \frac{\kappa}{ik}\Big) + \frac{D}{2}e^{\kappa a}e^{ika}\Big(1 - \frac{\kappa}{ik}\Big) \\
+			&= \frac{F}{4}e^{-2\kappa a}e^{i2ka}\Big(1 + \frac{ik}{\kappa}\Big)\Big(1 + \frac{\kappa}{ik}\Big) + \frac{F}{4}e^{2\kappa a}e^{i2ka}\Big(1 - \frac{ik}{\kappa}\Big)\Big(1 - \frac{\kappa}{ik}\Big) \\
+			&= \frac{F}{4}e^{i2ka}\Big\{e^{-2\kappa a}\Big(2 - i\Big[\frac{\kappa}{k} - \frac{k}{\kappa}\Big]\Big) + e^{2\kappa a}\Big(2 + i\Big[\frac{\kappa}{k} - \frac{k}{\kappa}\Big]\Big)\Big\} \\
+			&= \frac{F}{4}e^{i2ka}\Big\{2(e^{2\kappa a} + e^{-2\kappa a}) + i\Big[\frac{\kappa^2 - k^2}{\kappa k}\Big](e^{2\kappa a} - e^{-2\kappa a})\Big\} \\
+			&= Fe^{i2ka}\Big(\cosh(2\kappa a) + i\Big[\frac{\kappa^2 - k^2}{2\kappa k}\Big]\sinh(2\kappa a)\Big) \\
+			&= Fe^{i2ka}\Big(\cosh(2\kappa a) + i\Big[\frac{V_0 - 2E}{(4E(V_0 - E))^{1/2}}\Big]\sinh(2\kappa a)\Big)
+		\end{align*}
+		Defining
+		$$\alpha = \frac{V_0 - 2E}{(4E(V_0 - E))^{1/2}}$$
+		we find a transmission coefficient of
+		$$T = \frac{|F|^2}{|A|^2} = [\cosh^2(2\kappa a) + \alpha^2\sinh^2(2\kappa a)]^{-1}$$
+		in which case we have $R = 1 - T$. From this, we see that transmission of an incident particle drops exponentially as we increase the width of the potential barrier.
+	\end{solution}
+	
+	\question Consider a particle subject to a constant force $f$ in one dimension. Solve for the propagator in momentum space and get
+	$$U(p, t;p', 0) = \delta(p - p' - ft)e^{i(p'^3-p^3)/6m\hbar f}$$
+	Transform back to coordinate space and obtain
+	$$U(x, t;x', 0) = \Big(\frac{m}{2\pi\hbar it}\Big)^{1/2}\exp\Big\{\frac{i}{\hbar}\Big[\frac{m(x - x')^2}{2t} + \frac{1}{2}ft(x + x') - \frac{f^2t^3}{24m}\Big]\Big\}$$
+	[Hint: Normalize $\psi_E(p)$ such that $\langle E|E'\rangle = \delta(E - E')$. Note that $E$ is not restricted to be positive.]
+	
+	\begin{solution}
+		Since force is related to potential via
+		$$F = -\frac{\mathrm{d}V}{\mathrm{d}x},$$
+		we can encode a constant force $f$ via $V = -fx$. In momentum space (where $\hat{P} = p$ and $\hat{X} = i\hbar\frac{\mathrm{d}}{\mathrm{d}p}$), the time-independent Schr\"odinger equation is then
+		$$E\psi(p) = \frac{p^2}{2m}\psi(p) - i\hbar f \frac{\mathrm{d}\psi(p)}{\mathrm{d}p}$$
+		Dividing both sides by $\psi(p)$ and isolating the derivative terms yields
+		\begin{align*}
+			\frac{1}{\psi(p)}\frac{\mathrm{d}\psi(p)}{\mathrm{d}p} &= \frac{iE}{\hbar f} - \frac{ip^2}{2m\hbar f} \\
+			\int\frac{1}{\psi(p)}\frac{\mathrm{d}\psi(p)}{\mathrm{d}p}\mathrm{d}p &= \int\frac{iE}{\hbar f}\mathrm{d}p - \int\frac{ip^2}{2m\hbar f}\mathrm{d}p \\
+			\ln(\psi(p)) &= \frac{iEp}{\hbar f} - \frac{ip^3}{6m\hbar f} \\
+			\psi(p) &= Ae^{iEp/\hbar f}e^{-ip^3/6m\hbar f}
+		\end{align*}
+		where, as a reminder, $\psi(p) = \langle p|E\rangle$. To normalize this state, we use
+		\begin{align*}
+			\langle E|E'\rangle &= \int_{-\infty}^{\infty}\langle E|p\rangle\langle p|E'\rangle\,\mathrm{d}p \\
+			&= A^2\int_{-\infty}^{\infty}e^{ip(E' - E)/\hbar f}\,\mathrm{d}p \\
+			&= A^2\hbar f\int_{-\infty}^{\infty}e^{ip'(E' - E)}\mathrm{d}p' \\
+			&= \delta(E - E')
+		\end{align*}
+		where we have made the substitution $p = p/\hbar f$. From this we see
+		$$A = \frac{1}{(2\pi\hbar f)^{1/2}}$$
+		The propagator in momentum space is then given by
+		\begin{align*}
+			\langle p|e^{-i\hat{H}t/\hbar}|p'\rangle &= \int_{-\infty}^{\infty}\langle p|E\rangle\langle E|e^{-i\hat{H}t/\hbar}|p'\rangle\,\mathrm{d}E \\
+			&= \int_{-\infty}^{\infty}\langle p|E\rangle\langle E|p'\rangle e^{-iEt/\hbar}\,\mathrm{d}E \\
+			&= \frac{1}{2\pi\hbar f}\int_{-\infty}^{\infty}e^{iE(p - p')/\hbar f}e^{-i(p^3 - p'^3)/6m\hbar f}e^{-iEt/\hbar}\,\mathrm{d}E \\
+			&= e^{-i(p^3 - p'^3)/6m\hbar f}\cdot \frac{1}{2\pi\hbar f}\int_{-\infty}^{\infty}e^{iE(p - p' - ft)/\hbar f}\,\mathrm{d}E \\
+			&= \delta(p - p' - ft)e^{i(p'^3 - p^3)/6m\hbar f}
+		\end{align*}
+		To find the position space variant of this, we examine
+		\begin{align*}
+			\langle x |e^{-i\hat{H}t/\hbar}|x'\rangle &= \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\langle x|p\rangle\langle p|e^{-i\hat{H}t/\hbar}|p'\rangle\langle p'|x'\rangle\,\mathrm{d}p\,\mathrm{d}p' \\
+			&= \frac{1}{2\pi\hbar}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{ixp/\hbar}\delta(p - p' - ft)e^{i(p'^3 - p^3)/6m\hbar f}e^{-ix'p'/\hbar}\,\mathrm{d}p\,\mathrm{d}p' \\
+			&= \frac{1}{2\pi \hbar}\int_{-\infty}^{\infty} e^{ixp/\hbar}e^{i\big((p - ft)^3 - p^3\big)/6m\hbar f}e^{-ix'(p - ft)/\hbar}\,\mathrm{d}p \\
+			&= \frac{1}{2\pi\hbar}\int_{-\infty}^{\infty}\exp\Big(\frac{i}{6m\hbar f}(-3p^2ft + 3pf^2t^2 - f^3t^3) + \frac{ixp}{\hbar} - \frac{ix'p}{\hbar} + \frac{iftx'}{\hbar}\Big)\mathrm{d}p \\
+			&= \frac{1}{2\pi\hbar}\int_{-\infty}^{\infty}\exp\Big({-\frac{i}{\hbar}\frac{t}{2m}}p^2 + \frac{i}{\hbar}\Big[\frac{ft^2}{2m} + x - x'\Big]p + \frac{i}{\hbar}\Big[ftx' - \frac{f^2t^3}{6m}\Big]\Big)\mathrm{d}p \\
+			&= \frac{1}{2\pi\hbar}\Big(\frac{2\pi \hbar m}{it}\Big)^{1/2}\exp\Big(\frac{-\frac{1}{\hbar^2}\Big(\frac{ft^2}{2m} + x - x'\Big)^2}{\frac{4it}{2m\hbar}}\Big)\exp\Big(\frac{i}{\hbar}\Big[ftx' - \frac{f^2t^3}{6m}\Big]\Big) \\
+			&= \Big(\frac{m}{2\pi\hbar it}\Big)^{1/2}\exp\Big(\frac{i}{\hbar}\Big[\frac{f^2t^3}{8m} + \frac{ft}{2}(x - x') + \frac{m}{2t}(x - x')^2\Big]\Big)\exp\Big(\frac{i}{\hbar}\Big[\frac{ft}{2}(2x') - \frac{f^2t^3}{6m}\Big]\Big) \\
+			&=  \Big(\frac{m}{2\pi\hbar it}\Big)^{1/2}\exp\Big(\frac{i}{\hbar}\Big[\frac{m(x - x')^2}{2t} + \frac{1}{2}ft(x + x') - \frac{f^2t^3}{24m}\Big]\Big)
+		\end{align*}
+	\end{solution}
+	\end{questions}
+\end{document}

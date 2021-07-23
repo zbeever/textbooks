@@ -1,0 +1,126 @@
+\documentclass[../principles-of-quantum-mechanics.tex]{subfiles}
+
+\begin{document}
+	\printanswers
+	
+	\setcounter{section}{7}
+	\section{The Path Integral Formulation of Quantum Theory}
+	
+	\setcounter{subsection}{5}
+	\subsection{Potentials of the Form $V = a + bx + cx^2 + d\dot{x} + ex\dot{x}$}
+	
+	\begin{questions}
+		\question Verify that
+		$$U(x, t; x', 0) = A(t)\exp(i S_{\text{cl}}/\hbar), A(t)=\Big(\frac{m}{2\pi\hbar it}\Big)^{1/2}$$
+		agrees with the exact result, Eq. (5.4.31), for $V(x) = -fx$. Hint: Start with $x_{\text{cl}}(t'') = x_0 + v_0t'' + \tfrac{1}{2}(f/m)t''^2$ and find the constants $x_0$ and $v_0$ from the requirement that $x_{\text{cl}}(0) = x'$ and $x_{\text{cl}}(t) = x$.
+		\begin{solution}
+			The given propagator agrees with the previously found propagator if
+			$$S_{\text{cl}} = \frac{m(x - x')^2}{2t} + \frac{1}{2}ft(x + x') - \frac{f^2t^3}{24m}$$
+			The Lagrangian is
+			$$\mathcal{L}(x, \dot{x}) = \frac{1}{2}m\dot{x}^2 + fx$$
+			which can be rewritten as
+			\begin{align*}
+				\mathcal{L}(t') &= \frac{1}{2}m\Big(v_0 + \frac{f}{m}t'\Big)^2 + f\Big(x_0 + v_0t' + \frac{1}{2}\frac{f}{m}t'^2\Big) \\
+				&= \frac{1}{2}mv_0^2 + fv_0t' + \frac{1}{2}\frac{f^2}{m}t'^2 + fx_0 + fv_0t' + \frac{1}{2}\frac{f^2}{m}t'^2 \\
+				&= \frac{1}{2}mv_0^2 + fx_0 + 2fv_0t' + \frac{f^2}{m}t'^2
+			\end{align*}
+			We can integrate this to find
+			\begin{align*}
+				S_\text{cl} = \int_0^t\mathcal{L}(t')\mathrm{d}t' &= \int_0^t\,\frac{1}{2}mv_0^2 + fx_0 + 2fv_0t' + \frac{f^2}{m}t'^2\mathrm{d}t' \\
+				&= \frac{1}{2}mv_0^2t + fx_0t + fv_0t^2 + \frac{f^2}{3m}t^3
+			\end{align*}
+			To ensure the constants used here agree with the constants $x$ and $x'$ used previously, we enforce
+			\begin{align*}
+				x' &= x_{\text{cl}}(0) = x_0 \\
+				x &= x_{\text{cl}}(t) = x_0 + v_0t + \frac{1}{2}\frac{f}{m}t^2
+			\end{align*}
+			which implies
+			\begin{align*}
+				x_0 &= x' \\
+				v_0 &= \frac{x - x'}{t} - \frac{1}{2}\frac{f}{m}t
+			\end{align*}
+			Substituting this into our found action results in
+			\begin{align*}
+				S_{\text{cl}} &= \frac{m}{2}\Big(\frac{x - x'}{t} - \frac{f}{2m}t\Big)^2t + fx't + f\Big(\frac{x - x'}{t} - \frac{f}{2m}t\Big)t^2 + \frac{f^2t^3}{3m} \\
+				&= \frac{m}{2}\Big(\frac{(x - x')^2}{t^2} - \frac{f(x - x')}{m} + \frac{f^2t^2}{4m^2}\Big)t + fx't + fxt - fx't - \frac{f^2t^3}{2m} + \frac{f^2t^3}{3m} \\
+				&= \frac{m(x - x')^2}{2t} + \frac{f(-x + x')t}{2} + \frac{f^2t^3}{8m} + fxt - \frac{f^2t^3}{6m} \\
+				&= \frac{m(x - x')^2}{2t} + \frac{1}{2}ft(x + x') - \frac{f^2t^3}{24m}
+			\end{align*}
+		\end{solution}
+		
+		\question Show that for the harmonic oscillator with
+		\begin{gather*}
+			\mathcal{L} = \frac{1}{2}m\dot{x}^2 - \frac{1}{2}m\omega^2x^2 \\
+			U(x, t; x') = A(t)\exp\Big\{\frac{im\omega}{2\hbar\sin \omega t}[(x^2 + x'^2)\cos \omega t - 2xx']\Big\}
+		\end{gather*}
+		where $A(t)$ is an unknown function. (Recall Exercise 2.8.7.)
+		\begin{solution}
+			The path of the classical oscillator is described by $x(t') = A\cos\omega t' + B\sin\omega t'$, and so
+			\begin{align*}
+				S_{\text{cl}} &= \int_0^t\mathcal{L}(x(t'), \dot{x}(t'))\,\mathrm{d}t' \\
+				&= \int_0^t \frac{1}{2}m\dot{x}^2(t') - \frac{1}{2}m\omega^2x^2(t')\,\mathrm{d}t' \\
+				&= \frac{1}{2}m\int_0^t\Big({-\omega A\sin\omega t'} + \omega B \cos \omega t'\Big)^2 - \omega^2\Big(A\cos\omega t' + B\sin\omega t'\Big)^2\,\mathrm{d}t' \\
+				&= \frac{1}{2}m\omega^2\int_0^t (A^2 - B^2)\sin^2\omega t' - 4AB\sin\omega t' \cos\omega t' + (B^2 - A^2)\cos^2\omega t'\,\mathrm{d}t' \\
+				&= \frac{1}{2}m\omega^2\int_0^t(A^2 - B^2)\Big(\frac{1 - \cos2\omega t'}{2}\Big) - 2AB\sin 2 \omega t' + (B^2 - A^2)\Big(\frac{1 + \cos 2 \omega t'}{2}\Big)\,\mathrm{d}t' \\
+				&= \frac{1}{2}m\omega^2 \int_0^t (B^2 - A^2)\cos 2 \omega t' - 2AB\sin 2 \omega t'\,\mathrm{d}t' \\
+				&= \frac{1}{2}m\omega^2\Big((B^2 - A^2)\frac{\sin2\omega t'}{2\omega} + 2AB\frac{\cos 2 \omega t'}{2\omega}\Big)\Big|_0^t \\
+				&= \frac{1}{2}m\omega\Big(\frac{1}{2}(B^2 - A^2)\sin2\omega t + AB\cos2\omega t - AB\Big) \\
+				&= \frac{1}{2}m\omega\Big((B^2 - A^2)\sin\omega t\cos\omega t + AB\cos2\omega t - AB\Big) \\
+			\end{align*}
+			We can replace the constants $A$ and $B$ with linear combinations of $x$ and $x'$ by noting that
+			\begin{align*}
+				x' &= x(0) = A \\
+				x &= x(t) = A\cos\omega t + B\sin\omega t
+			\end{align*}
+			and so 
+			\begin{align*}
+				A &= x' \\
+				B &= \frac{x - x'\cos\omega t}{\sin\omega t}
+			\end{align*}
+			We first compute
+			\begin{align*}
+				B^2 - A^2 &= \frac{x^2 - 2xx'\cos\omega t + x'^2\cos^2\omega t}{\sin^2\omega t} - x'^2 \\
+				&= \frac{x^2 - 2xx'\cos\omega t + x'^2(\cos^2\omega t - \sin^2\omega t)}{\sin^2\omega t} \\
+				&= \frac{x^2 - 2xx'\cos\omega t + x'^2\cos 2\omega t}{\sin^2\omega t} \\
+				AB &= \frac{xx' - x'^2\cos\omega t}{\sin\omega t}
+			\end{align*}
+			and so
+			\begin{align*}
+				(B^2 - A^2)\sin\omega t \cos\omega t &= \Big(\frac{x^2 - 2xx'\cos\omega t + x'^2\cos 2\omega t}{\sin^2\omega t}\Big)\big(\sin\omega t \cos \omega t\big) \\
+				&= \frac{x^2\cos\omega t - 2xx'\cos^2\omega t + x'^2\cos2\omega t \cos\omega t}{\sin\omega t} \\
+				AB\cos 2 \omega t &= \Big(\frac{xx' - x'^2\cos\omega t}{\sin\omega t}\Big)\cos 2 \omega t \\
+				&= \frac{xx'\cos 2 \omega t - x'^2\cos2\omega t \cos \omega t}{\sin \omega t} \\
+				&= \frac{xx'(1 - 2\sin^2 \omega t) - x'^2\cos2\omega t \cos \omega t}{\sin \omega t} \\
+				&= \frac{xx' - 2xx'\sin^2\omega t - x'^2\cos2\omega t \cos\omega t}{\sin\omega t}
+			\end{align*}
+			Combining these results gives
+			\begin{align*}
+				S_{\text{cl}} &= \frac{m\omega}{2\sin \omega t}\Big(x^2\cos\omega t - 2xx'\cos^2\omega t + xx' - 2xx'\sin^2\omega t - xx' + x'^2\cos\omega t\Big) \\
+				&= \frac{m\omega}{2\sin \omega t}\Big((x^2 + x'^2)\cos\omega t - 2xx'\Big)
+			\end{align*}
+			which is exactly what we expect, as this gives
+			$$U(x, t; x') = A(t)\exp(iS_{\text{cl}}/\hbar) = U(x, t; x') = A(t)\exp\Big\{\frac{im\omega}{2\hbar\sin \omega t}[(x^2 + x'^2)\cos \omega t - 2xx']\Big\}$$
+		\end{solution}
+		
+		\question We know that given the eigenfunctions and the eigenvalues we can construct the propagator:
+		$$U(x, t; x', t') = \sum_n\psi_n(x)\psi_n^*(x')e^{-iE_n(t - t')/\hbar}$$
+		Consider the reverse process (since the path integral approach gives $U$ directly), for the case of the oscillator.
+		
+		(1) Set $x = x' = t' = 0$. Assume that $A(t) = (m\omega/2\pi i \hbar \sin \omega t)^{1/2}$ for the oscillator. By expanding both sides of Eq. (8.6.15), you should find that $E = \hbar\omega/2$, $5\hbar\omega/2$, $9\hbar\omega/2$, $\ldots$ , etc. What happened to the levels in between?
+		
+		(2) (Optional). Now consider the extraction of the eigenfunctions. Let $x = x'$ and $t' = 0$. Find $E_0$, $E_1$, $|\psi_0(x)|^2$, and $|\psi_1(x)|^2$ by expanding in powers of $\alpha = \exp(i\omega t)$.
+		\begin{solution}
+			$\cdots$
+		\end{solution}
+		
+		\question Recall the derivation of the Schr\"odinger equation (8.5.8) starting from Eq. (8.5.4). Note that although we chose the argument of $V$ to be the midpoint of $x + x'/2$, it did nto matter very much: any choice $x + \alpha\eta$, (where $\eta = x' - x$) for $0 \leq \alpha \leq 1$ would have given the same result since the difference between the choices is of order $\eta\varepsilon \approxeq \varepsilon^{3/2}$. All this was thanks to the factor $\varepsilon$ multiplying $V$ in Eq. (8.5.4) and the fact that $|\eta| \approxeq \varepsilon^{1/2}$, as per Eq. (8.6.5).
+		
+		Consider now the case of a vector potential which will bring in a factor
+		$$\exp\Big[\frac{iq\varepsilon}{\hbar c}\frac{x - x'}{\varepsilon}A(x + \alpha\eta)\Big] \equiv \exp\Big[{-\frac{iq\varepsilon}{\hbar c}}\frac{\eta}{\varepsilon}A(x + \alpha\eta)\Big]$$
+		to the propagator for one time slice. (We should really be using vectors for position and the vector potential, but the one-dimensional version will suffice for making the point here.) Note that $\varepsilon$ now gets canceled, in contrast to the scalar potential case. Thus, going to order $\varepsilon$ to derive the Schr\"odinger equation means going to order $\eta^2$ in expanding the exponential. This will not only bring in an $A^2$ term, but will also make the answer sensitive to the argument of $A$ in the linear term. Choose $\alpha = 1/2$ and verify that you get the one-dimensional version of EQ. (4.3.7). Along the way you will see that changing $\alpha$ make an order $\varepsilon$ difference to $\psi(x, \varepsilon)$ so that we have no choice but to use $\alpha = 1/2$, i.e., use the \textit{midpoint prescription}. This point will come up in Chapter 21.
+		\begin{solution}
+			$\cdots$
+		\end{solution}
+		
+	\end{questions}
+\end{document}

@@ -1,0 +1,422 @@
+\documentclass[../principles-of-quantum-mechanics.tex]{subfiles}
+
+\begin{document}
+	\printanswers
+	
+	\section{Systems with $N$ Degrees of Freedom}
+	
+	\begin{questions}
+		\setcounter{subsection}{0}
+		\setcounter{question}{0}
+		\subsection{$N$ Particles in One Dimension}
+		
+		\question Show the following:
+		
+		(1) $[\Omega_1^{(1)}\otimes I^{(2)}, I^{(1)}\otimes\Lambda_2^{(2)}] = 0$ for any $\Omega_1^{(1)}$ and $\Lambda_2^{(2)}$
+
+		(operators of particle $1$ commute with those of particle $2$).
+		
+		(2) $(\Omega_1^{(1)}\otimes \Gamma_2^{(2)})(\theta_1^{(1)}\otimes\Lambda_2^{(2)}) = (\Omega\theta)_1^{(1)}\otimes(\Gamma\Lambda)_2^{(2)}$
+		
+		(3) If
+		$$[\Omega_1^{(1)}, \Lambda_1^{(1)}] = \Gamma_1^{(1)}$$
+		then
+		$$[\Omega_1^{(1)\otimes(2)}, \Lambda_1^{(1)\otimes(2)}] = \Gamma_1^{(1)}\otimes I^{(2)}$$
+		and similarly with $1 \to 2$.
+		
+		(4) $(\Omega_1^{(1)\otimes(2)} + \Omega_2^{(1)\otimes(2)})^2 = (\Omega_1^2)^{(1)}\otimes I^{(2)} + I^{(1)}\otimes (\Omega_2^2)^{(2)} + 2\Omega_1^{(1)}\otimes \Omega_2^{(2)}$
+		
+		\begin{solution}
+			We can check these by applying each operator to an arbitrary tensor product state $|x_1\rangle \otimes |x_2\rangle$. For the first, we have
+			\begin{align*}
+				[\Omega_1^{(1)}\otimes I^{(2)}, I^{(1)}\otimes\Lambda_2^{(2)}]|x_1\rangle \otimes |x_2\rangle &= [\Omega_1^{(1)\otimes(2)}, \Lambda_2^{(1)\otimes(2)}]|x_1\rangle \otimes |x_2\rangle \\
+				&= \Omega_1^{(1)\otimes(2)}\Lambda_2^{(1)\otimes(2)}|x_1\rangle\otimes|x_2\rangle - \Lambda_2^{(1)\otimes(2)}\Omega_1^{(1)\otimes(2)}|x_1\rangle\otimes|x_2\rangle \\
+				&= \Omega_1^{(1)\otimes(2)}|x_1\rangle\otimes|\Lambda_2^{(2)}x_2\rangle - \Lambda_2^{(1)\otimes(2)}|\Omega_1^{(1)}x_1\rangle\otimes|x_2\rangle \\
+				&= |\Omega_1^{(1)}x_1\rangle\otimes|\Lambda_2^{(2)}x_2\rangle - |\Omega_1^{(1)}x_1\rangle\otimes|\Lambda_2^{(2)}x_2\rangle \\
+				&= 0
+			\end{align*}
+			which implies $[\Omega_1^{(1)}\otimes I^{(2)}, I^{(1)}\otimes\Lambda_2^{(2)}] = 0$. Performing a similar exercise with the second gives
+			\begin{align*}
+				(\Omega_1^{(1)}\otimes \Gamma_2^{(2)})(\theta_1^{(1)}\otimes\Lambda_2^{(2)})|x_1\rangle\otimes|x_2\rangle &= (\Omega_1^{(1)}\otimes \Gamma_2^{(2)})|\theta_1^{(1)}x_1\rangle\otimes|\Lambda_2^{(2)}x_2\rangle \\
+				&= |\Omega_1^{(1)}\theta_1^{(1)}x_1\rangle\otimes|\Gamma_2^{(2)}\Lambda_2^{(2)}x_2\rangle \\
+				&= |(\Omega\theta)_1^{(1)}x_1\rangle \otimes |(\Gamma\Lambda)_2^{(2)}x_2\rangle
+			\end{align*}
+			i.e. $(\Omega_1^{(1)}\otimes \Gamma_2^{(2)})(\theta_1^{(1)}\otimes\Lambda_2^{(2)}) = (\Omega\theta)_1^{(1)}\otimes(\Gamma\Lambda)_2^{(2)}$. The third follows immediately upon taking the tensor product of both sides with $I^{(2)}$, with the alternative equality shown upon swapping $(1)$ and $(2)$. For the fourth, observe that
+			\begin{align*}
+				&(\Omega_1^{(1)\otimes(2)} + \Omega_2^{(1)\otimes(2)})(\Omega_1^{(1)\otimes(2)} + \Omega_2^{(1)\otimes(2)})|x_1\rangle\otimes|x_2\rangle \\
+				=\,&(\Omega_1^{(1)\otimes(2)} + \Omega_2^{(1)\otimes(2)})(|\Omega_1^{(1)}x_1\rangle\otimes|x_2\rangle + |x_1\rangle\otimes|\Omega_2^{(2)}x_2\rangle) \\
+				=\,& |(\Omega_1^2)^{(1)}|x_1\rangle\otimes|x_2\rangle + |\Omega_1^{(1)}x_1\rangle\otimes|\Omega_2^{(2)}x_2\rangle + |\Omega_1^{(1)}x_1\rangle\otimes|\Omega_2^{(2)}x_2\rangle + |x_1\rangle\otimes|(\Omega_2^2)^{(2)}x_2\rangle
+			\end{align*}
+			which immediately shows
+			$$(\Omega_1^{(1)\otimes(2)} + \Omega_2^{(1)\otimes(2)})^2 = (\Omega_1^2)^{(1)}\otimes I^{(2)} + I^{(1)}\otimes (\Omega_2^2)^{(2)} + 2\Omega_1^{(1)}\otimes \Omega_2^{(2)}$$
+		\end{solution}
+		
+		\question Imagine a fictitious world in which the single-particle Hilbert space is two-dimensional. Let us denote the basis vectors by $|+\rangle$ and $|-\rangle$. Let
+		
+		$$\sigma_1^{(1)} = \begin{blockarray}{ccc}
+			 & + & - \\
+			\begin{block}{c[cc]}
+				+ & a & b \\
+				- & c & d \\
+			\end{block}
+		\end{blockarray}\text{ and }\sigma_2^{(2)} = \begin{blockarray}{ccc}
+		& + & - \\
+			\begin{block}{c[cc]}
+				+ & e & f \\
+				- & g & h \\
+			\end{block}
+		\end{blockarray}$$
+		be operators in $\mathbb{V}_1$ and $\mathbb{V}_2$, respectively (the $\pm$ signs label the basis vectors. Thus $b = \langle + |\sigma_1^{(1)}|-\rangle$ etc.) The space $\mathbb{V}_1\otimes\mathbb{V}_2$ is spanned by four vectors $|+\rangle\otimes|+\rangle$, $|+\rangle\otimes|-\rangle$, $|-\rangle\otimes|+\rangle$, $|-\rangle\otimes|-\rangle$. Show (using the method of images or otherwise) that
+		
+		(1) $\sigma_1^{(1)\otimes(2)} = \sigma_1^{(1)}\otimes I^{(2)} = \begin{blockarray}{ccccc}
+			& ++ & +- & -+ & -- \\
+			\begin{block}{c[cccc]}
+				++ & a & 0 & b & 0 \\
+				+- & 0 & a & 0 & b \\
+				-+ & c & 0 & d & 0 \\
+				-- & 0 & c & 0 & d \\
+			\end{block}
+		\end{blockarray}$
+	
+		(Recall that $\langle \alpha|\otimes\langle\beta|$ is the bra corresponding to $|\alpha\rangle\otimes|\beta\rangle$.)
+		
+		(2) $\sigma_2^{(1)\otimes(2)}=\begin{bmatrix}e & f & 0 & 0 \\ g & h & 0 & 0 \\ 0 & 0 & e & f \\ 0 & 0 & g & h\end{bmatrix}$
+		
+		(3) $(\sigma_1\sigma_2)^{(1)\otimes(2)} = \sigma_1^{(1)}\otimes\sigma_2^{(2)} = \begin{bmatrix}ae & af & be & bf \\ ag & ah & bg & bh \\ ce & cf & de & df \\ cg & ch & dg & dh\end{bmatrix}$
+		
+		Do part (3) in two ways, by taking the matrix product of $\sigma_1^{(1)\otimes(2)}$ and $\sigma_2^{(1)\otimes(2)}$
+		
+		\begin{solution}
+			The Kronecker product is the explicit matrix form of the tensor product, defined as
+			$$\mathbf{A}\otimes\mathbf{B} = \begin{bmatrix}a_{11}\mathbf{B} & \cdots & a_{1m}\mathbf{B} \\ \vdots & \ddots & \vdots \\ a_{n1}\mathbf{B} & \cdots & a_{nm}\mathbf{B}\end{bmatrix}$$
+			From this definition all of the above results immediately follow.
+		\end{solution}
+	
+		\question Consider the Hamiltonian of the coupled mass system:
+		$$\mathcal{H} = \frac{p_1^2}{2m} + \frac{p_2^2}{2m} + \frac{1}{2}m\omega^2[x_1^2 + x_2^2 + (x_1 - x_2)^2]$$
+		We know from Example 1.8.6 that $\mathcal{H}$ can be decoupled if we use normal coordinates
+		$$x_{\mathrm{I}, \mathrm{II}} = \frac{x_1 \pm x_2}{2^{1/2}}$$
+		and the corresponding momenta
+		$$p_{\mathrm{I}, \mathrm{II}} = \frac{p_1 \pm p_2}{2^{1/2}}$$
+		
+		(1) Rewrite $\mathcal{H}$ in terms of normal coordinates. Verify that the normal coordinates are also canonical, i.e. that
+		$$\{x_i, p_j\} = \delta_{ij}\text{ etc.;}\quad i, j = \mathrm{I}, \mathrm{II}$$
+		Now quantize the system, promoting these variables to operators obeying
+		$$[X_i, P_j] = i\hbar\delta_{ij}\text{ etc.;}\quad i, j = \mathrm{I},\mathrm{II}$$
+		Write the eigenvalue equation for $H$ in the simultaneous eigenbasis of $X_{\mathrm{I}}$ and $X_{\mathrm{II}}$.
+		
+		(2) Quantize the system directly, by promoting $x_1$, $x_2$, $p_1$, and $p_2$ to quantum operators. Write the eigenvalue equation for $H$ in the simultaneous eigenbasis of $X_1$ and $X_2$. Now change from $x_1$, $x_2$ (and of course $\partial/\partial x_1$, $\partial/\partial x_2$) to $x_\mathrm{I}$, $x_\mathrm{II}$ (and $\partial/\partial x_\mathrm{I}$, $\partial/\partial x_\mathrm{II}$) \textit{in the differential equation}. You should end up with the result from part (1).
+		
+		In general, one can change coordinates and then quantize or first quantize and then change variables in the differential equation if the change of coordinates is canonical. (We are assuming that all the variables are Cartesian. As mentioned earlier in the book, if one wants to employ non-Cartesian coordinates, it is best to first quantize the Cartesian coordinates and then change variables in the differential equation.)
+		
+		\begin{solution}
+			If the original coordinates are canonical, we have
+			\begin{align*}
+				\{x_\text{I}, p_\text{I}\} &= \frac{1}{2}\{x_1 + x_2, p_1 + p_2\} \\
+				&= \frac{1}{2}\{x_1, p_1\} + \frac{1}{2}\{x_1, p_2\} + \{x_2, p_1\} + \{x_2, p_2\} \\
+				&= 1 \\
+				\{x_\text{I}, p_\text{II}\} &= \frac{1}{2}\{x_1 + x_2, p_1 - p_2\} \\
+				&= \frac{1}{2}\{x_1, p_1\} - \frac{1}{2}\{x_1, p_2\} + \{x_2, p_1\} - \{x_2, p_2\} \\
+				&= 0 \\
+				\{x_\text{II}, p_\text{I}\} &= \frac{1}{2}\{x_1 - x_2, p_1 + p_2\} \\
+				&= \frac{1}{2}\{x_1, p_1\} + \frac{1}{2}\{x_1, p_2\} - \{x_2, p_1\} - \{x_2, p_2\} \\
+				&= 0 \\
+				\{x_\text{II}, p_\text{II}\} &= \frac{1}{2}\{x_1 - x_2, p_1 - p_2\} \\
+				&= \frac{1}{2}\{x_1, p_1\} - \frac{1}{2}\{x_1, p_2\} - \{x_2, p_1\} + \{x_2, p_2\} \\
+				&= 1
+			\end{align*}
+			i.e. $\{x_i, p_j\} = \delta_{ij}$ for $i, j = \text{I}, \text{II}$ (since it is obvious that $\{x_i, x_j\} = 0$ and $\{p_i, p_j\} = 0$). We can invert the defining equations of $x_{\text{I}, \text{II}}$ and $p_{\text{I}, \text{II}}$ to find
+			\begin{align*}
+				x_1 &= \frac{x_{\text{I}} + x_{\text{II}}}{2^{1/2}} \\
+				x_2 &= \frac{x_{\text{I}} - x_{\text{II}}}{2^{1/2}} \\
+				p_1 &= \frac{p_{\text{I}} + p_{\text{II}}}{2^{1/2}} \\
+				p_2 &= \frac{p_{\text{I}} - p_{\text{II}}}{2^{1/2}} \\
+			\end{align*}
+			which, upon substituting into the Hamiltonian, gives
+			\begin{align*}
+				H &= \frac{(p_\text{I} + p_\text{II})^2}{4m} + \frac{(p_\text{I} - p_\text{II})^2}{4m} + \frac{1}{2}m\omega^2\Big[\frac{(x_\text{I} + x_\text{II})^2}{2} + \frac{(x_\text{I} - x_\text{II})^2}{2} + \Big(\frac{x_\text{I} + x_\text{II}}{2} - \frac{x_\text{I} - x_\text{II}}{2}\Big)^2\Big] \\
+				&= \frac{p_\text{I}^2}{2m} + \frac{p_\text{II}^2}{2m} + \frac{1}{2}m\omega^2[x_\text{I}^2 + 2x_\text{II}^2]
+			\end{align*}
+			 Promoting the variables to operators gives an eigenvalue equation of
+			 $$H|E\rangle = \Big({-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_\text{I}^2}} - \frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_\text{II}^2} + \frac{1}{2}m\omega^2[X_\text{I}^2 + 2X_\text{II}^2]\Big)|E\rangle = E|E\rangle$$
+			 If we instead quantize the original Hamiltonian, we get
+			 $$H = {-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_1^2}} - \frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_2^2} + \frac{1}{2}m\omega^2[x_1^2 + x_2^2 + (x_1 - x_2)^2]$$
+			 To change variables, note that
+			 $$\frac{\partial}{\partial x_i} = \frac{\partial x_\text{I}}{\partial x_i}\frac{\partial}{\partial x_\text{I}} + \frac{\partial x_\text{II}}{\partial x_i}\frac{\partial}{\partial x_\text{II}}$$
+			 which implies
+			 \begin{align*}
+			 	\frac{\partial^2}{\partial x_i^2} =\,&\frac{\partial x_\text{I}}{\partial x_i}\Big(\frac{\partial^2 x_\text{I}}{\partial x_\text{I}\partial x_i}\frac{\partial}{\partial x_\text{I}} + \frac{\partial x_\text{I}}{\partial x_i}\frac{\partial^2}{\partial x_\text{I}^2} + \frac{\partial^2 x_\text{II}}{\partial x_\text{I}\partial x_i}\frac{\partial }{\partial x_\text{II}} + \frac{\partial x_\text{II}}{\partial x_i}\frac{\partial^2 }{\partial x_\text{I}\partial x_\text{II}}\Big) \\
+			 	&+ \frac{\partial x_\text{II}}{\partial x_i}\Big(\frac{\partial^2 x_\text{I}}{\partial x_\text{II}\partial x_i}\frac{\partial}{\partial x_\text{I}} + \frac{\partial x_\text{I}}{\partial x_i}\frac{\partial^2}{\partial x_\text{II}\partial x_\text{I}} + \frac{\partial^2 x_\text{II}}{\partial x_\text{II}\partial x_i}\frac{\partial }{\partial x_\text{II}} + \frac{\partial x_\text{II}}{\partial x_i}\frac{\partial^2 }{\partial x_\text{II}^2}\Big) \\
+			 	=\,& \frac{\partial x_\text{I}}{\partial x_i}\Big(\frac{\partial x_\text{I}}{\partial x_i}\frac{\partial^2}{\partial x_\text{I}^2} + \frac{\partial x_\text{II}}{\partial x_i}\frac{\partial^2 }{\partial x_\text{I}\partial x_\text{II}}\Big) + \frac{\partial x_\text{II}}{\partial x_i}\Big(\frac{\partial x_\text{I}}{\partial x_i}\frac{\partial^2}{\partial x_\text{II}\partial x_\text{I}} + \frac{\partial x_\text{II}}{\partial x_i}\frac{\partial^2 }{\partial x_\text{II}^2}\Big)
+			 \end{align*}
+		 	Observing that
+		 	$$\frac{\partial x_\text{I}}{\partial x_1} = \frac{\partial x_\text{II}}{\partial x_1} = \frac{\partial x_\text{I}}{\partial x_2} =  \frac{1}{2^{1/2}}\text{,}\qquad\frac{\partial x_\text{II}}{\partial x_2} = {-\frac{1}{2^{1/2}}}$$
+		 	we find
+		 	\begin{align*}
+		 		\frac{\partial^2}{\partial x_1^2} &= \frac{1}{2}\frac{\partial^2}{\partial x_\text{I}^2} + \frac{\partial^2}{\partial x_\text{I}\partial x_\text{II}} + \frac{1}{2}\frac{\partial ^2}{\partial x_\text{II}^2} \\
+		 		\frac{\partial^2}{\partial x_2^2} &= \frac{1}{2}\frac{\partial^2}{\partial x_\text{I}^2} - \frac{\partial^2}{\partial x_\text{I}\partial x_\text{II}} + \frac{1}{2}\frac{\partial^2}{\partial x_\text{II}^2}
+		 	\end{align*}
+	 		Substituting this and the other definitions into $H$ gives the same eigenvalue equation
+	 		$$H|E\rangle = \Big({-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_\text{I}^2}} - \frac{\hbar^2}{2m}\frac{\partial^2}{\partial x_\text{II}^2} + \frac{1}{2}m\omega^2[X_\text{I}^2 + 2X_\text{II}^2]\Big)|E\rangle = E|E\rangle$$
+		\end{solution}
+		
+		\setcounter{subsection}{1}
+		\setcounter{question}{0}
+		\subsection{More Particles in More Dimensions}
+		
+		\question (Particle in a Three-Dimensional Box). Recall that a particle in a one-dimensioanl box extending from $x=0$ to $L$ is confined to the region $0 \leq x \leq L$; its wave function vanishes at the edges $x = 0$ and $L$ and beyond (Exercise 5.2.5). Consider now a particle confined in a three-dimensional cubic box of volume $L^3$. Choosing as the origin one of its corners, and the $x$, $y$, and $z$ axes along the three edges meeting there, show that the normalized energy eigenfunctions are
+		$$\psi_E(x, y, z) = \Big(\frac{2}{L}\Big)^{1/2}\sin\Big(\frac{n_x\pi x}{L}\Big)\Big(\frac{2}{L}\Big)^{1/2}\sin\Big(\frac{n_y\pi y}{L}\Big)\Big(\frac{2}{L}\Big)^{1/2}\sin\Big(\frac{n_z\pi z}{L}\Big)$$
+		where
+		$$E = \frac{\hbar^2\pi^2}{2ML^2}(n_x^2 + n_y^2 + n_z^2)$$
+		and $n_i$ are positive integers.
+		
+		\begin{solution}
+			The Hamiltonian inside the box is simply the free particle Hamiltonian,
+			$$H = -\frac{\hbar^2}{2M}\frac{\partial^2}{\partial x^2} - \frac{\hbar^2}{2M}\frac{\partial^2}{\partial y^2} - \frac{\hbar^2}{2M}\frac{\partial^2}{\partial z^2}$$
+			When applied to the wavefunction $\psi$, this is a separable differential equation with the general solution $\psi(x, y, z) = \phi(x)\phi(y)\phi(z)$, where
+			$$\phi(x) = A\sin(kx) + B\cos(kx)$$
+			Here, $k = \hbar/\sqrt{2m}$. To enforce $\phi(0) = 0$, we set $B = 0$. By symmetry, $A$ must be the same for $\phi(x)$, $\phi(y)$, and $\phi(z)$, and so we have
+			$$\psi(x, y, z) = A^3\sin(kx)\sin(ky)\sin(kz)$$
+			To enforce $\phi(L) = 0$, $k$ must be equal to $n\pi/L$, giving
+			$$\psi(x, y, z) = A^3\sin\Big(\frac{n_x\pi x}{L}\Big)\sin\Big(\frac{n_y\pi y}{L}\Big)\sin\Big(\frac{n_z\pi z}{L}\Big)$$
+			To find $A$, we normalize $\psi$ over the cube to find
+			\begin{align*}
+				\int\!\!\!\!\int\!\!\!\!\int|\psi|^2\,\mathrm{d}x\,\mathrm{d}y\,\mathrm{d}z &= A^6 \int\!\!\!\!\int\!\!\!\!\int\sin^2\Big(\frac{n_x\pi x}{L}\Big)\sin^2\Big(\frac{n_y\pi y}{L}\Big)\sin^2\Big(\frac{n_z\pi z}{L}\Big)\mathrm{d}x\,\mathrm{d}y\,\mathrm{d}z \\
+				&= A^6\frac{L^3}{2^3} \\
+				&= 1
+			\end{align*}
+			or
+			$$A = \Big(\frac{2}{L}\Big)^{1/2}$$
+			and so
+			$$\psi(x, y, z) = \Big(\frac{2}{L}\Big)^{3/2}\sin\Big(\frac{n_x\pi x}{L}\Big)\sin\Big(\frac{n_y\pi y}{L}\Big)\sin\Big(\frac{n_z\pi z}{L}\Big)$$
+			Since $H|\psi\rangle = E|\psi\rangle$ and we know $|\psi\rangle$, $E$ can be read off as
+			$$\frac{\hbar^2\pi^2}{2ML^2}(n_x^2 + n_y^2 + n_z^2)$$
+		\end{solution}
+		
+		\question Quantize the two-dimensional oscillator for which
+		$$\mathcal{H} = \frac{p_x^2 + p_y^2}{2m} + \frac{1}{2}m\omega_x^2x^2 + \frac{1}{2}m\omega_y^2y^2$$
+		
+		(1) Show that the allowed energies are
+		$$E = (n_x + 1/2)\hbar\omega_x + (n_y + 1/2)\hbar\omega_y, \quad n_x, n_y = 0, 1, 2, \dots$$
+		
+		(2) Write down the corresponding wave functions in terms of single oscillator wave functions. Verify that they have definite parity (even/odd) number $x\to{-x}$, $y\to{-y}$ and that the parity depends only on $n = n_x + n_y$.
+		
+		(3) Consider next the \textit{isotropic} oscillator ($\omega_x = \omega_y$). Write \textit{explicit}, normalized eigenfunctions of the first three \textit{states} (that is, for the cases $n = 0$ and $1$). Reexpress your results in terms of polar coordinates $\rho$ and $\phi$ (for later use). Show that the degeneracy of a level with $E = (n + 1)\hbar\omega$ is $(n + 1)$.
+		
+		\begin{solution}
+			Promoting the variables to operators and assuming $\psi(x, y) = \phi(x)\theta(y)$, we find
+			$$H\phi(x)\theta(y) = {-\frac{\hbar^2}{2m}}\frac{\partial^2\phi(x)}{\partial x^2}\theta(y) - \frac{\hbar^2}{2m}\frac{\partial^2\theta(y)}{\partial y^2}\phi(x) + \frac{1}{2}m\omega_x^2x^2\phi(x)\theta(y) + \frac{1}{2}m\omega_y^2y^2\phi(x)\theta(y) = E\phi(x)\theta(y)$$
+			Dividing through by $\psi(x, y)$ gives
+			$$E = {-\frac{\hbar^2}{2m}}\frac{\partial^2\phi(x)}{\partial x^2}\frac{1}{\phi(x)} + \frac{1}{2}m\omega_x^2x^2 - \frac{\hbar^2}{2m}\frac{\partial^2\theta(y)}{\partial y^2}\frac{1}{\theta(y)} + \frac{1}{2}m\omega_y^2y^2$$
+			Since $x$ and $y$ can vary independently, this equation can only make sense if $E = E_x + E_y$, where
+			\begin{align*}
+				E_x &= {-\frac{\hbar^2}{2m}}\frac{\partial^2\phi(x)}{\partial x^2}\frac{1}{\phi(x)} + \frac{1}{2}m\omega_x^2x^2 \\
+				E_y &= {-\frac{\hbar^2}{2m}}\frac{\partial^2\theta(y)}{\partial y^2}\frac{1}{\theta(y)} + \frac{1}{2}m\omega_y^2y^2
+			\end{align*}
+			These eigenvalue equations each describe a one-dimensional harmonic oscillator whose allowed energies are $(n + 1/2)\hbar\omega$, and so the  full system's energy levels are described by
+			$$E = (n_x + 1/2)\hbar\omega_x + (n_y + 1/2)\hbar\omega_y.$$
+			If we label a one-dimensional harmonic oscillator wavefunction at energy level $n$ and natural frequency $\omega$ by $\psi_n^\omega(x)$, then we also have
+			$$\psi(x, y) = \psi_{n_x}^{\omega_x}(x)\psi_{n_y}^{\omega_y}(y)$$
+			This is an odd function when $n_x$ is odd and $n_y$ is even (or vice versa) and an even function when $n_x$ and $n_y$ are both even or both odd. This can be equivalently expressed by identifying the parity of $\psi(x, y)$ with the evenness of $n = n_x + n_y$: an even $n$ implies an even $\psi(x, y)$ while an odd $n$ implies an odd $\psi(x, y)$.
+			
+			When $\omega_x = \omega_y$, the wave function becomes
+			$$\psi(x, y) = \Big(\frac{m\omega}{\pi\hbar2^{n_x+n_y}(n_x!)(n_y!)}\Big)^{1/2}\exp\Big({-\frac{m\omega}{2\hbar}}(x^2 + y^2)\Big)H_{n_x}\Big[\Big(\frac{m\omega}{\hbar}\Big)^{1/2}x\Big]H_{n_y}\Big[\Big(\frac{m\omega}{\hbar}\Big)^{1/2}y\Big]$$
+			For the first three states, we have
+			\begin{align*}
+				\psi_{0,0}(x, y) &= \Big(\frac{m\omega}{\pi\hbar}\Big)^{1/2}\exp\Big({-\frac{m\omega(x^2 + y^2)}{2\hbar}}\Big) \\
+				\psi_{1,0}(x, y) &= \Big(\frac{2m^2\omega^2}{\pi\hbar^2}\Big)^{1/2}\exp\Big({-\frac{m\omega(x^2 + y^2)}{2\hbar}}\Big)\cdot x \\
+				\psi_{0,1}(x, y) &= \Big(\frac{2m^2\omega^2}{\pi\hbar^2}\Big)^{1/2}\exp\Big({-\frac{m\omega(x^2 + y^2)}{2\hbar}}\Big)\cdot y
+			\end{align*}
+			or, equivalently,
+			\begin{align*}
+				\psi_{0,0}(x, y) &= \Big(\frac{m\omega}{\pi\hbar}\Big)^{1/2}\exp\Big({-\frac{m\omega\rho^2}{2\hbar}}\Big) \\
+				\psi_{1,0}(x, y) &= \Big(\frac{2m^2\omega^2}{\pi\hbar^2}\Big)^{1/2}\exp\Big({-\frac{m\omega(x^2 + y^2)}{2\hbar}}\Big)\cdot \rho\cos\phi \\
+				\psi_{0,1}(x, y) &= \Big(\frac{2m^2\omega^2}{\pi\hbar^2}\Big)^{1/2}\exp\Big({-\frac{m\omega(x^2 + y^2)}{2\hbar}}\Big)\cdot y
+			\end{align*}
+			Since we now have $\omega_x = \omega_y = \omega$,
+			$$E = (n_x + n_y + 1)\hbar\omega = (n + 1)\hbar\omega$$
+			which implies that there is a degeneracy (i.e. there are multiple wave functions corresponding to the same energy level). For example, $n = 1$ can be achieved through either $n_x = 1, n_y = 0$ or $n_x = 0, n_y = 1$. Similarly, $n = 2$ can be achieved through $n_x = 2, n_y = 0$, $n_x = 1, n_y = 1$, or $n_x = 0, n_y = 2$. Continuing this pattern, we see that the degeneracy of energy level $E_n$ is $n + 1$.
+		\end{solution}
+		
+		\question Quantize the three-dimensional \textit{isotropic oscillator} for which
+		$$\mathcal{H} = \frac{p_x^2 + p_y^2 + p_z^2}{2m} + \frac{1}{2}m\omega^2(x^2 + y^2 + z^2)$$
+		
+		(1) Show that $E = (n + 3/2)\hbar\omega$; $n = n_x + n_y + n_z$; $n_x, n_y, n_z = 0, 1, 2, \dots$.
+		
+		(2) Write the corresponding eigenfunctions in terms of single-oscillator wave functions and verify that the parity of the level with a given $n$ is $(-1)^n$. Reexpress the first four states in terms of spherical coordinates. Show that the degeneracy of a level with energy $E = (n + 3/2)\hbar\omega$ is $(n + 1)(n + 2)/2$.
+		
+		\begin{solution}
+			This is a straightforward extension of the last part of the previous exercise. In particular, it is obvious that
+			$$E = (n_x + n_y + n_z + 3/2)\hbar\omega = (n + 3/2)\hbar\omega$$
+			That the parity is described by $(-1)^n$ is also obvious. Determining the degeneracy of a given energy level is the only new part to this problem. This is most easily solved through recalling the solution to the ``stars and bars'' combinatorics problem: given $m$ stars and $k - 1$ bars, how many ways can you partition the stars? In our case, we have $m = n$ energy levels and $k = 3$ different bins into which we can sort them (we need $k - 1$ bars to partition a set into $k$ groups), so we have a degeneracy of
+			$${m + k - 1\choose k - 1} = {n + 2\choose 2} = \frac{(n+2)!}{(2)!(n + 2 - 2)!} = \frac{(n + 2)(n+1)n!}{2n!} = \frac{(n + 1)(n + 2)}{2}$$
+		\end{solution}
+		
+		\setcounter{subsection}{2}
+		\setcounter{question}{0}
+		\subsection{Identical Particles}
+		\question Two identical bosons are found to be in states $|\phi\rangle$ and $|\psi\rangle$. Write down the normalized state vector describing the system when $\langle \phi|\psi\rangle \neq 0$.
+		
+		\begin{solution}
+			The state vector describing this system will be symmetric with respect to $\phi$ and $\psi$, so
+			$$|\tilde{\Psi}\rangle \propto |\Psi\rangle = |\phi\rangle\otimes|\psi\rangle + |\psi\rangle\otimes|\phi\rangle$$
+			The squared amplitude of this state is given by
+			\begin{align*}
+				\langle\Psi|\Psi\rangle &= \Big(\langle\phi|\otimes\langle\psi| + \langle\psi|\otimes\langle\phi|\Big)\Big(|\phi\rangle\otimes|\psi\rangle + |\psi\rangle\otimes|\phi\rangle\Big) \\
+				&= \langle\phi|\phi\rangle\langle\psi|\psi\rangle + \langle\phi|\psi\rangle\langle\psi|\phi\rangle + \langle\psi|\phi\rangle\langle\phi|\psi\rangle + \langle\psi|\psi\rangle\langle\phi|\phi\rangle \\
+				&= 2 + 2|\langle\phi|\psi\rangle|^2
+			\end{align*}
+			and so its normalized cousin is
+			$$|\tilde{\Psi}\rangle = \frac{1}{2^{1/2}}\frac{1}{(1 + |\langle\phi|\psi\rangle|^2)^{1/2}}\Big(|\phi\rangle\otimes|\psi\rangle + |\psi\rangle\otimes|\phi\rangle\Big)$$
+		\end{solution}
+		
+		\question When an energy measurement is made on a system of three bosons in a box, the $n$ values obtained were $3$, $3$, and $4$. Write down a symmetrized, normalized state vector.
+		
+		\begin{solution}
+			The state vector for this system will be completely symmetric with respect to the measured labels, and so
+			$$|\tilde{\psi}\rangle \propto |\psi\rangle = |3, 3, 4\rangle + |3, 4, 3\rangle + |4, 3, 3\rangle$$
+			Since each term in the above is orthogonal to all the other, we simply have
+			$$|\tilde{\psi}\rangle = \frac{1}{3^{1/2}}\Big(|3, 3, 4\rangle + |3, 4, 3\rangle + |4, 3, 3\rangle\Big)$$
+		\end{solution}
+		
+		\question Imagine a situation in which there are three particles and only three states $a$, $b$, and $c$ available to them. Show that the total number of allowed, distinct configurations for this system is
+		
+		(1) 27 if they are labeled
+		
+		(2) 10 if they are bosons
+		
+		(3) 1 if they are fermions
+		
+		\begin{solution}
+			In the first case, each of the 3 particles can take on any of the 3 states, giving a total of $3^3 = 27$ different configurations for the system.
+			
+			In the second case, the states are symmetrized, e.g. the configurations $(a, a, b)$, $(a, b, a)$, and $(b, a, a)$ are equivalent. What distinguishes a particular state is the number of $a$, $b$, and $c$ labels, with the constraint that there must be at least three such labels. We can easily list these:
+			
+			\begin{center}
+				\begin{tabular}{c|c|c}
+					a & b & c \\
+					\hline
+					3 & 0 & 0 \\
+	
+					0 & 3 & 0 \\
+	
+					0 & 0 & 3 \\
+	
+					2 & 1 & 0 \\
+	
+					2 & 0 & 1 \\
+	
+					1 & 2 & 0 \\
+	
+					0 & 2 & 1 \\
+	
+					1 & 0 & 2 \\
+	
+					0 & 1 & 2 \\
+	
+					1 & 1 & 1
+	
+				\end{tabular}
+			\end{center}
+			From this list, we can immediately see that there are 10 possible states.
+			
+			The fermionic case is the simplest: with only 3 possible labels, each particle must be in a different one, giving ${3\choose3}=1$ state.
+		\end{solution}
+		
+		\question Two identical particles of mass $m$ are in a one-dimensional box of length $L$. Energy measurement of the system yields the value $E_\text{sys} = \hbar^2\pi^2/mL^2$. Write down the state vector of the system. Repeat for $E_\text{sys} = 5\hbar^2\pi^2/2mL^2$. (There are two possible vectors in this case.) You are not told if they are bosons or fermions. You may assume that the only degrees of freedom are orbital.
+		
+		\begin{solution}
+			We know that the total energy of the system will be given by
+			$$E = \frac{\hbar^2\pi^2}{2mL^2}(n_1^2 + n_2^2)$$
+			which means our first measurement can only be possible if
+			$$n_1^2 + n_2^2 = 2$$
+			Since both $n_1$ and $n_2$ are integers, we must have $n_1 = n_2 = 1$, implying
+			$$|\psi\rangle = |1, 1\rangle$$
+			In the second case, we know
+			$$n_1^2 + n_2^2 = 5,$$
+			which constrains one of the values to $2$ and the other to $1$. The state vector is then
+			$$|\psi\rangle = \frac{1}{2^{1/2}}\big(|1, 2\rangle + |2, 1\rangle\big)$$
+		\end{solution}
+		
+		\question Consider the \textit{exchange operator} $P_{12}$ whose action on the $X$ basis is
+		$$P_{12}|x_1,x_2\rangle = |x_2,x_1\rangle$$
+		
+		(1) Show that $P_{12}$ has eigenvalues $\pm 1$. (It is Hermitian and unitary.)
+		
+		(2) Show that its action on the basis ket $|\omega_1, \omega_2\rangle$ is also to exchange the labels $1$ and $2$, and hence that $\mathbb{V}_{S/A}$ are its eigenspaces with eigenvalues $\pm1$.
+		
+		(3) Show that $P_{12}X_1P_{12}=X_2$, $P_{12}X_2P_{12}=X_1$ and similarly for $P_1$ and $P_2$. Then show that $P_{12}\Omega(X_1, P_1; X_2, P_2)P_{12} = \Omega(X_2, P_2;X_1, P_1)$. [Consider the action on $|x_1, x_2\rangle$ or $|p_1, p_2\rangle$. As for the functions of $X$ and $P$, assume they are given by power series and consider any term in the series. If you need help, peek into the discussion leading to Eq. (11.2.22.)]
+		
+		(4) Show that the Hamiltonian and propagator for two \textit{identical} particles are left unaffected under $H\to P_{12}HP_{12}$ and $U\to P_{12}UP_{12}$ Given this, show that any eigenstate of $P_{12}$ continues to remain a eigenstate with the same eigenvalue as time passes, i.e., elements of $\mathbb{V}_{S/A}$ never leave the symmetric or antisymmetric subspaces they start in.
+		
+		\begin{solution}
+			Consider applying the exchange operator twice in succession. We have
+			$$P_{12}^2|x_1, x_2\rangle = P_{12}|x_2, x_1\rangle = |x_1, x_2\rangle,$$
+			i.e. $P_{12}^2 = I$. Since
+			\begin{align*}
+				\langle x_1x_2|P_{12}^\dagger|x_3x_4\rangle &= \big(P_{12}|x_1x_2\rangle\big)^\dagger|x_3x_4\rangle \\
+				&= \big(|x_2x_1\rangle\big)^\dagger|x_3x_4\rangle \\
+				&= \langle x_2x_1|x_3x_4\rangle \\
+				&= \delta(x_2-x_3)\delta(x_1-x_4) \\
+			\end{align*}
+			and
+			\begin{align*}
+				\langle x_1x_2|P_{12}|x_3x_4\rangle &= \langle x_1x_2|x_4x_3\rangle \\
+				&= \delta(x_1 - x_4)\delta(x_2-x_3) \\
+				&= \delta(x_2-x_3)\delta(x_1 - x_4)
+			\end{align*}
+			we must have $P_{12}^\dagger = P_{12}$, i.e. $P_{12}$ is Hermitian. Combining this result with the first result yields $P_{12}^\dagger P_{12} = I$, i.e. $P_{12}$ is unitary. Such an operator must have eigenvalues $\pm 1$.
+			
+			From inspection, it is clear that $P_{12}$ has the effect of multiplying symmetric orbital states by $1$ and antisymmetric orbital states by $-1$. We can use this observation on an arbitrary state by noticing that it can be written as the sum of its symmetric and antisymmetric parts, i.e.
+			$$|\omega_1\omega_2\rangle = \hat{S}|\omega_1\omega_2\rangle + \hat{A}|\omega_1\omega_2\rangle = \frac{1}{2}\Big(|\omega_1\omega_2\rangle + |\omega_2\omega_1\rangle\Big) + \frac{1}{2}\Big(|\omega_1\omega_2\rangle - |\omega_2\omega_1\rangle\Big)$$
+			Now,
+			\begin{align*}
+				P_{12}\Big(|\omega_1\omega_2\rangle + |\omega_2\omega_1\rangle\Big) &= P_{12}\int|x_1x_2\rangle\langle x_1x_2|\Big(|\omega_1\omega_2\rangle + |\omega_2\omega_1\rangle\Big)\,\mathrm{d}x_1\mathrm{d}x_2 \\
+				&= \int|x_2x_1\rangle\langle x_1x_2|\Big(|\omega_2\omega_1\rangle + |\omega_1\omega_2\rangle\Big)\,\mathrm{d}x_1\mathrm{d}x_2 \\
+				&= \int|x_2x_1\rangle\langle x_2x_1|\Big(|\omega_2\omega_1\rangle + |\omega_1\omega_2\rangle\Big)\,\mathrm{d}x_1\mathrm{d}x_2 \\
+				&= |\omega_2\omega_1\rangle + |\omega_1\omega_2\rangle
+			\end{align*}
+			where we have used the fact that any state contracted with a symmetric state is itself symmetric (and so $\langle x_1x_2| = \langle x_2x_1|$ in the above). Likewise,
+			\begin{align*}
+				P_{12}\Big(|\omega_1\omega_2\rangle - |\omega_2\omega_1\rangle\Big) &= P_{12}\int|x_1x_2\rangle\langle x_1x_2|\Big(|\omega_1\omega_2\rangle - |\omega_2\omega_1\rangle\Big)\,\mathrm{d}x_1\mathrm{d}x_2 \\
+				&= -\int|x_2x_1\rangle\langle x_1x_2|\Big(|\omega_2\omega_1\rangle - |\omega_1\omega_2\rangle\Big)\,\mathrm{d}x_1\mathrm{d}x_2 \\
+				&= \int|x_2x_1\rangle\langle x_2x_1|\Big(|\omega_2\omega_1\rangle - |\omega_1\omega_2\rangle\Big)\,\mathrm{d}x_1\mathrm{d}x_2 \\
+				&= |\omega_2\omega_1\rangle - |\omega_1\omega_2\rangle
+			\end{align*}
+			and so
+			\begin{align*}
+				P_{12}|\omega_1\omega_2\rangle &= P_{12}\Big(\hat{S}|\omega_1\omega_2\rangle + \hat{A}|\omega_1\omega_2\rangle\Big) \\
+				&= \hat{S}|\omega_2\omega_1\rangle + \hat{A}|\omega_2\omega_1\rangle \\
+				&= |\omega_2\omega_1\rangle
+			\end{align*}
+			In performing the above calculations, we have essentially made use of the fact that $\mathbb{V}_{S/A}$ are eigenspaces of $P_{12}$, and therefore projecting an arbitrary $|\omega_1\omega_2\rangle$ onto these eigenspaces before applying $P_{12}$ makes our lives easier.
+			
+			Now, because $P_{12}$ applies to any basis ket, we immediately see
+			\begin{align*}
+				P_{12}X_1P_{12}|x_1, x_2\rangle &= P_{12}X_1|x_2,x_1\rangle = x_2P_{12}|x_2, x_1\rangle = x_2|x_1, x_2\rangle = X_2|x_1, x_2\rangle \\
+				P_{12}X_2P_{12}|x_1, x_2\rangle &= P_{12}X_2|x_2,x_1\rangle = x_1P_{12}|x_2, x_1\rangle = x_1|x_1, x_2\rangle = X_1|x_1, x_2\rangle \\
+				P_{12}P_1P_{12}|p_1, p_2\rangle &= P_{12}P_1|p_2,p_1\rangle = p_2P_{12}|p_2, p_1\rangle = p_2|p_1, p_2\rangle = P_2|p_1, p_2\rangle \\
+				P_{12}P_2P_{12}|p_1, p_2\rangle &= P_{12}P_2|p_2,p_1\rangle = p_1P_{12}|p_2, p_1\rangle = p_1|p_1, p_2\rangle = P_1|p_1, p_2\rangle
+			\end{align*}
+			We won't show explicitly that $P_{12}\Omega(X_1, P_1; X_2, P_2)P_{12} = \Omega(X_2, P_2; X_1, P_1)$, since it is obvious after reading the given hint. (Since $P_{12}^2 = I$, we can rewrite every term in our power series as, e.g., $P_{12}X_1^2P_{12} = P_{12}X_1P_{12}P_{12}X_1P_{12}$, after which the result immediately follows.)
+			
+			For the Hamiltonian of two identical particles, we have
+			$$H = \frac{P_1^2}{2m} + \frac{P_2^2}{2m} + V(X_1, X_2)$$
+			Since $V$ often depends only on the distance between $X_1$ and $X_2$, sandwiching $H$ between pair exchange operators has no effect, as both the position and momentum operators of one particle are symmetric with respect to the other. Furthermore, since the propagator is just a power series of $H$ (and we can always insert $P_{12}^2$ between each $H$ in terms like $H^k$), sandwiching $U$ between $P_{12}$ must have no effect. Since these two facts are true, we have
+			$$[P_{12}, H] = [P_{12}, U] = 0$$
+			and so states that are eigenvectors of $P_{12}$ (i.e. bosons or fermions) never leave their original eigenspace.
+		\end{solution}
+		
+		\question Consider a composite object such as the hydrogen atom. Will it behave as a boson or fermion? Argue in general that objects containing an even/odd number of fermions will behave as bosons/fermions.
+		
+		\begin{solution}
+			Consider an arbitrary species of atom. At a high level, we can write the combined wave function of two such atoms (labeled $a$ and $b$) as
+			$$\psi(p^a_1, \dots, p^a_r, n^a_1,\cdots n^a_s, e^a_1, \dots, e^a_t; p^b_1,\dots p^b_r, n^b_1,\cdots n^b_s, e^b_1, \dots e^b_t)$$
+			Since the protons, neutrons, and electrons in the system are all fermions, any exchange of the form $p_i^a \leftrightarrow p^b_i$ (or $n_i^a\leftrightarrow n_i^b$ or $e_i^a\leftrightarrow e_i^b$) will cause $\psi$ to pick up a minus sign.
+			
+			If there are an odd number of constituent fermions, there will be an odd number of swaps and hence the overall wave function will be antisymmetric upon exchanging the two atoms (i.e. they behave like fermions). If there are an even number of constituent fermions, there will be an even number of swaps and so the overall wave function will be symmetric upon exchanging the two atoms (i.e. they behave like bosons).
+			
+			From this logic, we can guess that the hydrogen atom, having one proton and on electron, will behave like a boson.
+		\end{solution}
+	\end{questions}
+\end{document}
