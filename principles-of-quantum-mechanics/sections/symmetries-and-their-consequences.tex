@@ -1,0 +1,129 @@
+\documentclass[../principles-of-quantum-mechanics.tex]{subfiles}
+
+\begin{document}
+	\printanswers
+	
+	\setcounter{section}{10}
+	\section{Symmetries and Their Consequences}
+
+	\begin{questions}
+		\setcounter{subsection}{1}
+		\setcounter{question}{0}
+		\subsection{Translational Invariance in Quantum Theory}
+		\question Verify Eq. (11.2.11b)
+		
+		\begin{solution}
+			Using the more general $T(\varepsilon)$ on $P$ yields
+			\begin{align*}
+				\langle P\rangle = \langle\psi_\varepsilon|P|\psi_\varepsilon\rangle &= \langle \psi|T(\varepsilon)^\dagger P T(\varepsilon)|\psi\rangle \\
+				&= \int\!\!\!\!\int\langle \psi|x'\rangle\langle x'|T(\varepsilon)^\dagger P T(\varepsilon)|x\rangle\langle x|\psi\rangle\mathrm{d}x\mathrm{d}x' \\
+				&= \int\!\!\!\!\int \langle \psi|x'\rangle \langle x' + \varepsilon|e^{-i\varepsilon g(x')/\hbar}Pe^{i\varepsilon g(x)/\hbar}|x + \varepsilon\rangle\langle x|\psi\rangle\mathrm{d}x\mathrm{d}x' \\
+				&= \int\!\!\!\!\int \langle \psi|x' - \varepsilon\rangle e^{-i\varepsilon g(x' - \varepsilon)/\hbar}\langle x'|P|x\rangle e^{i\varepsilon g(x - \varepsilon)/\hbar}\langle x - \varepsilon|\psi\rangle\mathrm{d}x\mathrm{d}x' \\
+				&= \int\!\!\!\!\int \psi^*(x' - \varepsilon) e^{-i\varepsilon g(x' - \varepsilon)/\hbar}\Big({-i\hbar\frac{\mathrm{d}}{\mathrm{d}x'}}\Big)\langle x'|x\rangle e^{i\varepsilon g(x - \varepsilon)/\hbar}\psi(x - \varepsilon)\mathrm{d}x\mathrm{d}x' \\
+				&= \int \psi^*(x - \varepsilon) e^{-i\varepsilon g(x - \varepsilon)/\hbar}\Big({-i\hbar\frac{\mathrm{d}}{\mathrm{d}x}}\Big) e^{i\varepsilon g(x - \varepsilon)/\hbar}\psi(x - \varepsilon)\mathrm{d}x \\
+				&= \int \psi^*(x - \varepsilon) e^{-i\varepsilon [g(x - \varepsilon) - g(x - \varepsilon)]/\hbar}\Big({-i\hbar\cdot i\varepsilon f(x - \varepsilon)/\hbar} - i\hbar\frac{\mathrm{d}}{\mathrm{d}x}\Big) \psi(x - \varepsilon)\mathrm{d}x \\
+				&= \int \psi^*(x - \varepsilon)\Big({\varepsilon f(x - \varepsilon)} - i\hbar\frac{\mathrm{d}}{\mathrm{d}x}\Big) \psi(x - \varepsilon)\mathrm{d}x \\
+				&= \int \psi^*(x)\Big({\varepsilon f(x)} - i\hbar\frac{\mathrm{d}}{\mathrm{d}x}\Big) \psi(x)\mathrm{d}x \\
+				&= \varepsilon\langle f(X)\rangle + \langle P\rangle
+			\end{align*}
+			which is eq. (11.2.11b).
+		\end{solution}
+		
+		\question Using $T^\dagger(\varepsilon)T(\varepsilon)=I$ to order $\varepsilon$, deduce that $G^\dagger = G$.
+		
+		\begin{solution}
+			Substituting $T(\varepsilon) = I - \frac{i\varepsilon}{\hbar}G$ into $T^\dagger(\varepsilon)T(\varepsilon) = I$ gives
+			\begin{align*}
+				T^\dagger(\varepsilon)T(\varepsilon) &= \Big(I + \frac{i\varepsilon}{\hbar}G^\dagger\Big)\Big(I - \frac{i\varepsilon}{\hbar}G\Big) \\
+				&= I + \frac{i\varepsilon}{\hbar}G^\dagger- \frac{i\varepsilon}{\hbar}G + \mathcal{O}(\varepsilon^2)
+			\end{align*}
+			Setting this equal to the identity operator implies
+			$$\frac{i\varepsilon}{\hbar}\Big(G^\dagger - G\Big) = 0$$
+			or 
+			$$G = G^\dagger.$$
+		\end{solution}
+	
+		\question Recall that we found the finite rotation transformation from the infinitesimal one, by solving differential equations (Section 2.8). Verify that if, instead, you relate the transformed coordinates $\bar{x}$ and $\bar{y}$ to $x$ and $y$ by the infinite string of Poisson brackets, you get the same result $\bar{x} = x\cos\theta - y\sin\theta$, etc. (Recall the series for $\sin\theta$, etc.)
+		
+		\begin{solution}
+			The generator of rotations in the $x$-$y$ plane is angular momentum about the $z$-axis,
+			$$L_z = xp_y - yp_x,$$
+			and so the response of our coordinates to a finite rotation of $\theta$ is given by
+			\begin{align*}
+				\bar{x} &= x + \theta\{x, L_z\} + \frac{\theta^2}{2!}\{\{x, L_z\}, L_z\} + \frac{\theta^3}{3!}\{\{\{x, L_z\}, L_z\}, L_z\}\cdots \\
+				\bar{y} &= y + \theta\{y, L_z\} + \frac{\theta^2}{2!}\{\{y, L_z\}, L_z\} + \frac{\theta^3}{3!}\{\{\{y, L_z\}, L_z\}, L_z\}\cdots
+			\end{align*}
+			The necessary Poisson brackets are
+			\begin{align*}
+				\{x, L_z\} &= \{x, xp_y - yp_x\} \\
+				&= \{x, xp_y\} - \{x, yp_x\} \\
+				&= \{x, x\}p_y + x\{x, p_y\} - \{x, y\}p_x - y\{x, p_x\} \\
+				&= -y \\
+				\{y, L_z\} &= \{y, xp_y - yp_x\} \\
+				&= \{y, xp_y\} - \{y, yp_x\} \\
+				&= \{y, x\}p_y + x\{y, p_y\} - \{y, y\}p_x - y\{y, p_x\} \\
+				&= x
+			\end{align*}
+			and so we have
+			\begin{align*}
+				\bar{x} &= x + \theta\{x, L_z\} + \frac{\theta^2}{2!}\{\{x, L_z\}, L_z\} + \frac{\theta^3}{3!}\{\{\{x, L_z\}, L_z\}, L_z\}\cdots \\
+				&= x - \theta y - \frac{\theta^2}{2!}\{y, L_z\} - \frac{\theta^3}{3!}\{\{y, L_z\}, L_z\}\cdots \\
+				&= x - \theta y - \frac{\theta^2}{2!}x - \frac{\theta^3}{3!}\{x, L_z\} + \cdots \\
+				&= x\Big(1 - \frac{\theta^2}{2!} + \cdots\Big) - y\Big(\theta - \frac{\theta^3}{3!} + \cdots \Big) \\
+				&= x\cos\theta - y\sin\theta \\
+				\bar{y} &= y + \theta\{y, L_z\} + \frac{\theta^2}{2!}\{\{y, L_z\}, L_z\} + \frac{\theta^3}{3!}\{\{\{y, L_z\}, L_z\}, L_z\}\cdots \\
+				&= y + \theta x + \frac{\theta^2}{2!}\{x, L_z\} + \frac{\theta^3}{3!}\{\{x, L_z\}, L_z\} + \cdots \\
+				&= y + \theta x - \frac{\theta^2}{2!}y - \frac{\theta^3}{3!}\{y, L_z\} + \cdots \\
+				&= x\Big(\theta - \frac{\theta^3}{3!} + \cdots\Big) + y\Big(1 - \frac{\theta^2}{2!} + \cdots\Big) \\
+				&= x\sin\theta + y\cos\theta
+			\end{align*}
+		\end{solution}
+		\setcounter{subsection}{3}
+		\setcounter{question}{0}
+		\subsection{Parity Invariance}
+		\question Prove that if $[\Pi, H] = 0$, a system that starts out in a state of even/odd parity maintains its parity. (Note that since parity is a discrete operation, it has no associated conservation law in classical mechanics.)
+		
+		\begin{solution}
+			Symbolically, we are trying to prove that
+			$$\Pi|\psi(0)\rangle = \pm|\psi(0)\rangle = \pm|\psi(t)\rangle = \Pi|\psi(t)\rangle$$
+			Since $|\psi(t)\rangle = U(t)|\psi(0)\rangle$, the above relation will hold if $\Pi U(t) = U(t)\Pi$, or $[\Pi, U(t)] = 0$. But if $[\Pi, H] = 0$ and $H$ is independent of time, $[Pi, U(t)] = 0$ by virtue of the fact that $U(t)=e^{-iHt/\hbar}$.
+		\end{solution}
+		
+		\question A particle is in a potential
+		$$V(x) = V_0\sin(2\pi x/a)$$
+		which is invariant under the translations $x \to x + ma$, where $m$ is an integer. Is momentum conserved? Why not?
+		
+		\begin{solution}
+			The symmetry given is not the continuous translational symmetry characteristic of momentum conservation, but a discrete translational symmetry. Because of this, there is no generator function that can be used to produce infinitesimal translations, as the smallest such one is of size $a$.
+			
+			More concretely, $P$ is not conserved because it does not commute with the Hamiltonian. To see this, note that
+			\begin{align*}
+				PH|\psi\rangle &= {-i\hbar}\frac{\partial}{\partial x}\Big({-\frac{\hbar^2}{2m}}\frac{\partial^2}{\partial x^2} + V_0\sin\big(\tfrac{2\pi x}{a}\big)\Big)|\psi\rangle \\
+				&= \frac{i\hbar^3}{2m}\frac{\partial^3|\psi\rangle}{\partial x^3} - i\hbar V_0\frac{2\pi}{a}\cos\big(\tfrac{2\pi x}{a}\big)|\psi\rangle - i\hbar V_0\sin\big(\tfrac{2\pi x}{a}\big)\frac{\partial|\psi\rangle}{\partial x} \\
+				HP|\psi\rangle &= \Big({-\frac{\hbar^2}{2m}}\frac{\partial^2}{\partial x^2} + V_0\sin\big(\tfrac{2\pi x}{a}\big)\Big)\Big({-i\hbar}\frac{\partial}{\partial x}\Big)|\psi\rangle \\
+				&= \frac{i\hbar^3}{2m}\frac{\partial^3|\psi\rangle}{\partial x^3} - i\hbar V_0\sin\big(\tfrac{2\pi x}{a}\big)\frac{\partial |\psi\rangle }{\partial x}
+			\end{align*}
+			which implies
+			$$[P, H] = {-i\hbar V_0\frac{2\pi}{a}}\cos\big(\tfrac{2\pi x}{a}\big) \neq 0$$
+		\end{solution}
+		
+		\question You are told that in a certain reaction, the electron comes out with its spin always parallel to its momentum. Argue that parity is violated.
+		
+		\begin{solution}
+			In a mirror, the electrons would appear to have spin antiparallel to their momentum. Since this is not the case, the reaction is not preserved under a parity-change operation.
+		\end{solution}
+		
+		\question We have treated parity as a mirror reflection. This is certainly true in one dimension, where $x\to{-x}$ may be viewed as the effect of reflecting through a (point) mirror at the origin. In higher dimensions when we use a plane mirror (say lying on the $x$-$y$ plane), only one ($z$) coordinate gets reversed, whereas the parity transformation reverses all three coordinates.
+		
+		Verify that reflection on a mirror in the $x$-$y$ plane is the same as parity followed by $180^\circ$ rotation about the $z$ axis. Since rotational invariance holds for weak interactions, noninvariance under mirror reflection implies noninvariance under parity.
+		
+		\begin{solution}
+			A parity transformation takes
+			$$(x, y, z) \to (-x, -y, -z)$$
+			while a further rotation of $180^\circ$ about the $z$ axis takes
+			$$(-x, -y, -z) \to (x, y, -z)$$
+			This is equivalent to mirroring the system in the $x$-$y$ plane.
+		\end{solution}
+		
+	\end{questions}
+\end{document}

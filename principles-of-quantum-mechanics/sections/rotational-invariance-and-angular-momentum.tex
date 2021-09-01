@@ -1,0 +1,416 @@
+\documentclass[../principles-of-quantum-mechanics.tex]{subfiles}
+
+\begin{document}
+	\printanswers
+	
+	\setcounter{section}{11}
+	\section{Rotational Invariance and Angular Momentum}
+	
+	\begin{questions}
+	\setcounter{subsection}{0}
+	\subsection{Translations in Two Dimensions}
+	
+	\question Verify that $\hat{a}\cdot\mathbf{P}$ is the generator of infinitesimal translations along $\mathbf{a}$ by considering the relation
+	$$\langle x, y|I - \frac{i}{\hbar}\boldsymbol{\delta}a\cdot\mathbf{P}|\psi\rangle = \psi(x - \delta a_x, y - \delta a_y)$$
+	
+	\begin{solution}
+		Noting that $\boldsymbol{\delta}a$ is of order $\varepsilon$, we have
+		\begin{align*}
+			\langle x, y|I - \frac{i}{\hbar}\boldsymbol{\delta}a\cdot\mathbf{P}|\psi\rangle &= \langle x, y|I - \frac{i}{\hbar}\delta a_x P_x + I - \frac{i}{\hbar}\delta a_y P_y + I - I|\psi\rangle \\
+			&= \langle x, y|I - \frac{i}{\hbar}\delta a_xP_x|\psi\rangle + \langle x, y|I - \frac{i}{\hbar}\delta a_yP_y|\psi\rangle - \langle x, y|\psi\rangle \\
+			&= \psi(x - \delta a_x, y) + \psi(x, y - \delta a_y) - \psi(x, y) \\
+			&\approx \psi(x, y) - \frac{\partial \psi}{\partial x}\Big|_{x, y}\delta a_x + \psi(x ,y) - \frac{\partial \psi}{\partial y}\Big|_{x,y}\delta a_y - \psi(x, y) \\
+			&= \psi(x, y) - \frac{\partial \psi}{\partial x}\Big|_{x, y}\delta a_x - \frac{\partial \psi}{\partial y}\Big|_{x,y}\delta a_y \\
+			&\approx \psi(x - \delta a_x, y - \delta a_y)
+		\end{align*}
+		where each approximation becomes an equality as ${\delta a\to 0}$.
+	\end{solution}
+
+	\setcounter{subsection}{1}
+	\setcounter{question}{0}
+	\subsection{Rotations in Two Dimensions}
+	
+	\question Provide the steps linking Eq. (12.2.8) to Eq. (12.2.9). [Hint: Recall the derivation of Eq. (11.2.8) from Eq. (11.2.6).]
+	\begin{solution}
+		Working backwards, we see
+		\begin{align*}
+			\langle x, y|I - \frac{i\varepsilon_z L_z}{\hbar}|\psi\rangle &= \int\!\!\!\!\int\langle x, y|U[R]|x', y'\rangle\langle x', y'|\psi\rangle \,\mathrm{d}x'\mathrm{d}y' \\
+			&= \int\!\!\!\!\int \langle x, y|x' - y'\varepsilon_z, x'\varepsilon_z + y'\rangle \psi(x', y')\,\mathrm{d}x'\mathrm{d}y' \\
+			&= \int\!\!\!\!\int \langle x, y|x', y'\rangle \psi(x' + y'\varepsilon_z, y' - x'\varepsilon_z)\,\mathrm{d}x'\mathrm{d}y' \\
+			&= \int\!\!\!\!\int\delta(x - x')\delta(y - y')\psi(x' + y'\varepsilon_z, y' - x'\varepsilon_z)\,\mathrm{d}x'\mathrm{d}y' \\
+			&= \psi(x + y\varepsilon_z, y - x\varepsilon_z)
+		\end{align*}
+		In the above, we were able to make the changes
+		\begin{align*}
+			x' &\to x' + y'\varepsilon_z \\
+			y' &\to y' - x'\varepsilon_z
+		\end{align*}
+		because both $\mathrm{d}y'\varepsilon_z$ and $\mathrm{d}x'\varepsilon_z$ vanish to first order.
+	\end{solution}
+
+	\question Using these commutation relations (and your keen hindsight) derive $L_z = XP_y - YP_x$. At least show that Eqs. (12.2.16) and (12.2.17) are consistent with $L_z = XP_y - YP_x$.
+	
+	\begin{solution}
+		It is unclear to me how one can fix $L_z$ using only these commutation relations, as it could also depend on $Z$ and $P_z$ while satisfying (12.2.16) and (12.2.17). Still, we can complete the second part of the problem:
+		\begin{align*}
+			[X, L_z] &= [X, XP_y - YP_x] \\ 
+			&= [X, XP_y] - [X, YP_x] \\
+			&= [X, X]P_y + X[X, P_y] - [X, Y]P_x - Y[X, P_x] \\
+			&= {-i\hbar}Y \\
+			[Y, L_z] &= [Y, XP_y - YP_x] \\
+			&= [Y, XP_y] - [Y, YP_x] \\
+			&= [Y, X]P_y + X[Y, P_y] - [Y, Y]P_x - Y[Y, P_x] \\
+			&= i\hbar X \\
+			[P_x, L_z] &= [P_x, XP_y - YP_x] \\
+			&= [P_x, XP_y] - [P_x, YP_x] \\
+			&= [P_x, X]P_y + X[P_x, P_y] - [P_x, Y]P_x - Y[P_x, P_x] \\
+			&= {-i\hbar}P_y \\
+			[P_y, L_z] &= [P_y, XP_y - YP_x] \\
+			&= [P_y, XP_y] - [P_y, YP_x] \\
+			&= [P_y, X]P_y + X[P_y, P_y] - [P_y, Y]P_x - Y[P_y, P_x] \\
+			&= i\hbar P_x
+		\end{align*}
+	\end{solution}
+	
+	\question Derive Eq. (12.2.19) by doing a coordinate transformation on Eq (12.2.10), and also by the direct method mentioned above.
+	\begin{solution}
+		We must transform both $\partial/\partial_x$ and $\partial/\partial_y$, for which we will need the relations
+		\begin{align*}
+			\rho &= (x^2 + y^2)^{1/2} \\
+			\phi &= \tan^{-1}(\tfrac{y}{x}) \\
+			x &= \rho\cos\phi \\
+			y &= \rho\sin\phi
+		\end{align*}
+		Using these and the chain rule applied to $f(\rho(x, y), \phi(x, y))$, we find
+		\begin{align*}
+			\frac{\partial f}{\partial x} &= \frac{\partial f}{\partial \rho}\frac{\partial \rho}{\partial x} + \frac{\partial f}{\partial \phi}\frac{\partial \phi}{\partial x} \\
+			&= \frac{1}{2}\frac{2x}{(x^2 + y^2)^{1/2}}\frac{\partial f}{\partial \rho} + \frac{1}{1 + (\tfrac{y}{x})^2}\Big({-\frac{y}{x^2}}\Big)\frac{\partial f}{\partial \phi} \\
+			&= \frac{x}{(x^2 + y^2)^{1/2}}\frac{\partial f}{\partial \rho} - \frac{y}{x^2 + y^2}\frac{\partial f}{\partial \phi} \\
+			&= \frac{\rho\cos\phi}{\rho}\frac{\partial f}{\partial \rho} - \frac{\rho\sin\phi}{\rho^2}\frac{\partial f}{\partial \phi} \\
+			&= \cos\phi\frac{\partial f}{\partial \rho} - \frac{\sin\phi}{\rho}\frac{\partial f}{\partial \phi} \\
+			\frac{\partial f}{\partial y} &= \frac{\partial f}{\partial \rho}\frac{\partial \rho}{\partial y} + \frac{\partial f}{\partial \phi}\frac{\partial \phi}{\partial y} \\
+			&= \frac{1}{2}\frac{2y}{(x^2 + y^2)^{1/2}}\frac{\partial f}{\partial \rho} + \frac{1}{1 + (\tfrac{y}{x})^2}\frac{1}{x}\frac{\partial f}{\partial \phi} \\
+			&= \frac{y}{(x^2 + y^2)^{1/2}}\frac{\partial f}{\partial \rho} + \frac{x}{x^2 + y^2}\frac{\partial f}{\partial \phi} \\
+			&= \frac{\rho\sin\phi}{\rho}\frac{\partial f}{\partial \rho} + \frac{\rho\cos\phi}{\rho^2}\frac{\partial f}{\partial \phi} \\
+			&= \sin\phi\frac{\partial f}{\partial \rho} + \frac{\cos\phi}{\rho}\frac{\partial f}{\partial \phi} \\
+		\end{align*}
+		which implies
+		\begin{align*}
+			\frac{\partial}{\partial x} &\to \cos\phi\frac{\partial}{\partial \rho} - \frac{\sin\phi}{\rho}\frac{\partial}{\partial \phi} \\
+			\frac{\partial}{\partial y} &\to \sin\phi\frac{\partial}{\partial \rho} + \frac{\cos\phi}{\rho}\frac{\partial}{\partial \phi} \\
+		\end{align*}
+		Substituting this into $L_z = XP_y - YP_x$ reveals
+		\begin{align*}
+			L_z &= -i\hbar x\frac{\partial}{\partial y} + i\hbar y\frac{\partial}{\partial x} \\
+			&= -i\hbar\rho\cos\phi\Big(\sin\phi\frac{\partial}{\partial \rho} + \frac{\cos\phi}{\rho}\frac{\partial}{\partial \phi}\Big) + i\hbar\rho\sin\phi\Big(\cos\phi\frac{\partial}{\partial \rho} - \frac{\sin\phi}{\rho}\frac{\partial}{\partial \phi}\Big) \\
+			&= -i\hbar\rho\Big(\cos\phi\sin\phi - \cos\phi\sin\phi\Big)\frac{\partial}{\partial \rho} - i\hbar(\cos^2\phi + \sin^2\phi)\frac{\partial}{\partial\phi} \\
+			&= -i\hbar\frac{\partial}{\partial\phi}
+		\end{align*}
+		Alternatively, if we require that $L_z$ generate infinitesimal translations, i.e.
+		$$\langle \rho, \phi|I - \frac{i}{\hbar}\varepsilon_z L_z|\psi\rangle = \psi(\rho, \phi) - \frac{i}{\hbar}\varepsilon_z\langle\rho,\phi|L_z|\psi\rangle = \psi(\rho, \phi - \varepsilon_z) = \psi(\rho, \phi) - \frac{\partial\psi}{\partial\phi}\varepsilon_z$$
+		then we immediately have
+		$$L_z = {-i\hbar\frac{\partial}{\partial\phi}}$$
+	\end{solution}
+	
+	\question Rederive the equivalent of Eq. (12.2.23) keeping terms of order $\varepsilon_x\varepsilon_z^2$. (You may assume $\varepsilon_y=0$.) Use this information to rewrite Eq. (12.2.24) to order $\varepsilon_x\varepsilon_z^2$. By equating coefficients of this term deduce the constraint
+	$$-2L_zP_xL_z + P_xL_z^2 + L_z^2P_x = \hbar^2P_x$$
+	This seems to conflict with statement (1) made above, but not really, in view of the identity
+	$$-2\Lambda\Omega\Lambda + \Omega\Lambda^2 + \Lambda^2\Omega \equiv [\Lambda, [\Lambda, \Omega]]$$
+	Using the identity, verify that the new constraint coming from the $\varepsilon_x\varepsilon_z^2$ term is satisfied given the commutation relations between $P_x$, $P_y$, and $L_z$.
+	
+	\begin{solution}
+		\color{red}
+		Tracing the steps outlined in the text, we consider the following sequence of operators
+		$$U[R(-\varepsilon_z\mathbf{k})]T(-\varepsilon_x\mathbf{i})U[R(\varepsilon_z\mathbf{k})]T(\varepsilon_x\mathbf{i})$$
+		Applied to a point $(x, y)$, this has the effect of
+		\begin{align*}
+			\begin{bmatrix}x \\ y\end{bmatrix} &\to \begin{bmatrix}x + \varepsilon_x \\ y\end{bmatrix} \\
+			&\to \begin{bmatrix}(x + \varepsilon_x) - y\varepsilon_z \\ (x + \varepsilon_x)\varepsilon_z + y\end{bmatrix} \\
+			&\to \begin{bmatrix}x - y\varepsilon_z \\ (x + \varepsilon_x)\varepsilon_z + y\end{bmatrix} \\
+			&\to \begin{bmatrix}(x - y\varepsilon_z) + (x\varepsilon_z + \varepsilon_x\varepsilon_z + y)\varepsilon_z \\
+			-(x - y\varepsilon_z)\varepsilon_z + x\varepsilon_z + \varepsilon_x\varepsilon_z + y\end{bmatrix} \\
+			&= \begin{bmatrix}
+				x(1 + \varepsilon_z^2) + \varepsilon_x\varepsilon_z^2 \\ y(1 + \varepsilon_z^2) + \varepsilon_x\varepsilon_z
+			\end{bmatrix}
+		\end{align*}
+		Writing this out in terms of operators, we see that we must have
+		$$\Big(I + \frac{i}{\hbar}\varepsilon_zL_z\Big)\Big(I + \frac{i}{\hbar}\varepsilon_xP_x\Big)\Big(I - \frac{i}{\hbar}\varepsilon_zL_z\Big)\Big(I - \frac{i}{\hbar}\varepsilon_xP_x\Big) = I + I\varepsilon_z^2 - \frac{i}{\hbar}\varepsilon_x\varepsilon_z^2P_x - \frac{i}{\hbar}\varepsilon_x\varepsilon_z P_y$$
+		We can expand the lefthand side (keeping terms up to $\mathcal{O}(\varepsilon^3)$) to find
+		$$\frac{i}{\hbar}\frac{\varepsilon_x^2\varepsilon_z}{\hbar^2}[L_z, P_x]P_x + \frac{i}{\hbar}\frac{\varepsilon_x\varepsilon_z^2}{\hbar^2}L_z[P_x, L_z] + \frac{\varepsilon_x^2}{\hbar^2}P_x^2 + \frac{\varepsilon_x\varepsilon_z}{\hbar^2}[P_x, L_z] + \frac{\varepsilon_z^2}{\hbar^2}L_z^2 + I$$
+		\color{black}
+		As this problem is formulated, I believe it is unsolvable. At the very least, there is some necessary step that cannot be found by looking at the mathematics, as using a CAS yields multiple untrue requirements.
+	\end{solution}
+	
+	\setcounter{subsection}{2}
+	\setcounter{question}{0}
+	\subsection{The Eigenvalue Problem of $L_z$}
+	\question Provide the steps linking Eq. (12.3.5) to Eq. (12.3.6).
+	\begin{solution}
+		Imposing the Hermiticity of $L_z$ gives
+		\begin{align*}
+			-i\hbar\int_0^\infty\!\!\!\int_0^{2\pi}\psi_1^*\frac{\partial\psi_2}{\partial\phi}\rho\,\mathrm{d}\phi\,\mathrm{d}\rho &= \Big[{-i\hbar}\int_0^\infty\!\!\!\int_0^{2\pi}\psi_2^*\frac{\partial\psi_1}{\partial\phi}\rho\,\mathrm{d}\phi\,\mathrm{d}\rho\Big]^* \\
+			&= i\hbar\int_0^{\infty}\!\!\!\int_0^{2\pi}\psi_2\frac{\partial\psi_1^*}{\partial\phi}\rho\,\mathrm{d}\phi\,\mathrm{d}\rho \\
+			&= i\hbar\int_0^\infty\big(\psi_1^*\psi_2\big)\Big|_{\phi=0}^{\phi=2\pi}\rho\,\mathrm{d}\rho - i\hbar\int_0^{\infty}\!\!\!\int_0^{2\pi}\psi_1^*\frac{\partial\psi_2}{\partial\phi}\rho\,\mathrm{d}\phi\,\mathrm{d}\rho
+		\end{align*}
+		Clearly, this equality holds only if
+		$$\psi_1^*(\rho, 0)\psi_2(\rho, 0) = \psi_1^*(\rho, 2\pi)\psi_2(\rho, 2\pi)$$
+		which, given each $\psi_i$ is arbitrary, implies that
+		$$\psi(\rho, 0) = \psi(\rho, 2\pi).$$
+	\end{solution}
+	
+	\question Let us try to deduce the restriction on $l_z$ from another angle. Consider a superposition of two allowed $l_z$ eigenstates:
+	$$\psi(\rho, \phi) = A(\rho)e^{i\phi l_z/\hbar} + B(\rho)e^{i\phi l_z'/\hbar}$$
+	By demanding that upon a $2\pi$ rotation we get the same physical state (not necessarily the same state vector), show that $l_z - l_z' = m\hbar$, where $m$ is an integer. By arguing on the grounds of symmetry that the allowed values of $l_z$ must be symmetric about zero, show that these values are \textit{either} $\dots, 3\hbar/2, \hbar/2, -\hbar/2, -3\hbar/2, \dots$ or $\dots, 2\hbar, \hbar, 0 -\hbar, -2\hbar, \dots$. It is not possible to restrict $l_z$ any further this way.
+	\begin{solution}
+		The physical state of the system is described by its probability distribution, 
+		$$|\psi(\rho, \phi)|^2 = A^2(\rho) + A(\rho)B^*(\rho)e^{i\phi(l_z - l_z')/\hbar} + A^*(\rho)B(\rho)e^{-i\phi(l_z - l_z')/\hbar} + B(\rho)^2$$
+		In order for this to remain undisturbed under a rotation by $2\pi$, we must have
+		$$e^{i2\pi(l_z - l_z')/\hbar} = 1$$
+		and
+		$$e^{-i2\pi(l_z - l_z')/\hbar}=1$$
+		or, equivalently,
+		$$l_z - l_z' = m\hbar, \quad m\in\mathbb{Z}.$$
+		Given that there is no preference to positive or negative $l_z$ values in nature, the eigenvalues of $L_z$ should be spaced evenly about $0$. The only possibilities for $l_z$ that satisfy these two constraints are
+		$$l_z = m\hbar$$
+		or
+		$$l_z = \frac{m\hbar}{2}$$
+	\end{solution}
+	
+	\question A particle is described by a wave function
+	$$\psi(\rho, \phi) = Ae^{-\rho^2/2\Delta^2}\cos^2\phi$$
+	Show (by expressing $\cos^2\phi$ in terms of $\Phi_m$) that
+	\begin{gather*}
+		P(l_z = 0) = 2/3 \\
+		P(l_z = 2\hbar) = 1/6 \\
+		P(l_z = -2\hbar) = 1/6
+	\end{gather*}
+	(Hint: Argue that the radial part $e^{-\rho^2/2\Delta^2}$ is irrelevant here.)
+	\begin{solution}
+		First, note that we can use
+		$$\Phi_m(\phi) = (2\pi)^{-1/2}e^{im\phi},$$
+		to write
+		\begin{align*}
+			\cos^2\phi &= \Big(\frac{e^{i\phi} + e^{-i\phi}}{2}\Big)^2 \\
+			&= \frac{1}{2} + \frac{e^{i2\phi}}{4} + \frac{e^{-i2\phi}}{4} \\
+			&= \frac{(2\pi)^{1/2}}{2}\Phi_0(\phi) + \frac{(2\pi)^{1/2}}{4}\Phi_2(\phi) + \frac{(2\pi)^{1/2}}{4}\Phi_{-2}(\phi)
+		\end{align*}
+		Now, given the fact that the wave function is separable, we may write $\psi(\rho, \phi) = \Omega(\rho)\theta(\phi)$ and focus only on the angular component, $\theta(\phi)$. We can normalize this as
+		\begin{align*}
+			\int_0^{2\pi}|\theta(\phi)|^2\,\mathrm{d}\phi &= B^2\int_0^{2\pi}\cos^4(\phi)\,\mathrm{d}\phi \\
+			&= B^2\int_0^{2\pi}\Big(\frac{1}{2} + \frac{1}{2}\cos(2\phi)\Big)^2\mathrm{d}\phi \\
+			&= B^2\int_0^{2\pi}\frac{1}{4} + \frac{1}{2}\cos(2\phi) + \frac{1}{4}\cos^2(2\phi)\,\mathrm{d}\phi \\
+			&= B^2\int_0^{2\pi}\frac{1}{4} + \frac{1}{2}\cos(2\phi) + \frac{1}{8} + \frac{1}{8}\cos(4\phi)\,\mathrm{d}\phi \\
+			&= B^2\cdot\frac{6\pi}{8}
+		\end{align*}
+		or $B = (4/3\pi)^{1/2}$. Putting everything together, the angular wave function is
+		$$\theta(\phi) = \Big(\frac{2}{3}\Big)^{1/2}\Big(\Phi_0(\phi) + \frac{1}{2}\Phi_2(\phi) + \frac{1}{2}\Phi_{-2}(\phi)\Big)$$
+		The probabilities associated with finding the particle in various states of definite angular momentum are
+		\begin{align*}
+			P(l_z = 0) &= \frac{2}{3}\Big|\int_0^{2\pi}\Phi_0^*(\phi)\Big(\Phi_0(\phi) + \frac{1}{2}\Phi_2(\phi) + \frac{1}{2}\Phi_{-2}(\phi)\Big)\,\mathrm{d}\phi\Big|^2 \\
+			&= \frac{2}{3}\cdot 1 \\
+			&= \frac{2}{3} \\
+			P(l_z = 2\hbar) &= \frac{2}{3}\Big|\int_0^{2\pi}\Phi_2^*(\phi)\Big(\Phi_0(\phi) + \frac{1}{2}\Phi_2(\phi) + \frac{1}{2}\Phi_{-2}(\phi)\Big)\,\mathrm{d}\phi\Big|^2 \\
+			&= \frac{2}{3}\cdot\frac{1}{4} \\
+			&= \frac{1}{6} \\
+			P(l_z = -2\hbar) &= \frac{2}{3}\Big|\int_0^{2\pi}\Phi_{-2}^*(\phi)\Big(\Phi_0(\phi) + \frac{1}{2}\Phi_2(\phi) + \frac{1}{2}\Phi_{-2}(\phi)\Big)\,\mathrm{d}\phi\Big|^2 \\
+			&= \frac{2}{3}\cdot\frac{1}{4} \\
+			&= \frac{1}{6}
+		\end{align*}
+	\end{solution}
+	
+	\question A particle is described by a wave function
+	$$\psi(\rho, \phi) = Ae^{-\rho^2/2\Delta^2}\Big(\frac{\rho}{\Delta}\cos\phi + \sin\phi\Big)$$
+	Show that
+	$$P(l_z = \hbar) = P(l_z = -\hbar) = \tfrac{1}{2}$$
+	\begin{solution}
+		Though it is not required to solve the problem, we first find the normalization factor $A$,
+		\begin{align*}
+			&A^2\int_0^\infty\!\!\!\int_0^{2\pi}e^{-\rho^2/\Delta^2}\Big(\frac{\rho}{\Delta}\cos\phi + \sin\phi\Big)^2\rho\,\mathrm{d}\phi\,\mathrm{d}\rho \\ =\,&A^2\int_0^\infty\!\!\!\int_0^{2\pi}e^{-\rho^2/\Delta^2}\Big(\frac{\rho^2}{\Delta^2}\cos^2\phi + \frac{2\rho}{\Delta}\cos\phi\sin\phi + \sin^2\phi\Big)\rho\,\mathrm{d}\phi\,\mathrm{d}\rho \\
+			=\,&A^2\int_0^\infty\!\!\!\int_0^{2\pi}e^{-\rho^2/\Delta^2}\Big[\frac{\rho^2}{\Delta^2}\Big(\frac{1}{2} + \frac{1}{2}\cos(2\phi)\Big) + \frac{\rho}{\Delta}\sin(2\phi) + \Big(\frac{1}{2} - \frac{1}{2}\cos(2\phi)\Big)\Big]\rho\,\mathrm{d}\phi\,\mathrm{d}\rho \\
+			=\,&\pi A^2\int_0^\infty e^{-\rho^2/\Delta^2}\Big[\frac{\rho^2}{\Delta^2} + 1\Big]\rho\,\mathrm{d}\rho \\
+			&= \pi A^2\Big(\frac{1}{\Delta^2}\int_0^\infty\rho^3e^{-\rho^2/\Delta^2}\mathrm{d}\rho + \int_0^\infty \rho e^{-\rho^2/\Delta^2}\mathrm{d}\rho\Big) \\
+			&= \pi A^2 \Big(\frac{1}{\Delta^2}\frac{\Delta^4}{2} + \frac{\Delta^2}{2}\Big) \\
+			&= \pi A^2\Delta^2
+		\end{align*}
+		i.e. $A = (\pi\Delta^2)^{-1/2}$. Now we rewrite $\psi(\rho, \phi)$ in terms of $\Phi_m(\phi)$ as
+		\begin{align*}
+			\psi(\rho, \phi) &= \frac{e^{-\rho^2/2\Delta^2}}{(\pi\Delta^2)^{1/2}}\Big(\frac{\rho}{2\Delta}(e^{i\phi} + e^{-i\phi}) - \frac{i}{2}(e^{i\phi} - e^{-i\phi})\Big) \\
+			&= \frac{e^{-\rho^2/2\Delta^2}}{(\pi\Delta^2)^{1/2}}\frac{(2\pi)^{1/2}}{2}\Big(\frac{\rho}{\Delta}\Phi_1(\phi) + \frac{\rho}{\Delta}\Phi_{-1}(\phi) - i\Phi_1(\phi) + i\Phi_{-1}(\phi)\Big) \\
+			&= \frac{e^{-\rho^2/2\Delta^2}}{(2\Delta^2)^{1/2}}\Big(\Phi_1(\phi)\Big[\frac{\rho}{\Delta} - i\Big] + \Phi_{-1}(\phi)\Big[\frac{\rho}{\Delta} + i\Big]\Big)
+		\end{align*}
+		This is a superposition of two angular momentum eigenstates: one of $l_z = \hbar$ and the other of $l_z = -\hbar$. Since these states are orthogonal to one another, we know
+		\begin{align*}
+			\int_0^{2\pi}\Phi_1^*(\phi)\psi(\rho, \phi)\mathrm{d}\phi &= \frac{e^{-\rho^2/2\Delta^2}}{(2\Delta^2)^{1/2}}\Big(\frac{\rho}{\Delta} - i\Big) \\
+			\int_0^{2\pi}\Phi_2^*(\phi)\psi(\rho,\phi)\mathrm{d}\phi &= \frac{e^{-\rho^2/2\Delta^2}}{(2\Delta^2)^{1/2}}\Big(\frac{\rho}{\Delta} + i\Big)
+		\end{align*}
+		Since the magnitude of the inner product of the wave function with the $l_z = \hbar$ and $l_z = -\hbar$ angular momentum eigenfunctions is the same no matter which one we choose, they are equally likely to occur. That is, $P(l_z = \hbar) = P(l_z = -\hbar) = \tfrac{1}{2}$.
+	\end{solution}
+	
+	\question Note that the angular momentum seems to generate a repulsive potential in Eq. (12.3.13). Calculate its gradient and identify it as the centrifugal force.
+	\begin{solution}
+		Isolating $V(\rho)$ gives
+		\begin{align*}
+			V(\rho) &= \frac{1}{R(\rho)}\Big[ER(\rho) + \frac{\hbar^2}{2\mu}\Big(\frac{\mathrm{d}^2R(\rho)}{\mathrm{d}\rho^2} + \frac{1}{\rho}\frac{\mathrm{d}R(\rho)}{\mathrm{d}\rho} - \frac{m^2}{\rho^2}R(\rho)\Big)\Big] \\
+			&= E + \frac{\hbar^2}{2\mu}\frac{1}{R(\rho)}\frac{\mathrm{d}^2R(\rho)}{\mathrm{d}\rho^2} + \frac{\hbar^2}{2\mu}\frac{1}{\rho R(\rho)}\frac{\mathrm{d}R(\rho)}{\mathrm{d}\rho} - \frac{\hbar^2}{2\mu}\frac{m^2}{\rho^2}
+		\end{align*}
+		The gradient of this is
+		\begin{align*}
+			\frac{\mathrm{d}V(\rho)}{\mathrm{d}\rho}\mathbf{e}_\rho &= \frac{\hbar^2}{2\mu}\Big({-\frac{1}{R^2}}\frac{\mathrm{d}^2R}{\mathrm{d}\rho^2}\frac{\mathrm{d}R}{\mathrm{d}\rho} + \frac{1}{R}\frac{\mathrm{d}^3R}{\mathrm{d}\rho^3} - \frac{1}{\rho^2R}\frac{\mathrm{d}R}{\mathrm{d}\rho} - \frac{1}{\rho R^2}\frac{\mathrm{d}R}{\mathrm{d}\rho} + \frac{1}{\rho R}\frac{\mathrm{d}^2R}{\mathrm{d}\rho^2} + 2\frac{m^2}{\rho^3}\Big)\mathbf{e}_\rho \\
+			&= \frac{\hbar^2}{2\mu}\Big(\frac{\mathrm{d}^3R}{\mathrm{d}\rho^3}\frac{1}{R} + \frac{\mathrm{d}^2R}{\mathrm{d}\rho^2}\Big[\frac{1}{\rho R} - \frac{1}{R^2}\frac{\mathrm{d}R}{\mathrm{d}\rho}\Big] - \frac{\mathrm{d}R}{\mathrm{d}\rho}\Big[\frac{1}{\rho^2 R} + \frac{1}{\rho R^2}\Big] + 2\frac{m^2}{\rho^3}\Big)\mathbf{e}_\rho
+		\end{align*}
+	\end{solution}
+	
+	\question Consider a particle of mass $\mu$ constrained to move on a circle of radius $a$. Show that $H = L_z^2/2\mu a^2$. Solve the eigenvalue problem of $H$ and interpret the degeneracy.
+	\begin{solution}
+		For a (quasi) free particle constrained to move on a circle of radius $a$, the kinetic energy (and thus classical Hamiltonian) is given by
+		\begin{align*}
+			T &= \frac{1}{2}\mu v^2 \\
+			&= \frac{1}{2}\mu a^2\dot{\phi}^2 \\
+			&= \frac{1}{2}\mu a^2\Big(\frac{\mathrm{d}}{\mathrm{d}t}\tan^{-1}(\tfrac{y}{x})\Big)^2 \\
+			&= \frac{1}{2}\mu a^2\Big[\frac{1}{1 + (\tfrac{y}{x})^2}\Big(\frac{\dot{y}}{x} - \frac{y}{x^2}\dot{x}\Big)\Big]^2 \\
+			&= \frac{1}{2}\mu a^2\Big(\frac{x\dot{y} - y\dot{x}}{x^2 + y^2}\Big)^2 \\
+			&= \frac{1}{2}\frac{a^2}{\mu}\Big(\frac{x\mu\dot{y} - y\mu\dot{x}}{a^2}\Big)^2 \\
+			&= \frac{(xp_y - yp_x)^2}{2\mu a^2}
+		\end{align*}
+		Identifying the classical angular momentum operator with its quantum variant gives
+		$$H = \frac{L_z^2}{2\mu a^2}$$
+		We know that rotationally invariant Hamiltonians permit solutions of the form
+		$$\psi_m(\rho, \phi) = R_{\textit{Em}}(\rho)\Phi_m(\phi)$$
+		From the problem statement, $R_{\textit{Em}}(\rho)\propto\delta(\rho - a)$. Using the angular coordinate form of $L_z$ produces the time-independent equation
+		$$-\frac{\hbar^2}{2\mu a^2}\frac{\partial^2}{\partial\phi^2}\psi_m(\rho, \phi) = \frac{m^2\hbar^2}{2\mu a^2}\psi_m(\rho, \phi) = E_m\psi(\rho, \phi)$$
+		i.e. 
+		$$E_m = \frac{m^2\hbar^2}{2\mu a^2}$$
+		Clearly, states of $m = k$ have the same energy as states of $m = -k$. This makes sense, as the sign of $m$ corresponds only to the direction of rotation.
+	\end{solution}
+	
+	\question (\textit{The Isotropic Oscillator}). Consider the Hamiltonian
+	$$H = \frac{P_x^2 + P_y^2}{2\mu} + \frac{1}{2}\mu\omega^2(X^2 + Y^2)$$
+	(1) Convince yourself $[H, L_z] = 0$ and reduce the eigenvalue problem of $H$ to the radial differential equation for $R_{\textit{Em}}(\rho)$.
+	
+	(2) Examine the equation as $\rho \to 0$ and show that
+	$$R_{\textit{Em}}(\rho)\xrightarrow[\rho \to 0]{} \rho^{|m|}$$
+	
+	(3) Show likewise that up to powers of $\rho$
+	$$R_{\textit{Em}}(\rho)\xrightarrow[\rho\to\infty]{} e^{-\mu\omega\rho^2/2\hbar}$$
+	So assume that $R_{\textit{Em}}(\rho) = \rho^{|m|}e^{-\mu\omega\rho^2/2\hbar}U_{\textit{Em}}(\rho)$.
+	
+	(4) Switch to dimensionless variables $\varepsilon = E/\hbar\omega$, $y = (\mu\omega/\hbar)^{1/2}\rho$.
+	
+	(5) Convert the equation for $R$ into an equation for $U$. (I suggest proceeding in two stages: $R = y^{|m|}f$, $f = e^{-y^2/2}U$.) You should end up with
+	$$U'' + \Big[\Big(\frac{2|m| + 1}{y}\Big) - 2y\Big]U' + (2\varepsilon - 2|m| - 2)U = 0$$
+	
+	(6) Argue that a power series for $U$ of the form
+	$$U(y) = \sum_{r=0}^{\infty}C_ry^r$$
+	will lead to a \textit{two-term} recursion relation.
+	
+	(7) Find the relation between $C_{r+2}$ and $C_r$. Argue that the series must terminate at some finite $r$ if the $y\to\infty$ behavior of the solution is to be acceptable. Show that $\varepsilon = r + |m| + 1$ leads to termination after $r$ terms. Now argue that $r$ is necessarily even---i.e., $r = 2k$. (Show that if $r$ is odd, the behavior of $R$ as $\rho \to 0$ is not $\rho^{|m|}$.) So finally you must end up with
+	$$E = (2k + |m| + 1)\hbar\omega, \qquad k = 0, 1, 2, \dots$$
+	Define $n = 2k + |m|$, so that
+	$$E_n = (n + 1)\hbar\omega$$
+	
+	(8) For a given $n$, what are the allowed values of $|m|$? Given this information show that for a given $n$, the degeneracy is $n + 1$. Compare this top what you found in Cartesian coordinates (Exercise 10.2.2).
+	
+	(9) Write down all the normalized eigenfunctions corresponding to $n = 0, 1$.
+	
+	(10) Argue that the $n = 0$ function \textit{must} equal the corresponding one found in Cartesian coordinates. Show that the two $n = 1$ solutions are linear combinations of their counterparts in Cartesian coordinates. Verify that the parity of the states is $(-1)^n$ as you found in Cartesian coordinates.
+	\begin{solution}
+		First, we compute the commutators of squared state variables with $L_z$,
+		\begin{align*}
+			[X^2, L_z] &= X[X, L_z] + [X, L_z]X \\
+			&= -i\hbar XY - i\hbar YX \\
+			&= -2i\hbar XY \\
+			[Y^2, L_z] &= Y[Y, L_z] + [Y, L_z]Y \\
+			&= i\hbar YX + i\hbar XY \\
+			&= 2i\hbar XY \\
+			[P_x^2, L_z] &= P_x[P_x, L_z] + [P_x, L_z]P_x \\
+			&= -i\hbar P_xP_y - i\hbar P_yP_x \\
+			&= -2i\hbar P_xP_y \\
+			[P_y^2, L_z] &= P_y[P_y, L_z] + [P_y, L_z]P_y \\
+			&= i\hbar P_yP_x + i\hbar P_xP_y \\
+			&= 2i\hbar P_xP_y
+		\end{align*}
+		From this, we note that $[P_x^2 + P_y^2, L_z] = [X^2 + Y^2, L_z] = 0$, and thus $[H, L_z] = 0$.
+		
+		The potential in angular coordinates is $V(\rho) = \tfrac{1}{2}\mu\omega^2\rho^2$, and thus the radial equation is
+		$$\Big[{-\frac{\hbar^2}{2\mu}}\Big(\frac{\mathrm{d}^2}{\mathrm{d}\rho^2} + \frac{1}{\rho}\frac{\mathrm{d}}{\mathrm{d}\rho} - \frac{m^2}{\rho^2}\Big) + \frac{1}{2}\mu\omega^2\rho^2\Big]R_{\textit{Em}}(\rho) = ER_{\textit{Em}}(\rho)$$
+		As $\rho$ goes to $0$, the $\rho^2$ and $E$ terms become negligible, outshined by terms proportional to $\rho^{-1}$ and $\rho^{-2}$. Since we do not know the second derivative of the radial part of the wave function we keep that term as well, giving a limiting equation of
+		$$\frac{\mathrm{d}^2R}{\mathrm{d}\rho^2} + \frac{1}{\rho}\frac{\mathrm{d}R}{\mathrm{d}\rho} - \frac{m^2}{\rho^2}R = 0$$
+		Using the ansatz $R = \rho^{k}$ gives
+		$$k(k - 1)\rho^{k - 2} + k\rho^{k - 2} - m^2\rho^{k - 2} = 0$$
+		or $k^2 - m^2 = 0$, i.e. $k = |m|$ (the exponent must be positive to ensure decent behavior at $\rho = 0$).
+		
+		If we now examine the behavior as $\rho$ goes to $\infty$, the $\rho^2$ term is much larger than all others, with the possible exception of the term containing $\mathrm{d}^2/\mathrm{d}\rho^2$, so we have
+		
+		$$-\frac{\hbar^2}{2\mu}\frac{\mathrm{d}^2R}{\mathrm{d}\rho^2} + \frac{1}{2}\mu\omega^2\rho^2 R = 0$$
+		Knowing that $f'(x) \propto xf(x)$ when $f(x) \propto e^{\pm \alpha x^2/2}$, we substitute this into the above to find
+		\begin{align*}
+			-\frac{\hbar^2}{2\mu}\frac{\mathrm{d}}{\mathrm{d}\rho}\Big({\pm\alpha\rho e^{\pm\alpha\rho^2/2}}\Big) + \frac{1}{2}\mu\omega^2\rho^2e^{\pm\alpha \rho^2/2} &= \mp\frac{\alpha\hbar^2}{2\mu}e^{\pm\alpha\rho^2/2} - \frac{\alpha^2\hbar^2}{2\mu}\rho^2e^{\pm\alpha\rho^2/2} + \frac{1}{2}\mu\omega^2\rho^2e^{\pm\alpha\rho^2/2} \\
+			&\approx -\frac{\alpha^2\hbar^2}{2\mu}\rho^2e^{\pm\alpha\rho^2/2} + \frac{1}{2}\mu\omega^2\rho^2e^{\pm\alpha\rho^2/2}
+		\end{align*}
+		where we have used the approximate equality since $\rho^2 e^{\pm\alpha\rho^2/2} \gg e^{\pm\alpha\rho^2/2}$ as $\rho$ goes to infinity. Now, for a well-behaved $R(\rho)$, we must take the negative exponent in our ansatz. Choosing $\alpha = \mu\omega/\hbar$ satisfies the limiting differential equation.
+		
+		From these limiting answers, we assume
+		$$R(\rho) = \rho^{|m|}e^{-\mu\omega\rho^2/2\hbar}U(\rho)$$
+		
+		To switch to the given dimensionless variables, we make the usual replacements, as well as
+		$$\frac{\mathrm{d}}{\mathrm{d}\rho} \to \Big(\frac{\mu\omega}{\hbar}\Big)^{1/2}\frac{\mathrm{d}}{\mathrm{d}y}$$
+		Altogether, we find
+		$$\Big[{-\frac{\hbar^2}{2\mu}}\Big(\frac{\mu\omega}{\hbar}\frac{\mathrm{d}^2}{\mathrm{d}y^2} + \frac{\mu\omega}{\hbar}\frac{1}{y}\frac{\mathrm{d}}{\mathrm{d}y} - \frac{\mu\omega}{\hbar}\frac{m^2}{y^2}\Big) + \frac{1}{2}\mu\omega^2\frac{\hbar}{\mu\omega}y^2\Big]R_{\textit{Em}}(\rho) = \varepsilon \hbar\omega R_{\textit{Em}}(\rho)$$
+		or
+		$$\Big({-\frac{\mathrm{d}^2}{\mathrm{d}y^2}} - \frac{1}{y}\frac{\mathrm{d}}{\mathrm{d}y} + \frac{m^2}{y^2} + y^2 - 2\varepsilon\Big)R_{\textit{Em}}(\rho) = 0$$
+		Taking Shankar's suggestion to first substitute $R = y^{|m|}f$ gives term-wise results of
+		\begin{align*}
+			 -\frac{\mathrm{d}^2}{\mathrm{d}y^2}\big(y^{|m|}f\big) &= -\frac{\mathrm{d}}{\mathrm{d}y}\big(|m|y^{|m|-1}f + y^{|m|}f'\big) \\
+			 &= -|m|(|m| - 1)y^{|m| - 2}f - |m|y^{|m| - 1}f' - |m|y^{|m| - 1}f' - y^{|m|}f'' \\
+			 &= (|m| - m^2)y^{|m|-2}f - 2|m|y^{|m| - 1}f' - y^{|m|}f'' \\
+			 -\frac{1}{y}\frac{\mathrm{d}}{\mathrm{d}y}\big(y^{|m|}f\big) &= -|m|y^{|m| - 2}f - y^{|m|-1}f' \\
+			 \frac{m^2}{y^2}\big(y^{|m|}f\big) &= m^2y^{|m| - 2}f \\
+			 y^2\big(y^{|m|}f\big) &= y^{|m| + 2}f
+		\end{align*}
+		and a total result of
+		$$-y^{|m|}f'' - (2|m| + 1)y^{|m| - 1}f' + (y^{2} - 2\varepsilon)y^{|m|}f = 0$$
+		Given that
+		\begin{align*}
+			f &= Ue^{-y^2/2} \\
+			f' &= (-yU + U')e^{-y^2/2} \\
+			f'' &= \big((y^2 - 1)U - 2yU' + U''\big)e^{-y^2/2}
+		\end{align*}
+		we have
+		$$y^{|m|}\Big({-U''} + \big(2y - \tfrac{2|m| - 1}{y}\big)U' + (2|m| + 2 - 2\varepsilon)U\Big)e^{-y^2/2} = 0$$
+		Dividing by $-y^{|m|}e^{-y^2/2}$ gives the form in the problem statement,
+		$$U'' + \Big[\Big(\frac{2|m| + 1}{y}\Big) - 2y\Big]U' + (2\varepsilon - 2|m| - 2)U = 0$$
+		Assuming that $U$ can be expanded in a power series,
+		$$U = \sum_{r=0}^{\infty}C_ry^{r}$$
+		the above differential equation becomes
+		\begin{align*}
+			&\sum_{r=0}^{\infty}\Big[C_rr(r - 1)y^{r - 2} + C_rr(2|m| + 1)y^{r - 2} - 2C_rry^{r} + C_r(2\varepsilon - 2|m| - 2)y^{r}\Big] \\
+			=\,&\sum_{k=0}^{\infty}C_{k+2}\big((k+2)(k+1) + (k+2)(2|m|+1)\big)y^k + \sum_{r=0}^{\infty}C_r(2\varepsilon - 2|m| - 2r - 2)y^r \\
+			=\,&\sum_{r=0}^{\infty}\Big[C_{r+2}\Big((r+2)(r+1) + (k+2)(2|m| + 1)\Big) + C_r\Big(2\varepsilon - 2|m| - 2r - 2\Big)\Big]y^r \\
+			=\,&0
+		\end{align*}
+		This will be true only if 
+		$$C_{r+2} = C_r\frac{2(|m| + r + 1 - \varepsilon)}{r^2 + 2r|m| + 4r + 4|m| + 4}$$
+		which is our two-term recurrence relation. Explicitly, given $C_0$ and $C_1$, we have
+		\begin{align*}
+			U(y) =\,&C_0\Big(1 + \frac{|m| + 1 - \varepsilon}{2|m| + 2}y^2 + \Big[\frac{|m| + 1 - \varepsilon}{2|m| + 2}\Big]\Big[\frac{|m| + 3 - \varepsilon}{4|m| + 8}\Big]y^4 + \cdots\Big) \\
+			&+ C_1\Big(y + \frac{2|m| + 4 - 2\varepsilon}{6|m| + 9}y^3 + \Big[\frac{2|m| + 4 - 2\varepsilon}{6|m| + 9}\Big]\Big[\frac{2|m| + 8 - 2\varepsilon}{10|m| + 25}\Big]y^5 + \cdots\Big)
+		\end{align*}
+		Now, to ensure that $e^{-y^2/2}$ dies faster than $U(y)$ grows, the parenthesized expressions must contain a finite number of terms. This is because the $C_r$ coefficients die more slowly than $(r!)^{-1}$, the coefficients of the power series of $e^{-y^2/2}$.
+	\end{solution}
+	
+	\question Consider a particle of mass $\mu$ and charge $q$ in a vector potential
+	$$\mathbf{A} = \frac{B}{2}(-y\mathbf{i} + x\mathbf{j})$$
+	
+	(1) Show that the magnetic field is $\mathbf{B} = B\mathbf{k}$.
+	
+	(2) Show that a classical particle in this potential will move in circles at an angular frequency $\omega_0 = qB/\mu c$.
+	
+	(3) Consider the Hamiltonian for the corresponding quantum problem:
+	$$H = \frac{[P-x + qYB/2c]^2}{2\mu} + \frac{[P_y - qXB/2c]^2}{2\mu}$$
+	Show that $Q = (cP_x + qYB/2)/qB$ and $P = (P_y - qXB/2c)$ are canonical. Write $H$ in terms of $P$ and $Q$ and show that allowed levels are $E = (n + 1/2)\hbar\omega_0$.
+	
+	(4) Expand $H$ out in terms of the original variables and show
+	$$H = H\Big(\frac{\omega_0}{2}, \mu\Big) - \frac{\omega_0}{2}L_z$$
+	where $H(\omega_0/2, \mu)$ is the Hamiltonian for an isotropic two-dimensional harmonic oscillator of mass $\mu$ and frequency $\omega_0/2$. Argue that the same basis that diagonalized $H(\omega_0/2, \mu)$ will diagonalize $H$. By thinking in terms of this basis, show that the allowed levels for $H$ are $E = (k + \tfrac{1}{2}|m| - \tfrac{1}{2}m + \tfrac{1}{2})\hbar\omega_0$, where $k$ is any integer and $m$ is the angular momentum. Convince yourself that you get the same levels from this formula as from the earlier one [$E = (n + 1/2)\hbar\omega_0$]. We shall return to this problem in Chapter 21.
+	\end{questions}
+\end{document}

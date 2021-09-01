@@ -1,0 +1,113 @@
+\documentclass[../road-to-reality.tex]{subfiles}
+
+\begin{document}
+	\printanswers
+	
+	\section{The standard model of particle physics}
+	
+	\begin{questions}
+		\question By referring to Weyl's neutrino equation, given i \S25.3, explain why it is reasonable to take the view that $\alpha_A$ and $\beta_A'$ each describe massless particles, coupled by an interaction converting each into the other.
+		
+		\begin{solution}
+			The Weyl equation describing a massless neutrino is given by
+			\[
+				\nabla_{B'}^A\alpha_A = 0.
+			\]
+			From our studies of differential equations, we know that adding a term to the righthand side will act as a `source' or `driver' for $\alpha_A$. In this case, the only free index is $B'$, so such a source term would take on the form $M\beta_{B'}$.
+			
+			We can do the same for the other Weyl equation,
+			\[
+				\nabla_A^{B'}\beta_{B'} = 0,
+			\]
+			this time adding a source term of the form $M\alpha_{A}$. Together, we have the following equations
+			\[
+				\nabla_{B'}^A\alpha_A = 2^{-1/2}M\beta_{B'},\qquad\nabla_A^{B'}\beta_{B'}=2^{-1/2}M\alpha_{A}
+			\]
+			which represent two massless particles, each being the source of the other.
+		\end{solution}
+		
+		\question Show both of these things.
+		
+		\begin{solution}
+			We know that the gamma matrices satisfy
+			\[
+				\gamma_0^2 = 1,\quad\gamma_1^2 = -1,\quad\gamma_2^2 = -1,\quad\gamma_3^2 = -1
+			\]
+			and
+			\[
+				\gamma_i\gamma_j = -\gamma_j\gamma_i\quad(i\neq j).
+			\]
+			From this, let us compute the necessary anticommutators,
+			\begin{align*}
+				\{\gamma_5, \gamma_0\} &= -i\gamma_0\gamma_1\gamma_2\gamma_3\gamma_0 - i\gamma_0^2\gamma_1\gamma_2\gamma_3 \\
+				&= i\gamma_0^2\gamma_1\gamma_2\gamma_3 - i\gamma_1\gamma_2\gamma_3 \\
+				&= i(\gamma_1\gamma_2\gamma_3 - \gamma_1\gamma_2\gamma_3) \\
+				&= 0 \\
+				\{\gamma_5, \gamma_1\} &= -i\gamma_0\gamma_1\gamma_2\gamma_3\gamma_1 - i\gamma_1\gamma_0\gamma_1\gamma_2\gamma_3 \\
+				&= -i\gamma_0\gamma_2\gamma_3\gamma_1^2 + i \gamma_0\gamma_1^2\gamma_2\gamma_3 \\
+				&= i(\gamma_0\gamma_2\gamma_3 - \gamma_0\gamma_2\gamma_3) \\
+				&= 0 \\
+				\{\gamma_5, \gamma_2\} &= -i\gamma_0\gamma_1\gamma_2\gamma_3\gamma_2 - i\gamma_2\gamma_0\gamma_1\gamma_2\gamma_3 \\
+				&= i\gamma_0\gamma_1\gamma_2^2\gamma_3 - i\gamma_0\gamma_1\gamma_2^2\gamma_3 \\
+				&= -i(\gamma_0\gamma_1\gamma_3 - \gamma_0\gamma_1\gamma_3) \\
+				&= 0 \\
+				\{\gamma_5, \gamma_3\} &= -i\gamma_0\gamma_1\gamma_2\gamma_3^3 - i\gamma_3\gamma_0\gamma_1\gamma_2\gamma_3 \\
+				&= i\gamma_0\gamma_1\gamma_2 + i\gamma_0\gamma_1\gamma_2\gamma_3^2 \\
+				&= i(\gamma_0\gamma_1\gamma_2 - \gamma_0\gamma_1\gamma_2) \\
+				&= 0
+			\end{align*}
+			Finally, we check the square of $\gamma_5$,
+			\begin{align*}
+				\gamma_5^2 &= (-i\gamma_0\gamma_1\gamma_2\gamma_3)^2 \\
+				&= -\gamma_0\gamma_1\gamma_2\gamma_3\gamma_0\gamma_1\gamma_2\gamma_3 \\
+				&= \gamma_0^2\gamma_1\gamma_2\gamma_3\gamma_1\gamma_2\gamma_3 \\
+				&= \gamma_1^2\gamma_2\gamma_3\gamma_2\gamma_3 \\
+				&= \gamma_2^2\gamma_3^2 \\
+				&= 1
+			\end{align*}
+		\end{solution}
+		
+		\question Find this normal subgroup. \textit{Hint}: Think of the determinant of a $3\times3$ matrix.
+		
+		\begin{solution}
+			$\mathbb{Z}_3$ is often represented by the roots of unity
+			\[
+				\{1, e^{i\pi/3}, e^{i2\pi/3}\}.
+			\]
+			This group can be embedded in SU(3) by multiplying the identity by each of the above elements, i.e.
+			\[
+				\begin{pmatrix}1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1\end{pmatrix},\qquad \begin{pmatrix}e^{i\pi/3}  & 0 & 0 \\ 0 & e^{i\pi/3} & 0 \\ 0 & 0 & e^{i\pi/3}\end{pmatrix},\qquad \begin{pmatrix}e^{i2\pi/3}  & 0 & 0 \\ 0 & e^{i2\pi/3} & 0 \\ 0 & 0 & e^{i2\pi/3}\end{pmatrix}
+			\]
+			or $I$, $e^{i\pi/3}I$, and $e^{i2\pi/3}I$. It is important to note that this works because the matrices in this representation of SU(3) are of dimension $3\times3$. If we tried to embed $\mathbb{Z}_4$ in the same way the resulting matrices would not have unit determinant.
+			
+			A normal subgroup $N \subset G$ is defined by
+			\[
+				gng^{-1} \in N,\quad \forall g\in G\,\text{and}\,\forall n \in N.
+			\]
+			By the rules of matrix multiplication, we have
+			\begin{align*}
+				gIg^{-1} = gg^{-1} &= I \in N \\
+				g(e^{i\pi/3}I)g^{-1} = e^{i\pi/3}gg^{-1} &= e^{i\pi/3} \in N \\
+				g(e^{i2\pi/3}I)g^{-1} = e^{i2\pi/3}gg^{-1} &= e^{i2\pi/3} \in N
+			\end{align*}
+			Not only is $\mathbb{Z}_3$ a normal subgroup---each element of $\mathbb{Z}_3$ gets mapped to itself when a similarity transformation is applied to it.
+		\end{solution}
+		
+		\question Check that the charge values, indicated by the superfixes in the first table, come out right.
+		
+		\begin{solution}
+			In terms of the unit charge $e$ we have $q_u = \frac{2}{3}e$, $q_d = -\frac{1}{3}e$, and $q_s = -\frac{1}{3}e$.
+		\end{solution}
+		
+		\question Explain this more cmopletely, using the $2$-spinor index description for the quark spins,a s described in \S22.8, and using a new $3$-dimensional `SU(3) index' which takes 3 values u, d, s.
+		
+		\question See if you can explain all this in some appropriate detail. Care is needed for the treatment of the 2-spinor spin indices, if you wish to use them. An antisymmetry in a pair of them allows that pair to be removed (as when representing a spin 0 state in terms of a pair of spin $\frac{1}{2}$ particles, as in \S23.4). Yet there is a (hidden) symmetry also, because there are only two independent spin states for each quark.
+		
+		\question Use indices to explain this comment, where there is a new 3-dimensional SU(3) \textit{colour} index, in addition to a 3-dimensional flavour index of Exercise [25.5].
+		
+		\question Explain.
+		
+		\question Can you see what the difficulty is? \textit{Hint}: Work out expressions for gauge curvature, Bianchi identities, etc.
+		
+	\end{questions}
+\end{document}

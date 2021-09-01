@@ -9,6 +9,7 @@
 \usepackage{amsmath}
 \usepackage{isotope}
 \usepackage{physics}
+\usepackage{pgfplots}
 \usepackage{indentfirst}
 \usepackage{amssymb}
 \usepackage{siunitx}
@@ -23,18 +24,18 @@
 
 \author{Zach Beever}
 
-\title{Notes on the induced field from an evolving Harris current sheet}
+\title{Notes on the evolving Harris current sheet}
 
 \date{}
 
 \begin{document}
 	\maketitle
 	
-	\section{Time-evolution of the Harris model}
+	\section{Induced electric field of the Harris model}
 	
 	The Harris current sheet model takes the simple form
 	\[
-		\mathbf{B} = B_0\tanh\Big(\frac{z}{L}\Big)\hat{\mathbf{i}} + 0\hat{\mathbf{j}} + 0\hat{\mathbf{k}}.
+		\mathbf{B} = B_x\tanh\Big(\frac{z}{L}\Big)\hat{\mathbf{i}} + 0\hat{\mathbf{j}} + B_z\hat{\mathbf{k}}.
 	\]
 	If $L$ changes with time there will be an induced electric field described by 
 	\[
@@ -42,23 +43,23 @@
 	\]
 	Signaling the dependence of $L$ on $t$ via $L(t)$, we find
 	\[
-		\frac{\partial\mathbf{B}}{\partial t} = B_0\sech^2\Big(\frac{z}{L(t)}\Big)\cdot\Big({-\frac{z}{L^2(t)}}\Big)\cdot\frac{\mathrm{d}L(t)}{\mathrm{d}t}\,\hat{\mathbf{i}}.
+		\frac{\partial\mathbf{B}}{\partial t} = B_x\sech^2\Big(\frac{z}{L(t)}\Big)\cdot\Big({-\frac{z}{L^2(t)}}\Big)\cdot\frac{\mathrm{d}L(t)}{\mathrm{d}t}\,\hat{\mathbf{i}}.
 	\]
 	The relevant Maxwell equation then becomes
 	\[
-		\frac{\partial E_z}{\partial y} - \frac{\partial E_y}{\partial z} = -B_0\sech^2\Big(\frac{z}{L(t)}\Big)\cdot\frac{z}{L^2(t)}\cdot\frac{\mathrm{d}L(t)}{\mathrm{d}t}.
+		\frac{\partial E_z}{\partial y} - \frac{\partial E_y}{\partial z} = -B_x\sech^2\Big(\frac{z}{L(t)}\Big)\cdot\frac{z}{L^2(t)}\cdot\frac{\mathrm{d}L(t)}{\mathrm{d}t}.
 	\]
-	Because the Harris model extends infinitely along the $y$-axis, $E_z = 0$. If this were not so, we would see infinite growth as we moved in this direction. There is no such restriction for $E_y$, though, and so\footnote{The limits of integration are chosen so that the entire field contributes to $E_y$ at the given $z$. As we will see, we find the same result whether we set the lower limit to $\infty$ or $-\infty$.}
+	Because the Harris model extends infinitely along the $y$-axis, $E_z = 0$. If this were not so, we would see infinite growth as we moved in this direction. There is no such restriction for $E_y$, though, and so\footnote{The limits of integration are chosen so that the entire field contributes to $E_y$ at the given $z$. We arrive at the same result whether we set the lower limit to $\infty$ or $-\infty$.}
 	\[
-		E_y(z) = \int_{-\infty}^z B_0\sech^2\Big(\frac{z}{L(t)}\Big)\cdot\frac{z}{L^2(t)}\cdot\frac{\mathrm{d}L(t)}{\mathrm{d}t}\,\mathrm{d}z.
+		E_y(z) = \int_{-\infty}^z B_x\sech^2\Big(\frac{z}{L(t)}\Big)\cdot\frac{z}{L^2(t)}\cdot\frac{\mathrm{d}L(t)}{\mathrm{d}t}\,\mathrm{d}z.
 	\]
 	Setting $u = z/L(t)$ and $\mathrm{d}u = \mathrm{d}z/L(t)$, this simplifies to
 	\[
-		E_y(z) = B_0\frac{\mathrm{d}L(t)}{\mathrm{d}t}\int_{-\infty}^{z/L(t)}\sech^2(u)\cdot u\,\mathrm{d}u.
+		E_y(z) = B_x\frac{\mathrm{d}L(t)}{\mathrm{d}t}\int_{-\infty}^{z/L(t)}\sech^2(u)\cdot u\,\mathrm{d}u.
 	\]
 	We can integrate this by parts to get
 	\[
-		E_y(z) = B_0\frac{\mathrm{d}L(t)}{\mathrm{d}t}\Big(u\tanh(u)\Big|_{-\infty}^{z/L(t)} - \int_{-\infty}^{z/L(t)}\tanh(u)\,\mathrm{d}u\Big).
+		E_y(z) = B_x\frac{\mathrm{d}L(t)}{\mathrm{d}t}\Big(u\tanh(u)\Big|_{-\infty}^{z/L(t)} - \int_{-\infty}^{z/L(t)}\tanh(u)\,\mathrm{d}u\Big).
 	\]
 	This remaining integral can be rewritten as
 	\[
@@ -66,7 +67,7 @@
 	\]
 	Using the above, $E_y(z)$ becomes
 	\[
-		E_y(z) = B_0\frac{\mathrm{d}L(t)}{\mathrm{d}t}\Big[\frac{z}{L(t)}\tanh\Big(\frac{z}{L(t)}\Big)- \ln\cosh\Big(\frac{z}{L(t)} \Big) + C\Big]
+		E_y(z) = B_x\frac{\mathrm{d}L(t)}{\mathrm{d}t}\Big[\frac{z}{L(t)}\tanh\Big(\frac{z}{L(t)}\Big)- \ln\cosh\Big(\frac{z}{L(t)} \Big) + C\Big]
 	\]
 	where $C$ is given by
 	\[
@@ -84,9 +85,79 @@
 	\end{align*}
 	The final expression for the induced field is given by
 	\[
-		\mathbf{E}(z, t) = B_0\frac{\mathrm{d}L(t)}{\mathrm{d}t}\Big[\frac{z}{L(t)}\tanh\Big(\frac{z}{L(t)}\Big)- \ln\cosh\Big(\frac{z}{L(t)} \Big) - \ln 2\Big]\,\hat{\mathbf{j}}
+		\mathbf{E}(z, t) = B_x\frac{\mathrm{d}L(t)}{\mathrm{d}t}\Big[\frac{z}{L(t)}\tanh\Big(\frac{z}{L(t)}\Big)- \ln\cosh\Big(\frac{z}{L(t)} \Big) - \ln 2\Big]\,\hat{\mathbf{j}}
 	\]
 	
-	One major question remains: the Harris model is formulated as an equilibrium solution to the Vlasov equation. Is a time-dependent model physical? Certainly the above result captures the real $y$-directed current found in the magnetosphere, so it is at least on the right track.
+	A question remains: the Harris model is formulated as an equilibrium solution to the Vlasov equation. Is a time-dependent model physical? Certainly the above result captures the real $y$-directed current found in the magnetosphere, so it is at least on the right track.
+	
+	\section{Field lines of the Harris model}
+	
+	The vector potential is defined (up to the addition of a gradient) by
+	\[
+		\curl{\mathbf{A}} = \mathbf{B}.
+	\]
+	In component form, this is
+	\begin{align*}
+		\frac{\partial A_z}{\partial y} - \frac{\partial A_y}{\partial z} &= B_x\tanh\Big(\frac{z}{L(t)}\Big) \\
+		\frac{\partial A_x}{\partial z} - \frac{\partial A_z}{\partial x} &= 0 \\
+		\frac{\partial A_y}{\partial x} - \frac{\partial A_x}{\partial y} &= B_z
+	\end{align*}
+	By the same argument as above, $\mathbf{A}$ must be independent of $y$, and so these further reduce to
+	\begin{align*}
+		\frac{\partial A_y}{\partial z} &= -B_x\tanh\Big(\frac{z}{L(t)}\Big) \\
+		\frac{\partial A_y}{\partial x} &= B_z 
+	\end{align*}
+	Integrating gives
+	\[
+		\mathbf{A}(x, z, t) = \Big[{-B_xL(t)}\ln\cosh\Big(\frac{z}{L(t)}\Big)+B_zx\Big]\hat{\mathbf{j}}
+	\]
+	It is well known that we can express the vector potential in terms of two scalar functions $\alpha$, $\beta$ such that
+	\[
+		\mathbf{A} = \alpha\nabla{\beta},
+	\]
+	or, equivalently,
+	\[
+		\mathbf{B} = \nabla{\alpha}\cross\nabla{\beta}.
+	\]
+	This second expression lends itself to a particularly nice geometrical interpretation: given that $\nabla F$ is orthogonal to the surface described by $F(x, y, z) = C$, we see that $\mathbf{B}$ is directed along the intersection of the two implicit surfaces described by
+	\begin{align*}
+		\alpha(x, y, z) &= \alpha_0 \\
+		\beta(x, y, z) &= \beta_0
+	\end{align*}
+	In the simple case of the Harris model, we can write these scalar functions by inspection,
+	\begin{align*}
+		\alpha(x, z) &= -B_xL(t)\ln\cosh\Big(\frac{z}{L(t)}\Big) + B_zx \\
+		\beta(y) &= y
+	\end{align*}
+	Of course, these are not unique: we could add a constant to $\alpha$ or any term $g$ to $\beta$ that satisifes $\frac{\partial g}{\partial x} = -\frac{\partial g}{\partial z}$. In any case, for the surfaces described by the $\alpha = \alpha_0$ and $\beta = \beta_0$, our field lines are given by
+	\begin{align*}
+		x &= \frac{\alpha_0}{B_z} + \frac{B_x}{B_z}L(t)\ln\cosh\Big(\frac{z}{L(t)}\Big) \\
+		y &= \beta_0
+	\end{align*}
+	
+	\section{Forced mirroring}
+	
+	The Harris model is nice because it succinctly captures the region of nonadiabaticity within the current sheet. However, it is problematic for ordinary particle tracers as there are many particles whose entire lifetimes consist of only one crossing. We can force a mirroring of the particles by adding terms to the model that gain in strength beyond the nonadiabatic region. The proposed modification is, arrived at heuristically, is
+	\[
+		\mathbf{B}(x, z, t) = \Big[B_x\tanh\Big(\frac{z}{L(t)}\Big) + B_{\lambda}e^{-\lambda}\sinh\Big(\frac{z}{R_E}\Big)\Big]\hat{\mathbf{i}} + B_z\hat{\mathbf{k}}.
+	\]
+	where $\lambda \gg 1$. This modification bends and strengthens the magnetic field while maintaining the property $\div{\mathbf{B}}=0$.
+	
+	Through testing, $\lambda \approx 40$ yields decent results when $B_\lambda = 1$. With this value, $|\mathbf{B}|$ begins to appreciably strengthen around $z \approx \pm 20 R_E$. This modification has the advantage of leaving the field lines near the current sheet unaltered.
+	
+	The field lines far from the current sheet experience a large deformation. The vector potential becomes
+	\[
+		\mathbf{A}(x, z, t) =  \Big[{-B_xL(t)}\ln\cosh\Big(\frac{z}{L(t)}\Big) - B_\lambda R_E e^{-\lambda}\cosh\Big(\frac{z}{R_E}\Big) + B_zx\Big]\hat{\mathbf{j}}
+	\]
+	and so the obvious choices for the Euler potentials are
+	\begin{align*}
+		\alpha(x, z) &= -B_xL(t)\ln\cosh\Big(\frac{z}{L(t)}\Big) - B_\lambda R_E e^{-\lambda}\cosh\Big(\frac{z}{R_E}\Big) + B_zx \\
+		\beta(y) &= y
+	\end{align*}
+	The field lines are then described by
+	\begin{align*}
+		x &= \frac{\alpha_0}{B_z} + \frac{B_x}{B_z}L(t)\ln\cosh\Big(\frac{z}{L(t)}\Big) + \frac{B_x}{B_\lambda}R_E e^{-\lambda}\cosh\Big(\frac{z}{R_E}\Big) \\
+		y &= \beta_0
+	\end{align*}
 	
 \end{document}

@@ -88,17 +88,63 @@
 	\]
 	which is a nice generalization of the Hamiltonian to fields.
 	
+	The Euler-Lagrange equation for this system is
+	\[
+		(\partial_\mu\partial^\mu + m^2)\phi(x) = 0.
+	\]
+	We may Fourier transform this to find
+	\[
+		\frac{1}{(2\pi)^4}\int\mathrm{d}^4k\,(-k_\mu k^\mu + m^2)\tilde{\phi}(k)e^{-ik_\mu x^\mu} = 0.
+	\]
+	For this to hold true,
+	\[
+		\tilde{\phi}(k) = 2\pi\delta(m^2 - k_\mu k^\mu)f(k)
+	\]
+	for some $f(k)$. This is encouraging, as this constraint simply encodes the relativistic relationship between mass, energy, and momentum.
+	
+	Writing $k_\mu k^\mu = k_0^2 - \mathbf{k}^2$, we see that
+	\[
+		2\pi\delta(\mathbf{k}^2 + m^2 - k_0^2)f(k) = \frac{2\pi}{2k_0}\Big(\delta\big(k_0 - \sqrt{\mathbf{k}^2 + m^2}\big) + \delta\big(k_0 + \sqrt{\mathbf{k}^2 + m^2}\big)\Big)f(k_0, \mathbf{k})
+	\]
+	where we have used
+	\[
+		\delta(f(x)) = \sum_{\{a | f(a) = 0\}}\frac{\delta(x - a)}{|f'(a)|},
+	\]
+	treating $k_0$ as the independent variable. Substituting $\tilde{\phi}(k)$ into the Fourier expansion for $\phi(x)$ gives
+	
+	\[
+		\phi(x) = \frac{1}{(2\pi)^3}\int\frac{\mathrm{d}^3\mathbf{k}}{2\omega}\Big(f(\omega, \mathbf{k})e^{-i\omega t}e^{i\mathbf{k}\cdot\mathbf{x}} + f(-\omega, \mathbf{k})e^{i\omega t}e^{i\mathbf{k}\cdot\mathbf{x}}\Big),
+	\]
+	where we have defined $\omega = \sqrt{\mathbf{k}^2 + m^2}$. Traditionally, one then makes the exchange $\mathbf{k} \to -\mathbf{k}$ in the second term to tidy up the notation
+	\[
+		\phi(x) = \frac{1}{(2\pi)^3}\int\frac{\mathrm{d}^3\mathbf{k}}{2\omega}\Big(a_{\mathbf{k}}e^{-i\omega t}e^{i\mathbf{k}\cdot\mathbf{x}} + b_{\mathbf{k}}e^{i\omega t}e^{-i\mathbf{k}\cdot\mathbf{x}}\Big),
+	\]
+	where $a_\mathbf{k} = f(\omega,\mathbf{k})$ and $b_\mathbf{k} = f(-\omega, -\mathbf{k})$. In fact, this can be constrained further if $\phi(x)$ is real. In this case, $\phi(x) = \phi^*(x)$ and so
+	\[
+	\phi(x) = \frac{1}{(2\pi)^3}\int\frac{\mathrm{d}^3\mathbf{k}}{2\omega}\Big(a_{\mathbf{k}}e^{-i\omega t}e^{i\mathbf{k}\cdot\mathbf{x}} + a_{\mathbf{k}}^* e^{i\omega t}e^{-i\mathbf{k}\cdot\mathbf{x}}\Big),
+	\]	
+
 	\section{From classical to quantum}
 	
-	We would like to quantize this field. For single particle quantum mechanics, we know that the quantization process involves promoting observable variables to operators.  In particular, we know that a variable $q^a$ and its conjugate momentum $p_a$ have the commutation relation
+	We would like to quantize this field. For single particle quantum mechanics, the quantization process involves promoting $q$ and $p$ to operators---all other operators can be constructed from these. The position operators $q^a$ and their conjugate momenta $p_a$ obey the commutation relation
 	\[
 		[q^a, p_b] = i\delta_{ab}.
 	\]
-	Inspired by this, we do the same for fields. Continuing with our simple relativistic field expression, we try to find an expression for $\phi$. Following the Euler-Lagrange equation, we arrive at
+	Inspired by this, we do the same for fields. That is, $\phi(x) \to \hat{\phi}(x)$, $\pi(x) \to \hat{\pi}(x)$, $a_{\mathbf{k}} \to \hat{a}_{\mathbf{k}}$, and $a^*_{\mathbf{k}} \to \hat{a}_{\mathbf{k}}^\dagger$. Our new commutation relation is
 	\[
-		(\partial_\mu\partial^\mu + m^2)\phi(x) = 0
+		[\hat{\phi}(t, \mathbf{x}), \hat{\pi}(t, \mathbf{y})] = i\delta^{(3)}(\mathbf{x} - \mathbf{y})
 	\]
-	where we have shown the dependence of $\phi$ on $x^\mu$. It is easiest to work in energy-momentum space, so we carry out a Fourier transform a la 
+	with $[\hat{\phi}(x), \hat{\phi}(y)] = [\hat{\pi}(x), \hat{\pi}(y)] = 0$, i.e. the field commutes with its conjugate momenta unless they are at the same point in space and time. In that case, their commutator is proportional to $i$.
+	
+	For the classical massive scalar field $\pi = \dot\phi$, and so we have
+	\begin{align*}
+		\hat{\phi}(x) &= \frac{1}{(2\pi)^3}\int\frac{\mathrm{d}^3\mathbf{k}}{2\omega}\Big(\hat{a}_{\mathbf{k}}e^{-i\omega t}e^{i\mathbf{k}\cdot\mathbf{x}} + \hat{a}_{\mathbf{k}}^\dagger e^{i\omega t}e^{-i\mathbf{k}\cdot\mathbf{x}}\Big) \\
+		\hat{\pi}(y) &= {-\frac{i}{(2\pi)^3}}\int\frac{\mathrm{d}^3\mathbf{k}'}{2}\Big(\hat{a}_{\mathbf{k}'}e^{-i\omega t}e^{i\mathbf{k}'\cdot\mathbf{y}} - \hat{a}_{\mathbf{k}'}^\dagger e^{i\omega t}e^{-i\mathbf{k}'\cdot\mathbf{y}}\Big)
+	\end{align*}
+	Imposing the new commutation relation amounts to the condition that
+	\begin{align*}
+		[\hat{\phi}(t, \mathbf{x}), \hat{\pi}(t, \mathbf{y})] &= {-\frac{i}{(2\pi)^6}}\iint\frac{\mathrm{d}^3\mathbf{k}\,\mathrm{d}^3\mathbf{k}'}{4\omega}[\hat{a}_{\mathbf{k}}, \hat{a}_{\mathbf{k}'}]e^{-i2\omega t}e^{i\mathbf{k}\cdot\mathbf{x} + i\mathbf{k}'\cdot\mathbf{y}} - [\hat{a}_{\mathbf{k}}, \hat{a}_{\mathbf{k}'}^\dagger]e^{i\mathbf{k}\cdot\mathbf{x}-i\mathbf{k}'\cdot\mathbf{y}}
+	\end{align*}
 	
 	
 \end{document}
