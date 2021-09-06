@@ -308,7 +308,7 @@
 	Define $n = 2k + |m|$, so that
 	$$E_n = (n + 1)\hbar\omega$$
 	
-	(8) For a given $n$, what are the allowed values of $|m|$? Given this information show that for a given $n$, the degeneracy is $n + 1$. Compare this top what you found in Cartesian coordinates (Exercise 10.2.2).
+	(8) For a given $n$, what are the allowed values of $|m|$? Given this information show that for a given $n$, the degeneracy is $n + 1$. Compare this to what you found in Cartesian coordinates (Exercise 10.2.2).
 	
 	(9) Write down all the normalized eigenfunctions corresponding to $n = 0, 1$.
 	
@@ -338,8 +338,7 @@
 		Using the ansatz $R = \rho^{k}$ gives
 		$$k(k - 1)\rho^{k - 2} + k\rho^{k - 2} - m^2\rho^{k - 2} = 0$$
 		or $k^2 - m^2 = 0$, i.e. $k = |m|$ (the exponent must be positive to ensure decent behavior at $\rho = 0$).
-		
-		If we now examine the behavior as $\rho$ goes to $\infty$, the $\rho^2$ term is much larger than all others, with the possible exception of the term containing $\mathrm{d}^2/\mathrm{d}\rho^2$, so we have
+		If we now examine the behavior as $\rho$ goes to $\infty$, the $\rho^2$ term is much larger than all others (the term proportional only to $R_{Em}(\rho)$ must go to $0$ at infinity), with the possible exception of the term containing $\mathrm{d}^2/\mathrm{d}\rho^2$, so we have
 		
 		$$-\frac{\hbar^2}{2\mu}\frac{\mathrm{d}^2R}{\mathrm{d}\rho^2} + \frac{1}{2}\mu\omega^2\rho^2 R = 0$$
 		Knowing that $f'(x) \propto xf(x)$ when $f(x) \propto e^{\pm \alpha x^2/2}$, we substitute this into the above to find
@@ -395,7 +394,28 @@
 			U(y) =\,&C_0\Big(1 + \frac{|m| + 1 - \varepsilon}{2|m| + 2}y^2 + \Big[\frac{|m| + 1 - \varepsilon}{2|m| + 2}\Big]\Big[\frac{|m| + 3 - \varepsilon}{4|m| + 8}\Big]y^4 + \cdots\Big) \\
 			&+ C_1\Big(y + \frac{2|m| + 4 - 2\varepsilon}{6|m| + 9}y^3 + \Big[\frac{2|m| + 4 - 2\varepsilon}{6|m| + 9}\Big]\Big[\frac{2|m| + 8 - 2\varepsilon}{10|m| + 25}\Big]y^5 + \cdots\Big)
 		\end{align*}
-		Now, to ensure that $e^{-y^2/2}$ dies faster than $U(y)$ grows, the parenthesized expressions must contain a finite number of terms. This is because the $C_r$ coefficients die more slowly than $(r!)^{-1}$, the coefficients of the power series of $e^{-y^2/2}$.
+		Now, to ensure that $e^{-y^2/2}$ dies faster than $U(y)$ grows, the parenthesized expressions must contain a finite number of terms. This is because the $C_r$ coefficients die more slowly than $1/r!$---which have the approximate relation $C_{r+2} = C_r/r^2$---and so an untruncated $U(y)$ grows at a faster-than-exponential rate. From inspection, we can guarantee that $U(y)$ contains a finite number of terms by choosing $\varepsilon = |m| + r + 1$.
+
+		Now, to first order, the odd $r$ terms in $U(y)$ must be made zero to avoid $R(\rho)$ behaving like $\rho^{|m|+1}$ as $\rho \to 0$. Keeping only the terms proportional to $C_0$, we rewrite $\varepsilon = |m| + 2k + 1$, where $k\in\mathbb{N}$. Defining $n = |m| + 2k$ and reinstating units gives
+		$$E_n = (n + 1)\hbar\omega.$$
+		Let us now consider the allowed values of $m$ for a given $n$. Since $n - 2k = |m|$, valid $m$ values will each be separated by $2$ and centered around the origin. That is,
+		\begin{align*}
+			n = 0 &\implies m = 0 \\
+			n = 1 &\implies m = {-1}, 1 \\
+			n = 2 &\implies m = {-2}, 0, 2 \\
+			n = 3 &\implies m = {-3}, {-1}, {1}, {3} \\
+			&\vdots
+		\end{align*}
+		Thus, $m$ has $n + 1$ degrees of freedom, which is exactly what we found in 10.2.2. The first few eigenfunctions are
+		\begin{align*}
+			\psi_{E0}(\rho, \phi) &= R_{E0}(\rho)\Phi_0(\phi) \\
+			&= \frac{C_0}{(2\pi)^{1/2}}e^{-\mu\omega\rho^2/2\hbar} \\
+			\psi_{E(-1)}(\rho, \phi) &= R_{E(-1)}(\rho)\Phi_{-1}(\phi) \\
+			&= \frac{C_0}{(2\pi)^{1/2}}\rho e^{-\mu\omega\rho^2/2\hbar}e^{-i\phi} \\
+			\psi_{E1}(\rho, \phi) &= R_{E1}(\rho)\Phi_{1}(\phi) \\
+			&= \frac{C_0}{(2\pi)^{1/2}}\rho e^{-\mu\omega\rho^2/2\hbar}e^{i\phi}
+		\end{align*}
+		Given that we have used the same Hamiltonian as that of 10.2.2, all solutions we find here should be linear combinations of those we found before. In particular, the solution for $n = 0$ should be exactly the same, being perfectly isotropic. We find that this is indeed the case, with the $n = 1$ eigenfunctions differing only by $e^{\pm i \phi}$ weighted by $\cos\phi$ or $\sin\phi$.
 	\end{solution}
 	
 	\question Consider a particle of mass $\mu$ and charge $q$ in a vector potential
@@ -406,11 +426,82 @@
 	(2) Show that a classical particle in this potential will move in circles at an angular frequency $\omega_0 = qB/\mu c$.
 	
 	(3) Consider the Hamiltonian for the corresponding quantum problem:
-	$$H = \frac{[P-x + qYB/2c]^2}{2\mu} + \frac{[P_y - qXB/2c]^2}{2\mu}$$
+	$$H = \frac{[P_x + qYB/2c]^2}{2\mu} + \frac{[P_y - qXB/2c]^2}{2\mu}$$
 	Show that $Q = (cP_x + qYB/2)/qB$ and $P = (P_y - qXB/2c)$ are canonical. Write $H$ in terms of $P$ and $Q$ and show that allowed levels are $E = (n + 1/2)\hbar\omega_0$.
 	
 	(4) Expand $H$ out in terms of the original variables and show
 	$$H = H\Big(\frac{\omega_0}{2}, \mu\Big) - \frac{\omega_0}{2}L_z$$
 	where $H(\omega_0/2, \mu)$ is the Hamiltonian for an isotropic two-dimensional harmonic oscillator of mass $\mu$ and frequency $\omega_0/2$. Argue that the same basis that diagonalized $H(\omega_0/2, \mu)$ will diagonalize $H$. By thinking in terms of this basis, show that the allowed levels for $H$ are $E = (k + \tfrac{1}{2}|m| - \tfrac{1}{2}m + \tfrac{1}{2})\hbar\omega_0$, where $k$ is any integer and $m$ is the angular momentum. Convince yourself that you get the same levels from this formula as from the earlier one [$E = (n + 1/2)\hbar\omega_0$]. We shall return to this problem in Chapter 21.
+
+	\begin{solution}
+		From basic electromagnetism, the magnetic field is given by
+		\begin{align*}	
+			\mathbf{B} &= \nabla \times \mathbf{A} \\
+			&= (\partial_yA_z - \partial_zA_y)\mathbf{i} - (\partial_xA_z - \partial_zA_x)\mathbf{j} + (\partial_xA_y - \partial_yA_x)\mathbf{k} \\
+			&= \Big(\frac{B}{2} + \frac{B}{2}\Big)\mathbf{k} \\
+			&= B\mathbf{k}
+		\end{align*}
+		The force on a classical particle moving in this field is described, in CGS units, by 
+		$$\mathbf{F} = \mu\dot{\mathbf{v}} = \frac{q}{c}\mathbf{v}\times\mathbf{B}$$
+		which, componentwise, can be written as
+		$$\mu\begin{bmatrix}\dot{v}_x \\ \dot{v}_y \\ \dot{v}_z\end{bmatrix} = \frac{q}{c}\begin{bmatrix}v_yB \\ -v_xB \\ 0\end{bmatrix}$$
+		Taking the time derivative of both sides of this and using the definitions of $\dot{v}_i$ given above, we find
+		\begin{gather*}
+			\mu\ddot{v}_x = \frac{q}{c}\dot{v}_yB = -\frac{q}{c}\Big(\frac{q}{\mu c}v_xB\Big)B = -\frac{q^2B^2}{\mu c^2}v_x \\
+			\mu\ddot{v}_y = -\frac{q}{c}\dot{v}_xB = -\frac{q}{c}\Big(\frac{q}{\mu c}v_yB\Big)B = -\frac{q^2B^2}{\mu c^2}v_y
+		\end{gather*}
+		where we have left out the $z$ component on account of its clear solution. Recognizing both the $x$ and $y$ components of the velocity to be undergoing simple harmonic motion with $\omega_0 = qB/\mu c$, we may write
+		$$\mathbf{v} = v_0\cos(\omega_0 t + \phi_0)\mathbf{i} - v_0\sin(\omega_0 t + \phi_0)\mathbf{j} + v_1\mathbf{k}$$
+		which immediately implies the position of the particle is given by
+		$$\mathbf{x} = \frac{v_0}{\omega_0}\sin(\omega_0 t + \phi_0)\mathbf{i} + \frac{v_0}{\omega_0}\cos(\omega_0 t + \phi_0) + v_1t\mathbf{k}$$
+		i.e. the particle gyrates around the magnetic field lines with frequency $\omega_0$.
+
+		To confirm the canonical nature of the given $Q$ and $P$ coordinates, we need to verify that $[Q, P] = i\hbar$,
+		\begin{align*}
+			[Q, P] &= \frac{1}{qB}[cP_x + \frac{q}{2}YB, P_y - \frac{q}{2c}XB] \\
+			&= \frac{1}{qB}\Big(c[P_x, P_y] - \frac{q}{2}[P_x, X]B + \frac{q}{2}[Y, P_y]B - \frac{q^2}{4c}[Y, X]B^2\Big) \\
+			&= \frac{1}{qB}\Big(\frac{qB}{2}(i\hbar) + \frac{qB}{2}(i\hbar)\Big) \\
+			&= i\hbar
+		\end{align*}
+		We can rewrite $H$ in terms of $Q$ and $P$ as
+		$$H = \Big(\frac{qB}{c}\Big)^2\frac{Q^2}{2\mu} + \frac{P^2}{2\mu} = \frac{P^2}{2\mu} + \frac{1}{2}\mu\omega_0^2Q^2$$
+		which is exactly the Hamiltonian of the harmonic oscillator, implying the allowable energy levels are $E = (n + \frac{1}{2})\hbar\omega_0$.
+
+		Returning to the original Hamiltonian, we may expand it to find
+		\begin{align*}
+			H &= \frac{[P_x + qYB/2c]^2}{2\mu} + \frac{[P_y - qXB/2c]^2}{2\mu} \\
+			&= \frac{1}{2\mu}\Big[P_x^2 + \frac{qB}{c}P_xY + \Big(\frac{qB}{2c}\Big)^2Y^2\Big] + \frac{1}{2\mu}\Big[P_y^2 - \frac{qB}{c}P_yX + \Big(\frac{qB}{2c}\Big)^2X^2\Big] \\
+			&= \frac{P_x^2}{2\mu} + \frac{P_y^2}{2\mu} + \frac{1}{2}\mu\Big(\frac{qB}{2\mu c}\Big)^2X^2 + \frac{1}{2}\mu\Big(\frac{qB}{2\mu c}\Big)^2Y^2 - \frac{qB}{2\mu c}\Big(XP_y - YP_x\Big) \\
+			&= \frac{P_x^2}{2\mu} + \frac{P_y^2}{2\mu} + \frac{1}{2}\mu\Big(\frac{\omega_0}{2}\Big)^2X^2 + \frac{1}{2}\mu\Big(\frac{\omega_0}{2}\Big)^2Y^2 - \frac{\omega_0}{2}L_z \\
+			&= H\Big(\frac{\omega_0}{2}, \mu\Big) - \frac{\omega_0}{2}L_z
+		\end{align*}
+		where $H\big(\frac{\omega_0}{2}, \mu\big)$ is the isotropic two-dimensional oscillator from with mass $\mu$ and frequency $\omega_0/2$. These components of the overall Hamiltonian share a common, diagonal basis if they commute. Since
+		\begin{align*}
+			[X^2 + Y^2, L_z] =\,&[X^2 + Y^2, XP_y - YP_x] \\
+			=\,&[X^2, XP_y] - [X^2, YP_x] + [Y^2, XP_y] - [Y^2, YP_x] \\
+			=\,&-{\Big(X[X, X]P_y + [X, Y]XP_x + YX[X, P_x] + Y[X, P_x]X\Big)} \\
+			&+\Big(Y[Y, X]P_y + [Y, X]YP_y + XY[Y, P_y] + X[Y, P_y]Y\Big) \\
+			=\,&-i\hbar YX - i\hbar YX + i\hbar XY + i\hbar XY \\
+			=\,&0
+		\end{align*}
+		and
+		\begin{align*}
+			[P_x^2 + P_y^2, L_z] =\,&[P_x^2 + P_y^2, XP_y - YP_x] \\
+			=\,&[P_x^2, XP_y] - [P_x^2, YP_x] + [P_y^2, XP_y] - [P_y^2, YP_x] \\
+			=\,&\Big(P_x[P_x, X]P_y + [P_x, X]P_xP_y + [X, P_x]P_xP_y + X[P_x, P_y]P_x\Big) \\
+			&{-\Big(P_y[P_y, Y]P_x + [P_y, Y]P_yP_x + [Y, P_y]P_yP_x + Y[P_y, P_x]P_y\Big)} \\
+			=\,&-i\hbar P_xP_y - i\hbar P_xP_y + i\hbar P_xP_y + i\hbar P_yP_x + i\hbar P_yP_x - i\hbar P_yP_x \\
+			=\,&0
+		\end{align*}
+		the two parts of the Hamiltonian \textit{do} commute, and hence can be diagonalize by a common basis. Given that the eigenfunctions of $H\big(\frac{\omega_0}{2}, \mu\big)$ can be written as $R(\rho)\Phi(\phi)$ (where $\Phi(\phi)$ are the eigenfunctions of $L_z$) and $L_z$ commutes with any function of $\rho$, it is clear that the two parts of the Hamiltonian can, more specifically, be diagonalized by the same basis as that found in the previous problems on the isotropic two-dimensional oscillator. If we apply this Hamiltonian to a state built from that basis, we find
+		\begin{align*} 
+			H|\psi_{Em}\rangle &= H\Big(\frac{\omega_0}{2}, \mu\Big)|\psi_{Em}\rangle - \frac{\omega_0}{2}L_z|\psi_{Em}\rangle \\
+			&= (2k + |m| + 1)\frac{\hbar\omega_0}{2}|\psi_{Em}\rangle - \frac{\omega_0}{2}m\hbar|\psi_{Em}\rangle \\
+			&= \Big(k + \frac{1}{2}|m| - \frac{1}{2}m + \frac{1}{2}\Big)\hbar\omega_0|\psi_{Em}\rangle
+		\end{align*}
+		which implies the energy is quantized as
+		$$E = \Big(k + \frac{1}{2}|m| - \frac{1}{2}m + \frac{1}{2}\Big)\hbar\omega_0$$
+		Since $k \in \mathbb{N}$ and $|m| - m \geq 0$, this expression gives the exact same energy levels as $E = (n + 1/2)\hbar\omega_0$.
+	\end{solution}
 	\end{questions}
 \end{document}
