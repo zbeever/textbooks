@@ -503,5 +503,240 @@
 		$$E = \Big(k + \frac{1}{2}|m| - \frac{1}{2}m + \frac{1}{2}\Big)\hbar\omega_0$$
 		Since $k \in \mathbb{N}$ and $|m| - m \geq 0$, this expression gives the exact same energy levels as $E = (n + 1/2)\hbar\omega_0$.
 	\end{solution}
+
+	\setcounter{subsection}{3}
+	\setcounter{question}{0}
+	\subsection{Angular Momentum in Three Dimensions}
+	\question (1) Verify that Eqs. (12.4.9) and Eq. (12.4.8) are equivalent, given the definition of $\varepsilon_{ijk}$.
+	
+	(2) Let $U_1$, $U_2$, and $U_3$ be three energy eigenfunctions of a single particle in some potential. Construct the wave function $\psi_A(x_1, x_2, x_3)$ fo three fermions in this potential, one of which is in $U_1$, one in $U_2$, and one in $U_3$, using the $\varepsilon_{ijk}$ tensor.
+	\begin{solution}
+		Since 
+		\begin{align*} 
+			\mathbf{c} = c_x\mathbf{i} + c_y\mathbf{j} + c_z\mathbf{k} &= \mathbf{a}\times\mathbf{b} \\
+			&= \begin{vmatrix}\mathbf{i} & \mathbf{j} & \mathbf{k} \\ a_x & a_y & a_z \\ b_x & b_y & b_z\end{vmatrix} \\
+			&= (a_yb_z - a_zb_y)\mathbf{i} + (a_zb_x - a_xb_z)\mathbf{j} + (a_xb_y - a_yb_x)\mathbf{k}
+		\end{align*}
+		we may write
+		\begin{align*}
+			c_1 &= a_2b_3 - a_3b_2 \\
+			c_2 &= a_3b_1 - a_1b_3 \\
+			c_3 &= a_1b_2 - a_2b_1
+		\end{align*}
+		If we want to find each $c_i$ with (12.4.9), we evaluate
+		\begin{align*}
+			c_1 &= \sum_{j=1}^3\sum_{k=1}^3\varepsilon_{1jk}a_jb_k \\
+			&= \varepsilon_{123}a_2b_3 + \varepsilon_{132}a_3b_2 \\
+			&= a_2b_3 - a_3b_2 \\
+			c_2 &= \sum_{j=1}^3\sum_{k=1}^3\varepsilon_{2jk}a_jb_k \\
+			&= \varepsilon_{213}a_1b_3 + \varepsilon_{231}a_3b_1 \\
+			&= {-a_1b_3} + a_3b_1 \\
+			c_3 &= \sum_{j=1}^3\sum_{k=1}^3\varepsilon_{3jk}a_jb_k \\
+			&= \varepsilon_{312}a_1b_2 + \varepsilon_{321}a_2b_1 \\
+			&= a_1b_2 - a_2b_1 \\
+		\end{align*}
+		which is equivalent to the first set of $c_i$ values.
+		
+		For the second part of this problem, we are looking to write a wavefunction that is completely antisymmetric with respect to $U_1$, $U_2$, and $U_3$. This can be done with the antisymmetric tensor via
+		$$\psi_A(x_1, x_2, x_3) = \frac{1}{6}\varepsilon_{ijk}U_i(x_1)U_j(x_2)U_k(x_3)$$
+		where we have invoked the Einstein summation convention. The $1/6$ is present for normalization purposes.
+	\end{solution}
+
+	\question (1) Verify Eq. (12.4.2) by first constructing the $3\times3$ matrices corresponding to $R(\varepsilon_x\mathbf{i})$ and $R(\varepsilon_y\mathbf{j})$, to order $\varepsilon$.
+	
+	(2) Provide the steps connecting Eqs. (12.4.3) and (12.4.4a).
+
+	(3) Verify that $L_x$ and $L_y$ defined in Eq. (12.4.1) satisfy Eq. (12.4.4a). The proof for other commutators follows by cyclic permutation.
+	
+	\begin{solution}
+		If we define positive rotations as anticlockwise, the requested rotation matrices are
+		\begin{align*}
+			R(\varepsilon_x \mathbf{i}) &= \begin{bmatrix}1 & 0 & 0 \\ 0 & \cos\varepsilon_x & -\sin\varepsilon_x \\ 0 & \sin\varepsilon_x & \cos\varepsilon_x\end{bmatrix} \\
+			R(\varepsilon_y \mathbf{j}) &= \begin{bmatrix}\cos\varepsilon_y & 0 & \sin\varepsilon_y \\ 0 & 1 & 0 \\ -\sin\varepsilon_y & 0 & \cos\varepsilon_y\end{bmatrix}
+		\end{align*}
+		As we take both $\varepsilon_x$ and $\varepsilon_y$ to $0$, these become
+		\begin{align*}
+			\lim_{\varepsilon_x\to 0}R(\varepsilon_x\mathbf{i}) &= \begin{bmatrix}1 & 0 & 0 \\ 0 & 1 & -\varepsilon_x \\ 0 & \varepsilon_x & 1\end{bmatrix} \\
+			\lim_{\varepsilon_y\to0}R(\varepsilon_y\mathbf{j}) &= \begin{bmatrix}1 & 0 & \varepsilon_y \\ 0 & 1 & 0 \\ -\varepsilon_y & 0 & 1\end{bmatrix}
+		\end{align*}
+		We can now write out (12.4.2) in matrix form as
+		\begin{align*}
+			R(-\varepsilon_y\mathbf{j})R(-\varepsilon_x\mathbf{i})R(\varepsilon_y\mathbf{j})R(\varepsilon_x\mathbf{i}) &= \begin{bmatrix}1 & 0 & -\varepsilon_y \\ 0 & 1 & 0 \\ \varepsilon_y & 0 & 1\end{bmatrix}\begin{bmatrix}1 & 0 & 0 \\ 0 & 1 & \varepsilon_x \\ 0 & -\varepsilon_x & 1\end{bmatrix}\begin{bmatrix}1 & 0 & \varepsilon_y \\ 0 & 1 & 0 \\ -\varepsilon_y & 0 & 1\end{bmatrix}\begin{bmatrix}1 & 0 & 0 \\ 0 & 1 & -\varepsilon_x \\ 0 & \varepsilon_x & 1\end{bmatrix} \\
+			&= \begin{bmatrix}1 & \varepsilon_x\varepsilon_y & -\varepsilon_y \\ 0 & 1 & \varepsilon_x \\ \varepsilon_y & -\varepsilon_x & 1\end{bmatrix}\begin{bmatrix}1 & \varepsilon_x\varepsilon_y & \varepsilon_y \\ 0 & 1 & -\varepsilon_x \\ -\varepsilon_y & \varepsilon_x & 1\end{bmatrix} \\
+			&= \begin{bmatrix}
+				1 + \varepsilon_y^2 & \varepsilon_x\varepsilon_y & -\varepsilon_x^2\varepsilon_y \\ -\varepsilon_x\varepsilon_y & 1 + \varepsilon_x^2 & 0 \\ 0 & \varepsilon_x\varepsilon_y^2 & \varepsilon_y^2 + \varepsilon_x^2 + 1
+			\end{bmatrix} \\
+			&\approx \begin{bmatrix}
+				1 & \varepsilon_x\varepsilon_y & 0 \\ -\varepsilon_x\varepsilon_y & 1 & 0 \\ 0 & 0 & 1
+			\end{bmatrix} \\
+			&= R(-\varepsilon_x\varepsilon_y\mathbf{k})
+		\end{align*}
+		where the last line follows from the fact that 
+		$$\lim_{\varepsilon_z\to0}R(\varepsilon_z\mathbf{k}) = \lim_{\varepsilon_z\to0}\begin{bmatrix}\cos\varepsilon_z & -\sin\varepsilon_z & 0 \\ \sin\varepsilon_z & \cos\varepsilon_z & 0 \\ 0 & 0 & 1 \end{bmatrix} = \begin{bmatrix}1 & -\varepsilon_z & 0 \\ \varepsilon_z & 1 & 0 \\ 0 & 0 & 1\end{bmatrix}$$
+		Starting from (12.4.3), we have
+		\begin{align*}
+			U[R(-\varepsilon_y\mathbf{j})]\cdots U[R(\varepsilon_x\mathbf{i})] =\,&e^{i\varepsilon_yL_y/\hbar}e^{i\varepsilon_xL_x/\hbar}e^{-i\varepsilon_yL_y/\hbar}e^{-i\varepsilon_xL_x/\hbar} \\
+			\approx\,&(1 + \tfrac{i\varepsilon_y}{\hbar}L_y)(1 + \tfrac{i\varepsilon_x}{\hbar}L_x)(1 - \tfrac{i\varepsilon_y}{\hbar}L_y)(1 - \tfrac{i\varepsilon_x}{\hbar}L_x) \\
+			=\,&(1 + \tfrac{i\varepsilon_y}{\hbar}L_y + \tfrac{i\varepsilon_x}{\hbar}L_x - \tfrac{\varepsilon_x\varepsilon_y}{\hbar^2}L_yL_x)(1 - \tfrac{i\varepsilon_y}{\hbar}L_y - \tfrac{i\varepsilon_x}{\hbar}L_x - \tfrac{\varepsilon_x\varepsilon_y}{\hbar^2}L_yL_x) \\
+			=\,&1 - \tfrac{i\varepsilon_y}{\hbar}L_y - \tfrac{i\varepsilon_x}{\hbar}L_x - \tfrac{\varepsilon_x\varepsilon_y}{\hbar^2}L_yL_x \\
+			&+ \tfrac{i\varepsilon_y}{\hbar}L_y + \tfrac{\varepsilon_y^2}{\hbar^2}L_y^2 + \tfrac{\varepsilon_x\varepsilon_y}{\hbar^2}L_yL_x - \tfrac{i\varepsilon_x\varepsilon_y^2}{\hbar^3}L_y^2L_x \\
+			&+ \tfrac{i\varepsilon_x}{\hbar}L_x + \tfrac{\varepsilon_x\varepsilon_y}{\hbar^2}L_xL_y + \tfrac{\varepsilon_x^2}{\hbar^2}L_x^2 - \tfrac{i\varepsilon_x^2\varepsilon_y}{\hbar^3}L_xL_yL_x \\
+			&- \tfrac{\varepsilon_x\varepsilon_y}{\hbar^2}L_yL_x + \tfrac{i\varepsilon_x\varepsilon_y^2}{\hbar^3}L_yL_xL_y + \tfrac{i\varepsilon_x^2\varepsilon_y}{\hbar^3}L_yL_x^2 + \tfrac{\varepsilon_x^2\varepsilon_y^2}{\hbar^4}L_yL_xL_yL_x
+		\end{align*}
+	\end{solution}
+	\begin{solution}
+		After canceling terms and neglecting those of order $\varepsilon_x^2$ or $\varepsilon_y^2$, we find
+		\begin{align*}
+			U[R(-\varepsilon_y\mathbf{j})]U[R(-\varepsilon_x\mathbf{i})]U[R(\varepsilon_y\mathbf{j})] U[R(\varepsilon_x\mathbf{i})] &\approx 1 + \tfrac{\varepsilon_x\varepsilon_y}{\hbar^2}L_xL_y - \tfrac{\varepsilon_x\varepsilon_y}{\hbar^2}L_yL_x \\
+			&= 1 + \tfrac{\varepsilon_x\varepsilon_y}{\hbar^2}[L_x, L_y] \\
+			&= U[R(-\varepsilon_x\varepsilon_y\mathbf{k})]
+		\end{align*}
+		which only works if
+		$$[L_x, L_y] = i\hbar L_z$$
+		To verify that this is actually the case, we compute
+		\begin{align*}
+			[L_x, L_y] =\,&[YP_z - ZP_y, ZP_x - XP_z] \\
+			=\,&[YP_z, ZP_x] - [YP_z, XP_z] - [ZP_y, ZP_x] + [ZP_y, XP_z] \\
+			=\,&[YP_z, ZP_x] + [ZP_y, XP_z] \\ 
+			=\,&Y[P_z, Z]P_x + [Y, Z]P_zP_x + ZY[P_z, P_x] + Z[Y, P_x]P_z \\
+			&+ Z[P_y, X]P_z + [Z, X]P_yP_z + XZ[P_y, P_z] + X[Z, P_z]P_y \\
+			=\,&{-i\hbar YP_x + i\hbar XP_y} \\
+			=\,&i\hbar(XP_y - YP_x) \\
+			=\,&i\hbar L_z
+		\end{align*}
+	\end{solution}
+
+	\question We would like to show that $\hat{\theta}\cdot\mathbf{L}$ generates rotations about the axis parallel to $\hat{\theta}$. Let $\delta\boldsymbol{\theta}$ be an infinitesimal rotation parallel to $\boldsymbol{\theta}$.
+	
+	(1) Show that when a vector $\mathbf{r}$ is rotated by an angle $\delta\boldsymbol{\theta}$, it changes to $\mathbf{r}+ \delta\boldsymbol{\theta}\times\mathbf{r}$. (It might help to start with $\mathbf{r}\perp\delta\boldsymbol{\theta}$ and then generalize.)
+	
+	(2) We therefore demand that (to first order, as usual)
+	$$\psi(\mathbf{r})\xrightarrow[{U[R(\delta\boldsymbol{\theta})]}]{} \psi(\mathbf{r} - \delta\boldsymbol{\theta}\times\mathbf{r}) = \psi(\mathbf{r}) - (\delta\boldsymbol{\theta}\times\mathbf{r})\cdot\nabla\psi$$
+	
+	Comparing to $U[R(\delta\boldsymbol{\theta})] = I - (i\delta\theta/\hbar)L_{\hat{\theta}}$, show that $L_{\hat{\theta}}=\hat{\theta}\cdot\mathbf{L}$.
+	
+	\begin{solution}
+		We can encode a rotation of $\theta$ about an arbitrary axis via
+		$$R(\theta\boldsymbol{\theta}) = R(-\phi_z\mathbf{k})R(-\phi_y\mathbf{j})R(\theta\mathbf{i})R(\phi_y\mathbf{j})R(\phi_z\mathbf{k})$$
+		where $\phi_y$ and $\phi_z$ are suitably chosen to align the rotation axis first within the $x$-$z$ plane, and then along the $x$ axis. That is, if the rotation axis is given by $\mathbf{u} = \begin{bmatrix}u_x & u_y & u_z\end{bmatrix}^T$ (where $\|\mathbf{u}\| = 1$), then $R(\phi_z\mathbf{k})$ should zero out $y$ component and $R(\phi_y\mathbf{j})$ should zero out the (resulting) $z$ component. Since
+		\begin{align*}
+			R(\phi_z\mathbf{k})\mathbf{u} &= \begin{bmatrix}\cos\phi_z & -\sin\phi_z & 0 \\ \sin\phi_z & \cos\phi_z & 0 \\ 0 & 0 & 1\end{bmatrix}\begin{bmatrix}u_x \\ u_y \\ u_z\end{bmatrix} \\
+			&= \begin{bmatrix}u_x\cos\phi_z - u_y\sin\phi_z \\ u_x\sin\phi_z + u_y\cos\phi_z \\ u_z\end{bmatrix}
+		\end{align*}
+		this first condition is satisfied when
+		$$u_x\sin\phi_z + u_y\cos\phi_z = 0$$
+		i.e. $\tan\phi_z = -u_y/u_x$. Since rotations preserve length, we know immediately the this rotation must take $\mathbf{u}$ to $\mathbf{u}= \begin{bmatrix}(u_x^2 + u_y^2)^{1/2} & 0 & u_z\end{bmatrix}^T$. Applying the next rotation moves this vector to
+		\begin{align*}
+			R(\phi_y\mathbf{j})\mathbf{u} &= \begin{bmatrix}\cos\phi_y & 0 & \sin\phi_y \\ 0 & 1 & 0 \\ -\sin\phi_y & 0 & \cos\phi_y\end{bmatrix}\begin{bmatrix}(u_x^2+u_y^2)^{1/2} \\ 0 \\ u_z\end{bmatrix} \\
+			&= \begin{bmatrix}
+				(u_x^2 + u_y^2)^{1/2}\cos\phi_y + u_z\sin\phi_y \\ 0 \\ -(u_x^2 + u_y^2)^{1/2}\sin\phi_y + u_z\cos\phi_y
+			\end{bmatrix}
+		\end{align*}
+		The second condition is met when
+		$$-(u_x^2 + u_y^2)^{1/2}\sin\phi_y + u_z\cos\phi_y = 0$$
+		or $\tan\phi_y = u_z/(u_x^2 + u_y^2)^{1/2}$. Using basic trigonometry, we know
+		\begin{align*}
+			\cos\phi_z &= \cos\arctan\Big({-\frac{u_y}{u_x}}\Big) = \frac{u_x}{(u_x^2 + u_y^2)^{1/2}} \\
+			\sin\phi_z &= \sin\arctan\Big({-\frac{u_y}{u_x}}\Big) = {-\frac{u_y}{(u_x^2 + u_y^2)^{1/2}}} \\
+			\cos\phi_y &= \cos\arctan\Big(\frac{u_z}{(u_x^2 + u_y^2)^{1/2}}\Big) = \frac{(u_x^2 + u_y^2)^{1/2}}{(u_x^2 + u_y^2 + u_z^2)^{1/2}} \\
+			\sin\phi_y &= \sin\arctan\Big(\frac{u_z}{(u_x^2 + u_y^2)^{1/2}}\Big) = \frac{u_z}{(u_x^2 + u_y^2 + u_z^2)^{1/2}}
+		\end{align*}
+		and so
+		\begin{align*}
+			R(\phi_y\mathbf{j})R(\phi_z\mathbf{k}) &= \frac{1}{(1 - u_z^2)^{1/2}}\begin{bmatrix}
+				(1 - u_z^2)^{1/2} & 0 & u_z \\
+				0 & 1 & 0 \\
+				-u_z & 0 & (1 - u_z^2)^{1/2}
+			\end{bmatrix}\begin{bmatrix}
+				u_x & u_y & 0 \\
+				-u_y & u_x & 0 \\
+				0 & 0 & (1 - u_z^2)^{1/2}
+			\end{bmatrix} \\
+			&= \frac{1}{(1 - u_z^2)^{1/2}}\begin{bmatrix}
+				u_x(1 - u_z^2)^{1/2} & u_y(1 - u_z^2)^{1/2} & u_z(1 - u_z^2)^{1/2} \\
+				-u_y & u_x & 0 \\
+				-u_xu_z & -u_yu_z & 1 - u_z^2
+			\end{bmatrix}
+		\end{align*}
+		Since $R(-\phi_z\mathbf{k})R(-\phi_y\mathbf{j}) =  R(\phi_z\mathbf{k})^TR(\phi_y\mathbf{j})^T = [R(\phi_y\mathbf{j})R(\phi_z\mathbf{k})]^T$, we can immediately write
+		$$R(-\phi_z\mathbf{k})R(-\phi_y\mathbf{j}) = \frac{1}{(1 - u_z^2)^{1/2}}\begin{bmatrix}
+			u_x(1 - u_z^2)^{1/2} & -u_y & -u_xu_z \\
+			u_y(1 - u_z^2)^{1/2} & u_x & -u_yu_z \\
+			u_z(1 - u_z^2)^{1/2} & 0 & 1 - u_z^2
+		\end{bmatrix}$$
+		Now, when $\delta\theta$ is small, the central $R(\delta\theta\mathbf{i})$ matrix becomes
+		$$R(\theta\mathbf{i}) = \begin{bmatrix}
+			1 & 0 & 0 \\
+			0 & 1 & -\delta\theta \\
+			0 & \delta\theta & 1
+		\end{bmatrix}$$
+		and so a small rotation about an arbitrary axis can be written as
+		\begin{align*}
+			&\frac{1}{1 - u_z^2}\begin{bmatrix}
+				u_x(1 - u_z^2)^{1/2} & -u_y & -u_xu_z \\
+				u_y(1 - u_z^2)^{1/2} & u_x & -u_yu_z \\
+				u_z(1 - u_z^2)^{1/2} & 0 & 1 - u_z^2
+			\end{bmatrix}\begin{bmatrix}
+				1 & 0 & 0 \\
+				0 & 1 & -\delta\theta \\
+				0 & \delta\theta & 1
+			\end{bmatrix}\begin{bmatrix}
+			u_x(1 - u_z^2)^{1/2} & u_y(1 - u_z^2)^{1/2} & u_z(1 - u_z^2)^{1/2} \\
+			-u_y & u_x & 0 \\
+			-u_xu_z & -u_yu_z & 1 - u_z^2
+		\end{bmatrix} \\
+		=\,&\frac{1}{1 - u_z^2}\begin{bmatrix}
+			u_x(1 - u_z^2)^{1/2} & -u_y & -u_xu_z \\
+			u_y(1 - u_z^2)^{1/2} & u_x & -u_yu_z \\
+			u_z(1 - u_z^2)^{1/2} & 0 & 1 - u_z^2
+		\end{bmatrix}\begin{bmatrix}
+			u_x(1 - u_z^2)^{1/2} & u_y(1 - u_z^2)^{1/2} & u_z(1 - u_z^2)^{1/2} \\
+			-u_y + \delta\theta u_xu_z & u_x + \delta\theta u_y u_z & -\delta\theta(1 - u_z^2) \\
+			-u_xu_z - \delta\theta u_y & -u_yu_z + \delta\theta u_x & 1 - u_z^2
+		\end{bmatrix} \\
+		=\,&\frac{1}{1 - u_z^2}\begin{bmatrix}
+			1 - u_z^2 & -\delta\theta u_z(1 - u_z^2) & \delta\theta u_y(1 - u_z^2) \\
+			\delta\theta u_z(1 - u_z^2) & 1 - u_z^2 & -\delta\theta u_x(1 - u_z^2) \\
+			-\delta\theta u_y(1 - u_z^2) & \delta\theta u_x (1 - u_z^2) & 1 - u_z^2
+		\end{bmatrix} \\
+		=\,&\begin{bmatrix}
+			1 & 0 & 0 \\
+			0 & 1 & 0 \\
+			0 & 0 & 1
+		\end{bmatrix} + \delta\theta\begin{bmatrix}
+			0 & -u_z & u_y \\
+			u_z & 0 & -u_x \\
+			-u_y & u_x & 0
+		\end{bmatrix}
+		\end{align*}
+		which is the operator $(I + \delta\boldsymbol{\theta}\times)$, i.e. a small rotation of $\mathbf{r}$ by an angle $\delta\theta$ about $\mathbf{u}$ can be written as
+		$$\mathbf{r} + \delta\boldsymbol{\theta}\times\mathbf{r}$$
+		This fact can also be seen geometrically, as the rotated vector moves perpendicularly to both $\delta\boldsymbol{\theta}$ and $\mathbf{r}$ with a displacement proportional to $\|\mathbf{r}\| \|\delta\boldsymbol{\theta}\|\sin\delta\theta$, the magnitude of $\delta\boldsymbol{\theta}\times\mathbf{r}$.
+		
+		To first order, we can Taylor expand $\psi(\mathbf{r})$ under a small rotation as
+		\begin{align*}
+			\psi(\mathbf{r} - \delta\boldsymbol{\theta}\times\mathbf{r}) &= \psi(\mathbf{r}) - (\delta\boldsymbol{\theta}\times\mathbf{r})\cdot\nabla\psi \\
+			&= \psi(\mathbf{r}) - (\delta\theta_y z - \delta\theta_z y)\frac{\partial\psi}{\partial x} - (\delta\theta_zx - \delta\theta_xz)\frac{\partial\psi}{\partial y} - (\delta\theta_xy - \delta\theta_yx)\frac{\partial\psi}{\partial z} \\
+			&= \psi(\mathbf{r}) - \delta\theta_x\Big(y\frac{\partial}{\partial z} - z\frac{\partial}{\partial y}\Big)\psi(\mathbf{r}) - \delta\theta_y\Big(z\frac{\partial}{\partial x} - x\frac{\partial}{\partial z}\Big)\psi(\mathbf{r}) - \delta\theta_z\Big(x\frac{\partial}{\partial y} - y\frac{\partial}{\partial x}\Big)\psi(\mathbf{r}) \\
+			&= \Big[I - \frac{i}{\hbar}\Big(\delta\theta_x(YP_z - ZP_y) - \delta\theta_y(ZP_x + XP_z) + \delta\theta_z(XP_y - YP_x)\Big)\Big]\psi(\mathbf{r}) \\
+			&= \Big(I - \frac{i}{\hbar}\delta\boldsymbol{\theta}\cdot\mathbf{L}\Big)\psi(\mathbf{r})
+		\end{align*}
+		Equating this operator to $I - i\delta\theta L_{\hat{\theta}}/\hbar$, we see
+		$$L_{\hat{\theta}} = \hat{\theta}\cdot\mathbf{L}$$
+		where $\hat{\theta} = \mathbf{u}$.
+	\end{solution}
+	
+	\question Recall that $\mathbf{V}$ is a vector operator if its components $V_i$ transform as
+	$$U^\dagger[R]V_iU[R] = \sum_j R_{ij} V_j$$
+	(1) For an infinitesimal rotation $\delta\boldsymbol{\theta}$, show, on the basis of the previous exercise, that
+	$$\sum_j R_{ij}V_j = V_i + (\delta\boldsymbol{\theta}\times\mathbf{V})_i = V_i + \sum_j\sum_k\varepsilon_{ijk}(\delta\theta)_jV_k$$
+	(2) Feed in $U[R] = 1 - (i/\hbar)\delta\boldsymbol{\theta}\cdot\mathbf{L}$ into the left-hand side of Eq. (12.4.13) and deduce that
+	$$[V_i, L_j] = i\hbar\sum_k \varepsilon_{ijk}V_k$$
+	This is as good a definition of a vector operator as Eq. (12.4.13). By setting $\mathbf{V} = \mathbf{L}$, we can obtain the commutation rules among the $L$'s.
+	
+	\begin{solution}
+		The first part of this exercise was accomplished in the previous question's solution. In component form, a small rotation of $\delta\theta$ about an arbitrary axis $\hat{\theta}$ can be written (in index notation) as
+		$$V_i + \sum_j\sum_k\varepsilon_{ijk}(\delta\theta)_jV_k$$
+	\end{solution}
 	\end{questions}
 \end{document}
