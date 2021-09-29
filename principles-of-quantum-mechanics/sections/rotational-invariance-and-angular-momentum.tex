@@ -735,8 +735,354 @@
 	This is as good a definition of a vector operator as Eq. (12.4.13). By setting $\mathbf{V} = \mathbf{L}$, we can obtain the commutation rules among the $L$'s.
 	
 	\begin{solution}
-		The first part of this exercise was accomplished in the previous question's solution. In component form, a small rotation of $\delta\theta$ about an arbitrary axis $\hat{\theta}$ can be written (in index notation) as
+		The first part of this exercise was accomplished in the previous question's solution. In indicial notation, a small rotation of $\delta\theta$ about an arbitrary axis $\hat{\theta}$ can be written (in index notation) as
 		$$V_i + \sum_j\sum_k\varepsilon_{ijk}(\delta\theta)_jV_k$$
+		Feeding the given $U[R]$ into $U^\dagger[R]V_iU[R]$ and expanding gives
+		\begin{align*}
+			U^\dagger[R]V_iU[R] &= (1 - (i/\hbar)\delta\boldsymbol{\theta}\cdot\mathbf{L})^\dagger V_i(1 - (i/\hbar)\delta\boldsymbol{\theta}\cdot\mathbf{L}) \\
+			&= (1 + \tfrac{i}{\hbar}(\delta\theta)_jL_j)V_i(1 - \tfrac{i}{\hbar}(\delta\theta)_kL_k) \\
+			&= V_i + \tfrac{i}{\hbar}(\delta\theta)_jL_jV_i - \tfrac{i}{\hbar}(\delta\theta)_kV_iL_k + \tfrac{1}{\hbar^2}(\delta\theta)_j(\delta\theta)_kL_jV_iL_k
+		\end{align*}
+		Equating this to the first equation, canceling $V_i$, and dropping the term proportional to $(\delta\theta)^2$ gives the requirement
+		$$-\tfrac{i}{\hbar}(\delta\theta)_j(V_iL_j - L_jV_i) = -\tfrac{i}{\hbar}(\delta\theta)_j[V_i, L_j] = \varepsilon_{ijk}(\delta\theta)_jV_k$$
+		or
+		$$[V_i, L_j] = i\hbar\varepsilon_{ijk}V_k$$
 	\end{solution}
+
+
+	\setcounter{subsection}{4}
+	\setcounter{question}{0}
+	\subsection{The Eigenvalue Problem of $L^2$ and $L_z$}
+	\question Consider a vector field $\boldsymbol{\Psi}(x, y)$ in two dimensions. From Fig. 12.1 it follows that under an infinitesimal rotation $\varepsilon_z\mathbf{k}$,
+	\begin{align*}
+		\psi_x \to \psi_x'(x, y) &= \psi_x(x + y\varepsilon_z, y - x\varepsilon_z) - \psi_y(x + y\varepsilon_z, y - x\varepsilon_z)\varepsilon_z \\
+		\psi_y \to \psi_y'(x, y) &= \psi_x(x + y\varepsilon_z, y - x\varepsilon_z)\varepsilon_z + \psi_y(x + y\varepsilon_z, y - x\varepsilon_z)
+	\end{align*}
+	Show that (to order $\varepsilon_z$)
+	$$\begin{bmatrix}
+		\psi'_x \\ \psi'_y
+		\end{bmatrix}= \Big(\begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix} - \frac{i\varepsilon_z}{\hbar}\begin{bmatrix}L_z & 0 \\ 0 & L_z\end{bmatrix} - \frac{i\varepsilon_z}{\hbar}\begin{bmatrix}0 & -i\hbar \\ i\hbar & 0\end{bmatrix}\Big)\begin{bmatrix}\psi_x \\ \psi_y\end{bmatrix}$$
+	so that
+	\begin{align*}
+		J_z &= L_z^{(1)}\otimes I^{(2)} + I^{(1)}\otimes S_z^{(2)} \\
+		&= L_z + S_z
+	\end{align*}
+	where $I^{(2)}$ is a $2\times 2$ identity matrix with respect to the vector components, $I^{(1)}$ is the identity operator with respect to the argument $(x, y)$ of $\boldsymbol{\Psi}(x, y)$. This example only illustrates the fact that $J_z = L_z + S_z$ if the wave function is not a scalar. An example of half-integral eigenvalues will be provided when we consider spin in a later chapter. (In the present example, $S_z$ has eigenvalues $\pm\hbar$.)
+	
+	\begin{solution}
+		Since $\varepsilon_k$ is an infinitesimal value, we may Taylor expand the transformed components of $\boldsymbol{\Psi}(x, y)$ to find
+		\begin{align*}
+			\psi_x' &= \psi_x + \frac{\partial\psi_x}{\partial x}y\varepsilon_z - \frac{\partial\psi_x}{\partial y}x\varepsilon_z - \Big(\psi_y + \frac{\partial \psi_y}{\partial x}y\varepsilon_z - \frac{\partial\psi_y}{\partial y}x\varepsilon_z\Big)\varepsilon_z \\
+			&= \psi_x + \frac{i\varepsilon_z}{\hbar}YP_x\psi_x - \frac{i\varepsilon_z}{\hbar}XP_y\psi_x - \psi_y\varepsilon_z \\
+			&= \psi_x - \frac{i\varepsilon_z}{\hbar}(XP_y - YP_x)\psi_x - \frac{i\varepsilon_z}{\hbar}(-i\hbar\psi_y) \\
+			&= \psi_x - \frac{i\varepsilon_z}{\hbar}L_z\psi_x - \frac{i\varepsilon_z}{\hbar}(-i\hbar\psi_y) \\
+			\psi_y' &= \Big(\psi_x + \frac{\partial \psi_x}{\partial x}y\varepsilon_z - \frac{\partial \psi_x}{\partial y}x\varepsilon_z\Big)\varepsilon_z + \psi_y + \frac{\partial\psi_y}{\partial x}y\varepsilon_z - \frac{\partial \psi_y}{\partial y}x\varepsilon_z \\
+			&= \psi_x\varepsilon_z + \psi_y + \frac{i\varepsilon_z}{\hbar}YP_x\psi_y - \frac{i\varepsilon_z}{\hbar}XP_y\psi_y \\
+			&= \psi_y - \frac{i\varepsilon_z}{\hbar}(XP_y - YP_x)\psi_y - \frac{i\varepsilon_z}{\hbar}(i\hbar\psi_x)
+		\end{align*}
+		where we have suppressed the arguments to $\psi_x(x, y)$ and $\psi_y(x, y)$. We can collect these equations in matrix form as
+		$$\begin{bmatrix}
+		\psi'_x \\ \psi'_y
+		\end{bmatrix}= \Big(\begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix} - \frac{i\varepsilon_z}{\hbar}\begin{bmatrix}L_z & 0 \\ 0 & L_z\end{bmatrix} - \frac{i\varepsilon_z}{\hbar}\begin{bmatrix}0 & -i\hbar \\ i\hbar & 0\end{bmatrix}\Big)\begin{bmatrix}\psi_x \\ \psi_y\end{bmatrix}$$
+		Now, the matrix containing $L_z$ terms acts to rotate the argument of $\boldsymbol{\Psi}(x, y)$, while the matrix containing $i\hbar$ terms rotates the components of $\boldsymbol{\Psi}$ itself. Thinking of these components as two separate `spaces' (the domain and codomain), we can write the generator of vectorial rotations as
+		$$J_z = L_z^{(1)}\otimes I^{(2)} + I^{(1)}\otimes S_z^{(2)} = L_z + S_z$$
+		\end{solution}
+	
+		\question (1) Verify that the $2\times2$ matrices $J_x^{(1/2)}$, $J_y^{(1/2)}$, and $J_z^{(1/2)}$ obey the commutation rule $[J_x^{(1/2)}, J_y^{(1/2)}] = i\hbar J_z^{(1/2)}$.
+		
+		(2) Do the same for the $3\times3$ matrices $J_i^{(1)}$.
+		
+		(3) Construct the $4\times4$ matrices and verify that
+		$$[J_x^{(3/2)}, J_y^{(3/2)}] = i\hbar J_z^{(3/2)}$$
+		
+		\begin{solution}
+			From what we have learned of the raising and lowering operators $J_+$ and $J_-$, we know that, for a given $j$, 
+			\begin{align*}
+				\langle jm'|J_x|jm\rangle &= \langle jm'|\frac{J_+ + J_-}{2}|jm\rangle \\
+				&= \frac{\hbar}{2}\{\delta_{m',m+1}[(j-m)(j+m+1)]^{1/2} + \delta_{m',m-1}[(j+m)(j-m+1)]^{1/2}\} \\
+				\langle jm'|J_y|jm\rangle &= \langle jm'|\frac{J_+ - J_-}{2i}|jm\rangle \\
+				&= \frac{\hbar}{2i}\{\delta_{m',m+1}[(j-m)(j+m+1)]^{1/2} - \delta_{m',m-1}[(j+m)(j-m+1)]^{1/2}\} \\
+				\langle jm'|J_z|jm\rangle &= \delta_{m', m}m\hbar
+			\end{align*}
+			Recalling that $m$ takes on integer spacing between $-j$ and $j$, we choose the matrix indices $k$ and $l$ (i.e. $[J_x^{(j)}]_{kl}$, etc.) such that $m = j - (l - 1)$ and $m' = j - (k - 1)$. Both indices start at $1$. With this choice, the index forms of our matrices are
+			\begin{align*}
+				[J_x^{(j)}]_{kl} &= \frac{\hbar}{2}\{\delta_{k, l - 1}[(l - 1)(2j - l + 2)]^{1/2} + \delta_{k, l + 1}[l(2j - l + 1)]^{1/2}\} \\
+				[J_y^{(j)}]_{kl} &= -\frac{i\hbar}{2}\{\delta_{k, l - 1}[(l - 1)(2j - l + 2)]^{1/2} - \delta_{k, l + 1}[l(2j - l + 1)]^{1/2}\} \\
+				[J_z^{(j)}]_{kl} &= \delta_{kl}(j - l + 1)\hbar
+			\end{align*}
+			We can now produce the set of $2\times2$ matrices corresponding to $j = 1/2$.
+			\begin{align*}
+				J_x^{(1/2)} &= \begin{bmatrix}0 & \hbar/2 \\ \hbar/2 & 0 \end{bmatrix} \\
+				J_y^{(1/2)} &= \begin{bmatrix} 0 & -i\hbar/2 \\ i\hbar/2 & 0\end{bmatrix} \\
+				J_z^{(1/2)} &= \begin{bmatrix}\hbar / 2 & 0 \\ 0 & -\hbar/2\end{bmatrix}
+			\end{align*}
+			The commutator is
+			\begin{align*}
+				[J_x^{(1/2)}, J_y^{(1/2)}] &= \frac{i\hbar^2}{4}\begin{bmatrix}0 & 1 \\ 1 & 0\end{bmatrix}\begin{bmatrix}0 & -1 \\ 1 & 0\end{bmatrix} - \frac{i\hbar^2}{4}\begin{bmatrix}0 & -1 \\ 1 & 0\end{bmatrix}\begin{bmatrix}0 & 1\\1 & 0\end{bmatrix} \\
+				&= \frac{i\hbar^2}{4}\begin{bmatrix}1 & 0 \\ 0 & -1\end{bmatrix} - \frac{i\hbar^2}{4}\begin{bmatrix}-1 & 0 \\ 0 & 1\end{bmatrix} \\
+				&= \frac{i\hbar^2}{4}\begin{bmatrix}2 & 0 \\ 0 & -2\end{bmatrix} \\
+				&= i\hbar\begin{bmatrix}\hbar/2 & 0 \\ 0 & -\hbar/2\end{bmatrix} \\
+				&= i\hbar J_z^{(1/2)}
+			\end{align*}
+			The set of $3\times3$ matrices is
+			\begin{align*}
+				J_x^{(1)} &= \begin{bmatrix}0 & \hbar/2^{1/2} & 0 \\
+				\hbar/2^{1/2} & 0 & \hbar/2^{1/2} \\
+				0 & \hbar/2^{1/2} & 0\end{bmatrix} \\
+				J_y^{(1)} &= \begin{bmatrix}0 & -i\hbar/2^{1/2} & 0 \\ i\hbar/2^{1/2} & 0 & -i\hbar/2^{1/2} \\
+				0 & i\hbar/2^{1/2} & 0\end{bmatrix} \\
+				J_z^{(1)} &= \begin{bmatrix}\hbar & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & -\hbar\end{bmatrix}
+			\end{align*}
+			Their commutator is
+			\begin{align*}
+				[J_x^{(1)}, J_y^{(1)}] &= \frac{i\hbar^2}{2}\begin{bmatrix}0 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 0 \end{bmatrix}\begin{bmatrix} 0 & -1 & 0 \\ 1 & 0 & -1 \\ 0 & 1 & 0 \end{bmatrix} - \frac{i\hbar^2}{2}\begin{bmatrix}0 & -1 & 0 \\ 1 & 0 & -1 \\ 0 & 1 & 0\end{bmatrix}\begin{bmatrix}0 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 0 \end{bmatrix} \\
+				&= \frac{i\hbar^2}{2}\begin{bmatrix}1 & 0 & -1\\ 0 & 0 & 0\\ 1 & 0 & -1\end{bmatrix} - \frac{i\hbar^2}{2}\begin{bmatrix}-1 & 0 & -1 \\ 0 & 0 & 0\\ 1 & 0 & 1\end{bmatrix} \\
+				&= \frac{i\hbar^2}{2}\begin{bmatrix}2 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & -2\end{bmatrix} \\
+				&= i\hbar\begin{bmatrix}\hbar & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & -\hbar\end{bmatrix} \\
+				&= i\hbar J_z^{(1)}
+			\end{align*}
+			Finally, the set of $4\times4$ matrices is
+			\begin{align*}
+				J_x^{(3/2)} &= \frac{\hbar}{2}\begin{bmatrix}0 & 3^{1/2} & 0 & 0 \\ 3^{1/2} & 0 & 2 & 0 \\ 0 & 2 & 0 & 3^{1/2} \\ 0 & 0 & 3^{1/2} & 0\end{bmatrix}\\
+				J_y^{(3/2)} &= \frac{i\hbar}{2}\begin{bmatrix}0 & -3^{1/2} & 0 & 0 \\ 3^{1/2} & 0 & -2 & 0 \\ 0 & 2 & 0 & -3^{1/2} \\ 0 & 0 & 3^{1/2} & 0  \end{bmatrix} \\
+				J_z^{(3/2)} &= \frac{\hbar}{2}\begin{bmatrix}3 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & -1 & 0 \\ 0 & 0 & 0 & -3\end{bmatrix}
+			\end{align*}
+			Their commutation relation is
+			\begin{align*}
+				[J_x^{(3/2)}, J_y^{(3/2)}] =\,&\frac{i\hbar^2}{4}\begin{bmatrix}0 & 3^{1/2} & 0 & 0 \\ 3^{1/2} & 0 & 2 & 0 \\ 0 & 2 & 0 & 3^{1/2} \\ 0 & 0 & 3^{1/2} & 0\end{bmatrix}\begin{bmatrix}0 & -3^{1/2} & 0 & 0 \\ 3^{1/2} & 0 & -2 & 0 \\ 0 & 2 & 0 & -3^{1/2} \\ 0 & 0 & 3^{1/2} & 0  \end{bmatrix} \\
+				&- \frac{i\hbar^2}{4}\begin{bmatrix}0 & -3^{1/2} & 0 & 0 \\ 3^{1/2} & 0 & -2 & 0 \\ 0 & 2 & 0 & -3^{1/2} \\ 0 & 0 & 3^{1/2} & 0  \end{bmatrix}\begin{bmatrix}0 & 3^{1/2} & 0 & 0 \\ 3^{1/2} & 0 & 2 & 0 \\ 0 & 2 & 0 & 3^{1/2} \\ 0 & 0 & 3^{1/2} & 0\end{bmatrix} \\
+				=\,&\frac{i\hbar^2}{4}\begin{bmatrix}3 & 0 & -2\cdot3^{1/2} & 0 \\ 0 & 1 & 0 & -2\cdot 3^{1/2} \\ 2\cdot3^{1/2} & 0 & -1 & 0 \\ 0 & 2\cdot3^{1/2} & 0 & -3\end{bmatrix} \\
+				&-\frac{i\hbar^2}{4}\begin{bmatrix}-3 & 0 & -2\cdot3^{1/2} & 0 \\ 0 & -1 & 0 & -2\cdot 3^{1/2} \\ 2\cdot3^{1/2} & 0 & 1 & 0 \\ 0 & 2\cdot3^{1/2} & 0 & 3\end{bmatrix} \\
+				=\,&\frac{i\hbar^2}{4}\begin{bmatrix}6 & 0 & 0 & 0 \\ 0 & 2 & 0 & 0 \\ 0 & 0 & -2 & 0 \\ 0 & 0 & 0 & -6\end{bmatrix} \\
+				=\,&i\hbar\cdot\frac{\hbar}{2}\begin{bmatrix}3 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & -1 & 0 \\ 0 & 0 & 0 & -3\end{bmatrix} \\
+				=\,&i\hbar J_z^{(3/2)}
+			\end{align*}
+		\end{solution}
+		
+		\question (1) Show that $\langle J_x\rangle = \langle J_y\rangle = 0$ in a state $|jm\rangle$.
+		
+		(2) Show that in these states
+		$$\langle J_x^2\rangle = \langle J_y^2\rangle = \tfrac{1}{2}\hbar^2[j(j+1)-m^2]$$
+		(use symmetry arguments to relate $\langle J_x^2\rangle$ to $\langle J_y^2\rangle$).
+		
+		(3) Check that $\Delta J_x \cdot \Delta J_y$ from part (2) satisfies the inequality imposed by the uncertainty principle [Eq. (9.2.9)].
+		
+		(4) Show that the uncertainty bound is saturated in the state $|j, \pm j\rangle$.
+		\begin{solution}
+			The first problem is a simple exercise in algebra,
+			\begin{align*}
+				\langle J_x\rangle &= \langle jm|\frac{J_+ + J_-}{2}|jm\rangle \\
+				&= \frac{C_+(j, m)}{2}\langle jm|j, m+1\rangle + \frac{C_-(j, m)}{2}\langle jm|j, m - 1\rangle \\
+				&= 0 \\
+				\langle J_y\rangle &= \langle jm|\frac{J_+ - J_-}{2i}|jm\rangle \\
+				&= \frac{C_+(j, m)}{2i}\langle jm|j, m+1\rangle - \frac{C_-(j, m)}{2i}\langle jm|j, m-1\rangle \\
+				&= 0
+			\end{align*}
+			For the second, note that
+			\begin{align*}
+				\Big(\frac{J_+ + J_-}{2}\Big)^2 &= \frac{1}{4}\Big(J_+^2 + J_+J_- + J_-J_+ + J_-^2\Big) \\
+				&= \frac{1}{4}\Big(J_+^2 + (J^2 - J_z^2 + \hbar J_z) + (J^2 - J_z^2 - \hbar J_z) + J_-^2)\Big) \\
+				&= \frac{1}{4}\Big(J_+^2 + J_-^2 + 2J^2 - 2J_z^2\Big) \\
+				\Big(\frac{J_+ - J_-}{2i}\Big)^2 &= -\frac{1}{4}\Big(J_+^2 - J_+J_- - J_-J_+ + J_-^2\Big) \\
+				&= -\frac{1}{4}\Big(J_+^2 - (J^2 - J_z^2 + \hbar J_z) - (J^2 - J_z^2 - \hbar J_z) + J_-^2)\Big) \\
+				&= -\frac{1}{4}\Big(J_+^2 + J_-^2 - 2J^2 + 2J_z^2\Big)
+			\end{align*}
+			and so
+			\begin{align*}
+				\langle J_x^2\rangle &= \frac{1}{4}\langle jm|J_+^2 + J_-^2 + 2J^2 - 2J_z^2|jm\rangle \\
+				&= \frac{1}{2}\langle jm|J^2 - J_z^2|jm\rangle \\
+				&= \frac{1}{2}\langle jm|\hbar^2 j(j+1) - \hbar^2m^2|jm\rangle \\
+				&= \frac{1}{2}\hbar^2[j(j + 1) - m^2] \\
+				\langle J_y^2\rangle &= -\frac{1}{4}\langle jm|J_+^2 + J_-^2 - 2J^2 + 2J_z^2|jm\rangle \\
+				&= \frac{1}{2}\langle jm|J^2 - J_z^2|jm\rangle \\
+				&= \frac{1}{2}\hbar^2[j(j + 1) - m^2]
+			\end{align*}
+			Further noting that
+			\begin{align*}
+				J_xJ_y &= \frac{1}{4i}(J_+ + J_-)(J_+ - J_-) \\
+				&= \frac{1}{4i}(J_+^2 + J_-J_+ - J_+J_- - J_-^2) \\
+				J_yJ_x &= \frac{1}{4i}(J_+ - J_-)(J_+ + J_-) \\
+				&= \frac{1}{4i}(J_+^2 + J_+J_- - J_-J_+ - J_-^2)
+			\end{align*}
+			and thus
+			$$[J_x, J_y]_+ = J_xJ_y + J_yJ_x = \frac{1}{2i}(J_+^2 - J_-^2) \implies \langle jm|[J_x, J_y]_+|jm\rangle = 0,$$
+			the uncertainty principle tells us that
+			\begin{align*}
+				\Delta J_x\cdot\Delta J_y = \frac{1}{2}\hbar^2|j(j + 1) - m^2| &\geq \frac{1}{2}|\langle jm|\hbar J_z|jm\rangle| = \frac{|m|\hbar^2}{2}
+			\end{align*}
+			which effectively says
+			$$j^2 + j \geq |m^2 + m|,$$
+			a statement we know to be true (as $j$---the total angular momentum---must always be greater than or equal in magnitude to $m$---the $z$ component of angular momentum). Clearly, this reaches an equality when $m = j$.
+		\end{solution}
+	
+		\question (1) Argue that the eigenvalues of $J_x^{(i)}$ and $J_y^{(i)}$ are the same as those of $J_z^{(i)}$, namely, $j\hbar, (j - 1)\hbar, \dots, (-j\hbar)$. Generalize the result to $\hat{\theta}\cdot\mathbf{J}^{(j)}$.
+		
+		(2) Show that
+		$$(J - j\hbar)[J - (j-1)\hbar][J - (j - 2)\hbar]\cdots(J + j\hbar) = 0$$
+		where $J \equiv \hat{\theta}\cdot\mathbf{J}^{(j)}$. (Hint: In the case $J = J_z$ what happens when both sides are applied to an arbitrary eigenket $|jm\rangle$? What about an arbitrary superposition of such kets?)
+		
+		(3) It follows from (2) that $J^{2j + 1}$ is a linear combination of $J^0, J^1, \dots, J^{2j}$. Argue that the same goes for $J^{2j + k}$, $k = 1, 2, \dots$.
+		
+		\begin{solution}
+			As there is no preferred direction and we may have just as easily chosen $\hat{\theta}\cdot\mathbf{J}$ as $J_z$ to be diagonal in the shared $J^2$, $J_i$ basis, all $\hat{\theta}\cdot\mathbf{J}^{(j)}$ must have the same eigenvalues as $J_z^{(j)}$. The fact that
+			$$(J - j\hbar)[J - (j-1)\hbar][J - (j - 2)\hbar]\cdots(J + j\hbar) = 0$$
+			is a consequence of angular momentum being quantized to some value of $m$ along \textit{any} axis. That is, it is a restatement of the observation made in the first sentence.
+			
+			The linear dependence of $J^{2j + k}$ can be seen by writing those factors of $J$ whose powers exceed $2j$ as a linear combination of lower powers of $J$.
+		\end{solution}
+		
+		\question (\textit{Hard}). Using results from the previous exercise and Eq. (12.5.23), show that
+		
+		(1) $D^{(1/2)}[R] = \exp(-i\hat{\theta}\cdot\mathbf{J}^{(1/2)}/\hbar) = \cos(\theta/2)I^{1/2} - (2i/\hbar)\sin(\theta/2)\hat{\theta}\cdot\mathbf{J}^{(1/2)}$
+		
+		(2) $D^{(1)}[R] = \exp(-i\theta_xJ_x^{(1)}/\hbar) = (\cos\theta_x - 1)\Big(\frac{J_x^{(1)}}{\hbar}\Big)^2 - i\sin\theta_x\Big(\frac{J_x^{(1)}}{\hbar}\Big) + I^{(1)}$
+		
+		\begin{solution}
+			From the previous problem, we know that
+			$$(\hat{\theta}\cdot\mathbf{J}^{(1/2)} - \tfrac{1}{2}\hbar)(\hat{\theta}\cdot\mathbf{J}^{(1/2)} + \tfrac{1}{2}\hbar) = 0$$
+			or
+			$$(\hat{\theta}\cdot\mathbf{J}^{(1/2)})^2 = \tfrac{1}{4}\hbar^2$$
+			Armed with this piece of information (and calling $\hat{\theta}\cdot\mathbf{J}^{(1/2)} \equiv J$), we can expand $D^{(1/2)}[R]$ as
+			\begin{align*}
+				D^{(1/2)}[R] &= \sum_{n=0}^{\infty}\Big({\frac{-i\theta}{\hbar}}\Big)^nJ^n\frac{1}{n!} \\
+				&= I - i\Big(\frac{\theta}{\hbar}\Big)J - \frac{1}{2!}\Big(\frac{\theta}{\hbar}\Big)^2J^2 + i\frac{1}{3!}\Big(\frac{\theta}{\hbar}\Big)^3J^3 + \frac{1}{4!}\Big(\frac{\theta}{\hbar}\Big)^4J^4 - i\frac{1}{5!}\Big(\frac{\theta}{\hbar}\Big)^5J^5 - \cdots \\
+				&= \Big[I - \frac{1}{2!}\Big(\frac{\theta}{\hbar}\Big)^2J^2 + \frac{1}{4!}\Big(\frac{\theta}{\hbar}\Big)^4J^4 - \cdots\Big] - i\Big[\Big(\frac{\theta}{\hbar}\Big)J - \frac{1}{3!}\Big(\frac{\theta}{\hbar}\Big)^3J^3 + \frac{1}{5!}\Big(\frac{\theta}{\hbar}\Big)^5J^5 - \cdots\Big] \\
+				&= \Big[I - \frac{1}{2!}\Big(\frac{\theta}{\hbar}\Big)^2\Big(\frac{\hbar}{2}\Big)^2 + \frac{1}{4!}\Big(\frac{\theta}{\hbar}\Big)^4\Big(\frac{\hbar}{2}\Big)^4 - \cdots\Big] - i\Big[\Big(\frac{\theta}{\hbar}\Big)J - \frac{1}{3!}\Big(\frac{\theta}{\hbar}\Big)^3\Big(\frac{\hbar}{2}\Big)^2J + \frac{1}{5!}\Big(\frac{\theta}{\hbar}\Big)^5\Big(\frac{\hbar}{2}\Big)^4J - \cdots\Big] \\
+				&= \Big[I - \frac{1}{2!}\Big(\frac{\theta}{2}\Big)^2 + \frac{1}{4!}\Big(\frac{\theta}{2}\Big)^4 - \cdots\Big] - \frac{2i}{\hbar}\Big[\Big(\frac{\theta}{2}\Big) - \frac{1}{3!}\Big(\frac{\theta}{2}\Big)^3 + \frac{1}{5!}\Big(\frac{\theta}{2}\Big)^5 - \cdots \Big]J \\
+				&= \cos(\theta/2)I^{(1/2)} - (2i/\hbar)\sin(\theta/2)\hat{\theta}\cdot\mathbf{J}^{(1/2)}
+			\end{align*}
+			For the second part, we draw upon the previous problem to write
+			$$(J_x^{(1)} - \hbar)J_x^{(1)}(J_x^{(1)} + \hbar) = 0$$
+			or
+			$$(J_x^{(1)})^3 = \hbar^2J_x^{(1)}$$
+			Calling $J_x^{(1)}\equiv J$, we find
+			\begin{align*}
+				D^{(1)}[R] &= \sum_{n=0}^{\infty}\Big({\frac{-i\theta}{\hbar}}\Big)^nJ^n\frac{1}{n!} \\
+				&= I - i\Big(\frac{\theta}{\hbar}\Big)J - \frac{1}{2!}\Big(\frac{\theta}{\hbar}\Big)^2J^2 + i\frac{1}{3!}\Big(\frac{\theta}{\hbar}\Big)^3J^3 + \frac{1}{4!}\Big(\frac{\theta}{\hbar}\Big)^4J^4 - i\frac{1}{5!}\Big(\frac{\theta}{\hbar}\Big)^5J^5 - \cdots \\
+				&= I - i\Big(\frac{\theta}{\hbar}\Big)J - \frac{1}{2!}\Big(\frac{\theta}{\hbar}\Big)^2J^2 + i\frac{1}{3!}\Big(\frac{\theta}{\hbar}\Big)^3\hbar^2J + \frac{1}{4!}\Big(\frac{\theta}{\hbar}\Big)^4\hbar^2J^2 - i\frac{1}{5!}\Big(\frac{\theta}{\hbar}\Big)^5\hbar^4J - \cdots \\
+				&= I + \Big[-\frac{1}{2!}\theta^2\frac{J^2}{\hbar^2} + \frac{1}{4!}\theta^4\frac{J^2}{\hbar^2} - \cdots\Big] - i\Big[\theta\frac{J}{\hbar} - \frac{1}{3!}\theta^3\frac{J}{\hbar} + \frac{1}{5!}\theta^5\frac{J}{\hbar} - \cdots\Big] \\
+				&= I + (1 - \frac{1}{2!}\theta^2 + \frac{1}{4!}\theta^4 - \cdots - 1)\frac{J^2}{\hbar^2} - i\Big[\theta - \frac{1}{3!}\theta^3 + \frac{1}{5!}\theta^5 - \cdots\Big]\frac{J}{\hbar} \\
+				&= I^{(1)} + (\cos\theta_x - 1)\Big(\frac{J_x^{(1)}}{\hbar}\Big)^2 - i\sin\theta_x\Big(\frac{J_x^{(1)}}{\hbar}\Big)
+			\end{align*}
+		\end{solution}
+	
+		\question Consider the family of states $|jj\rangle,\dots,|jm\rangle,\dots,|j,-j\rangle$. One refers to them as states of the same magnitude but different orientations of angular momentum. If one takes this remark literally, i.e., in the classical sense, one is led to believe that one may rotate these into each other, as is the case for classical states with these properties. Consider, for instance, the family $|1, 1\rangle$, $|1, 0\rangle$, $|1, -1\rangle$. It may seem, for example, that the state with zero angular momentum along the $z$ axis, $|1, 0\rangle$, may be obtained by rotating $|1, 1\rangle$ by some suitable ($\tfrac{1}{2}\pi$?) angle about the $x$ axis. Using $D^{(1)}[R(\theta_x\mathbf{i})]$ from part (2) in the last exercise show that
+		$$|1, 0\rangle \neq D^{(1)}[R(\theta_x\mathbf{i})]|1, 1\rangle\quad\text{for any }\theta_x$$
+		The error stems from the fact that classical reasoning should be applied to $\langle\mathbf{J}\rangle$, which responds to rotations like an ordinary vector, and not directly to $|jm\rangle$, which is a vector in Hilbert space. Verify that $\langle\mathbf{J}\rangle$ responds to rotations like its classical counterpart, by showing that $\langle\mathbf{J}\rangle$ in the state $D^{(1)}[R(\theta_x\mathbf{i})]|1, 1\rangle$ is $\hbar[-\sin\theta_x\mathbf{j} + \cos\theta_x\mathbf{k}]$.
+		
+		It is not too hard to see why we can't always satisfy
+		$$|jm'\rangle = D^{(j)}[R]|jm\rangle$$
+		or more generally, for two normalized kets $|\psi'_j\rangle$ and $|\psi_j\rangle$, satisfy
+		$$|\psi_j'\rangle = D^{(j)}[R]|\psi_j\rangle$$
+		by any choice of $R$. These abstract equations imply $(2j + 1)$ linear, complex relations between the components of $|\psi'_j\rangle$ and $|\psi_j\rangle$ that can't be satisfied by varying $R$, which depends on only three parameters, $\theta_x$, $\theta_y$, and $\theta_z$. (Of course one can find a unitary matrix in $\mathbb{V}_J$ that takes $|jm\rangle$ into $|jm'\rangle$ or $|\psi_j\rangle$ in $\psi_j'\rangle$, but it will not be a \textit{rotation} matrix corresponding to $U[R]$.
+		
+		\begin{solution}
+			Using the results from the previous exercise and (12.5.23), we have
+			\begin{align*}
+				D^{(1)}[R(\theta_x\mathbf{i})] &= \frac{1}{\hbar^2}(\cos\theta_x - 1)\begin{bmatrix}0 & \hbar/2^{1/2} & 0 \\ \hbar/2^{1/2} & 0 & \hbar/2^{1/2} \\ 0 & \hbar/2^{1/2} & 0\end{bmatrix}^2 - \frac{i}{\hbar}\sin\theta_x\begin{bmatrix}0 & \hbar/2^{1/2} & 0 \\ \hbar/2^{1/2} & 0 & \hbar/2^{1/2} \\ 0 & \hbar/2^{1/2} & 0\end{bmatrix} + \begin{bmatrix}1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1\end{bmatrix} \\
+				&= (\cos\theta_x - 1)\begin{bmatrix}1/2 & 0 & 1/2 \\ 0 & 1 & 0 \\ 1/2 & 0 & 1/2\end{bmatrix} - i\sin\theta_x\begin{bmatrix}0 & 2^{-1/2} & 0 \\ 2^{-1/2} & 0 & 2^{-1/2} \\ 0 & 2^{-1/2} & 0\end{bmatrix} + \begin{bmatrix}1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1\end{bmatrix} \\
+				&= \begin{bmatrix}
+					(\cos\theta_x + 1)/2 & -i\sin(\theta_x)/2^{1/2} & (\cos\theta_x - 1)/2 \\
+					-i\sin(\theta_x)/2^{1/2} & \cos\theta_x & -i\sin(\theta_x)/2^{1/2} \\
+					(\cos\theta_x - 1)/2 & -i\sin(\theta_x)/2^{1/2} & (\cos\theta_x+ 1)/2
+				\end{bmatrix}
+			\end{align*}
+			where the basis is represented as
+			$$\begin{bmatrix}1 \\ 0 \\ 0\end{bmatrix} = |1, 1\rangle, \qquad \begin{bmatrix}0 \\ 1 \\ 0\end{bmatrix} = |1, 0\rangle, \qquad \begin{bmatrix}0 \\ 0 \\ 1\end{bmatrix} = |1, {-1}\rangle$$
+			Applying the rotation matrix to $|1, 1\rangle$ gives
+			$$D^{(1)}[R(\theta_x\mathbf{i})]|1, 1\rangle = \begin{bmatrix}(\cos\theta_x + 1)/2 \\ -i\sin(\theta_x)/2^{1/2} \\ (\cos\theta_x - 1)/2\end{bmatrix}$$
+			As the first and third entries cannot be simultaneously nonzero, this operation will never change $|1, 1\rangle$ into $|1, 0\rangle$.
+			
+			What of the expectation values of $J_x^{(1)}$, $J_y^{(1)}$, and $J_z^{(1)}$ in this rotated state? For these we have
+			\begin{align*}
+				\langle J_x\rangle &= \begin{bmatrix}(\cos\theta_x + 1)/2 & i\sin(\theta_x)/2^{1/2} & (\cos\theta_x - 1)/2\end{bmatrix}\begin{bmatrix}0 & \hbar/2^{1/2} & 0 \\ \hbar/2^{1/2} & 0 & \hbar/2^{1/2} \\ 0 & \hbar/2^{1/2} & 0\end{bmatrix}\begin{bmatrix}(\cos\theta_x + 1)/2 \\ -i\sin(\theta_x)/2^{1/2} \\ (\cos\theta_x - 1)/2\end{bmatrix} \\
+				&= \begin{bmatrix}(\cos\theta_x + 1)/2 & i\sin(\theta_x)/2^{1/2} & (\cos\theta_x - 1)/2\end{bmatrix}\begin{bmatrix}-i\hbar\sin(\theta_x)/2 \\ \hbar\cos\theta_x/2^{1/2} \\ -i\hbar\sin(\theta_x)/2\end{bmatrix} \\
+				&= -i\hbar(\cos\theta_x - 1)\sin(\theta_x)/4 - i\hbar(\cos\theta_x + 1)\sin(\theta_x)/4 + i\hbar\sin(\theta_x)\cos(\theta_x) / 2 \\
+				&= 0 \\
+				\langle J_y\rangle &= \begin{bmatrix}(\cos\theta_x + 1)/2 & i\sin(\theta_x)/2^{1/2} & (\cos\theta_x - 1)/2\end{bmatrix}\begin{bmatrix}0 & -i\hbar/2^{1/2} & 0 \\ i\hbar/2^{1/2} & 0 & -i\hbar/2^{1/2} \\ 0 & i\hbar/2^{1/2} & 0\end{bmatrix}\begin{bmatrix}(\cos\theta_x + 1)/2 \\ -i\sin(\theta_x)/2^{1/2} \\ (\cos\theta_x - 1)/2\end{bmatrix} \\
+				&= \begin{bmatrix}(\cos\theta_x + 1)/2 & i\sin(\theta_x)/2^{1/2} & (\cos\theta_x - 1)/2\end{bmatrix}\begin{bmatrix}-\hbar\sin(\theta_x)/2 \\ i\hbar/2^{1/2} \\ \hbar\sin(\theta_x)/2\end{bmatrix} \\
+				&= \hbar(\cos\theta_x - 1)\sin(\theta_x)/4 - \hbar(\cos\theta_x + 1)\sin(\theta_x)/4 - \hbar\sin(\theta_x)/2 \\
+				&= -\hbar\sin\theta_x \\
+				\langle J_z\rangle &= \begin{bmatrix}(\cos\theta_x + 1)/2 & i\sin(\theta_x)/2^{1/2} & (\cos\theta_x - 1)/2\end{bmatrix}\begin{bmatrix}\hbar & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & -\hbar\end{bmatrix}\begin{bmatrix}(\cos\theta_x + 1)/2 \\ -i\sin(\theta_x)/2^{1/2} \\ (\cos\theta_x - 1)/2\end{bmatrix} \\
+				&= \begin{bmatrix}(\cos\theta_x + 1)/2 & i\sin(\theta_x)/2^{1/2} & (\cos\theta_x - 1)/2\end{bmatrix}\begin{bmatrix}\hbar(\cos\theta_x + 1)/2 \\ 0 \\ -\hbar(\cos\theta_x - 1)/2 \end{bmatrix} \\
+				&= \hbar[(\cos\theta_x + 1)/2]^2 - \hbar[(\cos\theta_x - 1)/2]^2 \\
+				&= \hbar\cos^2(\theta_x/2) - \hbar\sin^2(\theta_x/2) \\
+				&= \hbar\cos\theta_x
+			\end{align*}
+			or, compactly,
+			$$\langle \mathbf{J}\rangle = \hbar\begin{bmatrix}0 \\ -\sin\theta_x \\ \cos\theta_x\end{bmatrix}$$
+			where the basis is now in physical space, not Hilbert space. In words, while we are not able to na\"ively rotate the state into $|1, 0\rangle$, we are able to rotate the expectation value until.
+		\end{solution}
+		
+		\question \textit{Euler Angles}. Rather than parameterize an arbitrary rotation by the angle $\boldsymbol{\theta}$, which describes a \textit{single} rotation by $\theta$ about an axis parallel to $\boldsymbol{\theta}$, we may parameterize it by three angles, $\gamma$, $\beta$, and $\alpha$ called \textit{Euler angles}, which define three successive rotations:
+		$$U[R(\alpha, \beta, \gamma)] = e^{-i\alpha J_z/\hbar}e^{-i\beta J_y/\hbar}e^{-i\gamma J_z/\hbar}$$
+		(1) Construct $D^{(1)}[R(\alpha, \beta, \gamma)]$ explicitly as a product of three $3\times3$ matrices. (Use the result from Exercise 12.5.5 with $J_x\to J_y$.)
+		
+		(2)Let it act on $|1, 1\rangle$ and show that $\langle\mathbf{J}\rangle$ in the resulting state is
+		$$\langle\mathbf{J}\rangle = \hbar(\sin\beta\cos\alpha\mathbf{i} + \sin\beta\sin\alpha\mathbf{j} + \cos\beta\mathbf{k})$$
+		
+		(3) Show that for no value of $\alpha$, $\beta$, and $\gamma$ can one rotate $|1, 1\rangle$ into just $|1, 0\rangle$.
+		
+		(4) Show that one can always rotate any $|1, m\rangle$ into a linear combination that involves $|1, m'\rangle$, i.e.
+		$$\langle 1, m'|D^{(1)}[R(\alpha, \beta, \gamma)]|1, m\rangle \neq 0$$
+		for some $\alpha$, $\beta$, $\gamma$ and any $m$, $m'$.
+		
+		(5) To see that one can occasionally rotate $|jm\rangle$ into $|jm'\rangle$, verify that a $180^\circ$ rotation about the $y$ axis applied to $|1, 1\rangle$ turns it into $|1, -1\rangle$.
+		
+		\begin{solution}
+			The $J_z^{(1)}$ matrix is easy to exponentiate,
+			$$e^{-i\alpha J_z^{(1)}/\hbar} = \begin{bmatrix}e^{-i\alpha} & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & e^{i\alpha}\end{bmatrix}, \qquad e^{-i\gamma J_z^{(1)}/\hbar} = \begin{bmatrix}e^{-i\gamma} & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & e^{i\gamma}\end{bmatrix}$$
+			The compact form of $e^{-i\beta J_y/\hbar}$ is
+			\begin{align*}
+				D^{(1)}[R(\beta\mathbf{j})] =\,&\frac{1}{\hbar^2}(\cos\beta - 1)\begin{bmatrix}0 & -i\hbar/2^{1/2} & 0 \\ i\hbar/2^{1/2} & 0 & -i\hbar/2^{1/2} \\ 0 & i\hbar/2^{1/2} & 0\end{bmatrix}^2 - \frac{i}{\hbar}\sin\beta\begin{bmatrix}0 & -i\hbar/2^{1/2} & 0 \\ i\hbar/2^{1/2} & 0 & -i\hbar/2^{1/2} \\ 0 & i\hbar/2^{1/2} & 0\end{bmatrix} \\
+				&+ \begin{bmatrix}1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1\end{bmatrix} \\
+				=\,&(\cos\beta - 1)\begin{bmatrix}1/2 & 0 & -1/2 \\ 0 & 1 & 0 \\ -1/2 & 0 & 1/2\end{bmatrix} + \frac{1}{2^{1/2}}\sin\beta\begin{bmatrix}0 & -1 & 0 \\ 1 & 0 & -1 \\ 0 & 1 & 0\end{bmatrix} + \begin{bmatrix}1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1\end{bmatrix} \\
+				=\,&\begin{bmatrix}
+				(\cos\beta + 1)/2 & -\sin(\beta)/2^{1/2} & -(\cos\beta - 1)/2 \\
+				\sin(\beta)/2^{1/2} & \cos\beta & -\sin(\beta)/2^{1/2} \\
+				-(\cos\beta - 1)/2 & \sin(\beta)/2^{1/2} & (\cos\beta + 1)/2
+				\end{bmatrix}
+			\end{align*}
+			and so
+			\begin{align*}
+				D^{(1)}[R(\alpha, \beta, \gamma)] &= \begin{bmatrix}e^{-i\alpha} & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & e^{i\alpha}\end{bmatrix}\begin{bmatrix}
+					(\cos\beta + 1)/2 & -\sin(\beta)/2^{1/2} & -(\cos\beta - 1)/2 \\
+					\sin(\beta)/2^{1/2} & \cos\beta & -\sin(\beta)/2^{1/2} \\
+					-(\cos\beta - 1)/2 & \sin(\beta)/2^{1/2} & (\cos\beta + 1)/2
+				\end{bmatrix}\begin{bmatrix}e^{-i\gamma} & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & e^{i\gamma}\end{bmatrix} \\
+				&= \begin{bmatrix}e^{-i\alpha} & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & e^{i\alpha}\end{bmatrix}\begin{bmatrix}e^{-i\gamma}(\cos\beta+ 1)/2 & -\sin(\beta)/2^{1/2} & -e^{i\gamma}(\cos\beta - 1)/2 \\
+				e^{-i\gamma}\sin(\beta)/2^{1/2} & \cos\beta & -e^{i\gamma}\sin(\beta)/2^{1/2} \\
+			-e^{-i\gamma}(\cos\beta - 1)/2 & \sin(\beta)/2^{1/2} & e^{i\gamma}(\cos\beta + 1)/2\end{bmatrix} \\
+				&= \begin{bmatrix}
+					e^{-i(\alpha + \gamma)}(\cos\beta + 1)/2 & -e^{-i\alpha}\sin(\beta)/2^{1/2} & -e^{-i(\alpha - \gamma)}(\cos\beta - 1)/2 \\
+					e^{-i\gamma}\sin(\beta)/2^{1/2} & \cos\beta & -e^{i\gamma}\sin(\beta)/2^{1/2} \\
+					-e^{i(\alpha - \gamma)}(\cos\beta - 1)/2 & e^{i\alpha}\sin(\beta)/2^{1/2} & e^{i(\alpha + \gamma)}(\cos\beta + 1)/2
+					\end{bmatrix} \\
+				&= \begin{bmatrix}
+					e^{-i(\alpha + \gamma)}\cos^2(\beta/2) & -e^{-i\alpha}\sin(\beta)/2^{1/2} & e^{-i(\alpha - \gamma)}\sin^2(\beta/2) \\
+					e^{-i\gamma}\sin(\beta)/2^{1/2} & \cos\beta & -e^{i\gamma}\sin(\beta)/2^{1/2} \\
+					e^{i(\alpha - \gamma)}\sin^2(\beta/2) & e^{i\alpha}\sin(\beta)/2^{1/2} & e^{i(\alpha + \gamma)}\cos^2(\beta/2)
+				\end{bmatrix}
+			\end{align*}
+			To find $\langle \mathbf{J}\rangle$, we calculate $\langle 1, 1|D^{(1)}[R(\alpha, \beta, \gamma)]^\dagger J_i^{(1)}D^{(1)}[R(\alpha, \beta, \gamma)]|1, 1\rangle$ for $i = x, y, z$. The algebra is tedious and not particularly enlightening, so we use a CAS to find
+			\begin{align*}
+				\langle J_x^{(1)}\rangle &= \hbar\sin\beta\cos\alpha \\
+				\langle J_y^{(1)}\rangle &= \hbar\sin\alpha\sin\beta \\
+				\langle J_z^{(1)}\rangle &= \hbar\cos\beta
+			\end{align*}
+			i.e.
+			$$\langle\mathbf{J}\rangle = \hbar(\sin\beta\cos\alpha\mathbf{i} + \sin\beta\sin\alpha\mathbf{j} + \cos\beta\mathbf{k})$$
+			By examining
+			$$D^{(1)}[R(\alpha, \beta, \gamma)]|1, 1\rangle = \begin{bmatrix}
+			e^{-i(\alpha + \gamma)}\cos^2(\beta/2) \\
+			e^{-i\gamma}\sin(\beta)/2^{1/2} \\
+			e^{i(\alpha - \gamma)}\sin^2(\beta/2)
+			\end{bmatrix}$$
+			we find that the middle entry can never be $1$ for any choice of $\alpha$, $\beta$, $\gamma$, i.e. this state can never be $|1, 0\rangle$. In fact, when $\beta$ is chosen to be $\pi/2$ (so that the middle entry takes on its largest value), both the first and third entries are nonzero, meaning the closest we can get to $|1, 0\rangle$ is a linear combination of states containing a bit of $|1, 0\rangle$.
+			
+			Part 4 follows from the fact that any entry of $D^{(1)}[R(\alpha, \beta, \gamma)]|1, 1\rangle$ can be made nonzero through an appropriate choice of $\alpha, \beta, \gamma$, and thus we can always perform a rotation from $|1, m\rangle$ into a state that contains $|1, m'\rangle$. (Of course, the rotated state may contain more than just $|1, m'\rangle$, as we saw above.)
+			
+			From $D^{(1)}[R(\alpha, \beta, \gamma)]|1, 1\rangle$ (see above), it is immediately clear that $\beta = \pi$ takes us from $|1, 1\rangle$ to $|1, {-1}\rangle$, so we may occasionally have the ability to rotate one pure state to another.
+		\end{solution}
 	\end{questions}
 \end{document}
