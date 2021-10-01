@@ -283,7 +283,7 @@
 		Clearly, states of $m = k$ have the same energy as states of $m = -k$. This makes sense, as the sign of $m$ corresponds only to the direction of rotation.
 	\end{solution}
 	
-	\question (\textit{The Isotropic Oscillator}). Consider the Hamiltonian
+	\question \textit{(The Isotropic Oscillator).} Consider the Hamiltonian
 	$$H = \frac{P_x^2 + P_y^2}{2\mu} + \frac{1}{2}\mu\omega^2(X^2 + Y^2)$$
 	(1) Convince yourself $[H, L_z] = 0$ and reduce the eigenvalue problem of $H$ to the radial differential equation for $R_{\textit{Em}}(\rho)$.
 	
@@ -931,7 +931,7 @@
 			The linear dependence of $J^{2j + k}$ can be seen by writing those factors of $J$ whose powers exceed $2j$ as a linear combination of lower powers of $J$.
 		\end{solution}
 		
-		\question (\textit{Hard}). Using results from the previous exercise and Eq. (12.5.23), show that
+		\question \textit{(Hard).} Using results from the previous exercise and Eq. (12.5.23), show that
 		
 		(1) $D^{(1/2)}[R] = \exp(-i\hat{\theta}\cdot\mathbf{J}^{(1/2)}/\hbar) = \cos(\theta/2)I^{1/2} - (2i/\hbar)\sin(\theta/2)\hat{\theta}\cdot\mathbf{J}^{(1/2)}$
 		
@@ -1083,6 +1083,73 @@
 			Part 4 follows from the fact that any entry of $D^{(1)}[R(\alpha, \beta, \gamma)]|1, 1\rangle$ can be made nonzero through an appropriate choice of $\alpha, \beta, \gamma$, and thus we can always perform a rotation from $|1, m\rangle$ into a state that contains $|1, m'\rangle$. (Of course, the rotated state may contain more than just $|1, m'\rangle$, as we saw above.)
 			
 			From $D^{(1)}[R(\alpha, \beta, \gamma)]|1, 1\rangle$ (see above), it is immediately clear that $\beta = \pi$ takes us from $|1, 1\rangle$ to $|1, {-1}\rangle$, so we may occasionally have the ability to rotate one pure state to another.
+		\end{solution}
+		
+		\question \textit{(Optional).} Verify that
+		\begin{gather*}
+			L_x \xrightarrow[\text{coordinate basis}]{} i\hbar\Big(\sin\phi\frac{\partial}{\partial\theta} + \cos\phi\cot\theta\frac{\partial}{\partial\phi}\Big) \\
+			L_y \xrightarrow[\text{coordinate basis}]{} i\hbar\Big({-\cos\phi}\frac{\partial}{\partial\theta} + \sin\phi\cot\theta\frac{\partial}{\partial\phi}\Big) \\
+		\end{gather*}
+		\begin{solution}
+			From basic geometry, we know that
+			\begin{align*}
+				x &= r\cos\phi\sin\theta \\
+				y &= r\sin\phi\sin\theta \\
+				z &= r\cos\theta
+			\end{align*}
+			from which we can get
+			\begin{align*}
+				r &= (x^2 + y^2 + z^2)^{1/2} \\
+				\phi &= \tan^{-1}\big(\tfrac{y}{x}\big) \\
+				\theta &= \tan^{-1}\Big(\tfrac{(x^2 + y^2)^{1/2}}{z}\Big)
+			\end{align*}
+			To make the coming process easier, we calculate the derivatives of the spherical coordinates with respect to each rectilinear coordinate, then substitute in our first three relations to obtain results entirely in spherical coordinates:
+			\begin{align*}
+				\frac{\partial r}{\partial x} &= \frac{1}{2}(x^2 + y^2 + z^2)^{-1/2}\cdot 2x \\
+				&= x/r \\
+				&= \cos\phi\sin\theta \\
+				\frac{\partial r}{\partial y} &= \frac{1}{2}(x^2 + y^2 + z^2)^{-1/2}\cdot 2y \\
+				&= y/r \\
+				&= \sin\phi\sin\theta\\
+				\frac{\partial r}{\partial z} &= \frac{1}{2}(x^2 + y^2 + z^2)^{-1/2}\cdot 2z\\
+				&= z/r \\
+				&= \cos\theta \\
+				\frac{\partial \phi}{\partial x} &= \frac{1}{1 + \tfrac{y^2}{x^2}}\cdot{-\frac{y}{x^2}} \\
+				&= {-\frac{y}{x^2 + y^2}} \\
+				&= -\frac{r\sin\phi\sin\theta}{r^2\sin^2\theta(\cos^2\phi + \sin^2\phi)} \\
+				&= {-\frac{\sin\phi}{r\sin\theta}} \\
+				\frac{\partial \phi}{\partial y} &= \frac{1}{1 + \tfrac{y^2}{x^2}}\cdot\frac{1}{x} \\
+				&= \frac{x}{x^2 + y^2} \\
+				&= \frac{r\cos\phi\sin\theta}{r^2\sin^2\theta(\cos^2\phi + \sin^2\phi)} \\
+				&= \frac{\cos\phi}{r\sin\theta} \\
+				\frac{\partial\phi}{\partial z} &= 0 \\
+				\frac{\partial\theta}{\partial x} &= \frac{1}{1 + \tfrac{x^2 + y^2}{z^2}}\cdot\frac{1}{2z}(x^2 + y^2)^{-1/2}\cdot 2x \\
+				&= \frac{z}{r^2}\frac{x}{r\sin\theta} \\
+				&= \frac{r\cos\theta}{r^2}\frac{r\cos\phi\sin\theta}{r\sin\theta} \\
+				&= \frac{\cos\phi\cos\theta}{r} \\
+				\frac{\partial \theta}{\partial y} &= \frac{1}{1 + \tfrac{x^2 + y^2}{z^2}}\cdot\frac{1}{2z}(x^2 + y^2)^{-1/2}\cdot 2y \\
+				&= \frac{z}{r^2}\frac{y}{r\sin\theta} \\
+				&= \frac{r\cos\theta}{r^2}\frac{r\sin\phi\sin\theta}{r\sin\theta} \\
+				&= \frac{\sin\phi\cos\theta}{r} \\
+				\frac{\partial \theta}{\partial z} &= \frac{1}{1 + \tfrac{x^2 + y^2}{z^2}}\cdot{-\frac{(x^2 + y^2)^{1/2}}{z^2}} \\
+				&= {-\frac{r\sin\theta}{r^2}} \\
+				&= {-\frac{\sin\theta}{r}}
+			\end{align*}
+			From here, it is a simple exercise to express the angular momentum operators in terms of the usual rectilinear coordinate basis, then change to spherical coordinates with the help of the above relations,
+			\begin{align*}
+			L_x &= YP_z - ZP_y \\
+			&= -i\hbar y\frac{\partial}{\partial z} + i\hbar z\frac{\partial}{\partial y} \\
+			&= i\hbar\Big[{-r\sin\phi}\sin\theta\Big(\frac{\partial r}{\partial z}\frac{\partial}{\partial r} + \frac{\partial \phi}{\partial z}\frac{\partial}{\partial \phi} + \frac{\partial \theta}{\partial z}\frac{\partial}{\partial\theta}\Big) + r\cos\theta\Big(\frac{\partial r}{\partial y}\frac{\partial}{\partial r} + \frac{\partial \phi}{\partial y}\frac{\partial}{\partial \phi} + \frac{\partial \theta}{\partial y}\frac{\partial}{\partial\theta}\Big)\Big] \\
+			&= i\hbar\Big[{-r\sin\phi}\sin\theta\Big(\cos\theta\frac{\partial}{\partial r} - \frac{\sin\theta}{r}\frac{\partial}{\partial\theta}\Big) + r\cos\theta\Big(\sin\phi\sin\theta\frac{\partial}{\partial r} + \frac{\cos\phi}{r\sin\theta}\frac{\partial}{\partial \phi} + \frac{\sin\phi\cos\theta}{r}\frac{\partial}{\partial\theta}\Big)\Big] \\
+			&= i\hbar\Big[\Big(r\cos\theta\frac{\cos\phi}{r\sin\theta}\Big)\frac{\partial}{\partial \phi} + \Big(r\sin\phi\sin\theta\frac{\sin\theta}{r} + r\cos\theta\frac{\sin\phi\cos\theta}{r}\Big)\frac{\partial}{\partial\theta}\Big] \\
+			&= i\hbar\Big(\cos\phi\cot\theta\frac{\partial}{\partial\phi} + \sin\phi\frac{\partial}{\partial\theta}\Big) \\
+			L_y &= ZP_x - XP_z \\
+			&= -i\hbar z\frac{\partial}{\partial x} + i\hbar x\frac{\partial}{\partial z} \\
+			&= i\hbar\Big[{-r\cos\theta}\Big(\frac{\partial r}{\partial x}\frac{\partial}{\partial r} + \frac{\partial \phi}{\partial x}\frac{\partial}{\partial \phi} + \frac{\partial \theta}{\partial x}\frac{\partial}{\partial\theta}\Big) + r\cos\phi\sin\theta\Big(\frac{\partial r}{\partial z}\frac{\partial}{\partial r} + \frac{\partial \phi}{\partial z}\frac{\partial}{\partial \phi} + \frac{\partial \theta}{\partial z}\frac{\partial}{\partial\theta}\Big)\Big] \\
+			&= i\hbar\Big[{-r\cos\theta}\Big(\cos\phi\sin\theta\frac{\partial}{\partial r} - \frac{\sin\phi}{r\sin\theta}\frac{\partial}{\partial \phi} + \frac{\cos\phi\cos\theta}{r}\frac{\partial}{\partial \theta}\Big) + r\cos\phi\sin\theta\Big(\cos\theta\frac{\partial}{\partial r} - \frac{\sin\theta}{r}\frac{\partial}{\partial \theta}\Big)\Big] \\
+			&= i\hbar\Big[\Big(r\cos\theta\frac{\sin\phi}{r\sin\theta}\Big)\frac{\partial}{\partial \phi} + \Big({-r\cos\theta}\frac{\cos\phi\cos\theta}{r} - r\cos\phi\sin\theta\frac{\sin\theta}{r}\Big)\frac{\partial}{\partial\theta}\Big] \\
+			&= i\hbar\Big(\sin\phi\cot\theta\frac{\partial}{\partial\phi} - \cos\phi\frac{\partial}{\partial\theta}\Big)
+			\end{align*}
 		\end{solution}
 	\end{questions}
 \end{document}
