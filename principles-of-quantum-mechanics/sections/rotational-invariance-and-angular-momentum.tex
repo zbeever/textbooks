@@ -1400,5 +1400,128 @@
 			\end{align*}
 			which is exactly what we expected.
 		\end{solution}
+	
+		\setcounter{subsection}{5}
+		\setcounter{question}{0}
+		\subsection{Solution of Rotationally Invariant Problems}
+		
+		\question A particle is described by the wave function
+		$$\psi_E(r, \theta, \phi) = Ae^{-r/a_0}\qquad (a_0=\mathrm{const})$$
+		(1) What is the angular momentum content of the state?
+		
+		(2) Assuming $\psi_E$ is an eigenstate in a potential that vanishes as $r\to\infty$, find $E$. (Match leading terms in Schr\"odinger's equation.)
+		
+		(3) Having found $E$, consider finite $r$ and find $V(r)$.
+		
+		\begin{solution}
+			This state has zero angular momentum, being entirely described by a function of $r$. Feeding this into (12.6.3), we find
+			\begin{align*}
+				&\Big\{{-\frac{\hbar^2}{2\mu}}\Big[\frac{1}{r^2}\frac{\partial}{\partial r}r^2\frac{\partial}{\partial r} - \frac{l(l + 1)}{r^2}\Big] + V(r)\Big\}Ae^{-r/a_0} \\
+				=\,&{-\frac{\hbar^2}{2\mu}}\frac{1}{r^2}\frac{\partial}{\partial r}\Big({-\frac{A}{a_0}r^2e^{-r/a_0}}\Big) + \frac{\hbar^2}{2\mu}\frac{l(l + 1)}{r^2}Ae^{-r/a_0} + AV(r)e^{-r/a_0} \\
+				=\,&\frac{A}{a_0}\frac{\hbar^2}{2\mu}\frac{1}{r^2}\Big(2re^{-r/a_0} - \frac{r^2}{a_0}e^{-r/a_0}\Big) + A\frac{\hbar^2}{2\mu}\frac{l(l + 1)}{r^2}e^{-r/a_0} + AV(r)e^{-r/a_0} \\
+				=\,&\frac{A}{a_0}\frac{\hbar^2}{\mu}\frac{1}{r}e^{-r/a_0} - \frac{A}{a_0^2}\frac{\hbar^2}{2\mu}e^{-r/a_0} + A\frac{\hbar^2}{2\mu}\frac{l(l + 1)}{r^2}e^{-r/a_0} + AV(r)e^{-r/a_0} \\
+				=\,&\Big(\frac{\hbar^2}{2\mu}\frac{l(l + 1)}{r^2} + \frac{1}{a_0}\frac{\hbar^2}{\mu}\frac{1}{r} - \frac{1}{a_0^2}\frac{\hbar^2}{2\mu} + V(r)\Big)Ae^{-r/a_0} = EAe^{-r/a_0}
+			\end{align*}
+			As the state has zero angular momentum, $l = 0$. We can combine this with our assumption that $\lim_{r\to\infty}V(r) = 0$ and remove common factors to write
+			\begin{align*}
+				\lim_{r\to\infty}\Big(\frac{\hbar^2}{a_0 \mu r} - \frac{\hbar^2}{2 a_0^2\mu}\Big) = E
+			\end{align*}
+			or
+			$$E = -\frac{\hbar^2}{2a_0^2\mu}$$
+			Returning to the non-limiting form of the equation, we can isolate $V(r)$ to get
+			$$V(r) = E + \frac{\hbar^2}{2a_0^2\mu} - \frac{\hbar^2}{a_0\mu r} = {-\frac{\hbar^2}{a_0\mu r}}$$
+			i.e. we are dealing with a Coulomb-like potential.
+		\end{solution}
+	
+		\question Provide the steps connecting Eq. (12.6.3) and Eq. (12.6.5).
+		\begin{solution}
+			Making the suggested substitution $R_{El} = U_{El}/r$, we find
+			\begin{align*}
+				&\Big\{{-\frac{\hbar^2}{2\mu}}\Big[\frac{\mathrm{d}^2}{\mathrm{d} r^2} + \frac{2}{r}\frac{\mathrm{d}}{\mathrm{d} r} - \frac{l(l + 1)}{r^2}\Big] + V(r)\Big\}\frac{U_{El}}{r} \\
+				=\,&{-\frac{\hbar^2}{2\mu}}\frac{\mathrm{d}}{\mathrm{d}r}\Big(\frac{U_{El}'}{r} - \frac{U_{El}}{r^2}\Big) - \frac{\hbar^2}{2\mu}\frac{2}{r}\Big(\frac{U_{El}'}{r} - \frac{U_{El}}{r^2}\Big) + \frac{\hbar^2}{2\mu}\frac{l(l + 1)}{r^3}U_{El} + V(r)\frac{U_{El}}{r} \\
+				=\,&{-\frac{\hbar^2}{2\mu}}\Big(\frac{U_{El}''}{r} - \frac{U_{El}'}{r^2}\Big) + \frac{\hbar^2}{2\mu}\Big(\frac{U_{El}'}{r^2} - \frac{2U_{El}}{r^3}\Big) - \frac{\hbar^2}{2\mu}\frac{2}{r}\Big(\frac{U_{El}'}{r} - \frac{U_{El}}{r^2}\Big) + \frac{\hbar^2}{2\mu}\frac{l(l + 1)}{r^3}U_{El} + V(r)\frac{U_{El}}{r} \\
+				=\,&\Big({-\frac{\hbar^2}{2\mu r}}\Big)U''_{El} + \Big(\frac{\hbar^2}{2\mu r^2} + \frac{\hbar^2}{2\mu r^2} - \frac{\hbar^2}{\mu r^2}\Big)U_{El}' + \Big({-\frac{\hbar^2}{\mu r^3}} + \frac{\hbar^2}{\mu r^3} + \frac{\hbar^2}{2\mu}\frac{l(l + 1)}{r^3} + \frac{V(r)}{r}\Big)U_{El} \\
+				=\,&{-\frac{\hbar^2}{2\mu r}}U''_{El} + \Big(\frac{V(r)}{r} + \frac{\hbar^2}{2\mu}\frac{l(l + 1)}{r^3}\Big)U_{El} = E\frac{U_{El}}{r}
+			\end{align*}
+			Collecting all terms on one side and multiplying by $-2\mu r/\hbar^2$ gives
+			$$\Big\{\frac{\mathrm{d}^2}{\mathrm{d}r^2} + \frac{2\mu}{\hbar^2}\Big[E - V(r) - \frac{l(l + 1)\hbar^2}{2\mu r^2}\Big]\Big\}U_{El} = 0$$
+		\end{solution}
+	
+		\question Show that Eq. (12.6.7b) follows from Eq. (12.6.7a).
+		\begin{solution}
+			Starting with the left side,
+			\begin{align*}
+				&\int_0^\infty U_1^*(D_lU_2)\,\mathrm{d}r \\
+				=\,&\int_0^\infty U_1^*\Big({-\frac{\hbar^2}{2\mu}}\frac{\mathrm{d}^2}{\mathrm{d}r^2} + V(r) + \frac{l(l + 1)\hbar^2}{2\mu r^2}\Big)U_2\,\mathrm{d}r \\
+				=\,&{-\frac{\hbar^2}{2\mu}}\int_0^\infty U_1^*\frac{\mathrm{d}^2U_2}{\mathrm{d}r^2}\,\mathrm{d}r + \int_0^\infty\Big(V(r) + \frac{l(l + 1)\hbar^2}{2\mu r^2}\Big)U_1^* U_2\,\mathrm{d}r \\
+				=\,&\Big({-U_1^*}\frac{\mathrm{d}U_2}{\mathrm{d}r}\Big)\Big|_0^{\infty} + \frac{\hbar^2}{2\mu}\int_0^\infty\frac{\mathrm{d}U_1^*}{\mathrm{d}r}\frac{\mathrm{d}U_2}{\mathrm{d}r}\,\mathrm{d}r + \int_0^\infty\Big(V(r) + \frac{l(l + 1)\hbar^2}{2\mu r^2}\Big)U_1^* U_2\,\mathrm{d}r \\
+				=\,&\Big({-U_1^*}\frac{\mathrm{d}U_2}{\mathrm{d}r} + U_2\frac{\mathrm{d}U_1^*}{\mathrm{d}r}\Big)\Big|_0^{\infty} - \frac{\hbar^2}{2\mu}\int_0^\infty\frac{\mathrm{d}^2U_1^*}{\mathrm{d}r^2}U_2\,\mathrm{d}r  + \int_0^\infty\Big(V(r) + \frac{l(l + 1)\hbar^2}{2\mu r^2}\Big)U_1^* U_2\,\mathrm{d}r \\
+				=\,&\Big({-U_1^*}\frac{\mathrm{d}U_2}{\mathrm{d}r} + U_2\frac{\mathrm{d}U_1^*}{\mathrm{d}r}\Big)\Big|_0^{\infty} + \int_0^\infty\Big[\Big({-\frac{\hbar^2}{2\mu}}\frac{\mathrm{d}^2}{\mathrm{d}r^2} + V(r) + \frac{l(l + 1)\hbar^2}{2\mu r^2}\Big)U_1\Big]^*U_2\,\mathrm{d}r \\
+				=\,&\Big({-U_1^*}\frac{\mathrm{d}U_2}{\mathrm{d}r} + U_2\frac{\mathrm{d}U_1^*}{\mathrm{d}r}\Big)\Big|_0^{\infty} + \int_0^\infty (D_lU_1)^*U_2\,\mathrm{d}r
+			\end{align*}
+			This equals the right side only when
+			$$\Big(U_1^*\frac{\mathrm{d}U_2}{\mathrm{d}r} - U_2\frac{\mathrm{d}U_1^*}{\mathrm{d}r}\Big)\Big|_0^{\infty} = 0$$
+		\end{solution}
+	
+		\question (1) Show that
+		$$\delta^3(\mathbf{r}- \mathbf{r}') \equiv \delta(x - x')\delta(y - y')\delta(z - z') = \frac{1}{r^2\sin\theta}\delta(r - r')\delta(\theta - \theta')\delta(\phi - \phi')$$
+		(consider a test function).
+		
+		(2) Show that
+		$$\nabla^2(1/r) = -4\pi\delta^3(\mathbf{r})$$
+		(Hint: First show that $\nabla^2(1/r) = 0$ if $r \neq 0$. To see what happens at $r =0$, consider a small sphere centered at the origin and use Gauss's law and the identity $\nabla^2\phi = \nabla\cdot\nabla\phi$).)
+		
+		\begin{solution}
+			A defining property of the Dirac delta function is that
+			$$\int f(\mathbf{r}')\delta^3(\mathbf{r} - \mathbf{r}')\,\mathrm{d}\mathbf{r}' = f(\mathbf{r})$$
+			Applying this to a function expressed in spherical coordinates gives
+			\begin{align*}
+				&\int_0^\infty\int_0^\pi\int_0^{2\pi}f(r', \theta', \phi')A(r, \theta, \phi)\delta(r - r')\delta(\theta - \theta')\delta(\phi - \phi')r'^2\sin\theta'\,\mathrm{d}r'\,\mathrm{d}\theta'\,\mathrm{d}\phi' \\
+				=\,&A(r, \theta, \phi)r^2\sin\theta f(r, \theta, \phi)
+			\end{align*}
+			where $A(r, \theta, \phi)$ is a presumed correction factor to the delta function. Clearly, for the defining property of the Dirac delta function to hold, 
+			$$A(r, \theta, \phi) = (r^2\sin\theta)^{-1}$$
+			Moving on to part (2), the gradient of $1/r$ is (in rectilinear coordinates)
+			\begin{align*}
+				\nabla\Big(\frac{1}{r}\Big) &= \nabla(x^2 + y^2 + z^2)^{-1/2} \\
+				&= -\frac{1}{2}(x^2 + y^2 + z^2)^{-3/2}\begin{bmatrix}
+					2x \\ 2y \\ 2z
+				\end{bmatrix} \\
+				&= -\frac{1}{r^3}\begin{bmatrix}
+					r\cos\phi\sin\theta \\
+					r\sin\phi\sin\theta \\
+					r\cos\theta
+				\end{bmatrix} \\
+				&= -\frac{1}{r^2}\begin{bmatrix}\cos\phi\sin\theta \\ \sin\phi\sin\theta \\ \cos\theta\end{bmatrix}
+			\end{align*}
+			Now, the derivative with respect to $x$ of the $x$-component of this vector is
+			\begin{align*}
+				\frac{\partial^2}{\partial x^2}\Big(\frac{1}{r}\Big) &= \frac{3}{4}(x^2 + y^2 + z^2)^{-5/2}2x\cdot 2x - \frac{1}{2}(x^2 + y^2 + z^2)^{-3/2}2 \\
+				&= \frac{3x^2}{r^5} - \frac{1}{r^3} \\
+				&= \frac{1}{r^5}(3x^2 - r^2)
+			\end{align*}
+			so, by symmetry,
+			\begin{align*}
+				\nabla^2\Big(\frac{1}{r}\Big) &= \frac{1}{r^5}(3x^2 - r^2 + 3y^2 - r^2 + 3z^2 - r^2) \\
+				&= \frac{1}{r^5}(3r^2 - 3r^2)
+			\end{align*}
+			Clearly, at nonzero $r$, $\nabla^2(1/r) = 0$. However, at $r = 0$, the limiting behavior of the above function suggests a different result. To investigate this, we integrate $\nabla^2(1/r)$ on a ball of radius $r_0$ centered at the origin
+			\begin{align*}
+				&\int_0^r \int_0^{2\pi}\int_0^{\pi}\nabla^2\Big(\frac{1}{r}\Big)\,r^2\sin\theta\,\mathrm{d}r\,\mathrm{d}p\,\mathrm{d}\phi \\
+				=\,&\int_0^{2\pi}\int_0^{\pi}\begin{bmatrix}\cos\phi\sin\theta \\ \sin\phi\sin\theta \\ \cos\theta\end{bmatrix}\cdot\nabla\Big(\frac{1}{r}\Big)\Big|_{r=r_0}r_0^2\sin\theta\,\mathrm{d}\theta\,\mathrm{d}\phi \\
+				=\,&-\int_0^{2\pi}\int_0^{\pi}\begin{bmatrix}\cos\phi\sin\theta \\ \sin\phi\sin\theta \\ \cos\theta\end{bmatrix}\cdot\begin{bmatrix}\cos\phi\sin\theta \\ \sin\phi\sin\theta \\ \cos\theta\end{bmatrix}\sin\theta\,\mathrm{d}\theta\,\mathrm{d}\phi \\
+				=\,&-\int_0^{2\pi}\int_0^{\pi}\sin\theta\,\mathrm{d}\theta\,\mathrm{d}\phi \\
+				=\,&{-2\pi}\int_0^\pi\sin\theta\,\mathrm{d}\theta \\
+				=\,&{-4\pi}
+			\end{align*}
+			A function that integrates to a finite value at the origin yet returns $0$ everywhere else is proportional to $\delta^3(\mathbf{r})$, so we must have
+			$$\nabla^2(1/r) = -4\pi\delta^3(\mathbf{r})$$
+		\end{solution}
+	
+		\question Show that $D_l$ is nondegenerate in the space of functions $U$ that vanish as $r\to 0$. (Recall the proof of Theorem 15, Section 5.6.) Note that $U_{El}$ is nondegenerate even for $E>0$. This means that $E$, $l$, and $m$, label a state fully in three dimensions.
+		
+		\begin{solution}
+			
+		\end{solution}
 	\end{questions}
 \end{document}
