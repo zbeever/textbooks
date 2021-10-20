@@ -1521,7 +1521,206 @@
 		\question Show that $D_l$ is nondegenerate in the space of functions $U$ that vanish as $r\to 0$. (Recall the proof of Theorem 15, Section 5.6.) Note that $U_{El}$ is nondegenerate even for $E>0$. This means that $E$, $l$, and $m$, label a state fully in three dimensions.
 		
 		\begin{solution}
-			
+			Consider two functions $U_1$, $U_2$ that give the energy $E$ when acted upon by $D_l$, i.e.
+			\begin{align*}
+				D_lU_1 &= \Big({-\frac{\hbar^2}{2\mu}}\frac{\mathrm{d}^2}{\mathrm{d}r^2} + V(r) + \frac{l(l + 1)\hbar^2}{2\mu r^2}\Big)U_1 = EU_1 \\
+				D_lU_2 &= \Big({-\frac{\hbar^2}{2\mu}}\frac{\mathrm{d}^2}{\mathrm{d}r^2} + V(r) + \frac{l(l + 1)\hbar^2}{2\mu r^2}\Big)U_2 = EU_2
+			\end{align*}
+			Left-multiplying the first equation by $U_2$ and the second by $U_1$, then subtracting, gives
+			$$U_2D_lU_1 - U_1D_lU_2 = {-\frac{\hbar^2}{2\mu}}\Big(U_2\frac{\mathrm{d}^2U_1}{\mathrm{d}r^2} - U_1\frac{\mathrm{d}^2U_2}{\mathrm{d}r^2}\Big) = 0$$
+			which can be rewritten as
+			$$\frac{\mathrm{d}}{\mathrm{d}r}\Big(U_2\frac{\mathrm{d}U_1}{\mathrm{d}r} - U_1\frac{\mathrm{d}U_2}{\mathrm{d}r}\Big) = 0$$
+			This is satisfied when
+			$$U_2\frac{\mathrm{d}U_1}{\mathrm{d}r} - U_1\frac{\mathrm{d}U_2}{\mathrm{d}r} = c$$
+			for $c$ constant. Since this must hold for all $r$ and $\lim_{r\to\infty}U_i(r) = 0$, we immediately have $c = 0$. This implies
+			$$\frac{1}{U_1}\frac{\mathrm{d}U_1}{\mathrm{d}r} = \frac{1}{U_2}\frac{\mathrm{d}U_2}{\mathrm{d}r}$$
+			or, after integrating,
+			$$\ln U_1 = \ln U_2 + c$$
+			i.e.
+			$$U_1 = e^c U_2$$
+			But if $U_1$ is simply a scaled version of $U_2$, they describe the same physical state. Therefore $D_l$ is nondegenerate.
 		\end{solution}
+	
+		\question (1) Verify that Eqs. (12.6.21) and (12.6.22) are equivalent to Eq. (12.6.20).
+		
+		(2) Verify Eq. (12.6.24).
+		
+		\begin{solution}
+			Starting with Eq. (12.6.22), 
+			\begin{align*}
+				(d_ld_l^\dagger)U_l &= \Big(\frac{\mathrm{d}}{\mathrm{d}\rho} + \frac{l + 1}{\rho}\Big)\Big({-\frac{\mathrm{d}}{\mathrm{d}\rho}} + \frac{l + 1}{\rho}\Big)U_l \\
+				&= \Big(\frac{\mathrm{d}}{\mathrm{d}\rho} + \frac{l + 1}{\rho}\Big)\Big({-\frac{\mathrm{d}U_l}{\mathrm{d}\rho}} + \frac{l + 1}{\rho}U_l\Big) \\
+				&= {-\frac{\mathrm{d}^2U_l}{\mathrm{d}\rho^2}} - \frac{l + 1}{\rho^2}U_l + \frac{l + 1}{\rho}\frac{\mathrm{d}U_l}{\mathrm{d}\rho} - \frac{l + 1}{\rho}\frac{\mathrm{d}U_l}{\mathrm{d}\rho} + \frac{(l + 1)^2}{\rho^2}U_l \\
+				&= {-\frac{\mathrm{d}^2U_l}{\mathrm{d}\rho^2}} + \frac{l^2 + 2l + 1 - l - 1}{\rho^2}U_l \\
+				&= {-\frac{\mathrm{d}^2U_l}{\mathrm{d}\rho^2}} + \frac{l(l + 1)}{\rho^2}U_l \\
+				&= \Big({-\frac{\mathrm{d}^2}{\mathrm{d}\rho^2}} + \frac{l(l + 1)}{\rho^2}\Big)U_l
+			\end{align*}
+			which is exactly Eq. (12.6.20). For Eq. (12.6.24), we start with the left side and act on a test function $U_l$,
+			\begin{align*}
+				d_l^\dagger d_lU_l &= \Big({-\frac{\mathrm{d}}{\mathrm{d}\rho}} + \frac{l + 1}{\rho}\Big)\Big(\frac{\mathrm{d}}{\mathrm{d}\rho} + \frac{l + 1}{\rho}\Big)U_l \\
+				&= \Big({-\frac{\mathrm{d}}{\mathrm{d}\rho}} + \frac{l + 1}{\rho}\Big)\Big(\frac{\mathrm{d}U_l}{\mathrm{d}\rho} + \frac{l + 1}{\rho}U_l\Big) \\
+				&= {-\frac{\mathrm{d}^2U_l}{\mathrm{d}\rho^2}} + \frac{l + 1}{\rho^2}U_l - \frac{l + 1}{\rho}\frac{\mathrm{d}U_l}{\mathrm{d}\rho} + \frac{l + 1}{\rho}\frac{\mathrm{d}U_l}{\mathrm{d}\rho} + \frac{(l + 1)^2}{\rho^2}U_l \\
+				&= {-\frac{\mathrm{d}^2U_l}{\mathrm{d}\rho^2}} + \frac{l^2 + 2l + 1 + l + 1}{\rho^2}U_l \\
+				&= {-\frac{\mathrm{d}^2U_l}{\mathrm{d}\rho^2}} + \frac{(l + 1)(l + 2)}{\rho^2}U_l \\
+				&= \Big({-\frac{\mathrm{d}^2}{\mathrm{d}\rho^2}} + \frac{(l + 1)(l + 2)}{\rho^2}\Big)U_l
+			\end{align*}
+			This is exactly $d_{l+1}d_{l+1}^\dagger$, as can be seen by returning to our first result and making the replacement $l\to l + 1$.
+		\end{solution}
+		
+		\question Verify that $j_0$ and $j_1$ have the limits given in Eq (12.6.33).
+		
+		\begin{solution}
+			Rewriting the trigonometric functions in $j_0$ and $j_1$ as Taylor series shows
+			\begin{align*}
+				j_0 &= \frac{\sin\rho}{\rho} \\
+				&= 1 - \frac{\rho^2}{3!} + \frac{\rho^4}{5!} - \cdots \\
+				j_1 &= \frac{\sin\rho}{\rho^2} - \frac{\cos\rho}{\rho} \\
+				&= 	\Big(\frac{1}{\rho} - \frac{\rho}{3!} + \frac{\rho^3}{5!} - \cdots\Big) - \Big(\frac{1}{\rho} - \frac{\rho}{2!} + \frac{\rho^3}{4!} - \cdots\Big) \\
+				&= \Big(\frac{1}{2!} - \frac{1}{3!}\Big)\rho - \Big(\frac{1}{4!} - \frac{1}{5!}\Big)\rho^3 + \cdots \\
+				&= \frac{\rho}{3} - \frac{\rho^2}{30} + \cdots
+			\end{align*}
+			which implies
+			\begin{align*}
+				\lim_{\rho\to 0}j_0 &= 1 \\
+				\lim_{\rho\to 0}j_1 &= \frac{\rho}{3}
+			\end{align*}
+			which is consistent with (12.6.33). More generally, since
+			\begin{align*}
+				j_l &= (-\rho)^l\Big(\frac{1}{\rho}\frac{\mathrm{d}}{\mathrm{d}\rho}\Big)^l\Big(\frac{\sin\rho}{\rho}\Big) \\
+				&= (-\rho)^l\Big(\frac{1}{\rho}\frac{\mathrm{d}}{\mathrm{d}\rho}\Big)^l\sum_{n=0}^\infty\frac{(-1)^{n}\rho^{2n}}{(2n + 1)!}
+			\end{align*}
+			each application of $(1/\rho)\mathrm{d}/\mathrm{d}\rho$ to the series expansion of $\sin(\rho)/\rho$ reduces the exponent by $2$, introduces the original exponent as a multiplicative factor, and increments the start of $n$ by $1$, i.e.
+			$$\Big(\frac{1}{\rho}\frac{\mathrm{d}}{\mathrm{d}\rho}\Big)\sum_{n=0}^\infty\frac{(-1)^{n}\rho^{2n}}{(2n + 1)!} = \sum_{n=1}^{\infty}\frac{(-1)^n\rho^{2(n - 1)}}{(2n+1)(2n-1)!}$$
+			The dominating term as $\rho\to0$ is the first term in the above summation, which is
+			$$\frac{(-1)^l}{(2l + 1)!!}$$
+			Multiplying this by $(-\rho)^l$ gives the limiting expression presented in the book,
+			$$\lim_{\rho\to0}j_l(\rho) = \frac{\rho^l}{(2l + 1)!!}$$
+		\end{solution}
+		
+		\question Find the energy levels of a particle in a spherical box of radius $r_0$ in the $l=0$ sector.
+		
+		\begin{solution}
+			Since the interior of the box has no potential, the $l = 0$ solution will by the free-particle solution of rotationally invariant Hamiltonians,
+			$$\psi_{E00}(r, \theta, \phi) = j_0(kr)Y_0^0(\theta, \phi) = \frac{1}{(4\pi)^{1/2}}\frac{\sin kr}{kr}$$
+			Since the particle is in a box of radius $r_0$, we must have that
+			$$\psi_{E00}(r) = \frac{1}{(r\pi)^{1/2}}\frac{\sin kr_0}{kr_0} = 0$$
+			Excepting the zero at $r\to\infty$, this is satisfied when
+			$$kr_0 = n\pi, \quad n\in \mathbb{Z}$$ 
+			Expressing $k$ in terms of $E$ gives us the quantization condition,
+			$$\Big(\frac{2\mu E}{\hbar^2}\Big)^{1/2}r_0 = n\pi$$
+			or 
+			$$E = \frac{\hbar^2n^2\pi^2}{2\mu r_0^2}$$
+		\end{solution}
+		
+		\question Show that the quantization condition for $l=0$ bound states in a spherical well of depth ${-V_0}$ and radius $r_0$ is
+		$$k'/\kappa = {-\tan(k'r_0)}$$
+		where $k'$ is the wave number inside the well and $i\kappa$ is the complex wave number for the exponential tail outside. Show that there are no bound states for $V_0 < \pi^2\hbar^2/8\mu r_0^2$. (Recall Exercise 5.2.6.)
+		
+		\begin{solution}
+			With $l = 0$, the wave function will be completely classified by its radial component $R_{E0}(r) = U_{E0}/r$, which can be found by solving
+			$$\Big({-\frac{\hbar^2}{2\mu}}\frac{\mathrm{d}^2}{\mathrm{d}r^2} + V(r) - E\Big)U_{E0} = 0$$
+			Within the spherical well this equation is
+			$$\frac{\mathrm{d}^2U_{E0}}{\mathrm{d}r^2} = -\frac{2\mu}{\hbar^2}(V_0 - |E|)U_{E0}$$
+			while outside it is
+			$$\frac{\mathrm{d}^2U_{E0}}{\mathrm{d}r^2} = \frac{2\mu}{\hbar^2}|E|U_{E0}$$
+			In both regions, we have made the replacement $E \to -|E|$ to make clear that we are investigating a bound state, i.e. one for which $E<0$. Clearly, $-V_0 < E < 0$ for a bound state to exist in this scenario, and so $V_0 - |E|> 0$. The general solutions to each region are then
+			$$U_{E0}(r) = \begin{cases}
+				A\cos(k'r) + B\sin(k'r), \quad &r< r_0 \\
+				Ce^{\kappa r} + De^{-\kappa r}, &r > r_0
+			\end{cases}$$
+			where $k' = (2\mu[V_0-|E|]/\hbar^2)^{1/2}$ and $\kappa = (2\mu|E|/\hbar^2)^{1/2}$. For a physical solution that is well behaved as $r \to 0$ and $r\to\infty$, $A = C = 0$. Matching both solutions at the boundary (and their first derivatives) gives
+			\begin{align*}
+				B\sin(k'r_0) &= De^{-\kappa r_0} \\
+				k'B\cos(k'r_0) &= -\kappa De^{-\kappa r_0}
+			\end{align*}
+			Dividing the first equation by the second gives the sought after normalization condition,
+			$$\frac{k'}{\kappa} = {-\tan(k'r_0)}$$
+			We can show the second part by noting that
+			$$k^2 + \kappa^2 = \frac{2\mu V_0}{\hbar^2},$$
+			treating $\kappa$ as our dependent variable, and looking for the intersection of the two plots given by
+			\begin{align*}
+				\kappa &= -k'\cot(k'r_0) \\
+				\kappa &= \Big(\frac{2\mu V_0}{\hbar^2} - k^2\Big)^{1/2}
+			\end{align*}
+			The first possible intersection occurs at the first zero of $-k'\cot(k'r_0)$, i.e.
+			$$k'r_0 = \Big(\frac{2\mu(V_0 - |E|)}{\hbar^2}\Big)^{1/2}r_0 = \frac{\pi}{2}$$
+			or
+			$$V_0 = \frac{\pi^2\hbar^2}{8\mu r_0^2} + |E|$$
+			Since all non-trivial solutions require $|E| > 0$, we see that no interesting bound-state solutions can exist for
+			$$V_0 < \frac{\pi^2\hbar^2}{8\mu r_0^2}$$
+		\end{solution}
+	
+		\question \textit{(Optional).} Verify Eq. (12.6.41) given that
+		\begin{align*}
+			&\text{(1)}\quad\int_{-1}^1P_l(\cos\theta)P_{l'}(\cos\theta)\mathrm{d}(\cos\theta) = [2/(2l + 1)]\delta_{ll'} \\
+			&\text{(2)}\quad P_l(x) = \frac{1}{2^ll!}\frac{\mathrm{d}^l(x^2 - 1)^l}{\mathrm{d}x^l} \\
+			&\text{(3)}\quad\int_0^1(1 - x^2)^m\mathrm{d}x = \frac{(2m)!!}{(2m + 1)!!}
+		\end{align*}
+		Hint: Consider the limit $kr \to 0$ after projecting out $C_l$.
+		
+		\begin{solution}
+			We follow the hint, but instead consider the limit as $kr \to \infty$. Beginning on the right side, we have
+			\begin{align*}
+				\lim_{kr\to\infty}\int_{-1}^1\sum_{l'=0}^{\infty}C_{l'}j_{l'}(kr)P_{l'}(\cos\theta)P_l(\cos\theta)\,\mathrm{d}(\cos\theta) &= \lim_{kr\to\infty}\sum_{l'=0}^{\infty}C_{l'}j_{l'}(kr)\frac{2}{2l' + 1}\delta_{ll'} \\
+				&= \lim_{kr\to\infty}\frac{2}{2l + 1}C_lj_l(kr) \\
+				&= C_l\frac{2}{2l + 1}\frac{1}{kr}\sin\Big(kr - \frac{l\pi}{2}\Big)
+			\end{align*}
+			On the left, we have
+			\begin{align*}
+				&\lim_{kr\to\infty}\int_{-1}^1P_l(u)e^{ikru}\,\mathrm{d}u \\
+				=\,&\lim_{kr\to\infty}\frac{1}{ikr}(P_l(u)e^{ikru})\Big|_{-1}^1 - \frac{1}{ikr}\int_{-1}^1P'_l(u)e^{ikru}\,\mathrm{d}u \\
+				=\,&\lim_{kr\to\infty}\frac{1}{ikr}(e^{ikr} - (-1)^le^{-ikr}) - \frac{1}{ikr}\Big[\frac{1}{ikr}(P_l'(u)e^{ikru})\Big|_{-1}^1 - \frac{1}{ikr}\int_{-1}^1P''_l(u)e^{ikru}\mathrm{d}u\Big] \\
+				=\,&\lim_{kr\to\infty}\frac{1}{ikr}(e^{ikr} - e^{il\pi}e^{-ikr}) + \mathcal{O}\big((kr)^{-2}\big) \\
+				=\,&\lim_{kr\to\infty}\frac{e^{il\pi/2}}{kr}\frac{e^{i(kr - l\pi/2)} - e^{-i(kr - l\pi/2)}}{i} + \mathcal{O}\big((kr)^{-2}\big) \\
+				=\,&\frac{2i^l}{kr}\sin\Big(kr - \frac{l\pi}{2}\Big)
+			\end{align*}
+			where we have made the replacement $u = \cos\theta$ and used the fact that $|P_l(1)| = |P_l(-1)| = 1$. Equating our findings gives
+			$$C_l\frac{2}{2l + 1}\frac{1}{kr}\sin\Big(kr - \frac{l\pi}{2}\Big) = \frac{2i^l}{kr}\sin\Big(kr - \frac{l\pi}{2}\Big)$$
+			or
+			$$C_l = i^l(2l + 1)$$
+		\end{solution}
+	
+		\question (1) By combining Eqs. (12.6.48) and (12.6.49) derive the two-term recursion relation. Argue that $C_0 \neq 0$ if $U$ is to have the right properties near $y=0$. Derive the quantization condition, Eq. (12.6.50).
+		
+		(2) Calculate the degeneracy and parity at each $n$ and compare with Exercise 10.2.3, where the problem was solved in Cartesian coordinates.
+		
+		(3) Construct the normalized eigenfunction $\psi_{nlm}$ for $n = 0$ and $1$. Write them as linear combinations of the $n=0$ and $n = 1$ eigenfunctions obtained in Cartesian coordinates.
+		
+		\begin{solution}
+			Using
+			$$v(y) = \sum_{m=0}^{\infty}C_my^{m + l + 1}$$
+			we find
+			\begin{align*}
+				&v'' - 2yv' + \Big[2\lambda - 1 - \frac{l(l + 1)}{y^2}\Big]v \\
+				=\,&\sum_{m=0}^\infty C_m(m + l + 1)(m + l)y^{m + l - 1} - 2y\sum_{m=0}^{\infty}C_m(m + l + 1)y^{m + l} + \Big[2\lambda - 1 - \frac{l(l + 1)}{y^2}\Big]\sum_{m=0}^\infty C_my^{m + l + 1} \\
+				=\,&\sum_{m=0}^{\infty}C_m(m + l + 1)(m + l)y^{m + l - 1} - 2C_m(m + l + 1)y^{m + l + 1} + C_m(2\lambda - 1)y^{m + l + 1} - C_m l(l+1)y^{m + l - 1} \\
+				=\,&\sum_{m=0}^\infty C_m\big((m + l + 1)(m + l) - (l + 1)\big)y^{m + l - 1} + \sum_{m=0}^\infty C_m\big((2\lambda - 1) - 2(m + l + 1)\big)y^{m + l + 1}
+			\end{align*}
+			which implies the recurrence relation
+			$$\frac{C_{m + 2}}{C_m} = \frac{2(m + l + 1) - (2\lambda - 1)}{(m + l + 1)(m + l) - (l + 1)} = \frac{2(m + l + \tfrac{3}{2} - \lambda)}{m^2 + (2l + 1)m + l^2 - 1}$$
+			Since $C_0 \neq 0$ for $U \propto y^{l}$ near $0$, the recurrence relation must terminate on an even value of $m$. Writing $m = 2k$ and $n = 2k + l$ gives the quantization condition
+			$$\lambda = 2k + l + \frac{3}{2} = n + \frac{3}{2}$$
+			To find the degeneracy, let us concentrate on even values of $n$. For such an energy, there are $n/2 + 1$ states with $m = 0$. For $m \neq 0$, there are
+			$$\sum_{l' = 0}^{n/2}\sum_{m=0}^{2l'}2$$
+			such states, where each $l'$ corresponds to a value of $l = 2l'$. Altogether, the number of states for a given even $n$ is
+			\begin{align*}
+				\frac{n}{2} + 1 + \sum_{l'=0}^{n/2}\sum_{m=0}^{2l'}2 &= \frac{n + 2}{2} + \sum_{l'=0}^{n/2}4l' \\
+				&= \frac{n + 2}{2} + 4\frac{(n/2)(n/2 + 1)}{2} \\
+				&= \frac{n + 2}{2} + \frac{n(n + 2)}{2} \\
+				&= \frac{n + 2 + n^2 + 2n}{2} \\
+				&= \frac{n^2 + 3n + 2}{2} \\
+				&= \frac{(n + 1)(n + 2)}{2}
+			\end{align*}
+			which is exactly what we found in Exercise 10.2.3. For parity, it is obvious that $U(r)/r$ is even when $n$ is even, with $U(r)/r$ odd otherwise.
+			
+			The normalized eigenfunctions for $n = 0$ and $1$ are
+			\begin{align*}
+				\psi_{0, 0, 0} &= \frac{C_0}{2}\Big(\frac{\mu\omega}{\pi\hbar}\Big)^{1/2}e^{-\mu\omega r^2/2\hbar} \\
+				\psi_{1, 1, -1} &= \frac{C_0}{2}\Big(\frac{3}{2\pi}\Big)^{1/2}\Big(\frac{\mu\omega}{\hbar}\Big)r e^{-\mu\omega r^2/2\hbar}e^{-i\phi}\sin\theta \\
+				\psi_{1, 1, 0} &= \frac{C_0}{2}\Big(\frac{3}{\pi}\Big)^{1/2}\Big(\frac{\mu\omega}{\hbar}\Big)r e^{-\mu\omega r^2/2\hbar}\cos\theta \\
+				\psi_{1, 1, 1} &= {-\frac{C_0}{2}}\Big(\frac{3}{2\pi}\Big)^{1/2}\Big(\frac{\mu\omega}{\hbar}\Big)r e^{-\mu\omega r^2/2\hbar}e^{i\phi}\sin\theta
+			\end{align*}
+			I may be misunderstanding the question, but writing the above functions as linear combinations of the $n = 0$ and $1$ eigenfunctions in Cartesian coordinates is trivial and amounts to rewriting the above in terms of Cartesian coordinates. Because of this, we skip this part of the problem.
+		\end{solution} 
 	\end{questions}
 \end{document}
