@@ -1,0 +1,269 @@
+\documentclass[../principles-of-quantum-mechanics.tex]{subfiles}
+
+\begin{document}
+	\printanswers
+	
+	\setcounter{section}{12}
+	\section{The Hydrogen Atom}
+	
+	\begin{questions}
+	\setcounter{subsection}{0}
+	\subsection{The Eigenvalue Problem}
+	
+	\question Derive Eqs. (13.1.11) and (13.1.14) starting from Eqs. (13.1.8)-(13.1.10).
+	
+	\begin{solution}
+		Substituting
+		$$v_{El} = \rho^{l+1}\sum_{k=0}^{\infty}C_k\rho^k = \sum_{k=0}^{\infty}C_k\rho^{k + l + 1}$$
+		into the radial equation gives
+		\begin{align*}
+			&\frac{\mathrm{d}^2v}{\mathrm{d}\rho^2} - 2\frac{\mathrm{d}v}{\mathrm{d}\rho} + \Big[\frac{e^2\lambda}{\rho} - \frac{l(l + 1)}{\rho^2}\Big]v \\
+			=\,&\sum_{k=0}^{\infty}C_k(k + l + 1)(k + l)\rho^{k + l - 1} - 2C_k(k + l + 1)\rho^{k + l} + C_ke^2\lambda\rho^{k + l} - C_kl(l + 1)\rho^{k + l - 1} \\
+			=\,&\sum_{k=0}^{\infty}C_k\big((k + l + 1)(k + l) - l(l + 1)\big)\rho^{k + l - 1} + C_k\big(e^2\lambda - 2(k + l + 1)\big)\rho^{k + l} = 0
+		\end{align*}
+		which can only be true if
+		$$C_{k + 1}\big((k + l + 2)(k + l + 1) - l(l + 1)\big) + C_k\big(e^2\lambda - 2(k + l + 1)\big) = 0$$
+		or
+		$$\frac{C_{k + 1}}{C_k} = \frac{-e^2\lambda + 2(k + l + 1)}{(k + l + 2)(k + l + 1) - l(l + 1)}$$
+		In order for $v_{El}$ to be well-behaved, this recursive relation implies we must have
+		$$e^2\lambda = 2(k + l + 1)$$
+		for some $k$. Substituting $\lambda = (2m/\hbar^2W)^{1/2}$ into this and solving for $W$ gives the quantization condition in terms of the system's energy
+		$$W = \frac{me^4}{2\hbar^2(k + l + 1)^2}$$ 
+	\end{solution}
+	
+	\question Derive the degeneracy formula, Eq. (13.1.18).
+	
+	\begin{solution}
+		Since $n = k + l + 1$, a given energy level $n$ can have the $l$ values
+		$$l = n - k - 1 = n - 1, n - 2, \dots, 1, 0$$
+		Since each $l$ value has $2l + 1$ different $m$ values, the total number of states with different $l$ and $m$ quantum numbers sharing the same $n$ is
+		$$\sum_{l = 0}^{n - 1}(2l + 1) = 2\frac{n(n - 1)}{2} + n = n^2 - n + n = n^2$$
+	\end{solution}
+	
+	\question Starting from the recursion relation, obtain $\psi_{210}$ (normalized).
+	
+	\begin{solution}
+		With $l = 1$ and $n = 2$, the largest $k$ associated with this state is $0$, and so only $C_0$ is nonzero in the power series expansion of $v_{21}(\rho)$. Explicitly, $v_{21} = C_0\rho^{2}$. This corresponds to a $U_{21}(r)$ of
+		$$U_{21}(r) = C_0\Big(\frac{2mW}{\hbar^2}\Big)r^2e^{-(2mW/\hbar^2)^{1/2}r}$$
+		Since $W = me^4/8\hbar^2$ and $a_0 = \hbar^2/me^2$, this can be further rewritten as
+		$$U_{21}(r) = C_0\Big(\frac{m^2e^4}{4\hbar^4}\Big)r^2 e^{-(me^2/2\hbar^2)r} = \frac{C_0}{4a_0^2}r^2e^{-r/2a_0}$$
+		Since $Y_1^0(\theta, \phi) = (3/4\pi)^{1/2}\cos\theta$, our unnormalized wave function is
+		$$\psi_{210}(r, \theta, \phi) = \frac{U_{21}(r)}{r}Y^0_1(\theta, \phi) = \frac{C_0}{4a_0^2}\Big(\frac{3}{4\pi}\Big)^{1/2}re^{-r/2a_0}\cos\theta$$
+		Integrating the radial part of $|\psi_{210}|^2$ over all distances and requiring a sensible probability gives the requirement
+		$$\int_0^\infty \frac{|C_0|^2}{16a_0^4}r^2e^{-r/a_0}r^2\,\mathrm{d}r = \frac{|C_0|^2}{16a_0^4}\int_0^\infty r^4e^{-r/a_0}\mathrm{d}r = 1$$
+		To solve this integral, note that
+		\begin{align*}
+			\int_0^\infty r^n e^{-\alpha r}\mathrm{d}r &= (-1)^n\frac{\mathrm{d}^n}{\mathrm{d}\alpha^n}\int_0^\infty e^{-\alpha r}\,\mathrm{d}r \\
+			&= (-1)^n\frac{\mathrm{d}^n}{\mathrm{d}\alpha^n}\frac{e^{-\alpha r}}{-\alpha}\Big|_0^\infty \\
+			&= (-1)^n\frac{\mathrm{d}^n}{\mathrm{d}\alpha^n}\frac{1}{\alpha} \\
+			&= \frac{n!}{\alpha^{n + 1}}
+		\end{align*}
+		and so
+		$$|C_0|^2 = \frac{16a_0^4}{4!}\frac{1}{a_0^5} = \frac{2}{3a_0}$$
+		or $C_0 = (2/3a_0)^{1/2}$. Putting this into our (previously) unnormalized wave function gives a final answer of
+		$$\psi_{210}(r, \theta, \phi) = \Big(\frac{1}{32\pi a_0^3}\Big)^{1/2}\frac{r}{a_0}e^{-r/2a_0}\cos\theta$$
+	\end{solution}
+	
+	\question Recall from the last chapter [Eq. (12.6.19)] that as $r\to\infty$, $U_e\sim (r)^{me^2/\kappa\hbar^2}e^{-\kappa r}$ in a Coulomb potential $V = -e^2/r$ [$\kappa = (2mW/\hbar^2)^{1/2}$]. Show that this agrees with Eq. (13.1.26).
+	
+	\begin{solution}
+		Writing
+		$$W = \frac{me^4}{2\hbar^2n^2} = \frac{e^2}{2n^2a_0}$$
+		and
+		$$\kappa = \Big(\frac{2mW}{\hbar^2}\Big)^{1/2} = \Big(\frac{me^2}{n^2a_0\hbar^2}\Big)^{1/2} = \Big(\frac{1}{n^2a_0^2}\Big)^{1/2} = \frac{1}{na_0}$$
+		the limiting form of $U_E$ given in the previous chapter becomes
+		$$U_E \approx r^{1/\kappa a_0}e^{-\kappa r} = r^{n}e^{-r/na_0}$$
+		Since $R = U/r$, this corresponds to a limiting form of $R_{nl} \approx r^{n - 1}e^{-r/na_0}$, which is exactly (13.1.26).
+	\end{solution}
+
+	\question \textit{(Virial Theorem).} Since $|n, l, m\rangle$ is a stationary state, $\langle \dot{\Omega}\rangle = 0$ for any $\Omega$. Consider $\Omega = \mathbf{R}\cdot\mathbf{P}$ and use Ehrenfest's theorem to show that $\langle T\rangle = (-1/2)\langle V\rangle$ in the state $|n, l, m\rangle$.
+	
+	\begin{solution}
+		By Ehrenfest theorem,
+		\begin{align*}
+			\langle \dot{\Omega}\rangle &= \langle [\Omega, H]\rangle \\
+			&= \langle [\mathbf{R}\cdot\mathbf{P}, H]\rangle \\
+			&= \langle [XP_x, H] + [YP_y, H] + [ZP_z, H]\rangle
+		\end{align*}
+		Since the Hamiltonian is rotationally invariant, we can find $[XP_x, H]$ and make the substitutions $x\to y$ and $x\to z$ to obtain the other terms in the above expression. For this sample term, we find
+		\begin{align*}
+			[XP_x, H] &= X[P_x, H] + [X, H]P_x \\
+			&= X[P_x, \tfrac{P_x^2 + P_y^2 + P_z^2}{2m} + V(X, Y, Z)] + [X, \tfrac{P_x^2 + P_y^2 + P_z^2}{2m} + V(X, Y, Z)]P_x \\
+			&= X[P_x, V(X, Y, Z)] + [X, \tfrac{P_x^2}{2m}]P_x
+		\end{align*}
+		The first commutator can be evaluated most simply by finding its effect on a wave function in the position basis,
+		\begin{align*}
+			[P_x, V(X, Y, Z)]|\psi\rangle &\to -i\hbar[\tfrac{\partial}{\partial x}, V(x, y, z)]\psi(x, y, z) \\
+			&= -i\hbar\frac{\partial}{\partial x}\Big(V(x, y, z)\psi(x, y, z)\Big) + i\hbar V(x)\frac{\partial}{\partial x}\psi(x, y, z) \\
+			&= -i\hbar\Big(\frac{\partial}{\partial x}V(x, y, z)\Big)\psi(x, y, z) - i\hbar V(x)\frac{\partial}{\partial x}\psi(x, y, z) + i\hbar V(x)\frac{\partial}{\partial x}\psi(x, y, z) \\
+			&= -i\hbar\Big(\frac{\partial}{\partial x}V(x, y, z)\Big)\psi(x, y, z) \\
+		\end{align*}
+		which implies
+		$$[P_x, V(X, Y, Z)] = -i\hbar\frac{\partial}{\partial x}V(X, Y, Z)$$
+		The second commutator can be easily evaluated by recalling $[X, P_x] = i\hbar$,
+		\begin{align*}
+			[X, \tfrac{P_x^2}{2m}] &= \frac{1}{2m}[X, P_xP_x] \\
+			&= \frac{1}{2m}[X, P_x]P_x + \frac{1}{2m}P_x[X, P_x] \\
+			&= i\hbar\frac{P_x}{m}
+		\end{align*}
+		Substituting our results into the full expression for $[XP_x, H]$ gives
+		$$[XP_x, H] = -i\hbar X\frac{\partial}{\partial x}V(X, Y, Z) + i\hbar\frac{P_x^2}{m}$$
+		Putting this, in turn, into the full expression for $[\mathbf{R}\cdot\mathbf{P}, H]$ gives
+		\begin{align*}
+			[\mathbf{R}\cdot\mathbf{P}, H] &= -i\hbar\Big(X\frac{\partial}{\partial x} + Y\frac{\partial}{\partial y} + Z\frac{\partial}{\partial z}\Big)V(X, Y, Z) + i\hbar\frac{P_x^2 + P_y^2 + P_z^2}{m} \\
+			&= -i\hbar \mathbf{R}\cdot\nabla V(X, Y, Z) + i\hbar(2T)
+		\end{align*}
+		where we have identified $(P_x^2 + P_y^2 + P_z^2)/ 2m$ as $T$, the kinetic energy. Noting that $\partial R/\partial X = X/R$ and so on, a potential of the form $V = cR^k$ has a gradient of
+		$$\nabla V = ckR^{k-1}\begin{bmatrix}X/R & Y/R & Z/R\end{bmatrix}^T = ckR^{k-2}\begin{bmatrix}X & Y & Z\end{bmatrix}^T$$
+		and so
+		$$\mathbf{R}\cdot\nabla V = ckR^{k - 2}(X^2 + Y^2 + Z^2) = ckR^k = kV$$
+		Putting everything together with the fact that $\tfrac{\mathrm{d}}{\mathrm{d}t}\langle \dot{(\mathbf{R}\mathbf{P})}\rangle = 0$ shows us
+		\begin{align*}
+			\langle -i\hbar(kV) + i\hbar(2T)\rangle &= -i\hbar k\langle V\rangle + i\hbar 2\langle T\rangle = 0
+		\end{align*}
+		or
+		$$\langle T\rangle = \frac{k}{2}\langle V\rangle$$
+		When $k = -1$, as it does in the case of the Coulomb potential, we have the desired result
+		$$\langle T\rangle = -\frac{1}{2}\langle V\rangle$$
+	\end{solution}
+
+	\setcounter{subsection}{1}
+	\subsection{The Degeneracy of the Hydrogen Spectrum}
+	\setcounter{question}{0}
+	\question Let us see why the conservation of the Runge-Lenz vector $\mathbf{n}$ implies closed orbits.
+	
+	(1) Express $\mathbf{n}$ in terms of $\mathbf{r}$ and $\mathbf{p}$ alone (get rid of $\mathbf{l}$).
+	
+	(2) Since the particle is bound, it cannot escape to infinity. So, as we follow it from some arbitrary time onward, it must reach a point $\mathbf{r}_{\text{max}}$ where its distance from the origin stops growing. Show that
+	$$\mathbf{n} = \mathbf{r}_{\text{max}}\Big(2E + \frac{e^2}{r_{\text{max}}}\Big)$$
+	at this point. (Use the law of conservation of energy to eliminate $p^2$.) Show that, for similar reasons, if we wait some more, it will come to $\mathbf{r}_{\text{min}}$, where
+	$$\mathbf{n} = \mathbf{r}_{\text{min}}\Big(2E+ \frac{e^2}{r_{\text{min}}}\Big)$$
+	Thus $\mathbf{r}_{\text{max}}$ and $\mathbf{r}_{\text{min}}$ are parallel to each other and to $\mathbf{n}$. The conservation or constancy of $\mathbf{n}$ implies that the maximum (minimum) separation is always reached at the same point $\mathbf{r}_{\text{max}}$ ($\mathbf{r}_{\text{min}}$), i.e., the orbit is closed. In fact, all three vectors $\mathbf{r}_{\text{max}}$, $\mathbf{r}_{\text{min}}$, and $\mathbf{n}$ are aligned with the major axis of the ellipse along which the particle moves; $\mathbf{n}$ and $\mathbf{r}_{\text{min}}$ are parallel, while $\mathbf{n}$ and $\mathbf{r}_{\text{max}}$ are antiparallel. (Why?) Convince yourself that for a circular orbit, $\mathbf{n}$ must and does vanish.
+	
+	\begin{solution}
+		Since $\mathbf{l} = \mathbf{r}\times\mathbf{p}$, the Runge-Lenz vector can be written as
+		\begin{align*}
+			\mathbf{n} &= \frac{\mathbf{p}\times\mathbf{l}}{m} - \frac{e^2}{r}\mathbf{r} \\
+			&= \frac{\mathbf{p}\times\mathbf{(\mathbf{r}\times\mathbf{p})}}{m} - \frac{e^2}{r}\mathbf{r} \\
+			&= \frac{p^2\mathbf{r} - (\mathbf{p}\cdot\mathbf{r})\mathbf{p}}{m} - \frac{e^2}{r}\mathbf{r}
+		\end{align*}
+		Now, when $\mathbf{r}$ is at a maximum (minimum), $\mathbf{p}\cdot\mathbf{r} = 0$, for if this were not so the particle would arrive at a larger (smaller) $r$ sometime near the instant we are considering. Therefore, we may write
+		\begin{align*}
+			\mathbf{n}_{\mathbf{r}_{\text{max}}} &= \mathbf{r}_{\text{max}}\Big(\frac{p^2}{m} - \frac{e^2}{r_{\text{max}}}\Big) \\
+			\mathbf{n}_{\mathbf{r}_{\text{min}}} &= \mathbf{r}_{\text{min}}\Big(\frac{p^2}{m} - \frac{e^2}{r_{\text{min}}}\Big)
+		\end{align*}
+		Since $E = p^2/2m - e^2/r$, we have $p^2 = 2m(E + e^2/r)$ and thus
+		\begin{align*}
+			\mathbf{n}_{\mathbf{r}_{\text{max}}} &= \mathbf{r}_{\text{max}}\Big(2E + \frac{e^2}{r_{\text{max}}}\Big) \\
+			\mathbf{n}_{\mathbf{r}_{\text{min}}} &= \mathbf{r}_{\text{min}}\Big(2E + \frac{e^2}{r_{\text{min}}}\Big)
+		\end{align*}
+		Since $\mathbf{n}$ never changes (i.e. it is conserved), $\mathbf{r}_{\text{max}}$ must be parallel to $\mathbf{r}_{\text{min}}$. That one is parallel to $\mathbf{n}$ and the other antiparallel follows from the observation that $\mathbf{r}_{\text{max}}$ and $\mathbf{r}_{\text{min}}$ cannot occur at the same point in the electron's orbit, and thus their linear dependence forces them to be antiparallel.
+	\end{solution}
+
+	\setcounter{subsection}{2}
+	\subsection{Numerical Estimates and Comparison with Experiment}
+	\setcounter{question}{0}
+	
+	\question The pion has a range of $1\,\text{Fermi} = 10^{-5}\text{\AA}$ as a mediator of nuclear force. Estimate its rest energy.
+	
+	\begin{solution}
+		Since the range $\lambda_e$ of the pion is given by
+		$$\lambda_e = \frac{\hbar}{mc},$$
+		we have
+		$$mc^2 = \frac{\hbar c}{\lambda} = \frac{2\cdot 10^3\,\text{eV\AA}}{10^{-5}\text{\AA}} = 200\,\text{MeV}$$
+	\end{solution}
+	
+	\question Estimate the de Broglie wavelength of an electron of kinetic energy $200$ eV. (Recall $\lambda = 2\pi\hbar/p$.)
+	
+	\begin{solution}
+		At $200$ eV, the electron is far from relativistic and we can use the excellent approximation of
+		$$K = \frac{p^2}{2m} = \frac{p^2c^2}{2mc^2}$$
+		or
+		$$pc = (2mc^2K)^{1/2}$$
+		Writing
+		$$\lambda = \frac{2\pi\hbar}{p} = \frac{2\pi\hbar c}{pc} = \frac{2\pi\hbar c}{(2mc^2K)^{1/2}}$$
+		allows us to estimate
+		$$\lambda = \frac{2\pi}{2^{1/2}}\frac{2\cdot10^3\,\text{eV\AA}}{[(5\cdot10^5\,\text{eV})(2\cdot10^2\,\text{eV})]^{1/2}} = \frac{4\pi\cdot10^{-1}}{2^{1/2}}\,\text{\AA} \approx 0.889\,\text{\AA}$$
+	\end{solution}
+
+	\question Instead of looking at the emission spectrum, we can also look at the \textit{absorption} spectrum of hydrogen. Say some hydrogen atoms are sitting at the surface of the sun. From the interior of the sun, white light tries to come out and the atoms at the surface absorb what they can. The atoms in the ground state will now \textit{absorb} the Lyman series and this will lead to dark lines if we analyze the light coming from the sun. The presence of these lines will tell us that there is hydrogen at the surface of the sun. We can also estimate the surface temperature as follows. Let $T$ be the surface temperature. The probability $P(n = 1)$ and $P(n = 2)$ of an atom being at $n=1$ and $n=2$, respectively, are related by Boltzmann's formula
+	$$\frac{P(n=2)}{P(n=1)} = 4e^{-(E_2-E_1)/kT}$$
+	where the factor $4$ is due to the degeneracy of the $n=2$ level. Now only atoms in $n = 2$ can produce the Balmer lines in the absorption spectrum. The relative strength of the Balmer and Lyman lines will tell us $P(n = 2)/P(n = 1)$, from which we may infer $T$. Show that for $T = 6000\,\text{K}$, $P(n = 2)/P(n = 1)$ is negligible and that it becomes significant only for $T \simeq 10^5\,\text{K}$. (The Boltzmann constant is $k \simeq 9\times10^{-5}\,\text{eV/K}$. A mnemonic is $kT \simeq \tfrac{1}{40}\,\text{eV}$ at room temperature, $T = 300\,\text{K}$.)
+	
+	\begin{solution}
+		Since
+		\begin{align*}
+			\frac{E_2 - E_1}{k_B} &= -\frac{me^4}{2k_B(4\pi\epsilon_0)^2\hbar^2}\Big(\frac{1}{2^2} - \frac{1}{1^2}\Big) \\
+			&= \frac{3}{8}\frac{(mc^2)k_e^2e^4}{k_B(\hbar c)^2} \\
+			&= \frac{3}{8}\frac{(5\cdot10^5\,\text{eV})(14.4\,\text{eV\AA}/e^2)^2e^4}{(8.6\cdot10^{-5}\,\text{eV/K})(2\cdot10^3\,\text{eV\AA})^2} \\
+			&= 1.1\cdot10^5\,\text{K}
+		\end{align*}
+		the ratio of probabilities is near $0$ for $T = 6000\,\text{K}$, approaching and exceeding unity only when $T$ grows to be larger than about $10^5\,\text{K}$.
+	\end{solution}
+
+	\setcounter{subsection}{3}
+	\subsection{Multielectron Atoms and the Periodic Table}
+	\setcounter{question}{0}
+	
+	\question Show that if we ignore interelectron interactions, the energy levels of a multielectron atom go as $Z^2$. Since the Coulomb potential is $Ze/r$, why is the energy $\propto Z^2$?
+	
+	\begin{solution}
+		If we follow the initial analysis, replacing $\phi = e/r$ with $\phi' = Ze/r$, we begin by looking for the function $U_{El}$ that satisfies
+		$$\Big\{\frac{\mathrm{d}^2}{\mathrm{d}r^2} + \frac{2m}{\hbar^2}\Big[E + \frac{Ze^2}{r} - \frac{l(l + 1)\hbar^2}{2mr^2}\Big]\Big\}U_{El} = 0$$
+		Making the same set of substitutions as Shankar, this simplifies to
+		$$\frac{\mathrm{d}^2v}{\mathrm{d}\rho^2} - 2\frac{\mathrm{d}v}{\mathrm{d}\rho} + \Big[\frac{Ze^2\lambda}{\rho} - \frac{l(l + 1)}{\rho^2}\Big]v = 0$$
+		which, upon making the ansatz
+		$$v_{El} = \rho^{l + 1}\sum_{k=0}^{\infty}C_k\rho^k$$
+		yields the recurrence relation
+		$$\frac{C_{k+1}}{C_k} = \frac{-Ze^2\lambda+ 2(k + l + 1)}{(k + l + 2)(k + l + 1) - l(l + 1)}$$
+		This terminates only when
+		$$Ze^2\lambda = 2(k + l + 1) = 2n$$
+		Since
+		$$E = -W = -\frac{2m}{\hbar^2\lambda^2}$$
+		we can write
+		$$E = -Z^2\frac{me^4}{2\hbar^2n^2}$$
+	\end{solution}
+	
+	\question Compare (roughly) the sizes of the uranium atom and the hydrogen atom. Assume levels fill in the order of increasing $n$, and that the nonrelativistic description holds. Ignore interelectron effects.
+	
+	\begin{solution}
+		At each $n$, there are $2n + 1$ possible combinations of $l$ and $m$, with each state able to contain $2$ electrons (one spin up, one spin down). Therefore, with the assumptions given in the problem statement, the total number of electrons in an atom with its first $N$ shells filled is
+		\begin{align*}
+			\sum_{n=0}^{N - 1}2(2n + 1) &= 4\sum_{n=0}^{N-1}n - 2\sum_{n=0}^{N-1} \\
+			&= 4\frac{N(N - 1)}{2} + 2N \\
+			&= 2N^2 - 2N + 2N \\
+			&= 2N^2
+		\end{align*}
+		We know that the lone electron in the hydrogen atom is at $n = 1$ in its ground state. For the uranium atom, with $Z = 92$, we know from the above formula that it should have $7$ shells, with the last one not entirely filled. 
+		
+		Taking a step back, from (13.1.23), we know that
+		\begin{align*}
+			\rho_H &= \frac{me^2}{\hbar^2n}r_H = \frac{r_H}{na_0} \\
+			\rho_U &= \frac{Zme^2}{\hbar^2n}r_U = 92\frac{r_U}{na_0}
+		\end{align*}
+		That is, the uranium atom's `length scale' is $a_0/92$ on account of the greater number of protons. Recalling that the wave function $\psi_{n,n-1,m}$ reaches a maximum when 
+		$$r = n^2a_0$$
+		we estimate
+		\begin{align*}
+			r_H &= 1^2a_0 = a_0 \\
+			r_U &= 7^2\frac{a_0}{92} = 0.533a_0
+		\end{align*}
+		This is quite opposite reality, were the uranium atom has a larger radius than the hydrogen atom. Neglecting the interelectron effects has placed too much emphasis on the attractive power of the nucleus and not enough emphasis on the repulsive power of the electron cloud.
+	\end{solution}
+	
+	\question Visible light has a wavelength of approximately $5000\,\text{\AA}$. Which of the series---Lyman, Balmer, Paschen---do you think was discovered first?
+	
+	\begin{solution}
+		Since
+		$$E = \frac{2\pi\hbar c}{\lambda} = \frac{mk^2e^4}{2\hbar^2}\Big(\frac{1}{n_L^2} - \frac{1}{n_H^2}\Big)$$
+		(where we have used SI units) we can write
+		\begin{align*}
+			\lambda &= \frac{4\pi\hbar^3c^3}{mc^2k^2e^4}\Big(\frac{1}{n_L^2} - \frac{1}{n_H^2}\Big)^{-1} \\
+			&= \frac{4\pi(2000\,\text{eV\AA})^3}{(5\cdot10^5\,\text{eV})(14.4\cdot\text{eV\AA}/e^2)^2e^4}\Big(\frac{1}{n_L^2} - \frac{1}{n_H^2}\Big)^{-1} \\
+			&= (970\,\text{\AA})\Big(\frac{1}{n_L^2} - \frac{1}{n_H^2}\Big)^{-1}
+		\end{align*}
+		From experimentation, only $n_L=2$ gives wavelengths around the $5000\,\text{\AA}$ range, so the Balmer series was probably the one to be discovered first.
+	\end{solution}
+	
+	\end{questions}
+\end{document}
