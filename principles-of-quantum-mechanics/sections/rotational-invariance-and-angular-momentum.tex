@@ -119,26 +119,46 @@
 	Using the identity, verify that the new constraint coming from the $\varepsilon_x\varepsilon_z^2$ term is satisfied given the commutation relations between $P_x$, $P_y$, and $L_z$.
 	
 	\begin{solution}
-		\color{red}
 		Tracing the steps outlined in the text, we consider the following sequence of operators
 		$$U[R(-\varepsilon_z\mathbf{k})]T(-\varepsilon_x\mathbf{i})U[R(\varepsilon_z\mathbf{k})]T(\varepsilon_x\mathbf{i})$$
+		but now use a rotation matrix of the form
+		$$U[R(\varepsilon_z\mathbf{k})] = \begin{bmatrix}
+			\cos\varepsilon_z & -\sin\varepsilon_z \\ 
+			\sin\varepsilon_z & \cos\varepsilon_z
+		\end{bmatrix} \approx \begin{bmatrix}
+		1 - \frac{\varepsilon_z^2}{2} & -\varepsilon_z \\
+		\varepsilon_z & 1 - \frac{\varepsilon_z^2}{2}
+	\end{bmatrix}.$$
 		Applied to a point $(x, y)$, this has the effect of
 		\begin{align*}
 			\begin{bmatrix}x \\ y\end{bmatrix} &\to \begin{bmatrix}x + \varepsilon_x \\ y\end{bmatrix} \\
-			&\to \begin{bmatrix}(x + \varepsilon_x) - y\varepsilon_z \\ (x + \varepsilon_x)\varepsilon_z + y\end{bmatrix} \\
-			&\to \begin{bmatrix}x - y\varepsilon_z \\ (x + \varepsilon_x)\varepsilon_z + y\end{bmatrix} \\
-			&\to \begin{bmatrix}(x - y\varepsilon_z) + (x\varepsilon_z + \varepsilon_x\varepsilon_z + y)\varepsilon_z \\
-			-(x - y\varepsilon_z)\varepsilon_z + x\varepsilon_z + \varepsilon_x\varepsilon_z + y\end{bmatrix} \\
+			&\to \begin{bmatrix}(x + \varepsilon_x)(1 - \frac{\varepsilon_z^2}{2}) - y\varepsilon_z \\ (x + \varepsilon_x)\varepsilon_z + y(1 - \frac{\varepsilon_z^2}{2})\end{bmatrix} \\
+			&\to \begin{bmatrix}
+					x(1 - \frac{\varepsilon_z^2}{2}) - y\varepsilon_z - \frac{\varepsilon_x\varepsilon_z^2}{2} \\
+					x\varepsilon_z + y(1 - \frac{\varepsilon_z^2}{2}) + \varepsilon_x\varepsilon_z
+				\end{bmatrix} \\
+			&\to \begin{bmatrix}
+				(x(1 - \frac{\varepsilon_z^2}{2}) - y\varepsilon_z - \frac{\varepsilon_x\varepsilon_z^2}{2})(1 - \frac{\varepsilon_z^2}{2}) + (x\varepsilon_z + y(1 - \frac{\varepsilon_z^2}{2}) + \varepsilon_x\varepsilon_z)\varepsilon_z \\
+				-(x(1 - \frac{\varepsilon_z^2}{2}) - y\varepsilon_z - \frac{\varepsilon_x\varepsilon_z^2}{2})\varepsilon_z + (x\varepsilon_z + y(1 - \frac{\varepsilon_z^2}{2}) + \varepsilon_x\varepsilon_z)(1 - \frac{\varepsilon_z^2}{2})
+			\end{bmatrix} \\
 			&= \begin{bmatrix}
-				x(1 + \varepsilon_z^2) + \varepsilon_x\varepsilon_z^2 \\ y(1 + \varepsilon_z^2) + \varepsilon_x\varepsilon_z
+				x + \frac{\varepsilon_x\varepsilon_z^2}{2} + \mathcal{O}(\varepsilon_z^4)\\
+				y + \varepsilon_x\varepsilon_z + \mathcal{O}(\varepsilon_z^4)
 			\end{bmatrix}
 		\end{align*}
 		Writing this out in terms of operators, we see that we must have
-		$$\Big(I + \frac{i}{\hbar}\varepsilon_zL_z\Big)\Big(I + \frac{i}{\hbar}\varepsilon_xP_x\Big)\Big(I - \frac{i}{\hbar}\varepsilon_zL_z\Big)\Big(I - \frac{i}{\hbar}\varepsilon_xP_x\Big) = I + I\varepsilon_z^2 - \frac{i}{\hbar}\varepsilon_x\varepsilon_z^2P_x - \frac{i}{\hbar}\varepsilon_x\varepsilon_z P_y$$
-		We can expand the lefthand side (keeping terms up to $\mathcal{O}(\varepsilon^3)$) to find
-		$$\frac{i}{\hbar}\frac{\varepsilon_x^2\varepsilon_z}{\hbar^2}[L_z, P_x]P_x + \frac{i}{\hbar}\frac{\varepsilon_x\varepsilon_z^2}{\hbar^2}L_z[P_x, L_z] + \frac{\varepsilon_x^2}{\hbar^2}P_x^2 + \frac{\varepsilon_x\varepsilon_z}{\hbar^2}[P_x, L_z] + \frac{\varepsilon_z^2}{\hbar^2}L_z^2 + I$$
-		\color{black}
-		As this problem is formulated, I believe it is unsolvable. At the very least, there is some necessary step that cannot be found by looking at the mathematics, as using a CAS yields multiple untrue requirements.
+		$$\Big(I + \frac{i\varepsilon_z}{\hbar}L_z - \frac{\varepsilon_z^2}{2\hbar^2}L_z^2\Big)\Big(I + \frac{i\varepsilon_x}{\hbar}P_x\Big)\Big(I - \frac{i\varepsilon_z}{\hbar}L_z - \frac{\varepsilon_z^2}{2\hbar^2}L_z^2\Big)\Big(I - \frac{i\varepsilon_x}{\hbar}P_x\Big) = I - \frac{i\varepsilon_x\varepsilon_z^2}{2\hbar}P_x - \frac{i\varepsilon_x\varepsilon_z}{\hbar}P_y$$
+		We can expand the lefthand side---keeping terms up to $\mathcal{O}(\varepsilon_z^2)$---to find
+		$$I + \frac{i\varepsilon_x\varepsilon_z^2}{\hbar^3}(L_zP_xL_z - \frac{1}{2}L_z^2P_x - \frac{1}{2}P_xL_z^2) + \frac{\varepsilon_x\varepsilon_z}{\hbar^2}[P_x, L_z] = I - \frac{i\varepsilon_x\varepsilon_z^2}{2\hbar}P_x - \frac{i\varepsilon_x\varepsilon_z}{\hbar}P_y$$
+		which can only hold if
+		\begin{align*}
+			[P_x, L_z] &= -i\hbar P_y \\
+			-2L_zP_xL_z + L_z^2P_x + P_xL_z^2 &= \hbar^2P_x
+		\end{align*}
+		The first of these is true because
+		$$[P_x, L_z] = [P_x, XP_y - YP_x] = [P_x, X]P_y = -i\hbar P_y$$
+		while the second can be seen to hold because of the relation given in the problem statement,
+		$$[L_z, [L_z, P_x]] = [L_z, i\hbar P_y] = i\hbar[XP_y - YP_x, P_y] = -i\hbar[Y, P_y]P_x = \hbar^2P_x$$
 	\end{solution}
 	
 	\setcounter{subsection}{2}
@@ -1720,7 +1740,7 @@
 				\psi_{1, 1, 0} &= \frac{C_0}{2}\Big(\frac{3}{\pi}\Big)^{1/2}\Big(\frac{\mu\omega}{\hbar}\Big)r e^{-\mu\omega r^2/2\hbar}\cos\theta \\
 				\psi_{1, 1, 1} &= {-\frac{C_0}{2}}\Big(\frac{3}{2\pi}\Big)^{1/2}\Big(\frac{\mu\omega}{\hbar}\Big)r e^{-\mu\omega r^2/2\hbar}e^{i\phi}\sin\theta
 			\end{align*}
-			I may be misunderstanding the question, but writing the above functions as linear combinations of the $n = 0$ and $1$ eigenfunctions in Cartesian coordinates is trivial and amounts to rewriting the above in terms of Cartesian coordinates. Because of this, we skip this part of the problem.
-		\end{solution} 
+			Writing the above functions as linear combinations of the $n = 0$ and $1$ eigenfunctions in Cartesian coordinates is trivial and amounts to rewriting the above in terms of Cartesian coordinates. Because of this, we skip this part of the problem.
+		\end{solution}
 	\end{questions}
 \end{document}

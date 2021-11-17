@@ -1,0 +1,497 @@
+\documentclass[../principles-of-quantum-mechanics.tex]{subfiles}
+
+\begin{document}
+	\printanswers
+	
+	\section{Spin}
+	
+	\begin{questions}
+		\setcounter{subsection}{2}
+		\setcounter{question}{0}
+		\subsection{Kinematics of Spin}
+		\question Let us verify the above corollary explicitly. Take some spinor with components $\alpha = \rho_1e^{i\phi_1}$ and $\beta = \rho_2e^{i\phi_2}$. From $\langle\chi|\chi\rangle = 1$, deduce that we can write $\rho_1=\cos(\theta/2)$ and $\rho_2=\sin(\theta/2)$ for some $\theta$. Next pull out a common phase factor so that the spinor takes the form in Eq. (14.3.28a). This verifies the corollary and also fixes $\hat{n}$.
+		
+		\begin{solution}
+			From the normalization condition, we have
+			$$(\rho_1e^{i\phi_1})(\rho_1^*e^{-i\phi_1}) + (\rho_2e^{i\phi_2})(\rho_2^*e^{-i\phi_2}) = \rho_1^2 + \rho_2^2 = 1$$
+			which will always be true if we choose
+			\begin{align*}
+				\rho_1 &= \cos(\phi) \\
+				\rho_2 &= \sin(\phi)
+			\end{align*}
+			Of course, we can just as easily rename $\phi \to \theta/2$ to obtain the specific relation sought after. If we then factor out the common phase factor $e^{i(\phi_1 + \phi_2)/2}$ we get
+			$$|\chi\rangle = e^{i(\phi_1 + \phi_2)/2}\begin{bmatrix}
+				\cos(\theta/2)e^{-i(\phi_2 - \phi_1)/2} \\
+				\sin(\theta/2)e^{i(\phi_2 - \phi_1)/2}
+			\end{bmatrix}$$
+			Throwing out the common phase factor and labeling $\phi = \phi_2 - \phi_1$ gives
+			$$|\chi\rangle = \begin{bmatrix}
+				\cos(\theta/2)e^{-i\phi/2} \\
+				\sin(\theta/2)e^{i\phi/2}
+			\end{bmatrix}$$
+		\end{solution}
+	
+		\question (1) Show that the eigenvectors of $\boldsymbol{\sigma}\cdot\hat{n}$ are given by Eq. (14.3.28). (2) Verify Eq. (14.3.29).
+		
+		\begin{solution}
+			Following (14.3.26) and (14.3.27), it is obvious that we can write
+			$$\boldsymbol{\sigma}\cdot\hat{n} = \begin{bmatrix}
+				\cos\theta & \sin\theta e^{-i\phi} \\
+				\sin\theta e^{i\phi} & -\cos\theta
+			\end{bmatrix}$$
+			The eigenvector equations for the two eigenvalues are given by
+			$$\begin{bmatrix}
+				\cos\theta \mp 1 & \sin\theta e^{-i\phi} \\
+				\sin\theta e^{i\phi} & -\cos\theta \mp 1
+			\end{bmatrix}|\hat{n}_\pm\rangle = 0$$
+			By subtracting $\sin\theta e^{i\phi}/(\cos\theta \mp 1)$ times the first row from the second row, this system becomes
+			\begin{align*}
+				\begin{bmatrix}
+					\cos\theta \mp 1 & \sin\theta e^{-i\phi} \\
+					 0 & -\cos\theta \mp 1 - \sin\theta e^{-i\phi}\frac{\sin\theta e^{i\phi}}{\cos\theta \mp 1}
+				\end{bmatrix}|\hat{n}_\pm\rangle &= \begin{bmatrix}
+				\cos\theta \mp 1 & \sin\theta e^{-i\phi} \\
+				0 & \frac{(-\cos\theta \mp 1)(\cos\theta \mp 1) - \sin^2\theta}{\cos\theta \mp 1}
+			\end{bmatrix}|\hat{n}_\pm\rangle \\
+			&= \begin{bmatrix}
+				\cos\theta \mp 1 & \sin\theta e^{-i\phi} \\
+				0 & \frac{-\cos^2\theta \pm \cos\theta \mp \cos\theta + 1 - \sin^2\theta}{\cos\theta \mp 1}
+			\end{bmatrix}|\hat{n}_\pm\rangle \\
+			&= \begin{bmatrix}
+				\cos\theta \mp 1 & \sin\theta e^{-i\phi} \\
+				0 & 0
+			\end{bmatrix}|\hat{n}_\pm\rangle = 0
+			\end{align*}
+			which has the (non-normalized) solution
+			$$|\hat{n}_\pm\rangle = e^{i\alpha}\begin{bmatrix}
+				\sin\theta e^{-i\phi} \\
+				-(\cos\theta \mp 1)
+			\end{bmatrix}$$
+			where $\alpha$ is an arbitrary phase factor. Given that
+			$$\langle \hat{n}_\pm|\hat{n}_\pm\rangle = \sin^2\theta + \cos^2\theta \mp 2\cos\theta + 1 = 2 \mp 2\cos\theta$$
+			we can write the normalized eigenkets as
+			$$|\hat{n}_\pm\rangle = \frac{e^{i\alpha}}{(2 \mp 2\cos\theta)^{1/2}}\begin{bmatrix}
+				\sin\theta e^{-i\phi} \\
+				-(\cos\theta \mp 1)
+			\end{bmatrix}$$
+			Now, we know that
+			\begin{align*}
+				\cos\theta + 1 &= 2\cos^2(\theta/2) \\
+				\cos\theta - 1 &= -2\sin^2(\theta/2) \\
+				\sin\theta &= 2\sin(\theta/2)\cos(\theta/2)
+			\end{align*}
+			and so we may further simplify our eigenkets to
+			\begin{align*}
+				|\hat{n}_+\rangle &= \frac{e^{i\alpha}}{2\sin(\theta/2)}\begin{bmatrix}
+					2\sin(\theta/2)\cos(\theta/2)e^{-i\phi} \\
+					2\sin^2(\theta/2)
+				\end{bmatrix} = e^{i\alpha}\begin{bmatrix}
+				\cos(\theta/2)e^{-i\phi} \\
+				\sin(\theta/2)
+			\end{bmatrix} \\
+			|\hat{n}_-\rangle &= \frac{e^{i\alpha}}{2\cos(\theta/2)}\begin{bmatrix}
+				2\sin(\theta/2)\cos(\theta/2)e^{-i\phi} \\
+				-2\cos^2(\theta/2)
+			\end{bmatrix} = e^{i\alpha}\begin{bmatrix}
+				\sin(\theta/2)e^{-i\phi} \\
+				-\cos(\theta/2)
+			\end{bmatrix}
+			\end{align*}
+			Choosing $\alpha = \phi/2$ and multiplying $|\hat{n}_-\rangle$ by ${-1}$ gives us our final answer,
+			\begin{align*}
+				|\hat{n}_+\rangle &= \begin{bmatrix}
+					\cos(\theta/2)e^{-i\phi/2} \\
+					\sin(\theta/2)e^{i\phi/2}
+					\end{bmatrix} \\
+				|\hat{n}_-\rangle &= \begin{bmatrix}
+					-\sin(\theta/2)e^{-i\phi/2} \\
+					\cos(\theta/2)e^{i\phi/2}
+				\end{bmatrix}
+			\end{align*}
+			Now, let us examine the expectation values of the spin operators on a generic $|\hat{n}_+\rangle$ state,
+			\begin{align*}
+				\langle \hat{n}_+|S_x|\hat{n}_+\rangle &= \frac{\hbar}{2}\begin{bmatrix}
+					\cos(\theta/2)e^{i\phi/2} &
+					\sin(\theta/2)e^{-i\phi/2}
+				\end{bmatrix}\begin{bmatrix}
+					0 & 1 \\ 1 & 0
+				\end{bmatrix}\begin{bmatrix}
+					\cos(\theta/2)e^{-i\phi/2} \\
+					\sin(\theta/2)e^{i\phi/2}
+				\end{bmatrix} \\
+				&= \frac{\hbar}{2}\begin{bmatrix}
+					\cos(\theta/2)e^{i\phi/2} &
+					\sin(\theta/2)e^{-i\phi/2}
+				\end{bmatrix}\begin{bmatrix}
+					\sin(\theta/2)e^{i\phi/2} \\
+					\cos(\theta/2)e^{-i\phi/2}
+				\end{bmatrix} \\
+				&= \frac{\hbar}{2}\Big(\cos(\theta/2)\sin(\theta/2)e^{i\phi} + \sin(\theta/2)\cos(\theta/2)e^{-i\phi}\Big) \\
+				&= \frac{\hbar}{2}\Big(\frac{\sin\theta e^{i\phi}}{2} + \frac{\sin\theta e^{-i\phi}}{2}\Big) \\
+				&= \frac{\hbar}{2}\sin\theta\cos\phi \\
+				\langle \hat{n}_+ | S_y | \hat{n}_+\rangle &= \frac{\hbar}{2}\begin{bmatrix}
+					\cos(\theta/2)e^{i\phi/2} &
+					\sin(\theta/2)e^{-i\phi/2}
+				\end{bmatrix}\begin{bmatrix}
+					0 & -i \\ i & 0
+				\end{bmatrix}\begin{bmatrix}
+					\cos(\theta/2)e^{-i\phi/2} \\
+					\sin(\theta/2)e^{i\phi/2}
+				\end{bmatrix} \\
+				&= \frac{\hbar}{2}\begin{bmatrix}
+					\cos(\theta/2)e^{i\phi/2} &
+					\sin(\theta/2)e^{-i\phi/2}
+				\end{bmatrix}\begin{bmatrix}
+					-i\sin(\theta/2)e^{i\phi/2} \\
+					i\cos(\theta/2)e^{-i\phi/2}
+				\end{bmatrix} \\
+				&= \frac{\hbar}{2}\Big({-i\cos}(\theta/2)\sin(\theta/2)e^{i\phi} + i\sin(\theta/2)\cos(\theta/2)e^{-i\phi}\Big) \\
+				&= \frac{\hbar}{2}\Big(\frac{\sin\theta e^{i\phi}}{2i} - \frac{\sin\theta e^{-i\phi}}{2i}\Big) \\
+				&= \frac{\hbar}{2}\sin\theta\sin\phi \\
+				\langle \hat{n}_+|S_z|\hat{n}_+\rangle &= \frac{\hbar}{2}\begin{bmatrix}
+					\cos(\theta/2)e^{i\phi/2} &
+					\sin(\theta/2)e^{-i\phi/2}
+				\end{bmatrix}\begin{bmatrix}
+					1 & 0 \\ 0 & -1
+				\end{bmatrix}\begin{bmatrix}
+					\cos(\theta/2)e^{-i\phi/2} \\
+					\sin(\theta/2)e^{i\phi/2}
+				\end{bmatrix} \\
+				&= \frac{\hbar}{2}\begin{bmatrix}
+					\cos(\theta/2)e^{i\phi/2} &
+					\sin(\theta/2)e^{-i\phi/2}
+				\end{bmatrix}\begin{bmatrix}
+					\cos(\theta/2)e^{-i\phi/2} \\
+					-\sin(\theta/2)e^{i\phi/2}
+				\end{bmatrix} \\
+				&= \frac{\hbar}{2}\Big(\cos^2(\theta/2) - \sin^2(\theta/2)\Big) \\
+				&= \frac{\hbar}{2}\cos\theta
+			\end{align*}
+			or, written another way,
+			$$\langle \hat{n}_+|\mathbf{S}|\hat{n}_+\rangle = (\hbar/2)(\mathbf{i}\sin\theta\cos\phi + \mathbf{j}\sin\theta\sin\phi + \mathbf{k}\cos\theta)$$
+			Since the procedure to find $\langle \hat{n}_-|\mathbf{S}|\hat{n}_-\rangle$ is nearly the same, we do not show it here.
+		\end{solution}
+		
+		\question Using Eqs. (14.3.32) and (14.3.33) show that the Pauli matrices are traceless.
+		
+		\begin{solution}
+			Noting that the $\mathrm{Tr}(-A) = -\mathrm{Tr}(A)$ and using (14.3.32) and (14.3.33), we find
+			$$\mathrm{Tr}(\sigma_k) = -i\mathrm{Tr}(\sigma_i\sigma_j) = i\mathrm{Tr}(\sigma_j\sigma_i)$$
+			However, the trace of a product of operators is unchanged under cyclic permutation of those operators, and so we also know
+			$$\mathrm{Tr}(\sigma_k) = -i\mathrm{Tr}(\sigma_i\sigma_j) = -i\mathrm{Tr}(\sigma_j\sigma_i)$$
+			Since the only way a quantity can be equal to the negative of itself is if it is 0, we must have $\mathrm{Tr}(\sigma_k) = 0$ for $k = x, y, z$.
+		\end{solution}
+		
+		\question Derive Eq. (14.3.39) in two different ways.
+		
+		(1) Write $\sigma_i\sigma_j$ in terms of $[\sigma_i, \sigma_j]_+$ and $[\sigma_i, \sigma_j]$.
+		
+		(2) Use Eqs. (14.3.42) and (14.3.43).
+		
+		\begin{solution}
+			We can write $\sigma_i\sigma_j$ as
+			$$\sigma_i\sigma_j = \frac{1}{2}\sigma_i\sigma_j - \frac{1}{2}\sigma_j\sigma_i + \frac{1}{2}\sigma_i\sigma_j + \frac{1}{2}\sigma_j\sigma_i = \frac{1}{2}[\sigma_i, \sigma_j] + \frac{1}{2}[\sigma_i, \sigma_j]_+ = \delta_{ij}I + i\varepsilon_{ijk}\sigma_k$$
+			Permuting the Levi-Civita indices from $ijk$ to $kij$, we can use this to write
+			$$(\mathbf{A}\cdot\boldsymbol{\sigma})(\mathbf{B}\cdot\boldsymbol{\sigma}) \to A_i\sigma_iB_j\sigma_j = A_iB_i(\delta_{ij}I + i\varepsilon_{kij}\sigma_k) \to \mathbf{A}\cdot\mathbf{B}I + i(\mathbf{A}\times\mathbf{B})\cdot\boldsymbol{\sigma}$$
+			If we instead approach this by looking at the inner product of each of the Pauli matrices with $A_iB_j\sigma_i\sigma_j$, we find
+			\begin{align*}
+				m_0 &= \frac{1}{2}\mathrm{Tr}(A_iB_j\sigma_i\sigma_j\sigma_0) \\
+				&= \frac{1}{2}A_iB_j\mathrm{Tr}(\sigma_i\sigma_j) \\
+				&= \frac{1}{2}A_iB_j\cdot2\delta_{ij} \\
+				&= \mathbf{A}\cdot\mathbf{B} \\
+				m_k &= \frac{1}{2}\mathrm{Tr}(A_iB_j\sigma_i\sigma_j\sigma_k) \\
+				&= \frac{1}{2}A_iB_j\mathrm{Tr}(i\varepsilon_{ijl}\sigma_l\sigma_k) \\
+				&= \frac{1}{2}A_iB_j\cdot 2i\varepsilon_{ijl}\delta_{lk} \\
+				&= i\varepsilon_{kij}A_iB_j \\
+				&= i[\mathbf{A}\times\mathbf{B}]_k
+			\end{align*}
+			where the $m_\alpha$ are defined from
+			$$(\mathbf{A}\cdot\boldsymbol{\sigma})(\mathbf{B}\cdot\boldsymbol{\sigma}) = \sum_\alpha m_\alpha \sigma_\alpha$$
+			Comparing our found $m_\alpha$ values to the first part of this problem, we see both methods produce identical results.
+		\end{solution}
+		
+		\question Express the following matrix $M$ in terms of the Pauli matrices
+		$$M = \begin{bmatrix}
+			\alpha & \beta \\
+			\gamma & \delta
+		\end{bmatrix}$$
+	
+		\begin{solution}
+			Writing
+			$$M = \sum_\alpha m_\alpha\sigma_\alpha$$
+			and noting that
+			$$m_\beta = \frac{1}{2}\mathrm{Tr}(M\sigma_\beta)$$
+			we find
+			\begin{align*}
+				m_0 &= \frac{1}{2}\mathrm{Tr}\begin{bmatrix}
+					\alpha & \beta \\
+					\gamma & \delta
+				\end{bmatrix} \\
+				&= \frac{1}{2}(\alpha + \delta) \\
+				m_x &= \frac{1}{2}\mathrm{Tr}\begin{bmatrix}
+					\alpha & \beta \\
+					\gamma & \delta
+				\end{bmatrix}\begin{bmatrix}0 & 1 \\ 1 & 0\end{bmatrix} \\
+				&= \frac{1}{2}\mathrm{Tr}\begin{bmatrix}\beta & \alpha \\ \delta & \gamma\end{bmatrix} \\
+				&= \frac{1}{2}(\beta + \gamma) \\
+				m_y &= \frac{1}{2}\mathrm{Tr}\begin{bmatrix}
+					\alpha & \beta \\
+					\gamma & \delta
+				\end{bmatrix}\begin{bmatrix}0 & -i \\ i & 0\end{bmatrix} \\
+				&= \frac{1}{2}\mathrm{Tr}\begin{bmatrix}i\beta & -i\alpha \\ i\delta & -i\gamma\end{bmatrix} \\
+				&= \frac{i}{2}(\beta - \gamma) \\
+				m_z &= \frac{1}{2}\mathrm{Tr}\begin{bmatrix}
+					\alpha & \beta \\
+					\gamma & \delta
+				\end{bmatrix}\begin{bmatrix}1 & 0 \\ 0 & -1\end{bmatrix} \\
+				&= \frac{1}{2}\mathrm{Tr}\begin{bmatrix}\alpha & -\beta \\ \gamma & -\delta\end{bmatrix} \\
+				&= \frac{1}{2}(\alpha - \delta)
+			\end{align*}
+			and so
+			$$M = \frac{1}{2}(\alpha + \delta)\sigma_0 + \frac{1}{2}(\beta + \gamma)\sigma_x + \frac{i}{2}(\beta - \gamma)\sigma_y + \frac{1}{2}(\alpha - \delta)\sigma_z$$
+		\end{solution}
+		
+		\question (1) Argue that $|\hat{n}, +\rangle = U[R(\phi\mathbf{k})]U[R(\theta\mathbf{j})]|s_z = \hbar/2\rangle$. (2) Verify by explicit calculation.
+		
+		\begin{solution}
+			In the order in which the operations are performed, the equation describes rotating a pure, positive $z$ spin in the $x$-$z$ plane by an altitudinal angle $\theta$ before moving it azimuthally by $\phi$. The final orientation is exactly that of $|\hat{n}\rangle$, and so we expect the two sides of the proposed relationship to be equal.
+			
+			By analogy with angular momentum, the unitary representation of the spinorial rotation operator should be
+			$$U[R(\boldsymbol{\theta})] = e^{-i\boldsymbol{\theta}\cdot\mathbf{S}/\hbar}$$
+			Noting that $\hat{n} = \mathbf{j}$ implies $n_\theta = n_\phi = \pi/2$, $\hat{n} = \mathbf{k}$
+			implies $n_\theta = n_\phi = 0$, and recalling we found $\mathbf{S}\cdot\boldsymbol{\theta} = \theta\mathbf{S}\cdot\hat{n} = \theta(\hbar/2)\boldsymbol{\sigma}\cdot\hat{n}$ in problem 14.3.2, we can write
+			\begin{align*}
+				U[R(\theta\mathbf{j})] &= \exp\Big({-\frac{i}{\hbar}}\frac{\hbar}{2}\theta\begin{bmatrix}0 & -i \\ i & 0\end{bmatrix}\Big) \\
+				&= \exp\Big(\frac{\theta}{2}\begin{bmatrix}0 & -1 \\ 1 & 0\end{bmatrix}\Big) \\
+				&= \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix} + \frac{\theta}{2}\begin{bmatrix}0 & -1 \\ 1 & 0\end{bmatrix} + \frac{1}{2!}\frac{\theta^2}{2^2}\begin{bmatrix}-1 & 0 \\ 0 & -1\end{bmatrix} + \frac{1}{3!}\frac{\theta^3}{2^3}\begin{bmatrix}0 & 1 \\ -1 & 0\end{bmatrix} + \cdots \\
+				&= \begin{bmatrix}\cos(\theta/2) & -\sin(\theta/2) \\ \sin(\theta/2) & \cos(\theta/2) \end{bmatrix} \\
+				U[R(\phi\mathbf{k})] &= \exp\Big({-\frac{i}{\hbar}}\frac{\hbar}{2}\phi\begin{bmatrix}1 & 0 \\ 0 & -1\end{bmatrix}\Big) \\
+				&= \begin{bmatrix}e^{-i\phi/2} & 0 \\ 0 & e^{i\phi/2}\end{bmatrix}
+			\end{align*}
+			and so
+			\begin{align*}
+				U[R(\phi\mathbf{k})]U[R(\theta\mathbf{j})]|s_z = \hbar/2\rangle &= \begin{bmatrix}e^{-i\phi/2} & 0 \\ 0 & e^{i\phi/2}\end{bmatrix}\begin{bmatrix}\cos(\theta/2) & -\sin(\theta/2) \\ \sin(\theta/2) & \cos(\theta/2) \end{bmatrix}\begin{bmatrix}1 \\ 0\end{bmatrix} \\
+				&= \begin{bmatrix}e^{-i\phi/2} & 0 \\ 0 & e^{i\phi/2}\end{bmatrix}\begin{bmatrix}\cos(\theta/2) \\ \sin(\theta/2) \end{bmatrix} \\
+				&= \begin{bmatrix}
+					\cos(\theta/2)e^{-i\phi/2} \\
+					\sin(\theta/2)e^{i\phi/2}
+				\end{bmatrix}
+			\end{align*}
+			which equals $|\hat{n}, +\rangle$.
+		\end{solution}
+		
+		\question Express the following as linear combinations of the Pauli matrices and $I$:
+		
+		(1) $(I + i\sigma_x)^{1/2}$. (Relate it to half a certain rotation.)
+		
+		(2) $(2I + \sigma_x)^{-1}$.
+		
+		(3) $\sigma_x^{-1}$.
+		
+		\begin{solution}
+			If we find diagonalize $I + i\sigma_x$ by rewriting it as $U^{-1}\Lambda U$, we can find $(I + i\sigma_x)^{1/2}$ as $U^{-1}\Lambda^{1/2}U$. To find the eigenvalues, we examine the characteristic polynomial,
+			$$\det(I + i\sigma_x - \lambda I) = \begin{vmatrix}1 - \lambda & i \\ i & 1 - \lambda\end{vmatrix} = (1 - \lambda)^2 + 1 = \lambda^2 - 2\lambda + 2 = 0$$
+			This has the roots
+			$$\lambda_{\pm} = 1 \pm i$$
+			which, from inspection, correspond to the eigenvectors
+			$$\eta_+ = \begin{bmatrix}1 \\ 1\end{bmatrix}, \qquad \eta_- = \begin{bmatrix}1 \\ {-1}\end{bmatrix}$$
+			From here, we can write
+			$$U = \begin{bmatrix}\eta_+ & \eta_-\end{bmatrix} = \begin{bmatrix}1 & 1 \\ 1 & -1\end{bmatrix}, \qquad U^{-1} = \begin{bmatrix}1/2 & 1/2 \\ 1/2 & -1/2\end{bmatrix}$$
+			and so
+			$$I + i\sigma_x = \begin{bmatrix}1/2 & 1/2 \\ 1/2 & -1/2\end{bmatrix}\begin{bmatrix}1 + i & 0 \\ 0 & 1 - i\end{bmatrix}\begin{bmatrix}1 & 1 \\ 1 & -1\end{bmatrix}$$
+			Writing $1 \pm i = 2^{1/2}e^{\pm i\pi/4}$, we see
+			\begin{align*}
+				(I + i\sigma_x)^{1/2} &= \begin{bmatrix}1/2 & 1/2 \\ 1/2 & -1/2\end{bmatrix}\begin{bmatrix}2^{1/4}e^{i\pi/8} & 0 \\ 0 & 2^{1/4}e^{-i\pi/8}\end{bmatrix}\begin{bmatrix}1 & 1 \\ 1 & -1\end{bmatrix} \\
+				&= 2^{1/4}\begin{bmatrix}1/2 & 1/2 \\ 1/2 & -1/2\end{bmatrix}\begin{bmatrix}e^{i\pi/8}  & e^{i\pi/8} \\ e^{-i\pi/8} & -e^{-i\pi/8}\end{bmatrix} \\
+				&= 2^{1/4}\begin{bmatrix}(e^{i\pi/8} + e^{-i\pi/8})/2 & (e^{i\pi/8} - e^{-i\pi/8})/2 \\ (e^{i\pi/8} - e^{-i\pi/8})/2 & (e^{i\pi/8} + e^{-i\pi/8})/2\end{bmatrix} \\
+				&= 2^{1/4}\begin{bmatrix}\cos\pi/8 & i\sin\pi/8 \\ i\sin\pi/8 & \cos\pi/8\end{bmatrix} \\
+				&= (2^{1/4}\cos\pi/8)I + (2^{1/4}i\sin\pi/8)\sigma_x
+			\end{align*}
+			For (2), we may easily write
+			$$(2I + \sigma_x)^{-1} = \begin{bmatrix}2 & 1 \\ 1 & 2\end{bmatrix}^{-1} = \frac{1}{4-1}\begin{bmatrix}2 & -1 \\ -1 & 2\end{bmatrix} = \begin{bmatrix}2/3 & -1/3 \\ -1/3 & 2/3\end{bmatrix} = (2/3)I + (-1/3)\sigma_x$$
+			Since $\sigma_x$ is its own inverse, (3) can be easily answered: $\sigma_x^{-1} = \sigma_x$.
+		\end{solution}
+		
+		\question (1) Show that any matrix that commutes with $\boldsymbol{\sigma}$ is a multiple of the unit matrix.
+		
+		(2) Show that we cannot find a matrix that anticommutes with all three Pauli matrices. (If such a matrix exists, it must equal zero.)
+		\begin{solution}
+			Since we can write any operator $M$ as $M = m_0I + \mathbf{m}\cdot\boldsymbol{\sigma}$, a matrix $A$ that commutes with $\boldsymbol{\sigma}$ also commutes with every operator. The only class of matrices with this property is the set of multiples of the identity.
+			
+			Since we can write any matrix $A$ as a linear combination of Pauli matrices $A = a_0I + \sum_{i=1}^{3}a_i\sigma_i$, any $A$ that anticommutes with all three Pauli matrices satisfies
+			\begin{align*}
+				[A, \sigma_k]_+ &= a_0[I, \sigma_k]_+ + \sum_{i=1}^3a_i[\sigma_i, \sigma_k]_+ \\
+				&= 2a_0\sigma_k + \sum_{i=1}^3a_i2\delta_{ik}I \\
+				&= 2a_0\sigma_k + 2a_kI \\
+				&= 0
+			\end{align*}
+			The only way for this to hold is for $a_0 = a_1 = a_2 = a_3 = 0$, i.e. $A$ must be the zero matrix.
+		\end{solution}
+	
+		\setcounter{subsection}{3}
+		\setcounter{question}{0}
+		\subsection{Dynamics of Spin}
+		
+		\question Show that if $H = -\gamma\mathbf{L}\cdot\mathbf{B}$, and $\mathbf{B}$ is position independent,
+		$$\frac{\mathrm{d}\langle\mathbf{L}\rangle}{\mathrm{d}t} = \langle\boldsymbol{\mu}\times\mathbf{B}\rangle = \langle\boldsymbol{\mu}\rangle\times\mathbf{B}$$
+		Comparing this to Eq. (14.4.8), we see that $\langle\boldsymbol{\mu}\rangle$ evolves exactly like $\boldsymbol{\mu}$. Notice that his conclusion is valid even if $\mathbf{B}$ depends on time and also if we are talking about spin instead of orbital angular momentum. A more explicit verification follows in Exercise 14.4.3.
+		\begin{solution}
+			Since $\mathbf{L}$ does not depend on time, Ehrenfest's theorem tells us
+			\begin{align*}
+				i\hbar\frac{\mathrm{d}\langle L_i\rangle}{\mathrm{d}t} &= \langle[L_i, H]\rangle \\
+				&= \langle [L_i, -\gamma\mathbf{L}\cdot\mathbf{B}]\rangle \\
+				&= -\gamma\langle [L_i, L_j]B_j\rangle \\
+				&= -\gamma i\hbar\langle \varepsilon_{ijk}L_kB_j\rangle \\
+				&=  i\hbar\langle \varepsilon_{ikj}(\gamma L_k)B_j\rangle \\
+				&=  i\hbar\langle \varepsilon_{ikj}\mu_kB_j\rangle
+			\end{align*}
+			or, in vector notation,
+			$$i\hbar\frac{\mathrm{d}\langle\mathbf{L}\rangle}{\mathrm{d}t} = i\hbar\langle\boldsymbol{\mu}\times\mathbf{B}\rangle$$
+			We can drop the common factor of $i\hbar$ and, since $\mathbf{B}$ is independent of position, write
+			$$\frac{\mathrm{d}\langle\mathbf{L}\rangle}{\mathrm{d}t} = \langle\boldsymbol{\mu}\rangle\times\mathbf{B}$$
+			to arrive at the final result. This holds even if $\mathbf{B}$ is dependent on time, since $\boldsymbol{\mu}$ depends only on position and derivatives of position.
+		\end{solution}
+		
+		\question Derive (14.4.31) by studying Fig 14.3.
+		\begin{solution}
+			Visually, we can tell that $\mu_z$ will oscillate about a constant value corresponding to its magnitude doubly projected: first onto the axis of oscillation and then onto the axis of rotation (the $z$-axis). By similar triangles, this value is $\mu\cos\alpha\cdot\cos\alpha = \mu\cos^2\alpha$, where $\alpha$ is both the angle of the oscillation axis and the angle of the magnetic field vector with respect to the $z$-axis. (The diagram shows these as two separate angles, but they should coincide.)
+			
+			The amount by which $\mu_z$ will change with $\cos\omega_rt$ is the magnitude projected first onto the plane of precession and then second onto the axis of rotation. Using similar triangles yet again, we find this is equal to $\mu\sin\alpha\cdot\sin\alpha = \mu^2\sin\alpha$. Altogether, we now have
+			$$\mu_z(t) = \mu\cos^2\alpha + \mu\sin^2\alpha\cos\omega_rt$$
+			
+			Since $\alpha$ is the angle $\boldsymbol{\omega}_r$ makes with the $z$-axis and
+			$$\omega_r = [\gamma^2B^2 + (\omega - \omega)^2]^{1/2}$$
+			we can rewrite this as
+			$$\mu_z(t) = \mu(0)\Big[\frac{(\omega_0 - \omega)^2}{(\omega_0 - \omega)^2 + \gamma^2B^2} + \frac{\gamma^2B^2\cos\omega_rt}{(\omega_0 - \omega)^2 + \gamma^2B^2}\Big]$$
+		\end{solution}
+		
+		\question We would like to study here the evolution of a state that starts out as $\begin{pmatrix}1 \\ 0 \end{pmatrix}$ and is subject to the $\mathbf{B}$ field given in Eq. (14.4.27). This state obeys
+		$$i\hbar\frac{\mathrm{d}}{\mathrm{d}t}|\psi(t)\rangle = H|\psi\rangle$$
+		where $H = -\gamma\mathbf{S}\cdot\mathbf{B}$, and $\mathbf{B}$ is time dependent. Since classical reasoning suggests that in a frame rotating at frequency $(-\omega\mathbf{k})$ the Hamiltonian should be time independent and governed by $\mathbf{B}_r$, [Eq. (14.4.29)], consider the ket in the rotating frame, $|\psi_r(t)\rangle$, related to $|\psi(t)\rangle$ by a rotation angle $\omega t$:
+		$$|\psi_r(t)\rangle = e^{-i\omega tS_z/\hbar}|\psi(t)\rangle$$
+		Combine Eqs. (14.4.34) and (14.4.35) to derive Schr\"odinger's equation for $|\psi_r(t)\rangle$ in the $S_z$ basis and verify that the classical expectation is borne out. Solve for $|\psi_r(t)\rangle = U_r(t)|\psi_r(0)\rangle$ by computing $U_r(t)$, the propagator in the rotating frame. Rotate back to the lab and show that
+		$$|\psi(t)\rangle \xrightarrow[S_z\text{ basis}]{}\begin{bmatrix}\Big[\cos\Big(\frac{\omega_rt}{2}\Big) + i\frac{\omega_0 - \omega}{\omega_r}\sin\Big(\frac{\omega_rt}{2}\Big)\Big]e^{+i\omega t/2} \\ \frac{i\gamma B}{\omega_r}\sin\Big(\frac{\omega_rt}{2}\Big)e^{-i\omega t/2}\end{bmatrix}$$
+		Compare this to the state $|\hat{\mathbf{n}}, +\rangle$ and see what is happening to the spin for the case $\omega_0 = \omega$.
+		
+		Calculate $\langle \mu_z(t)\rangle$ and verify that it agrees with Eq. (14.4.31).
+		
+		\begin{solution}
+			Substituting $|\psi(t)\rangle = e^{i\omega tS_z/\hbar}|\psi_r(t)\rangle$ into the left side of the Schr\"odinger equation gives
+			$$i\hbar\frac{\mathrm{d}}{\mathrm{d}t}\Big(e^{i\omega tS_z/\hbar}|\psi_r(t)\rangle\Big) = -\omega S_ze^{i\omega tS_z/\hbar}|\psi_r(t)\rangle + i\hbar e^{i\omega tS_z/\hbar}\frac{\mathrm{d}}{\mathrm{d}t}|\psi_r(t)\rangle$$
+			while making the substitution on the right gives
+			$$-\gamma\mathbf{S}\cdot\mathbf{B}|\psi(t)\rangle = -\gamma(S_xB\cos\omega t - S_yB\sin\omega t + S_zB_0)e^{i\omega tS_z/\hbar}|\psi_r(t)\rangle$$
+			Combining these into one equation yields
+			\begin{align*}
+				i\hbar\frac{\mathrm{d}}{\mathrm{d}t}|\psi_r(t)\rangle &= -\gamma e^{-i\omega tS_z/\hbar}\Big[S_xB\cos\omega t - S_yB\sin\omega t + S_z\Big(B_0 - \frac{\omega}{\gamma}\Big)\Big]e^{i\omega tS_z/\hbar}|\psi_r(t)\rangle \\
+				&= -\gamma e^{-i\omega tS_z/\hbar}\Big[S_xB\cos\omega t - S_yB\sin\omega t\Big]e^{i\omega tS_z/\hbar}|\psi_r(t)\rangle - \gamma S_z\Big(B_0 - \frac{\omega}{\gamma}\Big)|\psi_r(t)\rangle
+			\end{align*}
+			To simplify this further, we must determine both
+			$$e^{-i\omega tS_z/\hbar}S_xe^{i\omega tS_z/\hbar}\qquad\text{and}\qquad e^{-i\omega tS_z/\hbar}S_ye^{i\omega tS_z/\hbar}$$
+			The first of these is
+			\begin{align*}
+				e^{-i\omega tS_z/\hbar}S_xe^{i\omega tS_z/\hbar} &= (I\cos\tfrac{\omega t}{2} - \tfrac{2i}{\hbar}\sin\tfrac{\omega t}{2}S_z)S_x(I\cos\tfrac{\omega t}{2} + \tfrac{2i}{\hbar}\sin\tfrac{\omega t}{2}S_z) \\
+				&= S_x\cos^2\tfrac{\omega t}{2} + \tfrac{2i}{\hbar}\cos\tfrac{\omega t}{2}\sin\tfrac{\omega t}{2}[S_x, S_z] +  S_zS_xS_z\tfrac{4}{\hbar^2}\sin^2\tfrac{\omega t}{2} \\
+				&= S_x\cos^2\tfrac{\omega t}{2} + \frac{i}{\hbar}\sin\omega t(-i\hbar S_y) + (S_z^2S_x - i\hbar S_zS_y)\tfrac{4}{\hbar^2}\sin^2\tfrac{\omega t}{2} \\
+				&= S_x\cos^2\tfrac{\omega t}{2} + S_y\sin\omega t + (\tfrac{\hbar^2}{4}S_x - \tfrac{i\hbar}{2}S_zS_y + \tfrac{i\hbar}{2}S_yS_z)\tfrac{4}{\hbar^2}\sin^2\tfrac{\omega t}{2} \\
+				&= S_x\cos^2\tfrac{\omega t}{2} + S_y\sin\omega t + (\tfrac{\hbar^2}{4}S_x + \tfrac{i\hbar}{2}[S_y, S_z])\tfrac{4}{\hbar^2}\sin^2\tfrac{\omega t}{2} \\
+				&= S_x\cos^2\tfrac{\omega t}{2} + S_y\sin\omega t + (\tfrac{\hbar^2}{4}S_x - \tfrac{\hbar^2}{2}S_x)\tfrac{4}{\hbar^2}\sin^2\tfrac{\omega t}{2} \\
+				&= S_x(\cos^2\tfrac{\omega t}{2} - \sin^2\tfrac{\omega t}{2}) + S_y\sin\omega t \\
+				&= S_x\cos\omega t + S_y\sin\omega t
+			\end{align*}
+			while the second is
+			\begin{align*}
+				e^{-i\omega tS_z/\hbar}S_ye^{i\omega tS_z/\hbar} &= (I\cos\tfrac{\omega t}{2} - \tfrac{2i}{\hbar}\sin\tfrac{\omega t}{2}S_z)S_y(I\cos\tfrac{\omega t}{2} + \tfrac{2i}{\hbar}\sin\tfrac{\omega t}{2}S_z) \\
+				&= S_y\cos^2\tfrac{\omega t}{2} + \tfrac{2i}{\hbar}\cos\tfrac{\omega t}{2}\sin\tfrac{\omega t}{2}[S_y, S_z] +  S_zS_yS_z\tfrac{4}{\hbar^2}\sin^2\tfrac{\omega t}{2} \\
+				&= S_y\cos^2\tfrac{\omega t}{2} + \frac{i}{\hbar}\sin\omega t(i\hbar S_x) + (S_z^2S_y + i\hbar S_zS_x)\tfrac{4}{\hbar^2}\sin^2\tfrac{\omega t}{2} \\
+				&= S_y\cos^2\tfrac{\omega t}{2} - S_x\sin\omega t + (\tfrac{\hbar^2}{4}S_y + \tfrac{i\hbar}{2}S_zS_x - \tfrac{i\hbar}{2}S_xS_z)\tfrac{4}{\hbar^2}\sin^2\tfrac{\omega t}{2} \\
+				&= S_y\cos^2\tfrac{\omega t}{2} - S_x\sin\omega t + (\tfrac{\hbar^2}{4}S_y + \tfrac{i\hbar}{2}[S_z, S_x])\tfrac{4}{\hbar^2}\sin^2\tfrac{\omega t}{2} \\
+				&= S_y\cos^2\tfrac{\omega t}{2} - S_x\sin\omega t + (\tfrac{\hbar^2}{4}S_y - \tfrac{\hbar^2}{2}S_y)\tfrac{4}{\hbar^2}\sin^2\tfrac{\omega t}{2} \\
+				&= S_y(\cos^2\tfrac{\omega t}{2} - \sin^2\tfrac{\omega t}{2}) - S_x\sin\omega t \\
+				&= S_y\cos\omega t - S_x\sin\omega t
+			\end{align*}
+			and so the modified Schr\"odinger equation becomes
+			\begin{align*}
+				i\hbar\frac{\mathrm{d}}{\mathrm{d}t}|\psi_r(t)\rangle &= -\gamma \Big[(S_x\cos\omega t + S_y\sin\omega t)B\cos\omega t - (S_y\cos\omega t - S_x\sin\omega t)B\sin\omega t + S_z\Big(B_0 - \frac{\omega}{\gamma}\Big)\Big]|\psi_r(t)\rangle \\
+				&= -\gamma \Big[S_xB + S_z\Big(B_0 - \frac{\omega}{\gamma}\Big)\Big]|\psi_r(t)\rangle \\
+			\end{align*}
+			This coincides with our classical expectation, i.e. the magnetic field appears stationary with a modified $z$ component.
+			
+			
+			\color{red}In progress.\color{black}
+		\end{solution}
+		
+		\question At $t = 0$, an electron is in the state with $s_z = \hbar/2$. A steady field $\mathbf{B} = B\mathbf{i}$, $B = 100\text{ G}$, is turned on. How many seconds will it take for the spin to flip?
+		
+		\begin{solution}
+			The Hamiltonian for this system is $H = -\gamma \mathbf{S}\cdot\mathbf{B} = -\gamma S_xB$, giving a propagator of
+			$$U(t) = e^{-iHt/\hbar} = \exp\Big({\frac{i\gamma Bt}{2}}\begin{bmatrix}0 & 1 \\ 1 & 0\end{bmatrix}\Big) = \begin{bmatrix}\cos\gamma Bt/2 & i\sin\gamma Bt/2 \\ i\sin \gamma Bt/2 & \cos\gamma Bt/2\end{bmatrix}$$
+			We are looking for the value of $t = t_1$ that results in
+			$$|\psi(t = t_1)\rangle = \alpha\begin{bmatrix}0 \\ 1 \end{bmatrix} = \begin{bmatrix}\cos\gamma Bt_1/2 & i\sin\gamma Bt_1/2 \\ i\sin \gamma Bt_1/2 & \cos\gamma Bt_1/2\end{bmatrix}\begin{bmatrix}1 \\ 0\end{bmatrix} = \begin{bmatrix}\cos\gamma Bt_1/2 \\ i\sin \gamma Bt_1/2\end{bmatrix}$$
+			where $\alpha$ is a simple phase factor. From inspection, this occurs when $\gamma Bt_1/2 = \pi/2$, or
+			$$ t_1 = \frac{\pi}{\gamma B} = \frac{\pi mc}{eB} = \frac{\pi(9.1\cdot10^{-28}\text{ g})(3\cdot10^{10}\text{ cm}\text{ s}^{-1})}{(4.8\cdot 10^{-10}\text{ cm}^{3/2}\text{ g}^{1/2}\text{ s}^{-1})(100\text{ cm}^{-1/2}\text{ g}^{1/2}\text{ s}^{-1})} = 1.8\text{ ns}$$
+		\end{solution}
+		
+		\question We would like to establish the validity of Eq. (14.4.26) when $\boldsymbol{\omega}$ and $\mathbf{B}_0$ are not parallel.
+		
+		(1) Consider a vector $\mathbf{V}$ in the inertial (nonrotating) frame which changes by $\Delta\mathbf{V}$ in a time $\Delta t$. Argue, using the results from Exercise 12.4.3, that the change as seen in a frame rotating at an angular velocity $\boldsymbol{\omega}$, is $\Delta \mathbf{V} - \boldsymbol{\omega}\times\mathbf{V}\Delta t$. Obtain a relation between the time derivatives of $\mathbf{V}$ in the two frames.
+		
+		(2) Apply this result to the case of $\mathbf{l}$ [Eq. (14.4.8)], and deduce the formula for the effective field in the rotating frame.
+		
+		\begin{solution}
+			We will take the $z$-axis to coincide with $\boldsymbol{\omega}$, in which case our non-inertial frame coordinates are continuously transformed as
+			$$\begin{bmatrix}
+				\cos\omega t & {-\sin\omega} t & 0 \\ {\sin\omega t} & \cos\omega t & 0 \\ 0 & 0 & 1
+			\end{bmatrix}$$
+			Or, equivalently, all other vectors are transformed oppositely. During the small time period $\Delta t$, this other transformation becomes
+			$$\begin{bmatrix}
+				1 & {\omega\Delta t} & 0 \\ {-\omega\Delta t} & 1 & 0 \\ 0 & 0 & 1
+			\end{bmatrix}$$
+			and so
+			\begin{align*}
+				(\mathbf{V} + \Delta\mathbf{V}) - \mathbf{V} \to R(\omega\Delta t\mathbf{k})(\mathbf{V} + \Delta\mathbf{V}) - \mathbf{V} &= \begin{bmatrix}
+					1 & {\omega\Delta t} & 0 \\ {-\omega\Delta t} & 1 & 0 \\ 0 & 0 & 1
+				\end{bmatrix}\begin{bmatrix}v_x + \Delta v_x \\ v_y + \Delta v_y \\ v_z + \Delta v_z\end{bmatrix} - \begin{bmatrix}v_x \\ v_y \\ v_z\end{bmatrix} \\
+				&= \begin{bmatrix}v_x + \Delta v_x + \omega v_y\Delta t \\ {-\omega v_x\Delta t} + v_y + \Delta v_y \\ v_z + \Delta v_z\end{bmatrix} - \begin{bmatrix}v_x \\ v_y \\ v_z\end{bmatrix} \\
+				&= \begin{bmatrix}\Delta v_x \\ \Delta v_y \\ \Delta v_z\end{bmatrix} - \begin{bmatrix}-\omega v_y\Delta t \\ \omega v_x\Delta t \\ 0\end{bmatrix} \\
+				&= \Delta\mathbf{V} - \boldsymbol{\omega} \times \mathbf{V}\Delta t
+			\end{align*}
+			where we have dropped terms of order $\mathcal{O}(\Delta^2)$ and considered $v_x, v_y, v_z$ to describe the initial position of $\mathbf{V}$ in the rotating frame. Since this is the change $\Delta\mathbf{V}'$ as seen in the rotating frame, we can divide by $\Delta t$ and take the limit to find
+			$$\frac{\mathrm{d}\mathbf{V}'}{\mathrm{d}t} = \frac{\mathrm{d}\mathbf{V}}{\mathrm{d}t} - \boldsymbol{\omega}\times\mathbf{V}$$
+			
+			If we substitute $\mathbf{V} = \mathbf{l}$, Eq. (14.4.8) becomes
+			$$\frac{\mathrm{d}\mathbf{l}'}{\mathrm{d}t} + \boldsymbol{\omega}\times\mathbf{l} = \gamma(\mathbf{l}\times\mathbf{B})$$
+			or
+			$$\frac{\mathrm{d}\mathbf{l}'}{\mathrm{d}t} = \gamma\mathbf{l}\times(\mathbf{B} + \boldsymbol{\omega}/\gamma)$$
+			which predicts the effective magnetic field in the rotating frame changes as
+			$$\mathbf{B} \to \mathbf{B} + \boldsymbol{\omega}/\gamma$$
+			exactly as given in Eq. (14.4.26).
+		\end{solution}
+		
+		\question \textit{(A Density Matrix Problem).} (1) Show that the density matrix for an ensemble of spin-1/2 articles may be written as
+		$$\rho = \tfrac{1}{2}(I + \mathbf{a}\cdot\boldsymbol{\sigma})$$
+		where $\mathbf{a}$ is a $c$-number vector.
+		
+		(2) Show that $\mathbf{a}$ is the mean polarization, $\langle \bar{\boldsymbol{\sigma}}\rangle$.
+		
+		(3) An ensemble of electrons in a magnetic field $\mathbf{B} = B\mathbf{k}$, is in thermal equilibrium at temperature $T$. Construct the density matrix for this ensemble. Calculate $\langle \bar{\boldsymbol{\mu}}\rangle$.
+		
+		\begin{solution}
+			\color{red}I am not comfortable enough with the concept of the density matrix to successfully complete this problem at this time.\color{black}
+		\end{solution}
+	
+	\setcounter{subsection}{4}
+	\setcounter{question}{0}
+	\subsection{Return of Orbital Degrees of Freedom}
+	\question (1) Why is the coupling of the proton's intrinsic moment to $\mathbf{B}$ an order $m/M$ correction to Eq. (14.5.4)?
+	
+	(2) Why is the coupling of its orbital motion an order $(m/M)^2$ correction? (You may reason classically in both parts.)
+	
+	\question (1) Estimate the relative size of the level splitting in the $n=1$ state to the unperturbed energy of the $n=1$ state, when a field $\mathbf{B}=1000\text{ kG}$ is applied.
+	
+	(2) Recall that we have been neglecting the order $B^2$ term in $H$. Estimate its contribution in the $n=1$ state relative to the linear $(-\boldsymbol{\mu}\cdot\mathbf{B})$ term we have kept, by assuming the electron moves on a classical orbit of radius $a_0$. Above what $|\mathbf{B}|$ does it begin to be a poor approximation?
+	
+	\question A beam of spin-1/2 particles moving along the $y$ axis goes through two collinear SG apparatuses, both with lower beams blocked. The first has its $\mathbf{B}$ field along the $z$ axis and the second has its $\mathbf{B}$ field along the $x$ axis (i.e., is obtained by rotating the first by an angle $\pi/2$ about the $y$ axis). What fraction of particles leaving the first will exit the second? If a third filter that transmits only spin up along the $z$ axis is introduced, what fraction of particles leaving the first will exit the third? If the middle filter transmits both spins up and down (no blocking) the $x$ axis, but the last one transmits only spin down the $z$ axis, what fraction of particles leaving the first will leave the last?
+	
+	\question A beam of spin-1 particles, moving along the $y$ axis, is incident on two collinear SG apparatuses, the first with $\mathbf{B}$ along the $z$ axis and the second with $\mathbf{B}$ along the $z'$ axis, which lies in the $x$-$z$ plane at an angle $\theta$ relative to the $z$ axis. Both apparatuses transmit only the uppermost beams. What fraction leaving the first will pass the second?
+	\end{questions}
+\end{document}
