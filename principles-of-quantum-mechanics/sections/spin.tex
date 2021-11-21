@@ -412,12 +412,48 @@
 			and so the modified Schr\"odinger equation becomes
 			\begin{align*}
 				i\hbar\frac{\mathrm{d}}{\mathrm{d}t}|\psi_r(t)\rangle &= -\gamma \Big[(S_x\cos\omega t + S_y\sin\omega t)B\cos\omega t - (S_y\cos\omega t - S_x\sin\omega t)B\sin\omega t + S_z\Big(B_0 - \frac{\omega}{\gamma}\Big)\Big]|\psi_r(t)\rangle \\
-				&= -\gamma \Big[S_xB + S_z\Big(B_0 - \frac{\omega}{\gamma}\Big)\Big]|\psi_r(t)\rangle \\
+				&= -\gamma \Big[S_xB + S_z\Big(B_0 - \frac{\omega}{\gamma}\Big)\Big]|\psi_r(t)\rangle
 			\end{align*}
-			This coincides with our classical expectation, i.e. the magnetic field appears stationary with a modified $z$ component.
-			
-			
-			\color{red}In progress.\color{black}
+			This coincides with our classical expectation, i.e. the magnetic field appears stationary with a modified $z$ component. Identifying $H_r = -\gamma(S_xB + S_z(B_0 - \omega/\gamma)) = -\gamma\mathbf{S}\cdot\mathbf{B}_r$, where
+			\begin{gather*}
+				\gamma\mathbf{B}_r = \begin{bmatrix}\gamma B & \omega_0 - \omega\end{bmatrix}^T, \\
+				\omega_r = {-\gamma}B_r, \\
+				\omega_0 = \gamma B_0,
+			\end{gather*}
+			the propagator becomes
+			\begin{align*}
+				U_r(t) = e^{-iH_rt/\hbar} &= \exp\big({-i}(-\gamma\mathbf{S}\cdot\mathbf{B}_r)t/\hbar\big) \\
+				&= \exp\big({-i}(-\gamma B_r t\,\hat{\mathbf{B}}_r)\cdot\boldsymbol{\sigma}/2\big) \\
+				&= \exp\big({-i}(\omega_rt\,\hat{\mathbf{B}}_r)\cdot\boldsymbol{\sigma}/2\big) \\
+				&= \cos\Big(\frac{\omega_rt}{2}\Big)I + i\sin\Big(\frac{\omega_rt}{2}\Big)\hat{\mathbf{B}}_r\cdot\boldsymbol{\sigma} \\
+				&= \cos\Big(\frac{\omega_rt}{2}\Big)I + i\sin\Big(\frac{\omega_rt}{2}\Big)\big(\gamma B S_x + (\omega_0-\omega)S_z\big)\omega_r^{-1} \\
+				&= \begin{bmatrix}
+					\cos(\tfrac{\omega_rt}{2}) + i\tfrac{\omega_0-\omega}{\omega_r}\sin(\tfrac{\omega_rt}{2}) & i\tfrac{\gamma B}{\omega_r}\sin(\tfrac{\omega_rt}{2}) \\
+					i\tfrac{\gamma B}{\omega_r}\sin(\tfrac{\omega_rt}{2}) & \cos(\tfrac{\omega_rt}{2}) - i\tfrac{\omega_0-\omega}{\omega_r}\sin(\tfrac{\omega_rt}{2})
+				\end{bmatrix}
+			\end{align*}
+				and so
+				$$|\psi_r(t)\rangle = \begin{bmatrix}
+					\cos(\tfrac{\omega_rt}{2}) + i\tfrac{\omega_0-\omega}{\omega_r}\sin(\tfrac{\omega_rt}{2}) \\
+					i\tfrac{\gamma B}{\omega_r}\sin(\tfrac{\omega_rt}{2})
+				\end{bmatrix}$$
+			Returning to the original frame amounts to left multiplication by $e^{i\omega tS_z/\hbar} = \mathrm{diag}\begin{pmatrix}e^{i\omega t/2} & e^{-i\omega t / 2}\end{pmatrix}$, i.e.
+			$$|\psi(t)\rangle = \begin{bmatrix}\Big(\cos(\frac{\omega_rt}{2}) + i\frac{\omega_0 - \omega}{\omega_r}\sin(\frac{\omega_rt}{2})\Big)e^{i\omega t/2} \\ \frac{i\gamma B}{\omega_r}\sin(\frac{\omega_rt}{2})e^{-i\omega t/2}\end{bmatrix}$$
+			Setting $\omega = \omega_0$ (implying $\gamma B = \omega_r$) and comparing with
+			$$|\hat{n}_+\rangle = \begin{bmatrix}
+				\cos(\theta/2)e^{-i\phi/2} \\
+				\sin(\theta/2)e^{i\phi/2}
+			\end{bmatrix}$$
+			we see that our state is oscillating in the altitudinal and azimuthal directions at different rates. Finally, since $\mu_z = \gamma S_z$,
+			\begin{align*}
+				\langle\mu_z(t)\rangle &= \langle\psi|\begin{bmatrix}\gamma\hbar/2 & 0 \\ 0 & -\gamma\hbar/2\end{bmatrix}|\psi\rangle \\
+				&= \frac{\gamma\hbar}{2}\begin{bmatrix}\big(\cos(\frac{\omega_rt}{2}) - i\frac{\omega_0 - \omega}{\omega_r}\sin(\frac{\omega_rt}{2})\big)e^{-i\omega t/2} \\ -\frac{i\gamma B}{\omega_r}\sin(\frac{\omega_rt}{2})e^{i\omega t/2}\end{bmatrix}^T\begin{bmatrix}\big(\cos(\frac{\omega_rt}{2}) + i\frac{\omega_0 - \omega}{\omega_r}\sin(\frac{\omega_rt}{2})\big)e^{i\omega t/2} \\ -\frac{i\gamma B}{\omega_r}\sin(\frac{\omega_rt}{2})e^{-i\omega t/2}\end{bmatrix} \\
+				&= \frac{\gamma\hbar}{2}\Big[\cos^2(\tfrac{\omega_rt}{2}) + (\tfrac{\omega_0-\omega}{\omega_r})^2\sin^2(\tfrac{\omega_rt}{2}) - (\tfrac{\gamma B}{\omega_r})^2\sin^2(\tfrac{\omega_rt}{2})\Big] \\
+				&= \frac{\gamma\hbar}{2\omega_r}\Big[(\omega_0 - \omega)^2\cos^2(\tfrac{\omega_rt}{2}) + (\gamma B)^2\cos^2(\tfrac{\omega_rt}{2}) + (\omega_0-\omega)^2\sin^2\tfrac{\omega_rt}{2} - (\gamma B)^2\sin^2(\tfrac{\omega_rt}{2})\Big] \\
+				&= \frac{\gamma\hbar}{2\omega_r}\Big[(\omega_0-\omega)^2 + (\gamma B)^2\cos(\omega_rt)\Big] \\
+				&= \frac{\gamma\hbar}{2}\Big[\frac{(\omega_0-\omega)^2}{(\omega_0-\omega)^2 + \gamma^2B^2} + \frac{\gamma^2B^2\cos(\omega_rt)}{(\omega_0-\omega)^2 + \gamma^2B^2}\Big]
+			\end{align*}
+			which, identifying $\mu_z(0) = \gamma\hbar/2$, is exactly Eq. (14.4.31).
 		\end{solution}
 		
 		\question At $t = 0$, an electron is in the state with $s_z = \hbar/2$. A steady field $\mathbf{B} = B\mathbf{i}$, $B = 100\text{ G}$, is turned on. How many seconds will it take for the spin to flip?
@@ -476,7 +512,53 @@
 		(3) An ensemble of electrons in a magnetic field $\mathbf{B} = B\mathbf{k}$, is in thermal equilibrium at temperature $T$. Construct the density matrix for this ensemble. Calculate $\langle \bar{\boldsymbol{\mu}}\rangle$.
 		
 		\begin{solution}
-			\color{red}I am not comfortable enough with the concept of the density matrix to successfully complete this problem at this time.\color{black}
+			The density matrix is given by
+			$$\rho = \sum_i p_i|\psi_i\rangle\langle\psi_i|$$
+			where the group of $|\psi_i\rangle$ make a complete set of states and $\sum_i p_i = 1$. Using the generic $|n_\pm\rangle$ states, we find
+			\begin{align*}
+				\rho &= p_1|n_+\rangle\langle n_+| + p_2|n_-\rangle\langle n_-| \\
+				&= p_1\begin{bmatrix}\cos(\tfrac{\theta}{2})e^{-i\phi/2} \\ \sin(\tfrac{\theta}{2})e^{i\phi/2}\end{bmatrix}\begin{bmatrix}\cos(\tfrac{\theta}{2})e^{i\phi/2} \\ \sin(\tfrac{\theta}{2})e^{-i\phi/2}\end{bmatrix}^T + p_2\begin{bmatrix}-\sin(\tfrac{\theta}{2})e^{-i\phi/2} \\ \cos(\tfrac{\theta}{2})e^{i\phi/2}\end{bmatrix}\begin{bmatrix}-\sin(\tfrac{\theta}{2})e^{i\phi/2} \\ \cos(\tfrac{\theta}{2})e^{-i\phi/2}\end{bmatrix}^T \\
+				&= p_1\begin{bmatrix}\cos^2(\tfrac{\theta}{2}) & \cos(\tfrac{\theta}{2})\sin(\tfrac{\theta}{2})e^{-i\phi} \\
+				\cos(\tfrac{\theta}{2})\sin(\tfrac{\theta}{2})e^{i\phi} & \sin^2(\tfrac{\theta}{2})\end{bmatrix} + p_2\begin{bmatrix}
+				\sin^2(\tfrac{\theta}{2}) & -\cos(\tfrac{\theta}{2})\sin(\tfrac{\theta}{2})e^{-i\phi} \\
+				-\cos(\tfrac{\theta}{2})\sin(\tfrac{\theta}{2})e^{i\phi} & \cos^2(\tfrac{\theta}{2})
+			\end{bmatrix} \\
+			&= \begin{bmatrix}
+				p_1\cos^2(\tfrac{\theta}{2}) + p_2\sin^2(\tfrac{\theta}{2}) & \tfrac{1}{2}(p_1 - p_2)\sin(\theta)e^{-i\phi} \\
+				\tfrac{1}{2}(p_1-p_2)\sin(\theta)e^{i\phi} & p_1\sin^2(\tfrac{\theta}{2}) + p_2\cos^2(\tfrac{\theta}{2})
+			\end{bmatrix}
+			\end{align*}
+			To decompose this into the Pauli matrices, we compute
+			\begin{align*}
+				2m_0 = \mathrm{Tr}(\rho\sigma_0) &= p_1\big(\cos^2(\tfrac{\theta}{2}) + \sin^2(\tfrac{\theta}{2})\big) + p_2\big(\sin^2(\tfrac{\theta}{2}) + \cos^2(\tfrac{\theta}{2})\big) \\
+				&= p_1 + p_2 \\
+				&= 1 \\
+				2m_1 = \mathrm{Tr}(\rho\sigma_x) &= \tfrac{1}{2}(p_1 - p_2)\sin(\theta)(e^{-i\phi} + e^{i\phi}) \\
+				&= (p_1 - p_2)\sin(\theta)\cos(\phi) \\
+				2m_2 = \mathrm{Tr}(\rho\sigma_y) &= \tfrac{i}{2}(p_1 - p_2)\sin(\theta)(e^{-i\phi} - e^{i\phi}) \\
+				&= (p_1 - p_2)\sin(\theta)\sin(\phi) \\
+				2m_3 = \mathrm{Tr}(\rho\sigma_z) &= p_1\big(\cos^2(\tfrac{\theta}{2}) - \sin^2(\tfrac{\theta}{2})\big) + p_2\big(\sin^2(\tfrac{\theta}{2}) - \cos^2(\tfrac{\theta}{2})\big) \\
+				&= (p_1 - p_2)\cos(\theta)
+			\end{align*}
+			and so
+			$$\rho = \sum_\alpha m_\alpha\sigma_\alpha = \tfrac{1}{2}(I + \mathbf{a}\cdot\boldsymbol{\sigma})$$
+			where we recognize
+			$$\mathbf{a} = (p_1 - p_2)(\sin\theta\cos\phi\,\hat{\mathbf{i}} + \sin\theta\sin\phi\,\hat{\mathbf{j}} + \cos\theta\,\hat{\mathbf{k}}) = (p_1 - p_2)\hat{n}$$
+			This is, by definition, the mean polarization of the ensemble, $\langle\bar{\boldsymbol{\sigma}}\rangle$.
+			
+			In a magnetic field $\mathbf{B} = B\mathbf{k}$, the spin Hamiltonian is $H = -\gamma\mathbf{B}\cdot\mathbf{S} = -\gamma BS_z$, having the effect of rotating a state over time via
+			$$U(t) = \begin{bmatrix}e^{i\omega_0t/2} & 0 \\ 0 & e^{-i\omega_0t/2}\end{bmatrix}$$
+			where $\omega_0 = \gamma B$. Put another way, it causes a state to rotate around $\mathbf{B}$ with a frequency $\omega_0$, i.e. $\phi \to \phi - \omega_0t$. Therefore, the density matrix becomes
+			$$\rho = \begin{bmatrix}
+				p_1\cos^2(\tfrac{\theta}{2}) + p_2\sin^2(\tfrac{\theta}{2}) & \tfrac{1}{2}(p_1 - p_2)\sin(\theta)e^{-i(\phi - \omega_0t)} \\
+				\tfrac{1}{2}(p_1-p_2)\sin(\theta)e^{i(\phi - \omega_0t)} & p_1\sin^2(\tfrac{\theta}{2}) + p_2\cos^2(\tfrac{\theta}{2})
+			\end{bmatrix}$$
+			or, written in terms of the Pauli matrices, 
+			$$\rho = \sum_\alpha m_\alpha\sigma_\alpha = \tfrac{1}{2}(I + \mathbf{a}\cdot\boldsymbol{\sigma})$$
+			with
+			$$\mathbf{a} = (p_1 - p_2)(\sin(\theta)\cos(\phi - \omega_0t)\,\hat{\mathbf{i}} + \sin(\theta)\sin(\phi - \omega_0t)\,\hat{\mathbf{j}} + \cos(\theta)\,\hat{\mathbf{k}})$$
+			Since $\bar{\boldsymbol{\mu}} = \gamma\mathbf{S} = \gamma\hbar\bar{\boldsymbol{\sigma}}/2$ and $\langle \bar{\boldsymbol{\sigma}}\rangle = \mathbf{a}$, we have
+			$$\langle\bar{\boldsymbol{\mu}}\rangle = \frac{\gamma\hbar}{2}(p_1 - p_2)(\sin(\theta)\cos(\phi - \omega_0t)\,\hat{\mathbf{i}} + \sin(\theta)\sin(\phi - \omega_0t)\,\hat{\mathbf{j}} + \cos(\theta)\,\hat{\mathbf{k}})$$
 		\end{solution}
 	
 	\setcounter{subsection}{4}
@@ -485,13 +567,82 @@
 	\question (1) Why is the coupling of the proton's intrinsic moment to $\mathbf{B}$ an order $m/M$ correction to Eq. (14.5.4)?
 	
 	(2) Why is the coupling of its orbital motion an order $(m/M)^2$ correction? (You may reason classically in both parts.)
+	\begin{solution}
+		When we include proton terms in the Hamiltonian, it becomes
+		$$H = H_{\text{Coulomb}} - \Big(\frac{-eB}{2mc}\Big)L_z^e - \Big(\frac{-g_eeB}{2mc}\Big)S_z^e - \Big(\frac{eB}{2Mc}\Big)L_z^p - \Big(\frac{g_peB}{2Mc}\Big)S_z^p$$
+		Clearly, both $L_z^p$ and $S_z^p$ are a factor of $m/M$ smaller than $L_z^e$ and $S_z^e$.
+		
+		The orbital angular momentum is a further factor of $m/M$ smaller on account of the proton's orbital radius being a factor $m/M$ smaller than the electron's.
+	\end{solution}
 	
 	\question (1) Estimate the relative size of the level splitting in the $n=1$ state to the unperturbed energy of the $n=1$ state, when a field $\mathbf{B}=1000\text{ kG}$ is applied.
 	
 	(2) Recall that we have been neglecting the order $B^2$ term in $H$. Estimate its contribution in the $n=1$ state relative to the linear $(-\boldsymbol{\mu}\cdot\mathbf{B})$ term we have kept, by assuming the electron moves on a classical orbit of radius $a_0$. Above what $|\mathbf{B}|$ does it begin to be a poor approximation?
 	
+	\begin{solution}
+		For $n = 1, m = 0$, the split energy levels are given by
+		$$E = -\mathrm{Ry} \pm \frac{eB\hbar}{2mc}$$
+		With $B = 1000\text{ kG}$, $eB\hbar/2mc \approx 5.8\cdot10^{-3}\text{ eV}$. With $\mathrm{Ry} \approx 13.6\text{ eV}$, we can say that the relative size of the level splitting is approximately $0.0043\%$.
+		
+		Returning to the Hamiltonian given in Eq. (14.4.11), with $\mathbf{A} = B({-y}\mathbf{i} + x\mathbf{j})/2$, we see that the quadratic term becomes
+		$$H_\text{quad} = \frac{e^2|\mathbf{A}|^2}{2mc^2} = \frac{e^2B^2r^2}{8mc^2}$$
+		If $r = a_0$, its relative energy compared to the linear term can be estimated as
+		$$\frac{H_\text{quad}}{H_\text{int}} = \frac{e^2B^2a_0^2}{8mc^2}\frac{2mc}{eB\hbar} = \frac{eBa_0^2}{4\hbar c}$$
+		which, when $B = 1000\text{ kG}$, is approximately $10^{-4}$. In order for our linear approximation to be reasonably accurate, this must be much less than unity, giving the condition
+		$$B \ll \frac{4\hbar c}{ea_0^2}$$
+	\end{solution}
+	
 	\question A beam of spin-1/2 particles moving along the $y$ axis goes through two collinear SG apparatuses, both with lower beams blocked. The first has its $\mathbf{B}$ field along the $z$ axis and the second has its $\mathbf{B}$ field along the $x$ axis (i.e., is obtained by rotating the first by an angle $\pi/2$ about the $y$ axis). What fraction of particles leaving the first will exit the second? If a third filter that transmits only spin up along the $z$ axis is introduced, what fraction of particles leaving the first will exit the third? If the middle filter transmits both spins up and down (no blocking) the $x$ axis, but the last one transmits only spin down the $z$ axis, what fraction of particles leaving the first will leave the last?
 	
+	\begin{solution}
+		Before answering this question, it is useful to find the explicit eigenvectors of each Pauli matrix. These are
+		\begin{align*}
+			|z_+\rangle &= \begin{bmatrix}1 \\ 0\end{bmatrix} \\
+			|z_-\rangle &= \begin{bmatrix}0 \\ 1\end{bmatrix} \\
+			|x_+\rangle &= \frac{1}{2^{1/2}}\begin{bmatrix}1 \\ 1\end{bmatrix} \\
+			|x_-\rangle &= \frac{1}{2^{1/2}}\begin{bmatrix}1 \\ -1\end{bmatrix} \\
+			|y_+\rangle &= \frac{1}{2^{1/2}}\begin{bmatrix}i \\ 1\end{bmatrix} \\
+			|y_-\rangle &= \frac{1}{2^{1/2}}\begin{bmatrix}1 \\ i\end{bmatrix}
+		\end{align*}
+		All particles exiting the first apparatus will be in the $|z_+\rangle$ state. Since this can be written as $|z_+\rangle = 2^{-1/2}(|x_+\rangle + |x_-\rangle)$ and the second apparatus only lets through particles in the state $|x_+\rangle$, only $1/2$ of the particles exiting the first SG machine will exit the second.
+		
+		At the tail end of the second machine, we only have particles in the $|x_+\rangle$ state. This can be written as $|x_+\rangle = 2^{-1/2}(|z_+\rangle + |z_-\rangle)$, and so half of all particles exiting the second machine will exit the third, i.e. $1/4$ of the particles exiting the first apparatus come out the tail end of the third SG machine.
+		
+		For the last scenario, half of the particles exiting the first machine come out of the second in the $|x_+\rangle$ state, while the other half exit the second SG machine in the $|x_-\rangle$ state. Since both of these states are an equal (in magnitude) combination of $|z_+\rangle$ and $|z_-\rangle$ states, half of each o these populations exit the third machine in the $|z_-\rangle$ state, i.e. $1/2$ of all particles exiting the first machine (in the $|z_+\rangle$ state) exit the third apparatus in the $|z_-\rangle$ state.
+		
+	\end{solution}
+	
 	\question A beam of spin-1 particles, moving along the $y$ axis, is incident on two collinear SG apparatuses, the first with $\mathbf{B}$ along the $z$ axis and the second with $\mathbf{B}$ along the $z'$ axis, which lies in the $x$-$z$ plane at an angle $\theta$ relative to the $z$ axis. Both apparatuses transmit only the uppermost beams. What fraction leaving the first will pass the second?
+	
+	\begin{solution}
+		For spin-1 particles, the $z$ and $x$ spin operators are (from Chapter 12)
+		\begin{gather*}
+			S_z = \hbar\begin{bmatrix}1 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & -1\end{bmatrix} \\
+			S_x = \frac{\hbar}{2^{1/2}}\begin{bmatrix}0 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 0\end{bmatrix}
+		\end{gather*}
+		and so, with $\hat{n} = \hat{\mathbf{i}}\sin\theta + \hat{\mathbf{k}}\cos\theta$, a general spin operator in the $x$-$z$ plane is described by
+		\begin{align*}
+			\hat{n}\cdot\mathbf{S} &= \frac{\hbar}{2^{1/2}}\begin{bmatrix}2^{1/2}\cos\theta & \sin\theta & 0 \\
+			\sin\theta & 0 & \sin\theta  \\
+			0 & \sin\theta & -2^{1/2}\cos\theta\end{bmatrix}
+		\end{align*}
+		Using a CAS system and performing some simplifications by hand, the eigenvectors of this matrix are
+		\begin{align*}
+			|n_1\rangle &= \begin{bmatrix}\cos^2\tfrac{\theta}{2} \\
+			2^{-1/2}\sin\theta \\
+			\sin^2\tfrac{\theta}{2}\end{bmatrix} \\
+			|n_0\rangle &= \frac{1}{2^{1/2}}\begin{bmatrix}
+				-\sin\theta \\ 2^{1/2}\cos\theta \\ \sin\theta
+			\end{bmatrix} \\
+			|n_{-1}\rangle &= \begin{bmatrix}
+				\sin^2\tfrac{\theta}{2} \\
+				-2^{-1/2}\sin\theta \\
+				\cos^2\tfrac{\theta}{2}
+			\end{bmatrix}
+		\end{align*}
+		When the particles exit the first apparatus, they are all in the state $$|z_1\rangle = \begin{bmatrix}1 \\ 0 \\ 0 \end{bmatrix}$$
+		We can rewrite this state in terms of the eigenvectors of the spin operator corresponding to the second apparatus via $|\psi'\rangle = \sum_i\langle z'_i|z_1\rangle|z'_i\rangle$, upon which we see that the probability of finding a particle in the state $|z'_1\rangle$ is given by $|\langle z'_1|z_1\rangle|^2$, or
+		$$|\langle z'_1|z_1\rangle|^2 = \cos^4\theta/2$$
+	\end{solution}
 	\end{questions}
 \end{document}
