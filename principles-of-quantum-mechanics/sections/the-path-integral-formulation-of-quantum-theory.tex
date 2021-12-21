@@ -110,7 +110,36 @@
 		
 		(2) (Optional). Now consider the extraction of the eigenfunctions. Let $x = x'$ and $t' = 0$. Find $E_0$, $E_1$, $|\psi_0(x)|^2$, and $|\psi_1(x)|^2$ by expanding in powers of $\alpha = \exp(i\omega t)$.
 		\begin{solution}
-			$\cdots$
+			Using the $A(t)$ given here along with the $U$ found in the previous problem, we know
+			$$U(x, t, x', t') = \Big(\frac{m\omega}{2\pi i \hbar\sin\omega(t - t')}\Big)^{1/2}\exp\Big(\frac{im\omega}{2\hbar\sin\omega(t-t')}[(x^2 + x'^2)\cos\omega(t - t') - 2xx']\Big)$$
+			Setting $x = x' = t' = 0$, this becomes
+			$$U(t) = \Big(\frac{m\omega}{2\pi i \hbar\sin\omega t}\Big)^{1/2}$$
+			Recognizing that we need to match terms of the form $\alpha = e^{-i\omega t}$ on either side, we rewrite $\sin\omega t = (\alpha^{-1} - \alpha)/2i$ and expand,
+			\begin{align*}
+				U(t) &= \Big(\frac{m\omega}{\pi\hbar}\Big)^{1/2}\frac{1}{(\alpha^{-1} - \alpha)^{1/2}} \\
+				&= \Big(\frac{m\omega}{\pi\hbar}\Big)^{1/2}(\alpha)^{1/2}(1 - \alpha^2)^{-1/2} \\
+				&= \Big(\frac{m\omega}{\pi\hbar}\Big)^{1/2}(\alpha)^{1/2}\Big(1 + 0\cdot\alpha + \frac{1}{2}\cdot1\cdot\alpha^2 + \frac{1}{3!}\cdot0\cdot\alpha^3 + \frac{1}{4!}\cdot9\cdot\alpha^4 + \cdots\Big) \\
+				&= \Big(\frac{m\omega}{\pi\hbar}\Big)^{1/2}(\alpha)^{1/2}\Big(1 + \frac{1}{2}\alpha^2 + \frac{3}{8}\alpha^4 + \cdots\Big) \\
+				&= \Big(\frac{m\omega}{\pi\hbar}\Big)^{1/2}\Big(e^{-i\omega t/2} + \frac{1}{2}e^{-i5\omega t/2} + \frac{3}{8}e^{-i9\omega t/2} + \cdots\Big)
+			\end{align*}
+			From this, we see that $E = \hbar\omega/2, 5\hbar\omega/2, 9\hbar\omega/2, \cdots$. The $E = 3\hbar\omega/2, 7\hbar\omega/2, \cdots$ solutions are not here because the term $|\psi_n(0)|^2 = 0$ for odd harmonic oscillator states.
+			
+			For (2), the propagator becomes
+			\begin{align*}
+				U(x, t) &= \Big(\frac{m\omega}{2\pi i\hbar\sin\omega t}\Big)^{1/2}\exp\Big(\frac{im\omega}{\hbar\sin\omega t}[x^2\cos\omega t - x^2]\Big) \\
+				&= \Big(\frac{m\omega}{2\pi i\hbar\sin\omega t}\Big)^{1/2}\exp\Big(\frac{im\omega x^2}{\hbar\sin\omega t}[\cos\omega t - 1]\Big) \\
+				&= \Big(\frac{m\omega}{\pi\hbar}\Big)^{1/2}(\alpha)^{1/2}(1 - \alpha^2)^{-1/2}\exp\Big({-\frac{m\omega x^2}{\hbar}}\Big[\frac{\alpha^{-1} + \alpha - 2}{\alpha^{-1} - \alpha}\Big]\Big) \\
+				&= \Big(\frac{m\omega}{\pi\hbar}\Big)^{1/2}(\alpha)^{1/2}(1 - \alpha^2)^{-1/2}\exp\Big({-\frac{m\omega x^2}{\hbar}}\Big[\frac{1 + \alpha^2 - 2\alpha}{1 - \alpha^2}\Big]\Big) \\
+				&= \Big(\frac{m\omega}{\pi\hbar}\Big)^{1/2}(\alpha)^{1/2}\Big(1 + \cdots\Big)\Big(e^{-m\omega x^2/\hbar} + \frac{2m\omega x^2}{\hbar}e^{-m\omega x^2/\hbar}\alpha + \cdots\Big) \\
+				&= \Big(\frac{m\omega}{\pi\hbar}\Big)^{1/2}\Big(e^{-m\omega x^2/\hbar}e^{-i\omega t/2} + \frac{2m\omega x^2}{\hbar}e^{-m\omega x^2/\hbar}e^{-3\omega t/2} + \cdots\Big)
+			\end{align*}
+			Matching terms to 
+			$$\sum_n|\psi_n(x)|^2e^{-iE_nt/\hbar} = |\psi_0(x)|^2e^{-i\omega t/2} + |\psi_1(x)|^2e^{-i3\omega t/2} + \cdots$$
+			we see
+			\begin{align*}
+				|\psi_0(x)|^2 &= \Big(\frac{m\omega}{\pi\hbar}\Big)^{1/2}e^{-m\omega x^2/\hbar} \\
+				|\psi_1(x)|^2 &= \Big(\frac{m\omega}{\pi\hbar}\Big)^{1/2}\frac{2m\omega x^2}{\hbar}e^{-m\omega x^2/\hbar}
+			\end{align*}
 		\end{solution}
 		
 		\question Recall the derivation of the Schr\"odinger equation (8.5.8) starting from Eq. (8.5.4). Note that although we chose the argument of $V$ to be the midpoint of $x + x'/2$, it did not matter very much: any choice $x + \alpha\eta$, (where $\eta = x' - x$) for $0 \leq \alpha \leq 1$ would have given the same result since the difference between the choices is of order $\eta\varepsilon \approxeq \varepsilon^{3/2}$. All this was thanks to the factor $\varepsilon$ multiplying $V$ in Eq. (8.5.4) and the fact that $|\eta| \approxeq \varepsilon^{1/2}$, as per Eq. (8.6.5).
